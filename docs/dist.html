@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 Appendix: Reference Distributions | Engineering Data Analysis in R</title>
+  <title>Chapter 13 Appendix: Reference Distributions | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 Appendix: Reference Distributions | Engineering Data Analysis in R" />
+  <meta property="og:title" content="Chapter 13 Appendix: Reference Distributions | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 Appendix: Reference Distributions | Engineering Data Analysis in R" />
+  <meta name="twitter:title" content="Chapter 13 Appendix: Reference Distributions | Engineering Data Analysis in R" />
   
   <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2020-05-04" />
+<meta name="date" content="2020-05-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -143,94 +144,111 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a><ul>
-<li class="chapter" data-level="2.1" data-path="rprog1.html"><a href="rprog1.html#prerequisites-1"><i class="fa fa-check"></i><b>2.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#grading-1"><i class="fa fa-check"></i><b>2.2</b> Grading</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="rprog1.html"><a href="rprog1.html#grading-for-mech-481a6-1"><i class="fa fa-check"></i><b>2.2.1</b> Grading for MECH 481A6</a></li>
+<li class="chapter" data-level="2.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>2.1</b> Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="rprog1.html"><a href="rprog1.html#what-is-r"><i class="fa fa-check"></i><b>2.2.1</b> What is R?</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#course-set-up-1"><i class="fa fa-check"></i><b>2.3</b> Course set-up</a></li>
-<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#coursebook-1"><i class="fa fa-check"></i><b>2.4</b> Coursebook</a><ul>
-<li class="chapter" data-level="2.4.1" data-path="rprog1.html"><a href="rprog1.html#other-helpful-books-not-required-1"><i class="fa fa-check"></i><b>2.4.1</b> Other helpful books (not required)</a></li>
+<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="rprog1.html"><a href="rprog1.html#r-sessions-the-console-and-the-command-prompt"><i class="fa fa-check"></i><b>2.3.1</b> R sessions, the console, and the command prompt</a></li>
+<li class="chapter" data-level="2.3.2" data-path="rprog1.html"><a href="rprog1.html#r-expressions-function-calls-and-objects"><i class="fa fa-check"></i><b>2.3.2</b> R expressions, function calls, and objects</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a><ul>
-<li class="chapter" data-level="3.1" data-path="rprog2.html"><a href="rprog2.html#objectives"><i class="fa fa-check"></i><b>3.1</b> Objectives</a></li>
-<li class="chapter" data-level="3.2" data-path="rprog2.html"><a href="rprog2.html#r-and-r-studio"><i class="fa fa-check"></i><b>3.2</b> R and R Studio</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>4</b> Exploring Univariate Data</a><ul>
-<li class="chapter" data-level="4.1" data-path="eda1.html"><a href="eda1.html#univariate-data"><i class="fa fa-check"></i><b>4.1</b> Univariate Data</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>4.1.1</b> Location, Dispersion, and Shape</a></li>
-<li class="chapter" data-level="4.1.2" data-path="eda1.html"><a href="eda1.html#example-location-and-dispersion"><i class="fa fa-check"></i><b>4.1.2</b> Example: Location and Dispersion</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="eda1.html"><a href="eda1.html#quantiles"><i class="fa fa-check"></i><b>4.2</b> Quantiles</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="eda1.html"><a href="eda1.html#quantiles-and-descriptive-statistics"><i class="fa fa-check"></i><b>4.2.1</b> Quantiles and Descriptive Statistics</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>4.3</b> Univariate Data Visualization</a></li>
-<li class="chapter" data-level="4.4" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>4.4</b> Cumulative Distribution Plot</a></li>
-<li class="chapter" data-level="4.5" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>4.5</b> Histogram</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="eda1.html"><a href="eda1.html#histogram-what-to-look-for"><i class="fa fa-check"></i><b>4.5.1</b> Histogram: what to look for?</a></li>
-<li class="chapter" data-level="4.5.2" data-path="eda1.html"><a href="eda1.html#what-causes-skewed-histograms"><i class="fa fa-check"></i><b>4.5.2</b> What causes skewed histograms?</a></li>
-</ul></li>
-<li class="chapter" data-level="4.6" data-path="eda1.html"><a href="eda1.html#pdf"><i class="fa fa-check"></i><b>4.6</b> Probability Density Function</a></li>
-<li class="chapter" data-level="4.7" data-path="eda1.html"><a href="eda1.html#time_series"><i class="fa fa-check"></i><b>4.7</b> Time-Series</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="rprog2.html"><a href="rprog2.html#rprog2"><i class="fa fa-check"></i><b>5</b> Introduction to R Programming II</a><ul>
-<li class="chapter" data-level="5.1" data-path="rprog2.html"><a href="rprog2.html#step-ii-1"><i class="fa fa-check"></i><b>5.1</b> Step II-1</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>6</b> Exploratory Data Analysis 2</a><ul>
-<li class="chapter" data-level="6.1" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>6.1</b> Bivariate Data</a></li>
-<li class="chapter" data-level="6.2" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>6.2</b> Scatterplot</a></li>
-<li class="chapter" data-level="6.3" data-path="eda2.html"><a href="eda2.html#QQ"><i class="fa fa-check"></i><b>6.3</b> Q-Q Plot (Quantile-Quantile)</a></li>
-<li class="chapter" data-level="6.4" data-path="eda2.html"><a href="eda2.html#Tukey"><i class="fa fa-check"></i><b>6.4</b> Tukey Mean Difference Plot</a></li>
-<li class="chapter" data-level="6.5" data-path="eda2.html"><a href="eda2.html#boxplot-box"><i class="fa fa-check"></i><b>6.5</b> Boxplot (#box)</a></li>
-<li class="chapter" data-level="6.6" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>6.6</b> Exploring Multivariate Data</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>7</b> Measurement</a><ul>
-<li class="chapter" data-level="7.1" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>7.1</b> Sampling</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="measure.html"><a href="measure.html#samples-vs.populations"><i class="fa fa-check"></i><b>7.1.1</b> Samples vs. Populations</a></li>
-<li class="chapter" data-level="7.1.2" data-path="measure.html"><a href="measure.html#collecting-a-sample"><i class="fa fa-check"></i><b>7.1.2</b> Collecting a sample</a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>7.2</b> Figures of Merit</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="measure.html"><a href="measure.html#accuracy"><i class="fa fa-check"></i><b>7.2.1</b> Accuracy</a></li>
-<li class="chapter" data-level="7.2.2" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>7.2.2</b> Precision</a></li>
-<li class="chapter" data-level="7.2.3" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>7.2.3</b> Bias</a></li>
-<li class="chapter" data-level="7.2.4" data-path="measure.html"><a href="measure.html#limit-of-detection"><i class="fa fa-check"></i><b>7.2.4</b> Limit of Detection</a></li>
-<li class="chapter" data-level="7.2.5" data-path="measure.html"><a href="measure.html#failure-and-reliability"><i class="fa fa-check"></i><b>7.2.5</b> Failure and Reliability</a></li>
+<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#generic-code-this-wont-run"><i class="fa fa-check"></i><b>2.4</b> Generic code (this won’t run)</a></li>
+<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#note-generic-code-this-will-not-work"><i class="fa fa-check"></i><b>2.5</b> Note: Generic code– this will not work</a></li>
+<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.6</b> R scripts</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#commenting-code"><i class="fa fa-check"></i><b>2.6.1</b> Commenting code</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>8</b> Introduction to R Programming III</a><ul>
-<li class="chapter" data-level="8.1" data-path="rprog3.html"><a href="rprog3.html#step-iii-1"><i class="fa fa-check"></i><b>8.1</b> Step III-1</a></li>
+<li class="chapter" data-level="3" data-path="dont-print-this-.html"><a href="dont-print-this-.html"><i class="fa fa-check"></i><b>3</b> Don’t print this.</a><ul>
+<li class="chapter" data-level="3.1" data-path="dont-print-this-.html"><a href="dont-print-this-.html#the-package-system"><i class="fa fa-check"></i><b>3.1</b> The “package” system</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="dont-print-this-.html"><a href="dont-print-this-.html#r-packages"><i class="fa fa-check"></i><b>3.1.1</b> R packages</a></li>
+<li class="chapter" data-level="3.1.2" data-path="dont-print-this-.html"><a href="dont-print-this-.html#installing-from-cran"><i class="fa fa-check"></i><b>3.1.2</b> Installing from CRAN</a></li>
+<li class="chapter" data-level="3.1.3" data-path="dont-print-this-.html"><a href="dont-print-this-.html#loading-an-installed-package"><i class="fa fa-check"></i><b>3.1.3</b> Loading an installed package</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="eda3.html"><a href="eda3.html"><i class="fa fa-check"></i><b>9</b> Tips and Tricks for Data Exploration</a><ul>
-<li class="chapter" data-level="9.1" data-path="eda3.html"><a href="eda3.html#transformation"><i class="fa fa-check"></i><b>9.1</b> Transformation</a></li>
-<li class="chapter" data-level="9.2" data-path="eda3.html"><a href="eda3.html#centering"><i class="fa fa-check"></i><b>9.2</b> Centering</a></li>
-<li class="chapter" data-level="9.3" data-path="eda3.html"><a href="eda3.html#normalizing"><i class="fa fa-check"></i><b>9.3</b> Normalizing</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="eda3.html"><a href="eda3.html#standardizing"><i class="fa fa-check"></i><b>9.3.1</b> Standardizing</a></li>
+<li class="chapter" data-level="3.2" data-path="dont-print-this-.html"><a href="dont-print-this-.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>3.2</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="dont-print-this-.html"><a href="dont-print-this-.html#vectors"><i class="fa fa-check"></i><b>3.2.1</b> Vectors</a></li>
+<li class="chapter" data-level="3.2.2" data-path="dont-print-this-.html"><a href="dont-print-this-.html#dataframes"><i class="fa fa-check"></i><b>3.2.2</b> Dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="eda3.html"><a href="eda3.html#stratification"><i class="fa fa-check"></i><b>9.4</b> Stratification</a></li>
-<li class="chapter" data-level="9.5" data-path="eda3.html"><a href="eda3.html#censoring-and-truncating"><i class="fa fa-check"></i><b>9.5</b> Censoring and Truncating</a></li>
+<li class="chapter" data-level="3.3" data-path="dont-print-this-.html"><a href="dont-print-this-.html#note-generic-code"><i class="fa fa-check"></i><b>3.3</b> Note: Generic code</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>10</b> Modeling</a><ul>
-<li class="chapter" data-level="10.1" data-path="model.html"><a href="model.html#fitting"><i class="fa fa-check"></i><b>10.1</b> Fitting</a></li>
-<li class="chapter" data-level="10.2" data-path="model.html"><a href="model.html#linear-models"><i class="fa fa-check"></i><b>10.2</b> Linear Models</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="model.html"><a href="model.html#assumptions-of-linear-regression"><i class="fa fa-check"></i><b>10.2.1</b> Assumptions of Linear Regression</a></li>
-<li class="chapter" data-level="10.2.2" data-path="model.html"><a href="model.html#diagnostics"><i class="fa fa-check"></i><b>10.2.2</b> Diagnostics</a></li>
-<li class="chapter" data-level="10.2.3" data-path="model.html"><a href="model.html#ordinary-least-squares"><i class="fa fa-check"></i><b>10.2.3</b> Ordinary Least Squares</a></li>
-<li class="chapter" data-level="10.2.4" data-path="model.html"><a href="model.html#weighted-least-squares"><i class="fa fa-check"></i><b>10.2.4</b> Weighted Least Squares</a></li>
-<li class="chapter" data-level="10.2.5" data-path="model.html"><a href="model.html#deming-regression"><i class="fa fa-check"></i><b>10.2.5</b> Deming Regression</a></li>
+<li class="chapter" data-level="4" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>4</b> Getting and Cleaning Data</a><ul>
+<li class="chapter" data-level="4.1" data-path="rprog2.html"><a href="rprog2.html#objectives-1"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="rprog2.html"><a href="rprog2.html#r-and-r-studio-1"><i class="fa fa-check"></i><b>4.2</b> R and R Studio</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Exploring Univariate Data</a><ul>
+<li class="chapter" data-level="5.1" data-path="eda1.html"><a href="eda1.html#univariate-data"><i class="fa fa-check"></i><b>5.1</b> Univariate Data</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>5.1.1</b> Location, Dispersion, and Shape</a></li>
+<li class="chapter" data-level="5.1.2" data-path="eda1.html"><a href="eda1.html#example-location-and-dispersion"><i class="fa fa-check"></i><b>5.1.2</b> Example: Location and Dispersion</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#quantiles"><i class="fa fa-check"></i><b>5.2</b> Quantiles</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="eda1.html"><a href="eda1.html#quantiles-and-descriptive-statistics"><i class="fa fa-check"></i><b>5.2.1</b> Quantiles and Descriptive Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.3</b> Univariate Data Visualization</a></li>
+<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.4</b> Cumulative Distribution Plot</a></li>
+<li class="chapter" data-level="5.5" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.5</b> Histogram</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="eda1.html"><a href="eda1.html#histogram-what-to-look-for"><i class="fa fa-check"></i><b>5.5.1</b> Histogram: what to look for?</a></li>
+<li class="chapter" data-level="5.5.2" data-path="eda1.html"><a href="eda1.html#what-causes-skewed-histograms"><i class="fa fa-check"></i><b>5.5.2</b> What causes skewed histograms?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="eda1.html"><a href="eda1.html#pdf"><i class="fa fa-check"></i><b>5.6</b> Probability Density Function</a></li>
+<li class="chapter" data-level="5.7" data-path="eda1.html"><a href="eda1.html#time_series"><i class="fa fa-check"></i><b>5.7</b> Time-Series</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Introduction to R Programming II</a><ul>
+<li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#step-ii-1"><i class="fa fa-check"></i><b>6.1</b> Step II-1</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Exploratory Data Analysis 2</a><ul>
+<li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>7.1</b> Bivariate Data</a></li>
+<li class="chapter" data-level="7.2" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.2</b> Scatterplot</a></li>
+<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#QQ"><i class="fa fa-check"></i><b>7.3</b> Q-Q Plot (Quantile-Quantile)</a></li>
+<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#Tukey"><i class="fa fa-check"></i><b>7.4</b> Tukey Mean Difference Plot</a></li>
+<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#boxplot-box"><i class="fa fa-check"></i><b>7.5</b> Boxplot (#box)</a></li>
+<li class="chapter" data-level="7.6" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.6</b> Exploring Multivariate Data</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>8</b> Measurement</a><ul>
+<li class="chapter" data-level="8.1" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>8.1</b> Sampling</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="measure.html"><a href="measure.html#samples-vs.populations"><i class="fa fa-check"></i><b>8.1.1</b> Samples vs. Populations</a></li>
+<li class="chapter" data-level="8.1.2" data-path="measure.html"><a href="measure.html#collecting-a-sample"><i class="fa fa-check"></i><b>8.1.2</b> Collecting a sample</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>8.2</b> Figures of Merit</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="measure.html"><a href="measure.html#accuracy"><i class="fa fa-check"></i><b>8.2.1</b> Accuracy</a></li>
+<li class="chapter" data-level="8.2.2" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>8.2.2</b> Precision</a></li>
+<li class="chapter" data-level="8.2.3" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>8.2.3</b> Bias</a></li>
+<li class="chapter" data-level="8.2.4" data-path="measure.html"><a href="measure.html#limit-of-detection"><i class="fa fa-check"></i><b>8.2.4</b> Limit of Detection</a></li>
+<li class="chapter" data-level="8.2.5" data-path="measure.html"><a href="measure.html#failure-and-reliability"><i class="fa fa-check"></i><b>8.2.5</b> Failure and Reliability</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="simulate.html"><a href="simulate.html"><i class="fa fa-check"></i><b>11</b> Simulation</a><ul>
-<li class="chapter" data-level="11.1" data-path="simulate.html"><a href="simulate.html#introduction-to-simulation"><i class="fa fa-check"></i><b>11.1</b> Introduction to simulation</a></li>
-<li class="chapter" data-level="11.2" data-path="simulate.html"><a href="simulate.html#simulation-example"><i class="fa fa-check"></i><b>11.2</b> Simulation Example:</a></li>
+<li class="chapter" data-level="9" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>9</b> Introduction to R Programming III</a><ul>
+<li class="chapter" data-level="9.1" data-path="rprog4.html"><a href="rprog4.html#step-iii-1"><i class="fa fa-check"></i><b>9.1</b> Step III-1</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Reference Distributions</a><ul>
-<li class="chapter" data-level="12.1" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.1</b> Uniform Distribution</a><ul>
-<li class="chapter" data-level="12.1.1" data-path="dist.html"><a href="dist.html#characteristic-plots-uniform-distribution"><i class="fa fa-check"></i><b>12.1.1</b> Characteristic Plots: Uniform Distribution</a></li>
+<li class="chapter" data-level="10" data-path="eda3.html"><a href="eda3.html"><i class="fa fa-check"></i><b>10</b> Tips and Tricks for Data Exploration</a><ul>
+<li class="chapter" data-level="10.1" data-path="eda3.html"><a href="eda3.html#transformation"><i class="fa fa-check"></i><b>10.1</b> Transformation</a></li>
+<li class="chapter" data-level="10.2" data-path="eda3.html"><a href="eda3.html#centering"><i class="fa fa-check"></i><b>10.2</b> Centering</a></li>
+<li class="chapter" data-level="10.3" data-path="eda3.html"><a href="eda3.html#normalizing"><i class="fa fa-check"></i><b>10.3</b> Normalizing</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="eda3.html"><a href="eda3.html#standardizing"><i class="fa fa-check"></i><b>10.3.1</b> Standardizing</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.2</b> Normal Distribution</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="dist.html"><a href="dist.html#normal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>12.2.1</b> Normal Distribution: Characteristic Plots</a></li>
+<li class="chapter" data-level="10.4" data-path="eda3.html"><a href="eda3.html#stratification"><i class="fa fa-check"></i><b>10.4</b> Stratification</a></li>
+<li class="chapter" data-level="10.5" data-path="eda3.html"><a href="eda3.html#censoring-and-truncating"><i class="fa fa-check"></i><b>10.5</b> Censoring and Truncating</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#log-normal-distribution"><i class="fa fa-check"></i><b>12.3</b> Log-normal Distribution</a></li>
+<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a><ul>
+<li class="chapter" data-level="11.1" data-path="model.html"><a href="model.html#fitting"><i class="fa fa-check"></i><b>11.1</b> Fitting</a></li>
+<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#linear-models"><i class="fa fa-check"></i><b>11.2</b> Linear Models</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="model.html"><a href="model.html#assumptions-of-linear-regression"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions of Linear Regression</a></li>
+<li class="chapter" data-level="11.2.2" data-path="model.html"><a href="model.html#diagnostics"><i class="fa fa-check"></i><b>11.2.2</b> Diagnostics</a></li>
+<li class="chapter" data-level="11.2.3" data-path="model.html"><a href="model.html#ordinary-least-squares"><i class="fa fa-check"></i><b>11.2.3</b> Ordinary Least Squares</a></li>
+<li class="chapter" data-level="11.2.4" data-path="model.html"><a href="model.html#weighted-least-squares"><i class="fa fa-check"></i><b>11.2.4</b> Weighted Least Squares</a></li>
+<li class="chapter" data-level="11.2.5" data-path="model.html"><a href="model.html#deming-regression"><i class="fa fa-check"></i><b>11.2.5</b> Deming Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="simulate.html"><a href="simulate.html"><i class="fa fa-check"></i><b>12</b> Simulation</a><ul>
+<li class="chapter" data-level="12.1" data-path="simulate.html"><a href="simulate.html#introduction-to-simulation"><i class="fa fa-check"></i><b>12.1</b> Introduction to simulation</a></li>
+<li class="chapter" data-level="12.2" data-path="simulate.html"><a href="simulate.html#simulation-example"><i class="fa fa-check"></i><b>12.2</b> Simulation Example:</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>13</b> Appendix: Reference Distributions</a><ul>
+<li class="chapter" data-level="13.1" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>13.1</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="dist.html"><a href="dist.html#characteristic-plots-uniform-distribution"><i class="fa fa-check"></i><b>13.1.1</b> Characteristic Plots: Uniform Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>13.2</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="dist.html"><a href="dist.html#normal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>13.2.1</b> Normal Distribution: Characteristic Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="dist.html"><a href="dist.html#log-normal-distribution"><i class="fa fa-check"></i><b>13.3</b> Log-normal Distribution</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -253,88 +271,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="dist" class="section level1">
-<h1><span class="header-section-number">Chapter 12</span> Appendix: Reference Distributions</h1>
+<h1><span class="header-section-number">Chapter 13</span> Appendix: Reference Distributions</h1>
 <p>In this chapter I discuss a handful of reference distributions that you may encounter while working thorugh this course. I don’t go into great detail on any of these distributions (or their mathematical structure) because smarter, better, and more authoritative descriptions can be found elsehwere in reference texts or online. This is the $1 tour.</p>
 <div id="unif_dist" class="section level2">
-<h2><span class="header-section-number">12.1</span> Uniform Distribution</h2>
+<h2><span class="header-section-number">13.1</span> Uniform Distribution</h2>
 <p>The uniform distribution describes a situation where all obervations have an equal probability of occurrence. Examples of uniform distributions include: the outcome of a single roll of a 6-sided die, or the flip of a coin, or the chance of picking a spade, heart, diamond, or club from a well-shuffled deck of cards. In each of these cases, all potential outcomes have an equal chance of occuring. A uniform distribition may be specified simply by setting the range of possible outcomes (i.e., a minimum, maximum, and anything in between). The “in-between” part also lets you specify whether you want to allow outcome values that are continuous (like from a random-number generator), integers (like from a dice roll), or some other format (like a binary 0 or 1; heads or tails).</p>
 <p>Below, we create a <a href="eda1.html#pdf">probability density function</a> for the first roll of a six-sided die; this is a <em>discrete uniform distribition</em> since we only allow integers to occur. A uniform distribution is appropriate here because any of the numbers between 1 and 6 has equal probability of being rolled. Notice the shape of the histogram…flat.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">#create a uniform distribition for the first roll of a 6-sided die</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">six_sided &lt;-<span class="st"> </span><span class="kw">ceiling</span>(<span class="kw">runif</span>(<span class="fl">10e4</span>, <span class="dt">min=</span><span class="dv">0</span>, <span class="dt">max=</span><span class="dv">6</span>))</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#create a histogram of the probability density for a uniform distribution </span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">hist</span>(six_sided, </a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">      <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>, <span class="fl">5.5</span>, <span class="fl">6.5</span>), </a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">      <span class="dt">freq =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">      <span class="dt">xlab =</span> <span class="st">&quot;Number&quot;</span>,</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">      <span class="dt">ylab =</span> <span class="st">&quot;Probability&quot;</span>,</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">      <span class="dt">main =</span> <span class="st">&quot;Outcome probability for the first roll of a 6-sided die&quot;</span>)</a></code></pre></div>
-<p><img src="edar_coursebook_files/figure-html/unif_dist-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co">#create a uniform distribition for the first roll of a 6-sided die</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">six_sided &lt;-<span class="st"> </span><span class="kw">ceiling</span>(<span class="kw">runif</span>(<span class="fl">10e4</span>, <span class="dt">min=</span><span class="dv">0</span>, <span class="dt">max=</span><span class="dv">6</span>))</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co">#create a histogram of the probability density for a uniform distribution </span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="kw">hist</span>(six_sided, </a>
+<a class="sourceLine" id="cb17-6" data-line-number="6">      <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>, <span class="fl">5.5</span>, <span class="fl">6.5</span>), </a>
+<a class="sourceLine" id="cb17-7" data-line-number="7">      <span class="dt">freq =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb17-8" data-line-number="8">      <span class="dt">xlab =</span> <span class="st">&quot;Number&quot;</span>,</a>
+<a class="sourceLine" id="cb17-9" data-line-number="9">      <span class="dt">ylab =</span> <span class="st">&quot;Probability&quot;</span>,</a>
+<a class="sourceLine" id="cb17-10" data-line-number="10">      <span class="dt">main =</span> <span class="st">&quot;Outcome probability for the first roll of a 6-sided die&quot;</span>)</a></code></pre></div>
+<p><img src="11-distributions_files/figure-html/unif_dist-1.png" width="672" /></p>
 <div id="characteristic-plots-uniform-distribution" class="section level3">
-<h3><span class="header-section-number">12.1.1</span> Characteristic Plots: Uniform Distribution</h3>
-<p><img src="edar_coursebook_files/figure-html/unif_dist_plots2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<h3><span class="header-section-number">13.1.1</span> Characteristic Plots: Uniform Distribution</h3>
+<p><img src="11-distributions_files/figure-html/unif_dist_plots2-1.png" width="672" /></p>
 </div>
 </div>
 <div id="normal_dist" class="section level2">
-<h2><span class="header-section-number">12.2</span> Normal Distribution</h2>
+<h2><span class="header-section-number">13.2</span> Normal Distribution</h2>
 <p>The normal distribution arises from phenomena that tend to have <em>additive</em> variability. By “additive”, I mean that the outcome (or variable of interest) tends to vary in a +/- fashion from one obervation to the next. Lots of things have additive variability: the heights of 1<sup>st</sup> graders, the size of pollen grains from a tree or plant, the variation in blood pressure across the population, or the average temperature in Fort Collins, CO for the month of June.</p>
 <p>Let’s examine what <em>additive variability</em> looks like using the 6-sided dice mentioned above. Although a dice roll has a uniform distribution of possible outcomes (rolling a 1,2,3,4,5, or 6), the variability associated with adding up the sum of three or more dice creates a normal distribition of outcomes. If we were to roll four, 6-sided dice and sum the result (getting a value between 4 and 24 for each roll), and then repeat this experiment 10,000 times, we see the distribution shown below. The smooth line represents a fit using a normal distribution - a pretty nice fit considering that we are working with a discrete (integer-based) dataset!
-<img src="edar_coursebook_files/figure-html/normal1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<img src="11-distributions_files/figure-html/normal1-1.png" width="672" /></p>
 <div id="normal-distribution-characteristic-plots" class="section level3">
-<h3><span class="header-section-number">12.2.1</span> Normal Distribution: Characteristic Plots</h3>
+<h3><span class="header-section-number">13.2.1</span> Normal Distribution: Characteristic Plots</h3>
 <p>Unlike the uniform distribution, the normal distribution is not specified by a range (it doesn’t have one). The normal distribution is specified by a <em>central tendancy</em> (a most-common value) and a measure of data’s <em>dispersion</em> or spread (a standard deviation). A normal distribution is symmetric, meaning that the spread of the data is equal on each side of the central tendency. This symmetry also means that the mode (the most common value), the median (the 50<sup>th</sup> percentile or 0.5 quantile) and the mean (the average value) are all equal. A series of normal distributions of varying dispersion is shown in the panels below.</p>
-<p><img src="edar_coursebook_files/figure-html/normal2-1.png" width="576" style="display: block; margin: auto;" /><img src="edar_coursebook_files/figure-html/normal2-2.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="11-distributions_files/figure-html/normal2-1.png" width="576" /><img src="11-distributions_files/figure-html/normal2-2.png" width="576" /></p>
 </div>
 </div>
 <div id="log-normal-distribution" class="section level2">
-<h2><span class="header-section-number">12.3</span> Log-normal Distribution</h2>
+<h2><span class="header-section-number">13.3</span> Log-normal Distribution</h2>
 <p>Multiplicative variation is what gives rise to a “log-normal” distribution: a special type of skewed data.</p>
 <p>Let’s create two normal distributions for variables ‘a’ and ‘b’:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co">#create two variables that are normally distributed</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">normal_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">15</span>, <span class="dt">sd =</span> <span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">                   <span class="dt">b =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">3</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co">#create two variables that are normally distributed</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">normal_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">15</span>, <span class="dt">sd =</span> <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">                   <span class="dt">b =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">3</span>))</a></code></pre></div>
 <p>Individually, we know that these data are normally distributed (because we created them that way), but what does the distribution look like if we add these two variables together?</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co">#add those variables together and you get a normal distribution</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">normal_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">c =</span> a <span class="op">+</span><span class="st"> </span>b) -&gt;<span class="st"> </span>normal_data</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> normal_data) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(c),</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">                 <span class="dt">bins =</span> <span class="dv">30</span>,</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">                 <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">                 <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>))</a></code></pre></div>
-<p><img src="edar_coursebook_files/figure-html/a_b_histogram-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ggsave</span>(<span class="st">&quot;./images/hist_a_b.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co">#add those variables together and you get a normal distribution</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">normal_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">c =</span> a <span class="op">+</span><span class="st"> </span>b) -&gt;<span class="st"> </span>normal_data</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> normal_data) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(c),</a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">                 <span class="dt">bins =</span> <span class="dv">30</span>,</a>
+<a class="sourceLine" id="cb19-7" data-line-number="7">                 <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,</a>
+<a class="sourceLine" id="cb19-8" data-line-number="8">                 <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb19-9" data-line-number="9"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb19-10" data-line-number="10"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>))</a></code></pre></div>
+<p><img src="11-distributions_files/figure-html/a_b_histogram-1.png" width="672" /></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">ggsave</span>(<span class="st">&quot;./images/hist_a_b.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</a></code></pre></div>
 <pre><code>## Saving 7 x 5 in image</code></pre>
 <p>Answer: still normal. Since all we did here was add together two normal distributions, we simply created a third (normal) distribution with more additive variability.</p>
 <p>What happens, however, if we multiply together a series of normally distributed variables?</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co">#multiply together three normal variables</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">normal_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">d =</span> <span class="kw">sample</span>(a<span class="op">*</span>b<span class="op">*</span>c, <span class="dv">1000</span>)) -&gt;<span class="st"> </span>log_data</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> log_data) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(d),</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">                 <span class="dt">bins =</span> <span class="dv">30</span>,</a>
-<a class="sourceLine" id="cb6-8" data-line-number="8">                 <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,</a>
-<a class="sourceLine" id="cb6-9" data-line-number="9">                 <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>))</a></code></pre></div>
-<p><img src="edar_coursebook_files/figure-html/a_b_lognormal-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">ggsave</span>(<span class="st">&quot;./images/hist_skew_out.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co">#multiply together three normal variables</span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">normal_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">d =</span> <span class="kw">sample</span>(a<span class="op">*</span>b<span class="op">*</span>c, <span class="dv">1000</span>)) -&gt;<span class="st"> </span>log_data</a>
+<a class="sourceLine" id="cb22-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb22-5" data-line-number="5">ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> log_data) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(d),</a>
+<a class="sourceLine" id="cb22-7" data-line-number="7">                 <span class="dt">bins =</span> <span class="dv">30</span>,</a>
+<a class="sourceLine" id="cb22-8" data-line-number="8">                 <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,</a>
+<a class="sourceLine" id="cb22-9" data-line-number="9">                 <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb22-10" data-line-number="10"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb22-11" data-line-number="11"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>))</a></code></pre></div>
+<p><img src="11-distributions_files/figure-html/a_b_lognormal-1.png" width="672" /></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">ggsave</span>(<span class="st">&quot;./images/hist_skew_out.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</a></code></pre></div>
 <pre><code>## Saving 7 x 5 in image</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co">#plot the same data on a log scale (x axis)</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> log_data) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(d),</a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">                 <span class="dt">bins =</span> <span class="dv">25</span>,</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6">                 <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,</a>
-<a class="sourceLine" id="cb9-7" data-line-number="7">                 <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>))</a></code></pre></div>
-<p><img src="edar_coursebook_files/figure-html/a_b_lognormal_log_axis-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">ggsave</span>(<span class="st">&quot;./images/hist_skew_out_logx.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co">#plot the same data on a log scale (x axis)</span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> log_data) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(d),</a>
+<a class="sourceLine" id="cb25-5" data-line-number="5">                 <span class="dt">bins =</span> <span class="dv">25</span>,</a>
+<a class="sourceLine" id="cb25-6" data-line-number="6">                 <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,</a>
+<a class="sourceLine" id="cb25-7" data-line-number="7">                 <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb25-8" data-line-number="8"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb25-9" data-line-number="9"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>))</a></code></pre></div>
+<p><img src="11-distributions_files/figure-html/a_b_lognormal_log_axis-1.png" width="672" /></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">ggsave</span>(<span class="st">&quot;./images/hist_skew_out_logx.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</a></code></pre></div>
 <pre><code>## Saving 7 x 5 in image</code></pre>
 
 </div>
@@ -395,6 +413,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
