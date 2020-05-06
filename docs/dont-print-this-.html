@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Don’t print this. | Engineering Data Analysis in R</title>
+  <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Don’t print this. | Engineering Data Analysis in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Don’t print this. | Engineering Data Analysis in R" />
+  
+  <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  
+
+<meta name="author" content="John Volckens" />
+
+
+<meta name="date" content="2020-05-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="rprog1.html"/>
+<link rel="next" href="rprog2.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Engineering Data Analysis in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1</b> How to use this book</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#other-helpful-books-not-required"><i class="fa fa-check"></i><b>1.5.1</b> Other helpful books (not required)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a><ul>
+<li class="chapter" data-level="2.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>2.1</b> Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="rprog1.html"><a href="rprog1.html#what-is-r"><i class="fa fa-check"></i><b>2.2.1</b> What is R?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="rprog1.html"><a href="rprog1.html#r-sessions-the-console-and-the-command-prompt"><i class="fa fa-check"></i><b>2.3.1</b> R sessions, the console, and the command prompt</a></li>
+<li class="chapter" data-level="2.3.2" data-path="rprog1.html"><a href="rprog1.html#r-expressions-function-calls-and-objects"><i class="fa fa-check"></i><b>2.3.2</b> R expressions, function calls, and objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#generic-code-this-wont-run"><i class="fa fa-check"></i><b>2.4</b> Generic code (this won’t run)</a></li>
+<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#note-generic-code-this-will-not-work"><i class="fa fa-check"></i><b>2.5</b> Note: Generic code– this will not work</a></li>
+<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.6</b> R scripts</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#commenting-code"><i class="fa fa-check"></i><b>2.6.1</b> Commenting code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dont-print-this-.html"><a href="dont-print-this-.html"><i class="fa fa-check"></i><b>3</b> Don’t print this.</a><ul>
+<li class="chapter" data-level="3.1" data-path="dont-print-this-.html"><a href="dont-print-this-.html#the-package-system"><i class="fa fa-check"></i><b>3.1</b> The “package” system</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="dont-print-this-.html"><a href="dont-print-this-.html#r-packages"><i class="fa fa-check"></i><b>3.1.1</b> R packages</a></li>
+<li class="chapter" data-level="3.1.2" data-path="dont-print-this-.html"><a href="dont-print-this-.html#installing-from-cran"><i class="fa fa-check"></i><b>3.1.2</b> Installing from CRAN</a></li>
+<li class="chapter" data-level="3.1.3" data-path="dont-print-this-.html"><a href="dont-print-this-.html#loading-an-installed-package"><i class="fa fa-check"></i><b>3.1.3</b> Loading an installed package</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="dont-print-this-.html"><a href="dont-print-this-.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>3.2</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="dont-print-this-.html"><a href="dont-print-this-.html#vectors"><i class="fa fa-check"></i><b>3.2.1</b> Vectors</a></li>
+<li class="chapter" data-level="3.2.2" data-path="dont-print-this-.html"><a href="dont-print-this-.html#dataframes"><i class="fa fa-check"></i><b>3.2.2</b> Dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dont-print-this-.html"><a href="dont-print-this-.html#note-generic-code"><i class="fa fa-check"></i><b>3.3</b> Note: Generic code</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>4</b> Getting and Cleaning Data</a><ul>
+<li class="chapter" data-level="4.1" data-path="rprog2.html"><a href="rprog2.html#objectives-1"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="rprog2.html"><a href="rprog2.html#r-and-r-studio-1"><i class="fa fa-check"></i><b>4.2</b> R and R Studio</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Exploring Univariate Data</a><ul>
+<li class="chapter" data-level="5.1" data-path="eda1.html"><a href="eda1.html#univariate-data"><i class="fa fa-check"></i><b>5.1</b> Univariate Data</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>5.1.1</b> Location, Dispersion, and Shape</a></li>
+<li class="chapter" data-level="5.1.2" data-path="eda1.html"><a href="eda1.html#example-location-and-dispersion"><i class="fa fa-check"></i><b>5.1.2</b> Example: Location and Dispersion</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#quantiles"><i class="fa fa-check"></i><b>5.2</b> Quantiles</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="eda1.html"><a href="eda1.html#quantiles-and-descriptive-statistics"><i class="fa fa-check"></i><b>5.2.1</b> Quantiles and Descriptive Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.3</b> Univariate Data Visualization</a></li>
+<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.4</b> Cumulative Distribution Plot</a></li>
+<li class="chapter" data-level="5.5" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.5</b> Histogram</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="eda1.html"><a href="eda1.html#histogram-what-to-look-for"><i class="fa fa-check"></i><b>5.5.1</b> Histogram: what to look for?</a></li>
+<li class="chapter" data-level="5.5.2" data-path="eda1.html"><a href="eda1.html#what-causes-skewed-histograms"><i class="fa fa-check"></i><b>5.5.2</b> What causes skewed histograms?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="eda1.html"><a href="eda1.html#pdf"><i class="fa fa-check"></i><b>5.6</b> Probability Density Function</a></li>
+<li class="chapter" data-level="5.7" data-path="eda1.html"><a href="eda1.html#time_series"><i class="fa fa-check"></i><b>5.7</b> Time-Series</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Introduction to R Programming II</a><ul>
+<li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#step-ii-1"><i class="fa fa-check"></i><b>6.1</b> Step II-1</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Exploratory Data Analysis 2</a><ul>
+<li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>7.1</b> Bivariate Data</a></li>
+<li class="chapter" data-level="7.2" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.2</b> Scatterplot</a></li>
+<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#QQ"><i class="fa fa-check"></i><b>7.3</b> Q-Q Plot (Quantile-Quantile)</a></li>
+<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#Tukey"><i class="fa fa-check"></i><b>7.4</b> Tukey Mean Difference Plot</a></li>
+<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#boxplot-box"><i class="fa fa-check"></i><b>7.5</b> Boxplot (#box)</a></li>
+<li class="chapter" data-level="7.6" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.6</b> Exploring Multivariate Data</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>8</b> Measurement</a><ul>
+<li class="chapter" data-level="8.1" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>8.1</b> Sampling</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="measure.html"><a href="measure.html#samples-vs.populations"><i class="fa fa-check"></i><b>8.1.1</b> Samples vs. Populations</a></li>
+<li class="chapter" data-level="8.1.2" data-path="measure.html"><a href="measure.html#collecting-a-sample"><i class="fa fa-check"></i><b>8.1.2</b> Collecting a sample</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>8.2</b> Figures of Merit</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="measure.html"><a href="measure.html#accuracy"><i class="fa fa-check"></i><b>8.2.1</b> Accuracy</a></li>
+<li class="chapter" data-level="8.2.2" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>8.2.2</b> Precision</a></li>
+<li class="chapter" data-level="8.2.3" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>8.2.3</b> Bias</a></li>
+<li class="chapter" data-level="8.2.4" data-path="measure.html"><a href="measure.html#limit-of-detection"><i class="fa fa-check"></i><b>8.2.4</b> Limit of Detection</a></li>
+<li class="chapter" data-level="8.2.5" data-path="measure.html"><a href="measure.html#failure-and-reliability"><i class="fa fa-check"></i><b>8.2.5</b> Failure and Reliability</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>9</b> Introduction to R Programming III</a><ul>
+<li class="chapter" data-level="9.1" data-path="rprog4.html"><a href="rprog4.html#step-iii-1"><i class="fa fa-check"></i><b>9.1</b> Step III-1</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="eda3.html"><a href="eda3.html"><i class="fa fa-check"></i><b>10</b> Tips and Tricks for Data Exploration</a><ul>
+<li class="chapter" data-level="10.1" data-path="eda3.html"><a href="eda3.html#transformation"><i class="fa fa-check"></i><b>10.1</b> Transformation</a></li>
+<li class="chapter" data-level="10.2" data-path="eda3.html"><a href="eda3.html#centering"><i class="fa fa-check"></i><b>10.2</b> Centering</a></li>
+<li class="chapter" data-level="10.3" data-path="eda3.html"><a href="eda3.html#normalizing"><i class="fa fa-check"></i><b>10.3</b> Normalizing</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="eda3.html"><a href="eda3.html#standardizing"><i class="fa fa-check"></i><b>10.3.1</b> Standardizing</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="eda3.html"><a href="eda3.html#stratification"><i class="fa fa-check"></i><b>10.4</b> Stratification</a></li>
+<li class="chapter" data-level="10.5" data-path="eda3.html"><a href="eda3.html#censoring-and-truncating"><i class="fa fa-check"></i><b>10.5</b> Censoring and Truncating</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a><ul>
+<li class="chapter" data-level="11.1" data-path="model.html"><a href="model.html#fitting"><i class="fa fa-check"></i><b>11.1</b> Fitting</a></li>
+<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#linear-models"><i class="fa fa-check"></i><b>11.2</b> Linear Models</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="model.html"><a href="model.html#assumptions-of-linear-regression"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions of Linear Regression</a></li>
+<li class="chapter" data-level="11.2.2" data-path="model.html"><a href="model.html#diagnostics"><i class="fa fa-check"></i><b>11.2.2</b> Diagnostics</a></li>
+<li class="chapter" data-level="11.2.3" data-path="model.html"><a href="model.html#ordinary-least-squares"><i class="fa fa-check"></i><b>11.2.3</b> Ordinary Least Squares</a></li>
+<li class="chapter" data-level="11.2.4" data-path="model.html"><a href="model.html#weighted-least-squares"><i class="fa fa-check"></i><b>11.2.4</b> Weighted Least Squares</a></li>
+<li class="chapter" data-level="11.2.5" data-path="model.html"><a href="model.html#deming-regression"><i class="fa fa-check"></i><b>11.2.5</b> Deming Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="simulate.html"><a href="simulate.html"><i class="fa fa-check"></i><b>12</b> Simulation</a><ul>
+<li class="chapter" data-level="12.1" data-path="simulate.html"><a href="simulate.html#introduction-to-simulation"><i class="fa fa-check"></i><b>12.1</b> Introduction to simulation</a></li>
+<li class="chapter" data-level="12.2" data-path="simulate.html"><a href="simulate.html#simulation-example"><i class="fa fa-check"></i><b>12.2</b> Simulation Example:</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>13</b> Appendix: Reference Distributions</a><ul>
+<li class="chapter" data-level="13.1" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>13.1</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="dist.html"><a href="dist.html#characteristic-plots-uniform-distribution"><i class="fa fa-check"></i><b>13.1.1</b> Characteristic Plots: Uniform Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>13.2</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="dist.html"><a href="dist.html#normal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>13.2.1</b> Normal Distribution: Characteristic Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="dist.html"><a href="dist.html#log-normal-distribution"><i class="fa fa-check"></i><b>13.3</b> Log-normal Distribution</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Engineering Data Analysis in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dont-print-this." class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Don’t print this.</h1>
+<p>“But print this”</p>
+<p>R will only print the second, uncommented line.</p>
+<p>You can also use a comment in the middle of a line, to add a note on what you’re
+doing in that line of the code. R will skip any part of the code from the hash
+symbol on. For example:</p>
+<p>“Print this” ## But not this, it’s a comment.</p>
+<p>There’s typically no reason to use code comments when running commands at the R
+console. However, it’s very important to get in the practice of including
+meaningful comments in R scripts. This helps you remember what you did when you
+revisit your code later.</p>
+<blockquote>
+<p>“You know you’re brilliant, but maybe you’d like to understand what you did 2 weeks from now.” – Linus Torvalds</p>
+</blockquote>
+<div id="the-package-system" class="section level2">
+<h2><span class="header-section-number">3.1</span> The “package” system</h2>
+<div id="r-packages" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> R packages</h3>
+<blockquote>
+<p>“Any doubts about R’s big-league status should be put to rest, now that we have a Sudoku Puzzle Solver. Take that, SAS!”
+- David Brahm (announcing the sudoku package), R-packages (January 2006)
+Your original download of R is only a starting point. You can expand
+functionality of R with what are called <em>packages</em>, or extensions with new code
+and functionality that add to the basic “base R” environment. To me, this is a
+bit like the toy train set that my son was obsessed with for a while. You first
+buy a very basic set that looks something like Figure
+<a href="#fig:toy-train-basic"><strong>??</strong></a>.</p>
+</blockquote>
+<p>To take full advantage of R, you’ll want to add on packages. In the case of the
+train set, at this point, a doting grandparent adds on extensively through
+birthday presents, so you end up with something that looks like Figure
+<a href="#fig:toy-train-fancy"><strong>??</strong></a>.</p>
+<p>Each package is basically a bundle of extra R functions. They may also include
+help documentation, datasets, and some other objects, but typically the heart of
+an R package is the new functions it provides.</p>
+<p>You can get these “add-on” packages in a number of ways. The main source for
+installing packages for R remains the Comprehensive R Archive Network, or
+<a href="https://cran.r-project.org">CRAN</a>. However, <a href="https://github.com">GitHub</a> is
+growing in popularity, especially for packages that are still in development.
+You can also create and share packages among your collaborators or co-workers,
+without ever posting them publicly. In the “Advanced” section of this course,
+you will learn some about writing your own R package.</p>
+</div>
+<div id="installing-from-cran" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Installing from CRAN</h3>
+<p>The most popular place from which to get packages is currently CRAN, which has
+over 10,000 R packages available (Figure <a href="#fig:cran10000"><strong>??</strong></a>). You can install
+packages from CRAN using R code, with the <code>install.packages</code> function. For
+example, telephone keypads include letters for each number (Figure
+<a href="#fig:phone-keypad"><strong>??</strong></a>), which allow companies to have “named” phone numbers
+that are easier for people to remember, like 1-800-GO-FEDEX and 1-800-FLOWERS.</p>
+<p>The <code>phonenumber</code> package is a cool little package that will convert between
+numbers and letters based on the telephone keypad. Since this package is on
+CRAN, you can install the package to your computer using the <code>install.packages</code>
+function:</p>
+<p>install.packages(pkgs = “phonenumber”)</p>
+<p>This downloads the package from CRAN and saves it in a special location on your
+computer where R can load it when you’re ready to use it. Once you’ve installed
+a package to your computer this way, you don’t need to re-run this
+<code>install.packages</code> for the package ever again (unless the package maintainer
+posts an updated version).</p>
+<p>Just like R itself, packages often evolve and are updated by their maintainers.
+You should update your packages as new versions come out. Typically, you have to
+reinstall packages when you update your version of R, so this is a good chance
+to get the most up-to-date version of the packages you use.</p>
+</div>
+<div id="loading-an-installed-package" class="section level3">
+<h3><span class="header-section-number">3.1.3</span> Loading an installed package</h3>
+<p>Once you have installed a package, it will be saved to your computer. However,
+you won’t be able to access its functions within an R session until you <em>load</em>
+it in that R session. Loading a package essentially makes all of the package’s
+functions available to you.</p>
+<p>You can load a package in an R session using the
+<code>library</code> function, with the package name inside the parentheses.</p>
+<p>library(package = “phonenumber”)</p>
+<p>Figure <a href="#fig:install-vs-load"><strong>??</strong></a> provides a conceptual
+picture of the different steps of installing and loading a package.</p>
+<p>Once a package is loaded, you can use all its exported (i.e., public) functions
+by calling them directly. For example, the <code>phonenumber</code> has a function called
+<code>letterToNumber</code> that converts a character string to a number. If you have not
+loaded the <code>phonenumber</code> package in your current R session and try to use this
+function, you will get an error. However, once you’ve loaded <code>phonenumber</code> using
+the <code>library</code> function, you can use this function in your R session:</p>
+<p>fedex_number &lt;- “GoFedEx”
+letterToNumber(value = fedex_number)</p>
+<div class="rmdnote">
+<p>
+R vectors can have several different <em>classes</em>. One common class is the character class, which is the class of the character string we’re using here (“GoFedEx”). You’ll always put character strings in quotation marks. Another key class is numeric (numbers). Later in the course, we’ll introduce other classes that vectors can have, including factors and dates. For the simplest vector classes, these classes are determined by the type of data that the vector stores.
+</p>
+</div>
+<p>When you open RStudio, unless you reload the history of a previous R session
+(which I typically strongly <strong>do not</strong> recommend), you will start your work in a
+“fresh” R session. This means that, once you open RStudio, you will need to run
+the code to load any packages, define any objects, and read in any data that you
+will need for analysis in that session.</p>
+<p>If you are using a package in academic research, you should cite it, especially
+if it implements an algorithm or method that is not standard. You can use the
+<code>citation</code> function to get the information you need about how to cite a package:</p>
+<p>citation(package = “phonenumber”)</p>
+<div class="rmdnote">
+<p>
+We’ve talked here about loading packages using the <code>library</code> function to access their functions. However, this is not the only way to access the package’s functions. The syntax <code>[package name]::[function name]</code> (e.g., <code>phonenumber::letterToNumber(fedex)</code>) will allow you to use a function from a package you have installed on your computer, even if its package has not been loaded in the current R session. Typically, this syntax is not used much in data analysis scripts, in part because it makes the code much longer. However, you will occassionally see it used to distinguish between two functions from different packages that have the same name, as this format makes the desired function unambiguous. One example where this syntax often is needed is when both <code>plyr</code> and <code>dplyr</code> packages are loaded in an R session, since these share functions with the same name.
+</p>
+</div>
+<p>Packages typically include some documentation to help users. These include:</p>
+<ul>
+<li><strong>Package vignettes</strong>: Longer, tutorial-style documents that walk the user
+through the basics of how to use the package and often give some helpful example
+cases of the package in use.</li>
+<li><strong>Function helpfiles</strong>: Files for each external function (i.e., the package
+maintainer wants it to be used by others) within the package, following an
+established structure. These include information about what inputs are required
+and optional for the function, what output will be created, and what options can
+be selected by the user. In many cases, these also include examples of using the
+function.</li>
+</ul>
+<p>To determine which vignettes are available for a package, you can use the
+<code>vignette</code> function, with the package’s name specified for the <code>package</code> option:</p>
+<p>vignette(package = “phonenumber”)</p>
+<p>From the output of this, you can call any of the package’s vignettes directly.
+For example, the previous call tells you that this package only has one
+vignette, and that vignette has the same name as the package (“phonenumber”).
+Once you know the name of the vignette you would like to open, you can also use
+<code>vignette</code> to open it:</p>
+<p>vignette(topic = “phonenumber”)</p>
+<p>To access the helpfile for any function within a package you’ve loaded, you can
+use <code>?</code> followed by the function’s name:</p>
+<p>?letterToNumber</p>
+</div>
+</div>
+<div id="rs-most-basic-object-types" class="section level2">
+<h2><span class="header-section-number">3.2</span> R’s most basic object types</h2>
+<p>An R object stores some type of data that you want to use later in your R code,
+without fully recreating it. The content of R objects can vary from very simple
+(the <code>&quot;GoFedEx&quot;</code> string in the example code above) to very complex objects with
+lots of elements (for example, a machine learning model).</p>
+<p>Objects can be structured in different ways, in terms of how they “hold” data.
+These difference structures are called <strong>object classes</strong>. One class of objects
+can be a subtype of a more general object class.</p>
+<p>There are a variety of different object types in R, shaped to fit different
+types of objects ranging from the simple to complex. In this section, we’ll
+start by describing two object types that you will use most often in basic data
+analysis, <strong>vectors</strong> (1-dimensional objects) and <strong>dataframes</strong> (2-dimensional
+objects).</p>
+<p>For these two object classes (vectors and dataframes), we’ll look at:</p>
+<ol style="list-style-type: decimal">
+<li>How that class is structured</li>
+<li>How to make a new object with that class</li>
+<li>How to extract values from objects with that class</li>
+</ol>
+<p>In later classes, we’ll spend a lot of time learning how to do other things
+with objects from these two classes, plus learn some other classes.</p>
+<div id="vectors" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Vectors</h3>
+<p>To get an initial grasp of the <em>vector</em> object type in R, think of it as a
+1-dimensional object, or a string of values. Figure <a href="#fig:vector-example"><strong>??</strong></a>
+provides an example of the structure for a very simple vector, one that holds
+the names of the three main characters in the <em>Harry Potter</em> book series.</p>
+<p>All values in a vector must be of the same data type (i.e., all numbers, all
+characters, all dates). If you try to create a vector with elements from
+different types (like “FedEx”, which is a character, and 3, a number), R will
+coerce all of the elements to the most generic type of any of the elements
+(i.e., “FedEx” and “3” will both become characters, since “3” can be changed to
+a character, but “FedEx” can’t be changed to a number). Figure
+<a href="#fig:vector-example-classes"><strong>??</strong></a> gives some examples of different classes of
+vectors.</p>
+<p>To create a vector from different elements, you’ll use the concatenation
+function, <code>c</code> to join them together, with commas between the elements. For
+example, to create the vector shown in Figure <a href="#fig:vector-example"><strong>??</strong></a>, you
+can run:</p>
+<p>c(“Harry”, “Ron”, “Hermione”)</p>
+<p>If you want to use that object later, you can assign it an object name in the expression:</p>
+<p>main_characters &lt;- c(“Harry”, “Ron”, “Hermione”)
+print(x = main_characters)</p>
+<p>This <strong>assignment expression</strong>, for assigning a vector an object name, follows
+the structure we covered earlier for function calls and assignment expressions
+(Figure <a href="#fig:vector-assignment"><strong>??</strong></a>).</p>
+<p>If you create a numeric vector, you should not put the values in quotation marks:</p>
+<p>n_kids &lt;- c(1, 7, 1)</p>
+<p>If you mix classes when you create the vector, R will coerce all the elements
+to most generic of the elements’ classes:</p>
+<p>mixed_classes &lt;- c(1, 3, “five”)
+mixed_classes</p>
+<p>Notice that the two integers, 1 and 3, are now in quotation marks, once they
+are put in a vector with a value with the character data type. You can use the
+<code>class</code> function to determine the class of an object:</p>
+<p>class(x = mixed_classes)</p>
+<p>A vector’s <em>length</em> is the number of elements in the vector. You can use the
+<code>length</code> function to determine a vector’s length:</p>
+<p>length(x = mixed_classes)</p>
+<p>Once you create an object, you will often want to reference the whole object in
+future code. However, there will be some times when you’ll want to reference
+just certain elements of the object (for example, the first three values). You
+can pull out certain values from a vector by using indexing with square brackets
+(<code>[...]</code>) to identify the locations of the element you want to extract. For
+example, to extract the second element of the <code>main_characters</code> vector, you can
+run:</p>
+<p>main_characters[2] # Get the second value</p>
+<p>You can use this same method to extract more than one value. You just need to
+create a numeric vector with the position of each element you want to extract
+and pass that in the square brackets. For example, to extract the first and
+third elements of the <code>main_characters</code> vect, you can run:</p>
+<p>main_characters[c(1, 3)] # Get first and third values</p>
+<p>The <code>:</code> operator can be very helpful with extracting values from a vector.
+This operator creates a sequence of values from the value before the <code>:</code> to the
+value after <code>:</code>, going by units of 1. For example, if you want to create a list
+of the numbers between 1 and 10, you can run:</p>
+<p>1:10</p>
+<p>If you want to extract the first two values from the <code>main_characters</code> vector, you
+can use the <code>:</code> operator:</p>
+<p>main_characters[1:2] # Get the first two values</p>
+<p>You can also use logic to pull out some values of a vector. For example, you
+might only want to pull out even values from the <code>fibonacci</code> vector. We’ll cover
+using logical expressions to index vectors later in the book.</p>
+<div class="rmdtip">
+<p>
+One thing that people often find confusing when they start using R is knowing when to use and not use quotation marks. The general rule is that you use quotation marks when you want to refer to a character string literally, but no quotation marks when you want to refer to the value in a previously-defined object. For example, if you saved the string <code>“Anderson”</code> as the object <code>my_name</code> (<code>my_name &lt;- “Anderson”</code>), then in later code, if you type <code>my_name</code> (no quotation marks), you’ll get <code>“Anderson”</code>, while if you type out <code>“my_name”</code> (with quotation marks), you’ll get <code>“my_name”</code> (what you typed, literally). One thing that makes this rule confusing is that there are a few cases in R where you really should (by this rule) use quotation marks, but the function is coded to let you be lazy and get away without them. One example is the <code>library</code> function. In the code earlier in this section to load the “phonenumber” package, you want to literally load the package “phonenumber”, rather than load whatever character string is saved in the object named <code>phonenumber</code>. However, <code>library</code> is one of the functions where you can be lazy and skip the quotation marks, and it will still load “phonenumber” for you. Therefore, if you want, this function also works if you call <code>library(package = phonenumber)</code> (without the quotation marks) instead of how we actually called it (<code>library(package = phonenumber)</code>).
+</p>
+</div>
+</div>
+<div id="dataframes" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Dataframes</h3>
+<p>A dataframe is a 2-dimensional object, and is made of one or more vectors of the
+same length stuck together side-by-side. It is the closest R has to an Excel
+spreadsheet-type structure. Figure <a href="#fig:example-dataframe"><strong>??</strong></a> gives a
+conceptual example of a dataframe created from several of the vector examples in
+Figure <a href="#vector-example-classes"><strong>??</strong></a>.</p>
+<p>Here’s how the dataframe in Figure <a href="#fig:example-dataframe"><strong>??</strong></a> will look in R:</p>
+<p>This dataframe is arranged in rows and columns, with column names for each
+column (Figure <a href="#fig:annotated-dataframe"><strong>??</strong></a>). Note that each row of this
+dataframe gives a different observation (in this case, our unit of observation
+is a Harry Potter character). Each column gives a different type of information
+(first name, last name, birth year, and whether they’re still alive) for each of
+the observations (Beatles). Notice that the number of elements in each of the
+columns must be the same in this dataframe, but that the different columns can
+have different classes of data (e.g., character vectors for <code>first_name</code> and
+<code>last_name</code>, logical value of TRUE or FALSE for <code>alive</code>).</p>
+<p>We’ll be working with a specific class of dataframe called a <strong>tibble</strong>. You can
+create tibble dataframes using the <code>tibble</code> function from the <code>tibble</code> package.
+However, most often you will create a dataframe by reading in data from a file,
+using something like <code>read_csv</code> from the <code>readr</code> package.</p>
+<div class="rmdnote">
+<p>
+There are base R functions for both of these tasks (<code>data.frame</code> and <code>read.csv</code>, respectively), eliminating the need to load additional packages with a <code>library</code> call. However, the series of packages that make up what’s called the “tidyverse” have brought a huge improvement in the ease and speed of working with data in R. We will be teaching these tools in this course, and that’s why we’re going directly to <code>tibble</code> and <code>read_csv</code> from the start, rather than base R equivalents. Later in the course, we’ll talk more about this “tidyverse” and what makes it so great.
+</p>
+</div>
+<p>To create a dataframe, you can use the <code>tibble</code> function from the <code>tibble</code>
+package. The general format for using <code>tibble</code> is:</p>
+</div>
+</div>
+<div id="note-generic-code" class="section level2">
+<h2><span class="header-section-number">3.3</span> Note: Generic code</h2>
+<p>[name of object] &lt;- tibble([1st column name] = [1st column content],
+[2nd column name] = [2nd column content])</p>
+<p>with an equals sign between the column name and column content for each column,
+and commas between each of the columns.</p>
+<p>Here is an example of the code used to create the <em>Harry Potter</em> tibble
+dataframe shown above:</p>
+<p>library(package = “tibble”)
+hp_data &lt;- tibble(first_name = c(“Harry”, “Ron”, “Hermione”),
+last_name = c(“Potter”, “Weasley”, “Granger”),
+n_kids = c(1, 7, 1),
+survived = c(TRUE, TRUE, TRUE))
+hp_data</p>
+<p>You can also create a dataframe by sticking together vectors you already have saved as R objects. For example:</p>
+<p>hp_data &lt;- tibble(first_name = main_characters,
+last_name = c(“Potter”, “Weasley”, “Granger”),
+n_kids = n_kids,
+survived = c(TRUE, TRUE, TRUE))
+hp_data</p>
+<p>Note that this call requires that the <code>main_characters</code> and <code>n_kids</code> vectors are
+the same length, although they don’t have to be (and in this case aren’t) the
+same class of objects (<code>main_characters</code> is a character class, <code>n_kids</code> is
+numeric).</p>
+<div class="rmdnote">
+<p>
+You can put more than one function call in a single line of R code, as in this example (the <code>c</code> creates a vector, while the <code>tibble</code> creates a dataframe, using the vectors created by the calls to <code>c</code>). When you use multiple functions within a single R call, R will evaluate starting from the inner-most parentheses out, much like the order of operations in a math equation with parentheses.
+</p>
+</div>
+<p>So far, we’ve only shown how to create dataframes from scratch within an R
+session. Usually, however, you’ll create R dataframes instead by reading in data
+from an outside file using the <code>read_csv</code> from the <code>readr</code> package and related
+functions. For example, you might want to analyze data on all the guests that
+came on the <em>Daily Show</em>, <em>circa</em> Jon Stewart. If you have this data in a
+comma-separated (csv) file on your computer called “daily_show_guests.csv”
+(see the In-Course Exercise for instructions on downloading it), you
+can read it into your R session with the following code:</p>
+<p>library(package = “readr”)
+daily_show &lt;- read_csv(file = “daily_show_guests.csv”,
+skip = 4)</p>
+<p>In this code, the <code>read_csv</code> function is reading in the data from the file
+“daily_show_guests.csv”, while the gets arrow (<code>&lt;-</code>) assigns that data to the
+object <code>daily_show</code>, which you can then reference in later code to explore and
+plot the data.</p>
+<p>You can use the functions <code>dim</code>, <code>nrow</code>, and <code>ncol</code> to figure out the dimensions
+(number of rows and columns) of a dataframe:</p>
+<p>dim(x = daily_show)
+nrow(x = daily_show)
+ncol(x = daily_show)</p>
+<p>Base R also has some useful functions for quickly exploring dataframes:</p>
+<ul>
+<li><code>str</code>: Show the structure of an R object, including a dataframe</li>
+<li><code>summary</code>: Give summaries of each column of a dataframe.</li>
+</ul>
+<p>For example, you can explore the data we just pulled in on the <em>Daily Show</em>
+with:</p>
+<p>str(object = daily_show)
+summary(object = daily_show)</p>
+<p>To extract data from a dataframe, you can use some functions from the <code>dplyr</code>
+package, <code>select</code> and <code>slice</code>. The <code>select</code> function will pull out columns,
+while the <code>slice</code> function will pull out rows. In this chapter, we’ll talk about
+how to extract certain rows or columns of a dataframe by their <em>position</em> (i.e.,
+row or column number). Later in the book, we’ll talk about other ways to extract
+values from dataframes.</p>
+<p>For example, if you wanted to get the first two rows of the <code>hp_data</code>
+dataframe, you could run:</p>
+<p>library(package = “dplyr”)
+slice(.data = hp_data, c(1:2))</p>
+<p>If you wanted to get the first and fourth columns, you could run:</p>
+<p>select(.data = hp_data, c(1, 4))</p>
+<p>You can compose calls from both functions. For example, you could extract the
+values in the first and fourth columns of the first two rows with:</p>
+<p>select(.data = slice(.data = hp_data, c(1:2)), c(1, 4))</p>
+<p>You can use square-bracket indexing (<code>[..., ...]</code>) for dataframes, too, but now
+they’ll have two dimensions (rows, then columns). Put the rows you want before
+the comma, the columns after. If you want all of something (e.g., all rows in
+the dataframe), leave the designated spot blank. Here are two examples of using
+square-bracket indexing to pull a subset of the <code>hp_data</code> dataframe we
+created above:</p>
+<p>hp_data[1:2, 2] # First two rows, second column
+hp_data[3, ] # Last row, all columns</p>
+<div class="rmdnote">
+<p>
+If you forget to put the comma in the indexing for a dataframe (e.g., <code>fibonacci_seq[1:2]</code>), you will index out the <em>columns</em> that fall at that position or positions. To avoid confusion, I suggest that you always use indexing with a comma when working with dataframes.
+</p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="rprog1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rprog2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
