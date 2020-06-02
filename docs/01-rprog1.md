@@ -711,15 +711,8 @@ comment. In R, the comment character is the hash symbol, #. R will skip any
 line that starts with `#` in a script. For example, if you run the following
 code:
 
-
-```r
-# Don't print this.
-"But print this"
-```
-
-```
-## [1] "But print this"
-```
+`# Don't print this.`
+`"But print this"`
 
 R will only print the second, uncommented line. 
 
@@ -729,7 +722,7 @@ symbol on. For example:
 
 
 ```r
-"Print this" ## But not this, it's a comment.
+"Print this" # But not this, it's a comment.
 ```
 
 ```
