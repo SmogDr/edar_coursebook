@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Getting and Cleaning Data | Engineering Data Analysis in R</title>
+  <title>Chapter 4 Entering and cleaning data #1 | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Getting and Cleaning Data | Engineering Data Analysis in R" />
+  <meta property="og:title" content="Chapter 4 Entering and cleaning data #1 | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Getting and Cleaning Data | Engineering Data Analysis in R" />
+  <meta name="twitter:title" content="Chapter 4 Entering and cleaning data #1 | Engineering Data Analysis in R" />
   
   <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rprog1.html"/>
+<link rel="prev" href="rprog2.html"/>
 <link rel="next" href="eda1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -167,115 +167,117 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a><ul>
-<li class="chapter" data-level="3.1" data-path="rprog2.html"><a href="rprog2.html#objectives-1"><i class="fa fa-check"></i><b>3.1</b> Objectives</a></li>
-<li class="chapter" data-level="3.2" data-path="rprog2.html"><a href="rprog2.html#overview"><i class="fa fa-check"></i><b>3.2</b> Overview</a></li>
-<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="rprog2.html"><a href="rprog2.html#reading-local-flat-files"><i class="fa fa-check"></i><b>3.3.1</b> Reading local flat files</a></li>
-<li class="chapter" data-level="3.3.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-other-file-types"><i class="fa fa-check"></i><b>3.3.2</b> Reading in other file types</a></li>
+<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a></li>
+<li class="part"><span><b>I Part II: Basics</b></span></li>
+<li class="chapter" data-level="4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html"><i class="fa fa-check"></i><b>4</b> Entering and cleaning data #1</a><ul>
+<li class="chapter" data-level="4.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#objectives-1"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#overview"><i class="fa fa-check"></i><b>4.2</b> Overview</a></li>
+<li class="chapter" data-level="4.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-data-into-r"><i class="fa fa-check"></i><b>4.3</b> Reading data into R</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-local-flat-files"><i class="fa fa-check"></i><b>4.3.1</b> Reading local flat files</a></li>
+<li class="chapter" data-level="4.3.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-in-other-file-types"><i class="fa fa-check"></i><b>4.3.2</b> Reading in other file types</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="rprog2.html"><a href="rprog2.html#directory-structure"><i class="fa fa-check"></i><b>3.4.1</b> Directory structure</a></li>
-<li class="chapter" data-level="3.4.2" data-path="rprog2.html"><a href="rprog2.html#working-directory"><i class="fa fa-check"></i><b>3.4.2</b> Working directory</a></li>
-<li class="chapter" data-level="3.4.3" data-path="rprog2.html"><a href="rprog2.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>3.4.3</b> File and directory pathnames</a></li>
-<li class="chapter" data-level="3.4.4" data-path="rprog2.html"><a href="rprog2.html#diversion-paste"><i class="fa fa-check"></i><b>3.4.4</b> Diversion: <code>paste</code></a></li>
-<li class="chapter" data-level="3.4.5" data-path="rprog2.html"><a href="rprog2.html#reading-online-flat-files"><i class="fa fa-check"></i><b>3.4.5</b> Reading online flat files</a></li>
+<li class="chapter" data-level="4.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#directories-and-pathnames"><i class="fa fa-check"></i><b>4.4</b> Directories and pathnames</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#directory-structure"><i class="fa fa-check"></i><b>4.4.1</b> Directory structure</a></li>
+<li class="chapter" data-level="4.4.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#working-directory"><i class="fa fa-check"></i><b>4.4.2</b> Working directory</a></li>
+<li class="chapter" data-level="4.4.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>4.4.3</b> File and directory pathnames</a></li>
+<li class="chapter" data-level="4.4.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#diversion-paste"><i class="fa fa-check"></i><b>4.4.4</b> Diversion: <code>paste</code></a></li>
+<li class="chapter" data-level="4.4.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-online-flat-files"><i class="fa fa-check"></i><b>4.4.5</b> Reading online flat files</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="rprog2.html"><a href="rprog2.html#renaming-columns"><i class="fa fa-check"></i><b>3.5.1</b> Renaming columns</a></li>
-<li class="chapter" data-level="3.5.2" data-path="rprog2.html"><a href="rprog2.html#selecting-columns"><i class="fa fa-check"></i><b>3.5.2</b> Selecting columns</a></li>
-<li class="chapter" data-level="3.5.3" data-path="rprog2.html"><a href="rprog2.html#add-or-change-columns"><i class="fa fa-check"></i><b>3.5.3</b> Add or change columns</a></li>
-<li class="chapter" data-level="3.5.4" data-path="rprog2.html"><a href="rprog2.html#base-r-equivalents-to-dplyr-functions"><i class="fa fa-check"></i><b>3.5.4</b> Base R equivalents to <code>dplyr</code> functions</a></li>
+<li class="chapter" data-level="4.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#data-cleaning"><i class="fa fa-check"></i><b>4.5</b> Data cleaning</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#renaming-columns"><i class="fa fa-check"></i><b>4.5.1</b> Renaming columns</a></li>
+<li class="chapter" data-level="4.5.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#selecting-columns"><i class="fa fa-check"></i><b>4.5.2</b> Selecting columns</a></li>
+<li class="chapter" data-level="4.5.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#add-or-change-columns"><i class="fa fa-check"></i><b>4.5.3</b> Add or change columns</a></li>
+<li class="chapter" data-level="4.5.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#base-r-equivalents-to-dplyr-functions"><i class="fa fa-check"></i><b>4.5.4</b> Base R equivalents to <code>dplyr</code> functions</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="rprog2.html"><a href="rprog2.html#dates-and-filtering"><i class="fa fa-check"></i><b>3.6</b> Dates and filtering</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="rprog2.html"><a href="rprog2.html#dates-in-r"><i class="fa fa-check"></i><b>3.6.1</b> Dates in R</a></li>
-<li class="chapter" data-level="3.6.2" data-path="rprog2.html"><a href="rprog2.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>3.6.2</b> Filtering to certain rows</a></li>
+<li class="chapter" data-level="4.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#dates-and-filtering"><i class="fa fa-check"></i><b>4.6</b> Dates and filtering</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#dates-in-r"><i class="fa fa-check"></i><b>4.6.1</b> Dates in R</a></li>
+<li class="chapter" data-level="4.6.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>4.6.2</b> Filtering to certain rows</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#piping"><i class="fa fa-check"></i><b>3.7</b> Piping</a></li>
-<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#in-course-exercise"><i class="fa fa-check"></i><b>3.8</b> In-course Exercise</a><ul>
-<li class="chapter" data-level="3.8.1" data-path="rprog2.html"><a href="rprog2.html#downloading-and-checking-out-the-example-data"><i class="fa fa-check"></i><b>3.8.1</b> Downloading and checking out the example data</a></li>
-<li class="chapter" data-level="3.8.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-different-types-of-files"><i class="fa fa-check"></i><b>3.8.2</b> Reading in different types of files</a></li>
-<li class="chapter" data-level="3.8.3" data-path="rprog2.html"><a href="rprog2.html#directory-structure-1"><i class="fa fa-check"></i><b>3.8.3</b> Directory structure</a></li>
-<li class="chapter" data-level="3.8.4" data-path="rprog2.html"><a href="rprog2.html#cleaning-up-data-1"><i class="fa fa-check"></i><b>3.8.4</b> Cleaning up data #1</a></li>
-<li class="chapter" data-level="3.8.5" data-path="rprog2.html"><a href="rprog2.html#cleaning-up-data-2"><i class="fa fa-check"></i><b>3.8.5</b> Cleaning up data #2</a></li>
-<li class="chapter" data-level="3.8.6" data-path="rprog2.html"><a href="rprog2.html#piping-1"><i class="fa fa-check"></i><b>3.8.6</b> Piping</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>4</b> Exploring Univariate Data</a><ul>
-<li class="chapter" data-level="4.1" data-path="eda1.html"><a href="eda1.html#univariate-data"><i class="fa fa-check"></i><b>4.1</b> Univariate Data</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>4.1.1</b> Location, Dispersion, and Shape</a></li>
-<li class="chapter" data-level="4.1.2" data-path="eda1.html"><a href="eda1.html#example-location-and-dispersion"><i class="fa fa-check"></i><b>4.1.2</b> Example: Location and Dispersion</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="eda1.html"><a href="eda1.html#quantiles"><i class="fa fa-check"></i><b>4.2</b> Quantiles</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="eda1.html"><a href="eda1.html#quantiles-and-descriptive-statistics"><i class="fa fa-check"></i><b>4.2.1</b> Quantiles and Descriptive Statistics</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>4.3</b> Univariate Data Visualization</a></li>
-<li class="chapter" data-level="4.4" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>4.4</b> Cumulative Distribution Plot</a></li>
-<li class="chapter" data-level="4.5" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>4.5</b> Histogram</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="eda1.html"><a href="eda1.html#histogram-what-to-look-for"><i class="fa fa-check"></i><b>4.5.1</b> Histogram: what to look for?</a></li>
-<li class="chapter" data-level="4.5.2" data-path="eda1.html"><a href="eda1.html#what-causes-skewed-histograms"><i class="fa fa-check"></i><b>4.5.2</b> What causes skewed histograms?</a></li>
-</ul></li>
-<li class="chapter" data-level="4.6" data-path="eda1.html"><a href="eda1.html#pdf"><i class="fa fa-check"></i><b>4.6</b> Probability Density Function</a></li>
-<li class="chapter" data-level="4.7" data-path="eda1.html"><a href="eda1.html#time_series"><i class="fa fa-check"></i><b>4.7</b> Time-Series</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>5</b> Introduction to R Programming II</a><ul>
-<li class="chapter" data-level="5.1" data-path="rprog3.html"><a href="rprog3.html#step-ii-1"><i class="fa fa-check"></i><b>5.1</b> Step II-1</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>6</b> Exploratory Data Analysis 2</a><ul>
-<li class="chapter" data-level="6.1" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>6.1</b> Bivariate Data</a></li>
-<li class="chapter" data-level="6.2" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>6.2</b> Scatterplot</a></li>
-<li class="chapter" data-level="6.3" data-path="eda2.html"><a href="eda2.html#QQ"><i class="fa fa-check"></i><b>6.3</b> Q-Q Plot (Quantile-Quantile)</a></li>
-<li class="chapter" data-level="6.4" data-path="eda2.html"><a href="eda2.html#Tukey"><i class="fa fa-check"></i><b>6.4</b> Tukey Mean Difference Plot</a></li>
-<li class="chapter" data-level="6.5" data-path="eda2.html"><a href="eda2.html#boxplot-box"><i class="fa fa-check"></i><b>6.5</b> Boxplot (#box)</a></li>
-<li class="chapter" data-level="6.6" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>6.6</b> Exploring Multivariate Data</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>7</b> Measurement</a><ul>
-<li class="chapter" data-level="7.1" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>7.1</b> Sampling</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="measure.html"><a href="measure.html#samples-vs.populations"><i class="fa fa-check"></i><b>7.1.1</b> Samples vs. Populations</a></li>
-<li class="chapter" data-level="7.1.2" data-path="measure.html"><a href="measure.html#collecting-a-sample"><i class="fa fa-check"></i><b>7.1.2</b> Collecting a sample</a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>7.2</b> Figures of Merit</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="measure.html"><a href="measure.html#accuracy"><i class="fa fa-check"></i><b>7.2.1</b> Accuracy</a></li>
-<li class="chapter" data-level="7.2.2" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>7.2.2</b> Precision</a></li>
-<li class="chapter" data-level="7.2.3" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>7.2.3</b> Bias</a></li>
-<li class="chapter" data-level="7.2.4" data-path="measure.html"><a href="measure.html#limit-of-detection"><i class="fa fa-check"></i><b>7.2.4</b> Limit of Detection</a></li>
-<li class="chapter" data-level="7.2.5" data-path="measure.html"><a href="measure.html#failure-and-reliability"><i class="fa fa-check"></i><b>7.2.5</b> Failure and Reliability</a></li>
+<li class="chapter" data-level="4.7" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#piping"><i class="fa fa-check"></i><b>4.7</b> Piping</a></li>
+<li class="chapter" data-level="4.8" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#in-course-exercise"><i class="fa fa-check"></i><b>4.8</b> In-course Exercise</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#downloading-and-checking-out-the-example-data"><i class="fa fa-check"></i><b>4.8.1</b> Downloading and checking out the example data</a></li>
+<li class="chapter" data-level="4.8.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-in-different-types-of-files"><i class="fa fa-check"></i><b>4.8.2</b> Reading in different types of files</a></li>
+<li class="chapter" data-level="4.8.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#directory-structure-1"><i class="fa fa-check"></i><b>4.8.3</b> Directory structure</a></li>
+<li class="chapter" data-level="4.8.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data-1"><i class="fa fa-check"></i><b>4.8.4</b> Cleaning up data #1</a></li>
+<li class="chapter" data-level="4.8.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data-2"><i class="fa fa-check"></i><b>4.8.5</b> Cleaning up data #2</a></li>
+<li class="chapter" data-level="4.8.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#piping-1"><i class="fa fa-check"></i><b>4.8.6</b> Piping</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Introduction to R Programming III</a><ul>
-<li class="chapter" data-level="8.1" data-path="rprog4.html"><a href="rprog4.html#step-iii-1"><i class="fa fa-check"></i><b>8.1</b> Step III-1</a></li>
+<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Exploring Univariate Data</a><ul>
+<li class="chapter" data-level="5.1" data-path="eda1.html"><a href="eda1.html#univariate-data"><i class="fa fa-check"></i><b>5.1</b> Univariate Data</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>5.1.1</b> Location, Dispersion, and Shape</a></li>
+<li class="chapter" data-level="5.1.2" data-path="eda1.html"><a href="eda1.html#example-location-and-dispersion"><i class="fa fa-check"></i><b>5.1.2</b> Example: Location and Dispersion</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="eda3.html"><a href="eda3.html"><i class="fa fa-check"></i><b>9</b> Tips and Tricks for Data Exploration</a><ul>
-<li class="chapter" data-level="9.1" data-path="eda3.html"><a href="eda3.html#transformation"><i class="fa fa-check"></i><b>9.1</b> Transformation</a></li>
-<li class="chapter" data-level="9.2" data-path="eda3.html"><a href="eda3.html#centering"><i class="fa fa-check"></i><b>9.2</b> Centering</a></li>
-<li class="chapter" data-level="9.3" data-path="eda3.html"><a href="eda3.html#normalizing"><i class="fa fa-check"></i><b>9.3</b> Normalizing</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="eda3.html"><a href="eda3.html#standardizing"><i class="fa fa-check"></i><b>9.3.1</b> Standardizing</a></li>
+<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#quantiles"><i class="fa fa-check"></i><b>5.2</b> Quantiles</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="eda1.html"><a href="eda1.html#quantiles-and-descriptive-statistics"><i class="fa fa-check"></i><b>5.2.1</b> Quantiles and Descriptive Statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="eda3.html"><a href="eda3.html#stratification"><i class="fa fa-check"></i><b>9.4</b> Stratification</a></li>
-<li class="chapter" data-level="9.5" data-path="eda3.html"><a href="eda3.html#censoring-and-truncating"><i class="fa fa-check"></i><b>9.5</b> Censoring and Truncating</a></li>
+<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.3</b> Univariate Data Visualization</a></li>
+<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.4</b> Cumulative Distribution Plot</a></li>
+<li class="chapter" data-level="5.5" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.5</b> Histogram</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="eda1.html"><a href="eda1.html#histogram-what-to-look-for"><i class="fa fa-check"></i><b>5.5.1</b> Histogram: what to look for?</a></li>
+<li class="chapter" data-level="5.5.2" data-path="eda1.html"><a href="eda1.html#what-causes-skewed-histograms"><i class="fa fa-check"></i><b>5.5.2</b> What causes skewed histograms?</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>10</b> Modeling</a><ul>
-<li class="chapter" data-level="10.1" data-path="model.html"><a href="model.html#fitting"><i class="fa fa-check"></i><b>10.1</b> Fitting</a></li>
-<li class="chapter" data-level="10.2" data-path="model.html"><a href="model.html#linear-models"><i class="fa fa-check"></i><b>10.2</b> Linear Models</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="model.html"><a href="model.html#assumptions-of-linear-regression"><i class="fa fa-check"></i><b>10.2.1</b> Assumptions of Linear Regression</a></li>
-<li class="chapter" data-level="10.2.2" data-path="model.html"><a href="model.html#diagnostics"><i class="fa fa-check"></i><b>10.2.2</b> Diagnostics</a></li>
-<li class="chapter" data-level="10.2.3" data-path="model.html"><a href="model.html#ordinary-least-squares"><i class="fa fa-check"></i><b>10.2.3</b> Ordinary Least Squares</a></li>
-<li class="chapter" data-level="10.2.4" data-path="model.html"><a href="model.html#weighted-least-squares"><i class="fa fa-check"></i><b>10.2.4</b> Weighted Least Squares</a></li>
-<li class="chapter" data-level="10.2.5" data-path="model.html"><a href="model.html#deming-regression"><i class="fa fa-check"></i><b>10.2.5</b> Deming Regression</a></li>
+<li class="chapter" data-level="5.6" data-path="eda1.html"><a href="eda1.html#pdf"><i class="fa fa-check"></i><b>5.6</b> Probability Density Function</a></li>
+<li class="chapter" data-level="5.7" data-path="eda1.html"><a href="eda1.html#time_series"><i class="fa fa-check"></i><b>5.7</b> Time-Series</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Introduction to R Programming II</a><ul>
+<li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#step-ii-1"><i class="fa fa-check"></i><b>6.1</b> Step II-1</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Exploratory Data Analysis 2</a><ul>
+<li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>7.1</b> Bivariate Data</a></li>
+<li class="chapter" data-level="7.2" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.2</b> Scatterplot</a></li>
+<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#QQ"><i class="fa fa-check"></i><b>7.3</b> Q-Q Plot (Quantile-Quantile)</a></li>
+<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#Tukey"><i class="fa fa-check"></i><b>7.4</b> Tukey Mean Difference Plot</a></li>
+<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#boxplot-box"><i class="fa fa-check"></i><b>7.5</b> Boxplot (#box)</a></li>
+<li class="chapter" data-level="7.6" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.6</b> Exploring Multivariate Data</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>8</b> Measurement</a><ul>
+<li class="chapter" data-level="8.1" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>8.1</b> Sampling</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="measure.html"><a href="measure.html#samples-vs.populations"><i class="fa fa-check"></i><b>8.1.1</b> Samples vs. Populations</a></li>
+<li class="chapter" data-level="8.1.2" data-path="measure.html"><a href="measure.html#collecting-a-sample"><i class="fa fa-check"></i><b>8.1.2</b> Collecting a sample</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>8.2</b> Figures of Merit</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="measure.html"><a href="measure.html#accuracy"><i class="fa fa-check"></i><b>8.2.1</b> Accuracy</a></li>
+<li class="chapter" data-level="8.2.2" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>8.2.2</b> Precision</a></li>
+<li class="chapter" data-level="8.2.3" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>8.2.3</b> Bias</a></li>
+<li class="chapter" data-level="8.2.4" data-path="measure.html"><a href="measure.html#limit-of-detection"><i class="fa fa-check"></i><b>8.2.4</b> Limit of Detection</a></li>
+<li class="chapter" data-level="8.2.5" data-path="measure.html"><a href="measure.html#failure-and-reliability"><i class="fa fa-check"></i><b>8.2.5</b> Failure and Reliability</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="simulate.html"><a href="simulate.html"><i class="fa fa-check"></i><b>11</b> Simulation</a><ul>
-<li class="chapter" data-level="11.1" data-path="simulate.html"><a href="simulate.html#introduction-to-simulation"><i class="fa fa-check"></i><b>11.1</b> Introduction to simulation</a></li>
-<li class="chapter" data-level="11.2" data-path="simulate.html"><a href="simulate.html#simulation-example"><i class="fa fa-check"></i><b>11.2</b> Simulation Example:</a></li>
+<li class="chapter" data-level="9" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>9</b> Introduction to R Programming III</a><ul>
+<li class="chapter" data-level="9.1" data-path="rprog4.html"><a href="rprog4.html#step-iii-1"><i class="fa fa-check"></i><b>9.1</b> Step III-1</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Reference Distributions</a><ul>
-<li class="chapter" data-level="12.1" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.1</b> Uniform Distribution</a><ul>
-<li class="chapter" data-level="12.1.1" data-path="dist.html"><a href="dist.html#characteristic-plots-uniform-distribution"><i class="fa fa-check"></i><b>12.1.1</b> Characteristic Plots: Uniform Distribution</a></li>
+<li class="chapter" data-level="10" data-path="eda3.html"><a href="eda3.html"><i class="fa fa-check"></i><b>10</b> Tips and Tricks for Data Exploration</a><ul>
+<li class="chapter" data-level="10.1" data-path="eda3.html"><a href="eda3.html#transformation"><i class="fa fa-check"></i><b>10.1</b> Transformation</a></li>
+<li class="chapter" data-level="10.2" data-path="eda3.html"><a href="eda3.html#centering"><i class="fa fa-check"></i><b>10.2</b> Centering</a></li>
+<li class="chapter" data-level="10.3" data-path="eda3.html"><a href="eda3.html#normalizing"><i class="fa fa-check"></i><b>10.3</b> Normalizing</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="eda3.html"><a href="eda3.html#standardizing"><i class="fa fa-check"></i><b>10.3.1</b> Standardizing</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.2</b> Normal Distribution</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="dist.html"><a href="dist.html#normal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>12.2.1</b> Normal Distribution: Characteristic Plots</a></li>
+<li class="chapter" data-level="10.4" data-path="eda3.html"><a href="eda3.html#stratification"><i class="fa fa-check"></i><b>10.4</b> Stratification</a></li>
+<li class="chapter" data-level="10.5" data-path="eda3.html"><a href="eda3.html#censoring-and-truncating"><i class="fa fa-check"></i><b>10.5</b> Censoring and Truncating</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#log-normal-distribution"><i class="fa fa-check"></i><b>12.3</b> Log-normal Distribution</a></li>
+<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a><ul>
+<li class="chapter" data-level="11.1" data-path="model.html"><a href="model.html#fitting"><i class="fa fa-check"></i><b>11.1</b> Fitting</a></li>
+<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#linear-models"><i class="fa fa-check"></i><b>11.2</b> Linear Models</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="model.html"><a href="model.html#assumptions-of-linear-regression"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions of Linear Regression</a></li>
+<li class="chapter" data-level="11.2.2" data-path="model.html"><a href="model.html#diagnostics"><i class="fa fa-check"></i><b>11.2.2</b> Diagnostics</a></li>
+<li class="chapter" data-level="11.2.3" data-path="model.html"><a href="model.html#ordinary-least-squares"><i class="fa fa-check"></i><b>11.2.3</b> Ordinary Least Squares</a></li>
+<li class="chapter" data-level="11.2.4" data-path="model.html"><a href="model.html#weighted-least-squares"><i class="fa fa-check"></i><b>11.2.4</b> Weighted Least Squares</a></li>
+<li class="chapter" data-level="11.2.5" data-path="model.html"><a href="model.html#deming-regression"><i class="fa fa-check"></i><b>11.2.5</b> Deming Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="simulate.html"><a href="simulate.html"><i class="fa fa-check"></i><b>12</b> Simulation</a><ul>
+<li class="chapter" data-level="12.1" data-path="simulate.html"><a href="simulate.html#introduction-to-simulation"><i class="fa fa-check"></i><b>12.1</b> Introduction to simulation</a></li>
+<li class="chapter" data-level="12.2" data-path="simulate.html"><a href="simulate.html#simulation-example"><i class="fa fa-check"></i><b>12.2</b> Simulation Example:</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>13</b> Appendix: Reference Distributions</a><ul>
+<li class="chapter" data-level="13.1" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>13.1</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="dist.html"><a href="dist.html#characteristic-plots-uniform-distribution"><i class="fa fa-check"></i><b>13.1.1</b> Characteristic Plots: Uniform Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>13.2</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="dist.html"><a href="dist.html#normal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>13.2.1</b> Normal Distribution: Characteristic Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="dist.html"><a href="dist.html#log-normal-distribution"><i class="fa fa-check"></i><b>13.3</b> Log-normal Distribution</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -297,19 +299,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rprog2" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Getting and Cleaning Data</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.0     ✓ purrr   0.3.4
-## ✓ tibble  3.0.1     ✓ dplyr   0.8.5
-## ✓ tidyr   1.0.2     ✓ stringr 1.4.0
-## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
+<div id="entering-and-cleaning-data-1" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Entering and cleaning data #1</h1>
 <div id="objectives-1" class="section level2">
-<h2><span class="header-section-number">3.1</span> Objectives</h2>
+<h2><span class="header-section-number">4.1</span> Objectives</h2>
 <p>After this chapter, you should (know / understand / be able to ):</p>
 <ul>
 <li>Understand what a flat file is and how it differs from data stored in a binary file format</li>
@@ -330,7 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="overview" class="section level2">
-<h2><span class="header-section-number">3.2</span> Overview</h2>
+<h2><span class="header-section-number">4.2</span> Overview</h2>
 <p>There are four basic steps you will often repeat as you prepare to analyze data
 in R:</p>
 <ol style="list-style-type: decimal">
@@ -343,17 +336,17 @@ using the file path you figured out in step 1</li>
 </ol>
 <p>In this chapter, I’ll go basics for each of these steps, as well as dive a bit
 deeper into some related topics you should learn now to make your life easier as
-you get started using R for data analysis.</p>
+you get started using R for research.</p>
 </div>
 <div id="reading-data-into-r" class="section level2">
-<h2><span class="header-section-number">3.3</span> Reading data into R</h2>
+<h2><span class="header-section-number">4.3</span> Reading data into R</h2>
 <p>Data comes in files of all shapes and sizes. R has the capability to read data
 in from many of these, even proprietary files for other software (e.g., Excel
-and Matlab files). As a small sample, here are some of the types of data files that
+and SAS files). As a small sample, here are some of the types of data files that
 R can read and work with:</p>
 <ul>
 <li>Flat files (much more about these in just a minute)</li>
-<li>Files from other software packages (Matlab, SAS, Excel)</li>
+<li>Files from other statistical packages (SAS, Excel, Stata, SPSS)</li>
 <li>Tables on webpages (e.g., the table on ebola outbreaks near the end of <a href="http://en.wikipedia.org/wiki/Ebola_virus_epidemic_in_West_Africa">this
 Wikipedia
 page</a>)</li>
@@ -362,15 +355,18 @@ page</a>)</li>
 <li>Really crazy data formats used in other disciplines (e.g., netCDF files from
 climate research, MRI data stored in Analyze, NIfTI, and DICOM formats)</li>
 <li>Geographic shapefiles</li>
-<li>Data through APIs (API = Automated Prgramming Interface, most websites use APIs to ask you for input and then use that input to direct new information back to you)</li>
+<li>Data through APIs</li>
 </ul>
 <p>Often, it is possible to read in and clean up even incredibly messy data, by
 using functions like <code>scan</code> and <code>readLines</code> to read the data in a line at a
 time, and then using regular expressions (which I’ll cover in the “Intermediate”
-section of the course) to clean up each line as it comes in.</p>
+section of the course) to clean up each line as it comes in. In over a decade of
+coding in R, I think the only time I’ve come across a data file I couldn’t get
+into R was for proprietary precision agriculture data collected at harvest by a
+combine.</p>
 <div id="reading-local-flat-files" class="section level3">
-<h3><span class="header-section-number">3.3.1</span> Reading local flat files</h3>
-<p>Much of the data that you will want to read in will be in <strong>flat files</strong>. Basically,
+<h3><span class="header-section-number">4.3.1</span> Reading local flat files</h3>
+<p>Much of the data that you will want to read in will be in flat files. Basically,
 these are files that you can open using a text editor; the most common type
 you’ll work with are probably comma-separated files (often with a <code>.csv</code> or
 <code>.txt</code> file extension). Most flat files come in two general categories:</p>
@@ -395,20 +391,20 @@ when you open the file in a text editor. However, now it’s pretty rare to just
 a text editor to open a file and check out the data, and these files can be a bit
 of a pain to read into R and other programs because you sometimes have to specify
 exactly how wide each of the columns is. You may come across a fixed width file
-every now and then, particularly when working with older data, so it’s
+every now and then, though, particularly when working with older data sets, so it’s
 useful to be able to recognize one and to know how to read it in.</p>
-<p><em>Delimited files</em> use some <strong>delimiter</strong> (for example, a comma or a tab) to
+<p><em>Delimited files</em> use some <em>delimiter</em> (for example, a column or a tab) to
 separate each column value within a row. The first few rows of a delimited file
 might look like this:</p>
 <pre><code>Course, Number, Day, Time
-&quot;Thermodynamics&quot;, 337, &quot;M/W/F&quot;, &quot;9:00-9:50&quot;
-&quot;Aerosol Physics and Technology&quot;, 577, &quot;M/W/F&quot;, &quot;10:00-10:50&quot;</code></pre>
+&quot;Intro to Epi&quot;, 501, &quot;M/W/F&quot;, &quot;9:00-9:50&quot;
+&quot;Advanced Epi&quot;, 521, &quot;T/Th&quot;, &quot;1:00-2:15&quot;</code></pre>
 <p>Delimited files are very easy to read into R. You just need to be able to figure
 out what character is used as a delimiter (commas in the example above) and
 specify that to R in the function call to read in the data.</p>
 <p>These flat files can have a number of different file extensions. The most
 generic is <code>.txt</code>, but they will also have ones more specific to their format,
-like <code>.csv</code> for a comma-delimited file (.csv stands for <strong>“comma separated values”</strong>) or <code>.fwf</code> for a fixed with file.</p>
+like <code>.csv</code> for a comma-delimited file or <code>.fwf</code> for a fixed with file.</p>
 <p>R can read in data from both fixed with and delimited flat files. The only catch
 is that you need to tell R a bit more about the format of the flat file,
 including whether it is fixed width or delimited. If the file is fixed width,
@@ -555,7 +551,7 @@ The <code>readr</code> package is a member of the tidyverse of packages. The <em
 </div>
 </div>
 <div id="reading-in-other-file-types" class="section level3">
-<h3><span class="header-section-number">3.3.2</span> Reading in other file types</h3>
+<h3><span class="header-section-number">4.3.2</span> Reading in other file types</h3>
 <p>Later in the course, we’ll talk about how to open a variety of other file types
 in R. However, you might find it immediately useful to be able to read in files
 from other statistical programs.</p>
@@ -595,10 +591,10 @@ They allow you to read in files from the following formats:</p>
 </div>
 </div>
 <div id="directories-and-pathnames" class="section level2">
-<h2><span class="header-section-number">3.4</span> Directories and pathnames</h2>
+<h2><span class="header-section-number">4.4</span> Directories and pathnames</h2>
 <p>The following video covers this section on “Directories and pathnames”</p>
 <div id="directory-structure" class="section level3">
-<h3><span class="header-section-number">3.4.1</span> Directory structure</h3>
+<h3><span class="header-section-number">4.4.1</span> Directory structure</h3>
 <p>So far, we’ve only looked at reading in files that are located in your current
 working directory. For example, if you’re working in an R Project, by default
 the project will open with that directory as the working directory, so you can
@@ -646,15 +642,15 @@ you are fairly used to working with these in your daily life already (although
 you may call them “folders” rather than “directories”). For example, you’ve
 probably created new directories to store data files and Word documents for a
 specific project.</p>
-<p>Figure <a href="rprog2.html#fig:filedirstructure">3.1</a> gives an example file directory structure for
+<p>Figure <a href="entering-and-cleaning-data-1.html#fig:filedirstructure">4.1</a> gives an example file directory structure for
 a hypothetical computer. Directories are shown in blue, and files in green.</p>
 <div class="figure" style="text-align: center"><span id="fig:filedirstructure"></span>
 <img src="figures/FileDirectoryStructure.png" alt="An example of file directory structure." width="600pt" />
 <p class="caption">
-Figure 3.1: An example of file directory structure.
+Figure 4.1: An example of file directory structure.
 </p>
 </div>
-<p>You can notice a few interesting things from Figure <a href="rprog2.html#fig:filedirstructure">3.1</a>.
+<p>You can notice a few interesting things from Figure <a href="entering-and-cleaning-data-1.html#fig:filedirstructure">4.1</a>.
 First, you might notice the structure includes a few of the directories that you
 use a lot on your own computer, like <code>Desktop</code>, <code>Documents</code>, and <code>Downloads</code>.
 Next, the directory at the very top is the computer’s root directory, <code>/</code>. For a
@@ -671,12 +667,12 @@ describe exactly which file you want R to read in, if you aren’t reading in
 something in your current working directory.</p>
 <p>You will have a home directory somewhere near the top of your structure,
 although it’s likely not your root directory. In the hypothetic computer in
-Figure <a href="rprog2.html#fig:filedirstructure">3.1</a>, the home directory is
+Figure <a href="entering-and-cleaning-data-1.html#fig:filedirstructure">4.1</a>, the home directory is
 <code>/Users/brookeanderson</code>. I’ll describe just a bit later how you can figure out
 what your own home directory is on your own computer.</p>
 </div>
 <div id="working-directory" class="section level3">
-<h3><span class="header-section-number">3.4.2</span> Working directory</h3>
+<h3><span class="header-section-number">4.4.2</span> Working directory</h3>
 <p>When you run R, it’s always running from within some working directory, which
 will be one of the directories somewhere in your computer’s directory structure.
 At any time, you can figure out which directory R is working in by running the
@@ -701,7 +697,7 @@ an R Project, R will start in that project’s working directory (the directory 
 which the <code>.Rproj</code> file for the project is stored).</p>
 </div>
 <div id="file-and-directory-pathnames" class="section level3">
-<h3><span class="header-section-number">3.4.3</span> File and directory pathnames</h3>
+<h3><span class="header-section-number">4.4.3</span> File and directory pathnames</h3>
 <p>Once you get a picture of how your directories and files are organized, you can
 use pathnames, either absolute or relative, to read in files from different
 directories than your current working directory. Pathnames are the directions
@@ -740,7 +736,7 @@ pathname that works perfectly when you’re working in one directory will not wo
 at all once you move into a different working directory.</p>
 <p>As an example of a relative pathname, say you’re working in the directory
 <code>RCourseFall2015</code> within the file structure shown in Figure
-<a href="rprog2.html#fig:filedirstructure">3.1</a>, and you want to read in the <code>heat_mort.csv</code> file in
+<a href="entering-and-cleaning-data-1.html#fig:filedirstructure">4.1</a>, and you want to read in the <code>heat_mort.csv</code> file in
 the <code>CourseText</code> directory. To get from <code>RCourseFall2015</code> to that file, you’d
 need to look in the subdirectory <code>CourseText</code>, where you could find
 <code>heat_mort.csv</code>. Therefore, the relative pathname from your working directory
@@ -821,7 +817,7 @@ sure the file you’re trying to load is in the directory that the relative
 pathname you’re using is directing R to.</p>
 </div>
 <div id="diversion-paste" class="section level3">
-<h3><span class="header-section-number">3.4.4</span> Diversion: <code>paste</code></h3>
+<h3><span class="header-section-number">4.4.4</span> Diversion: <code>paste</code></h3>
 <p>This is a good opportunity to explain how to use some functions that can be very
 helpful when you’re using relative or absolute pathnames: <code>paste()</code> and
 <code>paste0()</code>.</p>
@@ -876,7 +872,7 @@ this is a good example of how you can start using these functions to start to
 get a feel for them.</p>
 </div>
 <div id="reading-online-flat-files" class="section level3">
-<h3><span class="header-section-number">3.4.5</span> Reading online flat files</h3>
+<h3><span class="header-section-number">4.4.5</span> Reading online flat files</h3>
 <p>So far, I’ve only shown you how to read in data from files that are saved to
 your computer. R can also read in data directly from the web. If a flat file is
 posted online, you can read it into R in almost exactly the same way that you
@@ -902,7 +898,7 @@ you can run:</p>
 </div>
 </div>
 <div id="data-cleaning" class="section level2">
-<h2><span class="header-section-number">3.5</span> Data cleaning</h2>
+<h2><span class="header-section-number">4.5</span> Data cleaning</h2>
 <p>The following video covers the section on “Data Cleaning” from 2018:</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/EUJcgIU8xmY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
 </iframe>
@@ -957,7 +953,7 @@ have not already):</p>
 ## 5  1999 actor                     1/18/99 Acting David Alan Grier
 ## 6  1999 actor                     1/19/99 Acting William Baldwin</code></pre>
 <div id="renaming-columns" class="section level3">
-<h3><span class="header-section-number">3.5.1</span> Renaming columns</h3>
+<h3><span class="header-section-number">4.5.1</span> Renaming columns</h3>
 <p>A first step is often re-naming the columns of the dataframe. It can be hard to
 work with a column name that:</p>
 <ul>
@@ -1001,7 +997,7 @@ Many of the functions in tidyverse packages, including those in <code>dplyr</cod
 </div>
 </div>
 <div id="selecting-columns" class="section level3">
-<h3><span class="header-section-number">3.5.2</span> Selecting columns</h3>
+<h3><span class="header-section-number">4.5.2</span> Selecting columns</h3>
 <p>Next, you may want to select only some columns of the dataframe. You can use the
 <code>select</code> function from <code>dplyr</code> to subset the dataframe to certain columns. The
 basic structure of this command is:</p>
@@ -1044,7 +1040,7 @@ the columns we want, we can use <code>-</code> with the columns we don’t want 
 ## 3 television actress 1/13/99 Acting   Tracey Ullman</code></pre>
 </div>
 <div id="add-or-change-columns" class="section level3">
-<h3><span class="header-section-number">3.5.3</span> Add or change columns</h3>
+<h3><span class="header-section-number">4.5.3</span> Add or change columns</h3>
 <p>You can change a column or add a new column using the <code>mutate</code> function from the
 <code>dplyr</code> package. That function has the syntax:</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="co"># Generic code</span></a>
@@ -1079,7 +1075,7 @@ values in this column):</p>
 ## # … with 2,683 more rows</code></pre>
 </div>
 <div id="base-r-equivalents-to-dplyr-functions" class="section level3">
-<h3><span class="header-section-number">3.5.4</span> Base R equivalents to <code>dplyr</code> functions</h3>
+<h3><span class="header-section-number">4.5.4</span> Base R equivalents to <code>dplyr</code> functions</h3>
 <p>Just so you know, all of these <code>dplyr</code> functions have alternatives, either
 functions or processes, in base R:</p>
 <table>
@@ -1112,10 +1108,10 @@ functions or processes, in base R:</p>
 </div>
 </div>
 <div id="dates-and-filtering" class="section level2">
-<h2><span class="header-section-number">3.6</span> Dates and filtering</h2>
+<h2><span class="header-section-number">4.6</span> Dates and filtering</h2>
 <p>The following video covers the lecture material</p>
 <div id="dates-in-r" class="section level3">
-<h3><span class="header-section-number">3.6.1</span> Dates in R</h3>
+<h3><span class="header-section-number">4.6.1</span> Dates in R</h3>
 <p>As part of the data cleaning process, you may want to change the class of some
 of the columns in the dataframe. For example, you may want to change a column
 from a character to a date.</p>
@@ -1246,7 +1242,7 @@ R functions tend to use the timezone of <strong>YOUR</strong> computer’s opera
 </div>
 </div>
 <div id="filtering-to-certain-rows" class="section level3">
-<h3><span class="header-section-number">3.6.2</span> Filtering to certain rows</h3>
+<h3><span class="header-section-number">4.6.2</span> Filtering to certain rows</h3>
 <p>Next, you might want to filter the dataset down so that it only includes certain
 rows. For example, you might want to get a dataset with only the guests from
 2015, or only guests who are scientists.</p>
@@ -1327,7 +1323,7 @@ Two common errors with logical operators are: (1) Using <code>=</code> instead o
 </div>
 </div>
 <div id="piping" class="section level2">
-<h2><span class="header-section-number">3.7</span> Piping</h2>
+<h2><span class="header-section-number">4.7</span> Piping</h2>
 <p>The following video covers the lecture material</p>
 <p>So far, I’ve shown how to use these <code>dplyr</code> functions one at a time to clean up
 the data, reassigning the dataframe object at each step. However, there’s a
@@ -1380,9 +1376,9 @@ sends the dataframe from the last step into each of these functions as the
 dataframe argument.</p>
 </div>
 <div id="in-course-exercise" class="section level2">
-<h2><span class="header-section-number">3.8</span> In-course Exercise</h2>
+<h2><span class="header-section-number">4.8</span> In-course Exercise</h2>
 <div id="downloading-and-checking-out-the-example-data" class="section level3">
-<h3><span class="header-section-number">3.8.1</span> Downloading and checking out the example data</h3>
+<h3><span class="header-section-number">4.8.1</span> Downloading and checking out the example data</h3>
 <p>Download the whole directory for this week from Github
 (<a href="https://github.com/geanders/week_2_data" class="uri">https://github.com/geanders/week_2_data</a>). To do that, go the the <a href="https://github.com/geanders/week_2_data">GitHub page
 with data for this week’s exercise</a>
@@ -1404,7 +1400,7 @@ using a <code>.R</code> extension (e.g., “week_2.R”).</li>
 </ul>
 </div>
 <div id="reading-in-different-types-of-files" class="section level3">
-<h3><span class="header-section-number">3.8.2</span> Reading in different types of files</h3>
+<h3><span class="header-section-number">4.8.2</span> Reading in different types of files</h3>
 <p>Now you’ll try reading in data from a variety of types of file formats.</p>
 <p>Try the following tasks:</p>
 <ul>
@@ -1516,7 +1512,7 @@ package</a>. Read the file into the R object
 ## 5    27     1    76      1     1</code></pre>
 </div>
 <div id="directory-structure-1" class="section level3">
-<h3><span class="header-section-number">3.8.3</span> Directory structure</h3>
+<h3><span class="header-section-number">4.8.3</span> Directory structure</h3>
 <p>Once you have the data, I’d like you to try using <code>getwd()</code> to figure out your
 current working directory and <code>list.files()</code> to figure out which files you have
 in the directories near that current working directory.</p>
@@ -1598,7 +1594,7 @@ Which one? Why does this listing not have a file extension?</li>
 </ul>
 </div>
 <div id="cleaning-up-data-1" class="section level3">
-<h3><span class="header-section-number">3.8.4</span> Cleaning up data #1</h3>
+<h3><span class="header-section-number">4.8.4</span> Cleaning up data #1</h3>
 <p>Try out the following tasks:</p>
 <ul>
 <li>Copy the following code into an R script. Figure out what each line does, and
@@ -1691,7 +1687,7 @@ observation (i.e., death counts divided by case counts).</li>
 ## 6 12/28/2014  8018   3423  0.427</code></pre>
 </div>
 <div id="cleaning-up-data-2" class="section level3">
-<h3><span class="header-section-number">3.8.5</span> Cleaning up data #2</h3>
+<h3><span class="header-section-number">4.8.5</span> Cleaning up data #2</h3>
 <ul>
 <li>Filter out all rows from the <code>ebola_liberia</code> dataframe that are missing death
 counts for Liberia. How many rows are in the dataframe now?</li>
@@ -1731,7 +1727,7 @@ deaths?</li>
 ## 5 12/24/2014  7977   3413 0.428</code></pre>
 </div>
 <div id="piping-1" class="section level3">
-<h3><span class="header-section-number">3.8.6</span> Piping</h3>
+<h3><span class="header-section-number">4.8.6</span> Piping</h3>
 <p>Try the following tasks:</p>
 <ul>
 <li>Copy the following “piped” code into an R script. Figure out what each line
@@ -1790,7 +1786,7 @@ from reading in the raw data.</li>
           </div>
         </div>
       </div>
-<a href="rprog1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rprog2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="eda1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
