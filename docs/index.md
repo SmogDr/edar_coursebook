@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens"
-date: "2020-06-02"
+date: "2020-06-09"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
@@ -159,4 +159,7 @@ analysis, you will be able to find many books with advice on using R for both
 general and specific statistical analysis, including many available in print or
 online through the CSU library.
 
+## Acknowledgements
+
+Most of the introductory material for this book were drawn from [Brooke Anderson's R Programming Coursebook](https://geanders.github.io/RProgrammingForResearch/), to whom I owe thanks not only for the material but for the many helpful discussions.
 

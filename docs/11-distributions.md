@@ -26,7 +26,7 @@ hist(six_sided,
   
   
 ### Characteristic Plots: Uniform Distribution
-
+Below, we show the cumulative distribition plot and probability density function for a uniform distribution between 0 and 1.
 <img src="11-distributions_files/figure-html/unif_dist_plots2-1.png" width="672" />
 
 ## Normal Distribution {#normal_dist}
