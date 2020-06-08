@@ -1,4 +1,4 @@
-# Exploring Univariate Data {#eda1}
+# Exploratory Data Analysis: Univariate Data {#eda1}
 
 ```{r eda1, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
@@ -64,12 +64,22 @@ ggplot(NOAA_temps, aes(y = Location, x = Temperature, group = Temp_type)) +
        y = "Region")
 
 ggsave("./images/NOAA_temps", device = "png")
-  #scale_fill_discrete(name = "Temp Value", labels = c("Average", "Maximum", "Minimum"))
+  
 
+#Summarize temperature means by station and type
+NOAA_temps %>% 
+  group_by(STATION, Temp_type) %>%
+  summarise(T_averages = mean(Temperature)) -> tmeans
+
+tempdata <- read_csv("./data/NOAA_temps2.csv")
+NOAA_temps2 <- tempdata %>%
+  mutate(time = str_extract(DATE, "(?<=T).+"), date = str_extract(DATE, ".+(?=T)")) %>%
+  select(STATION, NAME, time, date, `HLY-TEMP-NORMAL`) %>%
+  rename(station = STATION, name = NAME, temp_hr_f = `HLY-TEMP-NORMAL`)
 
 ```
 
-First, if we are picking spots to go camping, both locations have average temperatures that seem very pleasant (about 68 $^\circ$F in Colorado and 74 $^\circ$F in Hawaii).  Those average values are measures of **location**.  However, if we look at the **dispersion** of temperature observations (the daily highs and lows), we can make an important distiction: the range of high-low values in Hawaii is fairly narrow, whereas the range in Colorado spans from `r min(NOAA_temps$Temperature)` to 
+First, if we are picking spots to go camping, both locations have daily high temperatures (TMAX) that seem very pleasant (the average high in July is about `r round(tmeans[[2,3]])` $^\circ$F in Colorado and `r round(tmeans[[5,3]])` $^\circ$F in Hawaii). When we calculate an average value we are creating indicators of a variable's **location**.  However, if we look at the **dispersion** of temperature observations (the span between the daily highs and lows), we can make an important distiction: the range of high-low values in Hawaii is fairly narrow, whereas the range in Colorado spans from `r min(NOAA_temps$Temperature)` to 
 `r max(NOAA_temps$Temperature)` $^\circ$F!  
 
 The conclusion to be drawn here is that the ***location*** of average temperatre values (TAVG) are only slightly different between Hawaii and Colorado but the ***dispersion*** of the temperature data suggests that you probably want to pack twice as much clothing if you want to be comfortable in Colorado! The dispersion of these data also suggests that you could expect nice temperatures for a campfire at night in Jack's Canyon, where the minimum temps in the lower 50s $^\circ$F.  There are lots ways to communicate the location (e.g., mode, mean, median) and dispersion (e.g., range, IQR, standard deviation), many of which we will touch upon in this course.

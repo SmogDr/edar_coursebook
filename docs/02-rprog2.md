@@ -1,26 +1,6 @@
 # Getting and Cleaning Data {#rprog2}
 
 
-```r
-library(tidyverse)
-```
-
-```
-## ── Attaching packages ─────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
-```
-
-```
-## ✓ ggplot2 3.3.0     ✓ purrr   0.3.4
-## ✓ tibble  3.0.1     ✓ dplyr   0.8.5
-## ✓ tidyr   1.0.2     ✓ stringr 1.4.0
-## ✓ readr   1.3.1     ✓ forcats 0.5.0
-```
-
-```
-## ── Conflicts ────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-```
 
 ## Objectives
 
@@ -103,9 +83,9 @@ open them in a text editor. For example, the first few rows of a fixed-width
 file might look like this:
 
 ```
-Course            Number          Day          Time
-Intro to Epi      501             M/W/F        9:00-9:50
-Advanced Epi      521             T/Th         1:00-2:15
+Course                            Number          Day          Time
+Thermodynamics                    337             M/W/F        9:00-9:50
+Aerosol Physics and Technology    577             M/W/F        10:00-10:50
 ```
 
 Fixed width files used to be very popular, and they make it easier to look at data
