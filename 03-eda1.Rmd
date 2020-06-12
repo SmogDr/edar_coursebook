@@ -12,7 +12,7 @@ library(lubridate)
 
 > *<span style="color: blue;"> Exploratory data analysis is graphical detective work - John Tukey </span>*
 
-Exploratory Data Analysis (also known as EDA) is largely a visual technique based on the human trait of *"pattern recognition"*. The purpose of EDA is simple: learn about your datq through diagnostic visualization.
+Exploratory Data Analysis (also known as EDA) is largely a visual technique based on the human trait of *"pattern recognition"*. The purpose of EDA is simple: learn about your data through diagnostic visualization.
 
 **Why is Exploratory Data Analysis (EDA) useful?**
 Because getting to know a dataset is a key step towards making sense of it, and EDA is a great way to familiarize oneself with a dataset. As a result, you can use EDA to do many powerful things in a short span of time.
@@ -47,15 +47,17 @@ Let's plan a camping trip.  Our trip is purely theotrical...so let's not worry  
 
 We will consider going camping in two lovely spots: the first is the forest preserves along the Na Pali coast in Kauai, Hawaii and the second is the sunny hiking/climbing regoin around Jack's Canyon in southwest Colorado. Let's examine the location and dispersion of hourly temperatures in these two regions for the month of July, 2010  We can download such data from the <NOAA Climate Data Center>[https://www.ncdc.noaa.gov/cdo-web/search] that provides  daily average, minimum, and maximum temperature readings for these two regions.  Once we know the **location** and **dispersion** of these data, we can decide what clothes to bring!
 
-We create a simple plot that summarizes the various temperatures measured at these two regions.  
+We create a simple plot \@ref(fig:NOAA-temps-2) that summarizes the various temperatures measured at these two regions.  
 
-``` {r NOAA_Temps_LDD, echo=FALSE, warning=FALSE, message=FALSE}
+``` {r NOAA_temps_1, echo=FALSE, warning=FALSE, message=FALSE}
 
 tempdata <- read_csv("./data/NOAA_temps2.csv")
 NOAA_temps <- tempdata %>%
   #mutate(time = str_extract(DATE, "(?<=T).+"), date = str_extract(DATE, ".+(?=T)")) %>%
   #select(STATION, NAME, time, date, `HLY-TEMP-NORMAL`) %>%
-  rename(station = STATION, name = NAME, temp_hr_f = `HLY-TEMP-NORMAL`) %>%
+  rename(station = STATION, 
+         name = NAME, 
+         temp_hr_f = `HLY-TEMP-NORMAL`) %>%
   #mutate(mdt = strftime(date, "%m-%dT%T"))
   mutate(date = parse_date_time(DATE, orders = "mdhms")) %>%
   mutate(location = case_when(
@@ -69,28 +71,33 @@ NOAA_temps %>%
   group_by(location) %>%
   summarise(T_averages = mean(temp_hr_f)) -> tmeans
 
-ggplot(NOAA_temps, aes(y = location, x = temp_hr_f)) +
+co_hi_temps <- ggplot(NOAA_temps, aes(y = location, 
+                       x = temp_hr_f)) +
   geom_jitter(aes(color = location),
               height = 0.15,
               size = 1.5,
               shape = 1) +
-    labs(title ="Hourly Temperature Values for July, 2010",
-       y = "Region", x = "Temperature, °F") +
-  theme_bw()
-
+    labs(y = "Region", 
+       x = "Temperature, °F") +
+  theme_bw() +
 ggsave("./images/NOAA_temps.png", dpi = 150)
-  
+```
 
+``` {r NOAA-temps-2, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Hourly temperature levels in Colorado and Hawaii for the month of July, 2010."}
+knitr::include_graphics("./images/NOAA_temps.png")
 ```
 
 First, if we are picking spots to go camping, both locations have daily averaage temperatures that seem very pleasant (the average is about `r round(tmeans[[1,2]], digits = 1)` $^\circ$F in Colorado and `r round(tmeans[[2,2]], digits = 1)` $^\circ$F in Hawaii). When we calculate an average value we are creating an indicator of a variable's **location**.  However, if we look at the **dispersion** of temperature observations (how the readings vary across the month), we can make an important distiction: the range of observed temperature values in Hawaii is fairly narrow, whereas the range in Colorado spans from `r min(NOAA_temps$temp_hr_f)` to 
 `r max(NOAA_temps$temp_hr_f)` $^\circ$F!  
 
-The conclusion to be drawn here is that the ***central tendencies*** of hourly temperature are nearly identical between Hawaii and Colorado but the ***dispersion*** of the temperature data suggests that you might want to pack more gear if you want to be comfortable in Colorado. 
+The conclusion to be drawn here is that the ***central tendencies*** of hourly temperature are nearly identical between Hawaii and Colorado but the ***dispersion*** of the temperature data suggests that you might want to pack more gear if you want to be comfortable in Colorado (see \@ref(fig:NOAA-temps-annotate). 
 
-You will discover that there are many ways to communicate the location (e.g., mode, mean, median) and dispersion (e.g., range, IQR, standard deviation); we will touch upon several such descriptors in this course.
+You will discover that there are many ways to communicate location (e.g., mode, mean, median) and dispersion (e.g., range, IQR, standard deviation); we will touch upon several such descriptors in this course.
 
-![NOAA Temperature Data Annotated](./images/NOAA_temps_annotate.png)
+```{r NOAA-temps-annotate, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "The Hawaii and Colorado temperature data have similar locations (or central tendencies) but differing dispersion (or spread)."}
+knitr::include_graphics("images/NOAA_temps_annotate.png")
+```
+
 
 ## Quantiles
 
@@ -107,12 +114,15 @@ The two most extreme quantiles define the ***Range***:
 
 If you break a distribution into quarters, you have created *Quartiles*.  Let's generate a sample of random numbers between 0 and 100 and break the resulting data into quartiles. A random number generator (`runif`) will create a **[uniform distribution](#unif_dist)** across the sample range since all values have equal probability of being chosen.  With that in mind, you can probably guess what the quartiles will look like, given a sufficiently large sample...
 
-``` {r quantiles_1, results='hide'}
+``` {r quantiles-1, results='hide'}
 set.seed(1)
 univar1 <- runif(n = 1000, min = 0, max = 100)
 univar1_quartiles <- quantile(univar1, probs = seq(0, 1, 0.25)) %>% round(1)
 ```
-![n=1000 samples from a uniform distribution between 0 and 100](./images/quantile_1.png)
+
+``` {r quantiles-2, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Quartiles estimated from n=1000 samples of a uniform distribution between 0 and 100"}
+knitr::include_graphics("./images/quantile_1.png")
+```
 As expected, the 1^st^, 2^nd^, 3^rd^, and 4^th^ quartiles from a uniform distribnution between 0 and 100 fall into predictable chunks: 25, 50, 75, and 100.
 
 - The first, or lower quartile, contains the lower 25% of the distribution. In quantile terms, we define this quartile by its upper value, which occurs at the 25^th^ percentile (or the 0.25 quantile).   
@@ -159,17 +169,16 @@ knitr::kable(quant_desc,
              kable_styling(bootstrap_options = "striped", full_width = F)
 ```
 
+A couple notes.  You might wonder why I didn't include *summary statistics* (like the mean and standard deviation) in this list of descriptive statistics.  The reason is not because I don't like using summary statistics but because their use implies that you know the type of the distribution you are describing (i.e., is it normally distributed, log-normal, bi-modal, etc.).  Use of descriptors like `mean()` and `sd()` are very useful when properly applied, but can be misleading when the distribution is skewed (**more on that later**).  Quantile descirptors, on the other hand, are largely agnostic to the type of distribution they describe (i.e,. the median is ALWAYS the 50% value, regarless of the shape of the distribution). The last descriptor in the list is the *"Inter-Quartile Rage"* or IQR for short.  The IQR describes the values that contain the bulk, or "middle middle part" of the distribution, since it communicates the range of values needed to go from the 25^th^% to the 75^th^% of the distribution.  The IQR is *similar* in concept to a standard deviation but, again, makes no assumptions about the shape/type of the distribution being considered.  
 
-A couple notes.  You mighht be asking why I didn't include *summary statistics* (like the mean and standard deviation) in this list of descriptive statistics.  The reason is not because I don't like using summary statistics but because their use implies that you know the type of the distribution you are describing (i.e., is it normally distributed, log-normal, bi-modal, etc.).  Use of descriptors like `mean()` and `sd()` are very useful when properly applied, but can be misleading when the distribution is skewed (**more on that later**).  Quantile descirptors, on the other hand, are largely agnostic to the type of distribution they describe (i.e,. the median is ALWAYS the 50% value, regarless of the shape of the distribution). The last descriptor in the list is the *"Inter-Quartile Rage"* or IQR for short.  The IQR is used in lots of disciplines to describe the values that contain the bulk, or "middle middle part" of the distribution, since it communicates the range of values needed to go from the 25^th^% to the 75^th^% of the distribution.  The IQR is *similar* in concept to a standard deviation but, again, makes no assumptions about the shape/type of the distribution being considered.  
-
-Let's now create quantiles from a *normal distribution* of data (mean = 50, standard deviation = 15).  We'll start by randomly sampling 1000 values (using `rnorm`) and then arranging them with the `quanitle` function (the code chunk also shows how to calculate quantiles manually)
+Let's now create quantiles from a *normal distribution* of data (mean = 50, standard deviation = 15).  We'll start by randomly sampling 1000 values (using `rnorm`) and then arranging them with the `quanitle` function (the code chunk also shows how to calculate quantiles manually).
 ``` {r quantiles_2}
 normal1 <- rnorm(1000, mean = 50, sd = 15)
 quantile(normal1, probs = seq(0, 1, 0.1)) %>%
   round(0)
 
 #manual method for calculating quantiles
-normal_data <- tibble(
+normal_data_2 <- tibble(
   sample_data = normal1,  #start with raw sample data
   sorted_data = sort(normal1),   #sort the data
   cum_frac = seq.int(from = 1/length(normal1),   #calculate cumulative fraction for each entry
@@ -179,23 +188,28 @@ normal_data <- tibble(
 
 deciles <- seq.int(from = 0, to = 1, by = 0.1)
 
-normal_data_deciles <- filter(normal_data, cum_frac %in% deciles)
-
-
+#take only the quantiles that match the decile values created above
+normal_data_deciles <- filter(normal_data_2, cum_frac %in% deciles)
 ```
+Normal distributions are more complicated than uniform distributions, and it's hard to get a lot out of the decile summary when shown in tabular format.  This brings us to my favorite part of exploratory data analysis: ***data visualization***.
+
 ## Univariate Data Visualization
+
+Data visualization is a powerful technique for exploring data. In fact, visualizaing univariate data is the **first step** in getting to know your data, once they have been read into R and cleaned.
+
+Below I introduce formal approaches to visualizing the location, dispersion, and shape of univariate data.  Later on we will explore relationships between variables in [multivariate data analyses](#eda2). The techniques shown below are simple, yet I am surprised how often they are underemployed.
 
 ## Cumulative Distribution Plot
 
-A **cumulative distribution plot** lays out the raw quantiles (typically on the y-axis) against the observed data (x-axis). Since we want to show **ALL** the data, each data point gets tied to a unit quantile (i.e., if there are 100 data points in a sample, each datum represents 1% of the total or a quantile of 0.01) . The x-axis shows the observed data, ordered from smallest to largest value.   
+A **cumulative distribution plot** lays out the raw quantiles (typically on the y-axis) against the observed data (x-axis). Cumulative distribution plots are nice because they are **enumerative** (a fancy word that means they show ***ALL*** of your data without any modificaitons). Bevause these plots show all the data, each observation gets assigned a unit quantile (i.e., if there are 100 data points in a sample, each datum represents 1% of the total or a quantile of 0.01) . Thus, quatiles are shown on the y-axis and the x-axis shows the observed data, ordered from smallest to largest value.   
 
 ```{block, type = 'rmdnote'}
 The cumulative distribution plot shows the rolling fraction (or percent) of data (y-axis) that are "less than or equal to" the (x-axis) values of that data. 
 ```
 
-An annotated cumulative distribution plot is shown below for a sample of temperature data following a normal distribution:  
+An annotated cumulative distribution plot is shown below for a sample of temperature data that follow a normal distribution:  
 
-``` {r create_cd_plot, warning=FALSE, include=FALSE}
+``` {r create-cd-plot, warning=FALSE, include=FALSE}
 #randomly sample two variables from normal distributions (defined below)
 normal_data <- tibble(a = rnorm(n=1000, mean = 15, sd = 5),
                    b = rnorm(n=1000, mean = 10, sd = 3))
@@ -209,7 +223,7 @@ normal_data %>%
                             by = 1/length(a))) -> normal_data_cdf
   
 #plot cumulative distribution
-ggplot(data = normal_data_cdf, aes(x = a, y = cum_frac)) +
+normal_data_cdf <- ggplot(data = normal_data_cdf, aes(x = a, y = cum_frac)) +
   geom_point(shape = 21,
              fill = "black",
              alpha = 0.25) +
@@ -222,22 +236,28 @@ ggplot(data = normal_data_cdf, aes(x = a, y = cum_frac)) +
         axis.title.y = element_text(margin = unit(c(0, 5, 0, 0), "mm")),
         axis.title.x = element_text(margin = unit(c(5, 0, 0, 0), "mm")),
         aspect.ratio=3/4) 
-ggsave("./normal_cum_dist.png", dpi = 150)
+ggsave("./images/normal_cum_dist.png", dpi = 150)
 ```
 
-![Cumulative Distribution Annotated](./images/cum_dist_1.png)
+``` {r norm-cdf-plot, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Annotated Cumulative Distribution Plot for Normally-Distributed Temperature Data"}
+knitr::include_graphics("./images/normal_cum_dist_anno.png")
+```
+
 As you can see, there is a lot of information contained in a cumulative distribution plot!  We can see the range (min, max), the median (the 0.5 quantile), and any other percentile values for the distribution.  We can quickly pick out any value to and find out what fraction of the data are below it.  For example, picking out the quantile of 0.9 on the y-axis shows that 90% of the observed temperature values are below a level of 21 $^\circ$C. In fact, most of the basic descriptive statistics can be accessed on a cumulative distribution plot:  
 
-  * median: x-axis value at quantile 0.5
-  * 25^th^ and 75^th^ percentiles (or quartiles): x-axis values at quantile 0.25 and 0.75, respectively
-  * interquartile range (IQR): x-axis distance between quantiles 0.25 and 0.75
-  * range: min, max values at quantile 0 and 1.0, respectively  
+* **median**: x-axis value at quantile 0.5  
+* **25^th^ and 75^th^ percentiles** (or quartiles): x-axis values at quantile 0.25 and 0.75, respectively  
+* **interquartile range** (IQR): x-axis distance between quantiles 0.25 and 0.75  
+* **range**: min, max values at quantile 0 and 1.0, respectively  
   
-Cumulative distribution plots also reveal details about the dispersion of the observed data (and, more subtly, about the shape/nature of underlying data distribution). For example, in the temperature example above, we can see that shape of the curve has geometric symmetry about the median value
+Cumulative distribution plots also reveal details about the dispersion of the observed data (and, more subtly, about the shape/nature of underlying data distribution). For example, in the temperature example above (Fig. \@ref(fig:norm-cdf-plot)), the curve has geometric symmetry about the median - this symmetry indicates that the dispersion of the data is equal as you move away from the median in either direction. 
 
-In the example below, we read in a portion of the data from the [NSF Survey of College Gradautes](https://www.nsf.gov/statistics/srvygrads/) to create a cumulative distribition plot of reported salaries for those with a degree in Mechanical Engineering.
+### Cumulative Distribution Plot Example
 
-``` {r load_salaries_data}
+In the example below, we create a cumulative distribition plot of annual salaries reported by individuals with a degree in Mechanical Engineering in the US. These data come from the [NSF Survey of College Gradautes](https://www.nsf.gov/statistics/srvygrads/). I've also taken the liberty of identifying the max, min, and quartile values on the plot.
+
+``` {r create-cdf-me-salaries}
+#load data
 raw_salaries <- read_csv("./data/ME_salaries.csv", 
                  col_types = "iif", 
                  col_names = c("salary", "age","gender"),
@@ -246,20 +266,16 @@ raw_salaries <- read_csv("./data/ME_salaries.csv",
 #create cumulative fractions 
 ordered_salaries <- raw_salaries %>%
   select(salary) %>%
-  filter(salary < 500000) %>%
+  filter(salary < 500000) %>% #to remove numeric identifiers like '989961'
   arrange(salary) %>%
   mutate(cum_pct = seq.int(
     from = 1/length(salary), 
     to = 1, 
     by = 1/length(salary))) 
-
-```
-
-``` {r cdf_ME_salaries, echo = FALSE}
   
   #alternate method if you don't want to calculate cumulative fractions
-  ggplot(data = ordered_salaries, aes(x = salary)) +
-  geom_step(stat = "ecdf") +
+  cdf_ME_salaries <- ggplot(data = ordered_salaries, aes(x = salary)) +
+  geom_step(stat = "ecdf") + #ecdf = 'empiricial cumulative distribution function'
   theme_bw() +
   labs(x = "Salaries of ME Graduates", y = "Cumulative Fraction") +
   scale_y_continuous(limits=c(-0.05, 1.03), expand = c(0,0),
@@ -279,9 +295,17 @@ ordered_salaries <- raw_salaries %>%
                aes(x=x, y=y, xend=xend, yend=yend), 
                color = "red",
                linetype = "dashed")
-
+ggsave("./images/cdf_me_salaries.png", dpi = 150)
 
 ```
+
+``` {r cdf-me-salaries, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Annual Salaries Reported by US Graduates (all ages) with a Mechanical Engineering Degree"}
+knitr::include_graphics("./images/cdf_me_salaries.png")
+```
+The good news is that if you can survive the undergraduate grind in Mechanical Engineering, you have a good chance of making a great living wage.  The median salary is $
+`r format(quantile(ordered_salaries$salary, probs = 0.5), scientific = F, big.mark=",")` - note this is for graduates of all ages across the country in the year 2017.  Don't expect that paycheck on your first day on the job!
+
+One interesting thing you may notice in Figure \@ref(fig:cdf-me-salaries) is that the 'tails' of the plot (the shape of the curves about the median value) are not symmetrical. One tail looks longer than the other.  This lack of symmetry implies a degree of *skewness* in the data.  Why is that?  We will explore skewness at several points in this course (and discuss some of the mechanisms that cause data to be skewed later on).
 
 ## Histogram {#hist}
 
@@ -293,8 +317,8 @@ A **histogram** is a plot of counts (or frequency of observations) as a function
 * The nature of the distribution (i.e., do the data appear normally distributed or skewed?)  
 * The presence (or absence) of outliers in the data (what are those observations doing way out there?)  
 
-Below is a basic histogram that I've annotated to show key features.  This histogram was created by sampling a normal distribution `rnorm()` and plotted using `ggplot::geom_histogram`.  Examination of this histogram quickly reveals a lot about the underlying data.  For example, the central tendency is centered around a value of ~30 and the majority of the data appear to fall between a range of 20 - 40.  
-``` {r normal_histogram, warning=FALSE, include=FALSE}
+Below is a basic histogram that I've annotated to show some key features.  This histogram was created by sampling a normal distribution `rnorm()` and plotted using `ggplot::geom_histogram`.  Examination of this histogram quickly reveals a lot about the underlying data.  For example, the central tendency is located around a value of ~30 and the majority of the data appear to fall between a range of 20 - 40.  
+``` {r norm-hist, warning=FALSE, include=FALSE}
 #create a simple tibble of 1000 observations from a normal distribution
 x<-tibble(data = rnorm(10000, mean = 30, sd = 3))
 
@@ -340,14 +364,14 @@ Figure X.X Calculations:
 
 Skewed distributions can be more challenging to handle because they are *less predictable* than normal distributions (*that said, statisticians have figured out how to model just about any type of distribution, so don't fret*).  Examination of Figure X.X also reveals the presence of a few ***outliers*** in the data: the apparent spike in observations around x = 200.  
 
-Outliers are interesting features and should neither be ignored nor deleted outright. Outliers exist for some reason, and oftentimes only through detective-work or process knowledge can you elucidate their source.  
+Outliers are interesting features and should neither be ignored nor deleted outright. Outliers exist for some reason, and oftentimes only through detective-work or mechanistic knowledge can you elucidate their source.  
 
 ### What causes skewed histograms?
-I want to spend some time thinking about mechanisms that cause variability in an observation. These mechanisms are often responsible for whether a set of observations appears normally distributed or skewed. We will focus on two types of distributions for now (normal and log-normal data), but many more types exist in the real world.  
+I want to spend some time thinking about mechanisms that cause variability in an observation. These mechanisms are often responsible for whether a set of observations appears normally distributed or skewed. We will focus on two types of distributions for now: [normal](#normal_dist) and [log-normal](#log_normal_dist) data. Many other types of data distributions exist in the real world.  
 
-A general "rule of thumb" is that *additive* variability tend to produce normally distributed data, whereas mechanisms that cause *multiplicative* variability tend to produce skewed (log-normal) data.  By *additive*, I mean that variable x tends to vary in a "plus/minus" sense about its mean.  Examples of additive variability include the distribution of heights measured in a sample of 3rd graders or the variability in the mass of a 3D-printed part produced 100 times on the same machine.  
+A general "rule of thumb" is that *additive* variability tends to produce normally distributed data, whereas mechanisms that cause *multiplicative* variability tend to produce skewed (log-normal) data.  By *additive*, I mean that variable x tends to vary in a "plus/minus" sense about its mean.  Examples of additive variability include the distribution of heights measured in a sample of 3rd graders or the variability in the mass of a 3D-printed part produced 100 times on the same machine.  
 
-*Multiplicative* (or log-normal) variability arises when the mechanism(s) controlling the variation of "x" are multipliers (or divisors) of x. Many real-world phenomena create multiplicative variability in observed data: the strength of a WiFi signal at different locations within a building, the magnitude of earthquakes measured at a given position on the Earth's surface, the size of rocks found in a section of a riverbed, or the size of particles found in air. All tend to be governed by multiplicative factors. In other words, all of these observations are controlled by mechanisms that suggest x = a*b*c not x = a+b+c. 
+*Multiplicative* (or log-normal) variability arises when the mechanism(s) controlling the variation of "x" are multipliers (or divisors) of x. Many real-world phenomena create multiplicative variability in observed data: the strength of a WiFi signal at different locations within a building, the magnitude of earthquakes measured at a given position on the Earth's surface, the size of rocks found in a section of a riverbed, or the size of particles found in air. All tend to be governed by multiplicative factors. In other words, all of these observations are controlled by mechanisms that suggest x = a*b*c not x = a+b+c. Explicit examples of *multiplicative* variability (and how it leads to log-normal data) are provided [here](#log_normal_dist). 
 
 ## Probability Density Function {#pdf}  
 The histrogram is really an attempt to visualize the probability density function for univariate data.
@@ -358,6 +382,6 @@ The **time-series plot** (also called a **"run sequence"** plot) is something yo
 * Identify shifts in "location" of the variable (when and by how much do values change?)  
 * Identify shifts in "variation" of the variable (does the data get more/less noisy over time?) 
 * Identify (potential) outliers and when they occurred 
-* Identify the ***timing*** of events! 
+* Identify the ***timing*** of events!
 
 

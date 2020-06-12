@@ -148,6 +148,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>2.1</b> Objectives</a></li>
 <li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="rprog1.html"><a href="rprog1.html#what-is-r"><i class="fa fa-check"></i><b>2.2.1</b> What is R?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="rprog1.html"><a href="rprog1.html#free-and-open-source-software"><i class="fa fa-check"></i><b>2.2.2</b> Free and open-source software</a></li>
+<li class="chapter" data-level="2.2.3" data-path="rprog1.html"><a href="rprog1.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2.3</b> What is RStudio?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="rprog1.html"><a href="rprog1.html#r-sessions-the-console-and-the-command-prompt"><i class="fa fa-check"></i><b>2.3.1</b> R sessions, the console, and the command prompt</a></li>
@@ -209,7 +211,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.1" data-path="eda1.html"><a href="eda1.html#quantiles-and-descriptive-statistics"><i class="fa fa-check"></i><b>4.2.1</b> Quantiles and Descriptive Statistics</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>4.3</b> Univariate Data Visualization</a></li>
-<li class="chapter" data-level="4.4" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>4.4</b> Cumulative Distribution Plot</a></li>
+<li class="chapter" data-level="4.4" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>4.4</b> Cumulative Distribution Plot</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot-example"><i class="fa fa-check"></i><b>4.4.1</b> Cumulative Distribution Plot Example</a></li>
+</ul></li>
 <li class="chapter" data-level="4.5" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>4.5</b> Histogram</a><ul>
 <li class="chapter" data-level="4.5.1" data-path="eda1.html"><a href="eda1.html#histogram-what-to-look-for"><i class="fa fa-check"></i><b>4.5.1</b> Histogram: what to look for?</a></li>
 <li class="chapter" data-level="4.5.2" data-path="eda1.html"><a href="eda1.html#what-causes-skewed-histograms"><i class="fa fa-check"></i><b>4.5.2</b> What causes skewed histograms?</a></li>
@@ -301,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p><em><span style="color: blue;"> Exploratory data analysis is graphical detective work - John Tukey </span></em></p>
 </blockquote>
-<p>Exploratory Data Analysis (also known as EDA) is largely a visual technique based on the human trait of <em>“pattern recognition”</em>. The purpose of EDA is simple: learn about your datq through diagnostic visualization.</p>
+<p>Exploratory Data Analysis (also known as EDA) is largely a visual technique based on the human trait of <em>“pattern recognition”</em>. The purpose of EDA is simple: learn about your data through diagnostic visualization.</p>
 <p><strong>Why is Exploratory Data Analysis (EDA) useful?</strong>
 Because getting to know a dataset is a key step towards making sense of it, and EDA is a great way to familiarize oneself with a dataset. As a result, you can use EDA to do many powerful things in a short span of time.</p>
 <p>Think of the word <strong>“Exploratory”</strong> in terms of <strong>“Hypothesis Building”</strong>.</p>
@@ -329,15 +333,22 @@ Because getting to know a dataset is a key step towards making sense of it, and 
 <h3><span class="header-section-number">4.1.2</span> Example: Location and Dispersion</h3>
 <p>Let’s plan a camping trip. Our trip is purely theotrical…so let’s not worry about costs, logistics, or other important factors. For this exercise we only care about <em>comfort</em> while outdoors. When I think of being comfortable outdoors, the first thing that comes to mind is <strong><em>temperature</em></strong>. Did I bring the proper clothing?</p>
 <p>We will consider going camping in two lovely spots: the first is the forest preserves along the Na Pali coast in Kauai, Hawaii and the second is the sunny hiking/climbing regoin around Jack’s Canyon in southwest Colorado. Let’s examine the location and dispersion of hourly temperatures in these two regions for the month of July, 2010 We can download such data from the <NOAA Climate Data Center>[<a href="https://www.ncdc.noaa.gov/cdo-web/search" class="uri">https://www.ncdc.noaa.gov/cdo-web/search</a>] that provides daily average, minimum, and maximum temperature readings for these two regions. Once we know the <strong>location</strong> and <strong>dispersion</strong> of these data, we can decide what clothes to bring!</p>
-<p>We create a simple plot that summarizes the various temperatures measured at these two regions.</p>
-<p><img src="03-eda1_files/figure-html/NOAA_Temps_LDD-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We create a simple plot <a href="eda1.html#fig:NOAA-temps-2">4.1</a> that summarizes the various temperatures measured at these two regions.</p>
+<div class="figure" style="text-align: center"><span id="fig:NOAA-temps-2"></span>
+<img src="images/NOAA_temps.png" alt="Hourly temperature levels in Colorado and Hawaii for the month of July, 2010." width="700pt" />
+<p class="caption">
+Figure 4.1: Hourly temperature levels in Colorado and Hawaii for the month of July, 2010.
+</p>
+</div>
 <p>First, if we are picking spots to go camping, both locations have daily averaage temperatures that seem very pleasant (the average is about 78.9 <span class="math inline">\(^\circ\)</span>F in Colorado and 78.6 <span class="math inline">\(^\circ\)</span>F in Hawaii). When we calculate an average value we are creating an indicator of a variable’s <strong>location</strong>. However, if we look at the <strong>dispersion</strong> of temperature observations (how the readings vary across the month), we can make an important distiction: the range of observed temperature values in Hawaii is fairly narrow, whereas the range in Colorado spans from 64.4 to
 91.8 <span class="math inline">\(^\circ\)</span>F!</p>
-<p>The conclusion to be drawn here is that the <strong><em>central tendencies</em></strong> of hourly temperature are nearly identical between Hawaii and Colorado but the <strong><em>dispersion</em></strong> of the temperature data suggests that you might want to pack more gear if you want to be comfortable in Colorado.</p>
-<p>You will discover that there are many ways to communicate the location (e.g., mode, mean, median) and dispersion (e.g., range, IQR, standard deviation); we will touch upon several such descriptors in this course.</p>
-<div class="figure">
-<img src="images/NOAA_temps_annotate.png" alt="NOAA Temperature Data Annotated" />
-<p class="caption">NOAA Temperature Data Annotated</p>
+<p>The conclusion to be drawn here is that the <strong><em>central tendencies</em></strong> of hourly temperature are nearly identical between Hawaii and Colorado but the <strong><em>dispersion</em></strong> of the temperature data suggests that you might want to pack more gear if you want to be comfortable in Colorado (see <a href="eda1.html#fig:NOAA-temps-annotate">4.2</a>.</p>
+<p>You will discover that there are many ways to communicate location (e.g., mode, mean, median) and dispersion (e.g., range, IQR, standard deviation); we will touch upon several such descriptors in this course.</p>
+<div class="figure" style="text-align: center"><span id="fig:NOAA-temps-annotate"></span>
+<img src="images/NOAA_temps_annotate.png" alt="The Hawaii and Colorado temperature data have similar locations (or central tendencies) but differing dispersion (or spread)." width="700pt" />
+<p class="caption">
+Figure 4.2: The Hawaii and Colorado temperature data have similar locations (or central tendencies) but differing dispersion (or spread).
+</p>
 </div>
 </div>
 </div>
@@ -352,11 +363,16 @@ Because getting to know a dataset is a key step towards making sense of it, and 
 <li><code>Max</code>: the 100<sup>th</sup> percentile (or 1.0 in fractional terms); the highest value observed; the n<sup>th</sup> quantile</li>
 </ul>
 <p>If you break a distribution into quarters, you have created <em>Quartiles</em>. Let’s generate a sample of random numbers between 0 and 100 and break the resulting data into quartiles. A random number generator (<code>runif</code>) will create a <strong><a href="dist.html#unif_dist">uniform distribution</a></strong> across the sample range since all values have equal probability of being chosen. With that in mind, you can probably guess what the quartiles will look like, given a sufficiently large sample…</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb230-2" data-line-number="2">univar1 &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">1000</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb230-3" data-line-number="3">univar1_quartiles &lt;-<span class="st"> </span><span class="kw">quantile</span>(univar1, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">1</span>)</a></code></pre></div>
-<p><img src="images/quantile_1.png" alt="n=1000 samples from a uniform distribution between 0 and 100" />
-As expected, the 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>, and 4<sup>th</sup> quartiles from a uniform distribnution between 0 and 100 fall into predictable chunks: 25, 50, 75, and 100.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">univar1 &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">1000</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">univar1_quartiles &lt;-<span class="st"> </span><span class="kw">quantile</span>(univar1, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:quantiles-2"></span>
+<img src="images/quantile_1.png" alt="Quartiles estimated from n=1000 samples of a uniform distribution between 0 and 100" width="700pt" />
+<p class="caption">
+Figure 4.3: Quartiles estimated from n=1000 samples of a uniform distribution between 0 and 100
+</p>
+</div>
+<p>As expected, the 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>, and 4<sup>th</sup> quartiles from a uniform distribnution between 0 and 100 fall into predictable chunks: 25, 50, 75, and 100.</p>
 <ul>
 <li>The first, or lower quartile, contains the lower 25% of the distribution. In quantile terms, we define this quartile by its upper value, which occurs at the 25<sup>th</sup> percentile (or the 0.25 quantile).<br />
 </li>
@@ -454,66 +470,113 @@ IQR
 </tr>
 </tbody>
 </table>
-<p>A couple notes. You mighht be asking why I didn’t include <em>summary statistics</em> (like the mean and standard deviation) in this list of descriptive statistics. The reason is not because I don’t like using summary statistics but because their use implies that you know the type of the distribution you are describing (i.e., is it normally distributed, log-normal, bi-modal, etc.). Use of descriptors like <code>mean()</code> and <code>sd()</code> are very useful when properly applied, but can be misleading when the distribution is skewed (<strong>more on that later</strong>). Quantile descirptors, on the other hand, are largely agnostic to the type of distribution they describe (i.e,. the median is ALWAYS the 50% value, regarless of the shape of the distribution). The last descriptor in the list is the <em>“Inter-Quartile Rage”</em> or IQR for short. The IQR is used in lots of disciplines to describe the values that contain the bulk, or “middle middle part” of the distribution, since it communicates the range of values needed to go from the 25<sup>th</sup>% to the 75<sup>th</sup>% of the distribution. The IQR is <em>similar</em> in concept to a standard deviation but, again, makes no assumptions about the shape/type of the distribution being considered.</p>
-<p>Let’s now create quantiles from a <em>normal distribution</em> of data (mean = 50, standard deviation = 15). We’ll start by randomly sampling 1000 values (using <code>rnorm</code>) and then arranging them with the <code>quanitle</code> function (the code chunk also shows how to calculate quantiles manually)</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" data-line-number="1">normal1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">15</span>)</a>
-<a class="sourceLine" id="cb231-2" data-line-number="2"><span class="kw">quantile</span>(normal1, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb231-3" data-line-number="3"><span class="st">  </span><span class="kw">round</span>(<span class="dv">0</span>)</a></code></pre></div>
+<p>A couple notes. You might wonder why I didn’t include <em>summary statistics</em> (like the mean and standard deviation) in this list of descriptive statistics. The reason is not because I don’t like using summary statistics but because their use implies that you know the type of the distribution you are describing (i.e., is it normally distributed, log-normal, bi-modal, etc.). Use of descriptors like <code>mean()</code> and <code>sd()</code> are very useful when properly applied, but can be misleading when the distribution is skewed (<strong>more on that later</strong>). Quantile descirptors, on the other hand, are largely agnostic to the type of distribution they describe (i.e,. the median is ALWAYS the 50% value, regarless of the shape of the distribution). The last descriptor in the list is the <em>“Inter-Quartile Rage”</em> or IQR for short. The IQR describes the values that contain the bulk, or “middle middle part” of the distribution, since it communicates the range of values needed to go from the 25<sup>th</sup>% to the 75<sup>th</sup>% of the distribution. The IQR is <em>similar</em> in concept to a standard deviation but, again, makes no assumptions about the shape/type of the distribution being considered.</p>
+<p>Let’s now create quantiles from a <em>normal distribution</em> of data (mean = 50, standard deviation = 15). We’ll start by randomly sampling 1000 values (using <code>rnorm</code>) and then arranging them with the <code>quanitle</code> function (the code chunk also shows how to calculate quantiles manually).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">normal1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">15</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">quantile</span>(normal1, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">  </span><span class="kw">round</span>(<span class="dv">0</span>)</a></code></pre></div>
 <pre><code>##   0%  10%  20%  30%  40%  50%  60%  70%  80%  90% 100% 
 ##    1   30   36   42   45   49   53   58   63   70  105</code></pre>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1"><span class="co">#manual method for calculating quantiles</span></a>
-<a class="sourceLine" id="cb233-2" data-line-number="2">normal_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb233-3" data-line-number="3">  <span class="dt">sample_data =</span> normal1,  <span class="co">#start with raw sample data</span></a>
-<a class="sourceLine" id="cb233-4" data-line-number="4">  <span class="dt">sorted_data =</span> <span class="kw">sort</span>(normal1),   <span class="co">#sort the data</span></a>
-<a class="sourceLine" id="cb233-5" data-line-number="5">  <span class="dt">cum_frac =</span> <span class="kw">seq.int</span>(<span class="dt">from =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(normal1),   <span class="co">#calculate cumulative fraction for each entry</span></a>
-<a class="sourceLine" id="cb233-6" data-line-number="6">                     <span class="dt">to =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb233-7" data-line-number="7">                     <span class="dt">by =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(normal1)))</a>
-<a class="sourceLine" id="cb233-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb233-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb233-10" data-line-number="10">deciles &lt;-<span class="st"> </span><span class="kw">seq.int</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)</a>
-<a class="sourceLine" id="cb233-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb233-12" data-line-number="12">normal_data_deciles &lt;-<span class="st"> </span><span class="kw">filter</span>(normal_data, cum_frac <span class="op">%in%</span><span class="st"> </span>deciles)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co">#manual method for calculating quantiles</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">normal_data_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="dt">sample_data =</span> normal1,  <span class="co">#start with raw sample data</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="dt">sorted_data =</span> <span class="kw">sort</span>(normal1),   <span class="co">#sort the data</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">cum_frac =</span> <span class="kw">seq.int</span>(<span class="dt">from =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(normal1),   <span class="co">#calculate cumulative fraction for each entry</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">                     <span class="dt">to =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">                     <span class="dt">by =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(normal1)))</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">deciles &lt;-<span class="st"> </span><span class="kw">seq.int</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#take only the quantiles that match the decile values created above</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">normal_data_deciles &lt;-<span class="st"> </span><span class="kw">filter</span>(normal_data_<span class="dv">2</span>, cum_frac <span class="op">%in%</span><span class="st"> </span>deciles)</a></code></pre></div>
+<p>Normal distributions are more complicated than uniform distributions, and it’s hard to get a lot out of the decile summary when shown in tabular format. This brings us to my favorite part of exploratory data analysis: <strong><em>data visualization</em></strong>.</p>
 </div>
 </div>
 <div id="univariate-data-visualization" class="section level2">
 <h2><span class="header-section-number">4.3</span> Univariate Data Visualization</h2>
+<p>Data visualization is a powerful technique for exploring data. In fact, visualizaing univariate data is the <strong>first step</strong> in getting to know your data, once they have been read into R and cleaned.</p>
+<p>Below I introduce formal approaches to visualizing the location, dispersion, and shape of univariate data. Later on we will explore relationships between variables in <a href="eda2.html#eda2">multivariate data analyses</a>. The techniques shown below are simple, yet I am surprised how often they are underemployed.</p>
 </div>
 <div id="cumulative-distribution-plot" class="section level2">
 <h2><span class="header-section-number">4.4</span> Cumulative Distribution Plot</h2>
-<p>A <strong>cumulative distribution plot</strong> lays out the raw quantiles (typically on the y-axis) against the observed data (x-axis). Since we want to show <strong>ALL</strong> the data, each data point gets tied to a unit quantile (i.e., if there are 100 data points in a sample, each datum represents 1% of the total or a quantile of 0.01) . The x-axis shows the observed data, ordered from smallest to largest value.</p>
+<p>A <strong>cumulative distribution plot</strong> lays out the raw quantiles (typically on the y-axis) against the observed data (x-axis). Cumulative distribution plots are nice because they are <strong>enumerative</strong> (a fancy word that means they show <strong><em>ALL</em></strong> of your data without any modificaitons). Bevause these plots show all the data, each observation gets assigned a unit quantile (i.e., if there are 100 data points in a sample, each datum represents 1% of the total or a quantile of 0.01) . Thus, quatiles are shown on the y-axis and the x-axis shows the observed data, ordered from smallest to largest value.</p>
 <div class="rmdnote">
 <p>
 The cumulative distribution plot shows the rolling fraction (or percent) of data (y-axis) that are “less than or equal to” the (x-axis) values of that data.
 </p>
 </div>
-<p>An annotated cumulative distribution plot is shown below for a sample of temperature data following a normal distribution:</p>
-<p><img src="images/cum_dist_1.png" alt="Cumulative Distribution Annotated" />
-As you can see, there is a lot of information contained in a cumulative distribution plot! We can see the range (min, max), the median (the 0.5 quantile), and any other percentile values for the distribution. We can quickly pick out any value to and find out what fraction of the data are below it. For example, picking out the quantile of 0.9 on the y-axis shows that 90% of the observed temperature values are below a level of 21 <span class="math inline">\(^\circ\)</span>C. In fact, most of the basic descriptive statistics can be accessed on a cumulative distribution plot:</p>
+<p>An annotated cumulative distribution plot is shown below for a sample of temperature data that follow a normal distribution:</p>
+<div class="figure" style="text-align: center"><span id="fig:norm-cdf-plot"></span>
+<img src="images/normal_cum_dist_anno.png" alt="Annotated Cumulative Distribution Plot for Normally-Distributed Temperature Data" width="700pt" />
+<p class="caption">
+Figure 4.4: Annotated Cumulative Distribution Plot for Normally-Distributed Temperature Data
+</p>
+</div>
+<p>As you can see, there is a lot of information contained in a cumulative distribution plot! We can see the range (min, max), the median (the 0.5 quantile), and any other percentile values for the distribution. We can quickly pick out any value to and find out what fraction of the data are below it. For example, picking out the quantile of 0.9 on the y-axis shows that 90% of the observed temperature values are below a level of 21 <span class="math inline">\(^\circ\)</span>C. In fact, most of the basic descriptive statistics can be accessed on a cumulative distribution plot:</p>
 <ul>
-<li>median: x-axis value at quantile 0.5
-<ul>
-<li>25<sup>th</sup> and 75<sup>th</sup> percentiles (or quartiles): x-axis values at quantile 0.25 and 0.75, respectively</li>
-<li>interquartile range (IQR): x-axis distance between quantiles 0.25 and 0.75</li>
-<li>range: min, max values at quantile 0 and 1.0, respectively</li>
-</ul></li>
+<li><strong>median</strong>: x-axis value at quantile 0.5<br />
+</li>
+<li><strong>25<sup>th</sup> and 75<sup>th</sup> percentiles</strong> (or quartiles): x-axis values at quantile 0.25 and 0.75, respectively<br />
+</li>
+<li><strong>interquartile range</strong> (IQR): x-axis distance between quantiles 0.25 and 0.75<br />
+</li>
+<li><strong>range</strong>: min, max values at quantile 0 and 1.0, respectively</li>
 </ul>
-<p>Cumulative distribution plots also reveal details about the dispersion of the observed data (and, more subtly, about the shape/nature of underlying data distribution). For example, in the temperature example above, we can see that shape of the curve has geometric symmetry about the median value</p>
-<p>In the example below, we read in a portion of the data from the <a href="https://www.nsf.gov/statistics/srvygrads/">NSF Survey of College Gradautes</a> to create a cumulative distribition plot of reported salaries for those with a degree in Mechanical Engineering.</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" data-line-number="1">raw_salaries &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/ME_salaries.csv&quot;</span>, </a>
-<a class="sourceLine" id="cb234-2" data-line-number="2">                 <span class="dt">col_types =</span> <span class="st">&quot;iif&quot;</span>, </a>
-<a class="sourceLine" id="cb234-3" data-line-number="3">                 <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;salary&quot;</span>, <span class="st">&quot;age&quot;</span>,<span class="st">&quot;gender&quot;</span>),</a>
-<a class="sourceLine" id="cb234-4" data-line-number="4">                 <span class="dt">skip =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb234-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb234-6" data-line-number="6"><span class="co">#create cumulative fractions </span></a>
-<a class="sourceLine" id="cb234-7" data-line-number="7">ordered_salaries &lt;-<span class="st"> </span>raw_salaries <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb234-8" data-line-number="8"><span class="st">  </span><span class="kw">select</span>(salary) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb234-9" data-line-number="9"><span class="st">  </span><span class="kw">filter</span>(salary <span class="op">&lt;</span><span class="st"> </span><span class="dv">500000</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb234-10" data-line-number="10"><span class="st">  </span><span class="kw">arrange</span>(salary) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb234-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cum_pct =</span> <span class="kw">seq.int</span>(</a>
-<a class="sourceLine" id="cb234-12" data-line-number="12">    <span class="dt">from =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(salary), </a>
-<a class="sourceLine" id="cb234-13" data-line-number="13">    <span class="dt">to =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb234-14" data-line-number="14">    <span class="dt">by =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(salary))) </a></code></pre></div>
-<p><img src="03-eda1_files/figure-html/cdf_ME_salaries-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Cumulative distribution plots also reveal details about the dispersion of the observed data (and, more subtly, about the shape/nature of underlying data distribution). For example, in the temperature example above (Fig. <a href="eda1.html#fig:norm-cdf-plot">4.4</a>), the curve has geometric symmetry about the median - this symmetry indicates that the dispersion of the data is equal as you move away from the median in either direction.</p>
+<div id="cumulative-distribution-plot-example" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Cumulative Distribution Plot Example</h3>
+<p>In the example below, we create a cumulative distribition plot of annual salaries reported by individuals with a degree in Mechanical Engineering in the US. These data come from the <a href="https://www.nsf.gov/statistics/srvygrads/">NSF Survey of College Gradautes</a>. I’ve also taken the liberty of identifying the max, min, and quartile values on the plot.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">#load data</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">raw_salaries &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/ME_salaries.csv&quot;</span>, </a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">                 <span class="dt">col_types =</span> <span class="st">&quot;iif&quot;</span>, </a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">                 <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;salary&quot;</span>, <span class="st">&quot;age&quot;</span>,<span class="st">&quot;gender&quot;</span>),</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">                 <span class="dt">skip =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#create cumulative fractions </span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">ordered_salaries &lt;-<span class="st"> </span>raw_salaries <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="st">  </span><span class="kw">select</span>(salary) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="st">  </span><span class="kw">filter</span>(salary <span class="op">&lt;</span><span class="st"> </span><span class="dv">500000</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#to remove numeric identifiers like &#39;989961&#39;</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="st">  </span><span class="kw">arrange</span>(salary) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cum_pct =</span> <span class="kw">seq.int</span>(</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13">    <span class="dt">from =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(salary), </a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">    <span class="dt">to =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">    <span class="dt">by =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(salary))) </a>
+<a class="sourceLine" id="cb5-16" data-line-number="16">  </a>
+<a class="sourceLine" id="cb5-17" data-line-number="17">  <span class="co">#alternate method if you don&#39;t want to calculate cumulative fractions</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18">  cdf_ME_salaries &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> ordered_salaries, <span class="kw">aes</span>(<span class="dt">x =</span> salary)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="st">  </span><span class="kw">geom_step</span>(<span class="dt">stat =</span> <span class="st">&quot;ecdf&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#ecdf = &#39;empiricial cumulative distribution function&#39;</span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Salaries of ME Graduates&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Cumulative Fraction&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.05</span>, <span class="fl">1.03</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb5-23" data-line-number="23">                     <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb5-24" data-line-number="24">                                        <span class="dt">to =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb5-25" data-line-number="25">                                        <span class="dt">by =</span> <span class="fl">0.1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">label_dollar</span>(<span class="dt">scale =</span> <span class="fl">0.001</span>, </a>
+<a class="sourceLine" id="cb5-27" data-line-number="27">                                                   <span class="dt">prefix =</span> <span class="st">&#39;$&#39;</span>, </a>
+<a class="sourceLine" id="cb5-28" data-line-number="28">                                                   <span class="dt">suffix =</span> <span class="st">&#39;k&#39;</span>),</a>
+<a class="sourceLine" id="cb5-29" data-line-number="29">                     <span class="dt">minor_breaks =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb5-30" data-line-number="30">                                  <span class="dt">to =</span> <span class="dv">450000</span>,</a>
+<a class="sourceLine" id="cb5-31" data-line-number="31">                                  <span class="dt">by =</span> <span class="dv">10000</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb5-32" data-line-number="32"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">quantile</span>(ordered_salaries<span class="op">$</span>salary),</a>
+<a class="sourceLine" id="cb5-33" data-line-number="33">                                 <span class="dt">y=</span><span class="kw">rep.int</span>(<span class="op">-</span>.<span class="dv">05</span>, <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb5-34" data-line-number="34">                                 <span class="dt">xend=</span><span class="kw">quantile</span>(ordered_salaries<span class="op">$</span>salary),</a>
+<a class="sourceLine" id="cb5-35" data-line-number="35">                                 <span class="dt">yend=</span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.25</span>)),</a>
+<a class="sourceLine" id="cb5-36" data-line-number="36">               <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y, <span class="dt">xend=</span>xend, <span class="dt">yend=</span>yend), </a>
+<a class="sourceLine" id="cb5-37" data-line-number="37">               <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>,</a>
+<a class="sourceLine" id="cb5-38" data-line-number="38">               <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</a>
+<a class="sourceLine" id="cb5-39" data-line-number="39"><span class="kw">ggsave</span>(<span class="st">&quot;./images/cdf_me_salaries.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</a></code></pre></div>
+<pre><code>## Saving 7 x 5 in image</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:cdf-me-salaries"></span>
+<img src="images/cdf_me_salaries.png" alt="Annual Salaries Reported by US Graduates (all ages) with a Mechanical Engineering Degree" width="700pt" />
+<p class="caption">
+Figure 4.5: Annual Salaries Reported by US Graduates (all ages) with a Mechanical Engineering Degree
+</p>
+</div>
+<p>The good news is that if you can survive the undergraduate grind in Mechanical Engineering, you have a good chance of making a great living wage. The median salary is $
+96,000 - note this is for graduates of all ages across the country in the year 2017. Don’t expect that paycheck on your first day on the job!</p>
+<p>One interesting thing you may notice in Figure <a href="eda1.html#fig:cdf-me-salaries">4.5</a> is that the ‘tails’ of the plot (the shape of the curves about the median value) are not symmetrical. This lack of symmetry implies a degree of <em>skewness</em> in the data.</p>
+</div>
 </div>
 <div id="hist" class="section level2">
 <h2><span class="header-section-number">4.5</span> Histogram</h2>
@@ -529,7 +592,7 @@ As you can see, there is a lot of information contained in a cumulative distribu
 </li>
 <li>The presence (or absence) of outliers in the data (what are those observations doing way out there?)</li>
 </ul>
-<p>Below is a basic histogram that I’ve annotated to show key features. This histogram was created by sampling a normal distribution <code>rnorm()</code> and plotted using <code>ggplot::geom_histogram</code>. Examination of this histogram quickly reveals a lot about the underlying data. For example, the central tendency is centered around a value of ~30 and the majority of the data appear to fall between a range of 20 - 40.</p>
+<p>Below is a basic histogram that I’ve annotated to show some key features. This histogram was created by sampling a normal distribution <code>rnorm()</code> and plotted using <code>ggplot::geom_histogram</code>. Examination of this histogram quickly reveals a lot about the underlying data. For example, the central tendency is centered around a value of ~30 and the majority of the data appear to fall between a range of 20 - 40.</p>
 <div class="figure">
 <img src="images/hist_anno_1.png" alt="Figure X1 An Annotated Histogram" />
 <p class="caption">Figure X1 An Annotated Histogram</p>
@@ -544,13 +607,13 @@ mode: 41<br />
 median: 50<br />
 mean: 61</p>
 <p>Skewed distributions can be more challenging to handle because they are <em>less predictable</em> than normal distributions (<em>that said, statisticians have figured out how to model just about any type of distribution, so don’t fret</em>). Examination of Figure X.X also reveals the presence of a few <strong><em>outliers</em></strong> in the data: the apparent spike in observations around x = 200.</p>
-<p>Outliers are interesting features and should neither be ignored nor deleted outright. Outliers exist for some reason, and oftentimes only through detective-work or process knowledge can you elucidate their source.</p>
+<p>Outliers are interesting features and should neither be ignored nor deleted outright. Outliers exist for some reason, and oftentimes only through detective-work or mechanistic knowledge can you elucidate their source.</p>
 </div>
 <div id="what-causes-skewed-histograms" class="section level3">
 <h3><span class="header-section-number">4.5.2</span> What causes skewed histograms?</h3>
-<p>I want to spend some time thinking about mechanisms that cause variability in an observation. These mechanisms are often responsible for whether a set of observations appears normally distributed or skewed. We will focus on two types of distributions for now (normal and log-normal data), but many more types exist in the real world.</p>
-<p>A general “rule of thumb” is that <em>additive</em> variability tend to produce normally distributed data, whereas mechanisms that cause <em>multiplicative</em> variability tend to produce skewed (log-normal) data. By <em>additive</em>, I mean that variable x tends to vary in a “plus/minus” sense about its mean. Examples of additive variability include the distribution of heights measured in a sample of 3rd graders or the variability in the mass of a 3D-printed part produced 100 times on the same machine.</p>
-<p><em>Multiplicative</em> (or log-normal) variability arises when the mechanism(s) controlling the variation of “x” are multipliers (or divisors) of x. Many real-world phenomena create multiplicative variability in observed data: the strength of a WiFi signal at different locations within a building, the magnitude of earthquakes measured at a given position on the Earth’s surface, the size of rocks found in a section of a riverbed, or the size of particles found in air. All tend to be governed by multiplicative factors. In other words, all of these observations are controlled by mechanisms that suggest x = a<em>b</em>c not x = a+b+c.</p>
+<p>I want to spend some time thinking about mechanisms that cause variability in an observation. These mechanisms are often responsible for whether a set of observations appears normally distributed or skewed. We will focus on two types of distributions for now: <a href="dist.html#normal_dist">normal</a> and <a href="#log_normal_dist">log-normal</a> data. Many other types of data distributions exist in the real world.</p>
+<p>A general “rule of thumb” is that <em>additive</em> variability tends to produce normally distributed data, whereas mechanisms that cause <em>multiplicative</em> variability tend to produce skewed (log-normal) data. By <em>additive</em>, I mean that variable x tends to vary in a “plus/minus” sense about its mean. Examples of additive variability include the distribution of heights measured in a sample of 3rd graders or the variability in the mass of a 3D-printed part produced 100 times on the same machine.</p>
+<p><em>Multiplicative</em> (or log-normal) variability arises when the mechanism(s) controlling the variation of “x” are multipliers (or divisors) of x. Many real-world phenomena create multiplicative variability in observed data: the strength of a WiFi signal at different locations within a building, the magnitude of earthquakes measured at a given position on the Earth’s surface, the size of rocks found in a section of a riverbed, or the size of particles found in air. All tend to be governed by multiplicative factors. In other words, all of these observations are controlled by mechanisms that suggest x = a<em>b</em>c not x = a+b+c. Explicit examples of <em>multiplicative</em> variability (and how it leads to log-normal data) are provided <a href="#log_normal_dist">here</a>.</p>
 </div>
 </div>
 <div id="pdf" class="section level2">
