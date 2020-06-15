@@ -217,9 +217,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>4.5</b> Histogram</a><ul>
 <li class="chapter" data-level="4.5.1" data-path="eda1.html"><a href="eda1.html#histogram-what-to-look-for"><i class="fa fa-check"></i><b>4.5.1</b> Histogram: what to look for?</a></li>
 <li class="chapter" data-level="4.5.2" data-path="eda1.html"><a href="eda1.html#what-causes-skewed-histograms"><i class="fa fa-check"></i><b>4.5.2</b> What causes skewed histograms?</a></li>
+<li class="chapter" data-level="4.5.3" data-path="eda1.html"><a href="eda1.html#pdf"><i class="fa fa-check"></i><b>4.5.3</b> Probability Density Function</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="eda1.html"><a href="eda1.html#pdf"><i class="fa fa-check"></i><b>4.6</b> Probability Density Function</a></li>
-<li class="chapter" data-level="4.7" data-path="eda1.html"><a href="eda1.html#time_series"><i class="fa fa-check"></i><b>4.7</b> Time-Series</a></li>
+<li class="chapter" data-level="4.6" data-path="eda1.html"><a href="eda1.html#time_series"><i class="fa fa-check"></i><b>4.6</b> Time-Series</a></li>
+<li class="chapter" data-level="4.7" data-path="eda1.html"><a href="eda1.html#autocorr"><i class="fa fa-check"></i><b>4.7</b> Autocorrelation</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="eda1.html"><a href="eda1.html#partial-autocorrelation"><i class="fa fa-check"></i><b>4.7.1</b> Partial Autocorrelation</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>5</b> Introduction to R Programming II</a><ul>
 <li class="chapter" data-level="5.1" data-path="rprog3.html"><a href="rprog3.html#step-ii-1"><i class="fa fa-check"></i><b>5.1</b> Step II-1</a></li>
@@ -355,7 +358,12 @@ Figure 4.2: The Hawaii and Colorado temperature data have similar locations (or 
 <div id="quantiles" class="section level2">
 <h2><span class="header-section-number">4.2</span> Quantiles</h2>
 <p>Let’s assume you have a sample of univariate data. A good starting point for exploring these data is to break them into <em>quantiles</em> and extract some basic information. Quantiles allow you to see things like the start, middle, and end rather quickly, because the first step of quantile calculation is to sort your data from smallest to largest value.</p>
-<p>A <strong><em>Quantile</em></strong> represents a fractional portion of an ordered, univariate distribution. In other words, quantiles break a set of observations into similarly sized ‘chunks’ where each chunk represents an equal fraction of the total distribution from start to finish. If you line your data up from smallest to largest and then slice that list into sections, you have created a set of quantiles. For example, when a distribition is broken into 10 equal chunks, or <em>deciles</em>, the first quantile (the 10<sup>th</sup> % or the 0.1 fraction) represents the value that bounds the lower 10 % of the observed data. The second quantile (0.2 fraction) represents the 20<sup>th</sup>% value for the observed data. The 0.3 quantile represents the 30<sup>th</sup>%, and so on. There are two important aspects to remember about quantiles: (1) Each quantile is defined only by its upper-end value; (2) quantiles are defined after the data have been <em>rank ordered</em> from lowest to highest value.</p>
+<div class="rmdtip">
+<p>
+A Quantile represents a fractional portion of an ordered, univariate distribution.
+</p>
+</div>
+<p>In other words, quantiles break a set of observations into similarly sized ‘chunks’ where each chunk represents an equal fraction of the total distribution from start to finish. If you line your data up from smallest to largest and then slice that list into sections, you have created a set of quantiles. For example, when a distribition is broken into 10 equal chunks, or <em>deciles</em>, the first quantile (the 10<sup>th</sup> % or the 0.1 fraction) represents the value that bounds the lower 10 % of the observed data. The second quantile (0.2 fraction) represents the 20<sup>th</sup>% value for the observed data. The 0.3 quantile represents the 30<sup>th</sup>%, and so on. There are two important aspects to remember about quantiles: (1) Each quantile is defined only by its upper-end value; (2) quantiles are defined after the data have been <em>rank ordered</em> from lowest to highest value.</p>
 <p>Quantiles are often used to communicate <strong><em>descriptive statistics</em></strong> for univariate data:</p>
 <p>The two most extreme quantiles define the <strong><em>Range</em></strong>:</p>
 <ul>
@@ -385,7 +393,7 @@ Figure 4.3: Quartiles estimated from n=1000 samples of a uniform distribution be
 <p>Quantiles allow us to calculate several important <strong>descriptive statistics</strong> for univariate data. For example, the quartile output above allows us to report the following descritptives:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-1">Table 4.1: </span>Quantiles and descriptive stats
+<span id="tab:unnamed-chunk-2">Table 4.1: </span>Quantiles and descriptive stats
 for n=1000 samples from a uniform distribution, 0-100
 </caption>
 <thead>
@@ -470,7 +478,8 @@ IQR
 </tr>
 </tbody>
 </table>
-<p>A couple notes. You might wonder why I didn’t include <em>summary statistics</em> (like the mean and standard deviation) in this list of descriptive statistics. The reason is not because I don’t like using summary statistics but because their use implies that you know the type of the distribution you are describing (i.e., is it normally distributed, log-normal, bi-modal, etc.). Use of descriptors like <code>mean()</code> and <code>sd()</code> are very useful when properly applied, but can be misleading when the distribution is skewed (<strong>more on that later</strong>). Quantile descirptors, on the other hand, are largely agnostic to the type of distribution they describe (i.e,. the median is ALWAYS the 50% value, regarless of the shape of the distribution). The last descriptor in the list is the <em>“Inter-Quartile Rage”</em> or IQR for short. The IQR describes the values that contain the bulk, or “middle middle part” of the distribution, since it communicates the range of values needed to go from the 25<sup>th</sup>% to the 75<sup>th</sup>% of the distribution. The IQR is <em>similar</em> in concept to a standard deviation but, again, makes no assumptions about the shape/type of the distribution being considered.</p>
+<p>A couple notes. You might wonder why I didn’t include <em>summary statistics</em> (like the mean and standard deviation) in this list of descriptive statistics. The reason is not because I don’t like using summary statistics, but because their use implies that you know the type/shape of the distribution you are describing (i.e., is it normally distributed, log-normal, bi-modal, etc.). Use of descriptors like <code>mean()</code> and <code>sd()</code> are very useful when properly applied, but can be misleading when the distribution is skewed (<strong>more on that later</strong>). Quantile descirptors, on the other hand, are agnostic to the type of distribution they describe (i.e,. the median is ALWAYS the 50% value, regarless of the shape of the distribution).</p>
+<p>The last descriptor in the list is the <em>“Inter-Quartile Rage”</em> or IQR for short; the IQR describes the spread of the data and communicates the range of values needed to go from the 25<sup>th</sup>% to the 75<sup>th</sup>% of the distribution. The IQR is siad to span the bulk, or “middle part” of the distribution. The IQR is <em>similar</em> in concept to a standard deviation but makes no assumptions about the shape/type of the distribution being considered.</p>
 <p>Let’s now create quantiles from a <em>normal distribution</em> of data (mean = 50, standard deviation = 15). We’ll start by randomly sampling 1000 values (using <code>rnorm</code>) and then arranging them with the <code>quanitle</code> function (the code chunk also shows how to calculate quantiles manually).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">normal1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">15</span>)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">quantile</span>(normal1, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>)) <span class="op">%&gt;%</span></a>
@@ -495,7 +504,7 @@ IQR
 </div>
 <div id="univariate-data-visualization" class="section level2">
 <h2><span class="header-section-number">4.3</span> Univariate Data Visualization</h2>
-<p>Data visualization is a powerful technique for exploring data. In fact, visualizaing univariate data is the <strong>first step</strong> in getting to know your data, once they have been read into R and cleaned.</p>
+<p>Data visualization is a powerful technique for exploring data. Visualizaing univariate data is the <strong>first step</strong> in getting to know your data, once they have been read into R and cleaned.f</p>
 <p>Below I introduce formal approaches to visualizing the location, dispersion, and shape of univariate data. Later on we will explore relationships between variables in <a href="eda2.html#eda2">multivariate data analyses</a>. The techniques shown below are simple, yet I am surprised how often they are underemployed.</p>
 </div>
 <div id="cumulative-distribution-plot" class="section level2">
@@ -575,7 +584,7 @@ Figure 4.5: Annual Salaries Reported by US Graduates (all ages) with a Mechanica
 </div>
 <p>The good news is that if you can survive the undergraduate grind in Mechanical Engineering, you have a good chance of making a great living wage. The median salary is $
 96,000 - note this is for graduates of all ages across the country in the year 2017. Don’t expect that paycheck on your first day on the job!</p>
-<p>One interesting thing you may notice in Figure <a href="eda1.html#fig:cdf-me-salaries">4.5</a> is that the ‘tails’ of the plot (the shape of the curves about the median value) are not symmetrical. This lack of symmetry implies a degree of <em>skewness</em> in the data.</p>
+<p>One interesting thing you may notice in Figure <a href="eda1.html#fig:cdf-me-salaries">4.5</a> is that the ‘tails’ of the plot (the shape of the curves about the median value) are not symmetrical. One tail looks longer than the other. This lack of symmetry implies a degree of <em>skewness</em> in the data. Why is that? We will explore skewness at several points in this course (and discuss some of the mechanisms that cause data to be skewed later on).</p>
 </div>
 </div>
 <div id="hist" class="section level2">
@@ -592,45 +601,158 @@ Figure 4.5: Annual Salaries Reported by US Graduates (all ages) with a Mechanica
 </li>
 <li>The presence (or absence) of outliers in the data (what are those observations doing way out there?)</li>
 </ul>
-<p>Below is a basic histogram that I’ve annotated to show some key features. This histogram was created by sampling a normal distribution <code>rnorm()</code> and plotted using <code>ggplot::geom_histogram</code>. Examination of this histogram quickly reveals a lot about the underlying data. For example, the central tendency is centered around a value of ~30 and the majority of the data appear to fall between a range of 20 - 40.</p>
-<div class="figure">
-<img src="images/hist_anno_1.png" alt="Figure X1 An Annotated Histogram" />
-<p class="caption">Figure X1 An Annotated Histogram</p>
+<p>Below is a basic histogram that I’ve annotated to show some key features. This histogram was created by sampling a normal distribution <code>rnorm()</code> and plotted using <code>ggplot::geom_histogram</code>. Examination of this histogram quickly reveals a lot about the underlying data. For example, the central tendency is located around a value of ~30 and the majority of the data appear to fall between a range of 20 - 40.</p>
+<div class="figure" style="text-align: center"><span id="fig:hist-anno-1"></span>
+<img src="images/hist_anno_1.png" alt="A histogram is a plot of counts (or frequency of observations) as a function of magnitude (or levels) of univariate data" width="700pt" />
+<p class="caption">
+Figure 4.6: A histogram is a plot of counts (or frequency of observations) as a function of magnitude (or levels) of univariate data
+</p>
 </div>
 <div id="histogram-what-to-look-for" class="section level3">
 <h3><span class="header-section-number">4.5.1</span> Histogram: what to look for?</h3>
 <p>In addition to being able to “see” key data descriptors (e.g., mean, range, spread), a histogram also allows one (a) to get a feel for <strong><em>skewness</em></strong> (whether the distribution is symmetric about the central tendency), (b) to see <strong><em>outliers</em></strong>, and (c) to visualize other potential interesting features in the dataset.</p>
-<p><img src="images/hist_anno_2.png" alt="Figure X2 An Annotated Histogram" />
-Figure X.X depicts just such a skewed distribution. While the central tendency is clearly evident, the spread of the data are not symmetrical about that central tendency. Once outcome of skewed data is that the mean is not necessarily equal to the central tendency of the distribution.</p>
-<p>Figure X.X Calculations:
-mode: 41<br />
-median: 50<br />
-mean: 61</p>
-<p>Skewed distributions can be more challenging to handle because they are <em>less predictable</em> than normal distributions (<em>that said, statisticians have figured out how to model just about any type of distribution, so don’t fret</em>). Examination of Figure X.X also reveals the presence of a few <strong><em>outliers</em></strong> in the data: the apparent spike in observations around x = 200.</p>
-<p>Outliers are interesting features and should neither be ignored nor deleted outright. Outliers exist for some reason, and oftentimes only through detective-work or mechanistic knowledge can you elucidate their source.</p>
+<div class="figure" style="text-align: center"><span id="fig:skew-hist-out-plot"></span>
+<img src="images/hist_anno_2.png" alt="A histogram depicting a skewed distribution" width="700pt" />
+<p class="caption">
+Figure 4.7: A histogram depicting a skewed distribution
+</p>
+</div>
+<p>Figure <a href="eda1.html#fig:skew-hist-out-plot">4.7</a> depicts just such a skewed distribution. Examination of Figure <a href="eda1.html#fig:skew-hist-out-plot">4.7</a> also reveals the presence of potential <strong><em>outliers</em></strong> in the data: the apparent spike in observations around x = 200. Outliers are interesting features and should neither be ignored nor deleted outright. Outliers exist for some reason, and oftentimes only through detective-work or mechanistic knowledge can you elucidate their source (we will delve into the handling of outliers later on; for now it’s enough to know that they exist).</p>
+<p>In Figure <a href="eda1.html#fig:skew-hist-out-plot">4.7</a> the central tendency is evident, but the spread of the data are not symmetrical about that central tendency. One outcome of skewed data is that traditional location measures of central tendency (mode, median, mean) do not agree with each other:</p>
+<p>Figure <a href="eda1.html#fig:skew-hist-out-plot">4.7</a> central tendency calculations:</p>
+<ul>
+<li>mode: 14<br />
+</li>
+<li>median: 53<br />
+</li>
+<li>mean: 87</li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:skew-hist-out-plot-2"></span>
+<img src="images/hist_anno_3.png" alt="Describing the spread of skewed data with a &quot;standard deviation&quot; can lead to confusion and trouble: in this case the existence of physically impossible values." width="700pt" />
+<p class="caption">
+Figure 4.8: Describing the spread of skewed data with a “standard deviation” can lead to confusion and trouble: in this case the existence of physically impossible values.
+</p>
+</div>
+<p>Another, potentially more troubling, outcome of skewed data is that certain measures of the spread of the data (such as the standard deviation) can lead to misleading conclusions. For example, if we calculate and extend “one standard deviation” to the mean of the data in Figure <a href="eda1.html#fig:skew-hist-out-plot-2">4.8</a>, we would imply the existence of negative values (87 - 113 = -26), which is often impossible in the case of physical measurements. This is a common mistake in data analysis: the application of “normal” descriptors like <code>mean</code> and <code>sd</code> to “non-normal” data.</p>
+<p>Skewed distributions can be more challenging to handle because they are <em>less predictable</em> than normal distributions (<em>that said, statisticians have figured out how to model just about any type of distribution, so don’t fret</em>). In any case, we can always rely on quantile calculations for descriptors (median and IQR) since those descriptors do not make assumptions about the shape of the distribution in question.</p>
 </div>
 <div id="what-causes-skewed-histograms" class="section level3">
 <h3><span class="header-section-number">4.5.2</span> What causes skewed histograms?</h3>
 <p>I want to spend some time thinking about mechanisms that cause variability in an observation. These mechanisms are often responsible for whether a set of observations appears normally distributed or skewed. We will focus on two types of distributions for now: <a href="dist.html#normal_dist">normal</a> and <a href="#log_normal_dist">log-normal</a> data. Many other types of data distributions exist in the real world.</p>
-<p>A general “rule of thumb” is that <em>additive</em> variability tends to produce normally distributed data, whereas mechanisms that cause <em>multiplicative</em> variability tend to produce skewed (log-normal) data. By <em>additive</em>, I mean that variable x tends to vary in a “plus/minus” sense about its mean. Examples of additive variability include the distribution of heights measured in a sample of 3rd graders or the variability in the mass of a 3D-printed part produced 100 times on the same machine.</p>
-<p><em>Multiplicative</em> (or log-normal) variability arises when the mechanism(s) controlling the variation of “x” are multipliers (or divisors) of x. Many real-world phenomena create multiplicative variability in observed data: the strength of a WiFi signal at different locations within a building, the magnitude of earthquakes measured at a given position on the Earth’s surface, the size of rocks found in a section of a riverbed, or the size of particles found in air. All tend to be governed by multiplicative factors. In other words, all of these observations are controlled by mechanisms that suggest x = a<em>b</em>c not x = a+b+c. Explicit examples of <em>multiplicative</em> variability (and how it leads to log-normal data) are provided <a href="#log_normal_dist">here</a>.</p>
+<p>A general “rule of thumb” is that <em>additive</em> variability tends to produce normally distributed data, whereas mechanisms that cause <em>multiplicative</em> variability tend to produce skewed data (log-normal, in the case of Figure <a href="eda1.html#fig:skew-hist-out-plot">4.7</a>). By <em>additive</em>, I mean that variable x tends to vary in a “plus/minus” sense about its central tendency. Examples of additive variability include the distribution of heights measured in a sample of 3<sup>rd</sup> graders or the variability in the mass of a 3D-printed part produced 100 times by the same machine.</p>
+<p><em>Multiplicative</em> (or log-normal) variability arises when the mechanism(s) controlling the variation of “x” are multipliers (or divisors) of x. Many real-world phenomena create multiplicative variability in observed data: the strength of a WiFi signal at different locations within a building, the magnitude of earthquakes measured at a given position on the Earth’s surface, the size of rocks found in a section of a riverbed, or the size of particles found in air. All of these phenomena tend to be governed by multiplicative factors. In other words, all of these observations are controlled by mechanisms that suggest x = a<em>b</em>c not x = a+b+c. Explicit examples of <em>multiplicative</em> variability (and how it leads to log-normal data) are provided <a href="#log_normal_dist">here</a>.</p>
 </div>
+<div id="pdf" class="section level3">
+<h3><span class="header-section-number">4.5.3</span> Probability Density Function</h3>
+<p>The histrogram is really an attempt to visualize the <strong>probability density function</strong> (pdf) for a distribution of univariate data. The pdf is a mathematical representation of the likelihood of sampling a given value from the distribution, assuming a random draw. Unlike the histogram (which uses bins to describe counts/frequency for data values), however, the pdf is a continuous function that can be solved at any data value. A pdf is sometimes expressed empirically (as a numeric approximation) or as an exact analytic equation (in the case normal, lognormal, and other <em>known</em> distributional forms). We will discuss the creation and visualization of pdfs in Chapter …</p>
 </div>
-<div id="pdf" class="section level2">
-<h2><span class="header-section-number">4.6</span> Probability Density Function</h2>
-<p>The histrogram is really an attempt to visualize the probability density function for univariate data.</p>
 </div>
 <div id="time_series" class="section level2">
-<h2><span class="header-section-number">4.7</span> Time-Series</h2>
-<p>The <strong>time-series plot</strong> (also called a <strong>“run sequence”</strong> plot) is something you have undoubtedly seen before. This plot depicts the value of a variable (y-axis) plotted in the sequence that the observations were made (x-axis, often shown as units of time). A time-series plot allows you to do several things:</p>
+<h2><span class="header-section-number">4.6</span> Time-Series</h2>
+<p>The <strong>time-series plot</strong> plot (also called a <strong>“run sequence”</strong> plot) is something you have undoubtedly seen before. This plot depicts the value of a variable (y-axis) plotted in the sequence that the observations were made (x-axis, often shown as units of time). A time-series plot allows you to do several things:</p>
 <ul>
-<li>Identify shifts in “location” of the variable (when and by how much do values change?)<br />
+<li>Identify shifts in “location” of the variable (when and by how much do values change over time?)<br />
 </li>
 <li>Identify shifts in “variation” of the variable (does the data get more/less noisy over time?)</li>
 <li>Identify (potential) outliers and when they occurred</li>
 <li>Identify the <strong><em>timing</em></strong> of events!</li>
 </ul>
+<p>Let’s plot the same temperature data from Hawaii as shown in <a href="eda1.html#fig:NOAA-temps-2">4.1</a> as a time series.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># plot Temp vs Time for Colorado data</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">NOAA_HI_time_series&lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">filter</span>(NOAA_temps, location <span class="op">==</span><span class="st"> &quot;Hawaii&quot;</span>), </a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">       <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> temp_hr_f)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">linejoin =</span> <span class="st">&quot;round&quot;</span>,</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">            <span class="dt">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">             <span class="dt">shape =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">             <span class="dt">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Date&quot;</span>,</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">       <span class="dt">y =</span> <span class="st">&quot;Temperature, °F&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="st">  </span><span class="kw">theme_bw</span>()</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="kw">ggsave</span>(<span class="st">&quot;./images/NOAA_HI_time_series.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:NOAA-HI-time-series"></span>
+<img src="images/NOAA_HI_time_series.png" alt="Time series of hourly temperature measurements in Kauai, Hawaii for July 2010." width="700pt" />
+<p class="caption">
+Figure 4.9: Time series of hourly temperature measurements in Kauai, Hawaii for July 2010.
+</p>
+</div>
+<p><strong>What can we see in these data?</strong> Here are some quick conclusions:</p>
+<ol style="list-style-type: decimal">
+<li>The temperature appears to rise and fall in a predictable pattern each day (duh).</li>
+<li>Over the course of the month, we can see a gradual increase in daily mean temperature taking place.</li>
+</ol>
+<p>Neither of these conclusions are groundbreaking, but they both allude to an important outcome: there are patterns to be seen in these data! None of those patterns were evident in the cumulative distribution or histogram plots. If we zoom in on just the first 5 days of the month, we see the daily temperature patterns in more detail.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># plot Temp vs Time for Colorado data</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">NOAA_HI_time_series&lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">filter</span>(NOAA_temps, location <span class="op">==</span><span class="st"> &quot;Hawaii&quot;</span>, date <span class="op">&lt;=</span><span class="st"> &quot;2010-07-05&quot;</span>), </a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">       <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> temp_hr_f)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">linejoin =</span> <span class="st">&quot;round&quot;</span>,</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">            <span class="dt">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">             <span class="dt">shape =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">             <span class="dt">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Date&quot;</span>,</a>
+<a class="sourceLine" id="cb8-10" data-line-number="10">       <span class="dt">y =</span> <span class="st">&quot;Temperature, °F&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="st">  </span><span class="kw">theme_bw</span>()</a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="kw">ggsave</span>(<span class="st">&quot;./images/NOAA_HI_time_series-2.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:NOAA-HI-time-series-2"></span>
+<img src="images/NOAA_HI_time_series-2.png" alt="Time series of hourly temperature measurements in Kauai, Hawaii for July 1-5, 2010." width="700pt" />
+<p class="caption">
+Figure 4.10: Time series of hourly temperature measurements in Kauai, Hawaii for July 1-5, 2010.
+</p>
+</div>
+</div>
+<div id="autocorr" class="section level2">
+<h2><span class="header-section-number">4.7</span> Autocorrelation</h2>
+<p>Autocorrelation, or serial correlation, means <em>correlated with oneself across time</em>. Autocorrelation is a concept that suggests <em>“whatever is happening in this moment is still likely to be happening in the next moment.”</em> Lots of things are autocorrelated: your mood right now is likely related to your mood 15 minutes from now (or 15 minutes ago). The weather outside at 08:00 on a given day is a good predictor of the weather outside an hour later at 09:00, or two hours later at 10:00, and so on, but less so in fourteen days hence.</p>
+<p>Almost all physical phenomona have a degree of autocorrelation and that’s important because if a datapoint at time ‘i’ is correlated with time ‘i + 1’ then those two datapoints are NOT independent. Yet, many statistical tests assume that the underlying data ARE independent from one another! Thus, autocorrelation can pose a problem when we want to make inferences using data collected over a span of time. Fortunately, we have ways of detecting the presence (and relative strength) of autocorrelation with a simple exploratory plot.</p>
+<p>The <strong>autocorrelation plot</strong> gives the Pearson correlation coefficient (r) between all measurements (x<sub>i</sub>) and their lags (x<sub>i+n</sub>), where <em>x</em> represents an observation and <em>i</em> represents a point in time.</p>
+<p>This plot can help answer the following questions:</p>
+<ul>
+<li>Are the data correlated with each other over time?
+<ul>
+<li>Note: if the answer is <em>yes</em> then your data are <em>not necessarily independent measures</em><br />
+</li>
+</ul></li>
+<li>Are there patterns (periodicity) to discover?
+<ul>
+<li>hourly?<br />
+</li>
+<li>daily?<br />
+</li>
+<li>weekly?<br />
+</li>
+<li>seasonally?</li>
+</ul></li>
+</ul>
+<p>Let’s examine the Hawaii temperature data shown in Figures <a href="eda1.html#fig:NOAA-temps-2">4.1</a> and <a href="eda1.html#fig:NOAA-HI-time-series">4.9</a> using an autocorrelation plot.</p>
+<p>The <code>stats</code> package in R has a function to calculate autocorrelation and plot it through time (as a function of lags). Here, the y-axis represents the Pearson correlation coefficient and the x-axis represents time lags (for the basic unit of time in which the data are arranged).</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co">#subset the datafile to contain only measures from Colorado</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">NOAA_temps_HI &lt;-<span class="st"> </span>NOAA_temps <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(location <span class="op">==</span><span class="st"> &quot;Hawaii&quot;</span>)</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#call the autocorrelation plot</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="kw">acf</span>(NOAA_temps_HI<span class="op">$</span>temp_hr_f,       </a>
+<a class="sourceLine" id="cb9-7" data-line-number="7">    <span class="dt">main =</span> <span class="st">&quot; &quot;</span> ,</a>
+<a class="sourceLine" id="cb9-8" data-line-number="8">    <span class="dt">xlab =</span> <span class="st">&quot;Lag (hours)&quot;</span>,</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9">    <span class="dt">ylab =</span> <span class="st">&quot;Correlation coefficient&quot;</span>) </a></code></pre></div>
+<p><img src="03-eda1_files/figure-html/acf-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The plot suggests a fairly <strong>strong level of autocorrelation in these temperature data</strong>. We should not be surprised, especially after seeing the time series shown in Figures <a href="eda1.html#fig:NOAA-HI-time-series">4.9</a> and <a href="eda1.html#fig:NOAA-HI-time-series-2">4.10</a>. Can you explain why the Pearson correlation coefficient is negative at a 12-hr lag? Why does the coefficient trend back upwards to nearly perfect correlation at 24-hr lags?</p>
+<p>Other notes about autocorrelation plots:
+* Bars above the blue horizontal lines indicate that autocorrelation is worth attention.<br />
+* One important implication of autocorrelated data is that the data wihtin a given lag duration are <strong>not independent.</strong><br />
+* This <em>lack of independence</em> violates the assumptions of many modeling approaches (that’s potentially bad).</p>
+<div id="partial-autocorrelation" class="section level3">
+<h3><span class="header-section-number">4.7.1</span> Partial Autocorrelation</h3>
+<p>The <strong>partial autocorrelation plot</strong> gives the correlation coefficient (r) between all timepoints (x<sub>i</sub>) and their lags (x<sub>i+n</sub>) <em>after accounting for autocorrelation for all previous lags</em>.</p>
+<p>The partial autocorrelation plot can help you decide: <em>how far out in time should I go in order to assume that measurment (x<sub>i</sub>) is independent from (x<sub>i+n</sub>)?</em></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">pacf</span>(NOAA_temps_HI<span class="op">$</span>temp_hr_f,      <span class="co">#call the partial autocorrelation plot</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">     <span class="dt">main =</span> <span class="st">&quot; &quot;</span>, </a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">     <span class="dt">xlab =</span> <span class="st">&quot;Lag (hours)&quot;</span>,</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">     <span class="dt">ylab =</span> <span class="st">&quot;Partial Correlation Coefficient&quot;</span>) </a></code></pre></div>
+<p><img src="03-eda1_files/figure-html/pacf-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>In this case, after a 2-hr lag, the data loses most autocorrelation, except for some periodicity around 12- and 24-hr lags.</p>
 
+</div>
 </div>
 </div>
             </section>

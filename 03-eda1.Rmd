@@ -103,7 +103,11 @@ knitr::include_graphics("images/NOAA_temps_annotate.png")
 
 Let's assume you have a sample of univariate data.  A good starting point for exploring these data is to break them into *quantiles* and extract some basic information.  Quantiles allow you to see things like the start, middle, and end rather quickly, because the first step of quantile calculation is to sort your data from smallest to largest value.
 
-A ***Quantile*** represents a fractional portion of an ordered, univariate distribution.  In other words, quantiles break a set of observations into similarly sized 'chunks' where each chunk represents an equal fraction of the total distribution from start to finish. If you line your data up from smallest to largest and then slice that list into sections, you have created a set of quantiles. For example, when a distribition is broken into 10 equal chunks, or *deciles*, the first quantile (the 10^th^ % or the 0.1 fraction) represents the value that bounds the lower 10 % of the observed data. The second quantile (0.2 fraction) represents the 20^th^% value for the observed data. The 0.3 quantile represents the 30^th^%, and so on. There are two important aspects to remember about quantiles: (1) Each quantile is defined only by its upper-end value; (2) quantiles are defined after the data have been *rank ordered* from lowest to highest value.  
+```{block, type = "rmdtip"}
+A Quantile represents a fractional portion of an ordered, univariate distribution.
+```
+
+In other words, quantiles break a set of observations into similarly sized 'chunks' where each chunk represents an equal fraction of the total distribution from start to finish. If you line your data up from smallest to largest and then slice that list into sections, you have created a set of quantiles. For example, when a distribition is broken into 10 equal chunks, or *deciles*, the first quantile (the 10^th^ % or the 0.1 fraction) represents the value that bounds the lower 10 % of the observed data. The second quantile (0.2 fraction) represents the 20^th^% value for the observed data. The 0.3 quantile represents the 30^th^%, and so on. There are two important aspects to remember about quantiles: (1) Each quantile is defined only by its upper-end value; (2) quantiles are defined after the data have been *rank ordered* from lowest to highest value.  
 
 Quantiles are often used to communicate ***descriptive statistics*** for univariate data:
 
@@ -169,7 +173,9 @@ knitr::kable(quant_desc,
              kable_styling(bootstrap_options = "striped", full_width = F)
 ```
 
-A couple notes.  You might wonder why I didn't include *summary statistics* (like the mean and standard deviation) in this list of descriptive statistics.  The reason is not because I don't like using summary statistics but because their use implies that you know the type of the distribution you are describing (i.e., is it normally distributed, log-normal, bi-modal, etc.).  Use of descriptors like `mean()` and `sd()` are very useful when properly applied, but can be misleading when the distribution is skewed (**more on that later**).  Quantile descirptors, on the other hand, are largely agnostic to the type of distribution they describe (i.e,. the median is ALWAYS the 50% value, regarless of the shape of the distribution). The last descriptor in the list is the *"Inter-Quartile Rage"* or IQR for short.  The IQR describes the values that contain the bulk, or "middle middle part" of the distribution, since it communicates the range of values needed to go from the 25^th^% to the 75^th^% of the distribution.  The IQR is *similar* in concept to a standard deviation but, again, makes no assumptions about the shape/type of the distribution being considered.  
+A couple notes.  You might wonder why I didn't include *summary statistics* (like the mean and standard deviation) in this list of descriptive statistics.  The reason is not because I don't like using summary statistics, but because their use implies that you know the type/shape of the distribution you are describing (i.e., is it normally distributed, log-normal, bi-modal, etc.).  Use of descriptors like `mean()` and `sd()` are very useful when properly applied, but can be misleading when the distribution is skewed (**more on that later**).  Quantile descirptors, on the other hand, are agnostic to the type of distribution they describe (i.e,. the median is ALWAYS the 50% value, regarless of the shape of the distribution). 
+
+The last descriptor in the list is the *"Inter-Quartile Rage"* or IQR for short; the IQR describes the spread of the data and communicates the range of values needed to go from the 25^th^% to the 75^th^% of the distribution. The IQR is siad to span the bulk, or "middle part" of the distribution.  The IQR is *similar* in concept to a standard deviation but makes no assumptions about the shape/type of the distribution being considered.  
 
 Let's now create quantiles from a *normal distribution* of data (mean = 50, standard deviation = 15).  We'll start by randomly sampling 1000 values (using `rnorm`) and then arranging them with the `quanitle` function (the code chunk also shows how to calculate quantiles manually).
 ``` {r quantiles_2}
@@ -195,7 +201,7 @@ Normal distributions are more complicated than uniform distributions, and it's h
 
 ## Univariate Data Visualization
 
-Data visualization is a powerful technique for exploring data. In fact, visualizaing univariate data is the **first step** in getting to know your data, once they have been read into R and cleaned.
+Data visualization is a powerful technique for exploring data. Visualizaing univariate data is the **first step** in getting to know your data, once they have been read into R and cleaned.f
 
 Below I introduce formal approaches to visualizing the location, dispersion, and shape of univariate data.  Later on we will explore relationships between variables in [multivariate data analyses](#eda2). The techniques shown below are simple, yet I am surprised how often they are underemployed.
 
@@ -333,55 +339,172 @@ ggplot2::ggplot(data = x) +
 ggsave("./images/hist_norm.png", dpi = 150)
 ```
 
-![Figure X1 An Annotated Histogram](./images/hist_anno_1.png)  
+``` {r hist-anno-1, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "A histogram is a plot of counts (or frequency of observations) as a function of magnitude (or levels) of univariate data"}
+knitr::include_graphics("./images/hist_anno_1.png")
+```
   
 ### Histogram: what to look for?
 In addition to being able to "see" key data descriptors (e.g., mean, range, spread), a histogram also allows one (a) to get a feel for ***skewness*** (whether the distribution is symmetric about the central tendency), (b) to see ***outliers***, and (c) to visualize other potential interesting features in the dataset.  
 
-``` {r skewed_histogram_outlier, warning=FALSE, include=FALSE}
-x1 <- tibble(data = round(rlnorm(5000, meanlog = log(50), sdlog = 0.6), 0))
-outliers <- tibble(data = rep(195, 50))
+``` {r skew_hist_out, warning=FALSE, include=FALSE}
+set.seed(2)
+x1 <- tibble(data = round(rlnorm(5000, meanlog = log(50), sdlog = 1), 0))
+outliers <- tibble(data = rep(195, 75))
 x2 <- bind_rows(x1, outliers)
   
-ggplot2::ggplot(data = x2) + 
+skew_hist_out <- ggplot2::ggplot(data = x2) + 
   geom_histogram(aes(data),
                  bins = 50,
                  fill = "white",
                  color = "darkgrey") +
-  xlim(1,200) +
+  xlim(1,400) +
   theme_minimal() +
-  theme(text = element_text(size=20))
-ggsave("./images/hist_skew_out.png", dpi = 150)
+  theme(text = element_text(size=28))
+ggsave("./images/skew_hist_2.png", dpi = 150, width = 9, height = 6, units = "in")
 ```
 
-![Figure X2 An Annotated Histogram](./images/hist_anno_2.png)
-Figure X.X depicts just such a skewed distribution. While the central tendency is clearly evident, the spread of the data are not symmetrical about that central tendency.  Once outcome of skewed data is that the mean is not necessarily equal to the central tendency of the distribution.  
+``` {r skew-hist-out-plot, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "A histogram depicting a skewed distribution"}
+knitr::include_graphics("./images/hist_anno_2.png")
+```
+Figure \@ref(fig:skew-hist-out-plot) depicts just such a skewed distribution. Examination of Figure \@ref(fig:skew-hist-out-plot) also reveals the presence of potential ***outliers*** in the data: the apparent spike in observations around x = 200. Outliers are interesting features and should neither be ignored nor deleted outright. Outliers exist for some reason, and oftentimes only through detective-work or mechanistic knowledge can you elucidate their source (we will delve into the handling of outliers later on; for now it's enough to know that they exist).  
 
-Figure X.X Calculations:
-  mode: `r names(table(x2)[which.max(table(x2))])`  
-  median: `r median(x2$data)`  
-  mean: `r round(mean(x2$data), 0)`  
+In Figure \@ref(fig:skew-hist-out-plot) the central tendency is evident, but the spread of the data are not symmetrical about that central tendency.  One outcome of skewed data is that traditional location measures of  central tendency (mode, median, mean) do not agree with each other:  
 
-Skewed distributions can be more challenging to handle because they are *less predictable* than normal distributions (*that said, statisticians have figured out how to model just about any type of distribution, so don't fret*).  Examination of Figure X.X also reveals the presence of a few ***outliers*** in the data: the apparent spike in observations around x = 200.  
+Figure \@ref(fig:skew-hist-out-plot) central tendency calculations:  
 
-Outliers are interesting features and should neither be ignored nor deleted outright. Outliers exist for some reason, and oftentimes only through detective-work or mechanistic knowledge can you elucidate their source.  
+* mode: `r names(table(x2)[which.max(table(x2))])`  
+* median: `r median(x2$data)`  
+* mean: `r round(mean(x2$data), 0)`  
+
+``` {r skew-hist-out-plot-2, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Describing the spread of skewed data with a \"standard deviation\" can lead to confusion and trouble: in this case the existence of physically impossible values."}
+knitr::include_graphics("./images/hist_anno_3.png")
+```
+
+Another, potentially more troubling, outcome of skewed data is that certain measures of the spread of the data (such as the standard deviation) can lead to misleading conclusions.  For example, if we calculate and extend "one standard deviation" to the mean of the data in Figure \@ref(fig:skew-hist-out-plot-2), we would imply the existence of negative values (87 - 113 = -26), which is often impossible in the case of physical measurements. This is a common mistake in data analysis: the application of "normal" descriptors like `mean` and `sd` to "non-normal" data. 
+
+Skewed distributions can be more challenging to handle because they are *less predictable* than normal distributions (*that said, statisticians have figured out how to model just about any type of distribution, so don't fret*). In any case, we can always rely on quantile calculations for descriptors (median and IQR) since those descriptors do not make assumptions about the shape of the distribution in question.
 
 ### What causes skewed histograms?
 I want to spend some time thinking about mechanisms that cause variability in an observation. These mechanisms are often responsible for whether a set of observations appears normally distributed or skewed. We will focus on two types of distributions for now: [normal](#normal_dist) and [log-normal](#log_normal_dist) data. Many other types of data distributions exist in the real world.  
 
-A general "rule of thumb" is that *additive* variability tends to produce normally distributed data, whereas mechanisms that cause *multiplicative* variability tend to produce skewed (log-normal) data.  By *additive*, I mean that variable x tends to vary in a "plus/minus" sense about its mean.  Examples of additive variability include the distribution of heights measured in a sample of 3rd graders or the variability in the mass of a 3D-printed part produced 100 times on the same machine.  
+A general "rule of thumb" is that *additive* variability tends to produce normally distributed data, whereas mechanisms that cause *multiplicative* variability tend to produce skewed data (log-normal, in the case of Figure \@ref(fig:skew-hist-out-plot)).  By *additive*, I mean that variable x tends to vary in a "plus/minus" sense about its central tendency.  Examples of additive variability include the distribution of heights measured in a sample of 3^rd^ graders or the variability in the mass of a 3D-printed part produced 100 times by the same machine.  
 
-*Multiplicative* (or log-normal) variability arises when the mechanism(s) controlling the variation of "x" are multipliers (or divisors) of x. Many real-world phenomena create multiplicative variability in observed data: the strength of a WiFi signal at different locations within a building, the magnitude of earthquakes measured at a given position on the Earth's surface, the size of rocks found in a section of a riverbed, or the size of particles found in air. All tend to be governed by multiplicative factors. In other words, all of these observations are controlled by mechanisms that suggest x = a*b*c not x = a+b+c. Explicit examples of *multiplicative* variability (and how it leads to log-normal data) are provided [here](#log_normal_dist). 
+*Multiplicative* (or log-normal) variability arises when the mechanism(s) controlling the variation of "x" are multipliers (or divisors) of x. Many real-world phenomena create multiplicative variability in observed data: the strength of a WiFi signal at different locations within a building, the magnitude of earthquakes measured at a given position on the Earth's surface, the size of rocks found in a section of a riverbed, or the size of particles found in air. All of these phenomena tend to be governed by multiplicative factors. In other words, all of these observations are controlled by mechanisms that suggest x = a*b*c not x = a+b+c. Explicit examples of *multiplicative* variability (and how it leads to log-normal data) are provided [here](#log_normal_dist). 
 
-## Probability Density Function {#pdf}  
-The histrogram is really an attempt to visualize the probability density function for univariate data.
+### Probability Density Function {#pdf}  
+The histrogram is really an attempt to visualize the **probability density function** (pdf) for a distribution of univariate data.  The pdf is a mathematical representation of the likelihood of sampling a given value from the distribution, assuming a random draw.  Unlike the histogram (which uses bins to describe counts/frequency for data values), however, the pdf is a continuous function that can be solved at any data value.  A pdf is sometimes expressed empirically (as a numeric approximation) or as an exact analytic equation (in the case normal, lognormal, and other *known* distributional forms). We will discuss the creation and visualization of pdfs in Chapter ... 
 
 ## Time-Series  {#time_series}
-The **time-series plot** (also called a **"run sequence"** plot) is something you have undoubtedly seen before. This plot depicts the value of a variable (y-axis) plotted in the sequence that the observations were made (x-axis, often shown as units of time). A time-series plot allows you to do several things:  
+The **time-series plot** plot (also called a **"run sequence"** plot) is something you have undoubtedly seen before. This plot depicts the value of a variable (y-axis) plotted in the sequence that the observations were made (x-axis, often shown as units of time). A time-series plot allows you to do several things:  
 
-* Identify shifts in "location" of the variable (when and by how much do values change?)  
+* Identify shifts in "location" of the variable (when and by how much do values change over time?)  
 * Identify shifts in "variation" of the variable (does the data get more/less noisy over time?) 
 * Identify (potential) outliers and when they occurred 
 * Identify the ***timing*** of events!
+
+Let's plot the same temperature data from Hawaii as shown in \@ref(fig:NOAA-temps-2) as a time series.
+```{r NOAA-time-series, warning=FALSE, message=FALSE}
+# plot Temp vs Time for Colorado data
+NOAA_HI_time_series<- ggplot(data = filter(NOAA_temps, location == "Hawaii"), 
+       aes(x = date, y = temp_hr_f)) +
+  geom_line(linejoin = "round",
+            color = "purple") +
+  geom_point(size = 1,
+             shape = 1,
+             color = "purple") +
+  labs(x = "Date",
+       y = "Temperature, °F") +
+  theme_bw()
+ggsave("./images/NOAA_HI_time_series.png", dpi = 150)
+```
+
+``` {r NOAA-HI-time-series, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Time series of hourly temperature measurements in Kauai, Hawaii for July 2010."}
+knitr::include_graphics("./images/NOAA_HI_time_series.png")
+```
+
+**What can we see in these data?**  Here are some quick conclusions:  
+  
+1. The temperature appears to rise and fall in a predictable pattern each day (duh).
+2. Over the course of the month, we can see a gradual increase in daily mean temperature taking place.  
+
+Neither of these conclusions are groundbreaking, but they both allude to an important outcome: there are patterns to be seen in these data!  None of those patterns were evident in the cumulative distribution or histogram plots.  If we zoom in on just the first 5 days of the month, we see the daily temperature patterns in more detail. 
+    
+```{r NOAA-time-series-2, warning=FALSE, message=FALSE}
+# plot Temp vs Time for Colorado data
+NOAA_HI_time_series<- ggplot(data = filter(NOAA_temps, location == "Hawaii", date <= "2010-07-05"), 
+       aes(x = date, y = temp_hr_f)) +
+  geom_line(linejoin = "round",
+            color = "purple") +
+  geom_point(size = 1,
+             shape = 1,
+             color = "purple") +
+  labs(x = "Date",
+       y = "Temperature, °F") +
+  theme_bw()
+ggsave("./images/NOAA_HI_time_series-2.png", dpi = 150)
+``` 
+
+``` {r NOAA-HI-time-series-2, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Time series of hourly temperature measurements in Kauai, Hawaii for July 1-5, 2010."}
+knitr::include_graphics("./images/NOAA_HI_time_series-2.png")
+```
+
+
+
+## Autocorrelation {#autocorr}
+
+Autocorrelation, or serial correlation, means *correlated with oneself across time*.  Autocorrelation is a concept that suggests *"whatever is happening in this moment is still likely to be happening in the next moment."* Lots of things are autocorrelated: your mood right now is likely related to your mood 15 minutes from now (or 15 minutes ago).  The weather outside at 08:00 on a given day is a good predictor of the weather outside an hour later at 09:00, or two hours later at 10:00, and so on, but less so in fourteen days hence. 
+
+Almost all physical phenomona have a degree of autocorrelation and that's important because if a datapoint at time 'i' is correlated with time 'i + 1' then those two datapoints are NOT independent. Yet, many statistical tests assume that the underlying data ARE independent from one another!  Thus, autocorrelation can pose a problem when we want to make inferences using data collected over a span of time.  Fortunately, we have ways of detecting the presence (and relative strength) of autocorrelation with a simple exploratory plot. 
+
+The **autocorrelation plot** gives the Pearson correlation coefficient (r) between all measurements (x~i~) and their lags (x~i+n~), where *x* represents an observation and *i* represents a point in time.  
+
+This plot can help answer the following questions:  
+
+* Are the data correlated with each other over time?  
+    - Note: if the answer is *yes* then your data are *not necessarily independent measures*  
+* Are there patterns (periodicity) to discover?  
+    - hourly?  
+    - daily?  
+    - weekly?  
+    - seasonally?  
+    
+Let's examine the Hawaii temperature data shown in Figures \@ref(fig:NOAA-temps-2) and \@ref(fig:NOAA-HI-time-series) using an autocorrelation plot. 
+
+The `stats` package in R has a function to calculate autocorrelation and plot it through time (as a function of lags). Here, the y-axis represents the Pearson correlation coefficient and the x-axis represents time lags (for the basic unit of time in which the data are arranged). 
+
+```{r acf, warning=FALSE, message=FALSE}
+#subset the datafile to contain only measures from Colorado
+NOAA_temps_HI <- NOAA_temps %>% 
+  dplyr::filter(location == "Hawaii")
+
+#call the autocorrelation plot
+acf(NOAA_temps_HI$temp_hr_f,       
+    main = " " ,
+    xlab = "Lag (hours)",
+    ylab = "Correlation coefficient") 
+```
+
+The plot suggests a fairly **strong level of autocorrelation in these temperature data**.  We should not be surprised, especially after seeing the time series shown in Figures \@ref(fig:NOAA-HI-time-series) and \@ref(fig:NOAA-HI-time-series-2).  Can you explain why the Pearson correlation coefficient is negative at a 12-hr lag?  Why does the coefficient trend back upwards to nearly perfect correlation at 24-hr lags?
+
+Other notes about autocorrelation plots:
+* Bars above the blue horizontal lines indicate that autocorrelation is worth attention.  
+* One important implication of autocorrelated data is that the data wihtin a given lag duration are **not independent.**  
+* This *lack of independence* violates the assumptions of many modeling approaches (that's potentially bad).  
+
+### Partial Autocorrelation  
+The **partial autocorrelation plot** gives the correlation coefficient (r) between all timepoints (x~i~) and their lags (x~i+n~) *after accounting for autocorrelation for all previous lags*.  
+
+The partial autocorrelation plot can help you decide: *how far out in time should I go in order to assume that measurment (x~i~) is independent from (x~i+n~)?*  
+```{r pacf, warning=FALSE, message=FALSE}
+pacf(NOAA_temps_HI$temp_hr_f,      #call the partial autocorrelation plot
+     main = " ", 
+     xlab = "Lag (hours)",
+     ylab = "Partial Correlation Coefficient") 
+```
+
+In this case, after a 2-hr lag, the data loses most autocorrelation, except for some periodicity around 12- and 24-hr lags.  
+
+
+
 
 
