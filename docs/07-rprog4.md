@@ -1,4 +1,4 @@
-# Introduction to R Programming III {#rprog4}
+# Functional Programming {#rprog4}
 
 
 

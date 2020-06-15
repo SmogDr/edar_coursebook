@@ -11,13 +11,11 @@ After this chapter, you should (know / understand / be able to ):
 - Be able to identify the delimiter in a delimited file
 - Be able to describe a working directory
 - Be able to read in different types of flat files
-- Be able to read in a few types of binary files (SAS, Excel) 
+- Be able to read in a few types of binary files (Matlab, Excel) 
 - Understand the difference between relative and absolute file pathnames
 - Describe the basics of your computer's directory structure
 - Reference files in different locations in your directory structure using relative and absolute pathnames
 - Use the basic `dplyr` functions `rename`, `select`, `mutate`, `slice`, `filter`, and `arrange` to work with data in a dataframe object
-- Convert a column to a date format using `lubridate` functions
-- Extract information from a date object (e.g., month, year, day of week) using `lubridate` functions
 - Define a logical operator and know the R syntax for common logical operators
 - Use logical operators in conjunction with `dplyr`'s `filter` function to create subsets of a dataframe based on logical conditions 
 - Use piping to apply multiple `dplyr` functions in sequence to a dataframe
@@ -897,190 +895,6 @@ functions or processes, in base R:
 
 You will see these alternatives used in older code examples.
 
-## Dates and filtering
-
-The following video covers the lecture material 
-
-### Dates in R
-
-As part of the data cleaning process, you may want to change the class of some
-of the columns in the dataframe. For example, you may want to change a column
-from a character to a date.
-
-Here are some of the most common vector classes in R:
-
-Class        | Example
------------- | -----------------------------------
-`character`  | "Chemistry", "Physics", "Mathematics"
-`numeric`    | 10, 20, 30, 40
-`factor`     | Male [underlying number: 1], Female [2]
-`Date`       | "2010-01-01" [underlying number: 14,610]
-`logical`    | TRUE, FALSE
-
-To find out the class of a vector (including a column in a dataframe -- remember
-each column can be thought of as a vector), you can use `class()`:
-
-
-```r
-class(daily_show$date)
-```
-
-```
-## [1] "character"
-```
-
-It is especially common to need to convert dates during the data cleaning
-process, since date columns will usually be read into R as characters or
-factors---you can do some interesting things with vectors that are in a Date
-class that you cannot do with a vector in a character class.
-
-To convert a vector to the `Date` class, if you'd like to only use base R, you
-can use the `as.Date` function. I'll walk through how to use `as.Date`, since
-it's often used in older R code. However, I recommend in your own code that you
-instead use the `lubridate` package, which I'll talk about later in this
-section.
-
-To convert a vector to the `Date` class, you can use functions in the
-`lubridate` package. This package has a series of functions based on the order
-that date elements are given in the incoming character with date information.
-For example, in "12/31/99", the date elements are given in the order of month
-(**m**), day (**d**), year (**y**), so this character string could be converted
-to the date class with the function `mdy`. As another example, the `ymd`
-function from lubridate can be used to parse a column into a Date class,
-regardless of the original format of the date, as long as the date elements are
-in the order: year, month, day. For example:
-
-
-```r
-library("lubridate")
-ymd("2008-10-13")
-```
-
-```
-## [1] "2008-10-13"
-```
-
-```r
-ymd("'08 Oct 13")
-```
-
-```
-## [1] "2008-10-13"
-```
-
-```r
-ymd("'08 Oct 13")
-```
-
-```
-## [1] "2008-10-13"
-```
-
-To convert the `date` column in the `daily_show` data into a Date
-class, then, you can run:
-
-
-```r
-library(package = "lubridate")
-
-class(x = daily_show$date) # Check the class of the 'date' column before mutating it
-```
-
-```
-## [1] "character"
-```
-
-```r
-daily_show <- mutate(.data = daily_show,
-                     date = mdy(date))
-head(x = daily_show, n = 3)
-```
-
-```
-## # A tibble: 3 x 4
-##   job                date       category guest_name     
-##   <chr>              <date>     <chr>    <chr>          
-## 1 actor              1999-01-11 Acting   Michael J. Fox 
-## 2 Comedian           1999-01-12 Comedy   Sandra Bernhard
-## 3 television actress 1999-01-13 Acting   Tracey Ullman
-```
-
-```r
-class(x = daily_show$date) # Check the class of the 'date' column after mutating it
-```
-
-```
-## [1] "Date"
-```
-
-Once you have an object in the `Date` class, you can do things like plot by
-date, calculate the range of dates, and calculate the total number of days the
-dataset covers:
-
-
-```r
-range(daily_show$date)
-diff(x = range(daily_show$date))
-```
-
-We could have used these to transform the date in `daily_show`, using the following pipe chain: 
-
-
-```r
-daily_show <- read_csv(file = "data/daily_show_guests.csv",
-                       skip = 4) %>%
-  rename(job = GoogleKnowlege_Occupation, 
-         date = Show,
-         category = Group,
-         guest_name = Raw_Guest_List) %>%
-  select(-YEAR) %>%
-  mutate(date = mdy(date)) %>%
-  filter(category == "Science")
-head(x = daily_show, n = 2)
-```
-
-```
-## # A tibble: 2 x 4
-##   job          date       category guest_name     
-##   <chr>        <date>     <chr>    <chr>          
-## 1 neurosurgeon 2003-04-28 Science  Dr Sanjay Gupta
-## 2 scientist    2004-01-13 Science  Catherine Weitz
-```
-
-The `lubridate` package also includes functions to pull out certain elements of a date, including: 
-
-- `wday`
-- `mday`
-- `yday`
-- `month`
-- `quarter`
-- `year`
-
-For example, we could use `wday` to create a new column with the weekday of each show: 
-
-
-```r
-mutate(.data = daily_show,
-       show_day = wday(x = date, label = TRUE)) %>%
-  select(date, show_day, guest_name) %>%
-  slice(1:5)
-```
-
-```
-## # A tibble: 5 x 3
-##   date       show_day guest_name            
-##   <date>     <ord>    <chr>                 
-## 1 2003-04-28 Mon      Dr Sanjay Gupta       
-## 2 2004-01-13 Tue      Catherine Weitz       
-## 3 2004-06-15 Tue      Hassan Ibrahim        
-## 4 2005-09-06 Tue      Dr. Marc Siegel       
-## 5 2006-02-13 Mon      Astronaut Mike Mullane
-```
-
-<div class="rmdwarning">
-<p>R functions tend to use the timezone of <strong>YOUR</strong> computer’s operating system by default, or UTC, or GMT. You need to be careful when working with dates and times to either specify the time zone or convince yourself the default behavior works for your application.</p>
-</div>
-
 ### Filtering to certain rows
 
 Next, you might want to filter the dataset down so that it only includes certain
@@ -1109,14 +923,14 @@ head(x = scientists)
 
 ```
 ## # A tibble: 6 x 4
-##   job            date       category guest_name            
-##   <chr>          <date>     <chr>    <chr>                 
-## 1 neurosurgeon   2003-04-28 Science  Dr Sanjay Gupta       
-## 2 scientist      2004-01-13 Science  Catherine Weitz       
-## 3 physician      2004-06-15 Science  Hassan Ibrahim        
-## 4 doctor         2005-09-06 Science  Dr. Marc Siegel       
-## 5 astronaut      2006-02-13 Science  Astronaut Mike Mullane
-## 6 Astrophysicist 2007-01-30 Science  Neil deGrasse Tyson
+##   job            date    category guest_name            
+##   <chr>          <chr>   <chr>    <chr>                 
+## 1 neurosurgeon   4/28/03 Science  Dr Sanjay Gupta       
+## 2 scientist      1/13/04 Science  Catherine Weitz       
+## 3 physician      6/15/04 Science  Hassan Ibrahim        
+## 4 doctor         9/6/05  Science  Dr. Marc Siegel       
+## 5 astronaut      2/13/06 Science  Astronaut Mike Mullane
+## 6 Astrophysicist 1/30/07 Science  Neil deGrasse Tyson
 ```
 
 To build a logical expression to use in `filter`, you'll need to know some of R's
