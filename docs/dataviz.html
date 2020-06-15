@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Data Visualization: ggplot2 | Engineering Data Analysis in R</title>
+  <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Data Visualization: ggplot2 | Engineering Data Analysis in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Data Visualization: ggplot2 | Engineering Data Analysis in R" />
+  
+  <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  
+
+<meta name="author" content="John Volckens" />
+
+
+<meta name="date" content="2020-06-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="rprog2.html"/>
+<link rel="next" href="eda1.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Engineering Data Analysis in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1</b> How to use this book</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#other-helpful-books-not-required"><i class="fa fa-check"></i><b>1.5.1</b> Other helpful books (not required)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a><ul>
+<li class="chapter" data-level="2.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>2.1</b> Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="rprog1.html"><a href="rprog1.html#what-is-r"><i class="fa fa-check"></i><b>2.2.1</b> What is R?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="rprog1.html"><a href="rprog1.html#free-and-open-source-software"><i class="fa fa-check"></i><b>2.2.2</b> Free and open-source software</a></li>
+<li class="chapter" data-level="2.2.3" data-path="rprog1.html"><a href="rprog1.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2.3</b> What is RStudio?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="rprog1.html"><a href="rprog1.html#r-sessions-the-console-and-the-command-prompt"><i class="fa fa-check"></i><b>2.3.1</b> R sessions, the console, and the command prompt</a></li>
+<li class="chapter" data-level="2.3.2" data-path="rprog1.html"><a href="rprog1.html#r-expressions-function-calls-and-objects"><i class="fa fa-check"></i><b>2.3.2</b> R expressions, function calls, and objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="rprog1.html"><a href="rprog1.html#commenting-code"><i class="fa fa-check"></i><b>2.4.1</b> Commenting code</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="rprog1.html"><a href="rprog1.html#r-packages"><i class="fa fa-check"></i><b>2.5.1</b> R packages</a></li>
+<li class="chapter" data-level="2.5.2" data-path="rprog1.html"><a href="rprog1.html#installing-from-cran"><i class="fa fa-check"></i><b>2.5.2</b> Installing from CRAN</a></li>
+<li class="chapter" data-level="2.5.3" data-path="rprog1.html"><a href="rprog1.html#loading-an-installed-package"><i class="fa fa-check"></i><b>2.5.3</b> Loading an installed package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
+<li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="rprog2.html"><a href="rprog2.html#objectives-1"><i class="fa fa-check"></i><b>3.1</b> Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="rprog2.html"><a href="rprog2.html#overview"><i class="fa fa-check"></i><b>3.2</b> Overview</a></li>
+<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="rprog2.html"><a href="rprog2.html#reading-local-flat-files"><i class="fa fa-check"></i><b>3.3.1</b> Reading local flat files</a></li>
+<li class="chapter" data-level="3.3.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-other-file-types"><i class="fa fa-check"></i><b>3.3.2</b> Reading in other file types</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="rprog2.html"><a href="rprog2.html#directory-structure"><i class="fa fa-check"></i><b>3.4.1</b> Directory structure</a></li>
+<li class="chapter" data-level="3.4.2" data-path="rprog2.html"><a href="rprog2.html#working-directory"><i class="fa fa-check"></i><b>3.4.2</b> Working directory</a></li>
+<li class="chapter" data-level="3.4.3" data-path="rprog2.html"><a href="rprog2.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>3.4.3</b> File and directory pathnames</a></li>
+<li class="chapter" data-level="3.4.4" data-path="rprog2.html"><a href="rprog2.html#diversion-paste"><i class="fa fa-check"></i><b>3.4.4</b> Diversion: <code>paste</code></a></li>
+<li class="chapter" data-level="3.4.5" data-path="rprog2.html"><a href="rprog2.html#reading-online-flat-files"><i class="fa fa-check"></i><b>3.4.5</b> Reading online flat files</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="rprog2.html"><a href="rprog2.html#renaming-columns"><i class="fa fa-check"></i><b>3.5.1</b> Renaming columns</a></li>
+<li class="chapter" data-level="3.5.2" data-path="rprog2.html"><a href="rprog2.html#selecting-columns"><i class="fa fa-check"></i><b>3.5.2</b> Selecting columns</a></li>
+<li class="chapter" data-level="3.5.3" data-path="rprog2.html"><a href="rprog2.html#add-or-change-columns"><i class="fa fa-check"></i><b>3.5.3</b> Add or change columns</a></li>
+<li class="chapter" data-level="3.5.4" data-path="rprog2.html"><a href="rprog2.html#base-r-equivalents-to-dplyr-functions"><i class="fa fa-check"></i><b>3.5.4</b> Base R equivalents to <code>dplyr</code> functions</a></li>
+<li class="chapter" data-level="3.5.5" data-path="rprog2.html"><a href="rprog2.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>3.5.5</b> Filtering to certain rows</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="rprog2.html"><a href="rprog2.html#piping"><i class="fa fa-check"></i><b>3.6</b> Piping</a></li>
+<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#in-course-exercise"><i class="fa fa-check"></i><b>3.7</b> In-course Exercise</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="rprog2.html"><a href="rprog2.html#downloading-and-checking-out-the-example-data"><i class="fa fa-check"></i><b>3.7.1</b> Downloading and checking out the example data</a></li>
+<li class="chapter" data-level="3.7.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-different-types-of-files"><i class="fa fa-check"></i><b>3.7.2</b> Reading in different types of files</a></li>
+<li class="chapter" data-level="3.7.3" data-path="rprog2.html"><a href="rprog2.html#directory-structure-1"><i class="fa fa-check"></i><b>3.7.3</b> Directory structure</a></li>
+<li class="chapter" data-level="3.7.4" data-path="rprog2.html"><a href="rprog2.html#cleaning-up-data-1"><i class="fa fa-check"></i><b>3.7.4</b> Cleaning up data #1</a></li>
+<li class="chapter" data-level="3.7.5" data-path="rprog2.html"><a href="rprog2.html#cleaning-up-data-2"><i class="fa fa-check"></i><b>3.7.5</b> Cleaning up data #2</a></li>
+<li class="chapter" data-level="3.7.6" data-path="rprog2.html"><a href="rprog2.html#piping-1"><i class="fa fa-check"></i><b>3.7.6</b> Piping</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization: ggplot2</a><ul>
+<li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#plots-to-explore-data"><i class="fa fa-check"></i><b>4.1</b> Plots to explore data</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="dataviz.html"><a href="dataviz.html#initializing-a-ggplot-object"><i class="fa fa-check"></i><b>4.1.1</b> Initializing a ggplot object</a></li>
+<li class="chapter" data-level="4.1.2" data-path="dataviz.html"><a href="dataviz.html#plot-aesthetics"><i class="fa fa-check"></i><b>4.1.2</b> Plot aesthetics</a></li>
+<li class="chapter" data-level="4.1.3" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.1.3</b> Adding geoms</a></li>
+<li class="chapter" data-level="4.1.4" data-path="dataviz.html"><a href="dataviz.html#constant-aesthetics"><i class="fa fa-check"></i><b>4.1.4</b> Constant aesthetics</a></li>
+<li class="chapter" data-level="4.1.5" data-path="dataviz.html"><a href="dataviz.html#useful-plot-additions"><i class="fa fa-check"></i><b>4.1.5</b> Useful plot additions</a></li>
+<li class="chapter" data-level="4.1.6" data-path="dataviz.html"><a href="dataviz.html#example-dataset"><i class="fa fa-check"></i><b>4.1.6</b> Example dataset</a></li>
+<li class="chapter" data-level="4.1.7" data-path="dataviz.html"><a href="dataviz.html#histograms"><i class="fa fa-check"></i><b>4.1.7</b> Histograms</a></li>
+<li class="chapter" data-level="4.1.8" data-path="dataviz.html"><a href="dataviz.html#scatterplots"><i class="fa fa-check"></i><b>4.1.8</b> Scatterplots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Exploratory Data Analysis I: Univariate</a><ul>
+<li class="chapter" data-level="5.1" data-path="eda1.html"><a href="eda1.html#univariate-data"><i class="fa fa-check"></i><b>5.1</b> Univariate Data</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>5.1.1</b> Location, Dispersion, and Shape</a></li>
+<li class="chapter" data-level="5.1.2" data-path="eda1.html"><a href="eda1.html#example-location-and-dispersion"><i class="fa fa-check"></i><b>5.1.2</b> Example: Location and Dispersion</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#quantiles"><i class="fa fa-check"></i><b>5.2</b> Quantiles</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="eda1.html"><a href="eda1.html#quantiles-and-descriptive-statistics"><i class="fa fa-check"></i><b>5.2.1</b> Quantiles and Descriptive Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.3</b> Univariate Data Visualization</a></li>
+<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.4</b> Cumulative Distribution Plot</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot-example"><i class="fa fa-check"></i><b>5.4.1</b> Cumulative Distribution Plot Example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.5</b> Histogram</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="eda1.html"><a href="eda1.html#histogram-what-to-look-for"><i class="fa fa-check"></i><b>5.5.1</b> Histogram: what to look for?</a></li>
+<li class="chapter" data-level="5.5.2" data-path="eda1.html"><a href="eda1.html#what-causes-skewed-histograms"><i class="fa fa-check"></i><b>5.5.2</b> What causes skewed histograms?</a></li>
+<li class="chapter" data-level="5.5.3" data-path="eda1.html"><a href="eda1.html#pdf"><i class="fa fa-check"></i><b>5.5.3</b> Probability Density Function</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="eda1.html"><a href="eda1.html#time_series"><i class="fa fa-check"></i><b>5.6</b> Time-Series</a></li>
+<li class="chapter" data-level="5.7" data-path="eda1.html"><a href="eda1.html#autocorr"><i class="fa fa-check"></i><b>5.7</b> Autocorrelation</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="eda1.html"><a href="eda1.html#partial-autocorrelation"><i class="fa fa-check"></i><b>5.7.1</b> Partial Autocorrelation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Dates, Strings, and Tidying</a><ul>
+<li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#objectives-2"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#dates"><i class="fa fa-check"></i><b>6.2</b> Dates</a></li>
+<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-in-r"><i class="fa fa-check"></i><b>6.3</b> Dates in R</a></li>
+<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.4</b> Strings</a></li>
+<li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#tidy-data"><i class="fa fa-check"></i><b>6.5</b> Tidy Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Exploratory Data Analysis II: Multivariate</a><ul>
+<li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>7.1</b> Bivariate Data</a></li>
+<li class="chapter" data-level="7.2" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.2</b> Scatterplot</a></li>
+<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#QQ"><i class="fa fa-check"></i><b>7.3</b> Q-Q Plot (Quantile-Quantile)</a></li>
+<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#Tukey"><i class="fa fa-check"></i><b>7.4</b> Tukey Mean Difference Plot</a></li>
+<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#boxplot-box"><i class="fa fa-check"></i><b>7.5</b> Boxplot (#box)</a></li>
+<li class="chapter" data-level="7.6" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.6</b> Exploring Multivariate Data</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>8</b> Measurement</a><ul>
+<li class="chapter" data-level="8.1" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>8.1</b> Sampling</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="measure.html"><a href="measure.html#samples-vs.populations"><i class="fa fa-check"></i><b>8.1.1</b> Samples vs. Populations</a></li>
+<li class="chapter" data-level="8.1.2" data-path="measure.html"><a href="measure.html#collecting-a-sample"><i class="fa fa-check"></i><b>8.1.2</b> Collecting a sample</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>8.2</b> Figures of Merit</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="measure.html"><a href="measure.html#accuracy"><i class="fa fa-check"></i><b>8.2.1</b> Accuracy</a></li>
+<li class="chapter" data-level="8.2.2" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>8.2.2</b> Precision</a></li>
+<li class="chapter" data-level="8.2.3" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>8.2.3</b> Bias</a></li>
+<li class="chapter" data-level="8.2.4" data-path="measure.html"><a href="measure.html#limit-of-detection"><i class="fa fa-check"></i><b>8.2.4</b> Limit of Detection</a></li>
+<li class="chapter" data-level="8.2.5" data-path="measure.html"><a href="measure.html#failure-and-reliability"><i class="fa fa-check"></i><b>8.2.5</b> Failure and Reliability</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>9</b> Functional Programming</a><ul>
+<li class="chapter" data-level="9.1" data-path="rprog4.html"><a href="rprog4.html#step-iii-1"><i class="fa fa-check"></i><b>9.1</b> Step III-1</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="eda3.html"><a href="eda3.html"><i class="fa fa-check"></i><b>10</b> Tips and Tricks for Data Exploration</a><ul>
+<li class="chapter" data-level="10.1" data-path="eda3.html"><a href="eda3.html#transformation"><i class="fa fa-check"></i><b>10.1</b> Transformation</a></li>
+<li class="chapter" data-level="10.2" data-path="eda3.html"><a href="eda3.html#centering"><i class="fa fa-check"></i><b>10.2</b> Centering</a></li>
+<li class="chapter" data-level="10.3" data-path="eda3.html"><a href="eda3.html#normalizing"><i class="fa fa-check"></i><b>10.3</b> Normalizing</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="eda3.html"><a href="eda3.html#standardizing"><i class="fa fa-check"></i><b>10.3.1</b> Standardizing</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="eda3.html"><a href="eda3.html#stratification"><i class="fa fa-check"></i><b>10.4</b> Stratification</a></li>
+<li class="chapter" data-level="10.5" data-path="eda3.html"><a href="eda3.html#censoring-and-truncating"><i class="fa fa-check"></i><b>10.5</b> Censoring and Truncating</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a><ul>
+<li class="chapter" data-level="11.1" data-path="model.html"><a href="model.html#fitting"><i class="fa fa-check"></i><b>11.1</b> Fitting</a></li>
+<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#linear-models"><i class="fa fa-check"></i><b>11.2</b> Linear Models</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="model.html"><a href="model.html#assumptions-of-linear-regression"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions of Linear Regression</a></li>
+<li class="chapter" data-level="11.2.2" data-path="model.html"><a href="model.html#diagnostics"><i class="fa fa-check"></i><b>11.2.2</b> Diagnostics</a></li>
+<li class="chapter" data-level="11.2.3" data-path="model.html"><a href="model.html#ordinary-least-squares"><i class="fa fa-check"></i><b>11.2.3</b> Ordinary Least Squares</a></li>
+<li class="chapter" data-level="11.2.4" data-path="model.html"><a href="model.html#weighted-least-squares"><i class="fa fa-check"></i><b>11.2.4</b> Weighted Least Squares</a></li>
+<li class="chapter" data-level="11.2.5" data-path="model.html"><a href="model.html#deming-regression"><i class="fa fa-check"></i><b>11.2.5</b> Deming Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="simulate.html"><a href="simulate.html"><i class="fa fa-check"></i><b>12</b> Simulation</a><ul>
+<li class="chapter" data-level="12.1" data-path="simulate.html"><a href="simulate.html#introduction-to-simulation"><i class="fa fa-check"></i><b>12.1</b> Introduction to simulation</a></li>
+<li class="chapter" data-level="12.2" data-path="simulate.html"><a href="simulate.html#simulation-example"><i class="fa fa-check"></i><b>12.2</b> Simulation Example:</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>13</b> Appendix: Reference Distributions</a><ul>
+<li class="chapter" data-level="13.1" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>13.1</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="dist.html"><a href="dist.html#characteristic-plots-uniform-distribution"><i class="fa fa-check"></i><b>13.1.1</b> Characteristic Plots: Uniform Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>13.2</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="dist.html"><a href="dist.html#normal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>13.2.1</b> Normal Distribution: Characteristic Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="dist.html"><a href="dist.html#log-normal-distribution"><i class="fa fa-check"></i><b>13.3</b> Log-normal Distribution</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Engineering Data Analysis in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dataviz" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Data Visualization: ggplot2</h1>
+<div id="plots-to-explore-data" class="section level2">
+<h2><span class="header-section-number">4.1</span> Plots to explore data</h2>
+<p>Exploratory data analysis is a key step in data analysis and plotting your data in different ways is an important part of this process. In this section, I will focus on the basics of <code>ggplot2</code> plotting, to get you started creating some plots to explore your data.
+This section will focus on making <strong>useful</strong>, rather than <strong>attractive</strong> graphs, since at this stage we are focusing on exploring data for yourself rather than presenting results to others. Next week, I will explain more about how you can customize ggplot objects, to help you make plots to communicate with others.</p>
+<p>All of the plots we’ll make today will use the <code>ggplot2</code> package (another member of the tidyverse!). If you don’t already have that installed, you’ll need to install it. You then need to load the package in your current session of R:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages(&quot;ggplot2&quot;)  ## Uncomment and run if you don&#39;t have `ggplot2` installed</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
+<p>The process of creating a plot using <code>ggplot2</code> follows conventions that are a bit different than most of the code you’ve seen so far in R (although it is somewhat similar to the idea of piping I introduced in the last chapter). The basic steps behind creating a plot with <code>ggplot2</code> are:</p>
+<ol style="list-style-type: decimal">
+<li>Create an object of the <code>ggplot</code> class, typically specifying the <strong>data</strong> and some or all of the <strong>aesthetics</strong>;</li>
+<li>Add on <strong>geoms</strong> and other elements to create and customize the plot, using <code>+</code>.</li>
+</ol>
+<p>You can add on one or many geoms and other elements to create plots that range from very simple to very customized. This week, we’ll focus on simple geoms and added elements, and then explore more detailed customization next week.</p>
+<div class="rmdwarning">
+<p>
+If R gets to the end of a line and there is not some indication that the call is not over (e.g., <code>%&gt;%</code> for piping or <code>+</code> for <code>ggplot2</code> plots), R interprets that as a message to run the call without reading in further code. A common error when writing <code>ggplot2</code> code is to put the <code>+</code> to add a geom or element at the beginning of a line rather than the end of a previous line– in this case, R will try to execute the call too soon. To avoid errors, be sure to end lines with <code>+</code>, don’t start lines with it.
+</p>
+</div>
+<div id="initializing-a-ggplot-object" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Initializing a ggplot object</h3>
+<p>The first step in creating a plot using <code>ggplot2</code> is to create a ggplot object. This object will not, by itself, create a plot with anything in it. Instead, it typically specifies the data frame you want to use and which aesthetics will be mapped to certain columns of that data frame (aesthetics are explained more in the next subsection).</p>
+<p>Use the following conventions to initialize a ggplot object:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co">## Generic code</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <span class="kw">aes</span>(<span class="dt">x =</span> column_<span class="dv">1</span>, <span class="dt">y =</span> column_<span class="dv">2</span>))</a></code></pre></div>
+<p>The data frame is the first parameter in a <code>ggplot</code> call and, if you like, you can use the parameter definition with that call (e.g., <code>data = dataframe</code>). Aesthetics are defined within an <code>aes</code> function call that typically is used within the <code>ggplot</code> call.</p>
+<div class="rmdnote">
+<p>
+While the <code>ggplot</code> call is the place where you will most often see an <code>aes</code> call, <code>aes</code> can also be used within the calls to add specific geoms. This can be particularly useful if you want to map aesthetics differently for different geoms in your plot. We’ll see some examples of this use of <code>aes</code> more in later sections, when we talk about customizing plots. The <code>data</code> parameter can also be used in geom calls, to use a different data frame from the one defined when creating the original ggplot object, although this tends to be less common.
+</p>
+</div>
+</div>
+<div id="plot-aesthetics" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Plot aesthetics</h3>
+<p><strong>Aesthetics</strong> are properties of the plot that can show certain elements of the data. For example, in Figure <a href="dataviz.html#fig:aesmapex">4.1</a>, color shows (is mapped to) gender, x-position shows height, and y-position shows weight in a sample data set of measurements of children in Nepal.</p>
+<div class="figure" style="text-align: center"><span id="fig:aesmapex"></span>
+<img src="03-eda0_files/figure-html/aesmapex-1.png" alt="Example of how different properties of a plot can show different elements to the data. Here, color indicates gender, position along the x-axis shows height, and position along the y-axis shows weight. This example is a subset of data from the `nepali` dataset in the `faraway` package." width="576" />
+<p class="caption">
+Figure 4.1: Example of how different properties of a plot can show different elements to the data. Here, color indicates gender, position along the x-axis shows height, and position along the y-axis shows weight. This example is a subset of data from the <code>nepali</code> dataset in the <code>faraway</code> package.
+</p>
+</div>
+<div class="rmdnote">
+<p>
+Any of these aesthetics could also be given a constant value, instead of being mapped to an element of the data. For example, all the points could be red, instead of showing gender.
+</p>
+</div>
+<p>Which aesthetics are required for a plot depend on which geoms (more on those in a second) you’re adding to the plot. You can find out the aesthetics you can use for a geom in the “Aesthetics” section of the geom’s help file (e.g., <code>?geom_point</code>). Required aesthetics are in bold in this section of the help file and optional ones are not. Common plot aesthetics you might want to specify include:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Code
+</th>
+<th style="text-align:left;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<code>x</code>
+</td>
+<td style="text-align:left;">
+Position on x-axis
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>y</code>
+</td>
+<td style="text-align:left;">
+Position on y-axis
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>shape</code>
+</td>
+<td style="text-align:left;">
+Shape
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>color</code>
+</td>
+<td style="text-align:left;">
+Color of border of elements
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>fill</code>
+</td>
+<td style="text-align:left;">
+Color of inside of elements
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>size</code>
+</td>
+<td style="text-align:left;">
+Size
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>alpha</code>
+</td>
+<td style="text-align:left;">
+Transparency (1: opaque; 0: transparent)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>linetype</code>
+</td>
+<td style="text-align:left;">
+Type of line (e.g., solid, dashed)
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="adding-geoms" class="section level3">
+<h3><span class="header-section-number">4.1.3</span> Adding geoms</h3>
+<p>Next, you’ll want to add one or more <code>geoms</code> to create the plot. You can add these with <code>+</code> after the <code>ggplot</code> statement to initialize the ggplot object. Some of the most common geoms are:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Plot type
+</th>
+<th style="text-align:left;">
+ggplot2 function
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Histogram (1 numeric variable)
+</td>
+<td style="text-align:left;">
+<code>geom_histogram</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Scatterplot (2 numeric variables)
+</td>
+<td style="text-align:left;">
+<code>geom_point</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Boxplot (1 numeric variable, possibly 1 factor variable)
+</td>
+<td style="text-align:left;">
+<code>geom_boxplot</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Line graph (2 numeric variables)
+</td>
+<td style="text-align:left;">
+<code>geom_line</code>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="constant-aesthetics" class="section level3">
+<h3><span class="header-section-number">4.1.4</span> Constant aesthetics</h3>
+<p>Instead of mapping an aesthetic to an element of your data, you can use a constant value for it. For example, you may want to make all the points green, rather than having color map to gender:</p>
+<p><img src="03-eda0_files/figure-html/unnamed-chunk-8-1.png" width="0.6\textwidth" style="display: block; margin: auto;" /></p>
+<p>In this case, you’ll define that aesthetic when you add the geom, outside of an <code>aes</code> statement. In R, you can specify the shape of points with a number. Figure <a href="dataviz.html#fig:shapeexamples">4.2</a> shows the shapes that correspond to the numbers 1 to 25 in the <code>shape</code> aesthetic. This figure also provides an example of the difference between color (black for all these example points) and fill (red for these examples). You can see that some point shapes include a fill (21 for example), while some are either empty (1) or solid (19).</p>
+<pre><code>## Warning: `data_frame()` is deprecated as of tibble 1.1.0.
+## Please use `tibble()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:shapeexamples"></span>
+<img src="03-eda0_files/figure-html/shapeexamples-1.png" alt="Examples of the shapes corresponding to different numeric choices for the `shape` aesthetic. For all examples, `color` is set to black and `fill` to red." width="480" />
+<p class="caption">
+Figure 4.2: Examples of the shapes corresponding to different numeric choices for the <code>shape</code> aesthetic. For all examples, <code>color</code> is set to black and <code>fill</code> to red.
+</p>
+</div>
+<p>If you want to set color to be a constant value, you can do that in R using character strings for different colors. Figure <a href="dataviz.html#fig:colorexamples">4.3</a> gives an example of some of the different blues available in R. To find links to listings of different R colors, google “R colors” and search by “Images”.</p>
+<div class="figure" style="text-align: center"><span id="fig:colorexamples"></span>
+<img src="03-eda0_files/figure-html/colorexamples-1.png" alt="Example of available shades of blue in R." width="480" />
+<p class="caption">
+Figure 4.3: Example of available shades of blue in R.
+</p>
+</div>
+</div>
+<div id="useful-plot-additions" class="section level3">
+<h3><span class="header-section-number">4.1.5</span> Useful plot additions</h3>
+<p>There are also a number of elements that you can add onto a <code>ggplot</code> object using <code>+</code>. A few that are used very frequently are:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Element
+</th>
+<th style="text-align:left;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<code>ggtitle</code>
+</td>
+<td style="text-align:left;">
+Plot title
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>xlab</code>, <code>ylab</code>
+</td>
+<td style="text-align:left;">
+x- and y-axis labels
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>xlim</code>, <code>ylim</code>
+</td>
+<td style="text-align:left;">
+Limits of x- and y-axis
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="example-dataset" class="section level3">
+<h3><span class="header-section-number">4.1.6</span> Example dataset</h3>
+<p>For the example plots, I’ll use a dataset in the <code>faraway</code> package called <code>nepali</code>. This gives data from a study of the health of a group of Nepalese children.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(faraway)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">data</span>(nepali)</a></code></pre></div>
+<p>I’ll be using functions from <code>dplyr</code> and <code>ggplot2</code>, so those need to be loaded:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
+<p>Each observation is a single measurement for a child; there can be multiple observations per child. I used the following code to select only the columns for child id, sex, weight, height, and age. I also used <code>distinct</code> to limit the dataset to only include one measurement for each chile, the child’s first measurement in the dataset.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">nepali &lt;-<span class="st"> </span>nepali <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(id, sex, wt, ht, age) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="kw">factor</span>(id),</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">         <span class="dt">sex =</span> <span class="kw">factor</span>(sex, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">                      <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="st">  </span><span class="kw">distinct</span>(id, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>After this cleaning, the data looks like this:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">head</span>(nepali)</a></code></pre></div>
+<pre><code>##       id    sex   wt    ht age
+## 1 120011   Male 12.8  91.2  41
+## 2 120012 Female 14.9 103.9  57
+## 3 120021 Female  7.7  70.1   8
+## 4 120022 Female 12.1  86.4  35
+## 5 120023   Male 14.2  99.4  49
+## 6 120031   Male 13.9  96.4  46</code></pre>
+</div>
+<div id="histograms" class="section level3">
+<h3><span class="header-section-number">4.1.7</span> Histograms</h3>
+<p>Histograms show the distribution of a single variable. Therefore, <code>geom_histogram()</code> requires only one main aesthetic, <code>x</code>, the (numeric) vector for which you want to create a histogram. For example, to create a histogram of children’s heights for the Nepali dataset (Figure <a href="dataviz.html#fig:nepalihist1">4.4</a>), run:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>()</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:nepalihist1"></span>
+<img src="03-eda0_files/figure-html/nepalihist1-1.png" alt="Basic example of plotting a histogram with `ggplot2`. This histogram shows the distribution of heights for the first recorded measurements of each child in the `nepali` dataset." width="384" />
+<p class="caption">
+Figure 4.4: Basic example of plotting a histogram with <code>ggplot2</code>. This histogram shows the distribution of heights for the first recorded measurements of each child in the <code>nepali</code> dataset.
+</p>
+</div>
+<div class="rmdnote">
+<p>
+If you run the code with no arguments for <code>binwidth</code> or <code>bins</code> in <code>geom_histogram</code>, you will get a message saying “<code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.”. This message is just saying that a default number of bins was used to create the histogram. You can use arguments to change the number of bins used, but often this default is fine. You may also get a message that observations with missing values were removed.
+</p>
+</div>
+<p>You can add some elements to the histogram now to customize it a bit. For example (Figure @ref()), you can add a figure title (<code>ggtitle</code>) and clearer labels for the x-axis (<code>xlab</code>). You can also change the range of values shown by the x-axis (<code>xlim</code>).</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Height of children&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height (cm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">120</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:nepalihist2"></span>
+<img src="03-eda0_files/figure-html/nepalihist2-1.png" alt="Example of adding ggplot elements to customize a histogram." width="384" />
+<p class="caption">
+Figure 4.5: Example of adding ggplot elements to customize a histogram.
+</p>
+</div>
+<p>The geom <code>geom_histogram</code> also has special argument for setting the number of width of the bins used in the histogram. Figure <a href="#fig"><strong>??</strong></a> shows an example of how you can use the <code>bins</code> argument to change the number of bins that are used to make the histogram of height for the <code>nepali</code> dataset.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">                 <span class="dt">bins =</span> <span class="dv">40</span>) </a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:nepalihist3"></span>
+<img src="03-eda0_files/figure-html/nepalihist3-1.png" alt="Example of using the `bins` argument to change the number of bins used in a histogram." width="384" />
+<p class="caption">
+Figure 4.6: Example of using the <code>bins</code> argument to change the number of bins used in a histogram.
+</p>
+</div>
+<p>Similarly, the <code>binwidth</code> argument can be used to set the width of bins. Figure <a href="dataviz.html#fig:nepalihist4">4.7</a> shows an example of using this function to create a histogram of the Nepali children’s heights with binwidths of 10 centimeters (note that this argument is set in the same units as the x variable).</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">                 <span class="dt">binwidth =</span> <span class="dv">10</span>) </a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:nepalihist4"></span>
+<img src="03-eda0_files/figure-html/nepalihist4-1.png" alt="Example of using the `binwidth` argument to set the width of each bin used in a histogram." width="384" />
+<p class="caption">
+Figure 4.7: Example of using the <code>binwidth</code> argument to set the width of each bin used in a histogram.
+</p>
+</div>
+</div>
+<div id="scatterplots" class="section level3">
+<h3><span class="header-section-number">4.1.8</span> Scatterplots</h3>
+<p>A scatterplot shows how one variable changes as another changes. You can use the <code>geom_point</code> geom to create a scatterplot. For example, to create a scatterplot of height versus age for the Nepali data (Figure <a href="dataviz.html#fig:nepaliscatter1">4.8</a>), you can run the following code:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:nepaliscatter1"></span>
+<img src="03-eda0_files/figure-html/nepaliscatter1-1.png" alt="Example of creating a scatterplot. This scatterplot shows the relationship between children's heights and weights within the nepali dataset." width="480" />
+<p class="caption">
+Figure 4.8: Example of creating a scatterplot. This scatterplot shows the relationship between children’s heights and weights within the nepali dataset.
+</p>
+</div>
+<p>Again, you can use some of the options and additions to change the plot appearance. For example, to add a title, change the x- and y-axis labels, and change the color and size of the points on the scatterplot (Figure <a href="dataviz.html#fig:nepaliscatter2">4.9</a>), you can run:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Weight versus Height&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height (cm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (kg)&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:nepaliscatter2"></span>
+<img src="03-eda0_files/figure-html/nepaliscatter2-1.png" alt="Example of adding ggplot elements to customize a scatterplot." width="480" />
+<p class="caption">
+Figure 4.9: Example of adding ggplot elements to customize a scatterplot.
+</p>
+</div>
+<p>You can also try mapping another variable in the dataset to the <code>color</code> aesthetic. For example, to use color to show the sex of each child in the scatterplot (Figure <a href="dataviz.html#fig:nepaliscatter3">4.10</a>), you can run:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt, <span class="dt">color =</span> sex)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Weight versus Height&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height (cm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (kg)&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:nepaliscatter3"></span>
+<img src="03-eda0_files/figure-html/nepaliscatter3-1.png" alt="Example of mapping color to an element of the data in a scatterplot." width="480" />
+<p class="caption">
+Figure 4.10: Example of mapping color to an element of the data in a scatterplot.
+</p>
+</div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="rprog2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="eda1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
