@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens"
-date: "2020-06-15"
+date: "2020-06-16"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
@@ -12,7 +12,7 @@ description: "This is an undergraduate technical elective course for mechanical 
 ---
 
 ```
-## ── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
+## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
 ```
 
 ```
@@ -23,7 +23,7 @@ description: "This is an undergraduate technical elective course for mechanical 
 ```
 
 ```
-## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 ```
@@ -67,6 +67,8 @@ In broad terms, scientific and engineering research is about discovery: finding 
 The coursebook is intended to be a sort of *self-help* guide for students who want to learn R programming and the art of engineering data science.  The book is designed to get you started in the art, not master it. I'm not qualified to teach mastery in the art of R or engineering data science, so look elsewhere for that level of tutelage.
 
 If you are new to these topics, you probably want to start at the beginning and proceed through each chapter sequentially.  Some sections or material might seem boring or too easy...in that case just skip to the end of the section and see if you can complete the exercises and answer the questions.
+
+Nearly all of the graphics and data presented in this book were created/manipulated in R. In many places, however, I have hidden the code in order to streamline the message.  If you ever wonder "how did he do that" you can download any of the R markdowns on [my GitHub page](https://github.com/SmogDr/edar_coursebook/), where this coursebook is hosted. 
 
 
 ## Prerequisites
