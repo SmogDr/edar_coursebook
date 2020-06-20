@@ -252,17 +252,93 @@ There are many scale elements that you can add onto a `ggplot` object using `+`.
 
 ## Example plot
 
-For the example plots, we will continue to use the `mpg` dataset from the `ggplot` package. 
+For the example plots, we will continue to use the `mpg` dataset from the `ggplot` package. We will use functions from the `dplyr` package, too, so both need to be loaded. In this figure, we will look at highway fuel efficiency for SUVs in 2008, ordered by manufacturer and colored by the engine displacement size in liters.  We create subsets of the `mpg` dataframe in two ways:  
 
-We will use functions from `dplyr` and `ggplot2`, so those need to be loaded:
+1. We create a summary dataframe (`mpg_5`) by applying two `filter` calls on the `mpg` object.  We then `group_by` the manufacturer so that average values for highway fuel economy (`hwy.mean`) and engine displacement (`displ.mean`) can be calculated through a call to `summarise`.  
+2. We subset the `mpg` dataframe again, this time directly within the `data =` call for `ggplot2`.   
+
+* The first layer (`geom_jitter`) is a point plot that adds a slight amount of wobble or jitter to the data points so that they don't overlap on the plot.  Here, we have called `geom_jitter` to display the individual values for 2008 SUV fuel economy (on the highway) as a function manufacturer.  
+
+* The second layer (`geom_errorbar`) is a horizontal line plot showing the mean values for SUV models within each manufacturer.
+
+We also add custom lables and a fancy color scale to investigate whether engine displacement has an effect on fuel efficiency (note the additional aesthetic calls for `color = ` in each layer).  The final part of the call `theme_classic()` tells ggplot to remove the grey background and the grid lines, which I don't feel are necessary.
 
 
 ```r
 library(dplyr)
 library(ggplot2)
+
+# use dplyr to create a summary subset from the mpg dataframe
+mpg_5 <- mpg %>%
+  filter(class == "suv", year == 2008) %>%
+  group_by(manufacturer) %>%
+  summarise(hwy.mean = mean(hwy), displ.mean = (mean(displ)))
+
+# call to ggplot, note that data and aesthetics are called in each geom layer
+ggplot() +
+  # first layer
+  geom_jitter(data = filter(mpg, class == "suv", year == 2008),
+           aes(x = manufacturer, 
+               y = hwy, 
+               color = displ),
+           width = 0.1,
+           size = 2) +
+  # second layer
+  geom_errorbar(data = mpg_5,
+             aes(x = manufacturer,
+                 ymin = hwy.mean,
+                 ymax = hwy.mean,
+                 color = displ.mean),
+             alpha = 0.5) +
+  # customize plot labels
+  labs(title = "Fuel Economy for 2008 SUVs by Manufacturer and Engine Displacement",
+       color = "Disp (L)") +
+  ylab("highway fuel economy (miles/gal)") +
+  # add a fancy color scale
+  scale_color_viridis_c(option = "D", direction = -1) +
+  # adopt a theme without grey background
+  theme_classic() 
 ```
 
+<div class="figure" style="text-align: center">
+<img src="04-dataviz_files/figure-html/mpg-5-1.png" alt="A two-layer (two `geom`) plot with cusomization" width="672" />
+<p class="caption">(\#fig:mpg-5)A two-layer (two `geom`) plot with cusomization</p>
+</div>
+
+```r
+# ggsave(filename = "./images/mpg-5.png", dpi = 150, device = png())
+```
+
+What conclusions can you draw from examining Figure \@ref(fig:mpg-5)?
+
 ## Store and save ggplot2 objects
+Sometimes you will want to store a ggplot2 plot as an object in your global environment (so that it can be called or manipulated later on). This is done in the same way as you would create and assign a name to any other object in R.
+
+```r
+# create a ggplot object called "plot1"
+plot1 <- ggplot(data = mpg, aes(x = class)) +
+geom_bar()
+```
+
+<div class="rmdnote">
+<p>When you create and store a <code>ggplot</code> object (<code>plot1 &lt;- ggplot(data = mpg....</code>) the plot itself will be created and stored but not returned as output. If you want to “see” the plot, just enter its name into the console or script.</p>
+</div>
+
+You can also save `ggplot2` plots as image files to a local directory using the `ggsave` function.  This function requires a filename but also allows you to specify paramaters like image resolution (`dpi = 300`), image type (`device = png()`), and image `height`, `width` and `units` of measurement. 
+
+
+```r
+# create a ggplot object called "plot1"
+plot1 <- ggplot(data = mpg, aes(x = class)) +
+geom_bar()
+
+ggsave("./images/mpg-1.png",
+       plot = plot1,
+       dpi = 150,
+       device = png(),
+       width = 20,
+       units = "cm")
+```
 
 ## Getting help with ggplot2
 The `ggplot2` package has become so popular that most of my "how do I do this?" questions have already been asked, answered, and archived on sites like [stackoverflow](https://stackoverflow.com/). Another great source is the ggplot2 reference section on the [Tidyverse site](https://ggplot2.tidyverse.org/reference/index.html). This page contains a nice, concise summary of how to call and customize plot objects. I reccommend  starting there because (1) it is created and maintained by the `ggplot2` developers (and, thus, is authoritative) and (2) the reference page contains all the function calls in an organized list, for which you can conduct a 'control/command F' search. 
