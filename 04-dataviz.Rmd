@@ -8,73 +8,82 @@ library(bookdown)
 library(scales)
 library(kableExtra)
 library(lubridate)
-library(faraway)
 data(nepali)
 ```
 
 
-## Plots to explore data
+## Install and call `ggplot2`
+> <span style="color: blue;"> The best design gets out of the way between the viewer’s brain and the content. - Edward Tufte </span>
 
-Exploratory data analysis is a key step in data analysis and plotting your data in different ways is an important part of this process. In this section, I will focus on the basics of `ggplot2` plotting, to get you started creating some plots to explore your data. 
-This section will focus on making **useful**, rather than **attractive** graphs, since at this stage we are focusing on exploring data for yourself rather than presenting results  to others. Next week, I will explain more about how you can customize ggplot objects, to help you make plots to communicate with others.  
+In this chapter, you will learn how to make basic plots using the `ggplot2` package in R (also part of the Tidyverse). This section will focus on making **useful**, rather than **attractive** graphs, since at this stage we are focusing on exploring data for yourself rather than presenting results to others. Later on, I will explain more about how you can customize ggplot objects, to help you make plots that "get out the way" between the content you wish to present and the viewer's brain, where you hope understanding takes root.  
 
+If you don't already have `ggplot2` installed, you'll need to install it. You then need to load the package in your current session of R:
 
-All of the plots we'll make today will use the `ggplot2` package (another member of the tidyverse!). If you don't already have that installed, you'll need to install it. You then need to load the package in your current session of R:
-
-```{r}
-# install.packages("ggplot2")  ## Uncomment and run if you don't have `ggplot2` installed
+```{r ggplot2, echo=TRUE, eval=FALSE}
+install.packages("ggplot2")  
 library(ggplot2)
 ```
 
 The process of creating a plot using `ggplot2` follows conventions that are a bit different than most of the code you've seen so far in R (although it is somewhat similar to the idea of piping I introduced in the last chapter). The basic steps behind creating a plot with `ggplot2` are:
 
-1. Create an object of the `ggplot` class, typically specifying the **data** and some or all of the **aesthetics**; 
-2. Add on **geoms** and other elements to create and customize the plot, using `+`.
+1. Create an object of the `ggplot` class, typically specifying the **data** and some or all of the **aesthetics**;
 
-You can add on one or many geoms and other elements to create plots that range from very simple to very customized. This week, we'll focus on simple geoms and added elements, and then explore more detailed customization next week. 
+2. Add a layer or **geom** to the plot, along with other specific elements, using `+`.  
+
+> **Aesthetics** or `aes` in R represent the things that we are plotting; the x and y data.  **Geoms** like `geom_point` represent the way in which we layer the aesthetics onto the plot. The geom is the type of plot that we are calling.  
+
+You can layer on one or many geoms and other elements to create plots that range from very simple to very customized. We will start by focusing on simple geoms and added elements; later on, we will explore more detailed customization. 
 
 ```{block type = "rmdwarning"}
-If R gets to the end of a line and there is not some indication that the call is not over (e.g., `%>%` for piping or `+` for `ggplot2` plots), R interprets that as a message to run the call without reading in further code. A common error when writing `ggplot2` code is to put the `+` to add a geom or element at the beginning of a line rather than the end of a previous line-- in this case, R will try to execute the call too soon. To avoid errors, be sure to end lines with `+`, don't start lines with it. 
+A common error when writing `ggplot2` code is to put the `+` to add a geom or element at the beginning of a line rather than the end of a previous line-- in this case, R will try to execute the call too soon. If R gets to the end of a line and there is no indication to continue the call (e.g., `%>%` for piping or `+` for `ggplot2` plots), R interprets that as a message to run the call without reading in further code.  Thus, to avoid errors, be sure to end each line in `ggplot` calls with `+` (except for the final line when the call is actually over); don't start lines with `+`. 
 ```
 
 ### Initializing a ggplot object
 
-The first step in creating a plot using `ggplot2` is to create a ggplot object. This object will not, by itself, create a plot with anything in it. Instead, it typically specifies the data frame you want to use and which aesthetics will be mapped to certain columns of that data frame (aesthetics are explained more in the next subsection). 
+The first step in creating a plot using `ggplot2` is to create a ggplot object. This object will not, by itself, create a plot with anything in it. Instead, this first step typically specifies the data frame you want to use and which aesthetics will be mapped to certain columns of that data frame (aesthetics are explained more in the next subsection). 
 
 Use the following conventions to initialize a ggplot object:
 
-```{r, eval = FALSE}
+```{r ggplot2_2, eval = FALSE}
 ## Generic code
-object <- ggplot(dataframe, aes(x = column_1, y = column_2))
+object <- ggplot(my_dataframe, aes(x = data_column_1, y = data_column_2))
 ```
 
 The data frame is the first parameter in a `ggplot` call and, if you like, you can use the parameter definition with that call (e.g., `data = dataframe`). Aesthetics are defined within an `aes` function call that typically is used within the `ggplot` call. 
 
 ```{block type = "rmdnote"}
-While the `ggplot` call is the place where you will most often see an `aes` call, `aes` can also be used within the calls to add specific geoms. This can be particularly useful if you want to map aesthetics differently for different geoms in your plot. We'll see some examples of this use of `aes` more in later sections, when we talk about customizing plots. The `data` parameter can also be used in geom calls, to use a different data frame from the one defined when creating the original ggplot object, although this tends to be less common. 
+While the `ggplot` call is the place where you will most often see an `aes` call, you can also make calls to `aes`  within the calls to specific geoms. This can be particularly useful if you want to map aesthetics differently for different geoms in your plot. We'll see some examples of this use of `aes` more in later sections, when we talk about customizing plots. The `data` parameter can also be used in geom calls, to use a different data frame from the one defined when creating the original ggplot object, although this tends to be less common. 
 ```
 
 ### Plot aesthetics
+**Aesthetics** are properties of the plot that can show certain elements of the data. For example, in Figure \@ref(fig:mpg-1), we call an x-axis aesthetic (`x = class`) from the `mpg` dataset.  We then plot counts of cars within different vehicle classes using `geom_bar`. The `mpg` dataframe is included with the ggplot2 package; you can learn more about it by typing `?mpg` into the console after loading ggplot2 (`library(ggplot2)`).  You can also learn more by typing `str(mpg)` and `head(mpg)` - always a good practice when looking at a new dataframe!
 
-**Aesthetics** are properties of the plot that can show certain elements of the data. For example, in Figure \@ref(fig:aesmapex), color shows (is mapped to) gender, x-position shows height, and y-position shows weight in a sample data set of measurements of children in Nepal. 
+According to `?mpg`:  
+> "This dataset contains a subset of the fuel economy data that the EPA makes available on [http://fueleconomy.gov](http://fueleconomy.gov). It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car."
 
-```{r aesmapex, echo = FALSE, warning = FALSE, fig.width = 6, fig.height = 4, fig.align = "center", message = FALSE, fig.cap = "Example of how different properties of a plot can show different elements to the data. Here, color indicates gender, position along the x-axis shows height, and position along the y-axis shows weight. This example is a subset of data from the `nepali` dataset in the `faraway` package."}
-library(dplyr)
-data("nepali") 
-nepali %>%
-  tbl_df() %>% 
-  distinct(id, .keep_all = TRUE) %>%
-  mutate(sex = factor(sex, levels = c(1, 2), labels = c("Male", "Female"))) %>%
-  ggplot(aes(x = ht, y = wt, color = sex)) + 
-  geom_point() + 
-  xlab("Height (cm)") + ylab("Weight (kg)")
+```{r mpg-1, warning = FALSE, message = FALSE, fig.cap = "Example of a simple call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe."}
+
+# call to ggplot to map the data and a single aesthetic
+ggplot(data = mpg, aes(x = class)) +
+  # call to a specific geom to plot the mapped data
+geom_bar()
+```
+
+Let's call this plot again with a second aesthetic, the `fill` color, which will be mapped to vehicle drive type (4-wheel, font-wheel, rear-wheel). The x-position will continue to show vehicle class, and the y-position will show the counts of vehicles, now colored by the drive types.
+
+```{r mpg-2, warning = FALSE, message = FALSE, fig.cap = "Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)."}
+
+# call to ggplot to map the data and a single aesthetic
+ggplot(data = mpg, aes(x = class, fill = drv)) +
+  # call to a specific geom to plot the mapped data
+geom_bar()
 ```
 
 ```{block type = "rmdnote"}
-Any of these aesthetics could also be given a constant value, instead of being mapped to an element of the data. For example, all the points could be red, instead of showing gender.
+`ggplot` will naturally choose colors and add legends to plots when an aesthetic mapping creates such opportunities. You will learn ways to customize colors, legends, and other plot elements later on.
 ```
 
-Which aesthetics are required for a plot depend on which geoms (more on those in a second) you're adding to the plot. You can find out the aesthetics you can use for a geom in the "Aesthetics" section of the geom's help file (e.g., `?geom_point`). Required aesthetics are in bold in this section of the help file and optional ones are not. Common plot aesthetics you might want to specify include: 
+Which aesthetics are required for a plot depend on which geoms (more on those in a second) you're adding to the plot. You can find out the aesthetics you can use for a geom in the "Aesthetics" section of the geom's help file (e.g., `?geom_bar`). Required aesthetics are in bold in this section of the help file and optional ones are not. Common plot aesthetics you might want to specify include: 
 
 ```{r echo = FALSE}
 aes_vals <- data.frame(aes = c("`x`", "`y`", "`shape`",
@@ -88,12 +97,14 @@ aes_vals <- data.frame(aes = c("`x`", "`y`", "`shape`",
                                 "Size", 
                                 "Transparency (1: opaque; 0: transparent)",
                                 "Type of line (e.g., solid, dashed)"))
-knitr::kable(aes_vals, col.names = c("Code", "Description"))
+knitr::kable(aes_vals, 
+             col.names = c("Code", "Description"), 
+             caption = "Common Plot Aesthetics")
 ```
 
 ### Adding geoms
 
-Next, you'll want to add one or more `geoms` to create the plot. You can add these with `+` after the `ggplot` statement to initialize the ggplot object. Some of the most common geoms are:
+When creating plots, you'll often want to add more than one `geom` to the plot. You can add these with `+` after the `ggplot` statement to initialize the ggplot object. Some of the most common geoms are:
 
 ```{r echo = FALSE}
 plot_funcs <- data.frame(type = c("Histogram (1 numeric variable)",
@@ -104,34 +115,53 @@ plot_funcs <- data.frame(type = c("Histogram (1 numeric variable)",
                                           "`geom_point`",
                                           "`geom_boxplot`",
                                           "`geom_line`"))
-knitr::kable(plot_funcs, col.names = c("Plot type",
-                                       "ggplot2 function"))
+knitr::kable(plot_funcs, 
+             col.names = c("Plot type", "ggplot2 function"),
+             caption = "Common Plot Aesthetics")
 ```
 
-### Constant aesthetics
+### Aesthetic override: a warning
+The `ggplot2` package, like many Tidyverse packages, is both flexible and forgiving - designed to accomodate the user by "filling in the blanks" when no information is provided. For example, in the ggplot call that created Figure \@ref(fig:mpg-2), we didn't specify the colors to be used or the contents of the legend - instead ggplot figured those out for us. The `ggplot2` package is also somewhat *flexibile* in how calls and aesthetic mappings can be structured; for example, the following four calls all produce the same (identical) plot as shown in Figure \@ref(fig:mpg-2). Try it for yourself.
 
-Instead of mapping an aesthetic to an element of your data, you can use a constant value for it. For example, you may want to make all the points green, rather than having color map to gender: 
+```{r mpg-3, eval=FALSE, message = FALSE}
+# call to ggplot with aes() specified in main call
+ggplot(data = mpg, aes(x = class, fill = drv)) +
+geom_bar()
 
-```{r echo = FALSE, warning = FALSE, fig.align = "center", out.width = "0.6\\textwidth", message = FALSE, fig.width = 5, fig.height = 3}
-nepali %>%
-  tbl_df() %>% 
-  distinct(id, .keep_all = TRUE) %>%
-  mutate(sex = factor(sex, levels = c(1, 2), labels = c("Male", "Female"))) %>%
-  ggplot(aes(x = ht, y = wt)) + 
-  geom_point(color = "darkgreen") + 
-  xlab("Height (cm)") + ylab("Weight (kg)")
+# call to ggplot with aes() specified in geom
+ggplot(data = mpg) +
+geom_bar(aes(x = class, fill = drv))
+
+# call to ggplot with a mix of aes() mappings 
+ggplot(data = mpg, aes(x = class)) +
+geom_bar(aes(fill = drv))
+
+# call to ggplot with all mappings in the geom 
+ggplot() +
+geom_bar(data = mpg, aes(x = class, fill = drv))
 ```
 
-In this case, you'll define that aesthetic when you add the geom, outside of an `aes` statement. In R, you can specify the shape of points with a number. Figure \@ref(fig:shapeexamples) shows the shapes that correspond to the numbers 1 to 25 in the `shape` aesthetic. This figure also provides an example of the difference between color (black for all these example points) and fill (red for these examples). You can see that some point shapes include a fill (21 for example), while some are either empty (1) or solid (19).
+However, this flexibility also comes with occasional confusion, as you can often ***override*** one mapping with another one later on in the same call. For example, see what happends when two different `fill` mappings are specified at different points in the call:
+
+```{r mpg-4, warning = FALSE, message = FALSE, fig.cap = "Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)."}
+
+# call to ggplot where one `fill` overrides another
+ggplot(data = mpg, aes(x = class, fill = drv)) +
+geom_bar(fill = "darkgreen")
+```
+In this case, the aesthetic mapping of `aes(fill = drv)` was overridden by the specification in `geom_bar()`, where we wrote `fill = "darkgreen"`.  This second specification essentially wiped away the stacked bar colors and the legend (as shown in Figure \@ref(fig:mpg-2)).  As your `ggplot2` objects become more customized this sort of issue can arise; it comes with the territory of having flexible code. 
+
+## Shapes and colors
+In R, you can specify the shape of points with a number. Figure \@ref(fig:shapeexamples) shows the shapes that correspond to the numbers 1 to 25 in the `shape` aesthetic. This figure also provides an example of the difference between color (black for all these example points) and fill (red for these examples). You can see that some point shapes include a fill (21 for example), while some are either empty (1) or solid (19).
 
 ```{r shapeexamples, echo = FALSE, fig.width = 5, fig.height = 3, fig.align = "center", fig.cap = "Examples of the shapes corresponding to different numeric choices for the `shape` aesthetic. For all examples, `color` is set to black and `fill` to red."}
 x <- rep(1:5, 5)
 y <- rep(1:5, each = 5)
-shape <- 1:25
-to_plot <- data_frame(x = x, y = y, shape = shape)
+my.shapes <- 1:25
+to_plot <- tibble(x = x, y = y, shape = my.shapes)
 ggplot(to_plot, aes(x = x, y = y)) + 
-  geom_point(shape = shape, size = 4, color = "black", fill = "red") + 
-  geom_text(label = shape, nudge_x = -0.25) +
+  geom_point(shape = my.shapes, size = 4, color = "black", fill = "red") + 
+  geom_text(label = my.shapes, nudge_x = -0.25) +
   xlim(c(0.5, 5.5)) + 
   theme_void() + 
   scale_y_reverse()
@@ -142,128 +172,92 @@ If you want to set color to be a constant value, you can do that in R using char
 ```{r colorexamples, echo = FALSE, fig.width = 5, fig.height = 3, fig.align = "center", fig.cap = "Example of available shades of blue in R."}
 x <- rep(0, 6)
 y <- 1:6
-color <- c("blue", "blue4", "darkorchid", "deepskyblue2", 
+my.colors <- c("blue", "blue4", "darkorchid", "deepskyblue2", 
            "steelblue1", "dodgerblue3")
-to_plot <- data_frame(x = x, y = y, color = color)
+to_plot <- tibble(x = x, y = y, color = my.colors)
 ggplot(to_plot, aes(x = x, y = y)) + 
-  geom_point(color = color, size = 2) + 
-  geom_text(label = color, hjust = 0, nudge_x = 0.05) + 
+  geom_point(color = my.colors, size = 2) + 
+  geom_text(label = my.colors, hjust = 0, nudge_x = 0.05) + 
   theme_void() + 
   xlim(c(-1, 1.5)) +
   scale_y_reverse()
 ```
 
-### Useful plot additions
+## Scales: useful plot edits
 
-There are also a number of elements that you can add onto a `ggplot` object using `+`. A few that are used very frequently are: 
+The 'ggplot2' package uses ***scales*** to as a way to make all sorts of tweaks and changes to how the plot is presented. According to the `ggplot2` reference: "Scales control the details of how data values are translated to visual properties. Override the default scales to tweak details like the axis labels or legend keys, or to use a completely different translation from data to aesthetic."
+
+There are many scale elements that you can add onto a `ggplot` object using `+`. A few that are used very frequently are: 
 
 ```{r echo = FALSE}
 plot_adds <- data.frame(add = c("`ggtitle`",
                                 "`xlab`, `ylab`",
-                                "`xlim`, `ylim`"),
+                                "`xlim`, `ylim`",
+                                "`scale_x_log10`"),
                         descrip = c("Plot title",
                                     "x- and y-axis labels",
-                                    "Limits of x- and y-axis"))
-knitr::kable(plot_adds, col.names = c("Element", "Description"))
+                                    "Limits of x- and y-axis",
+                                    "Log scale x axis"))
+knitr::kable(plot_adds, 
+             col.names = c("Element", "Description"),
+             caption = "Common Scale Elements")
 ```
 
-### Example dataset
+## Example plot
 
-For the example plots, I'll use a dataset in the `faraway` package called `nepali`. This gives data from a study of the health of a group of Nepalese children. 
+For the example plots, we will continue to use the `mpg` dataset from the `ggplot` package. 
 
-```{r}
-library(faraway)
-data(nepali)
-```
+We will use functions from `dplyr` and `ggplot2`, so those need to be loaded:
 
-I'll be using functions from `dplyr` and `ggplot2`, so those need to be loaded:
-
-```{r message = FALSE, warning = FALSE}
+```{r mpg-5, message = FALSE, warning = FALSE}
 library(dplyr)
 library(ggplot2)
+
+ggplot() +
+  geom_jitter(data = filter(mpg, class == "suv", year == 2008),
+           aes(x = manufacturer, 
+               y = hwy, 
+               color = displ),
+           width = 0.1,
+           size = 2) +
+  labs(title = "Highway Fuel Economy for 2008 SUVs by Manufacturer and Engine Displacement",
+       color = "Disp (L)") +
+  ylab("highway fuel economy (miles/gal)") +
+  scale_color_viridis_c(option = "D", direction = -1) +
+  theme_classic() 
+
 ```
 
-Each observation is a single measurement for a child; there can be multiple observations per child. I used the following code to select only the columns for child id, sex, weight, height, and age. I also used `distinct` to limit the dataset to only include one measurement for each chile, the child's first measurement in the dataset. 
+## Store and save ggplot2 objects
+Sometimes you will want to store a ggplot2 plot as an object in your global environment (so that it can be called or manipulated later on). This is done in the same way as you would create and assign a name to any other object in R.
+```{r store-ggplot, eval = FALSE, message = FALSE, warning = FALSE}
 
-```{r message = FALSE}
-nepali <- nepali %>%
-  select(id, sex, wt, ht, age) %>%
-  mutate(id = factor(id),
-         sex = factor(sex, levels = c(1, 2),
-                      labels = c("Male", "Female"))) %>%
-  distinct(id, .keep_all = TRUE)
-```
+# create a ggplot object called "plot1"
+plot1 <- ggplot(data = mpg, aes(x = class)) +
+geom_bar()
 
-After this cleaning, the data looks like this:
-
-```{r}
-head(nepali)
-```
-
-### Histograms
-
-Histograms show the distribution of a single variable. Therefore, `geom_histogram()` requires only one main aesthetic, `x`, the (numeric) vector for which you want to create a histogram. For example, to create a histogram of children's heights for the Nepali dataset (Figure \@ref(fig:nepalihist1)), run: 
-
-```{r, nepalihist1, fig.width = 4, fig.height = 3, message = FALSE, warning = FALSE, fig.align = "center", fig.cap = "Basic example of plotting a histogram with `ggplot2`. This histogram shows the distribution of heights for the first recorded measurements of each child in the `nepali` dataset."}
-ggplot(nepali, aes(x = ht)) + 
-  geom_histogram()
 ```
 
 ```{block type = "rmdnote"}
-If you run the code with no arguments for `binwidth` or `bins` in `geom_histogram`, you will get a message saying "`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.". This message is just saying that a default number of bins was used to create the histogram. You can use arguments to change the number of bins used, but often this default is fine. You may also get a message that observations with missing values were removed. 
+When you create and store a `ggplot` object (`plot1 <- ggplot(data = mpg....`) the plot itself will be created and stored but not returned as output.  If you want to "see" the plot, just enter its name into the console or script.
 ```
 
-You can add some elements to the histogram now to customize it a bit. For example (Figure \@ref()), you can add a figure title (`ggtitle`) and clearer labels for the x-axis (`xlab`). You can also change the range of values shown by the x-axis (`xlim`).
+You can also save `ggplot2` plots as image files to a local directory using the `ggsave` function.  This function requires a filename but also allows you to specify paramaters like image resolution (`dpi = 300`), image type (`device = png()`), and image `height`, `width` and `units` of measurement. 
 
-```{r, nepalihist2, fig.width = 4, fig.height = 3, fig.align = "center", message = FALSE, warning = FALSE, fig.cap = "Example of adding ggplot elements to customize a histogram."}
-ggplot(nepali, aes(x = ht)) + 
-  geom_histogram(fill = "lightblue", color = "black") + 
-  ggtitle("Height of children") + 
-  xlab("Height (cm)") + xlim(c(0, 120))
+```{r save-ggplot, eval = FALSE, message = FALSE, warning = FALSE}
+
+# create a ggplot object called "plot1"
+plot1 <- ggplot(data = mpg, aes(x = class)) +
+geom_bar()
+
+ggsave("./images/mpg-1.png",
+       plot = plot1,
+       dpi = 150,
+       device = png(),
+       width = 20,
+       units = "cm")
 ```
 
-The geom `geom_histogram` also has special argument for setting the number of width of the bins used in the histogram. Figure \@ref(fig) shows an example of how you can use the `bins` argument to change the number of bins that are used to make the histogram of height for the `nepali` dataset.  
-
-```{r, nepalihist3, fig.width = 4, fig.height = 3, fig.align = "center", warning = FALSE, message = FALSE, fig.cap = "Example of using the `bins` argument to change the number of bins used in a histogram."}
-ggplot(nepali, aes(x = ht)) + 
-  geom_histogram(fill = "lightblue", color = "black",
-                 bins = 40) 
-```
-
-Similarly, the `binwidth` argument can be used to set the width of bins. Figure \@ref(fig:nepalihist4) shows an example of using this function to create a histogram of the Nepali children's heights with binwidths of 10 centimeters (note that this argument is set in the same units as the x variable).
-
-```{r, nepalihist4, fig.width = 4, fig.height = 3, fig.align = "center", warning = FALSE, message = FALSE, fig.cap = "Example of using the `binwidth` argument to set the width of each bin used in a histogram."}
-ggplot(nepali, aes(x = ht)) + 
-  geom_histogram(fill = "lightblue", color = "black",
-                 binwidth = 10) 
-```
-
-### Scatterplots
-
-A scatterplot shows how one variable changes as another changes. You can use the `geom_point` geom to create a scatterplot. For example, to create a scatterplot of height versus age for the Nepali data (Figure \@ref(fig:nepaliscatter1)), you can run the following code: 
-
-```{r nepaliscatter1, fig.width = 5, fig.height = 4, warning = FALSE, fig.align = "center", fig.cap = "Example of creating a scatterplot. This scatterplot shows the relationship between children's heights and weights within the nepali dataset."}
-ggplot(nepali, aes(x = ht, y = wt)) + 
-  geom_point()
-```
-
-Again, you can use some of the options and additions to change the plot appearance. For example, to add a title, change the x- and y-axis labels, and change the color and size of the points on the scatterplot (Figure \@ref(fig:nepaliscatter2)), you can run:
-
-```{r nepaliscatter2, fig.width = 5, fig.height = 4, fig.align = "center", message = FALSE, warning = FALSE, fig.cap = "Example of adding ggplot elements to customize a scatterplot."}
-ggplot(nepali, aes(x = ht, y = wt)) + 
-  geom_point(color = "blue", size = 0.5) + 
-  ggtitle("Weight versus Height") + 
-  xlab("Height (cm)") + ylab("Weight (kg)")
-```
-
-You can also try mapping another variable in the dataset to the `color` aesthetic. For example, to use color to show the sex of each child in the scatterplot (Figure \@ref(fig:nepaliscatter3)), you can run:
-
-```{r nepaliscatter3, fig.width = 5, fig.height = 4, fig.align = "center", message = FALSE, warning = FALSE, fig.cap = "Example of mapping color to an element of the data in a scatterplot."}
-ggplot(nepali, aes(x = ht, y = wt, color = sex)) + 
-  geom_point(size = 0.5) + 
-  ggtitle("Weight versus Height") + 
-  xlab("Height (cm)") + ylab("Weight (kg)")
-```
-
-
+## Getting help with ggplot2
+The `ggplot2` package has become so popular that most of my "how do I do this?" questions have already been asked, answered, and archived on sites like [stackoverflow](https://stackoverflow.com/). Another great source is the ggplot2 reference section on the [Tidyverse site](https://ggplot2.tidyverse.org/reference/index.html). This page contains a nice, concise summary of how to call and customize plot objects. I reccommend  starting there because (1) it is created and maintained by the `ggplot2` developers (and, thus, is authoritative) and (2) the reference page contains all the function calls in an organized list, for which you can conduct a 'control/command F' search. 
 
