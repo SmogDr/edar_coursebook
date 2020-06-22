@@ -194,9 +194,9 @@
 <li class="chapter" data-level="7.3.2" data-path="eda2.html"><a href="eda2.html#correlation"><i class="fa fa-check"></i><b>7.3.2</b> Correlation</a></li>
 <li class="chapter" data-level="7.3.3" data-path="eda2.html"><a href="eda2.html#correlation-neq-causation"><i class="fa fa-check"></i><b>7.3.3</b> Correlation <span class="math inline">\(\neq\)</span> causation</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#QQ"><i class="fa fa-check"></i><b>7.4</b> Q-Q Plot (Quantile-Quantile)</a></li>
-<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#Tukey"><i class="fa fa-check"></i><b>7.5</b> Tukey Mean Difference Plot</a></li>
-<li class="chapter" data-level="7.6" data-path="eda2.html"><a href="eda2.html#boxplot-box"><i class="fa fa-check"></i><b>7.6</b> Boxplot (#box)</a></li>
+<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#boxplot-box"><i class="fa fa-check"></i><b>7.4</b> Boxplot (#box)</a></li>
+<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#QQ"><i class="fa fa-check"></i><b>7.5</b> Q-Q Plot (Quantile-Quantile)</a></li>
+<li class="chapter" data-level="7.6" data-path="eda2.html"><a href="eda2.html#Tukey"><i class="fa fa-check"></i><b>7.6</b> Tukey Mean Difference Plot</a></li>
 <li class="chapter" data-level="7.7" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.7</b> Exploring Multivariate Data</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a><ul>
@@ -273,6 +273,7 @@
 <h2><span class="header-section-number">7.1</span> Objectives</h2>
 <p>After this chapter, you should (know / understand / be able to ):</p>
 <ul>
+<li>Define correlation, causation, and their difference</li>
 <li>Conduct a formal exploratory data analysis on multivariate data using geoms from <code>ggplot</code></li>
 <li>Create and interpret a scatterplot between two variables</li>
 <li>Create and interpret a Q-Q plot</li>
@@ -340,14 +341,34 @@ Figure 7.2: Scatterplot examples showing bivariate data with varying types of co
 </div>
 <div id="correlation-neq-causation" class="section level3">
 <h3><span class="header-section-number">7.3.3</span> Correlation <span class="math inline">\(\neq\)</span> causation</h3>
-<p>Let’s take a closer look at the dangers of assuming a causal relationship between two variables. Here is a scatterplot that builds off the plot shown in Figure <a href="#fig:mpg-5"><strong>??</strong></a>.</p>
+<div class="rmdnote">
+<p>
+Causation (or cause and effect) is influence by which one event, process or state, a cause, that contributes to the production of another event, process or state, an effect, where the cause is partly responsible for the effect, and the effect is partly dependent on the cause. - <em><sup>Wikipedia</sup></em>
+</p>
 </div>
+<p>Let’s take a closer look at the dangers of mistaking a <em>correlated</em> relationship as <em>causal</em> relationship between two variables. Shown below is a scatterplot that builds off the <code>mpg</code> dataset we first discussed in Chapter <a href="dataviz.html#dataviz">4</a>. Using the <code>mpg</code> dataframe, we will plot the relationship between the number of cylinders in an engine (<code>cyl</code>, the independent variable) and that vehcile’s fuel economy (<code>hwy</code>, the dependent variable).</p>
+<div class="figure" style="text-align: center"><span id="fig:corr-example-3"></span>
+<img src="07-eda2_files/figure-html/corr-example-3-1.png" alt="Scatterplot of Engine Displacement vs. Fuel Economy" width="672" />
+<p class="caption">
+Figure 7.3: Scatterplot of Engine Displacement vs. Fuel Economy
+</p>
+</div>
+<p>Looking at this plot, there appears a clear correlation between the number of cylinders in a vehicle and its fuel efficiency A linear fit through these data gives a Pearson correlation coefficient of -0.76: not a perfect relationship but a significant one nonetheless. Does this mean that a <em>causal relationship</em> exists? If so, then we only need to mandate that all future vehciles on the road be built with 4-cylinder engines, if we want more a fuel-efficient fleet! That mandate, of course, would likely do little. Just because two variables are correlated doesn’t mean that a change in one will <strong><em>cause</em></strong> a change in the other.</p>
+<p>Those who understand internal combustion know that the number of cylinders is a design paramater more related to engine power than engine efficiency (i.e., the number of cylinders helps determine total displacement volume). Indeed, the causal relationship for fuel efficiecy, in terms of miles travled per gallon, is due more directly to engine efficiency, vehicle drag coefficient, and vehicle mass. If you want more fuel-efficient cars and trucks, you need more fuel-efficient engines that weigh less. Did you know that in the 1990s and early 2000s nearly all engine blocks were made from cast iron? Today, nearly all of them are made from aluminum. Can you guess why?</p>
+<blockquote>
+<p>Did you know that being a smoker is correlated with having a lighter in your pocket? Furthermore, it can be shown that having a lighter in your pocket is correlated with heart disease and lung cancer. Does that mean that keeping a lighter in your pocket is a cause of lung cancer?</p>
+</blockquote>
+</div>
+</div>
+<div id="boxplot-box" class="section level2">
+<h2><span class="header-section-number">7.4</span> Boxplot (#box)</h2>
+<p>A boxplot <em>can be created</em> for univariate data, but single boxplots are quite boring by themselves (and the same information presented by a boxplot is just as easy to get from a cumulative distribution plot for univariate data).</p>
 </div>
 <div id="QQ" class="section level2">
-<h2><span class="header-section-number">7.4</span> Q-Q Plot (Quantile-Quantile)</h2>
+<h2><span class="header-section-number">7.5</span> Q-Q Plot (Quantile-Quantile)</h2>
 </div>
 <div id="Tukey" class="section level2">
-<h2><span class="header-section-number">7.5</span> Tukey Mean Difference Plot</h2>
+<h2><span class="header-section-number">7.6</span> Tukey Mean Difference Plot</h2>
 <ul>
 <li>The Tukey mean-difference plot (also known as a Bland-Altman plot) shows <strong>Difference</strong> on the y-axis vs. <strong>Mean</strong> on the x-axis for two paired measurements. This plot is most often used as a way to compare two instruments that measure the same thing. The concept was introduced by the famous statistician John Tukey, and popularize in the field of clinical chemistry by Bland and Altman.<br />
 </li>
@@ -355,10 +376,6 @@ Figure 7.2: Scatterplot examples showing bivariate data with varying types of co
 </li>
 <li>The plot is also useful for evaluating bias and precision (and <em>accuracy</em> if one of the instruments happens to be a “gold-standard” reference measure).</li>
 </ul>
-</div>
-<div id="boxplot-box" class="section level2">
-<h2><span class="header-section-number">7.6</span> Boxplot (#box)</h2>
-<p>A boxplot <em>can be created</em> for univariate data, but single boxplots are quite boring by themselves (and the same information presented by a boxplot is just as easy to get from a cumulative distribution plot for univariate data).</p>
 </div>
 <div id="exploring-multivariate-data" class="section level2">
 <h2><span class="header-section-number">7.7</span> Exploring Multivariate Data</h2>
