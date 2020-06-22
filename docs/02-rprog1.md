@@ -5,25 +5,24 @@
 
 ## Objectives
 
-After this chapter, you should: 
+This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:  
 
-- Know what free and open source software is and some of its advantages over proprietary software
-- Understand the difference between R and RStudio
-- Be able to download both R and RStudio to your own computer
-- Understand that R has a basic core of code that you initially download, and
-that this "base R" can be expanded by installing a variety of packages
-- Be able to install a package from CRAN to your computer
-- Be able to load a package that you have installed to use its functions within an R session
-- Be able to access help documentation (vignettes, helpfiles) for a package and its functions
-- Be able to submit R expressions at the console prompt to communicate with R
-- Understand the structure for calling a function and specifying options for that function
-- Know what an R object is and how to assign an R object a name to reference it in later code
-- Be able to create vector objects of numeric and character classes
-- Be able to explore and extract elements from vector objects
-- Be able to create dataframe objects
-- Be able to explore and extract elements from dataframe objects
-- Be able to describe the difference between running R code from the console
-versus writing and running R code in an R script
+- Define free and open source software and list some of its advantages over proprietary software
+- Recognize the difference between R and RStudio
+- Download and install both R and RStudio to your own computer
+- Describe the differences between base R code that you initially download and
+"package" code that you use to expand BaseR
+- Use RStudio to download and install a package from CRAN to your computer
+- Use RStudio to load a package that you have installed within an R session
+- Demonstrate how to access help documentation (vignettes, helpfiles) for a package and its functions
+- Demonstrate how to submit R expressions at the console prompt to communicate with R
+- Define the general syntax for calling a function and for specifying both required and optional arguments for that function
+- Describe what an R object is and how to assign an R object a name to reference it in later code
+- Describe how to create vector objects of numeric and character classes
+- Describe how to explore and extract elements from vector objects
+- Describe how to create dataframe objects
+- Describe how to explore and extract elements from dataframe objects
+- Compare the key differences between running R code from the console versus writing and running R code in an R script
 
 ## R and R Studio
 

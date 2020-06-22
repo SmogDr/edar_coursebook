@@ -1,7 +1,13 @@
 # Data Visualization: ggplot2 {#dataviz}
 
 
+## Objectives
+This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:  
 
+- Install and call the ggplot function to visualize dataframe elements;
+- Define the difference between data, aesthetics, and layers in a ggplot call;
+- Define how to change color and shape elements in a ggplot layer;
+- Create, store, and save a ggplot object using an RStudio script.
 
 ## Install and call `ggplot2`
 > <span style="color: blue;"> The best design gets out of the way between the viewer’s brain and the content. - Edward Tufte </span>
@@ -252,7 +258,7 @@ There are many scale elements that you can add onto a `ggplot` object using `+`.
 
 ## Example plot
 
-For the example plots, we will continue to use the `mpg` dataset from the `ggplot` package. We will use functions from the `dplyr` package, too, so both need to be loaded. In this figure, we will look at highway fuel efficiency for SUVs in 2008, ordered by manufacturer and colored by the engine displacement size in liters.  We create subsets of the `mpg` dataframe in two ways:  
+For the example plots, we will continue to use the `mpg` dataset from the `ggplot2` package. We will use functions from the `dplyr` package, too, so both need to be loaded. In this figure, we will look at highway fuel efficiency for SUVs in 2008, ordered by manufacturer and colored by the engine displacement size in liters.  We create subsets of the `mpg` dataframe in two ways:  
 
 1. We create a summary dataframe (`mpg_5`) by applying two `filter` calls on the `mpg` object.  We then `group_by` the manufacturer so that average values for highway fuel economy (`hwy.mean`) and engine displacement (`displ.mean`) can be calculated through a call to `summarise`.  
 2. We subset the `mpg` dataframe again, this time directly within the `data =` call for `ggplot2`.   
@@ -305,11 +311,7 @@ ggplot() +
 <p class="caption">(\#fig:mpg-5)A two-layer (two `geom`) plot with cusomization</p>
 </div>
 
-```r
-# ggsave(filename = "./images/mpg-5.png", dpi = 150, device = png())
-```
-
-What conclusions can you draw from examining Figure \@ref(fig:mpg-5)?
+What conclusions can you draw from examining Figure \@ref(fig:mpg-5)?  In general, model year 2008 SUVs did not have great fuel economy, as can be seen from both the means and the individual data points.  
 
 ## Store and save ggplot2 objects
 Sometimes you will want to store a ggplot2 plot as an object in your global environment (so that it can be called or manipulated later on). This is done in the same way as you would create and assign a name to any other object in R.
