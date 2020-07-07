@@ -990,8 +990,8 @@ vectors.
 </div>
 
 To create a vector from different elements, you'll use the concatenation
-function, `c` to join them together, with commas between the elements. For
-example, to create the vector shown in Figure \@ref(fig:vector-example), you 
+function, `c` to join them together, with commas between the elements (*concatenate* is a fancy word that means: "to link together"). 
+For example, to create the vector shown in Figure \@ref(fig:vector-example), you 
 can run:
 
 

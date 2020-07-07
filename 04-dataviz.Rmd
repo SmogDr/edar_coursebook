@@ -7,8 +7,6 @@ library(knitr)
 library(bookdown)
 library(scales)
 library(kableExtra)
-library(lubridate)
-data(nepali)
 ```
 ## Objectives
 This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:  
@@ -222,7 +220,7 @@ For the example plots, we will continue to use the `mpg` dataset from the `ggplo
 
 We also add custom lables and a fancy color scale to investigate whether engine displacement has an effect on fuel efficiency (note the additional aesthetic calls for `color = ` in each layer).  The final part of the call `theme_classic()` tells ggplot to remove the grey background and the grid lines, which I don't feel are necessary.
 
-```{r mpg-5, message = FALSE, warning = FALSE, fig.cap= "A two-layer (two `geom`) plot with cusomization"}
+```{r mpg-5, message = FALSE, warning = FALSE, fig.cap= "A two-layer (two `geom`) plot with customization"}
 library(dplyr)
 library(ggplot2)
 
@@ -230,7 +228,7 @@ library(ggplot2)
 mpg_5 <- mpg %>%
   filter(class == "suv", year == 2008) %>%
   group_by(manufacturer) %>%
-  summarise(hwy.mean = mean(hwy), displ.mean = (mean(displ)))
+  summarise(hwy.mean = mean(hwy), displ.mean = mean(displ))
 
 # call to ggplot, note that data and aesthetics are called in each geom layer
 ggplot() +
@@ -247,7 +245,8 @@ ggplot() +
                  ymin = hwy.mean,
                  ymax = hwy.mean,
                  color = displ.mean),
-             alpha = 0.5) +
+             alpha = 0.5,
+             size = 1) +
   # customize plot labels
   labs(title = "Fuel Economy for 2008 SUVs by Manufacturer and Engine Displacement",
        color = "Disp (L)") +

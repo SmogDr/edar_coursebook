@@ -2,6 +2,8 @@
 
 ```{r intro1, echo=FALSE}
 library(fortunes)
+library(knitr)
+library(bookdown)
 ```
 
 
@@ -854,8 +856,8 @@ knitr::include_graphics("figures/vector_class_examples.jpg")
 ```
 
 To create a vector from different elements, you'll use the concatenation
-function, `c` to join them together, with commas between the elements. For
-example, to create the vector shown in Figure \@ref(fig:vector-example), you 
+function, `c` to join them together, with commas between the elements (*concatenate* is a fancy word that means: "to link together"). 
+For example, to create the vector shown in Figure \@ref(fig:vector-example), you 
 can run:
 
 ```{r}
@@ -965,7 +967,7 @@ character string is saved in the object named `phonenumber`. However, `library`
 is one of the functions where you can be lazy and skip the quotation marks, and
 it will still load "phonenumber" for you. Therefore, if you want, this function
 also works if you call `library(package = phonenumber)` (without the quotation marks)
-instead of how we actually called it (`library(package = phonenumber)`). 
+instead of how we actually called it (`library(package = "phonenumber")`). 
 ```
 
 ### Dataframes
