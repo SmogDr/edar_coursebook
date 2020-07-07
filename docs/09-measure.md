@@ -53,10 +53,10 @@ So...if you cannot collect a truly representative sample, how can you trust your
 Let's review a few common sampling strategies here.  
 
 ### Simple Random Sampling
-Simple random sampling means that samples are randomly collected from across the population and over a period of time where the population characteristics (especially those characteristics being measured) remain constant.  The main advantage of simple random sampling is that, when done correctly, your collected sample should be unbiased and representative of the population.  The issue here, of course, is making sure you collect the sample correctly.
+Simple random sampling means that samples are randomly collected from across the population and over a period of time where the population characteristics (especially those characteristics being measured) remain constant.  The main advantage of simple random sampling is that, when done correctly, your data should be unbiased and representative of the population.  The main issue with simple random sampling is that it can be hard to do "correctly".  
 
 <div class="rmdnote">
-<p>To collect a simple random sample correctly, you need to ensure three things:</p>
+<p>To collect a simple random sample, you need to ensure three things:</p>
 <ol style="list-style-type: decimal">
 <li>that your sampling method gives <strong><em>every single member</em></strong> of the population an <strong><em>equal chance</em></strong> of being selected.</li>
 <li>that your population remains relatively unchanged during the sampling window.<br />
@@ -65,14 +65,37 @@ Simple random sampling means that samples are randomly collected from across the
 </ol>
 </div>
 
+How large of a sample size do you need to collect?  That depends on a lots of things:  
+
+1. what you want to do with the data (read: what conclusions/questions are you after?)  
+    - Are you estimating location and/or spread, are you comparing location/spread, or are you fitting a model?
+2. What are the risks/consequences of making incorrect conclusions?  
+    - Do you need 95% confidence in your answer, 99%, 99.999%?  
+3. How much variability do you expect to see in your data?   
+
+These factors all work together to frame sample size considerations.  There are many ways to estimate sample size (too many for this course), so I will use only one here: sample size (n) for a t-test comparing two means:
+
+&ensp;&ensp;&ensp;&ensp;&ensp;  $n = \frac{(Z_{\alpha/2}\cdot+Z_{\beta/2})^2\cdot2\cdot\sigma^2}{d^2}$     where,  
+
+  - $\alpha$ represents the Type-1 error rate (1 - confidence level); 0.05 is typical  
+  - $\beta$ represents the Type-2 error rate (1 - power); 0.2 is typical  
+  - $Z_{\alpha/2}$ represents the critical value of the [Normal distribution](#normal_dist) at $\alpha/2$  
+  - $Z_{\beta/2}$ represents the critical value of the [Normal distribution](#normal_dist) at $\beta/2$  
+  - $\sigma^2$ is the population variance  
+  - $d$ is the difference (in means) that you are trying to detect  
+
+
+
 ### Systematic Sampling
-Systematic sampling is often employed when simple random sampling is not feasible.  With systematic sampling, the population is first ordered according to a characteristic of interest (e.g., first to last, front to back, smallest to largest, youngest to oldest, etc.) and then samples are drawn at regular intervals from across the ordered range of values.  For example, if you wanted to know the opinions of marathoners at the finish line of a particular race, you might decide to randomly sample one person passing through the finish line every five minutes starting with the winner's group and ending with the last finisher.
+Systematic sampling is often employed when simple random sampling is not feasible.  With systematic sampling, the population is first ordered according to a characteristic of interest (e.g., first to last, front to back, smallest to largest, youngest to oldest, etc.) and then samples are drawn at regular intervals from across the ordered range of values.  For example, if you wanted to know the opinions of marathoners at the finish line of a particular race, you might decide to randomly sample one person passing through the finish line every five minutes starting with the winner's group and ending with the last finisher.  The main disadvantage to systematic sampling is the creation of an ordering scheme, which can introduce bias into the results (whether known or unknown).  For example, in the NBA's annual [3-point shooting contest](https://en.wikipedia.org/wiki/Three-Point_Contest), every 5th ball is worth extra points to the shooter; if we conducted systematic sampling of every 5th shot, we would only select the shots worth extra points (i.e., the shots that the shooter cares the most about). 
 
 ### Stratified Sampling
-Stratified sampling is often used when you know something (a priori) about the population that you want to sutdy (or at least account for) and that something can be mapped onto the population to form groups.  With stratefied sampling, you break the population into strata (a fancy word for *groups*) and then sample randomly (in equal proportion) from within each strata. This technique is used because the strata are believed to be important relative to the the variables of interest. The strata can be time-based (e.g., the quality of parts produced during the morning, afternoon, and night shift at a factory), place-based (e.g., the quality of parts produced at assembly plant A, B, C), or based on other known characteristics.  For example, when people are the subject of study, strata are often formed about age groups, gender groups, income brackets, and educational attainment, to name a few.
+Stratified sampling is often used when (1) you know "something" (a priori) about the population that you want to sutdy (or at least account for in your sample) and (2) when that "something" can be mapped onto the population to form groups.  With stratified sampling, you break the population into strata (a fancy word for *groups*) and then sample randomly (in equal proportion) from within each strata. This technique is used because the strata are believed to be important relative to the the variables of interest. The strata can be time-based (e.g., the quality of parts produced during the morning, afternoon, and night shift at a factory), place-based (e.g., the quality of parts produced at assembly plant A, B, C), or based on other known characteristics.  For example, when people are the subject of study, strata are often formed about age groups, gender groups, income brackets, and educational attainment, to name a few. Stratified random sampling can be more tedious to conduct and is sometimes biased if not all of the subgroups within a population are identified. For example, a survey of the effects of housing on health (stratified into homeowners vs. renters) would ignore a key subgroup: those who are experiencing homelessness.
 
 ### Cluster Sampling
 Cluster sampling is often used to save on time and effort during a sampling campaign when it's possible to break the population into **similar groups**, or clusters. The population is divided into clusters (based on some grouping characteristic) and then a proportion of those clusters are fully sampled.  For example, if your company had 100  distribution centers across the country, and you wished to study some measure of process efficiency, then you might select 10 centers as clusters, and fully sample each.  
+
+Cluster sampling is considered less precise (i.e., more samples needed for a given question) than simple random sampling, but oftentimes its unfeasible or too costly to sample the whole population.  If cluster units are apparent, they can provide considerable cost savings.
 
 <div class="rmdnote">
 <p>The important difference between stratified and cluster sampling is how each design defines the groups. With <em>stratified sampling</em>, the distinction between groups (i.e., how the data varies from one group to the next) is important; with <em>cluster sampling</em>, the distinction between groups should be one of convenience (and hopefully not meaningful as it relates to data variability).</p>
@@ -84,9 +107,18 @@ All measurements are estimates of a *"true value"* that you seek to discover. To
 ### Limit of Detection & Quantification
 Imagine that I asked you to hold out your hand and close your eyes. Could you tell if I added a single grain of flour to your hand? Likely not. The mass of that grain is about 1/50^th^ that of an eyelash.  What if I added 100 grains?  Maybe you could tell.  If I added 1000 grains you could likely feel it.  This imaginary exercise outlines the concept of ***"limit of detection"***, or "LOD", which represents the *threshold* at which an instrument can distinguish between "something" and "nothing" being measured.  The concept of LOD applies best to instruments that measure continuous properties like time, distance, energy, force, etc.  
 
-There are several approaches to estimating an instrument's lower limit of detection. The simplest approach is first to challenge that instrument to measure increasingly more "stuff" and observe it's response. This is shown graphically below with "instrument response" on the y-axis and "amount of stuff being measured" on the x-axis.  We use a logarithmic scale for the x axis because when we measure "stuff" in engineering we usually have the ability to observe several orders of magnitude (the length of a baseball stitch, a baseball, a baseball field, or a baseball stadium).
+There are several approaches to estimating an instrument's lower limit of detection. The simplest approach is first to challenge that instrument to measure increasingly more "stuff" and observe it's response. This is shown graphically below with "instrument response" on the y-axis and "amount of stuff being measured" on the x-axis.  We use a logarithmic scale for the x axis because when we measure "stuff" in engineering we usually have the ability to observe several orders of magnitude (the length of a baseball stitch, a baseball, a baseball field, or a baseball stadium). Many instruments respond with an "S" shaped curve where you initially see no (or asymptotic response), followed by a linear response, followed by another asymptotic tail at the upper detection limit.
 
-<img src="09-measure_files/figure-html/lod-1-1.png" width="672" />
+
+
+<div class="figure" style="text-align: center">
+<img src="./images/lod_depiction_anno.png" alt="Experimental investigations into LOD and dynamic range" width="100%" />
+<p class="caption">(\#fig:lod-2)Experimental investigations into LOD and dynamic range</p>
+</div>
+To calculate the lower LOD, we often measure a series of "blanks" and then calculate the mean and standard deviation about those data.
+<div class="rmdnote">
+<p><strong>What is a blank?</strong> A <em>blank</em> is an attempt to challenge the instrument to measure nothing from something. Let’s say you had a scale to weigh the mass of cherries picked at an orchard. Each load of cherries is weighed in a small paper bag (so that they don’t spill everywhere). Then weighing the empty paper bag would be considered a “blank” for that instrument.</p>
+</div>
 
 ### Dynamic Range
 The LOD/LOQ concept is most often applied to an instrument's *minimum detectable quantity*, but it's important to realize that instruments also have a *maximum detectable quantities*, too. The ***dynamic range*** of an instrument, thus, describes the range of values (min/max) that an instrument can measure. It's important to know an instrument's dynamic range so that you don't misuse it. For example, you wouldn't use the scale in a doctor's office to weigh grains of rice just as you wouldn't ask human beings to report on the loudness of dog whistles.  The dynamic range of an instrument represents the measurement range between a lower and upper detection limit. 
