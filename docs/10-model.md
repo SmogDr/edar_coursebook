@@ -21,3 +21,5 @@ How to fit a distribution
 ### Weighted Least Squares
 
 ### Deming Regression
+
+### Calibration

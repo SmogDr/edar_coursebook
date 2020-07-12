@@ -224,7 +224,7 @@ helpful to know what they are. Functions in the `read.table` family include:
 - `read.fwf`
 
 <div class="rmdnote">
-<p>The <code>readr</code> package is a member of the tidyverse of packages. The <em>tidyverse</em> describes an evolving collection of R packages with a common philosophy, and they are unquestionably changing the way people code in R. Many were developed in part or full by Hadley Wickham and others at RStudio. Many of these packages are less than ten years old, but have been rapidly adapted by the R community. As a result, newer examples of R code will often look very different from the code in older R scripts, including examples in books that are more than a few years old. In this course, I’ll focus on “tidyverse” functions when possible, but I do put in details about base R equivalent functions or processes at some points—this will help you interpret older code. You can download all the tidyverse packages using <code>install.packages(&quot;tidyverse&quot;)</code>, <code>library(&quot;tidyverse&quot;)</code> makes all the tidyverse functions available for use.</p>
+<p>The <code>readr</code> package is a member of the tidyverse of packages. The <em>tidyverse</em> describes an evolving collection of R packages with a common philosophy, and they are unquestionably changing the way people code in R. Many were developed in part or full by Hadley Wickham and others at RStudio. Many of these packages are less than ten years old, but have been rapidly adapted by the R community. As a result, newer examples of R code will often look very different from the code in older R scripts, including examples in books that are more than a few years old. In this course, I’ll focus on “tidyverse” functions when possible, but I do put in details about base R equivalent functions or processes at some points—this will help you interpret older code. You can download all the tidyverse packages using <code>install.packages("tidyverse")</code>, <code>library("tidyverse")</code> makes all the tidyverse functions available for use.</p>
 </div>
 
 ### Reading in other file types
@@ -237,12 +237,12 @@ There are two "tidyverse" packages---`readxl` and `haven`---that help with this.
 They allow you to read in files from the following formats:
 
 
-File type   Function       Package  
-----------  -------------  ---------
-Excel       `read_excel`   `readxl` 
-SAS         `read_sas`     `haven`  
-SPSS        `read_spss`    `haven`  
-Stata       `read_stata`   `haven`  
+|File type |Function     |Package  |
+|:---------|:------------|:--------|
+|Excel     |`read_excel` |`readxl` |
+|SAS       |`read_sas`   |`haven`  |
+|SPSS      |`read_spss`  |`haven`  |
+|Stata     |`read_stata` |`haven`  |
 
 ## Directories and pathnames
 
@@ -447,12 +447,12 @@ relative pathname would no longer work.
 There are a few abbreviations that can be really useful for pathnames:
 
 
-Shorthand   Meaning                                           
-----------  --------------------------------------------------
-`~`         Home directory                                    
-`.`         Current working directory                         
-`..`        One directory up from current working directory   
-`../..`     Two directories up from current working directory 
+|Shorthand |Meaning                                           |
+|:---------|:-------------------------------------------------|
+|`~`       |Home directory                                    |
+|`.`       |Current working directory                         |
+|`..`      |One directory up from current working directory   |
+|`../..`   |Two directories up from current working directory |
 
 These can help you keep pathnames shorter and also help you move "up-and-over"
 to get to a file or directory that's not on the direct path below your current
@@ -660,12 +660,12 @@ some of the most common data-cleaning tasks, along with the corresponding
 `dplyr` function for each:
 
 
-Task                         `dplyr` function 
----------------------------  -----------------
-Renaming columns             `rename`         
-Filtering to certain rows    `filter`         
-Selecting certain columns    `select`         
-Adding or changing columns   `mutate`         
+|Task                       |`dplyr` function |
+|:--------------------------|:----------------|
+|Renaming columns           |`rename`         |
+|Filtering to certain rows  |`filter`         |
+|Selecting certain columns  |`select`         |
+|Adding or changing columns |`mutate`         |
 
 In this section, I'll describe how to do each of these four tasks; in later
 sections of the course, we'll go much deeper into how to clean messier data.
@@ -886,12 +886,12 @@ Just so you know, all of these `dplyr` functions have alternatives, either
 functions or processes, in base R:
 
 
-`dplyr`    Base R equivalent                  
----------  -----------------------------------
-`rename`   Reassign `colnames`                
-`select`   Square bracket indexing            
-`filter`   `subset`                           
-`mutate`   Use `$` to change / create columns 
+|`dplyr`  |Base R equivalent                  |
+|:--------|:----------------------------------|
+|`rename` |Reassign `colnames`                |
+|`select` |Square bracket indexing            |
+|`filter` |`subset`                           |
+|`mutate` |Use `$` to change / create columns |
 
 You will see these alternatives used in older code examples.
 

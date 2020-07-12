@@ -17,7 +17,8 @@ This Chapter is designed around the following learning objectives. Upon completi
 - Define the primary characteristics of *"Tidy Data"*
 - Apply functions from the `dplyr` and `tidyr` packages to make dataframes "tidy"
 
-## Strings
+## Strings {#strings}
+Strings are class of character vectors
 
 ### String detect & match
 
@@ -27,9 +28,9 @@ This Chapter is designed around the following learning objectives. Upon completi
 
 ### String extract & remove
 
-## Working with Dates and Date-times
+## Dates and Date-times
 
-To begin, we discuss how the Core R code `{base}` handles dates and times, since there is a ton of code out there that utilizes these older functions. We will then quickly transition to the `lubridate` family of functions (part of the Tidyverse) because of their versatility and ease-of-use.  
+To begin, we discuss how the core R code `{base}` handles dates and times, since there is a ton of code out there that utilizes these older functions. We will then quickly transition to the `lubridate` family of functions (part of the Tidyverse) because of their versatility and ease-of-use.  
 
 ### Dates and Times in base R
 
@@ -43,7 +44,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-06-26 11:50:44 MDT"
+## [1] "2020-07-10 19:21:41 MDT"
 ```
 As you can see, we got back the date, time, and current timezone used by my computer.  If you want to see how this time is stored in R internally, you can use `unclass()`, which returns an object value with its class attributes removed.  When we wrap `unclass()` around `Sys.time()`, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:
 
@@ -53,15 +54,15 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1593193845
+## [1] 1594430502
 ```
 
 That's a lot of seconds.  How many years is that?  
-Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] ~ 50.5198454 years.  
+Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] ~ 50.5590595 years.  
 This calculation ignores leap years but you get the point...
 
 ### Date-time formats
-Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-06-26 11:50:44
+Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-07-10 19:21:41
 
 Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky.  You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:
 
@@ -87,7 +88,7 @@ Not everyone uses this exact ordering when they record dates and times, which is
 
 ### Date-time classes in R
 
-R has several classes of Date-time objects, none of which are easy to remember:  
+R has several classes of date-time objects, none of which are easy to remember:  
 
 1. **`POSIXct`** - stored as the time, in seconds, between the `epoch` of 1970-01-01 00:00:00 UTC and the date-time object in question.  
     * the 'ct' stands for *"continuous time"* to represent "continuous seconds from origin";
@@ -165,7 +166,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1593193845
+## [1] 1594430502
 ```
 
 
@@ -176,14 +177,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 44.9
-##  $ min   : int 50
-##  $ hour  : int 11
-##  $ mday  : int 26
-##  $ mon   : int 5
+##  $ sec   : num 41.8
+##  $ min   : int 21
+##  $ hour  : int 19
+##  $ mday  : int 10
+##  $ mon   : int 6
 ##  $ year  : int 120
 ##  $ wday  : int 5
-##  $ yday  : int 177
+##  $ yday  : int 191
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
@@ -216,17 +217,17 @@ In **summary** here are a few `{base}` R functions on date-time object that are 
 <tbody>
   <tr>
    <td style="text-align:left;"> Sys.Date() </td>
-   <td style="text-align:left;"> Current System Date </td>
+   <td style="text-align:left;"> Current system date </td>
    <td style="text-align:left;"> "2020-06-23" </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Sys.time() </td>
-   <td style="text-align:left;"> Current System Date-Time </td>
+   <td style="text-align:left;"> Current system date-Time </td>
    <td style="text-align:left;"> "2020-06-23 11:05:20 MDT" </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Sys.timezone() </td>
-   <td style="text-align:left;"> Current System Timezone </td>
+   <td style="text-align:left;"> Current system timezone </td>
    <td style="text-align:left;"> "America/Denver" </td>
   </tr>
   <tr>

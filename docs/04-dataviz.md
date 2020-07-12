@@ -278,7 +278,7 @@ library(ggplot2)
 mpg_5 <- mpg %>%
   filter(class == "suv", year == 2008) %>%
   group_by(manufacturer) %>%
-  summarise(hwy.mean = mean(hwy), displ.mean = (mean(displ)))
+  summarise(hwy.mean = mean(hwy), displ.mean = mean(displ))
 
 # call to ggplot, note that data and aesthetics are called in each geom layer
 ggplot() +
@@ -295,7 +295,8 @@ ggplot() +
                  ymin = hwy.mean,
                  ymax = hwy.mean,
                  color = displ.mean),
-             alpha = 0.5) +
+             alpha = 0.5,
+             size = 1) +
   # customize plot labels
   labs(title = "Fuel Economy for 2008 SUVs by Manufacturer and Engine Displacement",
        color = "Disp (L)") +
@@ -307,8 +308,8 @@ ggplot() +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="04-dataviz_files/figure-html/mpg-5-1.png" alt="A two-layer (two `geom`) plot with cusomization" width="672" />
-<p class="caption">(\#fig:mpg-5)A two-layer (two `geom`) plot with cusomization</p>
+<img src="04-dataviz_files/figure-html/mpg-5-1.png" alt="A two-layer (two `geom`) plot with customization" width="672" />
+<p class="caption">(\#fig:mpg-5)A two-layer (two `geom`) plot with customization</p>
 </div>
 
 What conclusions can you draw from examining Figure \@ref(fig:mpg-5)?  In general, model year 2008 SUVs did not have great fuel economy, as can be seen from both the means and the individual data points.  
@@ -345,3 +346,8 @@ ggsave("./images/mpg-1.png",
 ## Getting help with ggplot2
 The `ggplot2` package has become so popular that most of my "how do I do this?" questions have already been asked, answered, and archived on sites like [stackoverflow](https://stackoverflow.com/). Another great source is the ggplot2 reference section on the [Tidyverse site](https://ggplot2.tidyverse.org/reference/index.html). This page contains a nice, concise summary of how to call and customize plot objects. I reccommend  starting there because (1) it is created and maintained by the `ggplot2` developers (and, thus, is authoritative) and (2) the reference page contains all the function calls in an organized list, for which you can conduct a 'control/command F' search. 
 
+## Class Exercises
+1. Create a `geom_col`
+2. Create a geom_jitter (mtcars y=mpg, x=cyl)
+3. Vary fill, color, line for whole plot
+4. Create fill, color aesthetics
