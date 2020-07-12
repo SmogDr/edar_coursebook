@@ -46,13 +46,15 @@ Course grades will be determined by the following five components:
 
 ```{r grading, echo=FALSE}
 grading <- data.frame(a = c("Exams",
-                      "Quizzes",
-                      "Homework"),
-                b = c(60, 25, 15))
+                            "Quizzes",
+                            "Homework"),
+                      b = c(60, 25, 15))
 knitr::kable(grading, 
-             col.names = c("Assessment component", "Percent of grade"), 
+             col.names = c("Assessment component", 
+                           "Percent of grade"),
              align = "c") %>%
-             kable_styling(bootstrap_options = "striped", full_width = F)
+             kable_styling(bootstrap_options = "striped", 
+                           full_width = F)
 ```
 
 ## Course set-up
@@ -71,7 +73,7 @@ Students will also need to download and install git software and create a GitHub
 
 If you want to generate PDF output from R Markdown, you will also need to install LaTex. More installation guidance can be found [here](https://bookdown.org/yihui/rmarkdown/installation.html). 
 
-```{r tinytex}
+```{r tinytex, echo=FALSE}
 # install R package
 install.packages("tinytex")
 # install LaTex "ingredients"
