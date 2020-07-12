@@ -22,17 +22,17 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
 # Introduction {#intro}
  <font size="5"> Preface </font>
 
-I developed this coursebook to help engineers begin to *think* about data.  Most of my job at the university is to conduct research, yet most of the students who show up to my lab don't know where to begin when presented with data.  The irony is that while engineering students are continuously drilled on how to solve problems, they are rarely taught how to seek them out.  My undergraduate advisor, Dr. David Hemenway, once told me: "the data are always trying to tell you something."  This book is an introduction to data listening, because listening comes before understanding.
+I developed this coursebook to help engineers begin to *think* about data.  Most of my job at the university is to conduct research, yet most of the students who show up to my lab don't know where to begin when presented with data. The irony is that, while engineering students are continuously drilled on how to solve problems, they are rarely taught how to seek them out. My undergraduate advisor, Dr. David Hemenway, once told me: "The data are always trying to tell you something."  This book is an introduction to *data listening* because listening comes before understanding.
 
-In broad terms, scientific and engineering research is about discovery: finding out something new. In practice, however, research is really about failure. Over the short term, researchers fail in the act of discovery much more often than they succeed.  Such failure is to be expected because cutting-edge research ain't easy.  Once you come to terms with accepting failure as a regular occurrence, you put yourself in a position to learn from it. To learn from failure requires that you observe and diagnose "what went wrong" and to do that, you need to listen to what the data is telling you.  Let's begin.
+In broad terms, scientific and engineering research is about discovery: finding out something new. In practice, however, research is really about failure. Over the short term, researchers fail in the act of discovery much more often than they succeed. Such failure is to be expected because cutting-edge research ain't easy. Once you come to terms with accepting failure as a regular occurrence, you put yourself in a position to learn from it. To learn from failure requires that you observe and diagnose "what went wrong" and to do that, you need to listen to what the data are telling you. Let's begin.
 
 ## How to use this book
-The coursebook is intended to be a sort of *self-help* guide for students who want to learn R programming and the art of engineering data science.  The book is designed to get you started in the art, not master it. I'm not qualified to teach mastery in the art of R or engineering data science, so look elsewhere for that level of tutelage.
 
-If you are new to these topics, you probably want to start at the beginning and proceed through each chapter sequentially.  Some sections or material might seem boring or too easy...in that case just skip to the end of the section and see if you can complete the exercises and answer the questions.
+The coursebook is intended to be a sort of *self-help* guide for students who want to learn R programming and the art of engineering data science. The book is designed to get you started in the art, not master it. I'm not qualified to teach mastery in the art of R or engineering data science, so look elsewhere for that level of tutelage.
 
-Nearly all of the graphics and data presented in this book were created/manipulated in R. In many places, however, I have hidden the code in order to streamline the message.  If you ever wonder "how did he do that" you can download any of the R markdowns on [my GitHub page](https://github.com/SmogDr/edar_coursebook/), where this coursebook is hosted. 
+If you are new to these topics, you probably want to start at the beginning and proceed through each chapter sequentially. Some sections or material might seem boring or too easy. In that case, just skip to the end of the section and see if you can complete the exercises and answer the questions.
 
+Nearly all of the graphics and data presented in this book were created or manipulated in R. In many places, however, I have hidden the code in order to streamline the message. If you ever wonder "How did he do that?" you can download any of the R Markdowns on [the GitHub repository](https://github.com/SmogDr/edar_coursebook/), where this coursebook is hosted. 
 
 ## Prerequisites
 
@@ -54,19 +54,29 @@ knitr::kable(grading,
              align = "c") %>%
              kable_styling(bootstrap_options = "striped", full_width = F)
 ```
+
 ## Course set-up
 
-Please download and install the latest version of: R and RStudio (Desktop version,
-Open Source edition). Both are free for anyone to download. 
+Please download and install the latest version of R and RStudio. 
+
+- R: https://cran.r-project.org 
+- RStudio: https://rstudio.com/products/rstudio/download/#download
 
 Students will also need to download and install git software and create a GitHub account.
 
-Here are useful links for this set-up: 
+- Install git: https://git-scm.com/downloads 
+- Create a GitHub account: https://github.com 
 
-- R: https://cran.r-project.org 
-- RStudio: https://www.rstudio.com/products/rstudio/#Desktop 
-- Install git: https://git-scm.com/downloads (only ERHS 535 / 581A4)
-- Sign-up for a GitHub account: https://github.com (only ERHS 535 / 581A4)
+[Happy Git with R](https://happygitwithr.com/) by Dr. Jenny Bryan is a helpful resource for installation and set-up.
+
+If you want to generate PDF output from R Markdown, you will also need to install LaTex. More installation guidance can be found [here](https://bookdown.org/yihui/rmarkdown/installation.html). 
+
+```{r tinytex}
+# install R package
+install.packages("tinytex")
+# install LaTex "ingredients"
+tinytex::install_tinytex()
+```
 
 ## Coursebook
 
@@ -91,12 +101,10 @@ repository](https://github.com/SmogDr/edar_coursebook).
 ### Other helpful books (not required)
 
 The best book to supplement the coursebook and lectures for this course is [R
-for Data Science](http://r4ds.had.co.nz), by Garrett Grolemund and Hadley
-Wickham. The entire book is freely available online through the same format at
-the coursebook. You can also purchase a paper version of the book (published by
-O'Reilly) through Amazon, Barnes & Noble, etc., for around $40. This book is an
-excellent and up-to-date reference by some of the best R programmers in the
-world.
+for Data Science](http://r4ds.had.co.nz) by Garrett Grolemund and Hadley
+Wickham. The entire book is freely available online through the same format of
+the coursebook. You can also purchase a paper version of the book published by
+O'Reilly for around $40. This book is an excellent and up-to-date reference by some of the best R programmers in the world.
 
 There are a number of other useful books available on general R programming, including:
 
@@ -114,5 +122,4 @@ online through the CSU library.
 
 ## Acknowledgements
 
-Most of the introductory material for this book were adapted from Professor [Brooke Anderson's R Programming Coursebook](https://geanders.github.io/RProgrammingForResearch/), to whom I owe thanks not only for the material but for the many helpful discussions.  I would also like to acknowledge [John Tukey](http://rsbm.royalsocietypublishing.org/content/49/537.full.pdf+html), one of the pioneers of exploratory data analysis, and the creators of the [NIST Engineering Statistics Handbook](https://doi.org/10.18434/M32189), from which I have drawn many techniques. 
-
+Most of the introductory material for this book were adapted from Professor [Brooke Anderson's R Programming Coursebook](https://geanders.github.io/RProgrammingForResearch/), to whom I owe thanks not only for the material but for the many helpful discussions. I would also like to acknowledge [John Tukey](http://rsbm.royalsocietypublishing.org/content/49/537.full.pdf+html), one of the pioneers of exploratory data analysis, and the creators of the [NIST Engineering Statistics Handbook](https://doi.org/10.18434/M32189), from which I have drawn many techniques. 
