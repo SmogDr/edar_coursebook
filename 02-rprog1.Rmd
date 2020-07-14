@@ -561,20 +561,11 @@ To access the helpfile for any function within a package you've loaded, you can 
 
 ## R's most basic object types
 
-An R object stores some type of data that you want to use later in your R code,
-without fully recreating it. The content of R objects can vary from very simple
-(the `"GoFedEx"` string in the example code above) to very complex objects with
-lots of elements (for example, a machine learning model).
+An R object stores some type of data that you want to use later in your R code, without fully recreating it. The content of R objects can vary from very simple (e.g., `"GoFedEx"` string in the example code above) to very complex objects with lots of elements (e.g., machine learning model).
 
-Objects can be structured in different ways, in terms of how they "hold" data.
-These difference structures are called **object classes**. One class of objects
-can be a subtype of a more general object class.
+Objects can be structured in different ways, in terms of how they "hold" data. These difference structures are called **object classes**. One class of objects can be a subtype of a more general object class.
 
-There are a variety of different object types in R, shaped to fit different
-types of objects ranging from the simple to complex. In this section, we'll
-start by describing two object types that you will use most often in basic data
-analysis, **vectors** (1-dimensional objects) and **dataframes** (2-dimensional
-objects).
+There are a variety of different object types in R, shaped to fit different types of objects, from the simple to complex. In this section, we'll start by describing two object types that you will use most often in basic data analysis: **vectors** (one-dimensional objects) and **dataframes** (two-dimensional objects).
 
 For these two object classes (vectors and dataframes), we'll look at: 
 
@@ -582,45 +573,30 @@ For these two object classes (vectors and dataframes), we'll look at:
 2. How to make a new object with that class
 3. How to extract values from objects with that class
 
-In later classes, we'll spend a lot of time learning how to do other things
-with objects from these two classes, plus learn some other classes.
-
 ### Vectors
 
-To get an initial grasp of the *vector* object type in R, think of it as a
-1-dimensional object, or a string of values. Figure \@ref(fig:vector-example)
-provides an example of the structure for a very simple vector, one that holds
-the names of the three main characters in the *Harry Potter* book series.
+To get an initial grasp of the *vector* object type in R, think of it as a one-dimensional object, or a string of values. Figure \@ref(fig:vector-example) provides an example of the structure for a very simple vector, one that holds the names of the three main characters in the *Harry Potter* book series.
 
 ```{r vector-example, echo = FALSE, out.width = "400pt", fig.align = "center", fig.cap="An example of the structure of an R object with the vector class. This object class contains data as a string of values, all with the same data type."}
 knitr::include_graphics("figures/example_vector.jpg")
 ```
 
-All values in a vector must be of the same data type (i.e., all numbers, all
-characters, all dates). If you try to create a vector with elements from
-different types (like "FedEx", which is a character, and 3, a number), R will
-coerce all of the elements to the most generic type of any of the elements
-(i.e., "FedEx" and "3" will both become characters, since "3" can be changed to
-a character, but "FedEx" can't be changed to a number). Figure
-\@ref(fig:vector-example-classes) gives some examples of different classes of
-vectors.
+All values in a vector must be of the same data type (i.e., all numbers, all characters, or all dates). If you try to create a vector with elements from different types (e.g., vector of "FedEx", which is a character, and 3, a number), R will coerce all of the elements to the most generic class of the included elements (e.g., "FedEx" and "3" will both become characters, since "3" can be changed to a character, but "FedEx" can't be changed to a number). Figure \@ref(fig:vector-example-classes) gives some examples of different classes of vectors.
 
-```{r vector-example-classes, echo = FALSE, out.width = "400pt", fig.align = "center", fig.cap="Examples of vectors of different classes. All the values in a vector must be of the same type (e.g., all numbers, all characters). There are different classes of vectors depending on the type of data they store."}
+```{r vector-example-classes, echo = FALSE, out.width = "400pt", fig.align = "center", fig.cap="Examples of vectors of different classes. All the values in a vector must be of the same type (e.g., all numbers or all characters). There are different classes of vectors depending on the type of data they store."}
 knitr::include_graphics("figures/vector_class_examples.jpg")
 ```
 
-To create a vector from different elements, you'll use the concatenation
-function, `c()` to join them together, with commas between the elements (*concatenate* is a fancy word that means: "to link together"). 
-For example, to create the vector shown in Figure \@ref(fig:vector-example), you 
+To create a vector from different elements, you'll use the concatenation function, `c()` to join them together, with commas between the elements; *concatenate* is a fancy word that means "to link together". For example, to create the vector shown in Figure \@ref(fig:vector-example), you 
 can run:
 
-```{r}
+```{r hp1}
 c("Harry", "Ron", "Hermione")
 ```
 
 If you want to use that object later, you can assign it an object name in the expression: 
 
-```{r}
+```{r hp2}
 main_characters <- c("Harry", "Ron", "Hermione")
 print(x = main_characters)
 ```
@@ -635,110 +611,74 @@ knitr::include_graphics("figures/vector_class_examples.jpg")
 
 If you create a numeric vector, you should not put the values in quotation marks:
 
-```{r}
+```{r kids1}
 n_kids <- c(1, 7, 1)
 ```
 
-If you mix classes when you create the vector, R will coerce all the elements
-to most generic of the elements' classes:
+If you mix classes when you create the vector, R will coerce all the elements to most generic class of the included elements:
 
-```{r}
+```{r mixed1}
 mixed_classes <- c(1, 3, "five")
 mixed_classes
 ```
 
-Notice that the two integers, 1 and 3, are now in quotation marks, once they 
-are put in a vector with a value with the character data type. You can use the
-`class()` function to determine the class of an object: 
+Notice that the two integers, 1 and 3, are now in quotation marks because they were put in a vector with a value with the character data type. You can use the `class()` function to determine the class of an object: 
 
-```{r}
+```{r mixed2}
 class(x = mixed_classes)
 ```
 
-A vector's *length* is the number of elements in the vector. You can use the
-`length` function to determine a vector's length:
+A vector's *length* is the number of elements in the vector. You can use the `length()` function to determine a vector's length:
 
-```{r}
+```{r mixed3}
 length(x = mixed_classes)
 ```
 
-Once you create an object, you will often want to reference the whole object in
-future code. However, there will be some times when you'll want to reference
-just certain elements of the object (for example, the first three values). You
-can pull out certain values from a vector by using indexing with square brackets
-(`[...]`) to identify the locations of the element you want to extract. For
-example, to extract the second element of the `main_characters` vector, you can
-run:
+Once you create an object, you will often want to reference the whole object in future code. Nonetheless, there will be some times when you'll want to reference only certain elements of the object. You can pull out certain values from a vector by using indexing with square brackets (`[...]`) to identify the locations of the element you want to extract. For example, to extract the second element of the `main_characters` vector, you can run:
 
-```{r}
+```{r hp3}
 main_characters[2] # Get the second value
 ```
 
-You can use this same method to extract more than one value. You just need to
-create a numeric vector with the position of each element you want to extract
-and pass that in the square brackets. For example, to extract the first and
-third elements of the `main_characters` vect, you can run:
+You can use this same method to extract more than one value. You just need to create a numeric vector with the position of each element you want to extract and pass that in the square brackets. For example, to extract the first and third elements of the `main_characters` vector, you can run:
 
-```{r}
+```{r hp4}
 main_characters[c(1, 3)] # Get first and third values
 ```
 
-The `:` operator can be very helpful with extracting values from a vector. 
-This operator creates a sequence of values from the value before the `:` to the
-value after `:`, going by units of 1. For example, if you want to create a list
-of the numbers between 1 and 10, you can run: 
+The `:` operator can be very helpful with extracting values from a vector.  This operator creates a sequence of values from the value before the `:` to the value after `:`, going by units of 1. For example, if you want to create a list of the numbers between 1 and 10, you can run: 
 
-```{r}
+```{r num1}
 1:10
 ```
 
-If you want to extract the first two values from the `main_characters` vector, you 
-can use the `:` operator: 
+If you want to extract the first two values from the `main_characters` vector, you can use the `:` operator: 
 
-```{r}
+```{r hp5}
 main_characters[1:2] # Get the first two values
 ```
 
-You can also use logic to pull out some values of a vector. For example, you
-might only want to pull out even values from the `fibonacci` vector. We'll cover
-using logical expressions to index vectors later in the book.
+You can also use logic to pull out some values of a vector. For example, you might only want to pull out even values from the `fibonacci` vector. 
 
 ```{block, type = 'rmdtip'}
-One thing that people often find confusing when they start using R is knowing
-when to use and not use quotation marks. The general rule is that you use
-quotation marks when you want to refer to a character string literally, but no
-quotation marks when you want to refer to the value in a previously-defined
-object. For example, if you saved the string `"Volckens"` as the object
-`my_name` (`my_name <- "Volckens"`), then in later code, if you type `my_name`
-(no quotation marks), you'll get `"Volckens"`, while if you type out `"my_name"`
-(with quotation marks), you'll get `"my_name"` (what you typed, literally).
-One thing that makes this rule confusing is that there are a few cases in R
-where you really should (by this rule) use quotation marks, but the function is
-coded to let you be lazy and get away without them. One example is the `library`
-function. In the code earlier in this section to load the "phonenumber" package,
-you want to literally load the package "phonenumber", rather than load whatever
-character string is saved in the object named `phonenumber`. However, `library`
-is one of the functions where you can be lazy and skip the quotation marks, and
-it will still load "phonenumber" for you. Therefore, if you want, this function
-also works if you call `library(package = phonenumber)` (without the quotation marks)
-instead of how we actually called it (`library(package = "phonenumber")`). 
+One thing that people often find confusing when they start using R is knowing when to use and not use quotation marks. The general rule is that you use quotation marks when you want to refer to a character string literally, but no quotation marks when you want to refer to the value in a previously-defined object. 
+
+For example, if you saved the string `"Volckens"` as the object `my_name` (`my_name <- "Volckens"`), then in later code, if you type `my_name` (no quotation marks), you'll get `"Volckens"`, while if you type out `"my_name"` (with quotation marks), you'll get `"my_name"` (what you typed). 
+
+One thing that makes this rule confusing is that there are a few cases in R where you really should, following this rule,  use quotation marks, but the function is coded to let you be lazy and get away without them. One example is the `library()` function. In the code earlier in this section to load the "phonenumber" package, you want to load the package "phonenumber" (with quotation marks), rather than load whatever character string is saved in the object named `phonenumber`. But, `library()` is one of the functions where you can be lazy and skip the quotation marks, and it will still load the package. Therefore, this function works if you do or do not use quotation marks around the package name. 
 ```
 
 ### Dataframes
 
-A dataframe is a 2-dimensional object, and is made of one or more vectors of the
-same length stuck together side-by-side. It is the closest R has to an Excel
-spreadsheet-type structure. Figure \@ref(fig:example-dataframe) gives a
-conceptual example of a dataframe created from several of the vector examples in
-Figure \@ref(vector-example-classes).
+A dataframe is a two-dimensional object made of one or more vectors of the same length stuck together side-by-side. It is the closest R has to an Excel spreadsheet-type structure. Figure \@ref(fig:example-dataframe) gives a conceptual example of a dataframe created from several of the vector examples in Figure \@ref(fig:vector-example-classes).
 
-```{r example-dataframe, echo = FALSE, out.width = "400pt", fig.align = "center", fig.cap="An example dataframe, created from several vectors of the same length and with observations aligned across vector positions (for example, the first value in each vector provides a value for Harry, the second for Ron)."}
+```{r example-dataframe, echo = FALSE, out.width = "400pt", fig.align = "center", fig.cap="An example dataframe created from several vectors of the same length and with observations aligned across vector positions. For example, the first value in each vector provides a value for Harry, the second for Ron."}
 knitr::include_graphics("figures/example_dataframe.jpg")
 ```
 
-Here's how the dataframe in Figure \@ref(fig:example-dataframe) will look in R: 
+Here's how the dataframe in Figure \@ref(fig:example-dataframe) will look in R:
 
-```{r echo = FALSE, message = FALSE, results = TRUE}
+```{r hp6, echo = FALSE, message = FALSE, results = TRUE}
 library(package = "tibble")
 hp_data <- tibble(first_name = c("Harry", "Ron", "Hermione"),
                   last_name = c("Potter", "Weasley", "Granger"),
@@ -747,52 +687,30 @@ hp_data <- tibble(first_name = c("Harry", "Ron", "Hermione"),
 hp_data
 ```
 
-This dataframe is arranged in rows and columns, with column names for each
-column (Figure \@ref(fig:annotated-dataframe)). Note that each row of this
-dataframe gives a different observation (in this case, our unit of observation
-is a Harry Potter character). Each column gives a different type of information
-(first name, last name, birth year, and whether they're still alive) for each of
-the observations (Beatles). Notice that the number of elements in each of the
-columns must be the same in this dataframe, but that the different columns can
-have different classes of data (e.g., character vectors for `first_name` and
-`last_name`, logical value of TRUE or FALSE for `alive`).
+This dataframe is arranged in rows and columns, with names for each column (Figure \@ref(fig:annotated-dataframe)). Note that each row of this dataframe gives a different observation. In this case, our unit of observation is a Harry Potter character. Each column gives a different type of information, including first name, last name, birth year, and whether they're still alive for each of the observations (i.e., book characters). Notice that the number of elements in each of the columns must be the same in this dataframe, but that the different columns can have different classes of data (e.g., character vectors for `first_name` and `last_name`; logical value of TRUE or FALSE for `alive`).
 
 ```{r annotated-dataframe, echo = FALSE, out.width = "400pt", fig.align = "center", fig.cap="The elements of a dataframe: columns, rows, and column names."}
 knitr::include_graphics("figures/example_dataframe_labeled.jpg")
 ```
 
-We'll be working with a specific class of dataframe called a **tibble**. You can
-create tibble dataframes using the `tibble` function from the `tibble` package.
-However, most often you will create a dataframe by reading in data from a file,
-using something like `read_csv` from the `readr` package.
+We will be working with a specific class of dataframe called a **tibble**. You can create tibble dataframes using the `tibble()` function from the `tibble` package. Most often you will create a dataframe by reading in data from a file, using something like `read_csv()` from the `readr` package.
 
 ```{block, type = "rmdnote"}
-There are base R functions for both of these tasks (`data.frame` and `read.csv`,
-respectively), eliminating the need to load additional packages with a `library`
-call. However, the series of packages that make up what's called the "tidyverse"
-have brought a huge improvement in the ease and speed of working with data in R.
-We will be teaching these tools in this course, and that's why we're going
-directly to `tibble()` and `read_csv()` from the start, rather than base R
-equivalents. Later in the course, we'll talk more about this "tidyverse" and
-what makes it so great. 
+There are base R functions for both of these tasks (i.e., `data.frame()` and `read.csv()`, respectively), eliminating the need to load additional packages with a `library()` call. The series of packages that make up what's called the "tidyverse" have brought a huge improvement in the ease and speed of working with data in R. We will be teaching these tools in this course, and that's why we're going directly to `tibble()` and `read_csv()` from the start, rather than base R equivalents. Later in the course, we'll talk more about this "tidyverse" and what makes it so great.
 ```
 
-To create a dataframe, you can use the `tibble()` function from the `tibble`
-package. The general format for using `tibble()` is:
+To create a dataframe, you can use the `tibble()` function from the `tibble` package. The general format for using `tibble()` is:
 
-```{r eval = FALSE}
-## Note: Generic code
+```{r generic3, eval = FALSE}
+## generic code; will not run
 [name of object] <- tibble([1st column name] = [1st column content],
                            [2nd column name] = [2nd column content])
 ```
 
 with an equals sign between the column name and column content for each column,
-and commas between each of the columns.
+and commas between each of the columns. Here is an example of the code used to create the *Harry Potter* `tibble` dataframe shown above:
 
-Here is an example of the code used to create the *Harry Potter* tibble
-dataframe shown above:
-
-```{r}
+```{r hp7}
 library(package = "tibble")
 hp_data <- tibble(first_name = c("Harry", "Ron", "Hermione"),
                   last_name = c("Potter", "Weasley", "Granger"),
@@ -803,7 +721,7 @@ hp_data
 
 You can also create a dataframe by sticking together vectors you already have saved as R objects. For example:
 
-```{r}
+```{r hp8}
 hp_data <- tibble(first_name = main_characters,
                   last_name = c("Potter", "Weasley", "Granger"),
                   n_kids = n_kids,
@@ -811,48 +729,31 @@ hp_data <- tibble(first_name = main_characters,
 hp_data
 ```
 
-Note that this call requires that the `main_characters` and `n_kids` vectors are
-the same length, although they don't have to be (and in this case aren't) the
-same class of objects (`main_characters` is a character class, `n_kids` is
-numeric).
+Note that this call requires the `main_characters` and `n_kids` vectors to be the same *length*. They don't have to be, and, in this case, are not, the same *class* of objects. Specifically, `main_characters` is a character class, and `n_kids` is numeric.
 
 ```{block, type = "rmdnote"}
-You can put more than one function call in a single line of R code, as in this
-example (the `c` creates a vector, while the `tibble` creates a dataframe,
-using the vectors created by the calls to `c`). When you use multiple functions
-within a single R call, R will evaluate starting from the inner-most parentheses
-out, much like the order of operations in a math equation with parentheses.
+You can put more than one function call in a single line of R code, as in this example. The `c()` creates a vector, while the `tibble()` creates a dataframe, using the vectors created by the calls to `c()`. When you use multiple functions within a single R call, R will evaluate starting from the inner-most parentheses outward, much like the order of mathematical operations.
 ```
 
-So far, we've only shown how to create dataframes from scratch within an R
-session. Usually, however, you'll create R dataframes instead by reading in data
-from an outside file using the `read_csv()` from the `readr` package and related
-functions. For example, you might want to analyze data on all the guests that
-came on the *Daily Show*, *circa* Jon Stewart. If you have this data in a
-comma-separated (csv) file on your computer called "daily_show_guests.csv" 
-(see the In-Course Exercise for instructions on downloading it), you
-can read it into your R session with the following code:
+So far, we've only seen how to create dataframes from scratch within an R session. Usually, however, you'll create R dataframes by reading in data from an outside file using the `read_csv()` from the `readr` package or other related functions. For example, you might want to analyze data on all the guests that came on the *Daily Show*, *circa* Jon Stewart. If you have this data in a comma-separated (csv) file on your computer called "daily_show_guests.csv", you can read it into your R session with the following code:
 
-```{r echo = FALSE, message = FALSE}
+```{r read_daily_true, echo = FALSE, message = FALSE}
 library(package = "readr")
 daily_show <- read_csv(file = "data/daily_show_guests.csv",
                        skip = 4)
 ```
-```{r eval = FALSE}
+
+```{r read_daily_echo, eval = FALSE}
 library(package = "readr")
 daily_show <- read_csv(file = "daily_show_guests.csv",
                        skip = 4)
 ```
 
-In this code, the `read_csv()` function is reading in the data from the file
-"daily_show_guests.csv", while the "gets arrow" (`<-`) assigns that data to the
-object `daily_show`, which you can then reference in later code to explore and
-plot the data.
+In this code, the `read_csv()` function is reading in the data from the file "daily_show_guests.csv", while the "gets arrow" (`<-`) assigns that data to the object `daily_show`, which you can then reference in later code to explore and plot the data.
 
-You can use the functions `dim()`, `nrow()`, and `ncol()` to figure out the dimensions
-(number of rows and columns) of a dataframe:
+You can use the functions `dim()`, `nrow()`, and `ncol()` to figure out the dimensions (i.e., number of rows and columns) of a dataframe:
 
-```{r}
+```{r daily_dims}
 dim(x = daily_show)
 nrow(x = daily_show)
 ncol(x = daily_show)
@@ -863,50 +764,35 @@ Base R also has some useful functions for quickly exploring dataframes:
 - `str()`: Show the structure of an R object, including a dataframe
 - `summary()`: Give summaries of each column of a dataframe.
 
-For example, you can explore the data we just pulled in on the *Daily Show* 
-with: 
+For example, you can explore the data we just pulled in on the *Daily Show*  with: 
 
-```{r}
+```{r daily_str_sum}
 str(object = daily_show)
 summary(object = daily_show)
 ```
 
-To extract data from a dataframe, you can use some functions from the `dplyr`
-package, `select()` and `slice()`. The `select()` function will pull out columns,
-while the `slice()` function will pull out rows. In this chapter, we'll talk about 
-how to extract certain rows or columns of a dataframe by their *position* (i.e., 
-row or column number). Later in the book, we'll talk about other ways to extract
-values from dataframes.
+To extract data from a dataframe, you can use some functions from the `dplyr` package, including `select()` and `slice()`. The `select()` function will pull out columns, while the `slice()` function will extract rows. In this chapter, we'll talk about  how to extract certain rows or columns of a dataframe by their *position* (i.e., based on row or column number). For example, if you wanted to get the first two rows of the `hp_data` dataframe, you could run:
 
-For example, if you wanted to get the first two rows of the `hp_data`
-dataframe, you could run:
-
-```{r message = FALSE, warning = FALSE}
+```{r hp9, message = FALSE, warning = FALSE}
 library(package = "dplyr")
 slice(.data = hp_data, c(1:2))
 ```
 
 If you wanted to get the first and fourth columns, you could run: 
 
-```{r}
+```{r hp10}
 select(.data = hp_data, c(1, 4))
 ```
 
-You can compose calls from both functions. For example, you could extract the
-values in the first and fourth columns of the first two rows with: 
+You can compose calls from both functions. For example, you could extract the values in the first and fourth columns of the first two rows with: 
 
-```{r}
+```{r hp11}
 select(.data = slice(.data = hp_data, c(1:2)), c(1, 4))
 ```
 
-You can use square-bracket indexing (`[..., ...]`) for dataframes, too, but now
-they'll have two dimensions (rows, then columns). Put the rows you want before
-the comma, the columns after. If you want all of something (e.g., all rows in
-the dataframe), leave the designated spot blank. Here are two examples of using
-square-bracket indexing to pull a subset of the `hp_data` dataframe we
-created above:
+You can use square-bracket indexing (`[..., ...]`) for dataframes, too, but you will need to manage two dimensions: rows and columns. Put the rows you want before the comma and the columns after; if you want all rows or all columns, leave the corresponding spot blank. Here are two examples of using square-bracket indexing to pull a subset of the `hp_data` dataframe:
 
-```{r}
+```{r hp12}
 hp_data[1:2, 2] # First two rows, second column
 hp_data[3, ] # Last row, all columns
 ```
