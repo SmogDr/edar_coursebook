@@ -257,7 +257,7 @@ data_x <- tibble(unbiased_precise = runif(n = num, min = -0.05, max = 0.05),
                   ) %>%
   pivot_longer(cols = 1:4, 
                names_to = "type",
-               values_to = "value")
+               values_to = "value_x")
 
 data_y <- tibble(unbiased_precise = runif(n = num, min = -0.05, max = 0.05),
                  unbiased_imprecise = runif(n = num, min = -0.45, max = 0.45),
@@ -266,12 +266,11 @@ data_y <- tibble(unbiased_precise = runif(n = num, min = -0.05, max = 0.05),
                   ) %>%
   pivot_longer(cols = 1:4,
                names_to = "type",
-               values_to = "value2") 
+               values_to = "value_y") 
 
 data_bp <- data_x %>%
-  bind_cols(data_y$value2) %>%
-  rename(x.data = "value", y.data = "...3")
-
+  tibble::add_column(data_y$value_y) %>% 
+  dplyr::rename(value_y = `data_y$value_y`)
 
 ggplot(data = data_bp) +
   geom_circle(aes(x0 = 0, y0 = 0, r = 1),
@@ -279,7 +278,7 @@ ggplot(data = data_bp) +
    geom_circle(aes(x0 = 0, y0 = 0, r = 0.1),
               fill = "lightgreen",
               color = "grey") +
-  geom_point(aes(x = x.data, y = y.data),
+  geom_point(aes(x = value_x, y = value_y),
              shape = 4) +
   coord_fixed() +
   theme_no_axes() + 
