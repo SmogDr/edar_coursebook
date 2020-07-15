@@ -6,48 +6,40 @@ library(tidyverse)
 
 ## Objectives
 
-This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:  
+This chapter is designed around the following learning objectives. Upon completing this chapter, you should be able to:  
 
 - Recognize what a flat file is and how it differs from data stored in a binary file format
 - Distinguish between delimited and fixed width formats for flat files
 - Identify the delimiter in a delimited file
 - Describe a working directory
 - Demonstrate how to read in different types of flat files
-- Demonstrate how to read in a few types of binary files (Matlab, Excel) 
+- Demonstrate how to read in a few types of binary files (e.g., Matlab, Excel)
 - Recognize the difference between relative and absolute file pathnames
 - Describe the basics of your computer's directory structure
 - Reference files in different locations in your directory structure using relative and absolute pathnames
-- Apply the basic `dplyr` functions `rename`, `select`, `mutate`, `slice`, `filter`, and `arrange` to work with data in a dataframe object
+- Apply the basic `dplyr` functions (e.g., `rename()`, `select()`, `mutate()`, `slice()`, `filter()`, and `arrange()`) to work with data in a dataframe object
 - Define a logical operator and know the R syntax for common logical operators
-- Apply logical operators in conjunction with `dplyr`'s `filter` function to create subsets of a dataframe based on logical conditions 
-- Apply a sequence of `dplyr` functions to a dataframe using piping
+- Apply logical operators in conjunction with `dplyr`'s `filter()` function to create subsets of a dataframe based on logical conditions 
+- Apply a sequence of `dplyr` functions to a dataframe using piping (`%>%`)
 
 ## Overview
 
-There are four basic steps you will often repeat as you prepare to analyze data
-in R:
+There are four basic steps you will often repeat as you prepare to analyze data in R:
 
-1. Identify where the data is (If it's on your computer, which directory? If
-it's online, what's the url?)
-2. Read data into R (e.g., `read_delim`, `read_csv` from the `readr` package)
-using the file path you figured out in step 1
-3. Check to make sure the data came in correctly (`dim`, `head`, `tail`, `str`)
+1. Identify the location of the data. If it's on your computer, which directory? If it's online, what's the link?
+2. Read data into R (e.g., using a function like `read_delim()` or `read_csv()` from the `readr` package) using the file path you figured out in step 1
+3. Check to make sure the data came in correctly using `dim`, `head`, `tail`, `str`)
 4. Clean the data up 
 
-In this chapter, I'll go basics for each of these steps, as well as dive a bit
-deeper into some related topics you should learn now to make your life easier as
-you get started using R for data analysis.
+In this chapter, I'll go over the basics for each of these steps and dive a bit deeper into some related topics you should learn now to make your life easier as you get started using R for data analysis.
 
 ## Reading data into R
 
-Data comes in files of all shapes and sizes. R has the capability to read data
-in from many of these, even proprietary files for other software (e.g., Excel
-and Matlab files). As a small sample, here are some of the types of data files that
-R can read and work with:
+Data comes in files of all shapes and sizes. R has the capability to import data from many of these, even proprietary files for other software. Here are some of the types of data files that R can read and work with:
 
 - Flat files (much more about these in just a minute)
-- Files from other software packages (Matlab, SAS, Excel)
-- Tables on webpages (e.g., the table on ebola outbreaks near the end of [this
+- Files from other software packages such as MATLAB or Excel
+- Tables on webpages (e.g., the table on Ebola outbreaks near the end of [this
 Wikipedia
 page](http://en.wikipedia.org/wiki/Ebola_virus_epidemic_in_West_Africa))
 - Data in a database (e.g., MySQL, Oracle)
@@ -55,32 +47,23 @@ page](http://en.wikipedia.org/wiki/Ebola_virus_epidemic_in_West_Africa))
 - Really crazy data formats used in other disciplines (e.g., netCDF files from
 climate research, MRI data stored in Analyze, NIfTI, and DICOM formats)
 - Geographic shapefiles
-- Data through APIs (API = Automated Prgramming Interface, most websites use APIs to ask you for input and then use that input to direct new information back to you)
+- Data through Application Programming Interfaces (APIs; most websites use APIs to ask you for input and then use that input to direct new information back to you)
 
-Often, it is possible to read in and clean up even incredibly messy data, by
-using functions like `scan` and `readLines` to read the data in a line at a
-time, and then using regular expressions (which I'll cover in the "Intermediate"
-section of the course) to clean up each line as it comes in. 
+Often, it is possible to import and wrangle extremely messy data by using functions like `scan()` and `readLines()` to read the data in a line at a time, and then using regular expressions to clean up the data.
 
 ### Reading local flat files
 
-Much of the data that you will want to read in will be in **flat files**. Basically,
-these are files that you can open using a text editor; the most common type
-you'll work with are probably comma-separated files (often with a `.csv` or
-`.txt` file extension). Most flat files come in two general categories:
+Much of the data that you will want to read in will be in **flat files**. Basically, these are files that you can open using a text editor. The most common type you'll work with are probably comma-separated files, often with a `.csv` or `.txt` file extension. Most flat files come in two general categories:
 
-1. Fixed width files; and
+1. Fixed width files, and
 
-2. Delimited files: 
+2. Delimited files, which include: 
 
 - ".csv": Comma-separated values
 - ".tab", ".tsv": Tab-separated values
 - Other possible delimiters: colon, semicolon, pipe ("|")
 
-*Fixed width files* are files where a column always has the same width, for all
-the rows in the column. These tend to look very neat and easy-to-read when you
-open them in a text editor. For example, the first few rows of a fixed-width
-file might look like this:
+*Fixed-width files* are files where a column always has the same width, for all the rows in the column. These tend to look very neat and easy-to-read when you open them in a text editor. For example, the first few rows of a fixed-width file might look like this:
 
 ```
 Course                            Number          Day          Time
@@ -88,17 +71,9 @@ Thermodynamics                    337             M/W/F        9:00-9:50
 Aerosol Physics and Technology    577             M/W/F        10:00-10:50
 ```
 
-Fixed width files used to be very popular, and they make it easier to look at data
-when you open the file in a text editor. However, now it's pretty rare to just use 
-a text editor to open a file and check out the data, and these files can be a bit 
-of a pain to read into R and other programs because you sometimes have to specify 
-exactly how wide each of the columns is. You may come across a fixed width file 
-every now and then, particularly when working with older data, so it's 
-useful to be able to recognize one and to know how to read it in.
+Fixed-width files used to be very popular, and they make it easier to look at data when you open the file in a text editor. Now, it's rare to just use a text editor to open a file and check out the data. Also, these files can be a bit of a pain to read into R and other programs because you sometimes have to specify the length of each column. You may come across a fixed-width file every now and then, particularly when working with older data, so it's useful to be able to recognize one and to know how to import it.
 
-*Delimited files* use some **delimiter** (for example, a comma or a tab) to
-separate each column value within a row. The first few rows of a delimited file
-might look like this:
+*Delimited files* use some **delimiter** such as a comma or tab to separate each column value within a row. The first few rows of a delimited file might look like this:
 
 ```
 Course, Number, Day, Time
@@ -106,141 +81,87 @@ Course, Number, Day, Time
 "Aerosol Physics and Technology", 577, "M/W/F", "10:00-10:50"
 ```
 
-Delimited files are very easy to read into R. You just need to be able to figure
-out what character is used as a delimiter (commas in the example above) and
-specify that to R in the function call to read in the data.
+Delimited files are very easy to read into R. You just need to be able to figure out what character is used as a delimiter and specify that to R in the function call to read in the data.
 
-These flat files can have a number of different file extensions. The most
-generic is `.txt`, but they will also have ones more specific to their format,
-like `.csv` for a comma-delimited file (.csv stands for **"comma separated values"**) or `.fwf` for a fixed with file.
+These flat files can have a number of different file extensions. The most generic is `.txt`, but they will also have ones more specific to their format, like `.csv` for a comma-delimited file (.csv stands for **"comma-separated values"**), or `.fwf` for a fixed-width file.
 
-R can read in data from both fixed with and delimited flat files. The only catch
-is that you need to tell R a bit more about the format of the flat file,
-including whether it is fixed width or delimited. If the file is fixed width,
-you will usually have to tell R the width of each column. If the file is
-delimited, you'll need to tell R which delimiter is being used.
+R can read in data from both fixed-width and delimited flat files. The only catch is that you need to tell R a bit more about the format of the flat file, including whether it is fixed-width or delimited. If the file is fixed-width, you will usually have to tell R the width of each column. If the file is delimited, you'll need to tell R which delimiter, such as comma or tab, is being used.
 
-If the file is delimited, you can use the `read_delim` family of functions from
-the `readr` package to read it in. This family of functions includes several
-specialized functions. All members of the `read_delim` family are doing the same
-basic thing. The only difference is what defaults each function has for the
-delimiter (`delim`). Members of the `read_delim` family include:
+If the file is delimited, you can use the `read_delim()` family of functions from the `readr` package to import the data. This family of functions includes several specialized functions. All members of the `read_delim()` family are doing the same basic thing. The only difference is what defaults each function has for the delimiter (`delim`). Members of the `read_delim()` family include:
 
-Function     | Delimiter
------------- | ---------- 
-`read_csv`    |  comma     
-`read_csv2`   | semi-colon 
-`read_table2` | whitespace
-`read_tsv`    | tab
+Function        | Delimiter
+--------------- | ------------
+`read_csv()`    |  comma     
+`read_csv2()`   | semi-colon 
+`read_table2()` | whitespace
+`read_tsv()`    | tab
 
-You can use `read_delim` to read in any delimited file, regardless of the delimiter.
-However, you will need to specify the delimiter using the `delim` parameters. If you
-remember the more specialized function call (e.g., `read_csv` for a comma delimited
-file), therefore, you can save yourself some typing. 
+You can use `read_delim()` to read in any delimited file, regardless of the delimiter; however, you will need to specify the type of delimiter using the `delim` argument. If you remember the more specialized function call (e.g., `read_csv()` for a comma-delimited file), you can save yourself some typing. 
 
-For example, to read in the Ebola data, which is comma-delimited, you could
-either use `read_table` with a `delim` argument specified or use `read_csv`, in
-which case you don't have to specify `delim`:
+For example, to read in the Ebola data, which is comma-delimited, you could either use `read_table()` with a `delim` argument specified or use `read_csv()`, in which case you don't have to specify `delim`:
 
-```{r, message = FALSE}
+```{r ebola1, message = FALSE}
 library(package = "readr")
 
 # The following two calls do the same thing
 ebola <- read_delim(file = "data/country_timeseries.csv", delim = ",")
 ```
 
-```{r}
+```{r ebola2}
 ebola <- read_csv(file = "data/country_timeseries.csv")
 ```
 
 ```{block, type = 'rmdtip'}
-The message that R prints after this call ("Parsed with column specification:..
-") lets you know what classes were used for each column (this function tries to
-guess the appropriate class and typically gets it right). You can suppress the
-message using the `cols_types = cols()` argument.
-
-If `readr` doesn't correctly guess some of the columns classes you can use the
-`type_convert()` function to take another go at guessing them after you've
-tweaked the formats of the rogue columns.
+The message that R prints after this call ("Parsed with column specification: ... ") lets you know what classes were used for each column. This function tries to guess the appropriate class and typically gets it right. You can suppress the message using the `cols_types = cols()` argument, or by adjusting the code chunk options in an R Markdown. If `readr` doesn't correctly assign some of the columns classes, you can use the `type_convert()` function for R to guess again after you've tweaked the formats of the rogue columns.
 ```
 
-This family of functions has a few other helpful options you can specify. For example,
-if you want to skip the first few lines of a file before you start reading in the data,
-you can use `skip` to set the number of lines to skip. If you only want to read in 
-a few lines of the data, you can use the `n_max` option. For example, if you have a 
-really long file, and you want to save time by only reading in the first ten lines
-as you figure out what other options to use in `read_delim` for that file, you could
-include the option `n_max = 10` in the `read_delim` call. Here is a table of some of
-the most useful options common to the `read_delim` family of functions: 
+This family of functions has a few other helpful options you can specify. For example, if you want to skip the first few lines of a file before you start reading in the data, you can use `skip()` to set the number of lines to skip. If you only want to read in a few lines of the data, you can use the `n_max()` option. For example, if you have a really large file, and you want to save time by only reading in the first ten lines, as you figure out what other optional arguments to use in `read_delim()` for that file, you could include the option `n_max = 10`. Here is a table of some of the most useful options common to the `read_delim()` family of functions: 
 
 Option  | Description
 ------- | -----------
-`skip`    | How many lines of the start of the file should you skip?
-`col_names`  | What would you like to use as the column names?
-`col_types`   | What would you like to use as the column types?
-`n_max`   | How many rows do you want to read in?
-`na` | How are missing values coded?
+`skip()`    | How many lines of the start of the file should you skip?
+`col_names()`  | What would you like to use as the column names?
+`col_types()`   | What would you like to use as the column types?
+`n_max()`   | How many rows do you want to read in?
+`na()` | How are missing values coded?
 
 
 ```{block, type = 'rmdnote'}
-Remember that you can always find out more about a function by looking at its
-help file. For example, check out `?read_delim` and `?read_fwf`. You can also
-use the help files to determine the default values of arguments for each
-function.
+Remember that you can always find out more about a function by looking at its help file. For example, check out `?read_delim` and `?read_fwf` (note the lack of parentheses). You can also use the help files to determine the default values of arguments for each function.
 ```
 
-So far, we've only looked at functions from the `readr` package for reading in data
-files. There is a similar family of functions available in base R, the `read.table`
-family of functions. The `readr` family of functions is very similar to the base R 
-`read.table` functions, but have some more sensible defaults. Compared to the
-`read.table` family of functions, the `readr` functions: 
-
-- Work better with large datasets: faster, includes progress bar
+So far, we've only looked at functions from the `readr` package for reading in data files. There is a similar family of functions available in base R, the `read.table()` family of functions. The `readr` family of functions is very similar to the base R `read.table()` functions, but have some more sensible defaults. Compared to the `read.table()` function family, the `readr` functions: 
+- Faster; show progress bar of data import
+- Work better with large datasets
 - Have more sensible defaults (e.g., characters default to characters, not factors)
 
-I recommend that you always use the `readr` functions rather than their base R 
-alternatives, given these advantages. However, you are likely to come across code
-that someone else has written that uses one of these base R functions, so it's 
-helpful to know what they are. Functions in the `read.table` family include:
+I recommend that you always use the `readr` functions rather than their base R  alternatives, given these advantages; however, you are likely to come across code with these base R functions, so it is helpful to be aware of them. Functions in the `read.table` family include:
 
-- `read.csv`
-- `read.delim`
-- `read.table` 
-- `read.fwf`
+- `read.csv()`
+- `read.delim()`
+- `read.table()` 
+- `read.fwf()`
 
 ```{block, type = 'rmdnote'}
-The `readr` package is a member of the tidyverse of packages. The *tidyverse*
-describes an evolving collection of R packages with a common philosophy, and
-they are unquestionably changing the way people code in R. Many were developed
-in part or full by Hadley Wickham and others at RStudio. Many of these packages
-are less than ten years old, but have been rapidly adapted by the R community.
-As a result, newer examples of R code will often look very different from the
-code in older R scripts, including examples in books that are more than a few
-years old. In this course, I'll focus on "tidyverse" functions when possible,
-but I do put in details about base R equivalent functions or processes at some
-points---this will help you interpret older code. You can download all the
-tidyverse packages using `install.packages("tidyverse")`, `library("tidyverse")`
-makes all the tidyverse functions available for use. 
+The `readr` package is a member of the `tidyverse` suite of R packages. The *tidyverse* describes an evolving collection of R packages with a common philosophy and approach, and they are unquestionably changing the way people code in R. Many of these R packages were developed in part or full by Hadley Wickham and others at RStudio. Many of these packages are less than ten years old but have been rapidly adapted by the R community. As a result, newer examples of R code will often look very different from the code in older R scripts, including examples in books that are more than a few years old. In this course, I'll focus on `tidyverse` functions when possible, but I do put in details about base R equivalent functions or processes at some points. This will help you interpret older code. You can download all the `tidyverse` packages at the same time with `install.packages("tidyverse")` and make all the `tidyverse` functions available for use with`library("tidyverse")`.
 ```
 
 ### Reading in other file types
 
-Later in the course, we'll talk about how to open a variety of other file types
-in R. However, you might find it immediately useful to be able to read in files
-from other statistical programs.
+Later in the course, we'll talk about how to open a variety of other file types in R. You might find it immediately useful to be able to read in files from other statistical programs.
 
-There are two "tidyverse" packages---`readxl` and `haven`---that help with this.
+There are two "tidyverse" packages, `readxl` and `haven`, that help with this.
 They allow you to read in files from the following formats:
 
-```{r echo = FALSE}
+```{r read_funcs_table, echo = FALSE}
 read_funcs <- data.frame(file_type = c("Excel",
                                        "SAS",
                                        "SPSS",
                                        "Stata"),
-                         func = c("`read_excel`",
-                                  "`read_sas`",
-                                  "`read_spss`",
-                                  "`read_stata`"),
+                         func = c("`read_excel()`",
+                                  "`read_sas()`",
+                                  "`read_spss()`",
+                                  "`read_stata()`"),
                          pkg = c("`readxl`",
                                  "`haven`",
                                  "`haven`",
