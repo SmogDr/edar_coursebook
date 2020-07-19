@@ -44,7 +44,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-07-10 19:21:41 MDT"
+## [1] "2020-07-19 16:51:04 MDT"
 ```
 As you can see, we got back the date, time, and current timezone used by my computer.  If you want to see how this time is stored in R internally, you can use `unclass()`, which returns an object value with its class attributes removed.  When we wrap `unclass()` around `Sys.time()`, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:
 
@@ -54,15 +54,15 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1594430502
+## [1] 1595199064
 ```
 
 That's a lot of seconds.  How many years is that?  
-Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] ~ 50.5590595 years.  
+Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] ~ 50.5834305 years.  
 This calculation ignores leap years but you get the point...
 
 ### Date-time formats
-Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-07-10 19:21:41
+Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-07-19 16:51:04
 
 Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky.  You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:
 
@@ -166,7 +166,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1594430502
+## [1] 1595199065
 ```
 
 
@@ -177,14 +177,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 41.8
-##  $ min   : int 21
-##  $ hour  : int 19
-##  $ mday  : int 10
+##  $ sec   : num 4.8
+##  $ min   : int 51
+##  $ hour  : int 16
+##  $ mday  : int 19
 ##  $ mon   : int 6
 ##  $ year  : int 120
-##  $ wday  : int 5
-##  $ yday  : int 191
+##  $ wday  : int 0
+##  $ yday  : int 200
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
