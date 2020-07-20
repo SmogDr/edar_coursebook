@@ -755,7 +755,7 @@ the `dplyr` package. That function has the syntax:
 # generic code; will not run
 dplyr::mutate(.data = dataframe,
               changed_column = function(changed_column),
-              new_column = function(other_arguments))
+              new_column = function(other arguments))
 ```
 
 For example, the `job` column in `daily_show` sometimes uses upper case and
@@ -845,15 +845,15 @@ check for missing observations.
 ## Piping
 
 So far, I've shown how to use these `dplyr` functions one at a time to clean up
-the data, reassigning the dataframe object at each step. However, there's a
-trick called "piping" that will let you clean up your code a bit when you're
-writing a script to clean data.
+the data, reassigning the dataframe object at each step; however, there's a
+trick called "piping" (with `%>%`) that will let you complete multiple data
+wrangling steps at once.
 
 If you look at the format of these `dplyr` functions, you'll notice that they
 all take a dataframe as their first argument:
 
-```{r eval = FALSE}
-# Generic code
+```{r dplyr_generic, eval = FALSE}
+# generic code; will not run
 rename(.data = dataframe, 
        new_column_name_1 = old_column_name_1,
        new_column_name_2 = old_column_name_2)
@@ -869,7 +869,7 @@ mutate(.data = dataframe,
 Without piping, you have to reassign the dataframe object at each step of this
 cleaning if you want the changes saved in the object:
 
-```{r eval = FALSE, message = FALSE}
+```{r daily_sep_clean, eval = FALSE, message = FALSE}
 daily_show <-read_csv(file = "data/daily_show_guests.csv",
                       skip = 4)
 daily_show <- rename(.data = daily_show, 
@@ -885,29 +885,43 @@ daily_show <- filter(.data = daily_show,
                      category == "Science")
 ```
 
-Piping lets you clean this code up a bit. It can be used with any function that
+Piping lets you streamline this process. It can be used with any function that
 inputs a dataframe as its first argument. It *pipes* the dataframe created
 right before the pipe (`%>%`) into the function right after the pipe. With
-piping, therefore, the same data cleaning looks like:
+piping, therefore, the above data cleaning looks like:
 
-```{r message = FALSE}
-daily_show <-read_csv(file = "data/daily_show_guests.csv",
-                      skip = 4) %>%
-  rename(job = GoogleKnowlege_Occupation,
-         date = Show,
-         category = Group,
-         guest_name = Raw_Guest_List) %>%
-  select(-YEAR) %>%
-  mutate(job = str_to_lower(job)) %>%
-  filter(category == "Science")
+```{r daily_pipe_clean, message = FALSE}
+daily_show <- readr::read_csv(file = "data/daily_show_guests.csv",
+                              skip = 4) %>%
+  dplyr::rename(job = GoogleKnowlege_Occupation,
+                date = Show,
+                category = Group,
+                guest_name = Raw_Guest_List) %>%
+  dplyr::select(-YEAR) %>%
+  dplyr::mutate(job = str_to_lower(job)) %>%
+  dplyr::filter(category == "Science")
 ```
 
-Notice that, when piping, the first argument (the name of the dataframe) is
+Notice that, when piping, the first argument (name of the dataframe) is
 excluded from all function calls that follow a pipe. This is because piping
-sends the dataframe from the last step into each of these functions as the
-dataframe argument.
+sends the dataframe from the last step into each of the following functions as
+the dataframe argument. Remember: Order matters in a data wrangling pipeline.
+For example, if you removea column in an early line of code in the pipeline but
+then reference that column name later, R will throw an error. You can use
+selective highlighting to run one line at a time to see how the dataframe
+changes in real-time.
 
-## In-course Exercise
+## In-Class Exercise
+
+- Import local and/or online data file and assign to object name
+- Examine object structure
+- Think about what kind of data wrangling needs to be done and sketch out the desired dataframe result
+- Practice a few dplyr verbs within pipe to clean up dataframe
+
+## Homework
+
+Change data to something related to engineering? Use Brooke's structure below
+to create homework assignment. Provide R Markdown template for homework? 
 
 ### Downloading and checking out the example data
 
