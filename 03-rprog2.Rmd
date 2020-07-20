@@ -273,11 +273,11 @@ the project will open with that directory as the working directory, so you can
 read files that are saved in that project's main directory using only the file
 name as a reference.
 
-However, you'll often want to read in files that are located somewhere else on
-your computer, or even files that are saved on another computer (for example,
-data files that are posted online). Doing this is very similar to reading in a
-file that is in your current working directory; the only difference is that you
-need to give R some directions so it can find the file.
+You will often want to read in files that are located somewhere else on
+your computer, or even files that are saved on another computer or posted
+online. Doing this is very similar to reading in a file that is in your current
+working directory; the only difference is that you need to give R some
+directions so it can find the file.
 
 The most common case will be reading in files in a subdirectory of your current
 working directory. For example, you may have created a "data" subdirectory in
@@ -293,9 +293,9 @@ the "basics" part of this class, but this structure is not terribly complex
 once you get the idea of it. There are a couple of very good reasons why it's
 worth learning now.
 
-First, many of the most frustrating errors you get when you start using R trace
-back to understanding directories and filepaths. For example, when you try to
-read a file into R using only the filename, and that file is not in your 
+First, many of the most frustrating errors you get when you start using R
+traceback to understanding directories and filepaths. For example, when you try
+to read a file into R using only the filename, and that file is not in your 
 current working directory, you will get an error like:
 
 ```
@@ -305,7 +305,7 @@ In file(file, "rt") : cannot open file 'Ex.csv': No such file or directory
 ```
 
 This error is especially frustrating when you're new to R because it happens at
-the very beginning of your analysis---you can't even get your data in. Also, if
+the very beginning of your analysis---you can't even import the data. Also, if
 you don't understand a bit about working directories and how R looks for the
 file you're asking it to find, you'd have no idea where to start to fix this
 error. Second, once you understand how to use pathnames, especially relative
@@ -314,13 +314,11 @@ working directory, you will be able to organize all of your files for a project
 in a much cleaner way. For example, you can create a directory for your
 project, then create one subdirectory to store all of your R scripts, and
 another to store all of your data, and so on. This can help you keep very
-complex projects more structured and easier to navigate. We'll talk about these
-ideas more in the course sections on Reproducible Research, but it's good to
-start learning how directory structures and filepaths work early.
+complex projects more structured and easier to navigate. 
 
 Your computer organizes files through a collection of directories. Chances are,
-you are fairly used to working with these in your daily life already (although
-you may call them "folders" rather than "directories"). For example, you've
+you are fairly used to working with these in your daily life already, although
+you may call them "folders" rather than "directories". For example, you've
 probably created new directories to store data files and Word documents for a
 specific project.
 
@@ -331,24 +329,24 @@ for a hypothetical computer. Directories are shown in blue, and files in green.
 knitr::include_graphics("figures/FileDirectoryStructure.png")
 ```
 
-You can notice a few interesting things from Figure
-\@ref(fig:filedirstructure). First, you might notice the structure includes a
-few of the directories that you use a lot on your own computer, like `Desktop`,
-`Documents`, and `Downloads`. Next, the directory at the very top is the
-computer's root directory, `/`. For a PC, the root directory might something
-like `C:`; for Unix and Macs, it's usually `/`. Finally, if you look closely,
-you'll notice that it's possible to have different files in different locations
-of the directory structure with the same file name. For example, in the figure,
-there are files names `heat_mort.csv` in both the `CourseText` directory and in
-the `example_data` directory. These are two different files with different
-contents, but they can have the same name as long as they're in different
-directories. This fact---that you can have files with the same name in
-different places---should help you appreciate how useful it is that R requires
-you to give very clear directions to describe exactly which file you want R to
-read in, if you aren't reading in something in your current working directory.
+Notice a few interesting things from Figure \@ref(fig:filedirstructure). First,
+you might notice the structure includes a few of the directories that you use a
+lot on your own computer, like `Desktop`, `Documents`, and `Downloads`. Next,
+the directory at the very top is the computer's root directory, `/`. For a PC,
+the root directory might something like `C:`. For Unix and Macs, it's usually
+`/`. Finally, if you look closely, you'll notice that it's possible to have
+different files in different locations of the directory structure with the same
+file name. For example, in the figure, there are files names `heat_mort.csv` in
+both the `CourseText` directory and in the `example_data` directory. These are
+two different files with different contents, but they can have the same name as
+long as they're in different directories. This fact---that you can have files
+with the same name in different places---should help you appreciate how useful
+it is that R requires you to give very clear directions to describe exactly
+which file you want R to read in, if you aren't importing something in your
+current working directory.
 
 You will have a home directory somewhere near the top of your structure,
-although it's likely not your root directory. In the hypothetic computer in
+although it's likely not your root directory. In the hypothetical computer in
 Figure \@ref(fig:filedirstructure), the home directory is
 `/Users/brookeanderson`. I'll describe just a bit later how you can figure out
 what your own home directory is on your own computer.
@@ -361,51 +359,50 @@ structure. At any time, you can figure out which directory R is working in by
 running the command `getwd()` (short for "get working directory"). For example,
 my R session is currently running in the following directory:
 
-```{r}
+```{r getwd}
 getwd()
 ```
 
 This means that, for my current R session, R is working in the
-`RProgrammingForResearch` subdirectory of my `brookeanderson` directory (which
-is my home directory).
+`edar_coursebook` subdirectory of my `johnvolckens` directory (home directory).
 
-There are a few general rules for which working directory R will start in when
+There are a few general rules for which working directory R selects when
 you open an R session. These are not absolute rules, but they're generally 
 true. If you have R closed, and you open it by double-clicking on an R script,
 then R will generally open with, as its working directory, the directory in
 which that script is stored. This is often a very convenient convention,
-because often any of the data you'll be reading in for that script is somewhere
+because often any of the data you'll import for that script is somewhere
 near where the script file is saved in the directory structure. If you open R
-by double-clicking on the R icon in "Applications" (or something similar on a
+by double-clicking on the R icon in "Applications" (or the start menu on a
 PC), R will start in its default working directory. You can find out what this
 is, or change it, in RStudio's "Preferences". Finally, if you open an R
-Project, R will start in that project's working directory (the directory in
-which the `.Rproj` file for the project is stored).
+Project, R will start in that project's working directory---where the `.Rproj`
+file for the project is stored.
 
 ### File and directory pathnames
 
 Once you get a picture of how your directories and files are organized, you can
 use pathnames, either absolute or relative, to read in files from different
-directories than your current working directory. Pathnames are the directions
-for getting to a directory or file stored on your computer.
+directories outside your current working directory. Pathnames are the
+directions for getting to a directory or file stored on your computer.
 
 When you want to reference a directory or file, you can use one of two types of
 pathnames:
 
-- *Relative pathname*: How to get to the file or directory from your current
-working directory
-- *Absolute pathname*: How to get to the file or directory from anywhere on the
-computer
+- *Relative pathname*: How to get to the file or directory from your current working directory
+- *Absolute pathname*: How to get to the file or directory from anywhere on the computer
 
-Absolute pathnames are a bit more straightforward conceptually, because they
-don't depend on your current working directory. However, they're also a lot
-longer to write, and they're much less convenient if you'll be sharing some of
-your code with other people who might run it on their own computers. I'll
-explain this second point a bit more later in this section.
+Absolute pathnames are a bit more straightforward conceptually because they
+don't depend on your current working directory; however, they're also a lot
+longer to write and very inconvenient if you'll be sharing some of your code
+with other people who might try to run it on their own computers. I'll explain
+this second point a bit more later in this section.
 
-*Absolute pathnames* give the full directions to a directory or file, starting
-all the way at the root directory. For example, the `heat_mort.csv` file in the
-`CourseText` directory has the absolute pathname:
+I **strongly advise against the use of absolute pathnames** because of the
+aforementioned collaborative issue, but I will include some details here
+nonetheless. *Absolute pathnames* give the full directions to a directory or
+file, starting all the way at the root directory. For example, the
+`heat_mort.csv` file in the `CourseText` directory has the absolute pathname:
 
 ```
 "/Users/brookeanderson/Desktop/RCourseFall2015/CourseText/heat_mort.csv"
@@ -414,11 +411,11 @@ all the way at the root directory. For example, the `heat_mort.csv` file in the
 You can use this absolute pathname to read this file in using any of the
 `readr` functions to read in data. This absolute pathname will *always* work,
 regardless of your current working directory, because it gives directions from
-the root---it will always be clear to R exactly what file you're talking about.
-Here's the code to use to read that file in using the `read.csv` function with
-the file's absolute pathname:
+the root. In other words, it will always be clear to R exactly what file you're
+talking about. Here's the code to use to read that file in using the
+`read.csv()` function with the file's absolute pathname:
 
-```{r eval = FALSE}
+```{r heat_abs, eval = FALSE}
 heat_mort <- read_csv(file = "/Users/brookeanderson/Desktop/RCourseFall2015/CourseText/heat_mort.csv")
 ```
 
@@ -426,14 +423,13 @@ The *relative pathname*, on the other hand, gives R the directions for how to
 get to a directory or file from the current working directory. If the file or
 directory you're looking for is pretty close to your current working directory
 in your directory structure, then a relative pathname can be a much shorter way
-to tell R how to get to the file than an absolute pathname. However, the
-relative pathname depends on your current working directory---the relative
-pathname that works perfectly when you're working in one directory will not 
-work at all once you move into a different working directory.
+to tell R how to get to the file than an absolute pathname. But, the relative
+pathname depends on your current working directory---the relative pathname that
+works perfectly when you're working in one directory will not work at all once
+you move into a different working directory.
 
 As an example of a relative pathname, say you're working in the directory
-`RCourseFall2015` within the file structure shown in Figure
-\@ref(fig:filedirstructure), and you want to read in the `heat_mort.csv` file
+`RCourseFall2015` within the file structure shown in Figure \@ref(fig:filedirstructure), and you want to read in the `heat_mort.csv` file
 in the `CourseText` directory. To get from `RCourseFall2015` to that file,
 you'd need to look in the subdirectory `CourseText`, where you could find
 `heat_mort.csv`. Therefore, the relative pathname from your working directory
@@ -446,7 +442,7 @@ would be:
 You can use this relative pathname to tell R where to find and read in the
 file:
 
-```{r eval = FALSE}
+```{r heat_rel, eval = FALSE}
 heat_mort <- read_csv("CourseText/heat_mort.csv")
 ```
 
@@ -456,7 +452,7 @@ relative pathname would no longer work.
 
 There are a few abbreviations that can be really useful for pathnames:
 
-```{r echo = FALSE}
+```{r paths, echo = FALSE}
 dirpath_shortcuts <- data.frame(abbr = c("`~`", "`.`", "`..`", "`../..`"),
                                 meaning = c("Home directory",
                                             "Current working directory",
@@ -469,7 +465,7 @@ These can help you keep pathnames shorter and also help you move "up-and-over"
 to get to a file or directory that's not on the direct path below your current
 working directory.
 
-For example, my home directory is `/Users/brookeanderson`. You can use the
+For example, my home directory is `/Users/johnvolckens`. You can use the
 `list.files()` function to list all the files in a directory. If I wanted to
 list all the files in my `Downloads` directory, which is a direct sub-directory
 of my home directory, I could use:
@@ -513,27 +509,24 @@ all subdirectories, with a collaborator. In that case, if you've used relative
 pathnames, all the code should work fine for the person you share with, even
 though they're running it on their own computer. Conversely, if you'd used
 absolute pathnames, none of them would work on another computer, because the
-"top" of the directory structure (i.e., for me,
-`/Users/brookeanderson/Desktop`)
-will almost definitely be different for your collaborator's computer than it is
+"top" of the directory structure (i.e., for me, `/Users/johnvolckens/`)
+will definitely be different for your collaborator's computer than it is
 for yours.
 
 If you're getting errors reading in files, and you think it's related to the
 relative pathname you're using, it's often helpful to use `list.files()` to
-make sure the file you're trying to load is in the directory that the relative
-pathname you're using is directing R to.
+make sure the file you're trying to load is in the directory guided by the
+relative pathname.
 
-### Diversion: `paste`
+### Tangent: `paste`
 
 This is a good opportunity to explain how to use some functions that can be
 very helpful when you're using relative or absolute pathnames: `paste()` and
-`paste0()`.
-
-As a bit of important background information, it's important that you
-understand that you can save a pathname (absolute or relative) as an R object,
-and then use that R object in calls to later functions like `list.files()` and
-`read_csv()`. For example, to use the absolute pathname to read the
-`heat_mort.csv` file in the `CourseText` directory, you could run:
+`paste0()`. It's important that you understand that you can save a pathname
+(absolute or relative) as an R object and then use that R object in calls to
+later functions like `list.files()` and `read_csv()`. For example, to use the
+absolute pathname to read the `heat_mort.csv` file in the `CourseText`
+directory, you could run:
 
 ```
 my_file <- "/Users/brookeanderson/Desktop/RCourseFall2015/CourseText/heat_mort.csv"
@@ -548,13 +541,13 @@ introduce them.
 
 The `paste()` function is very straightforward. It takes, as inputs, a series
 of different character strings you want to join together, and it pastes them
-together in a single character string. (As a note, this means that your result
-vector will only be one element long, for basic uses of `paste()`, while the
-inputs will be several different character stings.) You separate all the
-different things you want to paste together using with commas in the function
-call. For example:
+together in a single character string. (As a note, this means that your
+resulting vector will only be one element long for basic uses of `paste()`,
+while the inputs will be several different character stings.) You separate all
+the different things you want to paste together using with commas in the
+function call. For example:
 
-```{r}
+```{r paste_days}
 paste("Sunday", "Monday", "Tuesday")
 
 length(x = c("Sunday", "Monday", "Tuesday"))
@@ -568,7 +561,7 @@ separator, you can change this option, and you can put in just about anything
 you want. For example, if you wanted to paste all the values together without
 spaces, you could use `sep = ""`:
 
-```{r}
+```{r paste_days2}
 paste("Sunday", "Monday", "Tuesday", sep = "")
 ```
 
@@ -577,7 +570,7 @@ same thing using the `paste0` function. This function is almost exactly like
 `paste`, but it defaults to `""` (i.e., no space) as the separator between
 values by default:
 
-```{r}
+```{r paste0_days}
 paste0("Sunday", "Monday", "Tuesday")
 ```
 
