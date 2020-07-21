@@ -1,7 +1,6 @@
 # Data Visualization with `ggplot2` {#dataviz}
 
-```{r ch4_packages, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
+```{r ch4-pkgs, include=FALSE}
 library(tidyverse)
 library(scales)
 library(kableExtra)
@@ -33,7 +32,7 @@ you hope understanding takes root.
 If you don't already have `ggplot2` installed, you'll need to install it. You
 then need to load the package in your current session of R:
 
-```{r load_ggplot2, eval = FALSE}
+```{r load-ggplot2, eval=FALSE}
 # install ggplot2 package (done once per R/RStudio installation)
 install.packages("ggplot2")  
 # load ggplot2 in current R session
@@ -64,7 +63,7 @@ range from very simple to very customized. We will start by focusing on simple
 geoms and added elements; later on, we will explore more options for
 customization. 
 
-```{block type = "rmdwarning"}
+```{block type="rmdwarning"}
 A common error when writing `ggplot2` code is to put the `+` to add a geom or
 element at the beginning of a line rather than the end of a previous line. In
 this case, R will try to execute the call too soon. If R gets to the end of a
@@ -86,7 +85,7 @@ Aesthetics are explained more in the next subsection.
 Outside of a pipeline, you can use the following conventions to initialize a
 `ggplot2` object:
 
-```{r ggplot2_generic, eval = FALSE}
+```{r ggplot2-generic, eval=FALSE}
 ## generic code; will not run
 object <- ggplot(my_dataframe, aes(x = data_column_1, y = data_column_2))
 ```
@@ -96,7 +95,7 @@ you can use the parameter definition with that call (e.g., `data = dataframe`).
 Aesthetics are defined within an `aes()` function call that is typically
 defined within the `ggplot()` function. 
 
-```{block type = "rmdnote"}
+```{block type="rmdnote"}
 While the `ggplot()` call is the place where you will most often see an `aes()`
 call, you can also make calls to `aes()` within the calls to specific geoms.
 This can be particularly useful if you want to map aesthetics differently for
@@ -123,7 +122,7 @@ According to `?mpg`:
 
 > "This dataset contains a subset of the fuel economy data that the EPA makes available on [http://fueleconomy.gov](http://fueleconomy.gov). It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car."
 
-```{r mpg_bar, warning = FALSE, message = FALSE, fig.cap = "Example of a simple call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe."}
+```{r mpg-bar, warning=FALSE, message=FALSE, fig.cap="Example of a simple call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe."}
 
 # use ggplot() to map the data and a single aesthetic (variable = class)
 ggplot(data = mpg, aes(x = class)) + 
@@ -135,14 +134,14 @@ will be mapped to vehicle drive type (i.e., 4-wheel, font-wheel, or
 rear-wheel). The x-position will continue to show vehicle class, and the
 y-position will show the counts of vehicles, now colored by the drive types.
 
-```{r mpg_fill, warning = FALSE, message = FALSE, fig.cap = "Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)."}
+```{r mpg-fill, warning=FALSE, message=FALSE, fig.cap="Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)."}
 
 # call to ggplot to map the data and a single aesthetic
 ggplot(data = mpg, aes(x = class, fill = drv)) +
   geom_bar()  # call to a specific geom to plot the mapped data
 ```
 
-```{block type = "rmdnote"}
+```{block type="rmdnote"}
 `ggplot()` will choose colors and add legends to plots when an aesthetic
 mapping creates such opportunities. You will learn ways to customize colors,
 legends, and other plot elements later.
@@ -155,7 +154,7 @@ use for a geom in the "Aesthetics" section of the geom's helpfile (e.g.,
 and optional ones are not. Common plot aesthetics you might want to specify
 include: 
 
-```{r aes_table, echo = FALSE}
+```{r aes-table, echo=FALSE}
 aes_vals <- data.frame(aes = c("`x`", "`y`", "`shape`",
                                "`color`", "`fill`", "`size`",
                                "`alpha`", "`linetype`"),
@@ -178,7 +177,7 @@ When creating plots, you'll often want to add more than one `geom` to the plot.
 You can add these with `+` after the `ggplot()` statement to initialize the
 `ggplot2` object. Some of the most common geoms are:
 
-```{r geom_table, echo = FALSE}
+```{r geom-table, echo=FALSE}
 plot_funcs <- data.frame(type = c("Histogram (1 numeric variable)",
                                   "Scatterplot (2 numeric variables)",
                                   "Boxplot (1 numeric variable, possibly 1 factor variable)",
@@ -204,7 +203,7 @@ mappings can be structured. For example, the following four calls all produce
 the same (identical) plot as shown in Figure \@ref(fig:mpg-2). Try it for
 yourself.
 
-```{r mpg_comp, eval=FALSE, message = FALSE}
+```{r mpg-comp, eval=FALSE, message=FALSE}
 # call to ggplot() with aes() specified in main call
 ggplot(data = mpg, aes(x = class, fill = drv)) +
 geom_bar()
@@ -227,7 +226,7 @@ This flexibility also comes with occasional confusion, as you can often
 example, see what happens when two different `fill` mappings are specified at
 different points in the call:
 
-```{r mpg_green, warning = FALSE, message = FALSE, fig.cap = "Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)."}
+```{r mpg-green, warning=FALSE, message=FALSE, fig.cap="Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)."}
 
 # call to ggplot where one `fill` overrides another
 ggplot(data = mpg, aes(x = class, fill = drv)) +
@@ -249,7 +248,7 @@ difference between color (black for all these example points) and fill (red for
 these examples). You can see that some point shapes include a fill (21 for
 example), while some are either empty (1) or solid (19).
 
-```{r shapeexamples, echo = FALSE, fig.width = 5, fig.height = 3, fig.align = "center", fig.cap = "Examples of the shapes corresponding to different numeric choices for the `shape` aesthetic. For all examples, `color` is set to black and `fill` to red."}
+```{r shape-examples, echo=FALSE, fig.width=5, fig.height=3, fig.align="center", fig.cap="Examples of the shapes corresponding to different numeric choices for the `shape` aesthetic. For all examples, `color` is set to black and `fill` to red."}
 x <- rep(1:5, 5)
 y <- rep(1:5, each = 5)
 my.shapes <- 1:25
@@ -267,7 +266,7 @@ character strings for different colors. Figure \@ref(fig:colorexamples) gives
 an example of some of the different blues available in R. To find links to
 listings of different R colors, look up "R colors" and search by "Images".
 
-```{r colorexamples, echo = FALSE, fig.width = 5, fig.height = 3, fig.align = "center", fig.cap = "Example of available shades of blue in R."}
+```{r color-examples, echo=FALSE, fig.width=5, fig.height=3, fig.align="center", fig.cap="Example of available shades of blue in R."}
 x <- rep(0, 6)
 y <- 1:6
 my.colors <- c("blue", "blue4", "darkorchid", 
@@ -292,7 +291,7 @@ documentation:
 There are many scale elements that you can add onto a `ggplot2` object using
 `+`. A few that are used very frequently are: 
 
-```{r scale_elements, echo = FALSE}
+```{r scale-elements, echo=FALSE}
 plot_adds <- data.frame(add = c("`ggtitle()`",
                                 "`xlab()`, `ylab()`",
                                 "`xlim()`, `ylim()`",
@@ -339,7 +338,7 @@ calls for `color = ` in each layer. The final part of the call in
 `theme_classic()` tells `ggplot()` to remove the gray background and the grid
 lines, which are neither necessary nor visually appealing.
 
-```{r mpg_custom_plot, message = FALSE, warning = FALSE, fig.cap= "A two-layer (two `geom`) plot with customization"}
+```{r mpg-custom-plot, message=FALSE, warning=FALSE, fig.cap="A two-layer (two `geom`) plot with customization"}
 
 # load required R packages - alternatively, use `library(tidyverse)`, if you will need multiple tidyverse packages
 library(dplyr) # for data wrangling and manipulation
@@ -392,13 +391,13 @@ remember to **use descriptive plot names** following the naming advice from
 Chapter 3 (i.e., meaningful words; lowercase; underscore as separator). In the 
 following example, `plot1` does not follow this advice!
 
-```{r ggplot_save, eval = FALSE, message = FALSE, warning = FALSE}
+```{r ggplot-save, eval=FALSE, message=FALSE, warning=FALSE}
 # create a ggplot object called "plot1"
 plot1 <- ggplot(data = mpg, aes(x = class)) +
   geom_bar()
 ```
 
-```{block type = "rmdnote"}
+```{block type="rmdnote"}
 When you create and store a `ggplot()` object, the plot itself will be created
 and stored but not returned as output.If you want to "see" the plot, just
 enter its name into the console or script.
@@ -409,7 +408,7 @@ You can also save `ggplot2` plots as image files to a local directory using the
 specify parameters including image resolution (`dpi = 300`), image type 
 (`device = png()`), and image `height`, `width` and `units` of measurement. 
 
-```{r save-ggplot, eval = FALSE, message = FALSE, warning = FALSE}
+```{r save-ggplot, eval=FALSE, message=FALSE, warning=FALSE}
 # create a ggplot object called "plot1"
 plot1 <- ggplot(data = mpg, aes(x = class)) +
   geom_bar()
