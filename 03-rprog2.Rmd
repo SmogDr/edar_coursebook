@@ -604,7 +604,7 @@ Dropbox.
 
 For example, to read in data from this [GitHub repository of Ebola data](https://raw.githubusercontent.com/cmrivers/ebola/master/country_timeseries.csv), you can run:
 
-```{r ebola1, message = FALSE}
+```{r ebola_url, message = FALSE}
 url <- paste0("https://raw.githubusercontent.com/cmrivers/",
               "ebola/master/country_timeseries.csv")
 ebola <- readr::read_csv(file = url)
@@ -805,7 +805,7 @@ are scientists.
 You can use the `filter()` function from `dplyr` to filter a dataframe down to
 a subset of rows. The syntax is:
 
-```{r filter_generic eval = FALSE}
+```{r filter_generic, eval = FALSE}
 ## generic code; will not run
 filter(.data = dataframe, logical expression)
 ```
