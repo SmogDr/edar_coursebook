@@ -1,6 +1,6 @@
 # Getting and Cleaning Data {#rprog2}
 
-``` {r ch3_packages, echo = FALSE }
+``` {r ch3-pkgs, echo=FALSE}
 library(tidyverse)
 ```
 
@@ -151,17 +151,17 @@ For example, to read in the Ebola data, which is comma-delimited, you could
 either use `read_table()` with a `delim` argument specified or use
 `read_csv()`, in which case you don't have to specify `delim`:
 
-```{r ebola1, message = FALSE}
+```{r ebola-delim, message=FALSE}
 library(package = "readr")
 # The following two calls do the same thing
 ebola <- readr::read_delim(file = "data/country_timeseries.csv", delim = ",")
 ```
 
-```{r ebola2}
+```{r ebola-csv}
 ebola <- readr::read_csv(file = "data/country_timeseries.csv")
 ```
 
-```{block, type = 'rmdtip'}
+```{block, type='rmdtip'}
 The message that R prints after this call ("Parsed with column specification:
 ... ") lets you know what classes were used for each column. This function
 tries to guess the appropriate class and typically gets it right. You can
@@ -190,7 +190,7 @@ Option  | Description
 `na()` | How are missing values coded?
 
 
-```{block, type = 'rmdnote'}
+```{block, type='rmdnote'}
 Remember that you can always find out more about a function by looking at its
 help file. For example, check out `?read_delim` and `?read_fwf` (note the lack
 of parentheses). You can also use the help files to determine the default
@@ -219,7 +219,7 @@ Functions in the `read.table` family include:
 - `read.table()` 
 - `read.fwf()`
 
-```{block, type = 'rmdnote'}
+```{block, type='rmdnote'}
 The `readr` package is a member of the `tidyverse` suite of R packages. The
 *tidyverse* describes an evolving collection of R packages with a common
 philosophy and approach, and they are unquestionably changing the way people
@@ -244,7 +244,7 @@ other statistical programs.
 There are two "tidyverse" packages, `readxl` and `haven`, that help with this.
 They allow you to read in files from the following formats:
 
-```{r read_funcs_table, echo = FALSE}
+```{r read-table, echo=FALSE}
 read_funcs <- data.frame(file_type = c("Excel",
                                        "SAS",
                                        "SPSS",
@@ -324,7 +324,7 @@ specific project.
 Figure \@ref(fig:filedirstructure) gives an example file directory structure
 for a hypothetical computer. Directories are shown in blue, and files in green.
 
-```{r filedirstructure, echo = FALSE, fig.cap= "An example of file directory structure.", out.width = "600pt", fig.align = "center"}
+```{r filedirstructure, echo=FALSE, out.width="600pt", fig.align="center", fig.cap="An example of file directory structure."}
 knitr::include_graphics("figures/FileDirectoryStructure.png")
 ```
 
@@ -414,7 +414,7 @@ the root. In other words, it will always be clear to R exactly what file you're
 talking about. Here's the code to use to read that file in using the
 `read.csv()` function with the file's absolute pathname:
 
-```{r heat_abs, eval = FALSE}
+```{r heat-abs, eval=FALSE}
 heat_mort <- readr::read_csv(file = "/Users/brookeanderson/Desktop/RCourseFall2015/CourseText/heat_mort.csv")
 ```
 
@@ -441,7 +441,7 @@ would be:
 You can use this relative pathname to tell R where to find and read in the
 file:
 
-```{r heat_rel, eval = FALSE}
+```{r heat-rel, eval=FALSE}
 heat_mort <- readr::read_csv("CourseText/heat_mort.csv")
 ```
 
@@ -451,7 +451,7 @@ relative pathname would no longer work.
 
 There are a few abbreviations that can be really useful for pathnames:
 
-```{r paths, echo = FALSE}
+```{r paths, echo=FALSE}
 dirpath_shortcuts <- data.frame(abbr = c("`~`", "`.`", "`..`", "`../..`"),
                                 meaning = c("Home directory",
                                             "Current working directory",
@@ -546,7 +546,7 @@ while the inputs will be several different character stings.) You separate all
 the different things you want to paste together using with commas in the
 function call. For example:
 
-```{r paste_days}
+```{r paste-days}
 paste("Sunday", "Monday", "Tuesday")
 
 length(x = c("Sunday", "Monday", "Tuesday"))
@@ -560,7 +560,7 @@ separator, you can change this option, and you can put in just about anything
 you want. For example, if you wanted to paste all the values together without
 spaces, you could use `sep = ""`:
 
-```{r paste_days2}
+```{r paste-days-sep}
 paste("Sunday", "Monday", "Tuesday", sep = "")
 ```
 
@@ -569,7 +569,7 @@ same thing using the `paste0` function. This function is almost exactly like
 `paste`, but it defaults to `""` (i.e., no space) as the separator between
 values by default:
 
-```{r paste0_days}
+```{r paste0-days}
 paste0("Sunday", "Monday", "Tuesday")
 ```
 
@@ -604,7 +604,7 @@ Dropbox.
 
 For example, to read in data from this [GitHub repository of Ebola data](https://raw.githubusercontent.com/cmrivers/ebola/master/country_timeseries.csv), you can run:
 
-```{r ebola_url, message = FALSE}
+```{r ebola-url, message=FALSE}
 url <- paste0("https://raw.githubusercontent.com/cmrivers/",
               "ebola/master/country_timeseries.csv")
 ebola <- readr::read_csv(file = url)
@@ -623,7 +623,7 @@ do that with functions from `dplyr`, another package in the tidyverse. Here are
 some of the most common data-cleaning tasks, along with the corresponding
 `dplyr` function for each:
 
-```{r dplyr_verbs, echo = FALSE}
+```{r dplyr-verbs, echo=FALSE}
 library(package = "tibble")
 dc_func <- tibble(task = c("Renaming columns",
                            "Filtering to certain rows",
@@ -642,7 +642,7 @@ To follow along with these examples, you'll want to load that data, as well as
 load the `dplyr` package. Install it using `install.packages()` if you have not
 done so already.
 
-```{r daily_load, message = FALSE}
+```{r daily-load, message=FALSE}
 library("dplyr")
 daily_show <- readr::read_csv(file = "data/daily_show_guests.csv", skip = 4)
 ```
@@ -650,7 +650,7 @@ daily_show <- readr::read_csv(file = "data/daily_show_guests.csv", skip = 4)
 I've used this data in previous examples, but as a reminder, here's what it 
 looks like: 
 
-```{r daily_head}
+```{r daily-head}
 head(x = daily_show)
 ```
 
@@ -667,13 +667,13 @@ You can check out the column names for a dataframe using the `colnames()`
 function, with the dataframe object as the argument. Several of the column
 names in `daily_show` have some of these issues:
 
-```{r daily_col}
+```{r daily-col}
 colnames(x = daily_show)
 ```
 
 To rename these columns, use `rename()`. The basic syntax is:
 
-```{r rename_generic, eval = FALSE}
+```{r rename-generic, eval=FALSE}
 ## generic code; will not run
 dplyr::rename(.data = dataframe,
               new_column_name_1 = old_column_name_1,
@@ -685,7 +685,7 @@ Then you list each pair of new and old column names (in that order) for each
 of the columns you want to rename. To rename columns in the `daily_show` data
 using `rename()`, for example, you would run:
 
-```{r daily_rename}
+```{r daily-rename}
 daily_show <- dplyr::rename(.data = daily_show,
                             year = YEAR,
                             job = GoogleKnowlege_Occupation,
@@ -695,7 +695,7 @@ daily_show <- dplyr::rename(.data = daily_show,
 head(x = daily_show, 3)
 ```
 
-```{block, type = 'rmdwarning'}
+```{block, type='rmdwarning'}
 Many of the functions in tidyverse packages, including those in `dplyr`,
 provide exceptions to the general rule about quotation marks. Unfortunately,
 this may make it a bit hard to learn when to use quotation marks. One way to
@@ -712,7 +712,7 @@ Next, you may want to select only some columns of the dataframe. You can use
 the `select()` function from `dplyr` to subset the dataframe to certain
 columns. The basic structure of this command is:
 
-```{r select_generic, eval = FALSE}
+```{r select-generic, eval=FALSE}
 ## generic code; will not run
 dplyr::select(.data = dataframe, column_name_1, column_name_2, ...)
 ```
@@ -722,11 +722,11 @@ column names to include in the output dataframe, with commas between each
 column name. For example, to select all columns in `daily_show` except `year`
 (since that information is already included in `date`), run:
 
-```{r select_daily}
+```{r select-daily}
 dplyr::select(.data = daily_show, job, date, category, guest_name)
 ```
 
-```{block, type = 'rmdwarning'}
+```{block, type='rmdwarning'}
 Don't forget that, if you want to change column names in the saved object, you
 must reassign the object to be the output of `rename()`. If you run one of
 these cleaning functions without reassigning the object, R will print out the
@@ -741,7 +741,7 @@ example, we wanted all the columns except one. Instead of writing out all the
 columns we want, we can use `-` with only the columns we don't want to
 save time (notice the object reassignment/override):
 
-```{r select_inverse_daily}
+```{r select-inverse-daily}
 daily_show <- dplyr::select(.data = daily_show, -year)
 head(x = daily_show, n = 3)
 ```
@@ -751,7 +751,7 @@ head(x = daily_show, n = 3)
 You can change a column or add a new column using the `mutate()` function from
 the `dplyr` package. That function has the syntax:
 
-```{r mutate_generic, eval = FALSE}
+```{r mutate-generic, eval=FALSE}
 # generic code; will not run
 dplyr::mutate(.data = dataframe,
               changed_column = function(changed_column),
@@ -762,7 +762,7 @@ For example, the `job` column in `daily_show` sometimes uses upper case and
 sometimes does not. This call uses the `unique()` function to list only unique
 values in this column:
 
-```{r unique_job_daily}
+```{r unique-job-daily}
 head(x = unique(x = daily_show$job), n = 10)
 ```
 
@@ -770,7 +770,7 @@ To make all the observations in the `job` column lowercase, use the
 `str_to_lower()` function from the `stringr` package within a `mutate()`
 function: 
 
-```{r mutate_str_daily}
+```{r mutate-str-daily}
 library(package = "stringr")
 mutate(.data = daily_show, 
        job = str_to_lower(string = job))
@@ -781,7 +781,7 @@ mutate(.data = daily_show,
 Just so you know, all of these `dplyr` functions have alternatives, either
 functions or processes, in base R:
 
-```{r dplyr_v_base, echo = FALSE}
+```{r dplyr-vs-base, echo=FALSE}
 dplyr_vs_base <- data.frame(dplyr = c("`rename()`",
                                       "`select()`",
                                       "`filter()`",
@@ -805,7 +805,7 @@ are scientists.
 You can use the `filter()` function from `dplyr` to filter a dataframe down to
 a subset of rows. The syntax is:
 
-```{r filter_generic, eval = FALSE}
+```{r filter-generic, eval=FALSE}
 ## generic code; will not run
 filter(.data = dataframe, logical expression)
 ```
@@ -814,7 +814,7 @@ The `logical expression` in this call gives the condition that a row must meet
 to be included in the output data frame. For example, if you want to create a
 data frame that only includes guests who were scientists, you can run:
 
-```{r filter_daily}
+```{r filter-daily}
 scientists <- filter(.data = daily_show, 
                      category == "Science")
 head(x = scientists)
@@ -836,7 +836,7 @@ Operator  | Meaning | Example
 We'll use these logical operators and expressions a lot more as the course
 continues, so they're worth memorizing.
 
-```{block, type = 'rmdwarning'}
+```{block, type='rmdwarning'}
 Two common errors with logical operators are: (1) Using `=` instead of `==` to
 check if two values are equal; and (2) Using `== NA` instead of `is.na` to
 check for missing observations.
@@ -852,7 +852,7 @@ wrangling steps at once.
 If you look at the format of these `dplyr` functions, you'll notice that they
 all take a dataframe as their first argument:
 
-```{r dplyr_generic, eval = FALSE}
+```{r dplyr-generic, eval=FALSE}
 # generic code; will not run
 rename(.data = dataframe, 
        new_column_name_1 = old_column_name_1,
@@ -869,7 +869,7 @@ mutate(.data = dataframe,
 Without piping, you have to reassign the dataframe object at each step of this
 cleaning if you want the changes saved in the object:
 
-```{r daily_sep_clean, eval = FALSE, message = FALSE}
+```{r daily-sep-clean, eval=FALSE, message=FALSE}
 daily_show <-read_csv(file = "data/daily_show_guests.csv",
                       skip = 4)
 daily_show <- rename(.data = daily_show, 
@@ -890,7 +890,7 @@ inputs a dataframe as its first argument. It *pipes* the dataframe created
 right before the pipe (`%>%`) into the function right after the pipe. With
 piping, therefore, the above data cleaning looks like:
 
-```{r daily_pipe_clean, message = FALSE}
+```{r daily-pipe-clean, message=FALSE}
 daily_show <- readr::read_csv(file = "data/daily_show_guests.csv",
                               skip = 4) %>%
   dplyr::rename(job = GoogleKnowlege_Occupation,
@@ -956,7 +956,7 @@ function to check out basic statistics on the data.
 - Check out the file "measles\_data/02-09-2015.txt". What type of flat file do
 you think it is? Since it's in a subdirectory, you'll need to tell R how to get
 to it from the project directory, using something called a 
-**relative pathname** (we'll talk about this a lot more in the next section of the lecture). Read this file into R as an object named `ca_measles`, using the relative pathname ("measles\_data/02-09-2015.txt") in place of the file name in the `read_tsv` function call. Use the `col_names` option to name the columns "city" and "count". What would the default column names be if you didn't use this option (try this out by running `read_csv` without the `col_names` option)?
+**relative pathname** (we'll talk about this a lot more in the next section of the lecture). Read this file into R as an object named `ca_measles`, using the relative pathname ("measles\_data/02-09-2015.txt") in place of the file name in the `read_tsv` function call. Use the `col_names` option to name the columns "city" and "count". What would the default column names be if you didn't use this option (try this out by running `read_csv()` without the `col_names` option)?
 - Read in the Excel file "icd-10.xls" and assign it to the object name `idc10`.
 Use the [`readxl` package to do that](https://github.com/hadley/readxl)
 (examples are at the bottom of the linked page).
