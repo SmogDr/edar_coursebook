@@ -14,16 +14,16 @@ data visualization in R. Upon completing this chapter, you should be able to:
 
 ## Install and load `ggplot2`
 
-> <span style="color: blue;"> The best design gets out of the way between the viewer’s brain and the content. - Edward Tufte </span>
+> <span style="color: blue;"> "The best design gets out of the way between the viewer’s brain and the content." - Edward Tufte </span>
 
 In this chapter, you will learn how to make basic plots using the `ggplot2`
 package in R, which is another package in `tidyverse`, like `dplyr` from
 Chapter 2. This section will focus on making **useful**, rather than
 **attractive** graphs because, at this stage, we are focusing on exploring data
 rather than presenting results to others. Later on, I will explain more about
-how you can customize `ggplot2` objects to help you make plots that provide a
-bridge between content you wish to present and the viewer's brain, where
-you hope understanding takes root.  
+how you can customize `ggplot2` objects to help you make plots that "get out of
+the way" between content you wish to present and the viewer's brain, where you
+hope understanding takes root.  
 
 If you don't already have `ggplot2` installed, you'll need to install it. You
 then need to load the package in your current session of R:
@@ -113,9 +113,9 @@ ggplot(data = mpg, aes(x = class)) +
   geom_bar() # call to a specific geom to plot the mapped data
 ```
 
-<div class="figure" style="text-align: center">
-<img src="04-dataviz_files/figure-html/mpg_bar-1.png" alt="Example of a simple call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe." width="672" />
-<p class="caption">(\#fig:mpg_bar)Example of a simple call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe.</p>
+<div class="figure">
+<img src="04-dataviz_files/figure-html/mpg-bar-1.png" alt="Example of a simple call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe." width="672" />
+<p class="caption">(\#fig:mpg-bar)Example of a simple call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe.</p>
 </div>
 
 Let's call this plot again with a second aesthetic, the `fill` color, which
@@ -130,9 +130,9 @@ ggplot(data = mpg, aes(x = class, fill = drv)) +
   geom_bar()  # call to a specific geom to plot the mapped data
 ```
 
-<div class="figure" style="text-align: center">
-<img src="04-dataviz_files/figure-html/mpg_fill-1.png" alt="Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)." width="672" />
-<p class="caption">(\#fig:mpg_fill)Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`).</p>
+<div class="figure">
+<img src="04-dataviz_files/figure-html/mpg-fill-1.png" alt="Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)." width="672" />
+<p class="caption">(\#fig:mpg-fill)Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`).</p>
 </div>
 
 <div class="rmdnote">
@@ -147,7 +147,7 @@ and optional ones are not. Common plot aesthetics you might want to specify
 include: 
 
 <table>
-<caption>(\#tab:aes_table)Common Plot Aesthetics</caption>
+<caption>(\#tab:aes-table)Common Plot Aesthetics</caption>
  <thead>
   <tr>
    <th style="text-align:left;"> Code </th>
@@ -197,7 +197,7 @@ You can add these with `+` after the `ggplot()` statement to initialize the
 `ggplot2` object. Some of the most common geoms are:
 
 <table>
-<caption>(\#tab:geom_table)Common Plot Aesthetics</caption>
+<caption>(\#tab:geom-table)Common Plot Aesthetics</caption>
  <thead>
   <tr>
    <th style="text-align:left;"> Plot type </th>
@@ -267,9 +267,9 @@ ggplot(data = mpg, aes(x = class, fill = drv)) +
   geom_bar(fill = "darkgreen")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="04-dataviz_files/figure-html/mpg_green-1.png" alt="Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)." width="672" />
-<p class="caption">(\#fig:mpg_green)Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`).</p>
+<div class="figure">
+<img src="04-dataviz_files/figure-html/mpg-green-1.png" alt="Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)." width="672" />
+<p class="caption">(\#fig:mpg-green)Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`).</p>
 </div>
 
 In this case, the aesthetic mapping of `aes(fill = drv)` was overridden by the
@@ -288,8 +288,8 @@ these examples). You can see that some point shapes include a fill (21 for
 example), while some are either empty (1) or solid (19).
 
 <div class="figure" style="text-align: center">
-<img src="04-dataviz_files/figure-html/shapeexamples-1.png" alt="Examples of the shapes corresponding to different numeric choices for the `shape` aesthetic. For all examples, `color` is set to black and `fill` to red." width="480" />
-<p class="caption">(\#fig:shapeexamples)Examples of the shapes corresponding to different numeric choices for the `shape` aesthetic. For all examples, `color` is set to black and `fill` to red.</p>
+<img src="04-dataviz_files/figure-html/shape-examples-1.png" alt="Examples of the shapes corresponding to different numeric choices for the `shape` aesthetic. For all examples, `color` is set to black and `fill` to red." width="480" />
+<p class="caption">(\#fig:shape-examples)Examples of the shapes corresponding to different numeric choices for the `shape` aesthetic. For all examples, `color` is set to black and `fill` to red.</p>
 </div>
 
 If you want to set color to be a constant value, you can do that in R using
@@ -298,8 +298,8 @@ an example of some of the different blues available in R. To find links to
 listings of different R colors, look up "R colors" and search by "Images".
 
 <div class="figure" style="text-align: center">
-<img src="04-dataviz_files/figure-html/colorexamples-1.png" alt="Example of available shades of blue in R." width="480" />
-<p class="caption">(\#fig:colorexamples)Example of available shades of blue in R.</p>
+<img src="04-dataviz_files/figure-html/color-examples-1.png" alt="Example of available shades of blue in R." width="480" />
+<p class="caption">(\#fig:color-examples)Example of available shades of blue in R.</p>
 </div>
 
 ## Scales: useful plot edits
@@ -314,7 +314,7 @@ There are many scale elements that you can add onto a `ggplot2` object using
 `+`. A few that are used very frequently are: 
 
 <table>
-<caption>(\#tab:scale_elements)Common Scale Elements</caption>
+<caption>(\#tab:scale-elements)Common Scale Elements</caption>
  <thead>
   <tr>
    <th style="text-align:left;"> Element </th>
@@ -413,9 +413,9 @@ ggplot() +
   theme_classic() 
 ```
 
-<div class="figure" style="text-align: center">
-<img src="04-dataviz_files/figure-html/mpg_custom_plot-1.png" alt="A two-layer (two `geom`) plot with customization" width="672" />
-<p class="caption">(\#fig:mpg_custom_plot)A two-layer (two `geom`) plot with customization</p>
+<div class="figure">
+<img src="04-dataviz_files/figure-html/mpg-custom-plot-1.png" alt="A two-layer (two `geom`) plot with customization" width="672" />
+<p class="caption">(\#fig:mpg-custom-plot)A two-layer (two `geom`) plot with customization</p>
 </div>
 
 What conclusions can you draw from examining Figure \@ref(fig:mpg-5)?  
@@ -487,9 +487,15 @@ already exists! Before building your own (which is sometimes necessary and/or
 fun), take a look at this [compilation](https://exts.ggplot2.tidyverse.org/) of
 `ggplot2` extensions.
 
-# Class Exercises
+## Class Exercises
+
+Using built-in dataset
 
 1. Create a `geom_col()`
 2. Create a `geom_jitter()` (mtcars y=mpg, x=cyl)
 3. Vary fill, color, line for whole plot
 4. Create fill, color aesthetics
+
+## Homework
+
+- R Markdown template with data import, wrangling, basic plotting

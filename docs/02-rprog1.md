@@ -60,11 +60,11 @@ Nonetheless, R is still the first choice of statisticians in most fields, so I
 would argue that R has a an advantage, if you want to have access to
 cutting-edge statistical methods.
 
-> "The best thing about R is that it was developed by statisticians. The worst thing about R is that...it was developed by statisticians." -- Bo Cowgill, Google, at the Bay Area R Users Group
+> <span style="color: blue;"> "The best thing about R is that it was developed by statisticians. The worst thing about R is that...it was developed by statisticians." -- Bo Cowgill, Google, at the Bay Area R Users Group </span>
 
 ### Free and open-source software
 
-> "Life is too short to run proprietary software." -- Bdale Garbee
+> <span style="color: blue;"> "Life is too short to run proprietary software." -- Bdale Garbee </span>
 
 R is **free and open-source software**. Conversely, many other popular
 statistical programming languages such as SAS and SPSS are proprietary. It's
@@ -98,7 +98,7 @@ software", or "FOSS".
 Popular open source licenses for R and R packages include the GPL and MIT
 licenses.
 
-> “Making Linux GPL'd was definitely the best thing I ever did.” -- Linus Torvalds
+> <span style="color: blue;"> “Making Linux GPL'd was definitely the best thing I ever did.” -- Linus Torvalds </span>
 
 In practice, this means that, once you are familiar with the software, you can
 dig deeply into the code to figure out exactly how it's performing certain
@@ -111,10 +111,10 @@ software and its extensions. I explain a bit more about R packages a bit later,
 but this open-source nature of R has created a large community of people
 worldwide who develop and share extensions to R. As a result, you can pull in
 packages that let you do all kinds of things in R, like visualizing Tweets,
-cleaning up accelerometer data, analyzing complex surveys, fitting maching
+cleaning up accelerometer data, analyzing complex surveys, fitting machine
 learning models, and a wealth of other cool things.
 
-> "Despite its name, open-source software is less vulnerable to hacking than the secret, black box systems like those being used in polling places now. That’s because anyone can see how open-source systems operate. Bugs can be spotted and remedied, deterring those who would attempt attacks. This makes them much more secure than closed-source models like Microsoft’s, which only Microsoft employees can get into to fix." -- [Woolsey and Fox. *To Protect Voting, Use Open-Source Software.* New York Times. August 3, 2017.](https://www.nytimes.com/2017/08/03/opinion/open-source-software-hacker-voting.html?mcubz=3)
+> <span style="color: blue;"> "Despite its name, open-source software is less vulnerable to hacking than the secret, black box systems like those being used in polling places now. That’s because anyone can see how open-source systems operate. Bugs can be spotted and remedied, deterring those who would attempt attacks. This makes them much more secure than closed-source models like Microsoft’s, which only Microsoft employees can get into to fix." -- [Woolsey and Fox. *To Protect Voting, Use Open-Source Software.* New York Times. August 3, 2017.](https://www.nytimes.com/2017/08/03/opinion/open-source-software-hacker-voting.html?mcubz=3) </span>
 
 You can download the latest version of R from
 [CRAN](https://cran.r-project.org). Be sure to select the distribution for your
@@ -123,10 +123,10 @@ re-install R at least once a year to make sure you're working with one of the
 newer versions. Check your current R version (e.g., by running `sessionInfo()`
 at the R console) to make sure you're not using an outdated version of R. 
 
-> "The R engine ...is pretty well uniformly excellent code but you
-have to take my word for that. Actually, you don't. The whole engine is open source so, if you wish, you can check every line of it. If people were out to push dodgy software, this is not the way they'd go about it." -- Bill Venables, R-help (January 2004)
+> <span style="color: blue;"> "The R engine ...is pretty well uniformly excellent code but you
+have to take my word for that. Actually, you don't. The whole engine is open source so, if you wish, you can check every line of it. If people were out to push dodgy software, this is not the way they'd go about it." -- Bill Venables, R-help (January 2004) </span>
 
-> “Talk is cheap. Show me the code.” -- Linus Torvalds
+> <span style="color: blue;">  “Talk is cheap. Show me the code.” -- Linus Torvalds </span>
 
 ### What is RStudio?
 
@@ -536,8 +536,8 @@ naming objects are from [Hadley Wickham's R style guide](http://adv-r.had.co.nz/
 - Avoid using names that are already defined in R (e.g., don't name an object
 `mean`, because a `mean()` function exists)
 
-> "Don't call your matrix 'matrix'. Would you call your dog 'dog'? Anyway, it
-might clash with the function 'matrix'." -- Barry Rowlingson, R-help (October 2004)
+> <span style="color: blue;"> "Don't call your matrix 'matrix'. Would you call your dog 'dog'? Anyway, it
+might clash with the function 'matrix'." -- Barry Rowlingson, R-help (October 2004) </span>
 
 Another good practice is to name objects after nouns (e.g., `message`) and
 later, when you start writing functions, name those after verbs (e.g.,
@@ -713,13 +713,13 @@ console; however, it's very important to get in the practice of including
 meaningful comments in R scripts. This helps you remember what you did when you
 revisit your code later.
 
-> “You know you're brilliant, but maybe you'd like to understand what you did 2 weeks from now.” -- Linus Torvalds
+> <span style="color: blue;"> “You know you're brilliant, but maybe you'd like to understand what you did 2 weeks from now.” -- Linus Torvalds </span>
 
 ## The "package" system
 
 ### R packages
 
-> "Any doubts about R's big-league status should be put to rest, now that we have a Sudoku Puzzle Solver. Take that, SAS!" -- David Brahm (announcing the `sudoku` package), R-packages (January 2006)
+> <span style="color: blue;"> "Any doubts about R's big-league status should be put to rest, now that we have a Sudoku Puzzle Solver. Take that, SAS!" -- David Brahm (announcing the `sudoku` package), R-packages (January 2006) </span>
 
 Your original download of R is only a starting point. You can expand
 functionality of R with what are called *packages*, or extensions with new code
@@ -755,8 +755,8 @@ co-workers, without ever posting them publicly.
 ### Installing from CRAN
 
 <div class="figure" style="text-align: center">
-<img src="figures/CRAN_package_10000.png" alt="Celebrating CRAN's 10,000th package, which was created by Dr. Brooke Anderson." width="600pt" />
-<p class="caption">(\#fig:cran10000)Celebrating CRAN's 10,000th package, which was created by Dr. Brooke Anderson.</p>
+<img src="figures/CRAN_package_10000.png" alt="Celebrating CRAN's 10,000th package, which was developed by Dr. Brooke Anderson." width="600pt" />
+<p class="caption">(\#fig:cran10000)Celebrating CRAN's 10,000th package, which was developed by Dr. Brooke Anderson.</p>
 </div>
 
 The most popular place from which to download packages is currently CRAN, which
@@ -1406,3 +1406,13 @@ hp_data[3, ] # Last row, all columns
 <div class="rmdnote">
 <p>If you forget to put the comma in the indexing for a dataframe (e.g., <code>fibonacci_seq[1:2]</code>), you will index out the <em>columns</em> that fall at that position or positions. To avoid confusion, I suggest that you always use indexing with a comma when working with dataframes.</p>
 </div>
+
+## Course Exercises
+
+- Simple questions about packages, environment, objects, classes
+- Run a few of these commands in the console
+- Save a few in an R script
+
+## Homework
+
+- `swirl` or `learnr` 

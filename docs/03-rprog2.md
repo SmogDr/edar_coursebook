@@ -1,22 +1,6 @@
 # Getting and Cleaning Data {#rprog2}
 
 
-```
-## ── Attaching packages ──────────────────────────────────── tidyverse 1.2.1 ──
-```
-
-```
-## ✓ ggplot2 3.3.0     ✓ purrr   0.3.3
-## ✓ tibble  2.1.3     ✓ dplyr   0.8.3
-## ✓ tidyr   1.0.2     ✓ stringr 1.4.0
-## ✓ readr   1.3.1     ✓ forcats 0.4.0
-```
-
-```
-## ── Conflicts ─────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-```
 
 ## Objectives
 
@@ -1047,17 +1031,18 @@ then reference that column name later, R will throw an error. You can use
 selective highlighting to run one line at a time to see how the dataframe
 changes in real-time.
 
-## In-Class Exercise
+## Course Exercises
 
 - Import local and/or online data file and assign to object name
 - Examine object structure
 - Think about what kind of data wrangling needs to be done and sketch out the desired dataframe result
-- Practice a few dplyr verbs within pipe to clean up dataframe
+- Practice a few `dplyr` verbs within pipe to clean up dataframe
 
 ## Homework
 
-Change data to something related to engineering? Use Brooke's structure below
-to create homework assignment. Provide R Markdown template for homework? 
+- Change data to something related to engineering (pollution/air quality in Fort Collins)
+- Use Brooke's structure below to create homework assignment
+- Provide R Markdown template.
 
 ### Downloading and checking out the example data
 
@@ -1092,7 +1077,7 @@ function to check out basic statistics on the data.
 - Check out the file "measles\_data/02-09-2015.txt". What type of flat file do
 you think it is? Since it's in a subdirectory, you'll need to tell R how to get
 to it from the project directory, using something called a 
-**relative pathname** (we'll talk about this a lot more in the next section of the lecture). Read this file into R as an object named `ca_measles`, using the relative pathname ("measles\_data/02-09-2015.txt") in place of the file name in the `read_tsv` function call. Use the `col_names` option to name the columns "city" and "count". What would the default column names be if you didn't use this option (try this out by running `read_csv` without the `col_names` option)?
+**relative pathname** (we'll talk about this a lot more in the next section of the lecture). Read this file into R as an object named `ca_measles`, using the relative pathname ("measles\_data/02-09-2015.txt") in place of the file name in the `read_tsv` function call. Use the `col_names` option to name the columns "city" and "count". What would the default column names be if you didn't use this option (try this out by running `read_csv()` without the `col_names` option)?
 - Read in the Excel file "icd-10.xls" and assign it to the object name `idc10`.
 Use the [`readxl` package to do that](https://github.com/hadley/readxl)
 (examples are at the bottom of the linked page).
