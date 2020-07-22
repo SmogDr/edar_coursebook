@@ -109,7 +109,7 @@ less common.
 ## Plot aesthetics
 
 **Aesthetics** are properties of the plot that can show certain elements of the
-data. For example, in Figure \@ref(fig:mpg-1), we call an x-axis aesthetic 
+data. For example, in Figure \@ref(fig:mpg-bar), we call an x-axis aesthetic 
 (`x = class`) from the `mpg` dataset. We then plot counts of cars within
 different vehicle classes using `geom_bar()`. The `mpg` dataframe is included
 in the `ggplot2` package; you can learn more about it by typing `?mpg` (no
@@ -196,11 +196,11 @@ knitr::kable(plot_funcs,
 The `ggplot2` package, like many `tidyverse` packages, is both flexible and
 forgiving, designed to accommodate the user by "filling in the blanks" when no
 information is provided. For example, in the `ggplot()` call that created
-Figure \@ref(fig:mpg-2), we didn't specify the colors to be used or the
+Figure \@ref(fig:mpg-fill), we didn't specify the colors to be used or the
 contents of the legend; instead, `ggplot2` figured those out for us. The
 `ggplot2` package is also somewhat *flexible* in how calls and aesthetic
 mappings can be structured. For example, the following four calls all produce
-the same (identical) plot as shown in Figure \@ref(fig:mpg-2). Try it for
+the same (identical) plot as shown in Figure \@ref(fig:mpg-fill). Try it for
 yourself.
 
 ```{r mpg-comp, eval=FALSE, message=FALSE}
@@ -236,13 +236,13 @@ ggplot(data = mpg, aes(x = class, fill = drv)) +
 In this case, the aesthetic mapping of `aes(fill = drv)` was overridden by the
 specification in `geom_bar()`, where we wrote `fill = "darkgreen"`. This second
 specification essentially wiped away the stacked bar colors and the legend, as
-shown in Figure \@ref(fig:mpg-2). As your `ggplot2` objects become more
+shown in Figure \@ref(fig:mpg-fill). As your `ggplot2` objects become more
 customized this sort of issue can arise; it comes with the territory of having
 flexible code. 
 
 ## Shapes and colors
 
-In R, you can specify the shape of points with a number. Figure \@ref(fig:shapeexamples) shows the shapes that correspond to the numbers 1 to
+In R, you can specify the shape of points with a number. Figure \@ref(fig:shape-examples) shows the shapes that correspond to the numbers 1 to
 25 in the `shape` aesthetic. This figure also provides an example of the
 difference between color (black for all these example points) and fill (red for
 these examples). You can see that some point shapes include a fill (21 for
@@ -262,7 +262,7 @@ ggplot(to_plot, aes(x = x, y = y)) +
 ```
 
 If you want to set color to be a constant value, you can do that in R using
-character strings for different colors. Figure \@ref(fig:colorexamples) gives
+character strings for different colors. Figure \@ref(fig:color-examples) gives
 an example of some of the different blues available in R. To find links to
 listings of different R colors, look up "R colors" and search by "Images".
 
@@ -377,7 +377,7 @@ ggplot() +
   theme_classic() 
 ```
 
-What conclusions can you draw from examining Figure \@ref(fig:mpg-5)?  
+What conclusions can you draw from examining Figure \@ref(fig:mpg-custom-plot)?
 
 In general, model year 2008 SUVs did not have great fuel economy, evidenced by
 both the means and the individual data points.  
@@ -413,7 +413,7 @@ specify parameters including image resolution (`dpi = 300`), image type
 plot1 <- ggplot(data = mpg, aes(x = class)) +
   geom_bar()
 
-ggsave("./images/mpg-1.png",
+ggsave("images/mpg-bar.png",
        plot = plot1,
        dpi = 150,
        device = png(),
