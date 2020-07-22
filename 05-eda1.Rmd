@@ -1,119 +1,198 @@
 # Univariate Data Exploration {#eda1}
 
-```{r eda1, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
+```{r ch5-pkgs, include=FALSE}
 library(tidyverse)
 library(knitr)
-library(bookdown)
 library(scales)
 library(kableExtra)
 library(lubridate)
 ```
 
-> *<span style="color: blue;"> Exploratory data analysis is graphical detective work - John Tukey </span>*
+> <span style="color: blue;"> "Exploratory data analysis is graphical detective work." - John Tukey </span>
 
-Exploratory Data Analysis (also known as EDA) is largely a visual technique based on the human trait of *"pattern recognition"*. The purpose of EDA is simple: learn about your data through diagnostic visualization.
+Exploratory Data Analysis (also known as EDA) is largely a visual technique
+based on the human trait of **pattern recognition**. The purpose of EDA is
+simple: learn about your data through diagnostic visualization.
 
-**Why is Exploratory Data Analysis (EDA) useful?**
-Because getting to know a dataset is a key step towards making sense of it, and EDA is a great way to familiarize oneself with a dataset. As a result, you can use EDA to do many powerful things in a short span of time.
+*Why is Exploratory Data Analysis (EDA) useful?* Because getting to know a
+dataset is a key step towards making sense of it, and EDA is a great way to
+familiarize oneself with a dataset. As a result, you can use EDA to do many
+powerful things quickly.
 
-Think of the word **"Exploratory"** in terms of **"Hypothesis Building"**.
+Think of the word **"Exploratory"** in terms of **"Hypothesis-Building"**.In
+other words, modeling and statistical inference testing should come *after*
+EDA. You can use EDA to jump-start ideas on *"what do I do with my data?"*!  
 
-- In other words, **modeling** and **statistical inference testing** should come *after* EDA.  
-- In other, other words: You can use EDA to jump start ideas on *"what do I do with my data?"*!  
-
-> *<span style="color: blue;"> Perfect data is boring. Flawed data, on the other hand, is interesting and mysterious. Perfect data doesn't get asked out on a second date.  - me </span> *
+> <span style="color: blue;"> "Perfect data are boring. Flawed data, on the other hand, are interesting and mysterious. Perfect data don't get asked out on a second date."  - John Volckens </span> 
 
 ## Objectives
-This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:  
+
+This chapter is designed around the following learning objectives. Upon
+completing this Chapter, you should be able to:  
 
 - Define and interpret the location, dispersion, and shape of univariate data distributions
 - Calculate quantiles and basic descriptive statistics for univariate data
 - Create a cumulative distribution plot and extract quantile information from it
-- Create and interpret data from a histogtam
-- Define skewness (and its effect on measures of spread and central tendency) in qualitative terms
+- Create and interpret data from a histogram
+- Define skewness and its effect on measures of spread and central tendency in qualitative terms
 - Create a time-series plot and identify shifts in location and dispersion
-- Define autocorrelation (quantitatively and qualitatively) 
-- Identidy time lags where autocorrelation is significant using an autocorrelation (and partial autocorrelation) plot
+- Define autocorrelation, quantitatively and qualitatively 
+- Identify time lags where autocorrelation is significant, using autocorrelation and partial autocorrelation plots
 
 ## Univariate Data
 
-*Univartiate* means "only one variable" being considered (like medical doctors, statisticians enjoy the use fancy words to describe things...).  
+*Univariate* means "only one variable" being considered. Just like medical
+doctors, statisticians enjoy the use fancy words to describe basic things.  
 
-*Univariate data analyses* describe ways to discover features about a single variable or quantity. While simple, univariate analyses are a great starting point for EDA because they allow us to isolate a variable for inspection. The variation in diameter of a mass-produced component, or pollutant concentration in the atmosphere, or the rate of a beating heart are all examples of things we might examine in a univariate sense. This is, of course, a potentially risky procedure because, as engineers, we are taught about *mechanisms* and *dependencies* that imply that variable A is inextricably linked to variable B through some physical process. That's OK to admit.  Univariate analyses are still useful. Trust me for now or just skip ahead to multivariate analyses...your choice.
+*Univariate data analyses* describe ways to discover features about a single
+variable or quantity. While simple, univariate analyses are a great starting
+point for EDA because they allow us to isolate a variable for inspection. The
+variation in diameter of a mass-produced component, pollutant concentration in
+the atmosphere, or the rate of a beating heart are all examples of things we
+might examine in a univariate sense. This is, of course, a potentially risky
+procedure because, as engineers, we are taught about *mechanisms* and
+*dependencies* that imply that variable A is inextricably linked to variable B
+through some physical process. That's OK to admit. Univariate analyses are
+still useful. Trust me for now, or skip ahead to multivariate analyses---your
+choice.
 
 ### Location, Dispersion, and Shape
-Univariate EDA often begins with an attempy to discover three important properties about an observed variable: its location, dispersion, and shape. Once you define these properties (the "what"), you can begin to probe the underlying causes for these properties (the "how" and "why"). Discovering "how" and "why" of a variable's location, dispersion, and shape might sound simple, and yet, answering such questions often represents the pinnacle of scientific discovery (read: they give out nobel prizes for that stuff).  Let's start with "what" (location, dispersion, and shape) and build from there.
 
-The **location** of univariate data means: where do most of the values/observations fall? Do they tend to be large or small, based on what you know about the variable?
+Univariate EDA often begins with an attempt to discover three important
+properties about an observed variable: its location, dispersion, and shape.
+Once you define these properties (the "what"), you can begin to probe the
+underlying causes for these properties (the "how" and "why"). Discovering "how"
+and "why" of a variable's location, dispersion, and shape might sound simple,
+and yet, answering such questions often represents the pinnacle of scientific
+discovery; they give out Nobel Prizes for that stuff! Let's start with "what"
+(location, dispersion, and shape) and build from there.
 
-The **dispersion** of the data refers to its variability.  Are the values tightly bound in a small range or do they vary widely from one observation to the next? Note that the phrase "varies widely" is contextual.  The variation in the cost of an ice cream cone from one location to the next might look small to you but could mean the difference between joy and sorrow to a 10-year-old with only a $1.50 in their pocket... 
+#### Location
 
-The **shape** of the distribution is actually a combination of location and dispersion but with some mathematical nuance. Knowing the shape of your data distribution means that you have insight into its *probability density function*. One wishes to know the "shape" of the distribution they inspecting because once you know a distribution's shape, you can model it.  And if you can model the distribution, you can begin to make inferences about it (read: make extrapolations, predictions, or other types of inference). More on this later in [***Modeling***](#model).
+The location of univariate data means: where do most of the values or
+observations fall? Do the values tend to be large or small, based on what you
+know about the variable?
 
-The shape of a distribution of data is often categorized based on whether it follow that of a ***[reference distribution](#dist)*** (of which there are many types).  You can think of reference distributions like species of living organisms; there are lots out there but once you categorize one you can likely predict its behavior.  In other words, if the shape of your data matches a reference distribution, most of your modeling work is already done! Examples of reference distributions include the normal distribution, the  lognormal distribution, the uniform distribution etc. More on different types of *reference distributions* [here](#dist). 
+#### Dispersion
 
-### Example: Location and Dispersion  
+The dispersion of the data refers to its variability. Are the values tightly
+bound in a small range, or do they vary widely from one observation to the
+next? Note that the phrase "varies widely" is contextual. The variation in the
+cost of an ice cream cone from one location to the next might look small to
+you, but could mean the difference between joy and sorrow for a 10-year-old
+with only $1.50 in his pocket. 
 
-Let's plan a camping trip.  Our trip is purely theotrical...so let's not worry  about costs, logistics, or other important factors. For this exercise we only care about *comfort* while outdoors.  When I think of being comfortable outdoors, the first thing that comes to mind is ***temperature***.  Did I bring the proper clothing?
+#### Shape
 
-We will consider going camping in two lovely spots: the first is the forest preserves along the Na Pali coast in Kauai, Hawaii and the second is the sunny hiking/climbing regoin around Jack's Canyon in southwest Colorado. Let's examine the location and dispersion of hourly temperatures in these two regions for the month of July, 2010.  We can download such data from the [NOAA Climate Data Center](https://www.ncdc.noaa.gov/cdo-web/search) that provides weather data for these two regions.  Once we know the **location** and **dispersion** of these data, we can decide what clothes to bring!
+The shape of the distribution is actually a combination of location and
+dispersion but with some mathematical nuance. Knowing the shape of your data
+distribution means that you have insight into its 
+*probability density function*. It is important to know the "shape" of the
+distribution because, once you know a distribution's shape, you can model it. 
+And if you can model the distribution, you can begin to make inferences about
+it (e.g., extrapolations, predictions). More on this later in
+[**Modeling**](#model).
 
-In Figure \@ref(fig:NOAA-temps-2) we use `geom_jitter` to plot the hourly temperatures measured at these two regions for July 2010.  For this plot we define three aesthetics:  
+The shape of a distribution of data is often categorized based on whether it
+follows that of a **[reference distribution](#dist)**, of which there are
+many types. You can think of reference distributions like species of living
+organisms; there are lots out there, but once you categorize one, you can
+likely predict its behavior. In other words, if the shape of your data matches
+a reference distribution, most of your modeling work is already done! Examples
+of reference distributions include the uniform distribution, normal
+distribution, and the lognormal distribution. More on different types of
+reference distributions [**here**](#dist). 
 
-* **y =** location
-* **x =** temperature
-* **color =** location (not necessary for the plot, but the color between variables can be helpful)
+##### Example: Location and Dispersion  
 
-``` {r NOAA_temps_1, echo=FALSE, warning=FALSE, message=FALSE}
+Let's plan a camping trip. Our trip is purely hypothetical, so let's not worry
+about costs, logistics, or other important factors. For this exercise, we only
+care about comfort while outdoors. When I think of being comfortable
+outdoors, the first thing that comes to mind is **temperature**: Did I bring
+the proper clothing?
 
-tempdata <- read_csv("./data/NOAA_temps2.csv")
-NOAA_temps <- tempdata %>%
-  #mutate(time = str_extract(DATE, "(?<=T).+"), date = str_extract(DATE, ".+(?=T)")) %>%
-  #select(STATION, NAME, time, date, `HLY-TEMP-NORMAL`) %>%
-  rename(station = STATION, 
-         name = NAME, 
-         temp_hr_f = `HLY-TEMP-NORMAL`) %>%
-  #mutate(mdt = strftime(date, "%m-%dT%T"))
-  mutate(date = parse_date_time(DATE, orders = "mdhms")) %>%
-  mutate(location = case_when(
-    str_detect(station, "23066") ~ "Colorado",
-    str_detect(station, "22536") ~ "Hawaii")) %>%
-  select(station, location, date, temp_hr_f)
+We will consider going camping in two lovely spots: the forest preserves along
+the Na Pali coast in Kauai, Hawaii or the sunny hiking and climbing region
+around Jack's Canyon in southwest Colorado. Let's examine the location and
+dispersion of hourly temperatures in these two regions for the month of July,
+2010. We can download such data from the
+[NOAA Climate Data Center](https://www.ncdc.noaa.gov/cdo-web/search) 
+that provides weather data for these two regions. Once we know the *location*
+and *dispersion* of these data, we can decide what clothes to bring.
 
-year(NOAA_temps$date) <- 2010 #NOAA data export fails to include year value
+In Figure \@ref(fig:NOAA-temps-2), we use `geom_jitter()` to plot the hourly
+temperatures measured at these two regions for July 2010. For this plot, we
+define three aesthetics:  
 
-NOAA_temps %>% 
-  group_by(location) %>%
-  summarise(T_averages = mean(temp_hr_f)) -> tmeans
+* `y =` location
 
-co_hi_temps <- ggplot(NOAA_temps, aes(y = location, 
-                       x = temp_hr_f)) +
-  geom_jitter(aes(color = location),
-              height = 0.15,
+* `x =` temperature
+
+* `color =` location (not necessary for the plot, but the color between
+variables can be helpful)
+
+``` {r noaa-temp-plot, echo=FALSE, warning=FALSE, message=FALSE}
+# import and wrangle noaa temperature data from CO & HI July 2010
+noaa_temp <- readr::read_csv("data/NOAA_temps2.csv") %>% 
+  dplyr::rename(station = STATION,
+                name = NAME,
+                temp_hr_f = `HLY-TEMP-NORMAL`) %>%
+  dplyr::mutate(date = lubridate::parse_date_time(DATE, orders = "mdhms")) %>%
+  dplyr::mutate(location = dplyr::case_when(
+    stringr::str_detect(station, "23066") ~ "Colorado",
+    stringr::str_detect(station, "22536") ~ "Hawaii")) %>%
+  dplyr::select(station, location, date, temp_hr_f) # year missing from date
+
+# plot temperature by location 
+noaa_temp %>% 
+  ggplot2::ggplot(mapping = aes(x = temp_hr_f,
+                                y = location,
+                                color = location)) +
+  geom_jitter(height = 0.15,
               size = 1.5,
               shape = 1) +
-    labs(y = "Region", 
-       x = "Temperature, °F") +
+  labs(y = "State",
+       x = "Temperature (°F)") +
   theme_bw() +
-ggsave("./images/NOAA_temps.png", dpi = 150)
+  theme(legend.position = "none") +
+  ggsave("images/NOAA_temps.png", dpi = 150)
 ```
 
-``` {r NOAA-temps-2, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Hourly temperature levels in Colorado and Hawaii for the month of July, 2010."}
-knitr::include_graphics("./images/NOAA_temps.png")
+``` {r temp-plot, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Hourly temperature levels in Colorado and Hawaii for the month of July, 2010."}
+knitr::include_graphics("images/NOAA_temps.png")
 ```
 
-First, if we are picking spots to go camping, both locations have daily averaage temperatures that seem very pleasant (the average is about `r round(tmeans[[1,2]], digits = 1)` $^\circ$F in Colorado and `r round(tmeans[[2,2]], digits = 1)` $^\circ$F in Hawaii). When we calculate an average value we are creating an indicator of a variable's **location**.  However, if we look at the **dispersion** of temperature observations (how the readings vary across the month), we can make an important distiction: the range of observed temperature values in Hawaii is fairly narrow, whereas the range in Colorado spans from `r min(NOAA_temps$temp_hr_f)` to 
-`r max(NOAA_temps$temp_hr_f)` $^\circ$F!  
+```{r noaa-temp-avg, echo=FALSE}
+# create average temperature by location 
+noaa_temp_avg <- noaa_temp %>% 
+  dplyr::group_by(location) %>% 
+  dplyr::summarize(temp_avg = mean(temp_hr_f))
+```
 
-The conclusion to be drawn here is that the ***central tendencies*** of hourly temperature are nearly identical between Hawaii and Colorado but the ***dispersion*** of the temperature data suggests that you might want to pack more gear if you want to be comfortable in Colorado (see \@ref(fig:NOAA-temps-annotate)). 
+First, if we are picking spots to go camping, both locations have daily average
+temperatures that seem very pleasant. The average is about 
+`r round(noaa_temp_avg$temp_avg[1], digits = 1)` $^\circ$F in Colorado and 
+`r round(noaa_temp_avg$temp_avg[2], digits = 1)` $^\circ$F in Hawaii. When we
+calculate an average value, we are creating an indicator of a variable's
+*location*. But if we look at the *dispersion* of temperature observations
+(i.e., how the temperatures vary across the month), we can make an important
+distinction: the range of observed temperature values in Hawaii is fairly
+narrow, whereas the range in Colorado spans from `r min(noaa_temp$temp_hr_f)`
+to `r max(NOAA_temps$temp_hr_f)` $^\circ$F in July 2010! 
 
-You will discover that there are many ways to communicate location (e.g., mode, mean, median) and dispersion (e.g., range, IQR, standard deviation); we will touch upon several such descriptors in this course.
+The conclusion to be drawn here is that the ***central tendencies*** of hourly
+temperature are nearly identical between Hawaii and Colorado, but the
+***dispersion*** of the temperature data suggests that you might want to pack
+more layers if you want to be comfortable in Colorado. See
+\@ref(fig:NOAA-temps-annotate).
 
-```{r NOAA-temps-annotate, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "The Hawaii and Colorado temperature data have similar locations (or central tendencies) but differing dispersion (or spread)."}
+You will discover that there are many ways to communicate location (e.g., mode,
+mean, median) and dispersion (e.g., range, interquartile range, standard
+deviation). We will discuss several such descriptors in this course.
+
+```{r noaa-temps-anno, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="The temperature data from Hawaii and Colorado have similar locations (central tendencies) but differing dispersion (spread)."}
 knitr::include_graphics("images/NOAA_temps_annotate.png")
 ```
-
 
 ## Quantiles
 
