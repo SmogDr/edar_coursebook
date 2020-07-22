@@ -120,7 +120,7 @@ dispersion of hourly temperatures in these two regions for the month of July,
 that provides weather data for these two regions. Once we know the *location*
 and *dispersion* of these data, we can decide what clothes to bring.
 
-In Figure \@ref(fig:NOAA-temps), we use `geom_jitter()` to plot the hourly
+In Figure \@ref(fig:noaa-temp-plot), we use `geom_jitter()` to plot the hourly
 temperatures measured at these two regions for July 2010. For this plot, we
 define three aesthetics:  
 
@@ -131,7 +131,7 @@ define three aesthetics:
 * `color =` location (not necessary for the plot, but the color between
 variables can be helpful)
 
-``` {r noaa-temp-plot, echo=FALSE, warning=FALSE, message=FALSE}
+``` {r noaa-temp-data, echo=FALSE, warning=FALSE, message=FALSE}
 # import and wrangle noaa temperature data from CO & HI July 2010
 noaa_temp <- readr::read_csv("data/NOAA_temps2.csv") %>% 
   dplyr::rename(station = STATION,
@@ -158,7 +158,7 @@ noaa_temp_plot <- noaa_temp %>%
   ggsave("images/NOAA_temps.png", dpi = 150)
 ```
 
-``` {r temp-plot, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Hourly temperature levels in Colorado and Hawaii for the month of July, 2010."}
+``` {r noaa-temp-plot, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Hourly temperature levels in Colorado and Hawaii for the month of July, 2010."}
 knitr::include_graphics("images/NOAA_temps.png")
 ```
 
@@ -184,13 +184,13 @@ The conclusion to be drawn here is that the ***central tendencies*** of hourly
 temperature are nearly identical between Hawaii and Colorado, but the
 ***dispersion*** of the temperature data suggests that you might want to pack
 more layers if you want to be comfortable in Colorado. See
-\@ref(fig:NOAA-temps-annotate).
+\@ref(fig:noaa-temp-anno).
 
 You will discover that there are many ways to communicate location (e.g., mode,
 mean, median) and dispersion (e.g., range, interquartile range, standard
 deviation). We will discuss several such descriptors in this course.
 
-```{r noaa-temps-anno, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="The temperature data from Hawaii and Colorado have similar locations (central tendencies) but differing dispersion (spread)."}
+```{r noaa-temp-anno, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="The temperature data from Hawaii and Colorado have similar locations (central tendencies) but differing dispersion (spread)."}
 knitr::include_graphics("images/NOAA_temps_annotate.png")
 ```
 
@@ -529,7 +529,7 @@ ggsave("./images/boxplot_1.png")
 knitr::include_graphics("./images/boxplot_1_anno.png")
 ```
 
-Boxplots *can be created* for a single univariate distribution (as shown in Figure \@ref(fig:boxplot-1-anno)), but the strength of the boxplot really comes from drawing several together, so that one univariate distribution can be compared to another.  In my opnion, single boxplots are quite boring by themselves (and the same information presented by a boxplot is just as easy to get from a cumulative distribution plot).  However, I do think it's faster to view quartiles (and the IQR) on the boxplot, so a plot with multiple boxplots has its advantages.  For example, let's look at the data from Figure \@ref(fig:NOAA-temps) as two boxplots.
+Boxplots *can be created* for a single univariate distribution (as shown in Figure \@ref(fig:boxplot-1-anno)), but the strength of the boxplot really comes from drawing several together, so that one univariate distribution can be compared to another.  In my opnion, single boxplots are quite boring by themselves (and the same information presented by a boxplot is just as easy to get from a cumulative distribution plot).  However, I do think it's faster to view quartiles (and the IQR) on the boxplot, so a plot with multiple boxplots has its advantages.  For example, let's look at the data from Figure \@ref(fig:temp-plot) as two boxplots.
 
 ``` {r boxplot-2, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Boxplots of hourly temperatures in Colorado and Hawaii for July, 2010. Whiskers represent 1.5*IQR"}
 names <- as.list(c("Colorado", "Hawaii"))
@@ -547,7 +547,7 @@ ggplot(data = noaa_temp, aes(y = temp_hr_f,
   
 
 ```
-Examination of the boxplots in Figure \@ref(fig:boxplot-2) conveys much the same information as what is seen for the raw data originally plotted in Figure \@ref(fig:NOAA-temps): both distributions have same central tendencies but the Colorado distribution has considerably more variation.
+Examination of the boxplots in Figure \@ref(fig:boxplot-2) conveys much the same information as what is seen for the raw data originally plotted in Figure \@ref(fig:noaa-temp-plot): both distributions have same central tendencies but the Colorado distribution has considerably more variation.
 
 ## Time-Series  {#time_series}
 The **time-series plot** plot (also called a **"run sequence"** plot) is something you have undoubtedly seen before. This plot (typically shown as an *enumerative plot*) depicts the value of a variable (y-axis) plotted in the sequence that the observations were made (x-axis, often shown as units of time). A time-series plot allows you to do several things:  
@@ -557,7 +557,7 @@ The **time-series plot** plot (also called a **"run sequence"** plot) is somethi
 * Identify (potential) outliers and when they occurred 
 * Identify the ***timing*** of events!
 
-Let's plot the same temperature data from Hawaii as shown in \@ref(fig:NOAA-temps) as a time series.  We will use  `geom_point` and `geom_line` to create this plot, both of which require the following aesthetics: `x = ` and `y = `
+Let's plot the same temperature data from Hawaii as shown in \@ref(fig:noaa-temp-plot) as a time series.  We will use  `geom_point` and `geom_line` to create this plot, both of which require the following aesthetics: `x = ` and `y = `
 ```{r NOAA-time-series, warning=FALSE, message=FALSE}
 # plot Temp vs Time for Colorado data
 NOAA_HI_time_series<- ggplot(data = filter(noaa_temp, location == "Hawaii"), 
@@ -624,7 +624,7 @@ This plot can help answer the following questions:
     - weekly?  
     - seasonally?  
     
-Let's examine the Hawaii temperature data shown in Figures \@ref(fig:NOAA-temps) and \@ref(fig:NOAA-HI-time-series) using an autocorrelation plot. The `ggplot2` package doesn't have explicit geoms for autocorrelation plots (sigh), but there are simple alternatives.
+Let's examine the Hawaii temperature data shown in Figures \@ref(fig:noaa-temp-plot) and \@ref(fig:NOAA-HI-time-series) using an autocorrelation plot. The `ggplot2` package doesn't have explicit geoms for autocorrelation plots (sigh), but there are simple alternatives.
 
 * The `acf()` function from the `stats` package (loaded in base R)
 * The `ggAcf()` function in the `forecast` package (requires a time-series object `ts`)
