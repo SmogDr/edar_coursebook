@@ -129,7 +129,7 @@ define three aesthetics:
 * `color =` location (not necessary for the plot, but the color between
 variables can be helpful)
 
-``` {r noaa-temp-data, echo=FALSE, warning=FALSE, message=FALSE}
+``` {r noaa-temp-data, include=FALSE, message=FALSE}
 # import and wrangle noaa temperature data from CO & HI July 2010
 noaa_temp <- readr::read_csv("data/NOAA_temps2.csv") %>% 
   dplyr::rename(station = STATION,
@@ -485,7 +485,7 @@ ordered_salaries <- raw_salaries %>%
                                   by = 1/length(salary))) 
 ```
 
-``` {r me-salary-plot}
+``` {r me-salary-plot, include=FALSE}
 # alternate method if you don't want to calculate cumulative fractions
 ordered_salaries %>% 
   ggplot2::ggplot(mapping = aes(x = salary)) +
@@ -665,7 +665,7 @@ variability include the distribution of heights measured in a sample of 3^rd^
 graders or the variability in the mass of a 3D-printed part produced 100 times
 by the same machine.  
 
-*Multiplicative* (or log-normal) variability arises when the mechanism(s)
+Multiplicative (or log-normal) variability arises when the mechanism(s)
 controlling the variation of "x" are multipliers (or divisors) of x. Many
 real-world phenomena create multiplicative variability in observed data: the
 strength of a WiFi signal at different locations within a building, the
@@ -674,7 +674,7 @@ the size of rocks found in a section of a riverbed, or the size of particles
 found in air. All of these phenomena tend to be governed by multiplicative
 factors. In other words, all of these observations are controlled by mechanisms
 that suggest $x = a * b * c$ not $x = a + b + c$. Explicit examples of
-*multiplicative* variability and how it leads to log-normal data are provided
+multiplicative variability and how it leads to log-normal data are provided
 [here](#log_normal_dist). 
 
 ### Boxplot {#box}
@@ -691,7 +691,7 @@ called "whiskers". These whisker lines vary in their representation. For some
 plots, the whiskers represent either the maximum and minimum values,
 respectively, or a distance of $1.5 * IQR$ if either the maximum or minimum 
 value are larger than $1.5 * IQR$.  Other times the whiskers represent the 0.9
-or 0.95 quantiles or $1.58 * IQR \div sqrt(2)$. Because of these variations,
+or 0.95 quantiles or $1.58 * IQR \div \sqrt(2)$. Because of these variations,
 it's best to define the whiskers for the viewer either in the text or the
 Figure caption.  
 
@@ -724,7 +724,7 @@ compared to another. In my opinion, single boxplots are quite boring by
 themselves, and the same information presented by a boxplot is just as easy to
 get from a cumulative distribution plot.  Nonetheless, I think it's faster to
 view quartiles and the IQR on the boxplot, so a plot with multiple boxplots has
-its advantages. For example, let's look at the data from Figure \@ref(fig:temp-plot) as two boxplots.
+its advantages. For example, let's look at the data from Figure \@ref(fig:noaa-temp-plot) as two boxplots.
 
 ``` {r temp-boxplot, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Boxplots of hourly temperatures in Colorado and Hawaii for July, 2010. Whiskers represent 1.5*IQR."}
 # boxplots to compare temperature in CO and HI
@@ -764,7 +764,7 @@ Let's plot the same temperature data from Hawaii as shown in Figure
 `geom_line()` to create this plot, both of which require the following
 aesthetics: `x = ` and `y = `.
 
-```{r noaa-time-series, warning=FALSE, message=FALSE}
+```{r noaa-time-series, include=FALSE, message=FALSE}
 # plot temperature (y) vs time (y) for Hawaii data
 noaa_temp %>% 
   dplyr::filter(location == "Hawaii") %>% 
@@ -797,7 +797,7 @@ patterns were evident in the cumulative distribution or histogram plots. If we
 zoom in on just the first 5 days of the month, we see the daily temperature
 patterns in more detail.
     
-```{r noaa-hi-week-plot, warning=FALSE, message=FALSE}
+```{r noaa-hi-week-plot, include=FALSE, message=FALSE}
 # plot temperature (y) vs time (y) for Hawaii data for one week
 noaa_temp %>% 
   dplyr::filter(location == "Hawaii",
