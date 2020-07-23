@@ -746,7 +746,7 @@ same information as what is seen for the raw data originally plotted in Figure
 \@ref(fig:noaa-temp-plot): both distributions have same central tendencies but
 the Colorado distribution has considerably more variation.
 
-### Time-Series Plots {#time_series}
+### Time-Series Plot {#time_series}
 
 The time-series plot (also called a "run sequence" plot) is something you have
 undoubtedly seen before. This plot, typically shown as an enumerative plot,
@@ -819,75 +819,116 @@ noaa_temp %>%
 knitr::include_graphics("./images/noaa_hi_week.png")
 ```
 
-### Autocorrelation {#autocorr}
+### Autocorrelation Plot {#autocorr}
 
-Autocorrelation, or serial correlation, means *correlated with oneself across time*.  Autocorrelation is a concept that suggests *"whatever is happening in this moment is still likely to be happening in the next moment."* Lots of things are autocorrelated: your mood right now is likely related to your mood 15 minutes from now (or 15 minutes ago).  The weather outside at 08:00 on a given day is a good predictor of the weather outside an hour later at 09:00, or two hours later at 10:00, and so on, but less so in fourteen days hence. 
+Autocorrelation, or serial correlation, means *correlated with oneself across
+time*. Autocorrelation is a concept that suggests "whatever is happening in
+this moment is still likely to be happening in the next moment." Lots of things
+are autocorrelated: your mood right now is likely related to your mood 15
+minutes from now (or 15 minutes ago). The weather outside at 08:00 on a given
+day is a good predictor of the weather outside an hour later at 09:00, or two
+hours later at 10:00, and so on, but less so in fourteen days hence. 
 
-Almost all physical phenomona have a degree of autocorrelation and that's important because if a datapoint at time 'i' is correlated with time 'i + 1' then those two datapoints are NOT independent. Yet, many statistical tests assume that the underlying data ARE independent from one another!  Thus, autocorrelation can pose a problem when we want to make inferences using data collected over a span of time.  Fortunately, we have ways of detecting the presence (and relative strength) of autocorrelation with a simple exploratory plot. 
+Almost all physical phenomena have a degree of autocorrelation and that's
+important because if a datapoint at time $i$ is correlated with time $i + 1$,
+then those two datapoints are NOT independent. Yet, many statistical tests
+assume that the underlying data ARE independent from one another! Thus,
+autocorrelation can pose a problem when we want to make inferences using data
+collected over a span of time. Fortunately, we have ways of detecting the
+presence and relative strength of autocorrelation with a simple exploratory
+plot. 
 
-The **autocorrelation plot** is a *summary plot* that gives the Pearson correlation coefficient (r) between all measurements (x~i~) and their lags (x~i+n~), where *x* represents an observation and *i* represents a point in time.  
+The autocorrelation plot is a summary plot that gives the Pearson
+correlation coefficient (*r*) between all measurements (x~i~) and their lags
+(x~i+n~), where *x* represents an observation and *i* represents a point in
+time.
 
-This plot can help answer the following questions:  
+An autocorrelation plot can help answer the following questions:
 
 * Are the data correlated with each other over time?  
-    - Note: if the answer is *yes* then your data are *not necessarily independent measures*  
+    - Note: if the answer is *yes*, then your data are *not necessarily independent measures*.
 * Are there patterns (periodicity) to discover?  
     - hourly?  
     - daily?  
     - weekly?  
     - seasonally?  
     
-Let's examine the Hawaii temperature data shown in Figures \@ref(fig:noaa-temp-plot) and \@ref(fig:NOAA-HI-time-series) using an autocorrelation plot. The `ggplot2` package doesn't have explicit geoms for autocorrelation plots (sigh), but there are simple alternatives.
+Let's examine the Hawaii temperature data shown in Figures
+\@ref(fig:noaa-temp-plot) and \@ref(fig:noaa-hi-time) using an autocorrelation
+plot. The `ggplot2` package doesn't have explicit geoms for autocorrelation
+plots (*sigh*), but there are simple alternatives.
 
-* The `acf()` function from the `stats` package (loaded in base R)
+* The `acf()` function from the `stats` package (base R)
 * The `ggAcf()` function in the `forecast` package (requires a time-series object `ts`)
 
-Both of these functions calculate autocorrelation lags and plot them through time (i.e., where each unit of time represents the duration of a single lag). Here, the y-axis represents the Pearson correlation coefficient and the x-axis represents time lags (for the basic unit of time in which the data are arranged). 
+Both of these functions calculate autocorrelation lags and plot them through
+time, wherein each unit of time represents the duration of a single lag. Here,
+the y-axis represents the Pearson correlation coefficient and the x-axis
+represents time lags for the basic unit of time in which the data are arranged.
 
-```{r acf, warning=FALSE, message=FALSE}
-#subset the datafile to contain only measures from Colorado
-noaa_temp_HI <- noaa_temp %>% 
+```{r acf-plot, warning=FALSE, message=FALSE}
+# subset data to contain only measures from Hawaii
+noaa_temp_hi <- noaa_temp %>% 
   dplyr::filter(location == "Hawaii")
 
-#call the autocorrelation plot from `stats`
-acf(noaa_temp_HI$temp_hr_f,       
-    main = " " ,
-    xlab = "Lag (hours)",
-    ylab = "Correlation coefficient") 
+# call the autocorrelation plot from base R `stats` package
+stats::acf(noaa_temp_hi$temp_hr_f,
+           main = " " ,
+           xlab = "Lag (hours)",
+           ylab = "Correlation coefficient") 
 ```
 
-The plot suggests a fairly **strong level of autocorrelation in these temperature data**.  We should not be surprised, especially after seeing the time series shown in Figures \@ref(fig:NOAA-HI-time-series) and \@ref(fig:NOAA-HI-time-series-2).  Can you explain why the Pearson correlation coefficient is negative at a 12-hr lag?  Why does the coefficient trend back upwards to nearly perfect correlation at 24-hr lags?
+The plot suggests a **fairly strong level of autocorrelation** in these
+temperature data. We should not be surprised, especially after seeing the time
+series shown in Figures \@ref(fig:noaa-hi-time) and \@ref(fig:noaa-hi-week). 
+Can you explain why the Pearson correlation coefficient is negative at a 12-hr
+lag? Why does the coefficient trend back upwards to nearly perfect correlation
+at 24-hr lags?
 
 Other notes about autocorrelation plots:  
 
-* Bars above the blue horizontal lines indicate that autocorrelation is worth attention.  
-* One important implication of autocorrelated data is that the data wihtin a given lag duration are **not independent.**  
-* This *lack of independence* violates the assumptions of many modeling approaches (that's potentially bad).  
+* Bars above the blue horizontal lines indicate that autocorrelation is worth attention.
+* One important implication of autocorrelated data is that the data wihtin a given lag duration are not independent.  
+* This *lack of independence* violates the assumptions of many modeling approaches. This is potentially bad.  
 
-### Partial Autocorrelation  
-The **partial autocorrelation plot** is a *summary plot* that gives the correlation coefficient (r) between all timepoints (x~i~) and their lags (x~i+n~) *after accounting for autocorrelation for all previous lags*.  
+### Partial Autocorrelation Plot
 
-The partial autocorrelation plot can help you decide: *how far out in time should I go in order to assume that measurment (x~i~) is independent from (x~i+n~)?*  
-```{r pacf, warning=FALSE, message=FALSE}
-pacf(noaa_temp_HI$temp_hr_f,      #call the partial autocorrelation plot
-     main = " ", 
-     xlab = "Lag (hours)",
-     ylab = "Partial Correlation Coefficient") 
+The partial autocorrelation plot is a summary plot that gives the correlation
+coefficient (*r*) between all timepoints (x~i~) and their lags (x~i+n~) after
+accounting for autocorrelation for all previous lags.  
+
+The partial autocorrelation plot can help you decide: *how far out in time should I go in order to assume that measurement (x~i~) is independent from (x~i+n~)?*
+
+```{r pacf-plot, warning=FALSE, message=FALSE}
+# create partial autocorrelation plot
+stats::pacf(noaa_temp_hi$temp_hr_f,
+            main = " ",
+            xlab = "Lag (hours)",
+            ylab = "Partial Correlation Coefficient") 
 ```
 
-In this case, after a 2-hr lag, the data loses most autocorrelation, except for some periodicity around 12- and 24-hr lags.
+In this case, after a 2-hr lag, the data loses most autocorrelation, except for
+some periodicity around 12- and 24-hr lags.
 
 ## Exploring Data
-The whole point of this chapter comes down to this: when you have new data (i.e., data with which you are unfamiliar) the best thing to do is to explore that data graphically.  Create a histogram, a cumulative distribution, a time-series, and an autocorrelation plot to start. Together, these plots allow you to see basic features and extract important descriptors such as central tendency, spread, shape, and quantiles. EDA plots also frequently lead to more questions; the answers to which, will bring you even closer to understanding what the data are trying to tell you. Let your eyes do the listening at first.
+
+The whole point of this chapter comes down to this: when you have new,
+unfamiliar data, the best thing to do is to explore that data graphically. 
+Create a histogram, a cumulative distribution plot, a time-series plot, and an
+autocorrelation plot to start. Together, these plots allow you to see basic
+features and extract important descriptors such as central tendency, spread,
+shape, and quantiles. EDA plots also frequently lead to more questions; the
+answers to which will bring you even closer to understanding what the data are
+trying to tell you. Let your eyes do the listening at first.
 
 ## Class Exercises
 
-1. Practice creating histogram, CDF, time-series, and ACF; extract relevant features from each.
+1. List which plot types discussed in this chapter are *enumerative* vs. *summary*.
 
-2. (hh) Introduce `library(gridExtra)` and create multi-panel EDA plots
+2. Practice creating histogram, CDF, time-series, and ACF; extract relevant features from each.
 
-3. Visualize data from a bi-modal distribution (hist, cum dist). Talk about why `mean` is not a good representation of the central tendency.
+5. Visualize data from a bi-modal distribution (hist, cum dist). Talk about why `mean` is not a good representation of the central tendency.
 
-List which plot types discussed in this chapter are *enumerative* vs. *summary*.
+4. (hh/extra) Introduce `library(gridExtra)` and create multi-panel EDA plots
 
 ## Homework
