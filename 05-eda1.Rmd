@@ -124,11 +124,11 @@ In Figure \@ref(fig:noaa-temp-plot), we use `geom_jitter()` to plot the hourly
 temperatures measured at these two regions for July 2010. For this plot, we
 define three aesthetics:  
 
-* `y =` location
+- `y =` location
 
-* `x =` temperature
+- `x =` temperature
 
-* `color =` location (not necessary for the plot, but the color between
+- `color =` location (not necessary for the plot, but the color between
 variables can be helpful)
 
 ``` {r noaa-temp-data, echo=FALSE, warning=FALSE, message=FALSE}
@@ -197,122 +197,190 @@ knitr::include_graphics("images/NOAA_temps_annotate.png")
 
 ## Quantiles
 
-Let's assume you have a sample of univariate data.  A good starting point for exploring these data is to break them into *quantiles* and extract some basic information.  Quantiles allow you to see things like the start, middle, and end rather quickly, because the first step of quantile calculation is to sort your data from smallest to largest value.
+Let's assume you have a sample of univariate data. A good starting point for
+exploring these data is to break them into *quantiles* and extract some basic
+information. Quantiles allow you to see things like the start, middle, and end
+rather quickly because the first step of quantile calculation is to sort your
+data from smallest to largest value.
 
 ```{block, type = "rmdtip"}
-A Quantile represents a fractional portion of an ordered, univariate distribution.
+A "quantile" represents a fractional portion of an ordered, univariate
+distribution.
 ```
 
-In other words, quantiles break a set of observations into similarly sized 'chunks' where each chunk represents an equal fraction of the total distribution from start to finish. If you line your data up from smallest to largest and then slice that list into sections, you have created a set of quantiles. For example, when a distribition is broken into 10 equal chunks, or *deciles*, the first quantile (the 10^th^ % or the 0.1 fraction) represents the value that bounds the lower 10 % of the observed data. The second quantile (0.2 fraction) represents the 20^th^% value for the observed data. The 0.3 quantile represents the 30^th^%, and so on. There are two important aspects to remember about quantiles: (1) Each quantile is defined only by its upper-end value; (2) quantiles are defined after the data have been *rank ordered* from lowest to highest value.  
+In other words, quantiles break a set of observations into similarly sized
+"chunks", wherein each chunk represents an equal fraction of the total
+distribution from start to finish. If you line your data up from smallest to
+largest and then slice that list into sections, you have created a set of
+quantiles. For example, when a distribution is broken into 10 equal chunks, or
+*deciles*, the first quantile (the 10^th^ % or the 0.1 fraction) represents the
+value that bounds the lower 10% of the observed data; the second quantile (0.2
+fraction) represents the 20^th^% value for the observed data, and so on. 
 
-Quantiles are often used to communicate ***descriptive statistics*** for univariate data:
+There are two important aspects about quantiles to remember: (1) each quantile
+is defined only by its upper-end value; and (2) quantiles are defined after
+the data have been rank-ordered from lowest to highest value.
 
-The two most extreme quantiles define the ***Range***:  
+Quantiles are often used to communicate **descriptive statistics** for
+univariate data. 
 
-- `Min`: the 0% or lowest value; the zeroth quantile 
-- `Max`: the 100^th^ percentile (or 1.0 in fractional  terms); the highest value observed; the n^th^ quantile   
+The two most extreme quantiles define the ***range***:  
 
-If you break a distribution into quarters, you have created *Quartiles*.  Let's generate a sample of random numbers between 0 and 100 and break the resulting data into quartiles. A random number generator, like `runif`, will create a **[uniform distribution](#unif_dist)** across the sample range provided because all values within that range have equal probability of being chosen.  With that in mind, you can probably guess what the quartiles will look like, given a sufficiently large sample...
+- Minimum (`min()` in R): the 0% or lowest value; the zeroth quantile
 
-``` {r quantiles-1}
+- Maximum (`max()` in R): the 100^th^ percentile (or 1.0 in fractional terms); the highest value observed; the n^th^ quantile   
+
+If you break a distribution into quarters, you have created *quartiles*.  Let's
+generate a sample of random numbers between 0 and 100 and break the resulting
+data into quartiles. A random number generator, using the R function `runif()`,
+will create a [**uniform distribution**](#unif_dist) across the sample range
+provided because all values within that range have equal probability of being
+chosen. With that in mind, you can probably guess what the quartiles will look
+like, given a sufficiently large sample...
+
+``` {r gen-unif-quartiles}
+# "set seed" to generate the same results each time
 set.seed(1)
-univar1 <- runif(n = 1000, min = 0, max = 100)
-univar1_quartiles <- quantile(univar1, probs = seq(0, 1, 0.25)) %>% round(1)
+# create uniform distribution
+univar <- runif(n = 1000, min = 0, max = 100) 
+# split uniform distribution into quantiles
+univar_quart <- quantile(univar, probs = seq(0, 1, 0.25)) %>% round(1) 
 ```
 
-``` {r quantiles-2, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Quartiles estimated from n=1000 samples of a uniform distribution between 0 and 100"}
-knitr::include_graphics("./images/quantile_1.png")
-```
-As expected, the 1^st^, 2^nd^, 3^rd^, and 4^th^ quartiles from a uniform distribnution between 0 and 100 fall into predictable chunks of approximately 25, 50, 75, and 100.
-
-- The first, or lower quartile, contains the lower 25% of the distribution. In quantile terms, we define this quartile by its upper value, which occurs at the 25^th^ percentile (or the 0.25 quantile).   
-- The second quartile contains the 25^th^ to the 50^th^ percentile values of the data (but remember that we define this quartile at the upper end of that range: the 0.5 quantile). Note: the 0.5 quantile also represents the ***median*** of the distribution.  
-- the third quartile contains data for the 0.5 to 0.75 quantiles (50^th^ to the 75^th^%). 
-- the fourth quartile contains the upper 25% of the distribution: 0.75 to 1.0 
-
-### Quantiles and Descriptive Statistics
-
-Quantiles allow us to calculate several important **descriptive statistics** for univariate data. For example, the quartile output above allows us to report the following descriptives:
-
-``` {r quant_desc, echo=FALSE}
-
-quant_desc <- data.frame(a = c("0", 
-                               "1", 
-                               "0.5", 
-                               "0.25", 
-                               "0.75", 
-                               "0.75 - 0.25"),
-                           b = c("minimum", 
-                               "maximum", 
-                               "median", 
-                               "25^th^%", 
-                               "75^th^%",
-                               "IQR"),
-                         c = c(univar1_quartiles[[1]],
-                               univar1_quartiles[[5]],
-                               univar1_quartiles[[3]],
-                               univar1_quartiles[[2]],
-                               univar1_quartiles[[4]],
-                               univar1_quartiles[[4]] - univar1_quartiles[[2]]
-                         )
-)
-                       
+``` {r unif-quartiles, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Quartiles estimated from n=1000 samples of a uniform distribution between 0 and 100."}
+knitr::include_graphics("images/quantile_1.png")
 ```
 
-``` {r, echo = FALSE}
-knitr::kable(quant_desc, 
-             caption = "Quantiles and descriptive statistics
-             for n=1000 samples from a uniform distribution, 0-100",
-             booktabs = TRUE,
-             col.names = c("Quantile", "Descriptor", "Example Values"),
-             align = "c") %>%
-             kable_styling(bootstrap_options = "striped", full_width = F)
+As expected, the 1^st^, 2^nd^, 3^rd^, and 4^th^ quartiles from a uniform
+distribution between 0 and 100 fall into predictable chunks of approximately
+25, 50, 75, and 100.
+
+- The first, or lower, quartile contains the lower 25% of the distribution. In quantile terms, we define this quartile by its upper value, which occurs at the 25^th^ percentile (or the 0.25 quantile).   
+
+- The second quartile contains the 25^th^ to the 50^th^ percentile values of the data. But, remember, that we define this quartile at the upper end of that range: the 0.5 quantile. Note the 0.5 quantile also represents the ***median*** of the distribution.
+
+- The third quartile contains data for the 50^th^ to the 75^th^ percentile values (0.5 to 0.75 quantiles). 
+
+- The fourth quartile contains the upper 25% of the distribution: 0.75 to 1.0 quantiles.
+
+### Descriptive Statistics
+
+Quantiles allow us to calculate several important descriptive statistics for
+univariate data. For example, the quartile output above allows us to report the
+following descriptive statistics:
+
+``` {r quant-desc-df, echo=FALSE}
+# create df of quantile
+quant_desc <- tibble::tibble(a = c("0", "1", "0.5", "0.25",
+                                   "0.75", "0.75 - 0.25"),
+                             b = c("minimum", "maximum", "median",
+                                   "25^th^%", "75^th^%", "IQR"),
+                             c = c(univar_quart[[1]],
+                                   univar_quart[[5]],
+                                   univar_quart[[3]],
+                                   univar_quart[[2]],
+                                   univar_quart[[4]],
+                                   univar_quart[[4]] - univar_quart[[2]]
+                                   )
+                             )
 ```
 
-A couple notes.  You might wonder why I didn't include *summary statistics* (like the `mean()` and standard deviation (`sd()`)) in this list. The reason is not because I dislike those descriptors but because their use implies that one knows the type/shape of the distribution being described (i.e., whether the distribution is normally distributed, log-normal, bi-modal, etc.).  Use of descriptors like `mean()` and `sd()` are very useful when properly applied, but can be misleading when the distribution is skewed (**more on that later**).  Quantile descirptors, on the other hand, are agnostic to the type of distribution they describe (i.e,. the median is ALWAYS the 50% value, regardless of the shape of the distribution). 
-The last descriptor in the list is the *"Inter-Quartile Range"* or IQR for short; the IQR describes the spread of the data and communicates the range of values needed to go from the 25^th^% to the 75^th^% of the distribution. The IQR spans the "middle part" of the distribution.  The IQR is *similar* in concept to a standard deviation but makes no assumptions about the shape/type of the distribution being considered.  
+``` {r quant-desc-table, echo=FALSE}
+quant_desc %>% 
+  knitr::kable(caption = "Quantiles and descriptive statistics for uniform
+               distribution, 0-100 (n=1000)",
+               booktabs = TRUE,
+               col.names = c("Quantile", "Descriptor", "Example Values"),
+               align = "c") %>%
+  kableExtra::kable_styling(bootstrap_options = "striped", full_width = F)
+```
 
-Let's now create quantiles from a *normal distribution* of data (mean = 50, standard deviation = 15).  We'll start by randomly sampling 1000 values (using `rnorm`) and then arranging them with the `quanitle` function (the code chunk also shows how to calculate quantiles manually).
-``` {r quantiles_2}
-normal1 <- rnorm(1000, mean = 50, sd = 15)
-quantile(normal1, probs = seq(0, 1, 0.1)) %>%
-  round(0)
+A couple notes: You might wonder why I didn't include *summary statistics* like
+the mean (`mean()` in R) or standard deviation (`sd()`) in this list. It is not
+because I dislike those descriptors; rather, it is because their use implies
+that one knows the type or "shape" of the distribution being described (e.g.,
+normal, log-normal, bi-modal). Use of descriptors like mean and standard
+deviation are very useful when applied properly but can be misleading when the
+distribution is skewed (more on that later). 
 
-#manual method for calculating quantiles
-normal_data_2 <- tibble(
-  sample_data = normal1,  #start with raw sample data
-  sorted_data = sort(normal1),   #sort the data
-  cum_frac = seq.int(from = 1/length(normal1),   #calculate cumulative fraction for each entry
+On the other hand, quantile descriptors are agnostic to the type of
+distribution they describe. For example, the median is ALWAYS at the 0.5
+quantile, or 50^th^ percentile, regardless of the shape of the distribution.
+
+The last descriptor in the list is the *interquartile range*, or IQR for short.
+The IQR describes the spread of the data and communicates the range of values
+needed to go from the 25^th^% to the 75^th^% of the distribution. The IQR spans
+the "middle part" of the distribution. The IQR is similar in concept to a
+standard deviation but makes no assumptions about the type or shape of the
+distribution in question.
+
+Now let's create quantiles from a *normal distribution* of data with a mean of
+50 and standard deviation of 15. We'll start by randomly sampling 1000 values,
+using `rnorm()`, and then arranging them with the `quanitle()` function. Note
+that the second half of the code chunk below shows how to calculate quantiles
+manually.
+
+``` {r gen-norm-quantiles}
+# "set seed" to generate the same results each time
+set.seed(1) 
+# create normal distribution
+norm_dist <- rnorm(1000, mean = 50, sd = 15)
+# split normal distribution into quantiles and output tabular result
+quantile(norm_dist, probs = seq(0, 1, 0.1)) %>% round(0)
+
+# manual method for calculating quantiles
+norm_manual <- tibble::tibble(
+  # start with raw sample data generated from `rnorm()`
+  sample_data = norm_quant, 
+  # sort the data
+  sorted_data = sort(norm_quant),  
+  # calculate cumulative fraction for each entry
+  cum_frac = seq.int(from = 1 / length(norm_quant), 
                      to = 1,
-                     by = 1/length(normal1)))
-
-
+                     by = 1 / length(norm_quant)))
+# create deciles sequence
 deciles <- seq.int(from = 0, to = 1, by = 0.1)
-
-#take only the quantiles that match the decile values created above
-normal_data_deciles <- filter(normal_data_2, cum_frac %in% deciles)
+# extract quantiles that match the decile values created above 
+normal_data_deciles <- norm_manual %>% 
+  dplyr::filter(cum_frac %in% deciles)
 ```
-Normal distributions are more complicated than uniform distributions, and it's hard to get a lot out of the decile summary when shown in tabular format.  This brings us to my favorite part of exploratory data analysis: ***data visualization***.
+
+Normal distributions are more complicated than uniform distributions, and it's
+hard to get a lot out of the decile summary when shown in tabular format. This
+brings us to my favorite part of exploratory data analysis: data visualization.
 
 ## Univariate Data Visualization
 
-Data visualization is a powerful technique for exploring data. Visualizing univariate data is the **first step** in getting to know your data, once they have been read into R and cleaned.
+Data visualization is a powerful technique for exploring data. Visualizing
+univariate data is the **first step** in getting to know your data, once they
+have been imported and wrangled.
 
-Below I introduce formal approaches to visualizing the location, dispersion, and shape of univariate data.  Later on we will explore relationships between two or more variables in [multivariate data analyses](#eda2). The techniques shown below are simple, poqwerful, and often underutilized.
+Below, I introduce formal approaches to visualizing the location, dispersion,
+and shape of univariate data. Later, we will explore relationships between two
+or more variables in [multivariate data analyses](#eda2). The techniques shown
+below are simple, powerful, and often underutilized.
 
 ### Summary vs. Enumerative Plots
-Univariate data visualizations can be broken down into two categories: ***summary plots*** and ***enumerative plots***. A *summary plot* is called such because it shows you the data *summarized* in some way. Thus, some analysis or manipulation happens to the data prior to the generation of a summary plot. *Enumerative* is a fancy word that means: to name or show ***ALL*** of the data without modification. *Enumerative plots* show the *raw data* and *all the data* in a single plot. There are strengths and weaknesses to both these types of plots.   
 
-* **Enumerative plots:**    
-  * Strengths: They show you *all* the data without manipulation. This is considered a strength because many analysts like to see raw data; they believe that *"The data don't lie"*.  
-  * Weaknesses: Enumerative plots can take more "looking at" in order to comprehend. Sometimes more data = more work for your brain.  
-* **Summary plots:**  
-  * Strengths: Summary plots are easy to read and easy to see the "main points".
-  * Weaknesses: Summary plots don't show you all the data; they only show you a summary of the data.  You are more likely to miss nuances or special features when looking at a summary plot.
+Univariate data visualizations can be broken down into two categories:
+summary plots and enumerative plots. A *summary plot* shows you the data
+summarized in some way; a data analysis or manipulation happens prior
+generating a summary plot. *Enumerative* is a fancy word meaning "to name or
+show" ALL of the data without modification. This type of plot shows the all,
+raw data in a single plot. There are strengths and weaknesses to both these
+approaches.
 
-## Cumulative Distribution Plot
+* Summary plots  
+  * Strengths: Easy to read; easy to see the "main points".
+  * Weaknesses: Don't show all of the data; only show you a summary. You are more likely to miss nuances or special features when looking at a summary plot.
+* Enumerative plots
+  * Strengths: Show *all* of the data without manipulation. This is considered a strength because many analysts like to see raw data; *"the data don't lie!"*
+  * Weaknesses: Can take more time and energy to understand. Sometimes more data mean more work for your brain.  
 
-A **cumulative distribution plot** is an *enumerative plot* that lays out the raw quantiles (typically on the y-axis) against the observed data (x-axis). Because these plots show all the data, each observation gets assigned a unit quantile (i.e., if there are 100 data points in a sample, each datum represents 1% of the total or a quantile of 0.01) . Thus, quantiles are shown on the y-axis and the x-axis shows the observed data, ordered from smallest to largest value.   
+### Cumulative Distribution Plot
+
+A cumulative distribution plot is an enumerative plot that lays out the raw
+quantiles (typically on the y-axis) against the observed data (x-axis). Because these plots show all the data, each observation gets assigned a unit quantile (i.e., if there are 100 data points in a sample, each datum represents 1% of the total or a quantile of 0.01) . Thus, quantiles are shown on the y-axis and the x-axis shows the observed data, ordered from smallest to largest value.   
 
 ```{block, type = 'rmdnote'}
 The cumulative distribution plot shows the rolling fraction (or percent) of data (y-axis) that are "less than or equal to" the (x-axis) values of that data. 
@@ -364,7 +432,7 @@ As you can see, there is a lot of information contained in a cumulative distribu
   
 Cumulative distribution plots also reveal details about the dispersion of the observed data (and, more subtly, about the shape/nature of underlying data distribution). For example, in the temperature example above (Fig. \@ref(fig:norm-cdf-plot)), the curve has geometric symmetry about the median - this symmetry indicates that the dispersion of the data is equal as you move away from the median in either direction. 
 
-### Cumulative Distribution Plot Example
+#### Example: Cumulative Distribution Plot 
 
 The `ggplot` package can create cumulative distribution plots several ways:  
 
@@ -425,7 +493,7 @@ The good news is that if you can survive the undergraduate grind in Mechanical E
 
 One interesting thing you may notice in Figure \@ref(fig:cdf-me-salaries) is that the 'tails' of the plot (the shape of the curves about the median value) are not symmetrical. One tail looks longer than the other.  This lack of symmetry implies a degree of *skewness* in the data.  Why is that?  We will explore skewness at several points in this course (and discuss some of the mechanisms that cause data to be skewed later on).
 
-## Histogram {#hist}
+### Histogram {#hist}
 
 A **histogram** is a *summary* plot of counts (or frequency of observations) as a function of magnitude (or levels). Histograms are useful because they allow you to visualize the spread and shape of your data as distribution. A histogram can tell you several important things about a variable:
 
@@ -457,7 +525,7 @@ ggsave("./images/hist_norm.png", dpi = 150)
 knitr::include_graphics("./images/hist_anno_1.png")
 ```
   
-### Histogram: what to look for?
+#### Histogram: what to look for?
 In addition to being able to "see" key data descriptors (e.g., mean, range, spread), a histogram also allows one (a) to get a feel for ***skewness*** (whether the distribution is symmetric about the central tendency), (b) to see ***outliers***, and (c) to visualize other potential interesting features in the dataset.  
 
 ``` {r skew_hist_out, warning=FALSE, include=FALSE}
@@ -497,14 +565,14 @@ knitr::include_graphics("./images/hist_anno_3.png")
 Another, potentially more troubling, outcome of skewed data is that certain measures of the spread of the data (such as the standard deviation) can lead to misleading conclusions.  For example, if we calculate and extend "one standard deviation" to the mean of the data in Figure \@ref(fig:skew-hist-out-plot-2), we would imply the existence of negative values (87 - 113 = -26), which is often impossible in the case of physical measurements. This is a common mistake in data analysis: the application of "normal" descriptors like `mean` and `sd` to "non-normal" data. 
 Skewed distributions can be more challenging to handle because they are *less predictable* than normal distributions (*that said, statisticians have figured out how to model just about any type of distribution, so don't fret*). In any case, we can always rely on quantile calculations for descriptors (median and IQR) since those descriptors do not make assumptions about the shape of the distribution in question.
 
-### What causes skewed histograms?
+#### What causes skewed histograms?
 I want to spend some time thinking about mechanisms that cause variability in an observation. These mechanisms are often responsible for whether a set of observations appears normally distributed or skewed. We will focus on two types of distributions for now: [normal](#normal_dist) and [log-normal](#log_normal_dist) data. Many other types of data distributions exist in the real world.  
 
 A general "rule of thumb" is that *additive* variability tends to produce normally distributed data, whereas mechanisms that cause *multiplicative* variability tend to produce skewed data (log-normal, in the case of Figure \@ref(fig:skew-hist-out-plot)).  By *additive*, I mean that variable x tends to vary in a "plus/minus" sense about its central tendency.  Examples of additive variability include the distribution of heights measured in a sample of 3^rd^ graders or the variability in the mass of a 3D-printed part produced 100 times by the same machine.  
 
 *Multiplicative* (or log-normal) variability arises when the mechanism(s) controlling the variation of "x" are multipliers (or divisors) of x. Many real-world phenomena create multiplicative variability in observed data: the strength of a WiFi signal at different locations within a building, the magnitude of earthquakes measured at a given position on the Earth's surface, the size of rocks found in a section of a riverbed, or the size of particles found in air. All of these phenomena tend to be governed by multiplicative factors. In other words, all of these observations are controlled by mechanisms that suggest x = a*b*c not x = a+b+c. Explicit examples of *multiplicative* variability (and how it leads to log-normal data) are provided [here](#log_normal_dist). 
 
-## Boxplot {#box}
+### Boxplot {#box}
 The boxplot is *summary plot* that allows one to view a distribution by its quartiles (Figure \@ref(fig:boxplot-1-anno)). The "box" in a boxplot consists of three parallel lines (usually oriented vertically) connected on their sides to form a box. The outer box lines (also called the *"hinges"*) represent the 0.25 and 0.75 quantiles and the inner line represents the 0.5 quantile, or median.  Thus, the height of the box depicts the inter-quartile range of the data.  Boxplots are often drawn with lines extending out from each end of the box (these lines are called *"whiskers"*). These whisker lines vary in their representation.  For some plots, the whiskers represent either: the max/min values, respectively, OR a distance of 1.5xIQR if the either the max or min value are larger than 1.5xIQR.  Other times the whiskers represent the 0.9 or 0.95 quantiles or 1.58xIQR/sqrt(2). Because of these variations, it's best to define the whiskers for the viewer (either in the text or the Figure caption).  Here is the R definition from the helpfile `?geom_boxplot`:
 
 > The upper whisker extends from the hinge to the largest value no further than 1.5 * IQR from the hinge (where IQR is the inter-quartile range, or distance between the first and third quartiles). The lower whisker extends from the hinge to the smallest value at most 1.5 * IQR of the hinge. Data beyond the end of the whiskers are called "outlying" points and are plotted individually.
@@ -550,7 +618,7 @@ ggplot(data = noaa_temp, aes(y = temp_hr_f,
 ```
 Examination of the boxplots in Figure \@ref(fig:boxplot-2) conveys much the same information as what is seen for the raw data originally plotted in Figure \@ref(fig:noaa-temp-plot): both distributions have same central tendencies but the Colorado distribution has considerably more variation.
 
-## Time-Series  {#time_series}
+### Time-Series  {#time_series}
 The **time-series plot** plot (also called a **"run sequence"** plot) is something you have undoubtedly seen before. This plot (typically shown as an *enumerative plot*) depicts the value of a variable (y-axis) plotted in the sequence that the observations were made (x-axis, often shown as units of time). A time-series plot allows you to do several things:  
 
 * Identify shifts in "location" of the variable (when and by how much do values change over time?)  
@@ -607,7 +675,7 @@ knitr::include_graphics("./images/NOAA_HI_time_series-2.png")
 ```
 
 
-## Autocorrelation {#autocorr}
+### Autocorrelation {#autocorr}
 
 Autocorrelation, or serial correlation, means *correlated with oneself across time*.  Autocorrelation is a concept that suggests *"whatever is happening in this moment is still likely to be happening in the next moment."* Lots of things are autocorrelated: your mood right now is likely related to your mood 15 minutes from now (or 15 minutes ago).  The weather outside at 08:00 on a given day is a good predictor of the weather outside an hour later at 09:00, or two hours later at 10:00, and so on, but less so in fourteen days hence. 
 
@@ -668,7 +736,7 @@ In this case, after a 2-hr lag, the data loses most autocorrelation, except for 
 ## Exploring Data
 The whole point of this chapter comes down to this: when you have new data (i.e., data with which you are unfamiliar) the best thing to do is to explore that data graphically.  Create a histogram, a cumulative distribution, a time-series, and an autocorrelation plot to start. Together, these plots allow you to see basic features and extract important descriptors such as central tendency, spread, shape, and quantiles. EDA plots also frequently lead to more questions; the answers to which, will bring you even closer to understanding what the data are trying to tell you. Let your eyes do the listening at first.
 
-## In-course Exercises
+## Class Exercises
 
 1. Practice creating histogram, CDF, time-series, and ACF; extract relevant features from each.
 
@@ -678,7 +746,4 @@ The whole point of this chapter comes down to this: when you have new data (i.e.
 
 List which plot types discussed in this chapter are *enumerative* vs. *summary*.
 
-
-
-
-
+## Homework
