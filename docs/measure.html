@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Measurement | Engineering Data Analysis in R</title>
+  <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Measurement | Engineering Data Analysis in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Measurement | Engineering Data Analysis in R" />
+  
+  <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  
+
+<meta name="author" content="John Volckens" />
+
+
+<meta name="date" content="2020-07-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="eda3.html"/>
+<link rel="next" href="model.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Engineering Data Analysis in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1</b> How to use this book</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#other-helpful-books-not-required"><i class="fa fa-check"></i><b>1.5.1</b> Other helpful books (not required)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a><ul>
+<li class="chapter" data-level="2.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>2.1</b> Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="rprog1.html"><a href="rprog1.html#what-is-r"><i class="fa fa-check"></i><b>2.2.1</b> What is R?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="rprog1.html"><a href="rprog1.html#r-sessions-the-console-and-the-command-prompt"><i class="fa fa-check"></i><b>2.3.1</b> R sessions, the console, and the command prompt</a></li>
+<li class="chapter" data-level="2.3.2" data-path="rprog1.html"><a href="rprog1.html#r-expressions-function-calls-and-objects"><i class="fa fa-check"></i><b>2.3.2</b> R expressions, function calls, and objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="rprog1.html"><a href="rprog1.html#commenting-code"><i class="fa fa-check"></i><b>2.4.1</b> Commenting code</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="rprog1.html"><a href="rprog1.html#r-packages"><i class="fa fa-check"></i><b>2.5.1</b> R packages</a></li>
+<li class="chapter" data-level="2.5.2" data-path="rprog1.html"><a href="rprog1.html#installing-from-cran"><i class="fa fa-check"></i><b>2.5.2</b> Installing from CRAN</a></li>
+<li class="chapter" data-level="2.5.3" data-path="rprog1.html"><a href="rprog1.html#loading-an-installed-package"><i class="fa fa-check"></i><b>2.5.3</b> Loading an installed package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
+<li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="rprog2.html"><a href="rprog2.html#objectives-1"><i class="fa fa-check"></i><b>3.1</b> Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="rprog2.html"><a href="rprog2.html#overview"><i class="fa fa-check"></i><b>3.2</b> Overview</a></li>
+<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="rprog2.html"><a href="rprog2.html#reading-local-flat-files"><i class="fa fa-check"></i><b>3.3.1</b> Reading local flat files</a></li>
+<li class="chapter" data-level="3.3.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-other-file-types"><i class="fa fa-check"></i><b>3.3.2</b> Reading in other file types</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="rprog2.html"><a href="rprog2.html#directory-structure"><i class="fa fa-check"></i><b>3.4.1</b> Directory structure</a></li>
+<li class="chapter" data-level="3.4.2" data-path="rprog2.html"><a href="rprog2.html#working-directory"><i class="fa fa-check"></i><b>3.4.2</b> Working directory</a></li>
+<li class="chapter" data-level="3.4.3" data-path="rprog2.html"><a href="rprog2.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>3.4.3</b> File and directory pathnames</a></li>
+<li class="chapter" data-level="3.4.4" data-path="rprog2.html"><a href="rprog2.html#diversion-paste"><i class="fa fa-check"></i><b>3.4.4</b> Diversion: <code>paste</code></a></li>
+<li class="chapter" data-level="3.4.5" data-path="rprog2.html"><a href="rprog2.html#reading-online-flat-files"><i class="fa fa-check"></i><b>3.4.5</b> Reading online flat files</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="rprog2.html"><a href="rprog2.html#renaming-columns"><i class="fa fa-check"></i><b>3.5.1</b> Renaming columns</a></li>
+<li class="chapter" data-level="3.5.2" data-path="rprog2.html"><a href="rprog2.html#selecting-columns"><i class="fa fa-check"></i><b>3.5.2</b> Selecting columns</a></li>
+<li class="chapter" data-level="3.5.3" data-path="rprog2.html"><a href="rprog2.html#add-or-change-columns"><i class="fa fa-check"></i><b>3.5.3</b> Add or change columns</a></li>
+<li class="chapter" data-level="3.5.4" data-path="rprog2.html"><a href="rprog2.html#base-r-equivalents-to-dplyr-functions"><i class="fa fa-check"></i><b>3.5.4</b> Base R equivalents to <code>dplyr</code> functions</a></li>
+<li class="chapter" data-level="3.5.5" data-path="rprog2.html"><a href="rprog2.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>3.5.5</b> Filtering to certain rows</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="rprog2.html"><a href="rprog2.html#piping"><i class="fa fa-check"></i><b>3.6</b> Piping</a></li>
+<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#in-course-exercise"><i class="fa fa-check"></i><b>3.7</b> In-course Exercise</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="rprog2.html"><a href="rprog2.html#downloading-and-checking-out-the-example-data"><i class="fa fa-check"></i><b>3.7.1</b> Downloading and checking out the example data</a></li>
+<li class="chapter" data-level="3.7.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-different-types-of-files"><i class="fa fa-check"></i><b>3.7.2</b> Reading in different types of files</a></li>
+<li class="chapter" data-level="3.7.3" data-path="rprog2.html"><a href="rprog2.html#directory-structure-1"><i class="fa fa-check"></i><b>3.7.3</b> Directory structure</a></li>
+<li class="chapter" data-level="3.7.4" data-path="rprog2.html"><a href="rprog2.html#cleaning-up-data-1"><i class="fa fa-check"></i><b>3.7.4</b> Cleaning up data #1</a></li>
+<li class="chapter" data-level="3.7.5" data-path="rprog2.html"><a href="rprog2.html#cleaning-up-data-2"><i class="fa fa-check"></i><b>3.7.5</b> Cleaning up data #2</a></li>
+<li class="chapter" data-level="3.7.6" data-path="rprog2.html"><a href="rprog2.html#piping-1"><i class="fa fa-check"></i><b>3.7.6</b> Piping</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization: ggplot2</a><ul>
+<li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#objectives-2"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#install-and-call-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Install and call <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4.2.1" data-path="dataviz.html"><a href="dataviz.html#initializing-a-ggplot-object"><i class="fa fa-check"></i><b>4.2.1</b> Initializing a ggplot object</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dataviz.html"><a href="dataviz.html#plot-aesthetics"><i class="fa fa-check"></i><b>4.2.2</b> Plot aesthetics</a></li>
+<li class="chapter" data-level="4.2.3" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.2.3</b> Adding geoms</a></li>
+<li class="chapter" data-level="4.2.4" data-path="dataviz.html"><a href="dataviz.html#aesthetic-override-a-warning"><i class="fa fa-check"></i><b>4.2.4</b> Aesthetic override: a warning</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#shapes-and-colors"><i class="fa fa-check"></i><b>4.3</b> Shapes and colors</a></li>
+<li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#scales-useful-plot-edits"><i class="fa fa-check"></i><b>4.4</b> Scales: useful plot edits</a></li>
+<li class="chapter" data-level="4.5" data-path="dataviz.html"><a href="dataviz.html#example-plot"><i class="fa fa-check"></i><b>4.5</b> Example plot</a></li>
+<li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#store-and-save-ggplot2-objects"><i class="fa fa-check"></i><b>4.6</b> Store and save ggplot2 objects</a></li>
+<li class="chapter" data-level="4.7" data-path="dataviz.html"><a href="dataviz.html#getting-help-with-ggplot2"><i class="fa fa-check"></i><b>4.7</b> Getting help with ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a><ul>
+<li class="chapter" data-level="5.1" data-path="eda1.html"><a href="eda1.html#objectives-3"><i class="fa fa-check"></i><b>5.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univariate-data"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>5.2.1</b> Location, Dispersion, and Shape</a></li>
+<li class="chapter" data-level="5.2.2" data-path="eda1.html"><a href="eda1.html#example-location-and-dispersion"><i class="fa fa-check"></i><b>5.2.2</b> Example: Location and Dispersion</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantiles"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="eda1.html"><a href="eda1.html#quantiles-and-descriptive-statistics"><i class="fa fa-check"></i><b>5.3.1</b> Quantiles and Descriptive Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.5</b> Cumulative Distribution Plot</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot-example"><i class="fa fa-check"></i><b>5.5.1</b> Cumulative Distribution Plot Example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.6</b> Histogram</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="eda1.html"><a href="eda1.html#histogram-what-to-look-for"><i class="fa fa-check"></i><b>5.6.1</b> Histogram: what to look for?</a></li>
+<li class="chapter" data-level="5.6.2" data-path="eda1.html"><a href="eda1.html#what-causes-skewed-histograms"><i class="fa fa-check"></i><b>5.6.2</b> What causes skewed histograms?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="eda1.html"><a href="eda1.html#box"><i class="fa fa-check"></i><b>5.7</b> Boxplot</a></li>
+<li class="chapter" data-level="5.8" data-path="eda1.html"><a href="eda1.html#time_series"><i class="fa fa-check"></i><b>5.8</b> Time-Series</a></li>
+<li class="chapter" data-level="5.9" data-path="eda1.html"><a href="eda1.html#autocorr"><i class="fa fa-check"></i><b>5.9</b> Autocorrelation</a><ul>
+<li class="chapter" data-level="5.9.1" data-path="eda1.html"><a href="eda1.html#partial-autocorrelation"><i class="fa fa-check"></i><b>5.9.1</b> Partial Autocorrelation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="eda1.html"><a href="eda1.html#in-course-exercises"><i class="fa fa-check"></i><b>5.10</b> In-course Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a><ul>
+<li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#objectives-4"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="rprog3.html"><a href="rprog3.html#string-detect-match"><i class="fa fa-check"></i><b>6.2.1</b> String detect &amp; match</a></li>
+<li class="chapter" data-level="6.2.2" data-path="rprog3.html"><a href="rprog3.html#regular-expressions"><i class="fa fa-check"></i><b>6.2.2</b> Regular Expressions</a></li>
+<li class="chapter" data-level="6.2.3" data-path="rprog3.html"><a href="rprog3.html#string-split-separate"><i class="fa fa-check"></i><b>6.2.3</b> String split &amp; separate</a></li>
+<li class="chapter" data-level="6.2.4" data-path="rprog3.html"><a href="rprog3.html#string-extract-remove"><i class="fa fa-check"></i><b>6.2.4</b> String extract &amp; remove</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="rprog3.html"><a href="rprog3.html#dates-and-times-in-base-r"><i class="fa fa-check"></i><b>6.3.1</b> Dates and Times in base R</a></li>
+<li class="chapter" data-level="6.3.2" data-path="rprog3.html"><a href="rprog3.html#date-time-formats"><i class="fa fa-check"></i><b>6.3.2</b> Date-time formats</a></li>
+<li class="chapter" data-level="6.3.3" data-path="rprog3.html"><a href="rprog3.html#date-time-classes-in-r"><i class="fa fa-check"></i><b>6.3.3</b> Date-time classes in R</a></li>
+<li class="chapter" data-level="6.3.4" data-path="rprog3.html"><a href="rprog3.html#reading-and-classifying-date-times"><i class="fa fa-check"></i><b>6.3.4</b> Reading and classifying date-times</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>Lubridate</code></a><ul>
+<li class="chapter" data-level="6.4.1" data-path="rprog3.html"><a href="rprog3.html#lubridate-parsing-functions"><i class="fa fa-check"></i><b>6.4.1</b> <code>Lubridate</code> Parsing Functions</a></li>
+<li class="chapter" data-level="6.4.2" data-path="rprog3.html"><a href="rprog3.html#date-time-manipulation-with-lubridate"><i class="fa fa-check"></i><b>6.4.2</b> Date-time manipulation with <code>Lubridate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#tidy-data"><i class="fa fa-check"></i><b>6.5</b> Tidy Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a><ul>
+<li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#objectives-5"><i class="fa fa-check"></i><b>7.1</b> Objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>7.2</b> Bivariate Data</a></li>
+<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="eda2.html"><a href="eda2.html#causality"><i class="fa fa-check"></i><b>7.3.1</b> Causality</a></li>
+<li class="chapter" data-level="7.3.2" data-path="eda2.html"><a href="eda2.html#correlation"><i class="fa fa-check"></i><b>7.3.2</b> Correlation</a></li>
+<li class="chapter" data-level="7.3.3" data-path="eda2.html"><a href="eda2.html#correlation-neq-causation"><i class="fa fa-check"></i><b>7.3.3</b> Correlation <span class="math inline">\(\neq\)</span> causation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#qqplot"><i class="fa fa-check"></i><b>7.4</b> Q-Q Plot (Quantile-Quantile)</a></li>
+<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#Tukey"><i class="fa fa-check"></i><b>7.5</b> Tukey Mean Difference Plot</a></li>
+<li class="chapter" data-level="7.6" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.6</b> Exploring Multivariate Data</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a><ul>
+<li class="chapter" data-level="8.1" data-path="rprog4.html"><a href="rprog4.html#step-iii-1"><i class="fa fa-check"></i><b>8.1</b> Step III-1</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="eda3.html"><a href="eda3.html"><i class="fa fa-check"></i><b>9</b> Tips and Tricks for Data Exploration</a><ul>
+<li class="chapter" data-level="9.1" data-path="eda3.html"><a href="eda3.html#transformation"><i class="fa fa-check"></i><b>9.1</b> Transformation</a></li>
+<li class="chapter" data-level="9.2" data-path="eda3.html"><a href="eda3.html#centering"><i class="fa fa-check"></i><b>9.2</b> Centering</a></li>
+<li class="chapter" data-level="9.3" data-path="eda3.html"><a href="eda3.html#normalizing"><i class="fa fa-check"></i><b>9.3</b> Normalizing</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="eda3.html"><a href="eda3.html#standardizing"><i class="fa fa-check"></i><b>9.3.1</b> Standardizing</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="eda3.html"><a href="eda3.html#stratification"><i class="fa fa-check"></i><b>9.4</b> Stratification</a></li>
+<li class="chapter" data-level="9.5" data-path="eda3.html"><a href="eda3.html#censoring-and-truncating"><i class="fa fa-check"></i><b>9.5</b> Censoring and Truncating</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a><ul>
+<li class="chapter" data-level="10.1" data-path="measure.html"><a href="measure.html#objectives-6"><i class="fa fa-check"></i><b>10.1</b> Objectives</a></li>
+<li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#samples-vs.-populations"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
+<li class="chapter" data-level="10.2.2" data-path="measure.html"><a href="measure.html#collecting-a-sample"><i class="fa fa-check"></i><b>10.2.2</b> Collecting a sample</a></li>
+<li class="chapter" data-level="10.2.3" data-path="measure.html"><a href="measure.html#simple-random-sampling"><i class="fa fa-check"></i><b>10.2.3</b> Simple Random Sampling</a></li>
+<li class="chapter" data-level="10.2.4" data-path="measure.html"><a href="measure.html#systematic-sampling"><i class="fa fa-check"></i><b>10.2.4</b> Systematic Sampling</a></li>
+<li class="chapter" data-level="10.2.5" data-path="measure.html"><a href="measure.html#stratified-sampling"><i class="fa fa-check"></i><b>10.2.5</b> Stratified Sampling</a></li>
+<li class="chapter" data-level="10.2.6" data-path="measure.html"><a href="measure.html#cluster-sampling"><i class="fa fa-check"></i><b>10.2.6</b> Cluster Sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#limit-of-detection-quantification"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
+<li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic-range"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
+<li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#measurement-precision"><i class="fa fa-check"></i><b>10.3.3</b> Measurement Precision</a></li>
+<li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#measurement-bias-accuracy"><i class="fa fa-check"></i><b>10.3.4</b> Measurement Bias (accuracy)</a></li>
+<li class="chapter" data-level="10.3.5" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.3.5</b> Measurement Uncertainty</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#failure-and-reliability"><i class="fa fa-check"></i><b>10.4</b> Failure and Reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a><ul>
+<li class="chapter" data-level="11.1" data-path="model.html"><a href="model.html#fitting"><i class="fa fa-check"></i><b>11.1</b> Fitting</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="model.html"><a href="model.html#pdf"><i class="fa fa-check"></i><b>11.1.1</b> Probability Density Function</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#linear-models"><i class="fa fa-check"></i><b>11.2</b> Linear Models</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="model.html"><a href="model.html#assumptions-of-linear-regression"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions of Linear Regression</a></li>
+<li class="chapter" data-level="11.2.2" data-path="model.html"><a href="model.html#diagnostics"><i class="fa fa-check"></i><b>11.2.2</b> Diagnostics</a></li>
+<li class="chapter" data-level="11.2.3" data-path="model.html"><a href="model.html#ordinary-least-squares"><i class="fa fa-check"></i><b>11.2.3</b> Ordinary Least Squares</a></li>
+<li class="chapter" data-level="11.2.4" data-path="model.html"><a href="model.html#weighted-least-squares"><i class="fa fa-check"></i><b>11.2.4</b> Weighted Least Squares</a></li>
+<li class="chapter" data-level="11.2.5" data-path="model.html"><a href="model.html#deming-regression"><i class="fa fa-check"></i><b>11.2.5</b> Deming Regression</a></li>
+<li class="chapter" data-level="11.2.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.2.6</b> Calibration</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="simulate.html"><a href="simulate.html"><i class="fa fa-check"></i><b>12</b> Simulation</a><ul>
+<li class="chapter" data-level="12.1" data-path="simulate.html"><a href="simulate.html#introduction-to-simulation"><i class="fa fa-check"></i><b>12.1</b> Introduction to simulation</a></li>
+<li class="chapter" data-level="12.2" data-path="simulate.html"><a href="simulate.html#simulation-example"><i class="fa fa-check"></i><b>12.2</b> Simulation Example:</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>13</b> Appendix: Reference Distributions</a><ul>
+<li class="chapter" data-level="13.1" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>13.1</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="dist.html"><a href="dist.html#characteristic-plots-uniform-distribution"><i class="fa fa-check"></i><b>13.1.1</b> Characteristic Plots: Uniform Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>13.2</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="dist.html"><a href="dist.html#normal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>13.2.1</b> Normal Distribution: Characteristic Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>13.3</b> Log-normal Distribution</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Engineering Data Analysis in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="measure" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> Measurement</h1>
+<p>Measurement is a fundamental tool for characterization and verification in engineering (and many fields). This chapter will provide a quick introduction to the science of measurement.</p>
+<div id="objectives-6" class="section level2">
+<h2><span class="header-section-number">10.1</span> Objectives</h2>
+<p>This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:</p>
+<ul>
+<li>Explain the difference between a sample and a population;</li>
+<li>Define randomization and describe how it can be applied to simple, stratified, and cluster sampling;</li>
+<li>Explain the difference between cluster and stratified sampling methods;</li>
+<li>Describe how to estimate precision and bias for a measurement system</li>
+<li>Calculate uncertainty and describe how to propagate it across a measurement process</li>
+<li>Define limit of detection and estimate it for a measurement process</li>
+</ul>
+</div>
+<div id="sampling" class="section level2">
+<h2><span class="header-section-number">10.2</span> Sampling</h2>
+<p>To conduct univariate analyses, we need data (i.e., observations). To get those data, we need a sample. To get that sample, we need to identify a population from which to sample. Allow me to digress…</p>
+<div id="samples-vs.-populations" class="section level3">
+<h3><span class="header-section-number">10.2.1</span> Samples vs. Populations</h3>
+<p>At some point in the history of science someone came up with the idea that very few things are known for certain: we can only make estimates or educated guesses. This idea (which is hard to refute) gave rise to the concept of <em>samples</em> vs. <em>populations</em>. In statistics, the <strong><em>population</em></strong> of an observed quantity or variable is the totality of every instance of that variable in the universe (…whoa…).</p>
+<p>Take the molecular diameter of an oxygen molecule. Even if we could measure the diameters of ALL the oxygen molecues in our atmosphere that would still represent only a tiny fraction (i.e., a <strong><em>sample</em></strong>) of all the oxygen molecules bound up in the planet (and all of Earth’s oxygen is but a tiny fraction of our solar system’s, and so on). The <em>population</em> of all oxygen molecules across the universe is impossible to measure or “know” given our current capabilities. If, however, we measure a sufficient <em>sample</em> of oxygen molecules, we could probably infer the size of all the other O<sub>2</sub> molecules within reason.</p>
+<p>This is to say that the <strong>population</strong> is the thing we strive to make conclusions about but the <strong>sample</strong> is the thing (read: the data) that we have to work with.</p>
+</div>
+<div id="collecting-a-sample" class="section level3">
+<h3><span class="header-section-number">10.2.2</span> Collecting a sample</h3>
+<p>Samples are collected to provide estimates of populations so that those estimates can be used for <strong><em>inference</em></strong> (a fancy word that means: to make conclusions). Many statistical procedures are based on the assumption that your sample is <strong><em>representative</em></strong> of the population you are trying to model/understand. Assuming that your sample is good (read: representative) is a dangerous thing to do. In fact, MOST samples have some degree of un-good. Just ask the polling experts from the 2016 U.S. presidential election, or the now humiliated and vilified <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2954080/">doctor who concluded that vaccines were the cause of childhood autism based on a sample of 12 kids</a> taken from a single birthday party…</p>
+<p>A sample is representative if each measure is drawn in a way that makes it <strong><em>independent</em></strong> from the next AND if the measurement method itself is <strong><em>unbiased</em></strong> (i.e., the making of the measurement does not alter the way the sample is counted). We will talk more about <strong><em>bias</em></strong> later in this Chapter, but suffice it so say that if I made you watch a 10-minute video on catastrophic airplane disasters and then gave you a survey about your fears of flying, I might be introducing some bias into that measurement.</p>
+<p>Representative sampling is hard to do in practice. A good sampling strategy employs <strong><em>randomization</em></strong>: allow random chance to decide when and where measurements are made. The problem with this strategy, however, is that we have to place boundaries on the exact <em>when</em> and <em>where</em> of sampling due to limited resources. In reality, most samples are neither independent, nor randomly drawn; they are instead drawn from a single location, one after the next, for a short period of time. Such a <em>convenience sample</em> raises the possibility (1) that the data are non-independent (because any given measure is related [correlated] to the next one taken) and (2) that the sample lacks generalizability to the greater population (due to the focused [unique] nature of how/where the sample was collected. Scientific studies occasionally reach incorrect conclusions not because their statistical models were flawed, but instead because their sample was biased and/or unrepresentative of the true population. I can randomly survey 100 people at a political rally but that doesn’t mean the opinions I gather from these individuals are representative of all eligible voters in that part of the country.</p>
+<p>This is a much bigger problem than you might realize, because true random, unbiased sampling is often impossible or impractical in the real world. How would the Tesla Corporation collect a random, independent sample of 1000 <a href="https://www.tesla.com/model3">Model 3</a> vehicles after 10 years of real-world driving? Even with a random number generator applied to vehicle ID numbers, Tesla no longer owns those cars. They can’t just take them back…</p>
+<ul>
+<li><p>They could ask car owers to complete a customer satisfaction survey but then they might only get results from people who want to complain…(<em>bias</em>)</p></li>
+<li><p>They could ask dealers to inspect cars but then they would be sampling only from the subset of owners that liked to do business with dealers…(potential for <em>bias</em> AND <em>non-independence</em>)</p></li>
+<li><p>They could ask repair shops for data but then they would only be sampling from cars that had broken down for some reason…(potential for <em>bias</em> and <em>non-independence</em>)</p></li>
+</ul>
+<p>So…if you cannot collect a truly representative sample, how can you trust your results? Suffice it to say that there is an art to empirical research (empirical is a fancy word for observational). If you study <em>how</em> data were collected (especially from a sampling strategy) you will often realize how a “wrong conclusion” came to be.</p>
+<div class="figure" style="text-align: center"><span id="fig:samping-bias"></span>
+<img src="images/sampling_bias.png" alt="Biased samples are easy to come by" width="100%" />
+<p class="caption">
+Figure 10.1: Biased samples are easy to come by
+</p>
+</div>
+<div class="rmdcaution">
+<p>
+<strong>Hope</strong> is a dangerous word in science because it can create <em>implicit bias</em>. The experimenter who <em>hopes</em> for a certain outcome might unknowingly influence their sampling and/or analysis strategy to promote that outcome. The best experiments are designed as “win/win”: they produce valuable information, regardless of the outcome (yes/no, null/alternative hypothesis, etc.). Such designs, though often difficult to conceive, remove the need for hope altogether.
+</p>
+</div>
+<p>Let’s review a few common sampling strategies here.</p>
+</div>
+<div id="simple-random-sampling" class="section level3">
+<h3><span class="header-section-number">10.2.3</span> Simple Random Sampling</h3>
+<p>Simple random sampling means that samples are randomly collected from across the population and over a period of time where the population characteristics (especially those characteristics being measured) remain constant. The main advantage of simple random sampling is that, when done correctly, your data should be unbiased and representative of the population. The main issue with simple random sampling is that it can be hard to do “correctly”.</p>
+<div class="rmdnote">
+<p>
+To collect a simple random sample, you need to ensure three things:
+</p>
+<ol style="list-style-type: decimal">
+<li>
+that your sampling method gives <strong><em>every single member</em></strong> of the population an <strong><em>equal chance</em></strong> of being selected.
+</li>
+<li>
+that your population remains relatively unchanged during the sampling window.<br />
+</li>
+<li>
+that your sample size is sufficient to make inferences (read: conclusions) with confidence.
+</li>
+</ol>
+</div>
+<p>How large of a sample size do you need to collect? That depends on a lots of things:</p>
+<ol style="list-style-type: decimal">
+<li>what you want to do with the data (read: what conclusions/questions are you after?)
+<ul>
+<li>Are you estimating location and/or spread, are you comparing location/spread, or are you fitting a model?</li>
+</ul></li>
+<li>What are the risks/consequences of making incorrect conclusions?
+<ul>
+<li>Do you need 95% confidence in your answer, 99%, 99.999%?<br />
+</li>
+</ul></li>
+<li>How much variability do you expect to see in your data?</li>
+</ol>
+<p>These factors all work together to frame sample size considerations. There are many ways to estimate sample size (too many for this course), so I will use only one here: sample size (n) for a t-test comparing two means:</p>
+<p>      <span class="math inline">\(n = \frac{(Z_{\alpha/2}\cdot+Z_{\beta/2})^2\cdot2\cdot\sigma^2}{d^2}\)</span> where,</p>
+<ul>
+<li><span class="math inline">\(\alpha\)</span> represents the Type-1 error rate (1 - confidence level); 0.05 is typical
+<ul>
+<li><span class="math inline">\(\beta\)</span> represents the Type-2 error rate (1 - power); 0.2 is typical<br />
+</li>
+<li><span class="math inline">\(Z_{\alpha/2}\)</span> represents the critical value of the <a href="dist.html#normal_dist">Normal distribution</a> at <span class="math inline">\(\alpha/2\)</span><br />
+</li>
+<li><span class="math inline">\(Z_{\beta/2}\)</span> represents the critical value of the <a href="dist.html#normal_dist">Normal distribution</a> at <span class="math inline">\(\beta/2\)</span><br />
+</li>
+<li><span class="math inline">\(\sigma^2\)</span> is the population variance<br />
+</li>
+<li><span class="math inline">\(d\)</span> is the difference (in means) that you are trying to detect</li>
+</ul></li>
+</ul>
+</div>
+<div id="systematic-sampling" class="section level3">
+<h3><span class="header-section-number">10.2.4</span> Systematic Sampling</h3>
+<p>Systematic sampling is often employed when simple random sampling is not feasible. With systematic sampling, the population is first ordered according to a characteristic of interest (e.g., first to last, front to back, smallest to largest, youngest to oldest, etc.) and then samples are drawn at regular intervals from across the ordered range of values. For example, if you wanted to know the opinions of marathoners at the finish line of a particular race, you might decide to randomly sample one person passing through the finish line every five minutes starting with the winner’s group and ending with the last finisher. The main disadvantage to systematic sampling is the creation of an ordering scheme, which can introduce bias into the results (whether known or unknown). For example, in the NBA’s annual <a href="https://en.wikipedia.org/wiki/Three-Point_Contest">3-point shooting contest</a>, every 5th ball is worth extra points to the shooter; if we conducted systematic sampling of every 5th shot, we would only select the shots worth extra points (i.e., the shots that the shooter cares the most about).</p>
+</div>
+<div id="stratified-sampling" class="section level3">
+<h3><span class="header-section-number">10.2.5</span> Stratified Sampling</h3>
+<p>Stratified sampling is often used when (1) you know “something” (a priori) about the population that you want to sutdy (or at least account for in your sample) and (2) when that “something” can be mapped onto the population to form groups. With stratified sampling, you break the population into strata (a fancy word for <em>groups</em>) and then sample randomly (in equal proportion) from within each strata. This technique is used because the strata are believed to be important relative to the the variables of interest. The strata can be time-based (e.g., the quality of parts produced during the morning, afternoon, and night shift at a factory), place-based (e.g., the quality of parts produced at assembly plant A, B, C), or based on other known characteristics. For example, when people are the subject of study, strata are often formed about age groups, gender groups, income brackets, and educational attainment, to name a few. Stratified random sampling can be more tedious to conduct and is sometimes biased if not all of the subgroups within a population are identified. For example, a survey of the effects of housing on health (stratified into homeowners vs. renters) would ignore a key subgroup: those who are experiencing homelessness.</p>
+</div>
+<div id="cluster-sampling" class="section level3">
+<h3><span class="header-section-number">10.2.6</span> Cluster Sampling</h3>
+<p>Cluster sampling is often used to save on time and effort during a sampling campaign when it’s possible to break the population into <strong>similar groups</strong>, or clusters. The population is divided into clusters (based on some grouping characteristic) and then a proportion of those clusters are fully sampled. For example, if your company had 100 distribution centers across the country, and you wished to study some measure of process efficiency, then you might select 10 centers as clusters, and fully sample each.</p>
+<p>Cluster sampling is considered less precise (i.e., more samples needed for a given question) than simple random sampling, but oftentimes its unfeasible or too costly to sample the whole population. If cluster units are apparent, they can provide considerable cost savings.</p>
+<div class="rmdnote">
+<p>
+The important difference between stratified and cluster sampling is how each design defines the groups. With <em>stratified sampling</em>, the distinction between groups (i.e., how the data varies from one group to the next) is important; with <em>cluster sampling</em>, the distinction between groups should be one of convenience (and hopefully not meaningful as it relates to data variability).
+</p>
+</div>
+</div>
+</div>
+<div id="figures-of-merit" class="section level2">
+<h2><span class="header-section-number">10.3</span> Figures of Merit</h2>
+<p>All measurements are estimates of a <em>“true value”</em> that you seek to discover. To ensure that measurements are sound, we often estimate the <strong><em>figures of merit</em></strong> for a measurement system (or an instrument). There are many different figures of merit; we will only examine a few here, namely: limit of detection, dynamic range, precision, and bias. Other figures of merit for measurement systems include things like linearity, sensitivity, and specificity - those topics will be covered in the <em>advanced</em> version of this course (which doesn’t yet exist).</p>
+<div id="limit-of-detection-quantification" class="section level3">
+<h3><span class="header-section-number">10.3.1</span> Limit of Detection &amp; Quantification</h3>
+<p>Imagine that I asked you to hold out your hand and close your eyes. Could you tell if I added a single grain of flour to your hand? Likely not. The mass of that grain is about 1/50<sup>th</sup> that of an eyelash. What if I added 100 grains? Maybe you could tell. If I added 1000 grains you could likely feel it. This imaginary exercise outlines the concept of <strong><em>“limit of detection”</em></strong>, or “LOD”, which represents the <em>threshold</em> at which an instrument can distinguish between “something” and “nothing” being measured. The concept of LOD applies best to instruments that measure continuous properties like time, distance, energy, force, etc.</p>
+<p>There are several approaches to estimating an instrument’s lower limit of detection. The simplest approach is first to challenge that instrument to measure increasingly more “stuff” and observe it’s response. This is shown graphically below with “instrument response” on the y-axis and “amount of stuff being measured” on the x-axis. We use a logarithmic scale for the x axis because when we measure “stuff” in engineering we usually have the ability to observe several orders of magnitude (the length of a baseball stitch, a baseball, a baseball field, or a baseball stadium). Many instruments respond with an “S” shaped curve where you initially see no (or asymptotic response), followed by a linear response, followed by another asymptotic tail at the upper detection limit.</p>
+<div class="figure" style="text-align: center"><span id="fig:lod-2"></span>
+<img src="images/lod_depiction_anno.png" alt="Experimental investigations into LOD and dynamic range" width="100%" />
+<p class="caption">
+Figure 10.2: Experimental investigations into LOD and dynamic range
+</p>
+</div>
+To calculate the lower LOD, we often measure a series of “blanks” and then calculate the mean and standard deviation about those data.
+<div class="rmdnote">
+<p>
+<strong>What is a blank?</strong> A <em>blank</em> is an attempt to challenge the instrument to measure nothing from something. Let’s say you had a scale to weigh the mass of cherries picked at an orchard. Each load of cherries is weighed in a small paper bag (so that they don’t spill everywhere). Then weighing the empty paper bag would be considered a “blank” for that instrument.
+</p>
+</div>
+</div>
+<div id="dynamic-range" class="section level3">
+<h3><span class="header-section-number">10.3.2</span> Dynamic Range</h3>
+<p>The LOD/LOQ concept is most often applied to an instrument’s <em>minimum detectable quantity</em>, but it’s important to realize that instruments also have a <em>maximum detectable quantities</em>, too. The <strong><em>dynamic range</em></strong> of an instrument, thus, describes the range of values (min/max) that an instrument can measure. It’s important to know an instrument’s dynamic range so that you don’t misuse it. For example, you wouldn’t use the scale in a doctor’s office to weigh grains of rice just as you wouldn’t ask human beings to report on the loudness of dog whistles. The dynamic range of an instrument represents the measurement range between a lower and upper detection limit.</p>
+</div>
+<div id="measurement-precision" class="section level3">
+<h3><span class="header-section-number">10.3.3</span> Measurement Precision</h3>
+<p>In measurement science the term <em>precision</em> means “repeatability” or “instrument variability”. A precise measurement (made by a single instrument) is one that provides the same (or nearly the same) answer each time you take the measurement. This assumes, of course, that the thing being measured remains unchanged over time. Human vision is something that suffers from imprecision, especially as you get older (your eyesight usually gets worse). Look at the image below quickly and try to decode the letters you see. If I asked you to identify this text quickly (in 10 seconds or less) once per day for a week, you might give me 7 different answers. That’s not a precise measurement.</p>
+<div class="figure" style="text-align: center"><span id="fig:imprecise-1"></span>
+<img src="images/blurry_text.png" alt="Blurry vision is imprecise: repeated measures could lead to different answers" width="500" />
+<p class="caption">
+Figure 10.3: Blurry vision is imprecise: repeated measures could lead to different answers
+</p>
+</div>
+<p>Different authorities have varying opinions about the <em>best</em> way to quantify precision. A simple, “top-down” approach is to take repeated measures of something (for which that instrument is designed to measure) several times over and then report the <em>spread</em> of those data (often as a <em>standard deviation</em>, but <em>range</em>, <em>IQR</em>, and <em>95% or 99% confidence intervals</em> are also used). Alternatively, a “bottom-up” approach is to propagate the errors associated with each facet of the measurement. As an empiricist (a fancy word for experimental-type), I prefer to gather data, so I often employ the “top-down” approach to precision. There are dangers to this approach however; these dangers are a direct result of the <strong>sampling strategy</strong> used to make repeated measures (see the following section for a more in-depth analysis).</p>
+<p>In the case of a temperature sensor, we might boil a large pot of water and repeatedly measure the temperature with a single probe (here in Fort Collins, Colorado, water boils at ~ 94 °C). Those measurements are shown below:</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="measure.html#cb257-1"></a>temperatures &lt;-<span class="st"> </span><span class="kw">tibble</span>( <span class="dt">data_seq =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>,</span>
+<span id="cb257-2"><a href="measure.html#cb257-2"></a>                                       <span class="dt">to =</span> <span class="dv">25</span>,</span>
+<span id="cb257-3"><a href="measure.html#cb257-3"></a>                                       <span class="dt">by =</span><span class="dv">1</span>),</span>
+<span id="cb257-4"><a href="measure.html#cb257-4"></a>                        <span class="dt">data_temp =</span> <span class="kw">c</span>(<span class="fl">93.4</span>, <span class="fl">93.7</span>, <span class="fl">96.0</span>, <span class="fl">93.1</span>, <span class="fl">93.8</span>,</span>
+<span id="cb257-5"><a href="measure.html#cb257-5"></a>                                      <span class="fl">94.2</span>, <span class="fl">93.1</span>, <span class="fl">94.6</span>, <span class="fl">93.8</span>, <span class="fl">95.1</span>,</span>
+<span id="cb257-6"><a href="measure.html#cb257-6"></a>                                      <span class="fl">93.1</span>, <span class="fl">94.6</span>, <span class="fl">94.7</span>, <span class="fl">93.6</span>, <span class="fl">92.8</span>,</span>
+<span id="cb257-7"><a href="measure.html#cb257-7"></a>                                      <span class="fl">95.7</span>, <span class="fl">94.0</span>, <span class="fl">93.0</span>, <span class="fl">93.7</span>, <span class="fl">94.6</span>,</span>
+<span id="cb257-8"><a href="measure.html#cb257-8"></a>                                      <span class="fl">94.4</span>, <span class="fl">94.1</span>, <span class="fl">94.2</span>, <span class="fl">92.3</span>, <span class="fl">94.4</span>)) </span>
+<span id="cb257-9"><a href="measure.html#cb257-9"></a></span>
+<span id="cb257-10"><a href="measure.html#cb257-10"></a><span class="kw">sd</span>(temperatures<span class="op">$</span>data_temp) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.88</code></pre>
+<p>Let’s create a 4-plot of those data to visualize basic characteristics.</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="measure.html#cb259-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
+<span id="cb259-2"><a href="measure.html#cb259-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_seq, <span class="dt">y=</span>data_temp),</span>
+<span id="cb259-3"><a href="measure.html#cb259-3"></a>            <span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span></span>
+<span id="cb259-4"><a href="measure.html#cb259-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_seq, <span class="dt">y=</span>data_temp),</span>
+<span id="cb259-5"><a href="measure.html#cb259-5"></a>             <span class="dt">size =</span> <span class="dv">2</span>,</span>
+<span id="cb259-6"><a href="measure.html#cb259-6"></a>             <span class="dt">shape =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb259-7"><a href="measure.html#cb259-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Sequence Order&quot;</span>) <span class="op">+</span></span>
+<span id="cb259-8"><a href="measure.html#cb259-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
+<span id="cb259-9"><a href="measure.html#cb259-9"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb259-10"><a href="measure.html#cb259-10"></a></span>
+<span id="cb259-11"><a href="measure.html#cb259-11"></a>p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
+<span id="cb259-12"><a href="measure.html#cb259-12"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_temp)) <span class="op">+</span></span>
+<span id="cb259-13"><a href="measure.html#cb259-13"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
+<span id="cb259-14"><a href="measure.html#cb259-14"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="op">+</span></span>
+<span id="cb259-15"><a href="measure.html#cb259-15"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb259-16"><a href="measure.html#cb259-16"></a></span>
+<span id="cb259-17"><a href="measure.html#cb259-17"></a>p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
+<span id="cb259-18"><a href="measure.html#cb259-18"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x =</span> data_temp),</span>
+<span id="cb259-19"><a href="measure.html#cb259-19"></a>                 <span class="dt">bins =</span> <span class="dv">6</span>,</span>
+<span id="cb259-20"><a href="measure.html#cb259-20"></a>                 <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
+<span id="cb259-21"><a href="measure.html#cb259-21"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
+<span id="cb259-22"><a href="measure.html#cb259-22"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="op">+</span></span>
+<span id="cb259-23"><a href="measure.html#cb259-23"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb259-24"><a href="measure.html#cb259-24"></a></span>
+<span id="cb259-25"><a href="measure.html#cb259-25"></a>p4 &lt;-<span class="st"> </span><span class="kw">ggAcf</span>(<span class="dt">x =</span> temperatures<span class="op">$</span>data_temp) <span class="op">+</span></span>
+<span id="cb259-26"><a href="measure.html#cb259-26"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb259-27"><a href="measure.html#cb259-27"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="ot">NULL</span>)</span>
+<span id="cb259-28"><a href="measure.html#cb259-28"></a></span>
+<span id="cb259-29"><a href="measure.html#cb259-29"></a><span class="kw">grid.arrange</span>(p1, p2, p3, p4)</span></code></pre></div>
+<p><img src="09-measure_files/figure-html/plot-temperature-data-1.png" width="672" /></p>
+<p>Examination of the 4-plot reveals:</p>
+<ul>
+<li>no major shifts or events in the time series;</li>
+<li>an approximate normal distribution (but a small sample size so hard to tell for sure);</li>
+<li>values centered on 94 (spread from 92-96);</li>
+<li>no apparent autocorrelation in the data.</li>
+</ul>
+<p>These results are all “good”, as we are expecting the data to be tightly clustered together and somewhat boring. We are now ready to estimate the precision of these repeated measurements. Since the data are <em>approximate normal</em>, a mean and standard deviation seem appropriate.</p>
+<ul>
+<li>Mean: 94 °C</li>
+<li>Std Dev: 0.9 °C</li>
+</ul>
+<p>Thus, we report a precision of ± 0.9 °C around a value of 94 °C. Note that we report precision <em>about</em> a value (0.9 °C in this case), since our data are limited to a certain range. In other words, we don’t know if our estimate of precision is applicable to 0 or 200 °C conditions.</p>
+<p>Precision is often reported in relative terms, too, as a percentage about the location where the measurements were made. For the example above, we would report <span class="math inline">\(\frac{\widehat{\sigma}}{\widehat{\mu}}\cdot100\)</span>, which R calculates as 0.9574468, but which we would report as ±1% at 94 °C.</p>
+<div class="rmdnote">
+<p>
+If you measure temperature with a k-type thermocouple and report a value of 93.28876 °C, you are admitting to the world your ignorance of precision (and the science of temperature measurement). No thermocouple reading is repeatable to 5 decimal places in °C; the best thermocouples are accurate to one decimal degree. <strong>Always make sure to align your measurement precision with the significant digits you report.</strong>
+</p>
+</div>
+</div>
+<div id="measurement-bias-accuracy" class="section level3">
+<h3><span class="header-section-number">10.3.4</span> Measurement Bias (accuracy)</h3>
+<p>The word <strong><em>bias</em></strong> has several meanings depending on the field of use (e.g., a biased opinion, a racial or gender bias, or a biased voltage). Here, we define <em>bias</em> as the quantifiable difference between a measurement and a true value. The terms bias and accuracy are closely related, but we prefer to use bias because that word implies a magnitude and direction, whereas accuracy is more qualitative.</p>
+<p>Precision and bias are easy to view graphically. In Figure <a href="measure.html#fig:bias-precision-plot2">10.4</a> I show the performance of four measurement systems. Each image shows a green circle in space that represents a “true value” that we are trying to measure. Each measurement attempt is depicted by an “x”. If a measurement system (i.e., an instrument) is precise and unbiased, then each of the repeated measures would show up in the green circle, because they are close to the “true value” and to each other. This is the case in the lower right panel. The upper-left panel, on the other hand, demonstrate a biased and imprecise instrument - biased because the average of the 20 measurements would not come close to the center and imprecise because the location of each individual measurement tends to vary by a distance larger than the size of the circle. The lower-left is unbiased but imprecise - unbiased because the average of the 20 measurements would land close to the center of the circle but imprecise because the measurements vary widely. The upper-right panel demonstrates a precise (the repeated measures do not vary much) but biased (“off the mark” from center) measurement system.</p>
+<div class="figure" style="text-align: center"><span id="fig:bias-precision-plot2"></span>
+<img src="images/bias_precision.png" alt="Examples of different combinations of bias and precision" width="1050" />
+<p class="caption">
+Figure 10.4: Examples of different combinations of bias and precision
+</p>
+</div>
+<p>Like precision,</p>
+</div>
+<div id="measurement-uncertainty" class="section level3">
+<h3><span class="header-section-number">10.3.5</span> Measurement Uncertainty</h3>
+<p>Bias and precision, together, make up <em>uncertainty</em>. A good way to estimate the uncertainty around a measurement is</p>
+</div>
+</div>
+<div id="failure-and-reliability" class="section level2">
+<h2><span class="header-section-number">10.4</span> Failure and Reliability</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="eda3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
