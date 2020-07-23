@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Tips and Tricks for Data Exploration | Engineering Data Analysis in R</title>
+  <title>Chapter 9 Transformations and other Tricks | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Tips and Tricks for Data Exploration | Engineering Data Analysis in R" />
+  <meta property="og:title" content="Chapter 9 Transformations and other Tricks | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Tips and Tricks for Data Exploration | Engineering Data Analysis in R" />
+  <meta name="twitter:title" content="Chapter 9 Transformations and other Tricks | Engineering Data Analysis in R" />
   
   <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
@@ -151,6 +151,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>2.1</b> Objectives</a></li>
 <li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="rprog1.html"><a href="rprog1.html#what-is-r"><i class="fa fa-check"></i><b>2.2.1</b> What is R?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="rprog1.html"><a href="rprog1.html#free-and-open-source-software"><i class="fa fa-check"></i><b>2.2.2</b> Free and open-source software</a></li>
+<li class="chapter" data-level="2.2.3" data-path="rprog1.html"><a href="rprog1.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2.3</b> What is RStudio?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="rprog1.html"><a href="rprog1.html#r-sessions-the-console-and-the-command-prompt"><i class="fa fa-check"></i><b>2.3.1</b> R sessions, the console, and the command prompt</a></li>
@@ -170,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a><ul>
-<li class="chapter" data-level="3.1" data-path="rprog2.html"><a href="rprog2.html#objectives-1"><i class="fa fa-check"></i><b>3.1</b> Objectives</a></li>
+<li class="chapter" data-level="3.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>3.1</b> Objectives</a></li>
 <li class="chapter" data-level="3.2" data-path="rprog2.html"><a href="rprog2.html#overview"><i class="fa fa-check"></i><b>3.2</b> Overview</a></li>
 <li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="rprog2.html"><a href="rprog2.html#reading-local-flat-files"><i class="fa fa-check"></i><b>3.3.1</b> Reading local flat files</a></li>
@@ -201,7 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization: ggplot2</a><ul>
-<li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#objectives-2"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
+<li class="chapter" data-level="4.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
 <li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#install-and-call-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Install and call <code>ggplot2</code></a><ul>
 <li class="chapter" data-level="4.2.1" data-path="dataviz.html"><a href="dataviz.html#initializing-a-ggplot-object"><i class="fa fa-check"></i><b>4.2.1</b> Initializing a ggplot object</a></li>
 <li class="chapter" data-level="4.2.2" data-path="dataviz.html"><a href="dataviz.html#plot-aesthetics"><i class="fa fa-check"></i><b>4.2.2</b> Plot aesthetics</a></li>
@@ -213,9 +215,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="dataviz.html"><a href="dataviz.html#example-plot"><i class="fa fa-check"></i><b>4.5</b> Example plot</a></li>
 <li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#store-and-save-ggplot2-objects"><i class="fa fa-check"></i><b>4.6</b> Store and save ggplot2 objects</a></li>
 <li class="chapter" data-level="4.7" data-path="dataviz.html"><a href="dataviz.html#getting-help-with-ggplot2"><i class="fa fa-check"></i><b>4.7</b> Getting help with ggplot2</a></li>
+<li class="chapter" data-level="4.8" data-path="dataviz.html"><a href="dataviz.html#class-exercises"><i class="fa fa-check"></i><b>4.8</b> Class Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a><ul>
-<li class="chapter" data-level="5.1" data-path="eda1.html"><a href="eda1.html#objectives-3"><i class="fa fa-check"></i><b>5.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>5.1</b> Objectives</a></li>
 <li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univariate-data"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>5.2.1</b> Location, Dispersion, and Shape</a></li>
 <li class="chapter" data-level="5.2.2" data-path="eda1.html"><a href="eda1.html#example-location-and-dispersion"><i class="fa fa-check"></i><b>5.2.2</b> Example: Location and Dispersion</a></li>
@@ -238,10 +241,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9" data-path="eda1.html"><a href="eda1.html#autocorr"><i class="fa fa-check"></i><b>5.9</b> Autocorrelation</a><ul>
 <li class="chapter" data-level="5.9.1" data-path="eda1.html"><a href="eda1.html#partial-autocorrelation"><i class="fa fa-check"></i><b>5.9.1</b> Partial Autocorrelation</a></li>
 </ul></li>
-<li class="chapter" data-level="5.10" data-path="eda1.html"><a href="eda1.html#in-course-exercises"><i class="fa fa-check"></i><b>5.10</b> In-course Exercises</a></li>
+<li class="chapter" data-level="5.10" data-path="eda1.html"><a href="eda1.html#exploring-data"><i class="fa fa-check"></i><b>5.10</b> Exploring Data</a></li>
+<li class="chapter" data-level="5.11" data-path="eda1.html"><a href="eda1.html#in-course-exercises"><i class="fa fa-check"></i><b>5.11</b> In-course Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a><ul>
-<li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#objectives-4"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
+<li class="chapter" data-level="6.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
 <li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="rprog3.html"><a href="rprog3.html#string-detect-match"><i class="fa fa-check"></i><b>6.2.1</b> String detect &amp; match</a></li>
 <li class="chapter" data-level="6.2.2" data-path="rprog3.html"><a href="rprog3.html#regular-expressions"><i class="fa fa-check"></i><b>6.2.2</b> Regular Expressions</a></li>
@@ -261,7 +265,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#tidy-data"><i class="fa fa-check"></i><b>6.5</b> Tidy Data</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a><ul>
-<li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#objectives-5"><i class="fa fa-check"></i><b>7.1</b> Objectives</a></li>
+<li class="chapter" data-level="7.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>7.1</b> Objectives</a></li>
 <li class="chapter" data-level="7.2" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>7.2</b> Bivariate Data</a></li>
 <li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="eda2.html"><a href="eda2.html#causality"><i class="fa fa-check"></i><b>7.3.1</b> Causality</a></li>
@@ -275,17 +279,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a><ul>
 <li class="chapter" data-level="8.1" data-path="rprog4.html"><a href="rprog4.html#step-iii-1"><i class="fa fa-check"></i><b>8.1</b> Step III-1</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="eda3.html"><a href="eda3.html"><i class="fa fa-check"></i><b>9</b> Tips and Tricks for Data Exploration</a><ul>
-<li class="chapter" data-level="9.1" data-path="eda3.html"><a href="eda3.html#transformation"><i class="fa fa-check"></i><b>9.1</b> Transformation</a></li>
-<li class="chapter" data-level="9.2" data-path="eda3.html"><a href="eda3.html#centering"><i class="fa fa-check"></i><b>9.2</b> Centering</a></li>
-<li class="chapter" data-level="9.3" data-path="eda3.html"><a href="eda3.html#normalizing"><i class="fa fa-check"></i><b>9.3</b> Normalizing</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="eda3.html"><a href="eda3.html#standardizing"><i class="fa fa-check"></i><b>9.3.1</b> Standardizing</a></li>
+<li class="chapter" data-level="9" data-path="eda3.html"><a href="eda3.html"><i class="fa fa-check"></i><b>9</b> Transformations and other Tricks</a><ul>
+<li class="chapter" data-level="9.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>9.1</b> Objectives</a></li>
+<li class="chapter" data-level="9.2" data-path="eda3.html"><a href="eda3.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="eda3.html"><a href="eda3.html#centering"><i class="fa fa-check"></i><b>9.2.1</b> Centering</a></li>
+<li class="chapter" data-level="9.2.2" data-path="eda3.html"><a href="eda3.html#rescaling"><i class="fa fa-check"></i><b>9.2.2</b> Rescaling</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="eda3.html"><a href="eda3.html#normalization-and-standardization"><i class="fa fa-check"></i><b>9.3</b> Normalization and Standardization</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="eda3.html"><a href="eda3.html#rate-normalization"><i class="fa fa-check"></i><b>9.3.1</b> Rate normalization</a></li>
+<li class="chapter" data-level="9.3.2" data-path="eda3.html"><a href="eda3.html#standardizing"><i class="fa fa-check"></i><b>9.3.2</b> Standardizing</a></li>
+<li class="chapter" data-level="9.3.3" data-path="eda3.html"><a href="eda3.html#reducing-skewness"><i class="fa fa-check"></i><b>9.3.3</b> Reducing Skewness</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="eda3.html"><a href="eda3.html#stratification"><i class="fa fa-check"></i><b>9.4</b> Stratification</a></li>
 <li class="chapter" data-level="9.5" data-path="eda3.html"><a href="eda3.html#censoring-and-truncating"><i class="fa fa-check"></i><b>9.5</b> Censoring and Truncating</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a><ul>
-<li class="chapter" data-level="10.1" data-path="measure.html"><a href="measure.html#objectives-6"><i class="fa fa-check"></i><b>10.1</b> Objectives</a></li>
+<li class="chapter" data-level="10.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>10.1</b> Objectives</a></li>
 <li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a><ul>
 <li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#samples-vs.-populations"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
 <li class="chapter" data-level="10.2.2" data-path="measure.html"><a href="measure.html#collecting-a-sample"><i class="fa fa-check"></i><b>10.2.2</b> Collecting a sample</a></li>
@@ -350,22 +359,129 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="eda3" class="section level1">
-<h1><span class="header-section-number">Chapter 9</span> Tips and Tricks for Data Exploration</h1>
-<p>Text</p>
+<h1><span class="header-section-number">Chapter 9</span> Transformations and other Tricks</h1>
+<p>This chapter provides an introduction to several common techniques to organize, transform, and/or manipulate univariate data. I use the word <em>manipulate</em> here with good reason; many of these techniques can be used inappropriately or lead to inadvertent consequences, so tread carefully! That warning aside, these techniques are useful and often allow you to gain insight into <em>“what the data are trying to tell you”</em>.</p>
+<div id="objectives" class="section level2">
+<h2><span class="header-section-number">9.1</span> Objectives</h2>
+<p>This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:</p>
+<ul>
+<li>Define common approaches to data transformation<br />
+</li>
+<li>Explain the differences between <em>centering</em>, <em>rescaling</em>, and <em>standardizing</em> univariate data.</li>
+</ul>
+</div>
 <div id="transformation" class="section level2">
-<h2><span class="header-section-number">9.1</span> Transformation</h2>
+<h2><span class="header-section-number">9.2</span> Transformation</h2>
+<p>The phrase <em>“Data Transformation”</em> means different things in different fields so we will define it here, in the statistical sense, as: <strong><em>applying one ore more mathematical operations to a variable</em></strong> (or in our case, all elements of numeric vector). You are undoubtedly familiar with data transformation, even if you haven’t previously recognized it. Some examples include:
+- adding, subtracting, or multiplying a constant to all elements in a vector;
+- taking the log, square root, or reciprocal of a variable;
+- some combination of these approaches.</p>
+<p>For example, your data are transformed whenever you convert temperature units from °F to °C, length units from inches to millimeters, or render a variable dimensionless (e.g., converting to units of percent, parts per million, or some other unitless value). In addition to these “units transformations”, we also conduct transformations to make the <strong><em>location</em></strong> and <strong><em>spread</em></strong> of data consistent, or to change the <strong><em>shape</em></strong> of a distribution of data (e.g., to reduce skewness or to linearize a variable). These latter approaches are often employed during multivariate analyses to help your variables “play nicely together” within the analytic framework you set forth. More on this to come.</p>
+<div class="rmdnote">
+<p>
+There are two key facets to data transformation: <strong>justification</strong> and <strong>documentation</strong>. Whenever data are transformed, you must provide a good reason for doing so (hint: there are many good reasons and also a few bad ones). Furthermore, <strong>you must adequately document “how” and “why” the data were transformed</strong>, so that others can understand your work and reproduce your results if needed.
+</p>
 </div>
-<div id="centering" class="section level2">
-<h2><span class="header-section-number">9.2</span> Centering</h2>
+<div id="centering" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Centering</h3>
+<p>Centering means <strong><em>to subtract a constant from all values</em></strong> in a vector. The <strong>constant</strong> to be subtracted could be an estimate of the data’s central tendency, like the mean or median (hence the term <em>center</em>-ing), or it could be some residual value that you want to remove from all observations. If you subtract the mean from every value of a vector, then the new vector will have a mean of 0; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location. Centering <strong><em>changes the location</em></strong> of a variable but <strong><em>spread stays the same</em></strong>.</p>
+<p>In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to “background subtract” or “zero” a set of univariate observations. If you have ever used a digital scale to measure the weight of an object, you’ve probably noticed that when you turn it on, the scale does not always read zero. Most of the time the instrument has a way to “re-zero” itself prior to use, but this is not always the case. If your scale shows a mass of 298 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 298 from all subsequent weights that you perform with this scale. That subtraction is an example of a “centering” transformation.</p>
+<div class="figure" style="text-align: center"><span id="fig:centering-anno"></span>
+<img src="images/centering_anno.png" alt="Data are sometimes centered to remove spurious values" width="640" />
+<p class="caption">
+Figure 9.1: Data are sometimes centered to remove spurious values
+</p>
 </div>
-<div id="normalizing" class="section level2">
-<h2><span class="header-section-number">9.3</span> Normalizing</h2>
+</div>
+<div id="rescaling" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> Rescaling</h3>
+<p><strong>To rescale a variable means to divide (or multiply) all values by a constant</strong>. Whereas <em>centering</em> is an arithmetic transformation, the process of <em>rescaling</em> data is multiplicative. Rescaling changes both the location and spread of the data.</p>
+<p>Some reasons to rescale data include:</p>
+<ul>
+<li>to show variables of different magnitudes together on the same axis of a plot;</li>
+<li>to make the spread of two or more variables similar (e.g., when conducting an analysis of variance or multivariate regression with variables that each have different scales);</li>
+<li>when you want to render a variable dimensionless (e.g., when converting to percentage units).</li>
+</ul>
+</div>
+</div>
+<div id="normalization-and-standardization" class="section level2">
+<h2><span class="header-section-number">9.3</span> Normalization and Standardization</h2>
+In a generic sense, to <strong><em>“normalize”</em></strong> a variable means: <strong>to transform that variable so that it can be compared, evaluated, or comprehended more easily.</strong> Normalization often involves a combination of centering and rescaling operations that not only change the location and spread of the data, but also the <em>meaning</em> of data. Normalization is used all the time.
+<div class="rmdwarning">
+<p>
+Like <em>“transformation”</em>, the word “<em>normalization</em>” is defined differently in different fields, so be explicit when using this term in your work. To some, the word normalization means to “make a variable normally distributed”; to others, it means to “normalize a database” so that redundancies are eliminated.
+</p>
+</div>
+<p>There are many types of normalization operations; we will discuss a few examples here:</p>
+<div id="rate-normalization" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> Rate normalization</h3>
+<p>To perform a rate normalization is <strong>to divide one variable into another</strong>, often to report something in terms of a rate.</p>
+<ul>
+<li>Two cars can have the same range (how many miles they can travel on one tank of gas) but different rates of fuel efficiency (miles traveled per gallon)<br />
+</li>
+<li>Two countries can have the same GDI (<em>gross domestic income</em>; the sum of all wages earned) but widely different rates of “per capita” income.</li>
+</ul>
+</div>
 <div id="standardizing" class="section level3">
-<h3><span class="header-section-number">9.3.1</span> Standardizing</h3>
+<h3><span class="header-section-number">9.3.2</span> Standardizing</h3>
+<p>Standardization is a special case of transformation/normalization where each value in a set of observations (or vector) is subtracted by some level (often the central tendency) and divided by the spread. When working with normally distributed data, the standardization of variable x_i into z_i is:</p>
+<p>     <span class="math inline">\(z_{i} = \frac{x_{i}-\overline{x}}{\sigma_{x}}\)</span></p>
+<p>where the mean and standard deviation of x are <span class="math inline">\(\overline{x}\)</span> and <span class="math inline">\(\sigma_{x}\)</span>, respectively. The <em>standardization</em> of a variable renders the mean to 0 and the standard deviation to 1. This type of normalization is useful when you wish to study relationships between multiple variables, each with different scale.</p>
+</div>
+<div id="reducing-skewness" class="section level3">
+<h3><span class="header-section-number">9.3.3</span> Reducing Skewness</h3>
+<p>Sometimes your data are <em>not normally distributed</em>, even though you want them to be. In that case you still have options. Some transformations, like the log, square root, or inverse, will make the spread of the data symmetric and approximately Gaussian. These transformations are commonly used to meet the needs (read: underlying assumptions) of many statistical models.</p>
+<div class="figure" style="text-align: center"><span id="fig:reduce-skew2"></span>
+<img src="images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable." width="640" />
+<p class="caption">
+Figure 9.2: The log(x) transform is often used to reduce skewness in a variable.
+</p>
+</div>
 </div>
 </div>
 <div id="stratification" class="section level2">
 <h2><span class="header-section-number">9.4</span> Stratification</h2>
+<p><strong>To stratify a sample means: to divide the sample into subsets (aka strata).</strong></p>
+<p>Stratified analyses can be performed many ways; one particularly useful way is graphically, by creating a stratification plot. A stratification plot is like any other visualization that you have created, except that the strata are identified (i.e., called out) through the use of color, lines, symbols, etc. Let’s use the following example to demonstrate:</p>
+<pre><code>## Saving 7 x 5 in image</code></pre>
+<p>A manufacturing operation is investigating the production of an expensive titanium alloy, where a 25% increase in the production yield of the alloy manufacturing process means the difference between profit and loss. The materials group believes that sample purity should have an effect on the yield and for the past month, all three reactors at the plant have been producing alloys from Ti feed stock of varying purity. After one month, you decide to visualize the relationship between <em>process yield</em> and <em>sample purity</em> with a scatterplot, <code>geom_point()</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="eda3.html#cb2-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;./images/unstratified.png&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:stratify2"></span>
+<img src="images/unstratified.png" alt="Yield vs. Purity from 3 reactors over one month" width="1050" />
+<p class="caption">
+Figure 9.3: Yield vs. Purity from 3 reactors over one month
+</p>
+</div>
+<p>Examination of Figure <a href="eda3.html#fig:stratify2">9.3</a> reveals that, while there is considerable variation in the data, a clear relationship is not apparent between sample purity and process yield. However, it occurs to you that perhaps there is variation in results between the three different reactors in the plant. Therefore, you decide to repeat this analysis <strong><em>stratifying the data by reactor type</em></strong>. In this case, you repeat the <code>ggplot()</code> call with an extra aesthetic of <code>color = reactor</code> in the scatterplot.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="eda3.html#cb3-1"></a>stratified &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> strat.data,</span>
+<span id="cb3-2"><a href="eda3.html#cb3-2"></a>       <span class="kw">aes</span>(<span class="dt">y =</span> yield2, </span>
+<span id="cb3-3"><a href="eda3.html#cb3-3"></a>           <span class="dt">x =</span> purity,</span>
+<span id="cb3-4"><a href="eda3.html#cb3-4"></a>           <span class="dt">color =</span> reactor,</span>
+<span id="cb3-5"><a href="eda3.html#cb3-5"></a>           <span class="dt">stroke =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb3-6"><a href="eda3.html#cb3-6"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>,</span>
+<span id="cb3-7"><a href="eda3.html#cb3-7"></a>             <span class="dt">shape =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb3-8"><a href="eda3.html#cb3-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Reactor&quot;</span>,</span>
+<span id="cb3-9"><a href="eda3.html#cb3-9"></a>       <span class="dt">x =</span> <span class="st">&quot;Sample Purity, %&quot;</span>,</span>
+<span id="cb3-10"><a href="eda3.html#cb3-10"></a>       <span class="dt">y =</span> <span class="st">&quot;Process Yield, kg&quot;</span>) <span class="op">+</span></span>
+<span id="cb3-11"><a href="eda3.html#cb3-11"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb3-12"><a href="eda3.html#cb3-12"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="fl">0.85</span>, <span class="fl">0.8</span>),</span>
+<span id="cb3-13"><a href="eda3.html#cb3-13"></a>        <span class="dt">legend.box.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>)) </span>
+<span id="cb3-14"><a href="eda3.html#cb3-14"></a></span>
+<span id="cb3-15"><a href="eda3.html#cb3-15"></a><span class="kw">ggsave</span>(<span class="st">&quot;./images/stratified.png&quot;</span>)</span></code></pre></div>
+<pre><code>## Saving 7 x 5 in image</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="eda3.html#cb5-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;./images/stratified.png&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:stratify3"></span>
+<img src="images/stratified.png" alt="Yield vs. Purity from 3 reactors over one month" width="1050" />
+<p class="caption">
+Figure 9.4: Yield vs. Purity from 3 reactors over one month
+</p>
+</div>
+<p>Figure <a href="eda3.html#fig:stratify3">9.4</a> tells a very different story! Now we can see that two relationships are clearly evident.</p>
+<ol style="list-style-type: decimal">
+<li>There is a definite inverse relationship beteen <em>sample purity</em> and the <em>process yield</em> and<br />
+</li>
+<li>For a given purity level, each reactor has a different output. Clearly, there is something different about each of these reactors that merits further study…</li>
+</ol>
 </div>
 <div id="censoring-and-truncating" class="section level2">
 <h2><span class="header-section-number">9.5</span> Censoring and Truncating</h2>
