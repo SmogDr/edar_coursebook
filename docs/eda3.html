@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Transformations and other Tricks | Engineering Data Analysis in R</title>
+  <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Transformations and other Tricks | Engineering Data Analysis in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Transformations and other Tricks | Engineering Data Analysis in R" />
+  
+  <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  
+
+<meta name="author" content="John Volckens and Kathleen E. Wendt" />
+
+
+<meta name="date" content="2020-07-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="rprog4.html"/>
+<link rel="next" href="model.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Engineering Data Analysis in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1</b> How to use this book</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#other-helpful-books-not-required"><i class="fa fa-check"></i><b>1.5.1</b> Other helpful books (not required)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a><ul>
+<li class="chapter" data-level="2.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>2.1</b> Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="rprog1.html"><a href="rprog1.html#what-is-r"><i class="fa fa-check"></i><b>2.2.1</b> What is R?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="rprog1.html"><a href="rprog1.html#free-and-open-source-software"><i class="fa fa-check"></i><b>2.2.2</b> Free and open-source software</a></li>
+<li class="chapter" data-level="2.2.3" data-path="rprog1.html"><a href="rprog1.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2.3</b> What is RStudio?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="rprog1.html"><a href="rprog1.html#r-sessions-console-and-command-prompt"><i class="fa fa-check"></i><b>2.3.1</b> R sessions, console, and command prompt</a></li>
+<li class="chapter" data-level="2.3.2" data-path="rprog1.html"><a href="rprog1.html#r-expressions-function-calls-and-objects"><i class="fa fa-check"></i><b>2.3.2</b> R expressions, function calls, and objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="rprog1.html"><a href="rprog1.html#commenting-code"><i class="fa fa-check"></i><b>2.4.1</b> Commenting code</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="rprog1.html"><a href="rprog1.html#r-packages"><i class="fa fa-check"></i><b>2.5.1</b> R packages</a></li>
+<li class="chapter" data-level="2.5.2" data-path="rprog1.html"><a href="rprog1.html#installing-from-cran"><i class="fa fa-check"></i><b>2.5.2</b> Installing from CRAN</a></li>
+<li class="chapter" data-level="2.5.3" data-path="rprog1.html"><a href="rprog1.html#loading-an-installed-package"><i class="fa fa-check"></i><b>2.5.3</b> Loading an installed package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
+<li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#class-exercises"><i class="fa fa-check"></i><b>2.7</b> Class Exercises</a></li>
+<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#homework"><i class="fa fa-check"></i><b>2.8</b> Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="rprog2.html"><a href="rprog2.html#objectives-1"><i class="fa fa-check"></i><b>3.1</b> Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="rprog2.html"><a href="rprog2.html#overview"><i class="fa fa-check"></i><b>3.2</b> Overview</a></li>
+<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="rprog2.html"><a href="rprog2.html#reading-local-flat-files"><i class="fa fa-check"></i><b>3.3.1</b> Reading local flat files</a></li>
+<li class="chapter" data-level="3.3.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-other-file-types"><i class="fa fa-check"></i><b>3.3.2</b> Reading in other file types</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="rprog2.html"><a href="rprog2.html#directory-structure"><i class="fa fa-check"></i><b>3.4.1</b> Directory structure</a></li>
+<li class="chapter" data-level="3.4.2" data-path="rprog2.html"><a href="rprog2.html#working-directory"><i class="fa fa-check"></i><b>3.4.2</b> Working directory</a></li>
+<li class="chapter" data-level="3.4.3" data-path="rprog2.html"><a href="rprog2.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>3.4.3</b> File and directory pathnames</a></li>
+<li class="chapter" data-level="3.4.4" data-path="rprog2.html"><a href="rprog2.html#tangent-paste"><i class="fa fa-check"></i><b>3.4.4</b> Tangent: <code>paste</code></a></li>
+<li class="chapter" data-level="3.4.5" data-path="rprog2.html"><a href="rprog2.html#reading-online-flat-files"><i class="fa fa-check"></i><b>3.4.5</b> Reading online flat files</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="rprog2.html"><a href="rprog2.html#renaming-columns"><i class="fa fa-check"></i><b>3.5.1</b> Renaming columns</a></li>
+<li class="chapter" data-level="3.5.2" data-path="rprog2.html"><a href="rprog2.html#selecting-columns"><i class="fa fa-check"></i><b>3.5.2</b> Selecting columns</a></li>
+<li class="chapter" data-level="3.5.3" data-path="rprog2.html"><a href="rprog2.html#add-or-change-columns"><i class="fa fa-check"></i><b>3.5.3</b> Add or change columns</a></li>
+<li class="chapter" data-level="3.5.4" data-path="rprog2.html"><a href="rprog2.html#base-r-equivalents-to-dplyr-functions"><i class="fa fa-check"></i><b>3.5.4</b> Base R equivalents to <code>dplyr</code> functions</a></li>
+<li class="chapter" data-level="3.5.5" data-path="rprog2.html"><a href="rprog2.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>3.5.5</b> Filtering to certain rows</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="rprog2.html"><a href="rprog2.html#piping"><i class="fa fa-check"></i><b>3.6</b> Piping</a></li>
+<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#class-exercises-1"><i class="fa fa-check"></i><b>3.7</b> Class Exercises</a></li>
+<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#homework-1"><i class="fa fa-check"></i><b>3.8</b> Homework</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="rprog2.html"><a href="rprog2.html#downloading-and-checking-out-the-example-data"><i class="fa fa-check"></i><b>3.8.1</b> Downloading and checking out the example data</a></li>
+<li class="chapter" data-level="3.8.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-different-types-of-files"><i class="fa fa-check"></i><b>3.8.2</b> Reading in different types of files</a></li>
+<li class="chapter" data-level="3.8.3" data-path="rprog2.html"><a href="rprog2.html#directory-structure-1"><i class="fa fa-check"></i><b>3.8.3</b> Directory structure</a></li>
+<li class="chapter" data-level="3.8.4" data-path="rprog2.html"><a href="rprog2.html#cleaning-up-data-1"><i class="fa fa-check"></i><b>3.8.4</b> Cleaning up data #1</a></li>
+<li class="chapter" data-level="3.8.5" data-path="rprog2.html"><a href="rprog2.html#cleaning-up-data-2"><i class="fa fa-check"></i><b>3.8.5</b> Cleaning up data #2</a></li>
+<li class="chapter" data-level="3.8.6" data-path="rprog2.html"><a href="rprog2.html#piping-1"><i class="fa fa-check"></i><b>3.8.6</b> Piping</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#objectives-2"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#install-and-load-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Install and load <code>ggplot2</code></a></li>
+<li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#steps-to-create-a-ggplot2-object"><i class="fa fa-check"></i><b>4.3</b> Steps to create a <code>ggplot2</code> object</a></li>
+<li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#initializing-a-ggplot2-object"><i class="fa fa-check"></i><b>4.4</b> Initializing a <code>ggplot2</code> object</a></li>
+<li class="chapter" data-level="4.5" data-path="dataviz.html"><a href="dataviz.html#plot-aesthetics"><i class="fa fa-check"></i><b>4.5</b> Plot aesthetics</a></li>
+<li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.6</b> Adding geoms</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="dataviz.html"><a href="dataviz.html#aesthetic-override-a-warning"><i class="fa fa-check"></i><b>4.6.1</b> Aesthetic override: a warning</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="dataviz.html"><a href="dataviz.html#shapes-and-colors"><i class="fa fa-check"></i><b>4.7</b> Shapes and colors</a></li>
+<li class="chapter" data-level="4.8" data-path="dataviz.html"><a href="dataviz.html#scales-useful-plot-edits"><i class="fa fa-check"></i><b>4.8</b> Scales: useful plot edits</a></li>
+<li class="chapter" data-level="4.9" data-path="dataviz.html"><a href="dataviz.html#example-plot"><i class="fa fa-check"></i><b>4.9</b> Example plot</a></li>
+<li class="chapter" data-level="4.10" data-path="dataviz.html"><a href="dataviz.html#store-and-save-ggplot2-objects"><i class="fa fa-check"></i><b>4.10</b> Store and save <code>ggplot2</code> objects</a></li>
+<li class="chapter" data-level="4.11" data-path="dataviz.html"><a href="dataviz.html#getting-help-with-ggplot2"><i class="fa fa-check"></i><b>4.11</b> Getting help with ggplot2</a></li>
+<li class="chapter" data-level="4.12" data-path="dataviz.html"><a href="dataviz.html#class-exercises-2"><i class="fa fa-check"></i><b>4.12</b> Class Exercises</a></li>
+<li class="chapter" data-level="4.13" data-path="dataviz.html"><a href="dataviz.html#homework-2"><i class="fa fa-check"></i><b>4.13</b> Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a><ul>
+<li class="chapter" data-level="5.1" data-path="eda1.html"><a href="eda1.html#objectives-3"><i class="fa fa-check"></i><b>5.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univariate-data"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>5.2.1</b> Location, Dispersion, and Shape</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantiles"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="eda1.html"><a href="eda1.html#descriptive-statistics"><i class="fa fa-check"></i><b>5.3.1</b> Descriptive Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
+<li class="chapter" data-level="5.4.2" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.4.2</b> Cumulative Distribution Plot</a></li>
+<li class="chapter" data-level="5.4.3" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.4.3</b> Histogram</a></li>
+<li class="chapter" data-level="5.4.4" data-path="eda1.html"><a href="eda1.html#box"><i class="fa fa-check"></i><b>5.4.4</b> Boxplot</a></li>
+<li class="chapter" data-level="5.4.5" data-path="eda1.html"><a href="eda1.html#time_series"><i class="fa fa-check"></i><b>5.4.5</b> Time-Series Plot</a></li>
+<li class="chapter" data-level="5.4.6" data-path="eda1.html"><a href="eda1.html#autocorr"><i class="fa fa-check"></i><b>5.4.6</b> Autocorrelation Plot</a></li>
+<li class="chapter" data-level="5.4.7" data-path="eda1.html"><a href="eda1.html#partial-autocorrelation-plot"><i class="fa fa-check"></i><b>5.4.7</b> Partial Autocorrelation Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="eda1.html"><a href="eda1.html#exploring-data"><i class="fa fa-check"></i><b>5.5</b> Exploring Data</a></li>
+<li class="chapter" data-level="5.6" data-path="eda1.html"><a href="eda1.html#class-exercises-3"><i class="fa fa-check"></i><b>5.6</b> Class Exercises</a></li>
+<li class="chapter" data-level="5.7" data-path="eda1.html"><a href="eda1.html#homework-3"><i class="fa fa-check"></i><b>5.7</b> Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a><ul>
+<li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#objectives-4"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="rprog3.html"><a href="rprog3.html#string-detect-match"><i class="fa fa-check"></i><b>6.2.1</b> String detect &amp; match</a></li>
+<li class="chapter" data-level="6.2.2" data-path="rprog3.html"><a href="rprog3.html#regular-expressions"><i class="fa fa-check"></i><b>6.2.2</b> Regular Expressions</a></li>
+<li class="chapter" data-level="6.2.3" data-path="rprog3.html"><a href="rprog3.html#string-split-separate"><i class="fa fa-check"></i><b>6.2.3</b> String split &amp; separate</a></li>
+<li class="chapter" data-level="6.2.4" data-path="rprog3.html"><a href="rprog3.html#string-extract-remove"><i class="fa fa-check"></i><b>6.2.4</b> String extract &amp; remove</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="rprog3.html"><a href="rprog3.html#dates-and-times-in-base-r"><i class="fa fa-check"></i><b>6.3.1</b> Dates and Times in base R</a></li>
+<li class="chapter" data-level="6.3.2" data-path="rprog3.html"><a href="rprog3.html#date-time-formats"><i class="fa fa-check"></i><b>6.3.2</b> Date-time formats</a></li>
+<li class="chapter" data-level="6.3.3" data-path="rprog3.html"><a href="rprog3.html#date-time-classes-in-r"><i class="fa fa-check"></i><b>6.3.3</b> Date-time classes in R</a></li>
+<li class="chapter" data-level="6.3.4" data-path="rprog3.html"><a href="rprog3.html#reading-and-classifying-date-times"><i class="fa fa-check"></i><b>6.3.4</b> Reading and classifying date-times</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>Lubridate</code></a><ul>
+<li class="chapter" data-level="6.4.1" data-path="rprog3.html"><a href="rprog3.html#lubridate-parsing-functions"><i class="fa fa-check"></i><b>6.4.1</b> <code>Lubridate</code> Parsing Functions</a></li>
+<li class="chapter" data-level="6.4.2" data-path="rprog3.html"><a href="rprog3.html#date-time-manipulation-with-lubridate"><i class="fa fa-check"></i><b>6.4.2</b> Date-time manipulation with <code>Lubridate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#tidy-data"><i class="fa fa-check"></i><b>6.5</b> Tidy Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a><ul>
+<li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#objectives-5"><i class="fa fa-check"></i><b>7.1</b> Objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>7.2</b> Bivariate Data</a></li>
+<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="eda2.html"><a href="eda2.html#causality"><i class="fa fa-check"></i><b>7.3.1</b> Causality</a></li>
+<li class="chapter" data-level="7.3.2" data-path="eda2.html"><a href="eda2.html#correlation"><i class="fa fa-check"></i><b>7.3.2</b> Correlation</a></li>
+<li class="chapter" data-level="7.3.3" data-path="eda2.html"><a href="eda2.html#correlation-neq-causation"><i class="fa fa-check"></i><b>7.3.3</b> Correlation <span class="math inline">\(\neq\)</span> causation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#Tukey"><i class="fa fa-check"></i><b>7.4</b> Tukey Mean Difference Plot</a></li>
+<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.5</b> Exploring Multivariate Data</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="eda2.html"><a href="eda2.html#contour-plots"><i class="fa fa-check"></i><b>7.5.1</b> Contour Plots</a></li>
+<li class="chapter" data-level="7.5.2" data-path="eda2.html"><a href="eda2.html#time-series-density"><i class="fa fa-check"></i><b>7.5.2</b> Time-Series Density</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a><ul>
+<li class="chapter" data-level="8.1" data-path="rprog4.html"><a href="rprog4.html#step-iii-1"><i class="fa fa-check"></i><b>8.1</b> Step III-1</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="eda3.html"><a href="eda3.html"><i class="fa fa-check"></i><b>9</b> Transformations and other Tricks</a><ul>
+<li class="chapter" data-level="9.1" data-path="eda3.html"><a href="eda3.html#objectives-6"><i class="fa fa-check"></i><b>9.1</b> Objectives</a></li>
+<li class="chapter" data-level="9.2" data-path="eda3.html"><a href="eda3.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="eda3.html"><a href="eda3.html#centering"><i class="fa fa-check"></i><b>9.2.1</b> Centering</a></li>
+<li class="chapter" data-level="9.2.2" data-path="eda3.html"><a href="eda3.html#rescaling"><i class="fa fa-check"></i><b>9.2.2</b> Rescaling</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="eda3.html"><a href="eda3.html#normalization-and-standardization"><i class="fa fa-check"></i><b>9.3</b> Normalization and Standardization</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="eda3.html"><a href="eda3.html#rate-normalization"><i class="fa fa-check"></i><b>9.3.1</b> Rate normalization</a></li>
+<li class="chapter" data-level="9.3.2" data-path="eda3.html"><a href="eda3.html#standardizing"><i class="fa fa-check"></i><b>9.3.2</b> Standardizing</a></li>
+<li class="chapter" data-level="9.3.3" data-path="eda3.html"><a href="eda3.html#reducing-skewness"><i class="fa fa-check"></i><b>9.3.3</b> Reducing Skewness</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="eda3.html"><a href="eda3.html#stratification"><i class="fa fa-check"></i><b>9.4</b> Stratification</a></li>
+<li class="chapter" data-level="9.5" data-path="eda3.html"><a href="eda3.html#censoring-and-truncating-data"><i class="fa fa-check"></i><b>9.5</b> Censoring and Truncating Data</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="eda3.html"><a href="eda3.html#measurement-bias-accuracy"><i class="fa fa-check"></i><b>9.5.1</b> Measurement Bias (accuracy)</a></li>
+<li class="chapter" data-level="9.5.2" data-path="eda3.html"><a href="eda3.html#measurement-uncertainty"><i class="fa fa-check"></i><b>9.5.2</b> Measurement Uncertainty</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="eda3.html"><a href="eda3.html#failure-and-reliability"><i class="fa fa-check"></i><b>9.6</b> Failure and Reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>10</b> Modeling</a><ul>
+<li class="chapter" data-level="10.1" data-path="model.html"><a href="model.html#fitting"><i class="fa fa-check"></i><b>10.1</b> Fitting</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="model.html"><a href="model.html#pdf"><i class="fa fa-check"></i><b>10.1.1</b> Probability Density Function</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="model.html"><a href="model.html#qqplot"><i class="fa fa-check"></i><b>10.2</b> Q-Q Plot (Quantile-Quantile)</a></li>
+<li class="chapter" data-level="10.3" data-path="model.html"><a href="model.html#linear-models"><i class="fa fa-check"></i><b>10.3</b> Linear Models</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="model.html"><a href="model.html#assumptions-of-linear-regression"><i class="fa fa-check"></i><b>10.3.1</b> Assumptions of Linear Regression</a></li>
+<li class="chapter" data-level="10.3.2" data-path="model.html"><a href="model.html#diagnostics"><i class="fa fa-check"></i><b>10.3.2</b> Diagnostics</a></li>
+<li class="chapter" data-level="10.3.3" data-path="model.html"><a href="model.html#ordinary-least-squares"><i class="fa fa-check"></i><b>10.3.3</b> Ordinary Least Squares</a></li>
+<li class="chapter" data-level="10.3.4" data-path="model.html"><a href="model.html#weighted-least-squares"><i class="fa fa-check"></i><b>10.3.4</b> Weighted Least Squares</a></li>
+<li class="chapter" data-level="10.3.5" data-path="model.html"><a href="model.html#deming-regression"><i class="fa fa-check"></i><b>10.3.5</b> Deming Regression</a></li>
+<li class="chapter" data-level="10.3.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>10.3.6</b> Calibration</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="simulate.html"><a href="simulate.html"><i class="fa fa-check"></i><b>11</b> Simulation</a><ul>
+<li class="chapter" data-level="11.1" data-path="simulate.html"><a href="simulate.html#introduction-to-simulation"><i class="fa fa-check"></i><b>11.1</b> Introduction to simulation</a></li>
+<li class="chapter" data-level="11.2" data-path="simulate.html"><a href="simulate.html#simulation-example"><i class="fa fa-check"></i><b>11.2</b> Simulation Example:</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Reference Distributions</a><ul>
+<li class="chapter" data-level="12.1" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.1</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="dist.html"><a href="dist.html#characteristic-plots-uniform-distribution"><i class="fa fa-check"></i><b>12.1.1</b> Characteristic Plots: Uniform Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.2</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="dist.html"><a href="dist.html#normal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>12.2.1</b> Normal Distribution: Characteristic Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>12.3</b> Log-normal Distribution</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Engineering Data Analysis in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="eda3" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> Transformations and other Tricks</h1>
+<p>This chapter provides an introduction to several common techniques to organize, transform, and/or manipulate univariate data. I use the word <em>manipulate</em> here with good reason; many of these techniques can be used inappropriately or lead to inadvertent consequences, so tread carefully! That warning aside, these techniques are useful and often allow you to gain insight into <em>“what the data are trying to tell you”</em>.</p>
+<div id="objectives-6" class="section level2">
+<h2><span class="header-section-number">9.1</span> Objectives</h2>
+<p>This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:</p>
+<ul>
+<li>Define common approaches to data transformation<br />
+</li>
+<li>Explain the differences between <em>centering</em>, <em>rescaling</em>, and <em>standardizing</em> univariate data.</li>
+</ul>
+</div>
+<div id="transformation" class="section level2">
+<h2><span class="header-section-number">9.2</span> Transformation</h2>
+<p>The phrase <em>“Data Transformation”</em> means different things in different fields so we will define it here, in the statistical sense, as: <strong><em>applying one ore more mathematical operations to a variable</em></strong> (or in our case, all elements of numeric vector). You are undoubtedly familiar with data transformation, even if you haven’t previously recognized it. Some examples include:
+- adding, subtracting, or multiplying a constant to all elements in a vector;
+- taking the log, square root, or reciprocal of a variable;
+- some combination of these approaches.</p>
+<p>For example, your data are transformed whenever you convert temperature units from °F to °C, length units from inches to millimeters, or render a variable dimensionless (e.g., converting to units of percent, parts per million, or some other unitless value). In addition to these “units transformations”, we also conduct transformations to make the <strong><em>location</em></strong> and <strong><em>spread</em></strong> of data consistent, or to change the <strong><em>shape</em></strong> of a distribution of data (e.g., to reduce skewness or to linearize a variable). These latter approaches are often employed during multivariate analyses to help your variables “play nicely together” within the analytic framework you set forth. More on this to come.</p>
+<div class="rmdnote">
+<p>
+There are two key facets to data transformation: <strong>justification</strong> and <strong>documentation</strong>. Whenever data are transformed, you must provide a good reason for doing so (hint: there are many good reasons and also a few bad ones). Furthermore, <strong>you must adequately document “how” and “why” the data were transformed</strong>, so that others can understand your work and reproduce your results if needed.
+</p>
+</div>
+<div id="centering" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Centering</h3>
+<p>Centering means <strong><em>to subtract a constant from all values</em></strong> in a vector. The <strong>constant</strong> to be subtracted could be an estimate of the data’s central tendency, like the mean or median (hence the term <em>center</em>-ing), or it could be some residual value that you want to remove from all observations. If you subtract the mean from every value of a vector, then the new vector will have a mean of 0; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location. Centering <strong><em>changes the location</em></strong> of a variable but <strong><em>spread stays the same</em></strong>.</p>
+<p>In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to “background subtract” or “zero” a set of univariate observations. If you have ever used a digital scale to measure the weight of an object, you’ve probably noticed that when you turn it on, the scale does not always read zero. Most of the time the instrument has a way to “re-zero” itself prior to use, but this is not always the case. If your scale shows a mass of 298 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 298 from all subsequent weights that you perform with this scale. That subtraction is an example of a “centering” transformation.</p>
+<div class="figure" style="text-align: center"><span id="fig:centering-anno"></span>
+<img src="images/centering_anno.png" alt="Data are sometimes centered to remove spurious values" width="640" />
+<p class="caption">
+Figure 9.1: Data are sometimes centered to remove spurious values
+</p>
+</div>
+</div>
+<div id="rescaling" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> Rescaling</h3>
+<p><strong>To rescale a variable means to divide (or multiply) all values by a constant</strong>. Whereas <em>centering</em> is an arithmetic transformation, the process of <em>rescaling</em> data is multiplicative. Rescaling changes both the location and spread of the data.</p>
+<p>Some reasons to rescale data include:</p>
+<ul>
+<li>to show variables of different magnitudes together on the same axis of a plot;</li>
+<li>to make the spread of two or more variables similar (e.g., when conducting an analysis of variance or multivariate regression with variables that each have different scales);</li>
+<li>when you want to render a variable dimensionless (e.g., when converting to percentage units).</li>
+</ul>
+</div>
+</div>
+<div id="normalization-and-standardization" class="section level2">
+<h2><span class="header-section-number">9.3</span> Normalization and Standardization</h2>
+In a generic sense, to <strong><em>“normalize”</em></strong> a variable means: <strong>to transform that variable so that it can be compared, evaluated, or comprehended more easily.</strong> Normalization often involves a combination of centering and rescaling operations that not only change the location and spread of the data, but also the <em>meaning</em> of data. Normalization is used all the time.
+<div class="rmdwarning">
+<p>
+Like <em>“transformation”</em>, the word “<em>normalization</em>” is defined differently in different fields, so be explicit when using this term in your work. To some, the word normalization means to “make a variable normally distributed”; to others, it means to “normalize a database” so that redundancies are eliminated.
+</p>
+</div>
+<p>There are many types of normalization operations; we will discuss a few examples here:</p>
+<div id="rate-normalization" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> Rate normalization</h3>
+<p>To perform a rate normalization is <strong>to divide one variable into another</strong>, often to report something in terms of a rate.</p>
+<ul>
+<li>Two cars can have the same range (how many miles they can travel on one tank of gas) but different rates of fuel efficiency (miles traveled per gallon)
+<ul>
+<li>Two countries can have the same GDI (<em>gross domestic income</em>; the sum of all wages earned) but widely different rates of “per capita” income.</li>
+</ul></li>
+</ul>
+</div>
+<div id="standardizing" class="section level3">
+<h3><span class="header-section-number">9.3.2</span> Standardizing</h3>
+<p>Standardization is a special case of transformation/normalization where each value in a set of observations (or vector) is subtracted by some level (often the central tendency) and divided by the spread. When working with normally distributed data, the standardization of variable x_i into z_i is:</p>
+<p>     <span class="math inline">\(z_{i} = \frac{x_{i}-\overline{x}}{\sigma_{x}}\)</span></p>
+<p>where the mean and standard deviation of x are <span class="math inline">\(\overline{x}\)</span> and <span class="math inline">\(\sigma_{x}\)</span>, respectively. The <em>standardization</em> of a variable renders the mean to 0 and the standard deviation to 1. This type of normalization is useful when you wish to study relationships between multiple variables, each with different scale.</p>
+</div>
+<div id="reducing-skewness" class="section level3">
+<h3><span class="header-section-number">9.3.3</span> Reducing Skewness</h3>
+<p>Sometimes your data are <em>not normally distributed</em>, even though you want them to be. In that case you still have options. Some transformations, like the log, square root, or inverse, will make the spread of the data symmetric and approximately Gaussian. These transformations are commonly used to meet the needs (read: underlying assumptions) of many statistical models.</p>
+<div class="figure" style="text-align: center"><span id="fig:reduce-skew2"></span>
+<img src="images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable." width="640" />
+<p class="caption">
+Figure 9.2: The log(x) transform is often used to reduce skewness in a variable.
+</p>
+</div>
+</div>
+</div>
+<div id="stratification" class="section level2">
+<h2><span class="header-section-number">9.4</span> Stratification</h2>
+<p><strong>To stratify a sample means: to divide the sample into subsets (aka strata).</strong></p>
+<p>Stratified analyses can be performed many ways; one particularly useful way is graphically, by creating a stratification plot. A stratification plot is like any other visualization that you have created, except that the strata are identified (i.e., called out) through the use of color, lines, symbols, etc. Let’s use the following example to demonstrate:</p>
+<p>A manufacturing operation is investigating the production of an expensive titanium alloy, where a 25% increase in the production yield of the alloy manufacturing process means the difference between profit and loss. The materials group believes that sample purity should have an effect on the yield and for the past month, all three reactors at the plant have been producing alloys from Ti feed stock of varying purity. After one month, you decide to visualize the relationship between <em>process yield</em> and <em>sample purity</em> with a scatterplot, <code>geom_point()</code>.</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="eda3.html#cb249-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;./images/unstratified.png&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:stratify2"></span>
+<img src="images/unstratified.png" alt="Yield vs. Purity from the plant's three reactors over one month" width="1050" />
+<p class="caption">
+Figure 9.3: Yield vs. Purity from the plant’s three reactors over one month
+</p>
+</div>
+<p>Examination of Figure <a href="eda3.html#fig:stratify2">9.3</a> reveals that, while there is considerable variation in the data, a clear relationship is not apparent between sample purity and process yield. However, it occurs to you that perhaps there is variation in results between the three different reactors in the plant. Therefore, you decide to repeat this analysis <strong><em>stratifying the data by reactor type</em></strong>. In this case, you repeat the <code>ggplot()</code> call with an extra aesthetic of <code>color = reactor</code> in the scatterplot.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="eda3.html#cb250-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;./images/stratified.png&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:stratify-png"></span>
+<img src="images/stratified.png" alt="Yield vs. Purity over one month, stratified by reactor type" width="1050" />
+<p class="caption">
+Figure 9.4: Yield vs. Purity over one month, stratified by reactor type
+</p>
+</div>
+<p>Figure <a href="eda3.html#fig:stratify-png">9.4</a> tells a very different story! Now we can see that two relationships are clearly evident.</p>
+<ol style="list-style-type: decimal">
+<li>There is a definite inverse relationship beteen <em>sample purity</em> and the <em>process yield</em> and<br />
+</li>
+<li>For a given purity level, each reactor has a different output. Clearly, there is something different about each of these reactors that merits further study…</li>
+</ol>
+</div>
+<div id="censoring-and-truncating-data" class="section level2">
+<h2><span class="header-section-number">9.5</span> Censoring and Truncating Data</h2>
+<p>Have you ever heard the phrase <strong><em>“don’t make the exception the rule”</em></strong>?</p>
+<p>I think this phrase means, <em>don’t let your judgment be governed solely by outliers.</em> Whether or not this is good advice probably depends on the situation, but I do think one should have the ability to detect <strong><em>when an outlier has leverage over a situation</em></strong>.</p>
+<p>Data visualization (like histograms, density plots, time-series, and boxplots) is a useful way to detect outliers, because these plots make it clear that one or more observations <em>“don’t seem to belong with the rest”</em>. For example, the plot below shows two boxplots: one depicts the rate of childhood asthma at 15 schools across a district, the other depicts the concentration of particulate black carbon (a type of air pollutant generated by incomplete combustion).</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="eda3.html#cb251-1"></a>asthma.data &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb251-2"><a href="eda3.html#cb251-2"></a>  <span class="dt">asthma.rate =</span> <span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">10</span>, <span class="dv">16</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">9</span>),</span>
+<span id="cb251-3"><a href="eda3.html#cb251-3"></a>  <span class="dt">black.carbon =</span> <span class="kw">c</span>(<span class="fl">3.2</span>, <span class="fl">2.5</span>, <span class="fl">4.6</span>, <span class="fl">6.1</span>, <span class="fl">3.3</span>, <span class="fl">3.1</span>, <span class="fl">6.1</span>, <span class="fl">5.3</span>, <span class="fl">4.5</span>, <span class="fl">3.3</span>, <span class="fl">6.4</span>, <span class="fl">3.7</span>, <span class="fl">5.1</span>, <span class="fl">6.8</span>, <span class="dv">12</span>)</span>
+<span id="cb251-4"><a href="eda3.html#cb251-4"></a>)</span>
+<span id="cb251-5"><a href="eda3.html#cb251-5"></a></span>
+<span id="cb251-6"><a href="eda3.html#cb251-6"></a></span>
+<span id="cb251-7"><a href="eda3.html#cb251-7"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> asthma.data) <span class="op">+</span></span>
+<span id="cb251-8"><a href="eda3.html#cb251-8"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> asthma.rate)) <span class="op">+</span></span>
+<span id="cb251-9"><a href="eda3.html#cb251-9"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">2</span>, <span class="dt">y =</span> black.carbon)) <span class="op">+</span></span>
+<span id="cb251-10"><a href="eda3.html#cb251-10"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
+<p><img src="08-edatips_files/figure-html/outlier1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="eda3.html#cb252-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> asthma.data) <span class="op">+</span></span>
+<span id="cb252-2"><a href="eda3.html#cb252-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> black.carbon,</span>
+<span id="cb252-3"><a href="eda3.html#cb252-3"></a>                 <span class="dt">y =</span> asthma.rate)) <span class="op">+</span></span>
+<span id="cb252-4"><a href="eda3.html#cb252-4"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
+<p><img src="08-edatips_files/figure-html/outlier1-2.png" width="672" /></p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="eda3.html#cb253-1"></a>model &lt;-<span class="kw">lm</span>(asthma.rate <span class="op">~</span><span class="st"> </span>black.carbon, <span class="dt">data =</span> asthma.data)</span>
+<span id="cb253-2"><a href="eda3.html#cb253-2"></a><span class="kw">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = asthma.rate ~ black.carbon, data = asthma.data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.4206 -2.2643  0.3153  2.5175  5.7739 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)    8.9234     2.1595   4.132  0.00118 **
+## black.carbon   0.5414     0.3888   1.393  0.18713   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.426 on 13 degrees of freedom
+## Multiple R-squared:  0.1298, Adjusted R-squared:  0.06286 
+## F-statistic: 1.939 on 1 and 13 DF,  p-value: 0.1871</code></pre>
+<div class="rmdwarning">
+<p>
+<strong>Censoring data is dangerous business.</strong> If you are going to censor an outlier, make sure to document <strong>how</strong> you discovered the outlier, <strong>why</strong> you believe it should be censored, and <strong>“whether or not that censoring had an effect on your results/conclusions”</strong>. Then make sure to broadcast your thinking to everyone who comes in contact with your report. If you try to hide your outliers, you are being unethical and setting yourself up for disaster.
+</p>
+</div>
+<pre><code>
+&lt;!--chapter:end:08-edatips.Rmd--&gt;
+
+# Measurement {#measure}  
+
+
+
+Measurement is a fundamental tool for characterization and verification in engineering (and many fields).  This chapter will provide a quick introduction to the science of measurement.  
+
+## Objectives
+This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:  
+
+- Explain the difference between a sample and a population; 
+- Define randomization and describe how it can be applied to simple, stratified, and cluster sampling; 
+- Explain the difference between cluster and stratified sampling methods; 
+- Describe how to estimate precision and bias for a measurement system
+- Calculate uncertainty and describe how to propagate it across a measurement process
+- Define limit of detection and estimate it for a measurement process
+
+## Sampling
+To conduct univariate analyses, we need data (i.e., observations).  To get those data, we need a sample.  To get that sample, we need to identify a population from which to sample.  Allow me to digress...  
+
+### Samples vs. Populations  
+At some point in the history of science someone came up with the idea that very few things are known for certain: we can only make estimates or educated guesses. This idea (which is hard to refute) gave rise to the concept of *samples* vs. *populations*.  In statistics, the ***population*** of an observed quantity or variable is the totality of every instance of that variable in the universe (...whoa...).  
+
+Take the molecular diameter of an oxygen molecule. Even if we could measure the diameters of ALL the oxygen molecues in our atmosphere that would still represent only a tiny fraction (i.e., a ***sample***) of all the oxygen molecules bound up in the planet (and all of Earth&#39;s oxygen is but a tiny fraction of our solar system&#39;s, and so on). The *population* of all oxygen molecules across the universe is impossible to measure or &quot;know&quot; given our current capabilities. If, however, we measure a sufficient *sample* of oxygen molecules, we could probably infer the size of all the other O~2~ molecules within reason.
+
+This is to say that the **population** is the thing we strive to make conclusions about but the **sample** is the thing (read: the data) that we have to work with.
+
+### Collecting a sample  
+Samples are collected to provide estimates of populations so that those estimates can be used for ***inference*** (a fancy word that means: to make conclusions).  Many statistical procedures are based on the assumption that your sample is ***representative*** of the population you are trying to model/understand.  Assuming that your sample is good (read: representative) is a dangerous thing to do. In fact, MOST samples have some degree of un-good.  Just ask the polling experts from the 2016 U.S. presidential election, or the now humiliated and vilified [doctor who concluded that vaccines were the cause of childhood autism based on a sample of 12 kids](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2954080/) taken from a single birthday party...  
+
+A sample is representative if each measure is drawn in a way that makes it ***independent*** from the next AND if the measurement method itself is ***unbiased*** (i.e., the making of the measurement does not alter the way the sample is counted). We will talk more about ***bias*** later in this Chapter, but suffice it so say that if I made you watch a 10-minute video on catastrophic airplane disasters and then gave you a survey about your fears of flying, I might be introducing some bias into that measurement.
+
+Representative sampling is hard to do in practice.  A good sampling strategy employs ***randomization***: allow random chance to decide when and where measurements are made. The problem with this strategy, however, is that we have to place boundaries on the exact *when* and *where* of sampling due to limited resources. In reality, most samples are neither independent, nor randomly drawn; they are instead drawn from a single location, one after the next, for a short period of time. Such a *convenience sample* raises the possibility (1) that the data are non-independent (because any given measure is related [correlated] to the next one taken) and (2) that the sample lacks generalizability to the greater population (due to the focused [unique] nature of how/where the sample was collected. Scientific studies occasionally reach incorrect conclusions not because their statistical models were flawed, but instead because their sample was biased and/or unrepresentative of the true population. I can randomly survey 100 people at a political rally but that doesn&#39;t mean the opinions I gather from these individuals are representative of all eligible voters in that part of the country. 
+
+This is a much bigger problem than you might realize, because true random, unbiased sampling is often impossible or impractical in the real world. How would the Tesla Corporation collect a random, independent sample of 1000 [Model 3](https://www.tesla.com/model3) vehicles after 10 years of real-world driving? Even with a random number generator applied to vehicle ID numbers, Tesla no longer owns those cars. They can&#39;t just take them back...   
+
+- They could ask car owers to complete a customer satisfaction survey but then they might only get results from people who want to complain...(*bias*) 
+
+- They could ask dealers to inspect cars but then they would be sampling only from the subset of owners that liked to do business with dealers...(potential for *bias* AND *non-independence*)  
+
+- They could ask repair shops for data but then they would only be sampling from cars that had broken down for some reason...(potential for *bias* and *non-independence*)  
+
+So...if you cannot collect a truly representative sample, how can you trust your results? Suffice it to say that there is an art to empirical research (empirical is a fancy word for observational). If you study *how* data were collected (especially from a sampling strategy) you will often realize how a &quot;wrong conclusion&quot; came to be.  
+
+&lt;div class=&quot;figure&quot; style=&quot;text-align: center&quot;&gt;
+&lt;img src=&quot;./images/sampling_bias.png&quot; alt=&quot;Biased samples are easy to come by&quot; width=&quot;100%&quot; /&gt;
+&lt;p class=&quot;caption&quot;&gt;(\#fig:samping-bias)Biased samples are easy to come by&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;rmdcaution&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Hope&lt;/strong&gt; is a dangerous word in science because it can create &lt;em&gt;implicit bias&lt;/em&gt;. The experimenter who &lt;em&gt;hopes&lt;/em&gt; for a certain outcome might unknowingly influence their sampling and/or analysis strategy to promote that outcome. The best experiments are designed as “win/win”: they produce valuable information, regardless of the outcome (yes/no, null/alternative hypothesis, etc.). Such designs, though often difficult to conceive, remove the need for hope altogether.&lt;/p&gt;
+&lt;/div&gt;
+
+Let&#39;s review a few common sampling strategies here.  
+
+### Simple Random Sampling
+Simple random sampling means that samples are randomly collected from across the population and over a period of time where the population characteristics (especially those characteristics being measured) remain constant.  The main advantage of simple random sampling is that, when done correctly, your data should be unbiased and representative of the population.  The main issue with simple random sampling is that it can be hard to do &quot;correctly&quot;.  
+
+&lt;div class=&quot;rmdnote&quot;&gt;
+&lt;p&gt;To collect a simple random sample, you need to ensure three things:&lt;/p&gt;
+&lt;ol style=&quot;list-style-type: decimal&quot;&gt;
+&lt;li&gt;that your sampling method gives &lt;strong&gt;&lt;em&gt;every single member&lt;/em&gt;&lt;/strong&gt; of the population an &lt;strong&gt;&lt;em&gt;equal chance&lt;/em&gt;&lt;/strong&gt; of being selected.&lt;/li&gt;
+&lt;li&gt;that your population remains relatively unchanged during the sampling window.&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;that your sample size is sufficient to make inferences (read: conclusions) with confidence.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+How large of a sample size do you need to collect?  That depends on a lots of things:  
+
+1. what you want to do with the data (read: what conclusions/questions are you after?)  
+    - Are you estimating location and/or spread, are you comparing location/spread, or are you fitting a model?
+2. What are the risks/consequences of making incorrect conclusions?  
+    - Do you need 95% confidence in your answer, 99%, 99.999%?  
+3. How much variability do you expect to see in your data?   
+
+These factors all work together to frame sample size considerations.  There are many ways to estimate sample size (too many for this course), so I will use only one here: sample size (n) for a t-test comparing two means:
+
+&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;  $n = \frac{(Z_{\alpha/2}\cdot+Z_{\beta/2})^2\cdot2\cdot\sigma^2}{d^2}$     where,  
+
+  - $\alpha$ represents the Type-1 error rate (1 - confidence level); 0.05 is typical  
+  - $\beta$ represents the Type-2 error rate (1 - power); 0.2 is typical  
+  - $Z_{\alpha/2}$ represents the critical value of the [Normal distribution](#normal_dist) at $\alpha/2$  
+  - $Z_{\beta/2}$ represents the critical value of the [Normal distribution](#normal_dist) at $\beta/2$  
+  - $\sigma^2$ is the population variance  
+  - $d$ is the difference (in means) that you are trying to detect  
+
+
+
+### Systematic Sampling
+Systematic sampling is often employed when simple random sampling is not feasible.  With systematic sampling, the population is first ordered according to a characteristic of interest (e.g., first to last, front to back, smallest to largest, youngest to oldest, etc.) and then samples are drawn at regular intervals from across the ordered range of values.  For example, if you wanted to know the opinions of marathoners at the finish line of a particular race, you might decide to randomly sample one person passing through the finish line every five minutes starting with the winner&#39;s group and ending with the last finisher.  The main disadvantage to systematic sampling is the creation of an ordering scheme, which can introduce bias into the results (whether known or unknown).  For example, in the NBA&#39;s annual [3-point shooting contest](https://en.wikipedia.org/wiki/Three-Point_Contest), every 5th ball is worth extra points to the shooter; if we conducted systematic sampling of every 5th shot, we would only select the shots worth extra points (i.e., the shots that the shooter cares the most about). 
+
+### Stratified Sampling
+Stratified sampling is often used when (1) you know &quot;something&quot; (a priori) about the population that you want to sutdy (or at least account for in your sample) and (2) when that &quot;something&quot; can be mapped onto the population to form groups.  With stratified sampling, you break the population into strata (a fancy word for *groups*) and then sample randomly (in equal proportion) from within each strata. This technique is used because the strata are believed to be important relative to the the variables of interest. The strata can be time-based (e.g., the quality of parts produced during the morning, afternoon, and night shift at a factory), place-based (e.g., the quality of parts produced at assembly plant A, B, C), or based on other known characteristics.  For example, when people are the subject of study, strata are often formed about age groups, gender groups, income brackets, and educational attainment, to name a few. Stratified random sampling can be more tedious to conduct and is sometimes biased if not all of the subgroups within a population are identified. For example, a survey of the effects of housing on health (stratified into homeowners vs. renters) would ignore a key subgroup: those who are experiencing homelessness.
+
+### Cluster Sampling
+Cluster sampling is often used to save on time and effort during a sampling campaign when it&#39;s possible to break the population into **similar groups**, or clusters. The population is divided into clusters (based on some grouping characteristic) and then a proportion of those clusters are fully sampled.  For example, if your company had 100  distribution centers across the country, and you wished to study some measure of process efficiency, then you might select 10 centers as clusters, and fully sample each.  
+
+Cluster sampling is considered less precise (i.e., more samples needed for a given question) than simple random sampling, but oftentimes its unfeasible or too costly to sample the whole population.  If cluster units are apparent, they can provide considerable cost savings.
+
+&lt;div class=&quot;rmdnote&quot;&gt;
+&lt;p&gt;The important difference between stratified and cluster sampling is how each design defines the groups. With &lt;em&gt;stratified sampling&lt;/em&gt;, the distinction between groups (i.e., how the data varies from one group to the next) is important; with &lt;em&gt;cluster sampling&lt;/em&gt;, the distinction between groups should be one of convenience (and hopefully not meaningful as it relates to data variability).&lt;/p&gt;
+&lt;/div&gt;
+
+## Figures of Merit
+All measurements are estimates of a *&quot;true value&quot;* that you seek to discover. To ensure that measurements are sound, we often estimate the ***figures of merit*** for a measurement system (or an instrument). There are many different figures of merit; we will only examine a few here, namely: limit of detection, dynamic range, precision, and bias.  Other figures of merit for measurement systems include things like linearity, sensitivity, and specificity - those topics will be covered in the *advanced* version of this course (which doesn&#39;t yet exist).
+
+### Limit of Detection &amp; Quantification
+Imagine that I asked you to hold out your hand and close your eyes. Could you tell if I added a single grain of flour to your hand? Likely not. The mass of that grain is about 1/50^th^ that of an eyelash.  What if I added 100 grains?  Maybe you could tell.  If I added 1000 grains you could likely feel it.  This imaginary exercise outlines the concept of ***&quot;limit of detection&quot;***, or &quot;LOD&quot;, which represents the *threshold* at which an instrument can distinguish between &quot;something&quot; and &quot;nothing&quot; being measured.  The concept of LOD applies best to instruments that measure continuous properties like time, distance, energy, force, etc.  
+
+There are several approaches to estimating an instrument&#39;s lower limit of detection. The simplest approach is first to challenge that instrument to measure increasingly more &quot;stuff&quot; and observe it&#39;s response. This is shown graphically below with &quot;instrument response&quot; on the y-axis and &quot;amount of stuff being measured&quot; on the x-axis.  We use a logarithmic scale for the x axis because when we measure &quot;stuff&quot; in engineering we usually have the ability to observe several orders of magnitude (the length of a baseball stitch, a baseball, a baseball field, or a baseball stadium). Many instruments respond with an &quot;S&quot; shaped curve where you initially see no (or asymptotic response), followed by a linear response, followed by another asymptotic tail at the upper detection limit.
+
+
+
+&lt;div class=&quot;figure&quot; style=&quot;text-align: center&quot;&gt;
+&lt;img src=&quot;./images/lod_depiction_anno.png&quot; alt=&quot;Experimental investigations into LOD and dynamic range&quot; width=&quot;100%&quot; /&gt;
+&lt;p class=&quot;caption&quot;&gt;(\#fig:lod-2)Experimental investigations into LOD and dynamic range&lt;/p&gt;
+&lt;/div&gt;
+To calculate the lower LOD, we often measure a series of &quot;blanks&quot; and then calculate the mean and standard deviation about those data.
+&lt;div class=&quot;rmdnote&quot;&gt;
+&lt;p&gt;&lt;strong&gt;What is a blank?&lt;/strong&gt; A &lt;em&gt;blank&lt;/em&gt; is an attempt to challenge the instrument to measure nothing from something. Let’s say you had a scale to weigh the mass of cherries picked at an orchard. Each load of cherries is weighed in a small paper bag (so that they don’t spill everywhere). Then weighing the empty paper bag would be considered a “blank” for that instrument.&lt;/p&gt;
+&lt;/div&gt;
+
+### Dynamic Range
+The LOD/LOQ concept is most often applied to an instrument&#39;s *minimum detectable quantity*, but it&#39;s important to realize that instruments also have a *maximum detectable quantities*, too. The ***dynamic range*** of an instrument, thus, describes the range of values (min/max) that an instrument can measure. It&#39;s important to know an instrument&#39;s dynamic range so that you don&#39;t misuse it. For example, you wouldn&#39;t use the scale in a doctor&#39;s office to weigh grains of rice just as you wouldn&#39;t ask human beings to report on the loudness of dog whistles.  The dynamic range of an instrument represents the measurement range between a lower and upper detection limit. 
+
+### Measurement Precision
+In measurement science the term *precision* means &quot;repeatability&quot; or &quot;instrument variability&quot;.  A precise measurement (made by a single instrument) is one that provides the same (or nearly the same) answer each time you take the measurement. This assumes, of course, that the thing being measured remains unchanged over time. Human vision is something that suffers from imprecision, especially as you get older (your eyesight usually gets worse). Look at the image below quickly and try to decode the letters you see.  If I asked you to identify this text quickly (in 10 seconds or less) once per day for a week, you might give me 7 different answers.  That&#39;s not a precise measurement.
+
+&lt;div class=&quot;figure&quot; style=&quot;text-align: center&quot;&gt;
+&lt;img src=&quot;./images/blurry_text.png&quot; alt=&quot;Blurry vision is imprecise: repeated measures could lead to different answers&quot; width=&quot;500&quot; /&gt;
+&lt;p class=&quot;caption&quot;&gt;(\#fig:imprecise-1)Blurry vision is imprecise: repeated measures could lead to different answers&lt;/p&gt;
+&lt;/div&gt;
+Different authorities have varying opinions about the *best* way to quantify precision.  A simple, &quot;top-down&quot; approach is to take repeated measures of something (for which that instrument is designed to measure) several times over and then report the *spread* of those data (often as a *standard deviation*, but *range*, *IQR*, and *95% or 99% confidence intervals* are also used). Alternatively, a &quot;bottom-up&quot; approach is to propagate the errors associated with each facet of the measurement. As an empiricist (a fancy word for experimental-type), I prefer to gather data, so I often employ the &quot;top-down&quot; approach to precision. There are dangers to this approach however; these dangers are a direct result of the **sampling strategy** used to make repeated measures (see the following section for a more in-depth analysis). 
+
+In the case of a temperature sensor, we might boil a large pot of water and repeatedly measure the temperature with a single probe (here in Fort Collins, Colorado, water boils at ~ 94 °C).  Those measurements are shown below:
+
+
+```r
+temperatures &lt;- tibble( data_seq = seq(from = 1,
+                                       to = 25,
+                                       by =1),
+                        data_temp = c(93.4, 93.7, 96.0, 93.1, 93.8,
+                                      94.2, 93.1, 94.6, 93.8, 95.1,
+                                      93.1, 94.6, 94.7, 93.6, 92.8,
+                                      95.7, 94.0, 93.0, 93.7, 94.6,
+                                      94.4, 94.1, 94.2, 92.3, 94.4)) 
+
+sd(temperatures$data_temp) %&gt;% round(2)</code></pre>
+<pre><code>## [1] 0.88</code></pre>
+<p>Let’s create a 4-plot of those data to visualize basic characteristics.</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="eda3.html#cb257-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
+<span id="cb257-2"><a href="eda3.html#cb257-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_seq, <span class="dt">y=</span>data_temp),</span>
+<span id="cb257-3"><a href="eda3.html#cb257-3"></a>            <span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-4"><a href="eda3.html#cb257-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_seq, <span class="dt">y=</span>data_temp),</span>
+<span id="cb257-5"><a href="eda3.html#cb257-5"></a>             <span class="dt">size =</span> <span class="dv">2</span>,</span>
+<span id="cb257-6"><a href="eda3.html#cb257-6"></a>             <span class="dt">shape =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb257-7"><a href="eda3.html#cb257-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Sequence Order&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-8"><a href="eda3.html#cb257-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-9"><a href="eda3.html#cb257-9"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb257-10"><a href="eda3.html#cb257-10"></a></span>
+<span id="cb257-11"><a href="eda3.html#cb257-11"></a>p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
+<span id="cb257-12"><a href="eda3.html#cb257-12"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_temp)) <span class="op">+</span></span>
+<span id="cb257-13"><a href="eda3.html#cb257-13"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-14"><a href="eda3.html#cb257-14"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-15"><a href="eda3.html#cb257-15"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb257-16"><a href="eda3.html#cb257-16"></a></span>
+<span id="cb257-17"><a href="eda3.html#cb257-17"></a>p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
+<span id="cb257-18"><a href="eda3.html#cb257-18"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x =</span> data_temp),</span>
+<span id="cb257-19"><a href="eda3.html#cb257-19"></a>                 <span class="dt">bins =</span> <span class="dv">6</span>,</span>
+<span id="cb257-20"><a href="eda3.html#cb257-20"></a>                 <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-21"><a href="eda3.html#cb257-21"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-22"><a href="eda3.html#cb257-22"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-23"><a href="eda3.html#cb257-23"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb257-24"><a href="eda3.html#cb257-24"></a></span>
+<span id="cb257-25"><a href="eda3.html#cb257-25"></a>p4 &lt;-<span class="st"> </span><span class="kw">ggAcf</span>(<span class="dt">x =</span> temperatures<span class="op">$</span>data_temp) <span class="op">+</span></span>
+<span id="cb257-26"><a href="eda3.html#cb257-26"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb257-27"><a href="eda3.html#cb257-27"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="ot">NULL</span>)</span>
+<span id="cb257-28"><a href="eda3.html#cb257-28"></a></span>
+<span id="cb257-29"><a href="eda3.html#cb257-29"></a><span class="kw">grid.arrange</span>(p1, p2, p3, p4)</span></code></pre></div>
+<p><img src="09-measure_files/figure-html/plot-temperature-data-1.png" width="672" /></p>
+<p>Examination of the 4-plot reveals:</p>
+<ul>
+<li>no major shifts or events in the time series;</li>
+<li>an approximate normal distribution (but a small sample size so hard to tell for sure);</li>
+<li>values centered on 94 (spread from 92-96);</li>
+<li>no apparent autocorrelation in the data.</li>
+</ul>
+<p>These results are all “good”, as we are expecting the data to be tightly clustered together and somewhat boring. We are now ready to estimate the precision of these repeated measurements. Since the data are <em>approximate normal</em>, a mean and standard deviation seem appropriate.</p>
+<ul>
+<li>Mean: 94 °C</li>
+<li>Std Dev: 0.9 °C</li>
+</ul>
+<p>Thus, we report a precision of ± 0.9 °C around a value of 94 °C. Note that we report precision <em>about</em> a value (0.9 °C in this case), since our data are limited to a certain range. In other words, we don’t know if our estimate of precision is applicable to 0 or 200 °C conditions.</p>
+<p>Precision is often reported in relative terms, too, as a percentage about the location where the measurements were made. For the example above, we would report <span class="math inline">\(\frac{\widehat{\sigma}}{\widehat{\mu}}\cdot100\)</span>, which R calculates as 0.9574468, but which we would report as ±1% at 94 °C.</p>
+<div class="rmdnote">
+<p>
+If you measure temperature with a k-type thermocouple and report a value of 93.28876 °C, you are admitting to the world your ignorance of precision (and the science of temperature measurement). No thermocouple reading is repeatable to 5 decimal places in °C; the best thermocouples are accurate to one decimal degree. <strong>Always make sure to align your measurement precision with the significant digits you report.</strong>
+</p>
+</div>
+<div id="measurement-bias-accuracy" class="section level3">
+<h3><span class="header-section-number">9.5.1</span> Measurement Bias (accuracy)</h3>
+<p>The word <strong><em>bias</em></strong> has several meanings depending on the field of use (e.g., a biased opinion, a racial or gender bias, or a biased voltage). Here, we define <em>bias</em> as the quantifiable difference between a measurement and a true value. The terms bias and accuracy are closely related, but we prefer to use bias because that word implies a magnitude and direction, whereas accuracy is more qualitative.</p>
+<p>Precision and bias are easy to view graphically. In Figure <a href="eda3.html#fig:bias-precision-plot2">9.5</a> I show the performance of four measurement systems. Each image shows a green circle in space that represents a “true value” that we are trying to measure. Each measurement attempt is depicted by an “x”. If a measurement system (i.e., an instrument) is precise and unbiased, then each of the repeated measures would show up in the green circle, because they are close to the “true value” and to each other. This is the case in the lower right panel. The upper-left panel, on the other hand, demonstrate a biased and imprecise instrument - biased because the average of the 20 measurements would not come close to the center and imprecise because the location of each individual measurement tends to vary by a distance larger than the size of the circle. The lower-left is unbiased but imprecise - unbiased because the average of the 20 measurements would land close to the center of the circle but imprecise because the measurements vary widely. The upper-right panel demonstrates a precise (the repeated measures do not vary much) but biased (“off the mark” from center) measurement system.</p>
+<div class="figure" style="text-align: center"><span id="fig:bias-precision-plot2"></span>
+<img src="images/bias_precision.png" alt="Examples of different combinations of bias and precision" width="1050" />
+<p class="caption">
+Figure 9.5: Examples of different combinations of bias and precision
+</p>
+</div>
+<p>Like precision,</p>
+</div>
+<div id="measurement-uncertainty" class="section level3">
+<h3><span class="header-section-number">9.5.2</span> Measurement Uncertainty</h3>
+<p>Bias and precision, together, make up <em>uncertainty</em>. A good way to estimate the uncertainty around a measurement is</p>
+</div>
+</div>
+<div id="failure-and-reliability" class="section level2">
+<h2><span class="header-section-number">9.6</span> Failure and Reliability</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="rprog4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
