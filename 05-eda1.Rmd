@@ -329,13 +329,13 @@ quantile(norm_dist, probs = seq(0, 1, 0.1)) %>% round(0)
 # manual method for calculating quantiles
 norm_manual <- tibble::tibble(
   # start with raw sample data generated from `rnorm()`
-  sample_data = norm_quant, 
+  sample_data = norm_dist, 
   # sort the data
-  sorted_data = sort(norm_quant),  
+  sorted_data = sort(norm_dist),  
   # calculate cumulative fraction for each entry
-  cum_frac = seq.int(from = 1 / length(norm_quant), 
+  cum_frac = seq.int(from = 1 / length(norm_dist), 
                      to = 1,
-                     by = 1 / length(norm_quant)))
+                     by = 1 / length(norm_dist)))
 # create deciles sequence
 deciles <- seq.int(from = 0, to = 1, by = 0.1)
 # extract quantiles that match the decile values created above 
@@ -679,65 +679,97 @@ that suggest $x = a * b * c$ not $x = a + b + c$. Explicit examples of
 
 ### Boxplot {#box}
 
-The boxplot is *summary plot* that allows one to view a distribution by its quartiles (Figure \@ref(fig:boxplot-1-anno)). The "box" in a boxplot consists of three parallel lines (usually oriented vertically) connected on their sides to form a box. The outer box lines (also called the *"hinges"*) represent the 0.25 and 0.75 quantiles and the inner line represents the 0.5 quantile, or median.  Thus, the height of the box depicts the inter-quartile range of the data.  Boxplots are often drawn with lines extending out from each end of the box (these lines are called *"whiskers"*). These whisker lines vary in their representation.  For some plots, the whiskers represent either: the max/min values, respectively, OR a distance of 1.5xIQR if the either the max or min value are larger than 1.5xIQR.  Other times the whiskers represent the 0.9 or 0.95 quantiles or 1.58xIQR/sqrt(2). Because of these variations, it's best to define the whiskers for the viewer (either in the text or the Figure caption).  Here is the R definition from the helpfile `?geom_boxplot`:
+The boxplot is summary plot that allows one to view a distribution by its
+quartiles (Figure \@ref(fig:boxplot-anno)). The "box" in a boxplot consists of
+three parallel lines, usually oriented vertically, connected on their sides to
+form a box. The outer box lines, also called the "hinges", represent the 0.25
+and 0.75 quantiles, and the inner line represents the 0.5 quantile, or median.
+Thus, the height of the box depicts the inter-quartile range of the data. 
+
+Boxplots are often drawn with lines extending out from each end of the box
+called "whiskers". These whisker lines vary in their representation. For some
+plots, the whiskers represent either the maximum and minimum values,
+respectively, or a distance of $1.5 * IQR$ if either the maximum or minimum 
+value are larger than $1.5 * IQR$.  Other times the whiskers represent the 0.9
+or 0.95 quantiles or $1.58 * IQR \div sqrt(2)$. Because of these variations,
+it's best to define the whiskers for the viewer either in the text or the
+Figure caption.  
+
+Here is the R definition from the helpfile `?geom_boxplot`:
 
 > The upper whisker extends from the hinge to the largest value no further than 1.5 * IQR from the hinge (where IQR is the inter-quartile range, or distance between the first and third quartiles). The lower whisker extends from the hinge to the smallest value at most 1.5 * IQR of the hinge. Data beyond the end of the whiskers are called "outlying" points and are plotted individually.
 
-``` {r boxplot-1, echo = FALSE, include = FALSE, warning = FALSE, message = FALSE, fig.width = 2, fig.height = 4, units = "cm"}
-ggplot(data = normal_data) +
-  geom_boxplot(aes(y = b, 
-                   x = 1),
-               outlier.shape = NA,
-               width = 0.25) +
+``` {r boxplot, echo=FALSE, include=FALSE, warning=FALSE, message=FALSE, fig.width=2, fig.height=4, units="cm"}
+normal_data %>% 
+  ggplot2::ggplot(mapping = aes(y = b, x = 1)) + 
+  geom_boxplot(outlier.shape = NA, width = 0.25) +
   xlab("Data Name") +
   ylab("Data Values") +
   xlim(c(0.5, 1.5)) +
-theme_classic() +
+  theme_classic() +
   theme(text = element_text(size=15),
         axis.text.x=element_blank(),
-        axis.ticks.x=element_blank())
-
-ggsave("./images/boxplot_1.png")
+        axis.ticks.x=element_blank()) +
+  ggsave("./images/boxplot_1.png")
 ```
 
-``` {r boxplot-1-anno, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "A generic boxplot The box lines represent the lower, middle, and upper quartiles, respectively; the whiskers represent 1.5*IQR in each direction."}
+``` {r boxplot-anno, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="A generic boxplot. The box lines represent the lower, middle, and upper quartiles, respectively. The whiskers represent 1.5*IQR in each direction."}
 knitr::include_graphics("./images/boxplot_1_anno.png")
 ```
 
-Boxplots *can be created* for a single univariate distribution (as shown in Figure \@ref(fig:boxplot-1-anno)), but the strength of the boxplot really comes from drawing several together, so that one univariate distribution can be compared to another.  In my opnion, single boxplots are quite boring by themselves (and the same information presented by a boxplot is just as easy to get from a cumulative distribution plot).  However, I do think it's faster to view quartiles (and the IQR) on the boxplot, so a plot with multiple boxplots has its advantages.  For example, let's look at the data from Figure \@ref(fig:temp-plot) as two boxplots.
+Boxplots *can be created* for a single univariate distribution, as shown in
+Figure \@ref(fig:boxplot-anno)), but the strength of the boxplot really comes
+from drawing several together, so that one univariate distribution can be
+compared to another. In my opinion, single boxplots are quite boring by
+themselves, and the same information presented by a boxplot is just as easy to
+get from a cumulative distribution plot.  Nonetheless, I think it's faster to
+view quartiles and the IQR on the boxplot, so a plot with multiple boxplots has
+its advantages. For example, let's look at the data from Figure \@ref(fig:temp-plot) as two boxplots.
 
-``` {r boxplot-2, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Boxplots of hourly temperatures in Colorado and Hawaii for July, 2010. Whiskers represent 1.5*IQR"}
-names <- as.list(c("Colorado", "Hawaii"))
-
-ggplot(data = noaa_temp, aes(y = temp_hr_f, 
-                              x = location, 
-                              group = location)) +
-  geom_boxplot(aes(fill = location),
+``` {r temp-boxplot, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Boxplots of hourly temperatures in Colorado and Hawaii for July, 2010. Whiskers represent 1.5*IQR."}
+# boxplots to compare temperature in CO and HI
+noaa_temp %>% 
+  ggplot2::ggplot(mapping = aes(y = temp_hr_f,
+                                 x = location,
+                                 group = location)) +
+  geom_boxplot(mapping = aes(fill = location),
                width = 0.5) +
   ylab("Temperature, °F") +
   xlab(NULL) +
   theme_classic() +
   theme(text = element_text(size=15),
         legend.position = "none")
-  
-
 ```
-Examination of the boxplots in Figure \@ref(fig:boxplot-2) conveys much the same information as what is seen for the raw data originally plotted in Figure \@ref(fig:noaa-temp-plot): both distributions have same central tendencies but the Colorado distribution has considerably more variation.
 
-### Time-Series  {#time_series}
-The **time-series plot** plot (also called a **"run sequence"** plot) is something you have undoubtedly seen before. This plot (typically shown as an *enumerative plot*) depicts the value of a variable (y-axis) plotted in the sequence that the observations were made (x-axis, often shown as units of time). A time-series plot allows you to do several things:  
+Examination of the boxplots in Figure \@ref(fig:temp-boxplot) conveys much the
+same information as what is seen for the raw data originally plotted in Figure
+\@ref(fig:noaa-temp-plot): both distributions have same central tendencies but
+the Colorado distribution has considerably more variation.
 
-* Identify shifts in "location" of the variable (when and by how much do values change over time?)  
-* Identify shifts in "variation" of the variable (does the data get more/less noisy over time?) 
-* Identify (potential) outliers and when they occurred 
-* Identify the ***timing*** of events!
+### Time-Series Plots {#time_series}
 
-Let's plot the same temperature data from Hawaii as shown in Figure \@ref(fig:noaa-temp-plot) as a time series.  We will use  `geom_point` and `geom_line` to create this plot, both of which require the following aesthetics: `x = ` and `y = `
-```{r NOAA-time-series, warning=FALSE, message=FALSE}
-# plot Temp vs Time for Colorado data
-NOAA_HI_time_series<- ggplot(data = filter(noaa_temp, location == "Hawaii"), 
-       aes(x = date, 
-           y = temp_hr_f)) +
+The time-series plot (also called a "run sequence" plot) is something you have
+undoubtedly seen before. This plot, typically shown as an enumerative plot,
+depicts the value of a variable on the y-axis plotted in the sequence that the
+observations were made on the x-axis, often shown as units of time. A
+time-series plot allows you to do several things:  
+
+* Identify shifts in "location" of the variable: *when and by how much do values change over time?*
+* Identify shifts in "variation" of the variable: *does the data get more/less noisy over time?*
+* Identify (potential) outliers and when they occurred
+* Identify the **timing** of events!
+
+Let's plot the same temperature data from Hawaii as shown in Figure
+\@ref(fig:noaa-temp-plot) as a time series. We will use  `geom_point()` and
+`geom_line()` to create this plot, both of which require the following
+aesthetics: `x = ` and `y = `.
+
+```{r noaa-time-series, warning=FALSE, message=FALSE}
+# plot temperature (y) vs time (y) for Hawaii data
+noaa_temp %>% 
+  dplyr::filter(location == "Hawaii") %>% 
+  ggplot2::ggplot(mapping = aes(x = date,
+                                y = temp_hr_f)) +
   geom_line(linejoin = "round",
             color = "purple") +
   geom_point(size = 1,
@@ -745,26 +777,33 @@ NOAA_HI_time_series<- ggplot(data = filter(noaa_temp, location == "Hawaii"),
              color = "purple") +
   labs(x = "Date",
        y = "Temperature, °F") +
-  theme_bw()
-ggsave("./images/NOAA_HI_time_series.png", dpi = 150)
+  theme_bw() + 
+  ggsave("./images/noaa_hi_time.png", dpi = 150)
 ```
 
-``` {r NOAA-HI-time-series, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Time series of hourly temperature measurements in Kauai, Hawaii for July 2010."}
-knitr::include_graphics("./images/NOAA_HI_time_series.png")
+``` {r noaa-hi-time, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Time series of hourly temperature measurements in Kauai, Hawaii for July 2010."}
+knitr::include_graphics("./images/noaa_hi_time.png")
 ```
 
-**What can we see in these data?**  Here are some quick conclusions:  
-  
-1. The temperature appears to rise and fall in a predictable pattern each day (duh).
-2. Over the course of the month, we can see a gradual increase in daily mean temperature taking place.  
+**What can we see in these data?** Here are some quick conclusions:  
 
-Neither of these conclusions are groundbreaking, but they both allude to an important outcome: there are patterns to be seen in these data!  None of those patterns were evident in the cumulative distribution or histogram plots.  If we zoom in on just the first 5 days of the month, we see the daily temperature patterns in more detail. 
+1. The temperature appears to rise and fall in a predictable pattern each day---duh!
+
+2. Over the course of the month, we can see a gradual increase in daily mean temperature.
+
+Neither of these conclusions are groundbreaking, but they both allude to an
+important outcome: there are patterns to be seen in these data! None of those
+patterns were evident in the cumulative distribution or histogram plots. If we
+zoom in on just the first 5 days of the month, we see the daily temperature
+patterns in more detail.
     
-```{r NOAA-time-series-2, warning=FALSE, message=FALSE}
-# plot Temp vs Time for Colorado data
-NOAA_HI_time_series<- ggplot(data = filter(noaa_temp, location == "Hawaii", date <= "2010-07-05"), 
-       aes(x = date, 
-           y = temp_hr_f)) +
+```{r noaa-hi-week-plot, warning=FALSE, message=FALSE}
+# plot temperature (y) vs time (y) for Hawaii data for one week
+noaa_temp %>% 
+  dplyr::filter(location == "Hawaii",
+                date <= "0000-07-05") %>% 
+  ggplot2::ggplot(mapping = aes(x = date, 
+                                y = temp_hr_f)) + 
   geom_line(linejoin = "round",
             color = "purple") +
   geom_point(size = 1,
@@ -772,14 +811,13 @@ NOAA_HI_time_series<- ggplot(data = filter(noaa_temp, location == "Hawaii", date
              color = "purple") +
   labs(x = "Date",
        y = "Temperature, °F") +
-  theme_bw()
-ggsave("./images/NOAA_HI_time_series-2.png", dpi = 150)
+  theme_bw() + 
+  ggsave("./images/noaa_hi_week.png", dpi = 150)
 ``` 
 
-``` {r NOAA-HI-time-series-2, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Time series of hourly temperature measurements in Kauai, Hawaii for July 1-5, 2010."}
-knitr::include_graphics("./images/NOAA_HI_time_series-2.png")
+``` {r noaa-hi-week, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Time series of hourly temperature measurements in Kauai, Hawaii for July 1-5, 2010."}
+knitr::include_graphics("./images/noaa_hi_week.png")
 ```
-
 
 ### Autocorrelation {#autocorr}
 
