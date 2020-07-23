@@ -154,14 +154,14 @@ noaa_temp %>%
        x = "Temperature (°F)") +
   theme_bw() +
   theme(legend.position = "none") +
-  ggsave("images/NOAA_temps.png", dpi = 150)
+  ggsave("./images/NOAA_temps.png", dpi = 150)
 ```
 
 ``` {r noaa-temp-plot, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Hourly temperature levels in Colorado and Hawaii for the month of July, 2010."}
 knitr::include_graphics("images/NOAA_temps.png")
 ```
 
-```{r noaa-temp-avg, echo=FALSE}
+```{r noaa-temp-avg, include=FALSE}
 # create average temperature by location 
 noaa_temp_avg <- noaa_temp %>% 
   dplyr::group_by(location) %>% 
@@ -190,7 +190,7 @@ mean, median) and dispersion (e.g., range, interquartile range, standard
 deviation). We will discuss several such descriptors in this course.
 
 ```{r noaa-temp-anno, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="The temperature data from Hawaii and Colorado have similar locations (central tendencies) but differing dispersion (spread)."}
-knitr::include_graphics("images/NOAA_temps_annotate.png")
+knitr::include_graphics("./images/NOAA_temps_annotate.png")
 ```
 
 ## Quantiles
@@ -246,7 +246,7 @@ univar_quart <- quantile(univar, probs = seq(0, 1, 0.25)) %>% round(1)
 ```
 
 ``` {r unif-quartiles, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Quartiles estimated from n=1000 samples of a uniform distribution between 0 and 100."}
-knitr::include_graphics("images/quantile_1.png")
+knitr::include_graphics("./images/quantile_1.png")
 ```
 
 As expected, the 1^st^, 2^nd^, 3^rd^, and 4^th^ quartiles from a uniform
@@ -320,7 +320,7 @@ manually.
 
 ``` {r gen-norm-quantiles}
 # "set seed" to generate the same results each time
-set.seed(1) 
+set.seed(2) 
 # create normal distribution
 norm_dist <- rnorm(1000, mean = 50, sd = 15)
 # split normal distribution into quantiles and output tabular result
@@ -424,11 +424,11 @@ normal_data_cdf %>%
         axis.title.y = element_text(margin = unit(c(0, 5, 0, 0), "mm")),
         axis.title.x = element_text(margin = unit(c(5, 0, 0, 0), "mm")),
         aspect.ratio=3/4) +
-  ggsave("images/normal_cum_dist.png", dpi = 150)
+  ggsave("./images/normal_cum_dist.png", dpi = 150)
 ```
 
 ``` {r norm-cdf-plot, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Annotated Cumulative Distribution Plot for Normally-Distributed Temperature Data"}
-knitr::include_graphics("images/normal_cum_dist_anno.png")
+knitr::include_graphics("./images/normal_cum_dist_anno.png")
 ```
 
 As you can see, there is a lot of information contained in a cumulative
@@ -510,7 +510,7 @@ ordered_salaries %>%
                color = "red",
                linetype = "dashed") +
   theme_bw() + 
-  ggsave("images/cdf_me_salaries.png", dpi = 150)
+  ggsave("./images/cdf_me_salaries.png", dpi = 150)
 ```
 
 ``` {r cdf-me-salaries, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Annual Salaries Reported by US Graduates (all ages) with a Mechanical Engineering Degree"}
@@ -532,84 +532,153 @@ mechanisms that cause data to be skewed.
 
 ### Histogram {#hist}
 
-A **histogram** is a *summary* plot of counts (or frequency of observations) as a function of magnitude (or levels). Histograms are useful because they allow you to visualize the spread and shape of your data as distribution. A histogram can tell you several important things about a variable:
+A histogram is a summary plot of counts, or frequency of observations,  as a
+function of magnitude, or levels. Histograms are useful because they allow you
+to visualize the spread and shape of your data as a distribution. A histogram
+can tell you several important things about a variable:
 
-* The location or central tendency (what's the most common value?)  
-* The approximate range of the data (what are the max, min values?)  
-* The dispersion (how spread out are the data?)  
-* The nature of the distribution (i.e., do the data appear normally distributed or skewed?)  
-* The presence (or absence) of outliers in the data (what are those observations doing way out there?)  
+* The location or central tendency: *what's the most common value?* 
+* The approximate range of the data: *what are the maximum and minimum values?*
+* The dispersion: *how spread out are the data?*
+* The nature of the distribution: *do the data appear normally distributed or skewed?*
+* The presence or absence of outliers in the data: *what are those observations doing way out there?*
 
-Below is a basic histogram that I've annotated to show some key features.  This histogram was created by sampling a normal distribution `rnorm()`. We create the plot using `geom_histogram`, which requires only an `x =` aesthetic to run.
+Below is a basic histogram that I've annotated to show some key features. This
+histogram was created by sampling a normal distribution `rnorm()`. I created
+the plot using `geom_histogram()`, which requires only an `x =` aesthetic to
+run.
 
-Examination of this histogram quickly reveals a lot about the underlying data.  For example, the central tendency is located around a value of ~30 and the majority of the data appear to fall between a range of 20 - 40.  
-``` {r norm-hist, warning=FALSE, include=FALSE}
-#create a simple tibble of 1000 observations from a normal distribution
-sample.norm<-tibble(x.data = rnorm(10000, mean = 30, sd = 3))
+Examination of this histogram quickly reveals a lot about the underlying data.
+For example, the central tendency is located around a value of ~30 and the
+majority of the data appear to fall between a range of 20 - 40. 
 
-#plot the histogram
-ggplot(data = sample.norm) + 
-  geom_histogram(aes(x = x.data),
-                 bins = 30,
+``` {r gen-norm-hist, warning=FALSE, include=FALSE}
+# set seed to generate same results each time
+set.seed(3)
+# create df of 1000 observations from a normal distribution
+sample_norm <- tibble::tibble(data = rnorm(10000,
+                                           mean = 30,
+                                           sd = 3))
+# create histogram
+sample_norm %>% 
+  ggplot2::ggplot(mapping = aes(x = data)) +
+  geom_histogram(bins = 30,
                  fill = "white",
                  color = "darkgrey") +
   theme_minimal() +
-  theme(text = element_text(size=20))
-ggsave("./images/hist_norm.png", dpi = 150)
+  theme(text = element_text(size=20)) + 
+  ggsave("./images/hist_norm.png", dpi = 150)
 ```
 
-``` {r hist-anno-1, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "A histogram is a plot of counts (or frequency of observations) as a function of magnitude (or levels) of univariate data"}
+``` {r hist-anno-1, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="A histogram is a plot of counts, or frequency of observations, as a function of magnitude, or levels, of univariate data."}
 knitr::include_graphics("./images/hist_anno_1.png")
 ```
-  
-#### Histogram: what to look for?
-In addition to being able to "see" key data descriptors (e.g., mean, range, spread), a histogram also allows one (a) to get a feel for ***skewness*** (whether the distribution is symmetric about the central tendency), (b) to see ***outliers***, and (c) to visualize other potential interesting features in the dataset.  
 
-``` {r skew_hist_out, warning=FALSE, include=FALSE}
-set.seed(2)
-data.frame.2 <- tibble(data = round(rlnorm(5000, meanlog = log(50), sdlog = 1), 0))
-outliers <- tibble(data = rep(195, 75))
-data.frame.3 <- bind_rows(data.frame.2, outliers)
-  
-ggplot(data = data.frame.3) + 
-  geom_histogram(aes(data),
-                 bins = 50,
+#### What to look for in a histogram?
+
+In addition to being able to "see" key data descriptors such as mean, range,
+and spread, a histogram also allows one (a) to get a feel for ***skewness***,
+that is whether the distribution is symmetric about the central tendency, (b)
+to see ***outliers***, and (c) to visualize other potential interesting
+features in the dataset.
+
+``` {r skew-hist, warning=FALSE, include=FALSE}
+# set seed to generate same results each time
+set.seed(4)
+# create df of values from log-normal distribution
+sample_lognorm <- tibble::tibble(data = round(rlnorm(5000,
+                                                     meanlog = log(50),
+                                                     sdlog = 1), 
+                                              0))
+# generate outliers
+outliers <- tibble::tibble(data = rep(195, 75))
+# bind lognorm and outliers in one df
+skew_norm <- dplyr::bind_rows(sample_lognorm, outliers)
+# plot and save skewed normal distribution
+skew_norm %>% 
+  ggplot2::ggplot(mapping = aes(x = data)) +
+  geom_histogram(bins = 50,
                  fill = "white",
                  color = "darkgrey") +
-  xlim(1,400) +
+  xlim(1, 400) +
   theme_minimal() +
-  theme(text = element_text(size=28))
-ggsave("./images/skew_hist_2.png", dpi = 150, width = 9, height = 6, units = "in")
+  theme(text = element_text(size = 28)) +
+  ggsave("images/skew_hist_2.png",
+         dpi = 150, width = 9, height = 6, units = "in")
 ```
 
-``` {r skew-hist-out-plot, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "A histogram depicting a skewed distribution"}
+``` {r skew-hist-anno, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="A histogram depicting a skewed distribution."}
 knitr::include_graphics("./images/hist_anno_2.png")
 ```
-Figure \@ref(fig:skew-hist-out-plot) depicts just such a skewed distribution. Examination of Figure \@ref(fig:skew-hist-out-plot) also reveals the presence of potential ***outliers*** in the data: the apparent spike in observations around x = 200. Outliers are interesting features and should neither be ignored nor deleted outright. Outliers exist for some reason, and oftentimes only through detective-work or mechanistic knowledge can you elucidate their source (we will delve into the handling of outliers later on; for now it's enough to know that they exist).  
 
-In Figure \@ref(fig:skew-hist-out-plot) the central tendency is evident, but the spread of the data are not symmetrical about that central tendency.  One outcome of skewed data is that traditional location measures of  central tendency (mode, median, mean) do not agree with each other:  
+Figure \@ref(fig:skew-hist-anno) depicts just such a skewed distribution.
+Examination of Figure \@ref(fig:skew-hist-plot) also reveals the presence of
+potential outliers in the data: the apparent spike in observations around `x =`
+200. Outliers are interesting features and should neither be ignored nor
+deleted outright. Outliers exist for some reason, and usually only through
+detective work or mechanistic knowledge can you elucidate their source. We will
+delve into managing outliers later on; for now, it's enough to know that they
+exist. 
 
-Figure \@ref(fig:skew-hist-out-plot) central tendency calculations:  
+In Figure \@ref(fig:skew-hist-anno), the central tendency is evident, but the
+spread of the data is not symmetrical about that central tendency. One outcome
+of skewed data is that traditional location measures of central tendency such
+as mode, median, and mean do not agree with each other. According to Figure
+\@ref(fig:skew-hist-anno), the central tendency calculations differ based on
+type of location measure.
 
-* mode: `r names(table(data.frame.3)[which.max(table(data.frame.3))])`  
-* median: `r median(data.frame.3$data)`  
-* mean: `r round(mean(data.frame.3$data), 0)`  
-
-``` {r skew-hist-out-plot-2, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Describing the spread of skewed data with a \"standard deviation\" can lead to confusion and trouble: in this case the existence of physically impossible values."}
+``` {r skew-hist-anno-2, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Describing the spread of skewed data with a \"standard deviation\" can lead to confusion and trouble: in this case, the existence of physically impossible values."}
 knitr::include_graphics("./images/hist_anno_3.png")
 ```
 
-Another, potentially more troubling, outcome of skewed data is that certain measures of the spread of the data (such as the standard deviation) can lead to misleading conclusions.  For example, if we calculate and extend "one standard deviation" to the mean of the data in Figure \@ref(fig:skew-hist-out-plot-2), we would imply the existence of negative values (87 - 113 = -26), which is often impossible in the case of physical measurements. This is a common mistake in data analysis: the application of "normal" descriptors like `mean` and `sd` to "non-normal" data. 
-Skewed distributions can be more challenging to handle because they are *less predictable* than normal distributions (*that said, statisticians have figured out how to model just about any type of distribution, so don't fret*). In any case, we can always rely on quantile calculations for descriptors (median and IQR) since those descriptors do not make assumptions about the shape of the distribution in question.
+Another, potentially more troubling, outcome of skewed data is that certain
+measures of the spread of the data such as the standard deviation can lead to
+misleading conclusions. For example, if we calculate and extend "one standard
+deviation" to the mean of the data in Figure \@ref(fig:skew-hist-anno-2), we
+would imply the existence of negative values (87 - 113 = -26), which is often
+impossible in the case of physical measurements. This is a common mistake in
+data analysis: the application of "normal" descriptors like mean and standard
+deviation to "non-normal" data. 
+
+Skewed distributions can be more challenging to handle because they are less
+predictable than normal distributions. That said, statisticians have figured
+out how to model just about any type of distribution, so don't fret. In any
+case, we can always rely on quantile calculations for descriptors such as
+median and IQR because those descriptors do not make assumptions about the
+shape of the distribution.
 
 #### What causes skewed histograms?
-I want to spend some time thinking about mechanisms that cause variability in an observation. These mechanisms are often responsible for whether a set of observations appears normally distributed or skewed. We will focus on two types of distributions for now: [normal](#normal_dist) and [log-normal](#log_normal_dist) data. Many other types of data distributions exist in the real world.  
 
-A general "rule of thumb" is that *additive* variability tends to produce normally distributed data, whereas mechanisms that cause *multiplicative* variability tend to produce skewed data (log-normal, in the case of Figure \@ref(fig:skew-hist-out-plot)).  By *additive*, I mean that variable x tends to vary in a "plus/minus" sense about its central tendency.  Examples of additive variability include the distribution of heights measured in a sample of 3^rd^ graders or the variability in the mass of a 3D-printed part produced 100 times by the same machine.  
+I want to spend some time thinking about mechanisms that cause variability in
+an observation. These mechanisms are often responsible for whether a set of
+observations appears normally distributed or skewed. We will focus on two types
+of distributions for now: [normal](#normal_dist) and
+[log-normal](#log_normal_dist) data. Many other types of data distributions
+exist in the real world.  
 
-*Multiplicative* (or log-normal) variability arises when the mechanism(s) controlling the variation of "x" are multipliers (or divisors) of x. Many real-world phenomena create multiplicative variability in observed data: the strength of a WiFi signal at different locations within a building, the magnitude of earthquakes measured at a given position on the Earth's surface, the size of rocks found in a section of a riverbed, or the size of particles found in air. All of these phenomena tend to be governed by multiplicative factors. In other words, all of these observations are controlled by mechanisms that suggest x = a*b*c not x = a+b+c. Explicit examples of *multiplicative* variability (and how it leads to log-normal data) are provided [here](#log_normal_dist). 
+A general "rule of thumb" is that *additive* variability tends to produce
+normally distributed data, whereas mechanisms that cause *multiplicative*
+variability tend to produce skewed data---log-normal, in the case of Figure
+\@ref(fig:skew-hist-anno-2)). By "additive", I mean that variable `x` tends to
+vary in a "plus/minus" sense about its central tendency. Examples of additive
+variability include the distribution of heights measured in a sample of 3^rd^
+graders or the variability in the mass of a 3D-printed part produced 100 times
+by the same machine.  
+
+*Multiplicative* (or log-normal) variability arises when the mechanism(s)
+controlling the variation of "x" are multipliers (or divisors) of x. Many
+real-world phenomena create multiplicative variability in observed data: the
+strength of a WiFi signal at different locations within a building, the
+magnitude of earthquakes measured at a given position on the Earth's surface,
+the size of rocks found in a section of a riverbed, or the size of particles
+found in air. All of these phenomena tend to be governed by multiplicative
+factors. In other words, all of these observations are controlled by mechanisms
+that suggest $x = a * b * c$ not $x = a + b + c$. Explicit examples of
+*multiplicative* variability and how it leads to log-normal data are provided
+[here](#log_normal_dist). 
 
 ### Boxplot {#box}
+
 The boxplot is *summary plot* that allows one to view a distribution by its quartiles (Figure \@ref(fig:boxplot-1-anno)). The "box" in a boxplot consists of three parallel lines (usually oriented vertically) connected on their sides to form a box. The outer box lines (also called the *"hinges"*) represent the 0.25 and 0.75 quantiles and the inner line represents the 0.5 quantile, or median.  Thus, the height of the box depicts the inter-quartile range of the data.  Boxplots are often drawn with lines extending out from each end of the box (these lines are called *"whiskers"*). These whisker lines vary in their representation.  For some plots, the whiskers represent either: the max/min values, respectively, OR a distance of 1.5xIQR if the either the max or min value are larger than 1.5xIQR.  Other times the whiskers represent the 0.9 or 0.95 quantiles or 1.58xIQR/sqrt(2). Because of these variations, it's best to define the whiskers for the viewer (either in the text or the Figure caption).  Here is the R definition from the helpfile `?geom_boxplot`:
 
 > The upper whisker extends from the hinge to the largest value no further than 1.5 * IQR from the hinge (where IQR is the inter-quartile range, or distance between the first and third quartiles). The lower whisker extends from the hinge to the smallest value at most 1.5 * IQR of the hinge. Data beyond the end of the whiskers are called "outlying" points and are plotted individually.
