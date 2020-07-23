@@ -2,10 +2,10 @@
 
 ```{r ch5-pkgs, include=FALSE}
 library(tidyverse)
-library(knitr)
-library(scales)
-library(kableExtra)
 library(lubridate)
+library(knitr)
+library(kableExtra)
+library(scales)
 ```
 
 > <span style="color: blue;"> "Exploratory data analysis is graphical detective work." - John Tukey </span>
@@ -124,11 +124,9 @@ In Figure \@ref(fig:noaa-temp-plot), we use `geom_jitter()` to plot the hourly
 temperatures measured at these two regions for July 2010. For this plot, we
 define three aesthetics:  
 
-- `y =` location
-
-- `x =` temperature
-
-- `color =` location (not necessary for the plot, but the color between
+* `y =` location
+* `x =` temperature
+* `color =` location (not necessary for the plot, but the color between
 variables can be helpful)
 
 ``` {r noaa-temp-data, echo=FALSE, warning=FALSE, message=FALSE}
@@ -144,7 +142,7 @@ noaa_temp <- readr::read_csv("data/NOAA_temps2.csv") %>%
   dplyr::select(station, location, date, temp_hr_f) # year missing from date
 
 # plot temperature by location 
-noaa_temp_plot <- noaa_temp %>% 
+noaa_temp %>% 
   ggplot2::ggplot(mapping = aes(x = temp_hr_f,
                                 y = location,
                                 color = location)) +
@@ -184,7 +182,7 @@ to `r max(noaa_temp$temp_hr_f)` $^\circ$F in July 2010!
 The conclusion to be drawn here is that the ***central tendencies*** of hourly
 temperature are nearly identical between Hawaii and Colorado, but the
 ***dispersion*** of the temperature data suggests that you might want to pack
-more layers if you want to be comfortable in Colorado. See
+more layers if you want to be comfortable in Colorado. See Figure
 \@ref(fig:noaa-temp-anno).
 
 You will discover that there are many ways to communicate location (e.g., mode,
@@ -380,30 +378,40 @@ approaches.
 ### Cumulative Distribution Plot
 
 A cumulative distribution plot is an enumerative plot that lays out the raw
-quantiles (typically on the y-axis) against the observed data (x-axis). Because these plots show all the data, each observation gets assigned a unit quantile (i.e., if there are 100 data points in a sample, each datum represents 1% of the total or a quantile of 0.01) . Thus, quantiles are shown on the y-axis and the x-axis shows the observed data, ordered from smallest to largest value.   
+quantiles, typically on the y-axis, against the observed data on the x-axis.
+Because these plots show all the data, each observation gets assigned a unit
+quantile; if there are 100 data points in a sample, each datum represents 1% of
+the total, or a quantile of 0.01 . Thus, quantiles are shown on the y-axis, and
+the x-axis shows the observed data, ordered from smallest to largest value.   
 
 ```{block, type = 'rmdnote'}
-The cumulative distribution plot shows the rolling fraction (or percent) of data (y-axis) that are "less than or equal to" the (x-axis) values of that data. 
+The cumulative distribution plot shows the rolling fraction (or percent) of
+data on the y-axis that are "less than or equal to" the x-axis values of that
+data. 
 ```
 
-An annotated cumulative distribution plot is shown below for a sample of temperature data that follow a normal distribution. For this plot, I calculated the `unit_quantiles` manually (to show you how this can be done):  
+An annotated cumulative distribution plot is shown below for a sample of
+temperature data that follow a normal distribution. For this plot, I calculated
+the `unit_quantiles` manually to show you how this can be done:  
 
-``` {r create-cd-plot, warning=FALSE, include=FALSE}
-#randomly sample two variables from normal distributions (defined below)
-normal_data <- tibble(a = rnorm(n=1000, mean = 15, sd = 5),
-                   b = rnorm(n=1000, mean = 10, sd = 3))
-
-#create unit quantile values for the normal_data
+```{r norm-cd}
+# randomly sample two variables from normal distributions with `rnorm()`
+normal_data <- tibble::tibble(a = rnorm(n=1000, mean = 15, sd = 5),
+                              b = rnorm(n=1000, mean = 10, sd = 3))
+# create unit quantile values for the `normal_data`
 normal_data_cdf <- normal_data %>%
-  select(a) %>%
-  arrange(a) %>%
-  mutate(unit_quantiles = seq.int(from = 1/length(a),
-                            to = 1,
-                            by = 1/length(a)))
-  
-#plot cumulative distribution
-normal_data_cdf_plot <- ggplot(data = normal_data_cdf, 
-                          aes(x = a, y = unit_quantiles)) +
+  dplyr::select(a) %>%
+  dplyr::arrange(a) %>%
+  dplyr::mutate(unit_quantiles = seq.int(from = 1/length(a), 
+                                         to = 1,
+                                         by = 1/length(a)))
+```
+
+``` {r create-cd-plot, include=FALSE}
+# plot cumulative distribution
+normal_data_cdf %>% 
+  ggplot2::ggplot(mapping = aes(x = a, 
+                                y = unit_quantiles)) +
   geom_point(shape = 21,
              fill = "black",
              alpha = 0.25) +
@@ -415,83 +423,112 @@ normal_data_cdf_plot <- ggplot(data = normal_data_cdf,
   theme(text = element_text(size=15),
         axis.title.y = element_text(margin = unit(c(0, 5, 0, 0), "mm")),
         axis.title.x = element_text(margin = unit(c(5, 0, 0, 0), "mm")),
-        aspect.ratio=3/4) 
-ggsave("./images/normal_cum_dist.png", dpi = 150)
+        aspect.ratio=3/4) +
+  ggsave("images/normal_cum_dist.png", dpi = 150)
 ```
 
-``` {r norm-cdf-plot, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Annotated Cumulative Distribution Plot for Normally-Distributed Temperature Data"}
-knitr::include_graphics("./images/normal_cum_dist_anno.png")
+``` {r norm-cdf-plot, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Annotated Cumulative Distribution Plot for Normally-Distributed Temperature Data"}
+knitr::include_graphics("images/normal_cum_dist_anno.png")
 ```
 
-As you can see, there is a lot of information contained in a cumulative distribution plot!  We can see the range (min, max), the median (the 0.5 quantile), and any other percentile values for the distribution.  We can quickly pick out any value to and find out what fraction of the data are below it.  For example, picking out the quantile of 0.9 on the y-axis shows that 90% of the observed temperature values are below a level of 21 $^\circ$C. In fact, most of the basic descriptive statistics can be accessed on a cumulative distribution plot:  
+As you can see, there is a lot of information contained in a cumulative
+distribution plot! We can see the range (minimum to maximum), median (0.5
+quantile), and any other percentile values for the distribution. We can quickly
+pick out any value and find out what fraction of the data are below it.  For
+example, picking out the quantile of 0.9 on the y-axis shows that 90% of the
+observed temperature values are below 21 $^\circ$C. In fact, most of the basic
+descriptive statistics can be accessed on a cumulative distribution plot:  
 
+* **range**: minimum and maximum values at quantile 0 and 1.0, respectively  
 * **median**: x-axis value at quantile 0.5  
 * **25^th^ and 75^th^ percentiles** (or quartiles): x-axis values at quantile 0.25 and 0.75, respectively  
 * **interquartile range** (IQR): x-axis distance between quantiles 0.25 and 0.75  
-* **range**: min, max values at quantile 0 and 1.0, respectively  
-  
-Cumulative distribution plots also reveal details about the dispersion of the observed data (and, more subtly, about the shape/nature of underlying data distribution). For example, in the temperature example above (Fig. \@ref(fig:norm-cdf-plot)), the curve has geometric symmetry about the median - this symmetry indicates that the dispersion of the data is equal as you move away from the median in either direction. 
+
+Cumulative distribution plots also reveal details about the dispersion of the
+observed data, and, more subtly, about the nature or shape of underlying data
+distribution. For example, in the temperature example above (Figure
+\@ref(fig:norm-cdf-plot)), the curve has geometric *symmetry* about the median;
+this symmetry indicates that the dispersion of the data is equal as you move
+away from the median in either direction. 
 
 #### Example: Cumulative Distribution Plot 
 
-The `ggplot` package can create cumulative distribution plots several ways:  
+The `ggplot2` package can create cumulative distribution plots with different
+`geom` options:
 
-* Using `geom_step(aes(x = your.univariate.data), stat = "ecdf")`  
-* Using `stat_ecdf(aes(x = your.univariate.data))`
+* `geom_step(aes(x = your_univariate_data), stat = "ecdf")`  
+* `stat_ecdf(aes(x = your_univariate_data))`
 
-In the example below, we create a cumulative distribution plot of annual salaries reported by individuals with a degree in Mechanical Engineering in the US. These data come from the [NSF Survey of College Gradautes](https://www.nsf.gov/statistics/srvygrads/). I've also taken the liberty of identifying the max, min, and quartile values on the plot.
+In the example below, we create a cumulative distribution plot of annual
+salaries reported by individuals with a degree in Mechanical Engineering in the
+United States. These data come from the 
+[NSF Survey of College Graduates](https://www.nsf.gov/statistics/srvygrads/).
+I've also taken the liberty of identifying the minimum, maximum, and quartile
+values on the plot.
 
-``` {r create-cdf-me-salaries}
-#load data
-raw_salaries <- read_csv("./data/ME_salaries.csv", 
-                 col_types = "iif", 
-                 col_names = c("salary", "age","gender"),
-                 skip = 1)
+```{r me-salary-data, include=FALSE}
+# import data; fix column names
+raw_salaries <- readr::read_csv("data/ME_salaries.csv",
+                                col_types = "iif",
+                                col_names = c("salary", "age","gender"),
+                                skip = 1)
+```
 
-#create cumulative fractions 
+```{r me-cum-frac}
+# create cumulative fractions 
 ordered_salaries <- raw_salaries %>%
-  select(salary) %>%
-  filter(salary < 500000) %>% #to remove numeric identifiers like '989961'
-  arrange(salary) %>%
-  mutate(cum_pct = seq.int(
-    from = 1/length(salary), 
-    to = 1, 
-    by = 1/length(salary))) 
-  
-  #alternate method if you don't want to calculate cumulative fractions
-  cdf_ME_salaries <- ggplot(data = ordered_salaries, 
-                            aes(x = salary)) +
-  geom_step(stat = "ecdf") + #ecdf = 'empiricial cumulative distribution function'
-  theme_bw() +
+  dplyr::select(salary) %>%
+  dplyr::filter(salary < 500000) %>% # to remove numeric identifiers 
+  dplyr::arrange(salary) %>%
+  dplyr::mutate(cum_pct = seq.int(from = 1/length(salary),
+                                  to = 1, 
+                                  by = 1/length(salary))) 
+```
+
+``` {r me-salary-plot}
+# alternate method if you don't want to calculate cumulative fractions
+ordered_salaries %>% 
+  ggplot2::ggplot(mapping = aes(x = salary)) +
+  geom_step(stat = "ecdf") + # "empirical cumulative distribution function"
   labs(x = "Salaries of ME Graduates", y = "Cumulative Fraction") +
-  scale_y_continuous(limits=c(-0.05, 1.03), expand = c(0,0),
-                     breaks = seq(from = 0,
-                                        to = 1,
-                                        by = 0.1)) +
+  scale_y_continuous(limits = c(-0.05, 1.03), 
+                     expand = c(0,0),
+                     breaks = seq(from = 0, 
+                                  to = 1, 
+                                  by = 0.1)) +
   scale_x_continuous(labels = scales::label_dollar(scale = 0.001, 
                                                    prefix = '$', 
                                                    suffix = 'k'),
                      minor_breaks = seq(from = 0,
-                                  to = 450000,
-                                  by = 10000))+
-  geom_segment(data = data.frame(x=quantile(ordered_salaries$salary),
-                                 y=rep.int(-.05, 5),
-                                 xend=quantile(ordered_salaries$salary),
-                                 yend=seq(from = 0, to = 1, by = 0.25)),
-               aes(x=x, y=y, xend=xend, yend=yend), 
+                                        to = 450000,
+                                        by = 10000))+
+  geom_segment(data = data.frame(x = quantile(ordered_salaries$salary),
+                                 y = rep.int(-.05, 5),
+                                 xend = quantile(ordered_salaries$salary),
+                                 yend = seq(from = 0, to = 1, by = 0.25)),
+               aes(x = x, y = y, xend = xend, yend = yend),
                color = "red",
-               linetype = "dashed")
-ggsave("./images/cdf_me_salaries.png", dpi = 150)
-
+               linetype = "dashed") +
+  theme_bw() + 
+  ggsave("images/cdf_me_salaries.png", dpi = 150)
 ```
 
-``` {r cdf-me-salaries, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Annual Salaries Reported by US Graduates (all ages) with a Mechanical Engineering Degree"}
+``` {r cdf-me-salaries, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Annual Salaries Reported by US Graduates (all ages) with a Mechanical Engineering Degree"}
 knitr::include_graphics("./images/cdf_me_salaries.png")
 ```
-The good news is that if you can survive the undergraduate grind in Mechanical Engineering, you have a good chance of making a great living wage.  The median salary is $
-`r format(quantile(ordered_salaries$salary, probs = 0.5), scientific = F, big.mark=",")` - note this is for graduates of all ages across the country in the year 2017.  Don't expect that paycheck on your first day on the job!
 
-One interesting thing you may notice in Figure \@ref(fig:cdf-me-salaries) is that the 'tails' of the plot (the shape of the curves about the median value) are not symmetrical. One tail looks longer than the other.  This lack of symmetry implies a degree of *skewness* in the data.  Why is that?  We will explore skewness at several points in this course (and discuss some of the mechanisms that cause data to be skewed later on).
+The good news is that if you can survive the undergraduate grind in Mechanical
+Engineering, you have a good chance of making a great living wage. The median
+salary is $
+`r format(quantile(ordered_salaries$salary, probs = 0.5), scientific = FALSE, big.mark = ",")`. Note this is for graduates of all ages across the country in
+the year 2017. Don't expect that kind of paycheck on your first day on the job!
+
+One interesting thing you may notice in Figure \@ref(fig:cdf-me-salaries) is
+that the "tails" of the plot (i.e., the shape of the curves about the median
+value) are not symmetrical. One tail looks longer than the other. This lack of
+symmetry implies a degree of *skewness* in the data. Why is that? We will
+explore skewness at several points in this course and discuss some of the
+mechanisms that cause data to be skewed.
 
 ### Histogram {#hist}
 
@@ -626,7 +663,7 @@ The **time-series plot** plot (also called a **"run sequence"** plot) is somethi
 * Identify (potential) outliers and when they occurred 
 * Identify the ***timing*** of events!
 
-Let's plot the same temperature data from Hawaii as shown in \@ref(fig:noaa-temp-plot) as a time series.  We will use  `geom_point` and `geom_line` to create this plot, both of which require the following aesthetics: `x = ` and `y = `
+Let's plot the same temperature data from Hawaii as shown in Figure \@ref(fig:noaa-temp-plot) as a time series.  We will use  `geom_point` and `geom_line` to create this plot, both of which require the following aesthetics: `x = ` and `y = `
 ```{r NOAA-time-series, warning=FALSE, message=FALSE}
 # plot Temp vs Time for Colorado data
 NOAA_HI_time_series<- ggplot(data = filter(noaa_temp, location == "Hawaii"), 
