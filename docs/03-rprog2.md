@@ -248,12 +248,12 @@ There are two "tidyverse" packages, `readxl` and `haven`, that help with this.
 They allow you to read in files from the following formats:
 
 
-File type   Function         Package  
-----------  ---------------  ---------
-Excel       `read_excel()`   `readxl` 
-SAS         `read_sas()`     `haven`  
-SPSS        `read_spss()`    `haven`  
-Stata       `read_stata()`   `haven`  
+|File type |Function       |Package  |
+|:---------|:--------------|:--------|
+|Excel     |`read_excel()` |`readxl` |
+|SAS       |`read_sas()`   |`haven`  |
+|SPSS      |`read_spss()`  |`haven`  |
+|Stata     |`read_stata()` |`haven`  |
 
 ## Directories and pathnames
 
@@ -360,7 +360,7 @@ getwd()
 ```
 
 ```
-## [1] "/Users/wendtke/Documents/R/edar_coursebook"
+## [1] "/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook"
 ```
 
 This means that, for my current R session, R is working in the
@@ -455,12 +455,12 @@ relative pathname would no longer work.
 There are a few abbreviations that can be really useful for pathnames:
 
 
-Shorthand   Meaning                                           
-----------  --------------------------------------------------
-`~`         Home directory                                    
-`.`         Current working directory                         
-`..`        One directory up from current working directory   
-`../..`     Two directories up from current working directory 
+|Shorthand |Meaning                                           |
+|:---------|:-------------------------------------------------|
+|`~`       |Home directory                                    |
+|`.`       |Current working directory                         |
+|`..`      |One directory up from current working directory   |
+|`../..`   |Two directories up from current working directory |
 
 These can help you keep pathnames shorter and also help you move "up-and-over"
 to get to a file or directory that's not on the direct path below your current
@@ -664,12 +664,12 @@ some of the most common data-cleaning tasks, along with the corresponding
 `dplyr` function for each:
 
 
-Task                         `dplyr` function 
----------------------------  -----------------
-Renaming columns             `rename()`       
-Filtering to certain rows    `filter()`       
-Selecting certain columns    `select()`       
-Adding or changing columns   `mutate()`       
+|Task                       |`dplyr` function |
+|:--------------------------|:----------------|
+|Renaming columns           |`rename()`       |
+|Filtering to certain rows  |`filter()`       |
+|Selecting certain columns  |`select()`       |
+|Adding or changing columns |`mutate()`       |
 
 In this section, I describe how to do each of these four tasks. For the
 examples in this section, I use example data listing guests to the Daily Show.
@@ -892,12 +892,12 @@ Just so you know, all of these `dplyr` functions have alternatives, either
 functions or processes, in base R:
 
 
-`dplyr`      Base R equivalent                   
------------  ------------------------------------
-`rename()`   Reassign `colnames`                 
-`select()`   Square bracket indexing             
-`filter()`   `subset()`                          
-`mutate()`   Use `$` to change or create columns 
+|`dplyr`    |Base R equivalent                   |
+|:----------|:-----------------------------------|
+|`rename()` |Reassign `colnames`                 |
+|`select()` |Square bracket indexing             |
+|`filter()` |`subset()`                          |
+|`mutate()` |Use `$` to change or create columns |
 
 You will see these alternatives used in older code examples.
 
@@ -1030,6 +1030,56 @@ For example, if you removea column in an early line of code in the pipeline but
 then reference that column name later, R will throw an error. You can use
 selective highlighting to run one line at a time to see how the dataframe
 changes in real-time.
+
+## Markdowns
+
+A ***markdown*** is a file format designed for the internet. Markdowns allow you to write plain text into a file, format that text, and embed code/images/data into the file  (everything you are reading in this coursebook was written and created with markdown files).  Markdown files are versatile because:  
+
+  * Markdowns can be rendered into html, pdf, and doc files easily. Thus, markdown files can be turned into websites, email messages, reports, blogs, textbooks, and other forms of media without worry;
+  * Markdowns are independent of the operating system (Mac, PC, Linux, Android, and iOS devices can read them);
+  * Markdowns can be opened by almost any application (the file format is non-proprietary), so you don't need to worry about having special software to read them. 
+
+### R Markdowns
+The R Studio IDE can create ***"R Markdowns"*** (file extension .Rmd) specifically for the R programming environment. An R markdown file allows you do lots of things; we will use them to create assignments and homework reports that display R code, code outputs, and text. To use the R markdown format, you need to install the `rmarkdown` package: `install.packages("rmarkdown")`. 
+
+**Going forward, all of your homework and coding assignments will be created and submitted in the R Markdown format using either html or pdf outputs.**
+
+Each R markdown file contains three basic elements: header, text, and code chunks.  I will explain each of these elements below, but I recommend a visit to the [R Markdown tutorial section](https://rmarkdown.rstudio.com/lesson-1.html) on the RStudio website. A detailed guide on many of the R markdown output sytles (beyond just html and pdf files) is provided [here](https://bookdown.org/yihui/rmarkdown/).
+
+### YAML Header
+The R Markdown "header" section is where you specify details about the file being created.  A markdown header contains **YAML** metadata, which stands for [*"YAML Ain't Markup Language"*](https://yaml.org/spec/1.2/spec.html#Introduction). The YAML (pronounced like “camel") header is essentially a list of directives (referred to as "key:value" pairs) that help application software read and interpret the file. A YAML can act simultaneously as a "configuration file", a "log file", and "translator file" - allowing one software program to read the output of another program.  An example YAML is shown below.
+
+
+```r
+knitr::include_graphics("./images/YAML_1_anno.png")
+```
+
+<div class="figure" style="text-align: center">
+<img src="./images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file." width="500" />
+<p class="caption">(\#fig:YAML-1)Example of a YAML header to render an R Markdown into an html file.</p>
+</div>
+The header is delineated at the top of the file by a section that begins and ends with three dashes, "---". Within the header are YAML metadata representing key:value pairs; **what are "key:value" pairs?** The **"key:"** is a directive that you want to give to the file and the **"value"** represents the level of detail or information that you want to associate with that directive. Key:value pairs provide instructions on how the file should be read, interpreted, and output. In Figure \@ref(fig:YAML-1), the keys are *"title:"*, *"author:"*, *"date:"*, and *"output:"* and the corresponding values are *"Markdowns"*, *"JV"*, *"7/23/2020"*, and *"html_document"*. You can learn more about key:value pairs in the R Markdown Style Guide for [html](https://bookdown.org/yihui/rmarkdown/html-document.html) and [pdf](https://bookdown.org/yihui/rmarkdown/pdf-document.html).
+
+<div class="rmdnote">
+<p>The YAML header is optional in an R Markdown and directives will defer to default key:value pairs if none are supplied. That said, I would encourage you to specify key directives like “author:”, “date:” and “output:” in your YAML headers.</p>
+</div>
+
+### Text
+The default space within an R markdown is a plain text editor, similar to a normal word processing file. Formatting text is more tedious in markdown files (a small price to pay given their versatility).  Some basic formatting operations are shown below.
+
+| **Format Desired** |    **Typeset in Markdown **   |    **Example Output**     |
+|:------------------:|:-----------------------------:|:-------------------------:|
+| Italics            |  \*one star on each side\*    |  *one star each side*     |
+| Bold               | \*\*two stars on each side\*\*| **two stars on each side**|
+| Superscript        | superscript\^2\^              | superscript^2^            |
+| Subscript          | subscript\~2\~                | subscript~2~              |
+
+### Code Chunks
+The code chunks are exactly what they sound like: places where you write and execute R code.
+
+
+
+
 
 ## Class Exercises
 
