@@ -4,48 +4,53 @@
 
 ## Objectives
 
-This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:  
+This chapter is designed around the following learning objectives. Upon
+completing this chapter, you should be able to:  
 
-- Recognize what a flat file is and how it differs from data stored in a binary file format
+- Recognize what a flat file is and how it differs from data stored in a binary
+file format
 - Distinguish between delimited and fixed width formats for flat files
 - Identify the delimiter in a delimited file
 - Describe a working directory
 - Demonstrate how to read in different types of flat files
-- Demonstrate how to read in a few types of binary files (Matlab, Excel) 
+- Demonstrate how to read in a few types of binary files (e.g., Matlab, Excel)
 - Recognize the difference between relative and absolute file pathnames
 - Describe the basics of your computer's directory structure
-- Reference files in different locations in your directory structure using relative and absolute pathnames
-- Apply the basic `dplyr` functions `rename`, `select`, `mutate`, `slice`, `filter`, and `arrange` to work with data in a dataframe object
+- Reference files in different locations in your directory structure using
+relative and absolute pathnames
+- Apply the basic `dplyr` functions (e.g., `rename()`, `select()`, `mutate()`,
+`slice()`, `filter()`, and `arrange()`) to work with data in a dataframe object
 - Define a logical operator and know the R syntax for common logical operators
-- Apply logical operators in conjunction with `dplyr`'s `filter` function to create subsets of a dataframe based on logical conditions 
-- Apply a sequence of `dplyr` functions to a dataframe using piping
+- Apply logical operators in conjunction with `dplyr`'s `filter()` function to
+create subsets of a dataframe based on logical conditions 
+- Apply a sequence of `dplyr` functions to a dataframe using piping (`%>%`)
 
 ## Overview
 
 There are four basic steps you will often repeat as you prepare to analyze data
 in R:
 
-1. Identify where the data is (If it's on your computer, which directory? If
-it's online, what's the url?)
-2. Read data into R (e.g., `read_delim`, `read_csv` from the `readr` package)
-using the file path you figured out in step 1
-3. Check to make sure the data came in correctly (`dim`, `head`, `tail`, `str`)
+1. Identify the location of the data. If it's on your computer, which
+directory? If it's online, what's the link?
+2. Read data into R (e.g., using a function like `read_delim()` or `read_csv()`
+from the `readr` package) using the file path you figured out in step 1
+3. Check to make sure the data came in correctly using `dim`, `head`, `tail`,
+`str`)
 4. Clean the data up 
 
-In this chapter, I'll go basics for each of these steps, as well as dive a bit
-deeper into some related topics you should learn now to make your life easier as
-you get started using R for data analysis.
+In this chapter, I'll go over the basics for each of these steps and dive a bit
+deeper into some related topics you should learn now to make your life easier
+as you get started using R for data analysis.
 
 ## Reading data into R
 
-Data comes in files of all shapes and sizes. R has the capability to read data
-in from many of these, even proprietary files for other software (e.g., Excel
-and Matlab files). As a small sample, here are some of the types of data files that
-R can read and work with:
+Data comes in files of all shapes and sizes. R has the capability to import
+data from many of these, even proprietary files for other software. Here are
+some of the types of data files that R can read and work with:
 
 - Flat files (much more about these in just a minute)
-- Files from other software packages (Matlab, SAS, Excel)
-- Tables on webpages (e.g., the table on ebola outbreaks near the end of [this
+- Files from other software packages such as MATLAB or Excel
+- Tables on webpages (e.g., the table on Ebola outbreaks near the end of [this
 Wikipedia
 page](http://en.wikipedia.org/wiki/Ebola_virus_epidemic_in_West_Africa))
 - Data in a database (e.g., MySQL, Oracle)
@@ -53,29 +58,31 @@ page](http://en.wikipedia.org/wiki/Ebola_virus_epidemic_in_West_Africa))
 - Really crazy data formats used in other disciplines (e.g., netCDF files from
 climate research, MRI data stored in Analyze, NIfTI, and DICOM formats)
 - Geographic shapefiles
-- Data through APIs (API = Automated Prgramming Interface, most websites use APIs to ask you for input and then use that input to direct new information back to you)
+- Data through Application Programming Interfaces (APIs; most websites use APIs
+to ask you for input and then use that input to direct new information back to
+you)
 
-Often, it is possible to read in and clean up even incredibly messy data, by
-using functions like `scan` and `readLines` to read the data in a line at a
-time, and then using regular expressions (which I'll cover in the "Intermediate"
-section of the course) to clean up each line as it comes in. 
+Often, it is possible to import and wrangle extremely messy data by using
+functions like `scan()` and `readLines()` to read the data in a line at a time,
+and then using regular expressions to clean up the data.
 
 ### Reading local flat files
 
-Much of the data that you will want to read in will be in **flat files**. Basically,
-these are files that you can open using a text editor; the most common type
-you'll work with are probably comma-separated files (often with a `.csv` or
-`.txt` file extension). Most flat files come in two general categories:
+Much of the data that you will want to read in will be in **flat files**.
+Basically, these are files that you can open using a text editor. The most
+common type you'll work with are probably comma-separated files, often with a
+`.csv` or `.txt` file extension. Most flat files come in two general
+categories:
 
-1. Fixed width files; and
+1. Fixed width files, and
 
-2. Delimited files: 
+2. Delimited files, which include: 
 
 - ".csv": Comma-separated values
 - ".tab", ".tsv": Tab-separated values
 - Other possible delimiters: colon, semicolon, pipe ("|")
 
-*Fixed width files* are files where a column always has the same width, for all
+*Fixed-width files* are files where a column always has the same width, for all
 the rows in the column. These tend to look very neat and easy-to-read when you
 open them in a text editor. For example, the first few rows of a fixed-width
 file might look like this:
@@ -86,17 +93,17 @@ Thermodynamics                    337             M/W/F        9:00-9:50
 Aerosol Physics and Technology    577             M/W/F        10:00-10:50
 ```
 
-Fixed width files used to be very popular, and they make it easier to look at data
-when you open the file in a text editor. However, now it's pretty rare to just use 
-a text editor to open a file and check out the data, and these files can be a bit 
-of a pain to read into R and other programs because you sometimes have to specify 
-exactly how wide each of the columns is. You may come across a fixed width file 
-every now and then, particularly when working with older data, so it's 
-useful to be able to recognize one and to know how to read it in.
+Fixed-width files used to be very popular, and they make it easier to look at
+data when you open the file in a text editor. Now, it's rare to just use a text
+editor to open a file and check out the data. Also, these files can be a bit of
+a pain to read into R and other programs because you sometimes have to specify
+the length of each column. You may come across a fixed-width file every now and
+then, particularly when working with older data, so it's useful to be able to
+recognize one and to know how to import it.
 
-*Delimited files* use some **delimiter** (for example, a comma or a tab) to
-separate each column value within a row. The first few rows of a delimited file
-might look like this:
+*Delimited files* use some **delimiter** such as a comma or tab to separate
+each column value within a row. The first few rows of a delimited file might
+look like this:
 
 ```
 Course, Number, Day, Time
@@ -104,53 +111,54 @@ Course, Number, Day, Time
 "Aerosol Physics and Technology", 577, "M/W/F", "10:00-10:50"
 ```
 
-Delimited files are very easy to read into R. You just need to be able to figure
-out what character is used as a delimiter (commas in the example above) and
-specify that to R in the function call to read in the data.
+Delimited files are very easy to read into R. You just need to be able to
+figure out what character is used as a delimiter and specify that to R in the
+function call to read in the data.
 
 These flat files can have a number of different file extensions. The most
 generic is `.txt`, but they will also have ones more specific to their format,
-like `.csv` for a comma-delimited file (.csv stands for **"comma separated values"**) or `.fwf` for a fixed with file.
+like `.csv` for a comma-delimited file (.csv stands for 
+**"comma-separated values"**), or `.fwf` for a fixed-width file.
 
-R can read in data from both fixed with and delimited flat files. The only catch
-is that you need to tell R a bit more about the format of the flat file,
-including whether it is fixed width or delimited. If the file is fixed width,
+R can read in data from both fixed-width and delimited flat files. The only
+catch is that you need to tell R a bit more about the format of the flat file,
+including whether it is fixed-width or delimited. If the file is fixed-width,
 you will usually have to tell R the width of each column. If the file is
-delimited, you'll need to tell R which delimiter is being used.
+delimited, you'll need to tell R which delimiter, such as comma or tab, is
+being used.
 
-If the file is delimited, you can use the `read_delim` family of functions from
-the `readr` package to read it in. This family of functions includes several
-specialized functions. All members of the `read_delim` family are doing the same
-basic thing. The only difference is what defaults each function has for the
-delimiter (`delim`). Members of the `read_delim` family include:
+If the file is delimited, you can use the `read_delim()` family of functions
+from the `readr` package to import the data. This family of functions includes
+several specialized functions. All members of the `read_delim()` family are
+doing the same basic thing. The only difference is what defaults each function
+has for the delimiter (`delim`). Members of the `read_delim()` family include:
 
-Function     | Delimiter
------------- | ---------- 
-`read_csv`    |  comma     
-`read_csv2`   | semi-colon 
-`read_table2` | whitespace
-`read_tsv`    | tab
+Function        | Delimiter
+--------------- | ------------
+`read_csv()`    |  comma     
+`read_csv2()`   | semi-colon 
+`read_table2()` | whitespace
+`read_tsv()`    | tab
 
-You can use `read_delim` to read in any delimited file, regardless of the delimiter.
-However, you will need to specify the delimiter using the `delim` parameters. If you
-remember the more specialized function call (e.g., `read_csv` for a comma delimited
-file), therefore, you can save yourself some typing. 
+You can use `read_delim()` to read in any delimited file, regardless of the
+delimiter; however, you will need to specify the type of delimiter using the
+`delim` argument. If you remember the more specialized function call (e.g.,
+`read_csv()` for a comma-delimited file), you can save yourself some typing. 
 
 For example, to read in the Ebola data, which is comma-delimited, you could
-either use `read_table` with a `delim` argument specified or use `read_csv`, in
-which case you don't have to specify `delim`:
+either use `read_table()` with a `delim` argument specified or use
+`read_csv()`, in which case you don't have to specify `delim`:
 
 
 ```r
 library(package = "readr")
-
 # The following two calls do the same thing
-ebola <- read_delim(file = "data/country_timeseries.csv", delim = ",")
+ebola <- readr::read_delim(file = "data/country_timeseries.csv", delim = ",")
 ```
 
 
 ```r
-ebola <- read_csv(file = "data/country_timeseries.csv")
+ebola <- readr::read_csv(file = "data/country_timeseries.csv")
 ```
 
 ```
@@ -178,71 +186,74 @@ ebola <- read_csv(file = "data/country_timeseries.csv")
 ```
 
 <div class="rmdtip">
-<p>The message that R prints after this call (“Parsed with column specification:..”) lets you know what classes were used for each column (this function tries to guess the appropriate class and typically gets it right). You can suppress the message using the <code>cols_types = cols()</code> argument.</p>
-<p>If <code>readr</code> doesn’t correctly guess some of the columns classes you can use the <code>type_convert()</code> function to take another go at guessing them after you’ve tweaked the formats of the rogue columns.</p>
+<p>The message that R prints after this call (“Parsed with column specification: …”) lets you know what classes were used for each column. This function tries to guess the appropriate class and typically gets it right. You can suppress the message using the <code>cols_types = cols()</code> argument, or by adjusting the code chunk options in an R Markdown. If <code>readr</code> doesn’t correctly assign some of the columns classes, you can use the <code>type_convert()</code> function for R to guess again after you’ve tweaked the formats of the rogue columns.</p>
 </div>
 
-This family of functions has a few other helpful options you can specify. For example,
-if you want to skip the first few lines of a file before you start reading in the data,
-you can use `skip` to set the number of lines to skip. If you only want to read in 
-a few lines of the data, you can use the `n_max` option. For example, if you have a 
-really long file, and you want to save time by only reading in the first ten lines
-as you figure out what other options to use in `read_delim` for that file, you could
-include the option `n_max = 10` in the `read_delim` call. Here is a table of some of
-the most useful options common to the `read_delim` family of functions: 
+This family of functions has a few other helpful options you can specify. For
+example, if you want to skip the first few lines of a file before you start
+reading in the data, you can use `skip()` to set the number of lines to skip.
+If you only want to read in a few lines of the data, you can use the `n_max()`
+option. For example, if you have a really large file, and you want to save time
+by only reading in the first ten lines, as you figure out what other optional
+arguments to use in `read_delim()` for that file, you could include the option
+`n_max = 10`. Here is a table of some of the most useful options common to the
+`read_delim()` family of functions: 
 
 Option  | Description
 ------- | -----------
-`skip`    | How many lines of the start of the file should you skip?
-`col_names`  | What would you like to use as the column names?
-`col_types`   | What would you like to use as the column types?
-`n_max`   | How many rows do you want to read in?
-`na` | How are missing values coded?
+`skip()`    | How many lines of the start of the file should you skip?
+`col_names()`  | What would you like to use as the column names?
+`col_types()`   | What would you like to use as the column types?
+`n_max()`   | How many rows do you want to read in?
+`na()` | How are missing values coded?
 
 
 <div class="rmdnote">
-<p>Remember that you can always find out more about a function by looking at its help file. For example, check out <code>?read_delim</code> and <code>?read_fwf</code>. You can also use the help files to determine the default values of arguments for each function.</p>
+<p>Remember that you can always find out more about a function by looking at its help file. For example, check out <code>?read_delim</code> and <code>?read_fwf</code> (note the lack of parentheses). You can also use the help files to determine the default values of arguments for each function.</p>
 </div>
 
-So far, we've only looked at functions from the `readr` package for reading in data
-files. There is a similar family of functions available in base R, the `read.table`
-family of functions. The `readr` family of functions is very similar to the base R 
-`read.table` functions, but have some more sensible defaults. Compared to the
-`read.table` family of functions, the `readr` functions: 
+So far, we've only looked at functions from the `readr` package for reading in
+data files. There is a similar family of functions available in base R, the
+`read.table()` family of functions. The `readr` family of functions is very
+similar to the base R `read.table()` functions, but have some more sensible
+defaults. Compared to the `read.table()` function family, the `readr`
+functions: 
 
-- Work better with large datasets: faster, includes progress bar
-- Have more sensible defaults (e.g., characters default to characters, not factors)
+- Faster; show progress bar of data import
+- Work better with large datasets
+- Have more sensible defaults (e.g., characters default to characters, not
+factors)
 
-I recommend that you always use the `readr` functions rather than their base R 
-alternatives, given these advantages. However, you are likely to come across code
-that someone else has written that uses one of these base R functions, so it's 
-helpful to know what they are. Functions in the `read.table` family include:
+I recommend that you always use the `readr` functions rather than their base R
+alternatives, given these advantages; however, you are likely to come across
+code with these base R functions, so it is helpful to be aware of them.
+Functions in the `read.table` family include:
 
-- `read.csv`
-- `read.delim`
-- `read.table` 
-- `read.fwf`
+- `read.csv()`
+- `read.delim()`
+- `read.table()` 
+- `read.fwf()`
 
 <div class="rmdnote">
-<p>The <code>readr</code> package is a member of the tidyverse of packages. The <em>tidyverse</em> describes an evolving collection of R packages with a common philosophy, and they are unquestionably changing the way people code in R. Many were developed in part or full by Hadley Wickham and others at RStudio. Many of these packages are less than ten years old, but have been rapidly adapted by the R community. As a result, newer examples of R code will often look very different from the code in older R scripts, including examples in books that are more than a few years old. In this course, I’ll focus on “tidyverse” functions when possible, but I do put in details about base R equivalent functions or processes at some points—this will help you interpret older code. You can download all the tidyverse packages using <code>install.packages("tidyverse")</code>, <code>library("tidyverse")</code> makes all the tidyverse functions available for use.</p>
+<p>The <code>readr</code> package is a member of the <code>tidyverse</code> suite of R packages. The <em>tidyverse</em> describes an evolving collection of R packages with a common philosophy and approach, and they are unquestionably changing the way people code in R. Many of these R packages were developed in part or full by Hadley Wickham and others at RStudio. Many of these packages are less than ten years old but have been rapidly adapted by the R community. As a result, newer examples of R code will often look very different from the code in older R scripts, including examples in books that are more than a few years old. In this course, I’ll focus on <code>tidyverse</code> functions when possible, but I do put in details about base R equivalent functions or processes at some points. This will help you interpret older code. You can download all the <code>tidyverse</code> packages at the same time with <code>install.packages("tidyverse")</code> and make all the <code>tidyverse</code> functions available for use with<code>library("tidyverse")</code>.</p>
 </div>
 
 ### Reading in other file types
 
 Later in the course, we'll talk about how to open a variety of other file types
-in R. However, you might find it immediately useful to be able to read in files
-from other statistical programs.
+in R. You might find it immediately useful to be able to read in files from
+other statistical programs.
 
-There are two "tidyverse" packages---`readxl` and `haven`---that help with this.
+There are two "tidyverse" packages, `readxl` and `haven`, that help with this.
 They allow you to read in files from the following formats:
 
 
-|File type |Function     |Package  |
-|:---------|:------------|:--------|
-|Excel     |`read_excel` |`readxl` |
-|SAS       |`read_sas`   |`haven`  |
-|SPSS      |`read_spss`  |`haven`  |
-|Stata     |`read_stata` |`haven`  |
+File type   Function         Package  
+----------  ---------------  ---------
+Excel       `read_excel()`   `readxl` 
+SAS         `read_sas()`     `haven`  
+SPSS        `read_spss()`    `haven`  
+Stata       `read_stata()`   `haven`  
 
 ## Directories and pathnames
 
@@ -256,11 +267,11 @@ the project will open with that directory as the working directory, so you can
 read files that are saved in that project's main directory using only the file
 name as a reference.
 
-However, you'll often want to read in files that are located somewhere else on
-your computer, or even files that are saved on another computer (for example,
-data files that are posted online). Doing this is very similar to reading in a
-file that is in your current working directory; the only difference is that you
-need to give R some directions so it can find the file.
+You will often want to read in files that are located somewhere else on
+your computer, or even files that are saved on another computer or posted
+online. Doing this is very similar to reading in a file that is in your current
+working directory; the only difference is that you need to give R some
+directions so it can find the file.
 
 The most common case will be reading in files in a subdirectory of your current
 working directory. For example, you may have created a "data" subdirectory in
@@ -272,14 +283,14 @@ one of those files.
 To understand how to give R these directions, you need to have some
 understanding of the directory structure of your computer. It seems a bit of a
 pain and a bit complex to have to think about computer directory structure in
-the "basics" part of this class, but this structure is not terribly complex once
-you get the idea of it. There are a couple of very good reasons why it's worth
-learning now.
+the "basics" part of this class, but this structure is not terribly complex
+once you get the idea of it. There are a couple of very good reasons why it's
+worth learning now.
 
-First, many of the most frustrating errors you get when you start using R trace
-back to understanding directories and filepaths. For example, when you try to
-read a file into R using only the filename, and that file is not in your current
-working directory, you will get an error like:
+First, many of the most frustrating errors you get when you start using R
+traceback to understanding directories and filepaths. For example, when you try
+to read a file into R using only the filename, and that file is not in your 
+current working directory, you will get an error like:
 
 ```
 Error in file(file, "rt") : cannot open the connection
@@ -288,51 +299,49 @@ In file(file, "rt") : cannot open file 'Ex.csv': No such file or directory
 ```
 
 This error is especially frustrating when you're new to R because it happens at
-the very beginning of your analysis---you can't even get your data in. Also, if
+the very beginning of your analysis---you can't even import the data. Also, if
 you don't understand a bit about working directories and how R looks for the
 file you're asking it to find, you'd have no idea where to start to fix this
 error. Second, once you understand how to use pathnames, especially relative
 pathnames, to tell R how to find a file that is in a directory other than your
 working directory, you will be able to organize all of your files for a project
-in a much cleaner way. For example, you can create a directory for your project,
-then create one subdirectory to store all of your R scripts, and another to
-store all of your data, and so on. This can help you keep very complex projects
-more structured and easier to navigate. We'll talk about these ideas more in the
-course sections on Reproducible Research, but it's good to start learning how
-directory structures and filepaths work early.
+in a much cleaner way. For example, you can create a directory for your
+project, then create one subdirectory to store all of your R scripts, and
+another to store all of your data, and so on. This can help you keep very
+complex projects more structured and easier to navigate. 
 
 Your computer organizes files through a collection of directories. Chances are,
-you are fairly used to working with these in your daily life already (although
-you may call them "folders" rather than "directories"). For example, you've
+you are fairly used to working with these in your daily life already, although
+you may call them "folders" rather than "directories". For example, you've
 probably created new directories to store data files and Word documents for a
 specific project.
 
-Figure \@ref(fig:filedirstructure) gives an example file directory structure for
-a hypothetical computer. Directories are shown in blue, and files in green.
+Figure \@ref(fig:filedirstructure) gives an example file directory structure
+for a hypothetical computer. Directories are shown in blue, and files in green.
 
 <div class="figure" style="text-align: center">
 <img src="figures/FileDirectoryStructure.png" alt="An example of file directory structure." width="600pt" />
 <p class="caption">(\#fig:filedirstructure)An example of file directory structure.</p>
 </div>
 
-You can notice a few interesting things from Figure \@ref(fig:filedirstructure).
-First, you might notice the structure includes a few of the directories that you
-use a lot on your own computer, like `Desktop`, `Documents`, and `Downloads`.
-Next, the directory at the very top is the computer's root directory, `/`. For a
-PC, the root directory might something like `C:`; for Unix and Macs, it's
-usually `/`. Finally, if you look closely, you'll notice that it's possible to
-have different files in different locations of the directory structure with the
-same file name. For example, in the figure, there are files names
-`heat_mort.csv` in both the `CourseText` directory and in the `example_data`
-directory. These are two different files with different contents, but they can
-have the same name as long as they're in different directories. This fact---that
-you can have files with the same name in different places---should help you
-appreciate how useful it is that R requires you to give very clear directions to
-describe exactly which file you want R to read in, if you aren't reading in
-something in your current working directory.
+Notice a few interesting things from Figure \@ref(fig:filedirstructure). First,
+you might notice the structure includes a few of the directories that you use a
+lot on your own computer, like `Desktop`, `Documents`, and `Downloads`. Next,
+the directory at the very top is the computer's root directory, `/`. For a PC,
+the root directory might something like `C:`. For Unix and Macs, it's usually
+`/`. Finally, if you look closely, you'll notice that it's possible to have
+different files in different locations of the directory structure with the same
+file name. For example, in the figure, there are files names `heat_mort.csv` in
+both the `CourseText` directory and in the `example_data` directory. These are
+two different files with different contents, but they can have the same name as
+long as they're in different directories. This fact---that you can have files
+with the same name in different places---should help you appreciate how useful
+it is that R requires you to give very clear directions to describe exactly
+which file you want R to read in, if you aren't importing something in your
+current working directory.
 
 You will have a home directory somewhere near the top of your structure,
-although it's likely not your root directory. In the hypothetic computer in
+although it's likely not your root directory. In the hypothetical computer in
 Figure \@ref(fig:filedirstructure), the home directory is
 `/Users/brookeanderson`. I'll describe just a bit later how you can figure out
 what your own home directory is on your own computer.
@@ -340,10 +349,10 @@ what your own home directory is on your own computer.
 ### Working directory
 
 When you run R, it's always running from within some working directory, which
-will be one of the directories somewhere in your computer's directory structure.
-At any time, you can figure out which directory R is working in by running the
-command `getwd()` (short for "get working directory"). For example, my R session
-is currently running in the following directory:
+will be one of the directories somewhere in your computer's directory 
+structure. At any time, you can figure out which directory R is working in by
+running the command `getwd()` (short for "get working directory"). For example,
+my R session is currently running in the following directory:
 
 
 ```r
@@ -351,81 +360,79 @@ getwd()
 ```
 
 ```
-## [1] "/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook"
+## [1] "/Users/wendtke/Documents/R/edar_coursebook"
 ```
 
 This means that, for my current R session, R is working in the
-`RProgrammingForResearch` subdirectory of my `brookeanderson` directory (which
-is my home directory).
+`edar_coursebook` subdirectory of my `johnvolckens` directory (home directory).
 
-There are a few general rules for which working directory R will start in when
-you open an R session. These are not absolute rules, but they're generally true.
-If you have R closed, and you open it by double-clicking on an R script, then R
-will generally open with, as its working directory, the directory in which that
-script is stored. This is often a very convenient convention, because often any
-of the data you'll be reading in for that script is somewhere near where the
-script file is saved in the directory structure. If you open R by
-double-clicking on the R icon in "Applications" (or something similar on a PC),
-R will start in its default working directory. You can find out what this is, or
-change it, in RStudio's "Preferences". Finally, if you open
-an R Project, R will start in that project's working directory (the directory in
-which the `.Rproj` file for the project is stored).
+There are a few general rules for which working directory R selects when
+you open an R session. These are not absolute rules, but they're generally 
+true. If you have R closed, and you open it by double-clicking on an R script,
+then R will generally open with, as its working directory, the directory in
+which that script is stored. This is often a very convenient convention,
+because often any of the data you'll import for that script is somewhere
+near where the script file is saved in the directory structure. If you open R
+by double-clicking on the R icon in "Applications" (or the start menu on a
+PC), R will start in its default working directory. You can find out what this
+is, or change it, in RStudio's "Preferences". Finally, if you open an R
+Project, R will start in that project's working directory---where the `.Rproj`
+file for the project is stored.
 
 ### File and directory pathnames
 
 Once you get a picture of how your directories and files are organized, you can
 use pathnames, either absolute or relative, to read in files from different
-directories than your current working directory. Pathnames are the directions
-for getting to a directory or file stored on your computer.
+directories outside your current working directory. Pathnames are the
+directions for getting to a directory or file stored on your computer.
 
 When you want to reference a directory or file, you can use one of two types of
 pathnames:
 
-- *Relative pathname*: How to get to the file or directory from your current
-working directory
-- *Absolute pathname*: How to get to the file or directory from anywhere on the
-computer
+- *Relative pathname*: How to get to the file or directory from your current working directory
+- *Absolute pathname*: How to get to the file or directory from anywhere on the computer
 
-Absolute pathnames are a bit more straightforward conceptually, because they
-don't depend on your current working directory. However, they're also a lot
-longer to write, and they're much less convenient if you'll be sharing some of
-your code with other people who might run it on their own computers. I'll
-explain this second point a bit more later in this section.
+Absolute pathnames are a bit more straightforward conceptually because they
+don't depend on your current working directory; however, they're also a lot
+longer to write and very inconvenient if you'll be sharing some of your code
+with other people who might try to run it on their own computers. I'll explain
+this second point a bit more later in this section.
 
-*Absolute pathnames* give the full directions to a directory or file, starting
-all the way at the root directory. For example, the `heat_mort.csv` file in the
-`CourseText` directory has the absolute pathname:
+I **strongly advise against the use of absolute pathnames** because of the
+aforementioned collaborative issue, but I will include some details here
+nonetheless. *Absolute pathnames* give the full directions to a directory or
+file, starting all the way at the root directory. For example, the
+`heat_mort.csv` file in the `CourseText` directory has the absolute pathname:
 
 ```
 "/Users/brookeanderson/Desktop/RCourseFall2015/CourseText/heat_mort.csv"
 ```
 
-You can use this absolute pathname to read this file in using any of the `readr`
-functions to read in data. This absolute pathname will *always* work, regardless
-of your current working directory, because it gives directions from the
-root---it will always be clear to R exactly what file you're talking about.
-Here's the code to use to read that file in using the `read.csv` function with
-the file's absolute pathname:
+You can use this absolute pathname to read this file in using any of the
+`readr` functions to read in data. This absolute pathname will *always* work,
+regardless of your current working directory, because it gives directions from
+the root. In other words, it will always be clear to R exactly what file you're
+talking about. Here's the code to use to read that file in using the
+`read.csv()` function with the file's absolute pathname:
 
 
 ```r
-heat_mort <- read_csv(file = "/Users/brookeanderson/Desktop/RCourseFall2015/CourseText/heat_mort.csv")
+heat_mort <- readr::read_csv(file = "/Users/brookeanderson/Desktop/RCourseFall2015/CourseText/heat_mort.csv")
 ```
 
 The *relative pathname*, on the other hand, gives R the directions for how to
 get to a directory or file from the current working directory. If the file or
 directory you're looking for is pretty close to your current working directory
 in your directory structure, then a relative pathname can be a much shorter way
-to tell R how to get to the file than an absolute pathname. However, the
-relative pathname depends on your current working directory---the relative
-pathname that works perfectly when you're working in one directory will not work
-at all once you move into a different working directory.
+to tell R how to get to the file than an absolute pathname. But, the relative
+pathname depends on your current working directory---the relative pathname that
+works perfectly when you're working in one directory will not work at all once
+you move into a different working directory.
 
 As an example of a relative pathname, say you're working in the directory
-`RCourseFall2015` within the file structure shown in Figure
-\@ref(fig:filedirstructure), and you want to read in the `heat_mort.csv` file in
-the `CourseText` directory. To get from `RCourseFall2015` to that file, you'd
-need to look in the subdirectory `CourseText`, where you could find
+`RCourseFall2015` within the file structure shown in Figure \@ref(fig:filedirstructure), and you want to read in the `heat_mort.csv` file
+in the `CourseText` directory. To get from `RCourseFall2015` to that file,
+you'd need to look in the subdirectory `CourseText`, where you could find
 `heat_mort.csv`. Therefore, the relative pathname from your working directory
 would be:
 
@@ -433,11 +440,12 @@ would be:
 "CourseText/heat_mort.csv"
 ```
 
-You can use this relative pathname to tell R where to find and read in the file:
+You can use this relative pathname to tell R where to find and read in the
+file:
 
 
 ```r
-heat_mort <- read_csv("CourseText/heat_mort.csv")
+heat_mort <- readr::read_csv("CourseText/heat_mort.csv")
 ```
 
 While this pathname is much shorter than the absolute pathname, it is important
@@ -447,18 +455,18 @@ relative pathname would no longer work.
 There are a few abbreviations that can be really useful for pathnames:
 
 
-|Shorthand |Meaning                                           |
-|:---------|:-------------------------------------------------|
-|`~`       |Home directory                                    |
-|`.`       |Current working directory                         |
-|`..`      |One directory up from current working directory   |
-|`../..`   |Two directories up from current working directory |
+Shorthand   Meaning                                           
+----------  --------------------------------------------------
+`~`         Home directory                                    
+`.`         Current working directory                         
+`..`        One directory up from current working directory   
+`../..`     Two directories up from current working directory 
 
 These can help you keep pathnames shorter and also help you move "up-and-over"
 to get to a file or directory that's not on the direct path below your current
 working directory.
 
-For example, my home directory is `/Users/brookeanderson`. You can use the
+For example, my home directory is `/Users/johnvolckens`. You can use the
 `list.files()` function to list all the files in a directory. If I wanted to
 list all the files in my `Downloads` directory, which is a direct sub-directory
 of my home directory, I could use:
@@ -469,18 +477,18 @@ list.files("~/Downloads")
 
 As a second example, say I was working in the working directory `CourseText`,
 but I wanted to read in the `heat_mort.csv` file that's in the `example_data`
-directory, rather than the one in the `CourseText` directory. I can use the `..`
-abbreviation to tell R to look up one directory from the current working
-directory, and then down within a subdirectory of that. The relative pathname in
-this case is:
+directory, rather than the one in the `CourseText` directory. I can use the 
+`..` abbreviation to tell R to look up one directory from the current working
+directory, and then down within a subdirectory of that. The relative pathname
+in this case is:
 
 ```
 "../Week2_Aug31/example_data/heat_mort.csv"
 ```
 
-This tells R to look one directory up from the working directory (`..`) (this is
-also known as the **parent directory** of the current directory), which in this
-case is to `RCourseFall2015`, and then down within that directory to
+This tells R to look one directory up from the working directory (`..`) (this
+is also known as the **parent directory** of the current directory), which in
+this case is to `RCourseFall2015`, and then down within that directory to
 `Week2_Aug31`, then to `example_data`, and then to look there for the file
 `heat_mort.csv`.
 
@@ -502,44 +510,43 @@ all subdirectories, with a collaborator. In that case, if you've used relative
 pathnames, all the code should work fine for the person you share with, even
 though they're running it on their own computer. Conversely, if you'd used
 absolute pathnames, none of them would work on another computer, because the
-"top" of the directory structure (i.e., for me, `/Users/brookeanderson/Desktop`)
-will almost definitely be different for your collaborator's computer than it is
+"top" of the directory structure (i.e., for me, `/Users/johnvolckens/`)
+will definitely be different for your collaborator's computer than it is
 for yours.
 
 If you're getting errors reading in files, and you think it's related to the
-relative pathname you're using, it's often helpful to use `list.files()` to make
-sure the file you're trying to load is in the directory that the relative
-pathname you're using is directing R to.
+relative pathname you're using, it's often helpful to use `list.files()` to
+make sure the file you're trying to load is in the directory guided by the
+relative pathname.
 
-### Diversion: `paste`
+### Tangent: `paste`
 
-This is a good opportunity to explain how to use some functions that can be very
-helpful when you're using relative or absolute pathnames: `paste()` and
-`paste0()`.
-
-As a bit of important background information, it's important that you understand
-that you can save a pathname (absolute or relative) as an R object, and then use
-that R object in calls to later functions like `list.files()` and `read_csv()`.
-For example, to use the absolute pathname to read the `heat_mort.csv` file in
-the `CourseText` directory, you could run:
+This is a good opportunity to explain how to use some functions that can be
+very helpful when you're using relative or absolute pathnames: `paste()` and
+`paste0()`. It's important that you understand that you can save a pathname
+(absolute or relative) as an R object and then use that R object in calls to
+later functions like `list.files()` and `read_csv()`. For example, to use the
+absolute pathname to read the `heat_mort.csv` file in the `CourseText`
+directory, you could run:
 
 ```
 my_file <- "/Users/brookeanderson/Desktop/RCourseFall2015/CourseText/heat_mort.csv"
 heat_mort <- read_csv(file = my_file)
 ```
 
-You'll notice from this code that the pathname to get to a directory or file can
-sometimes become ungainly and long. To keep your code cleaner, you can address
-this by using the `paste` or `paste0` functions. These functions come in handy
-in a lot of other applications, too, but this is a good place to introduce them.
+You'll notice from this code that the pathname to get to a directory or file
+can sometimes become ungainly and long. To keep your code cleaner, you can
+address this by using the `paste` or `paste0` functions. These functions come
+in handy in a lot of other applications, too, but this is a good place to
+introduce them.
 
-The `paste()` function is very straightforward. It takes, as inputs, a series of
-different character strings you want to join together, and it pastes them
-together in a single character string. (As a note, this means that your result
-vector will only be one element long, for basic uses of `paste()`, while the
-inputs will be several different character stings.) You separate all the
-different things you want to paste together using with commas in the function
-call. For example:
+The `paste()` function is very straightforward. It takes, as inputs, a series
+of different character strings you want to join together, and it pastes them
+together in a single character string. (As a note, this means that your
+resulting vector will only be one element long for basic uses of `paste()`,
+while the inputs will be several different character stings.) You separate all
+the different things you want to paste together using with commas in the
+function call. For example:
 
 
 ```r
@@ -566,12 +573,12 @@ length(x = paste("Sunday", "Monday", "Tuesday"))
 ## [1] 1
 ```
 
-The `paste()` function has an option called `sep = `. This tells R what you want
-to use to separate the values you're pasting together in the output. The default
-is for R to use a space, as shown in the example above. To change the separator,
-you can change this option, and you can put in just about anything you want. For
-example, if you wanted to paste all the values together without spaces, you
-could use `sep = ""`:
+The `paste()` function has an option called `sep = `. This tells R what you
+want to use to separate the values you're pasting together in the output. The
+default is for R to use a space, as shown in the example above. To change the
+separator, you can change this option, and you can put in just about anything
+you want. For example, if you wanted to paste all the values together without
+spaces, you could use `sep = ""`:
 
 
 ```r
@@ -614,27 +621,25 @@ get a feel for them.
 
 ### Reading online flat files
 
-So far, I've only shown you how to read in data from files that are saved to
+So far, I've only shown you how to import data from files that are saved to
 your computer. R can also read in data directly from the web. If a flat file is
 posted online, you can read it into R in almost exactly the same way that you
 would read in a local file. The only difference is that you will use the file's
-url instead of a local file path for the `file` argument.
+URL instead of a local file path for the `file` argument.
 
 With the `read_*` family of functions, you can do this both for flat files from
 a non-secure webpage (i.e., one that starts with `http`) and for files from a
 secure webpage (i.e., one that starts with `https`), including GitHub and
 Dropbox.
 
-For example, to read in data from this [GitHub repository of Ebola
-data](https://raw.githubusercontent.com/cmrivers/ebola/master/country_timeseries.csv),
-you can run:
+For example, to read in data from this [GitHub repository of Ebola data](https://raw.githubusercontent.com/cmrivers/ebola/master/country_timeseries.csv), you can run:
 
 
 ```r
 url <- paste0("https://raw.githubusercontent.com/cmrivers/",
               "ebola/master/country_timeseries.csv")
-ebola <- read_csv(file = url)
-slice(.data = (select(.data = ebola, 1:3)), 1:3)
+ebola <- readr::read_csv(file = url)
+slice(.data = (dplyr::select(.data = ebola, 1:3)), 1:3)
 ```
 
 ```
@@ -645,7 +650,6 @@ slice(.data = (select(.data = ebola, 1:3)), 1:3)
 ## 2 1/4/2015   288         2775
 ## 3 1/3/2015   287         2769
 ```
-
 
 ## Data cleaning
 
@@ -660,28 +664,27 @@ some of the most common data-cleaning tasks, along with the corresponding
 `dplyr` function for each:
 
 
-|Task                       |`dplyr` function |
-|:--------------------------|:----------------|
-|Renaming columns           |`rename`         |
-|Filtering to certain rows  |`filter`         |
-|Selecting certain columns  |`select`         |
-|Adding or changing columns |`mutate`         |
+Task                         `dplyr` function 
+---------------------------  -----------------
+Renaming columns             `rename()`       
+Filtering to certain rows    `filter()`       
+Selecting certain columns    `select()`       
+Adding or changing columns   `mutate()`       
 
-In this section, I'll describe how to do each of these four tasks; in later
-sections of the course, we'll go much deeper into how to clean messier data.
-
-For the examples in this section, I'll use example data listing guests to the
-Daily Show. To follow along with these examples, you'll want to load that data,
-as well as load the `dplyr` package (install it using `install.packages` if you
-have not already):
+In this section, I describe how to do each of these four tasks. For the
+examples in this section, I use example data listing guests to the Daily Show.
+To follow along with these examples, you'll want to load that data, as well as
+load the `dplyr` package. Install it using `install.packages()` if you have not
+done so already.
 
 
 ```r
 library("dplyr")
-daily_show <- read_csv(file = "data/daily_show_guests.csv", skip = 4)
+daily_show <- readr::read_csv(file = "data/daily_show_guests.csv", skip = 4)
 ```
 
-I've used this data in previous examples, but as a reminder, here's what it looks like: 
+I've used this data in previous examples, but as a reminder, here's what it 
+looks like: 
 
 
 ```r
@@ -702,16 +705,16 @@ head(x = daily_show)
 
 ### Renaming columns 
 
-A first step is often re-naming the columns of the dataframe. It can be hard to
+A first step is often renaming the columns of the dataframe. It can be hard to
 work with a column name that:
 
 - is long
 - includes spaces or other special characters
-- includes upper case
+- includes uppercase letters
 
-You can check out the column names for a dataframe using the `colnames`
-function, with the dataframe object as the argument. Several of the column names
-in `daily_show` have some of these issues:
+You can check out the column names for a dataframe using the `colnames()`
+function, with the dataframe object as the argument. Several of the column
+names in `daily_show` have some of these issues:
 
 
 ```r
@@ -724,29 +727,29 @@ colnames(x = daily_show)
 ## [5] "Raw_Guest_List"
 ```
 
-To rename these columns, use `rename`. The basic syntax is:
+To rename these columns, use `rename()`. The basic syntax is:
 
 
 ```r
-## Generic code
-rename(.data = dataframe, 
-       new_column_name_1 = old_column_name_1,
-       new_column_name_2 = old_column_name_2)
+## generic code; will not run
+dplyr::rename(.data = dataframe,
+              new_column_name_1 = old_column_name_1,
+              new_column_name_2 = old_column_name_2)
 ```
 
-The first argument is the dataframe for which you'd like to rename columns. Then
-you list each pair of new versus old column names (in that order) for each of
-the columns you want to rename. To rename columns in the `daily_show` data using
-`rename`, for example, you would run:
+The first argument is the dataframe for which you'd like to rename columns.
+Then you list each pair of new and old column names (in that order) for each
+of the columns you want to rename. To rename columns in the `daily_show` data
+using `rename()`, for example, you would run:
 
 
 ```r
-daily_show <- rename(.data = daily_show,
-                     year = YEAR,
-                     job = GoogleKnowlege_Occupation, 
-                     date = Show, 
-                     category = Group,
-                     guest_name = Raw_Guest_List)
+daily_show <- dplyr::rename(.data = daily_show,
+                            year = YEAR,
+                            job = GoogleKnowlege_Occupation,
+                            date = Show,
+                            category = Group,
+                            guest_name = Raw_Guest_List)
 head(x = daily_show, 3)
 ```
 
@@ -760,29 +763,29 @@ head(x = daily_show, 3)
 ```
 
 <div class="rmdwarning">
-<p>Many of the functions in tidyverse packages, including those in <code>dplyr</code>, provide exceptions to the general rule about when to use quotation marks versus when to leave them off. Unfortunately, this may make it a bit hard to learn when to use quotation marks versus when not to. One way to think about this, which is a bit of an oversimplification but can help as you’re learning, is to assume that anytime you’re using a <code>dplyr</code> function, every column in the dataframe you’re working with has been loaded to your R session as its own object.</p>
+<p>Many of the functions in tidyverse packages, including those in <code>dplyr</code>, provide exceptions to the general rule about quotation marks. Unfortunately, this may make it a bit hard to learn when to use quotation marks. One way to think about this, which is a bit of an oversimplification but can help as you’re learning, is to assume that anytime you’re using a <code>dplyr</code> function, every column in the dataframe you’re working with has been loaded to your R session as its own object, which means you don’t need to use parentheses—most of the time.</p>
 </div>
 
 ### Selecting columns
 
-Next, you may want to select only some columns of the dataframe. You can use the
-`select` function from `dplyr` to subset the dataframe to certain columns. The
-basic structure of this command is:
+Next, you may want to select only some columns of the dataframe. You can use
+the `select()` function from `dplyr` to subset the dataframe to certain
+columns. The basic structure of this command is:
 
 
 ```r
-## Generic code
-select(.data = dataframe, column_name_1, column_name_2, ...)
+## generic code; will not run
+dplyr::select(.data = dataframe, column_name_1, column_name_2, ...)
 ```
 
 In this call, you first specify the dataframe to use and then list all of the
-column names to include in the output dataframe, with commas between each column
-name. For example, to select all columns in `daily_show` except `year` (since
-that information is already included in `date`), run:
+column names to include in the output dataframe, with commas between each
+column name. For example, to select all columns in `daily_show` except `year`
+(since that information is already included in `date`), run:
 
 
 ```r
-select(.data = daily_show, job, date, category, guest_name)
+dplyr::select(.data = daily_show, job, date, category, guest_name)
 ```
 
 ```
@@ -803,16 +806,17 @@ select(.data = daily_show, job, date, category, guest_name)
 ```
 
 <div class="rmdwarning">
-<p>Don’t forget that, if you want to change column names in the saved object, you must reassign the object to be the output of <code>rename</code>. If you run one of these cleaning functions without reassigning the object, R will print out the result, but the object itself won’t change. You can take advantage of this, as I’ve done in this example, to look at the result of applying a function to a dataframe without changing the original dataframe. This can be helpful as you’re figuring out how to write your code.</p>
+<p>Don’t forget that, if you want to change column names in the saved object, you must reassign the object to be the output of <code>rename()</code>. If you run one of these cleaning functions without reassigning the object, R will print out the result, but the object itself won’t change. You can take advantage of this, as I’ve done in this example, to look at the result of applying a function to a dataframe without changing the original dataframe. This can be helpful as you’re figuring out how to write your code.</p>
 </div>
 
-The `select` function also provides some time-saving tools. For example, in the
-last example, we wanted all the columns except one. Instead of writing out all
-the columns we want, we can use `-` with the columns we don't want to save time:
+The `select()` function also provides some time-saving tools. In the last
+example, we wanted all the columns except one. Instead of writing out all the
+columns we want, we can use `-` with only the columns we don't want to
+save time (notice the object reassignment/override):
 
 
 ```r
-daily_show <- select(.data = daily_show, -year)
+daily_show <- dplyr::select(.data = daily_show, -year)
 head(x = daily_show, n = 3)
 ```
 
@@ -827,20 +831,20 @@ head(x = daily_show, n = 3)
 
 ### Add or change columns
 
-You can change a column or add a new column using the `mutate` function from the
-`dplyr` package. That function has the syntax:
+You can change a column or add a new column using the `mutate()` function from
+the `dplyr` package. That function has the syntax:
 
 
 ```r
-# Generic code
-mutate(.data = dataframe,
-       changed_column = function(changed_column),
-       new_column = function(other arguments))
+# generic code; will not run
+dplyr::mutate(.data = dataframe,
+              changed_column = function(changed_column),
+              new_column = function(other arguments))
 ```
 
 For example, the `job` column in `daily_show` sometimes uses upper case and
-sometimes does not (this call uses the `unique` function to list only unique
-values in this column):
+sometimes does not. This call uses the `unique()` function to list only unique
+values in this column:
 
 
 ```r
@@ -854,7 +858,9 @@ head(x = unique(x = daily_show$job), n = 10)
 ## [10] "Singer-songwriter"
 ```
 
-To make all the observations in the `job` column lowercase, use the `str_to_lower` function from the `stringr` package within a `mutate` function: 
+To make all the observations in the `job` column lowercase, use the 
+`str_to_lower()` function from the `stringr` package within a `mutate()`
+function: 
 
 
 ```r
@@ -886,33 +892,33 @@ Just so you know, all of these `dplyr` functions have alternatives, either
 functions or processes, in base R:
 
 
-|`dplyr`  |Base R equivalent                  |
-|:--------|:----------------------------------|
-|`rename` |Reassign `colnames`                |
-|`select` |Square bracket indexing            |
-|`filter` |`subset`                           |
-|`mutate` |Use `$` to change / create columns |
+`dplyr`      Base R equivalent                   
+-----------  ------------------------------------
+`rename()`   Reassign `colnames`                 
+`select()`   Square bracket indexing             
+`filter()`   `subset()`                          
+`mutate()`   Use `$` to change or create columns 
 
 You will see these alternatives used in older code examples.
 
 ### Filtering to certain rows
 
-Next, you might want to filter the dataset down so that it only includes certain
-rows. For example, you might want to get a dataset with only the guests from
-2015, or only guests who are scientists.
+Next, you might want to filter the dataset to certain rows. For example, you
+might want to get a dataset with only the guests from 2015, or only guests who
+are scientists.
 
-You can use the `filter` function from `dplyr` to filter a dataframe down to a
-subset of rows. The syntax is:
+You can use the `filter()` function from `dplyr` to filter a dataframe down to
+a subset of rows. The syntax is:
 
 
 ```r
-## Generic code
+## generic code; will not run
 filter(.data = dataframe, logical expression)
 ```
 
-The `logical expression` in this call gives the condition that a row must meet to
-be included in the output data frame. For example, if you want to create a data
-frame that only includes guests who were scientists, you can run:
+The `logical expression` in this call gives the condition that a row must meet
+to be included in the output data frame. For example, if you want to create a
+data frame that only includes guests who were scientists, you can run:
 
 
 ```r
@@ -933,8 +939,8 @@ head(x = scientists)
 ## 6 Astrophysicist 1/30/07 Science  Neil deGrasse Tyson
 ```
 
-To build a logical expression to use in `filter`, you'll need to know some of R's
-logical operators. Some of the most commonly used ones are:
+To build a logical expression to use in `filter`, you'll need to know some of
+R's logical operators. Some commonly used ones are:
 
 Operator  | Meaning | Example
 --------- | ------- | ---------------------------------
@@ -947,7 +953,7 @@ Operator  | Meaning | Example
 `|`       | or | `year == 2015 | category == "Academic"`
 
 We'll use these logical operators and expressions a lot more as the course
-continues, so they're worth learning by heart.
+continues, so they're worth memorizing.
 
 <div class="rmdwarning">
 <p>Two common errors with logical operators are: (1) Using <code>=</code> instead of <code>==</code> to check if two values are equal; and (2) Using <code>== NA</code> instead of <code>is.na</code> to check for missing observations.</p>
@@ -955,19 +961,17 @@ continues, so they're worth learning by heart.
 
 ## Piping
 
-The following video covers the lecture material
-
 So far, I've shown how to use these `dplyr` functions one at a time to clean up
-the data, reassigning the dataframe object at each step. However, there's a
-trick called "piping" that will let you clean up your code a bit when you're
-writing a script to clean data.
+the data, reassigning the dataframe object at each step; however, there's a
+trick called "piping" (with `%>%`) that will let you complete multiple data
+wrangling steps at once.
 
 If you look at the format of these `dplyr` functions, you'll notice that they
 all take a dataframe as their first argument:
 
 
 ```r
-# Generic code
+# generic code; will not run
 rename(.data = dataframe, 
        new_column_name_1 = old_column_name_1,
        new_column_name_2 = old_column_name_2)
@@ -1000,30 +1004,45 @@ daily_show <- filter(.data = daily_show,
                      category == "Science")
 ```
 
-Piping lets you clean this code up a bit. It can be used with any function that
-inputs a dataframe as its first argument. It *pipes* the dataframe created right
-before the pipe (`%>%`) into the function right after the pipe. With piping,
-therefore, the same data cleaning looks like:
+Piping lets you streamline this process. It can be used with any function that
+inputs a dataframe as its first argument. It *pipes* the dataframe created
+right before the pipe (`%>%`) into the function right after the pipe. With
+piping, therefore, the above data cleaning looks like:
 
 
 ```r
-daily_show <-read_csv(file = "data/daily_show_guests.csv",
-                      skip = 4) %>%
-  rename(job = GoogleKnowlege_Occupation,
-         date = Show,
-         category = Group,
-         guest_name = Raw_Guest_List) %>%
-  select(-YEAR) %>%
-  mutate(job = str_to_lower(job)) %>%
-  filter(category == "Science")
+daily_show <- readr::read_csv(file = "data/daily_show_guests.csv",
+                              skip = 4) %>%
+  dplyr::rename(job = GoogleKnowlege_Occupation,
+                date = Show,
+                category = Group,
+                guest_name = Raw_Guest_List) %>%
+  dplyr::select(-YEAR) %>%
+  dplyr::mutate(job = str_to_lower(job)) %>%
+  dplyr::filter(category == "Science")
 ```
 
-Notice that, when piping, the first argument (the name of the dataframe) is
+Notice that, when piping, the first argument (name of the dataframe) is
 excluded from all function calls that follow a pipe. This is because piping
-sends the dataframe from the last step into each of these functions as the
-dataframe argument.
+sends the dataframe from the last step into each of the following functions as
+the dataframe argument. Remember: Order matters in a data wrangling pipeline.
+For example, if you removea column in an early line of code in the pipeline but
+then reference that column name later, R will throw an error. You can use
+selective highlighting to run one line at a time to see how the dataframe
+changes in real-time.
 
-## In-course Exercise
+## Class Exercises
+
+- Import local and/or online data file and assign to object name
+- Examine object structure
+- Think about what kind of data wrangling needs to be done and sketch out the desired dataframe result
+- Practice a few `dplyr` verbs within pipe to clean up dataframe
+
+## Homework
+
+- Change data to something related to engineering (pollution/air quality in Fort Collins)
+- Use Brooke's structure below to create homework assignment
+- Provide R Markdown template.
 
 ### Downloading and checking out the example data
 
@@ -1040,8 +1059,8 @@ directory (don't do this in R, just use whatever technique you usually use on
 your computer to move files between directories).
 
 - Look through the structure of the "data" directory. What files are in the
-directory? Which files are **flat files**? Which are **delimited** (one category
-of flat files), and what are their delimiters?
+directory? Which files are **flat files**? Which are **delimited** (one
+category of flat files), and what are their delimiters?
 - Create a new R script to put all the code you use for this exercise. Create a
 subdirectory in your course directory called "R" and save this script there
 using a `.R` extension (e.g., "week_2.R").
@@ -1052,18 +1071,13 @@ Now you'll try reading in data from a variety of types of file formats.
 
 Try the following tasks:
 
-- What type of flat file do you think the "ld\_genetics.txt" file is? See if you
-can read it in and save it as the R object `ld_genetics`. Use the `summary`
+- What type of flat file do you think the "ld\_genetics.txt" file is? See if 
+you can read it in and save it as the R object `ld_genetics`. Use the `summary`
 function to check out basic statistics on the data.
 - Check out the file "measles\_data/02-09-2015.txt". What type of flat file do
 you think it is? Since it's in a subdirectory, you'll need to tell R how to get
-to it from the project directory, using something called a **relative pathname**
-(we'll talk about this a lot more in the next section of the lecture). Read this
-file into R as an object named `ca_measles`, using the relative pathname
-("measles\_data/02-09-2015.txt") in place of the file name in the `read_tsv`
-function call. Use the `col_names` option to name the columns "city" and
-"count". What would the default column names be if you didn't use this option
-(try this out by running `read_csv` without the `col_names` option)?
+to it from the project directory, using something called a 
+**relative pathname** (we'll talk about this a lot more in the next section of the lecture). Read this file into R as an object named `ca_measles`, using the relative pathname ("measles\_data/02-09-2015.txt") in place of the file name in the `read_tsv` function call. Use the `col_names` option to name the columns "city" and "count". What would the default column names be if you didn't use this option (try this out by running `read_csv()` without the `col_names` option)?
 - Read in the Excel file "icd-10.xls" and assign it to the object name `idc10`.
 Use the [`readxl` package to do that](https://github.com/hadley/readxl)
 (examples are at the bottom of the linked page).
@@ -1233,10 +1247,10 @@ Start by creating a new subdirectory called "data" in your R Project directory
 for this class (if you don't already have that subdirectory). Move the data you
 downloaded in the start of this In-Course Exercise into that "data"
 subdirectory. (For this, use whatever tools you would normally use on your
-computer to move files from one directory to another---you don't have to do this
-part in R.) Keep the "measles" data in its own subdirectory (so, the "data"
-subdirectory of your project will have its own "measles" subdirectory, which
-will have those files).
+computer to move files from one directory to another---you don't have to do
+this part in R.) Keep the "measles" data in its own subdirectory (so, the
+"data" subdirectory of your project will have its own "measles" subdirectory,
+which will have those files).
 
 Check that you are, in fact, in the working directory you think you're in. Run:
 
@@ -1269,8 +1283,8 @@ argument. How about in the "R" subdirectory (if you have one)?
 * Try to list the files in your "data" subdirectory using:
     + A relative pathname
     + An absolute pathname
-* Now use a relative pathname along with `list.files()` to list all the files in
-the "measles_data" subdirectory.
+* Now use a relative pathname along with `list.files()` to list all the files
+in the "measles_data" subdirectory.
 * Then try to read in the Ebola data using the appropriate `readr` function and
 a relative pathname.
 * Which method (absolute or relative pathnames) always used the same code,
@@ -1335,7 +1349,8 @@ ebola <- read_csv(file = "data/country_timeseries.csv")
 If you have extra time: 
 
 - Find out some more about this Ebola dataset by checking out [Caitlin Rivers'
-Ebola data GitHub repository](https://github.com/cmrivers/ebola). Who is Caitlin
+Ebola data GitHub repository](https://github.com/cmrivers/ebola). Who is 
+Caitlin
 Rivers? How did she put this dataset together?
 - Search for R code related to Ebola research on GitHub. Go to the [GitHub home
 page](https://github.com) and use the search bar to search for "ebola". On the
@@ -1351,7 +1366,8 @@ Try out the following tasks:
 
 - Copy the following code into an R script. Figure out what each line does, and
 add comments to each line of code describing what the code is doing. Use the 
-helpfiles for functions as needed to figure out functions we haven't covered yet.
+helpfiles for functions as needed to figure out functions we haven't covered 
+yet.
 
 
 ```r
@@ -1477,8 +1493,8 @@ head(x = ebola_liberia)
 - Filter out all rows from the `ebola_liberia` dataframe that are missing death
 counts for Liberia. How many rows are in the dataframe now?
 - Create a new object called `first_five` that has only the five observations
-with the highest death counts in Liberia. What date in this dataset had the most
-deaths?
+with the highest death counts in Liberia. What date in this dataset had the
+most deaths?
 
 Example R code:
 
@@ -1556,6 +1572,7 @@ icu <- read_sas(data_file = "data/icu.sas7bdat") %>%
 
 icu
 ```
+
 - In previous sections of the in-course exercise, you have created code to read
 in and clean the Ebola dataset to create `ebola_liberia`. This included the
 following cleaning steps: (1) selecting certain columns, (2) renaming those

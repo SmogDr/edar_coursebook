@@ -10,6 +10,8 @@ The histrogram is really an attempt to visualize the **probability density funct
 How to fit a distribution
 ### LOESS
 
+## Q-Q Plot (Quantile-Quantile) {#qqplot}
+
 ## Linear Models
 
 ### Assumptions of Linear Regression
