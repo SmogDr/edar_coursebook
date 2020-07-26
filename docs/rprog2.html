@@ -197,7 +197,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6" data-path="rprog2.html"><a href="rprog2.html#piping"><i class="fa fa-check"></i><b>3.6</b> Piping</a></li>
 <li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#markdowns"><i class="fa fa-check"></i><b>3.7</b> Markdowns</a><ul>
 <li class="chapter" data-level="3.7.1" data-path="rprog2.html"><a href="rprog2.html#r-markdowns"><i class="fa fa-check"></i><b>3.7.1</b> R Markdowns</a></li>
-<li class="chapter" data-level="3.7.2" data-path="rprog2.html"><a href="rprog2.html#yaml-header"><i class="fa fa-check"></i><b>3.7.2</b> YAML Header</a></li>
+<li class="chapter" data-level="3.7.2" data-path="rprog2.html"><a href="rprog2.html#header"><i class="fa fa-check"></i><b>3.7.2</b> Header</a></li>
 <li class="chapter" data-level="3.7.3" data-path="rprog2.html"><a href="rprog2.html#text"><i class="fa fa-check"></i><b>3.7.3</b> Text</a></li>
 <li class="chapter" data-level="3.7.4" data-path="rprog2.html"><a href="rprog2.html#code-chunks"><i class="fa fa-check"></i><b>3.7.4</b> Code Chunks</a></li>
 </ul></li>
@@ -1332,7 +1332,7 @@ changes in real-time.</p>
 </div>
 <div id="markdowns" class="section level2">
 <h2><span class="header-section-number">3.7</span> Markdowns</h2>
-<p>A <strong><em>markdown</em></strong> is a file format designed for the internet. Markdowns allow you to write plain text into a file, format that text, and embed code/images/data into the file (everything you are reading in this coursebook was written and created with markdown files). Markdown files are versatile because:</p>
+<p>A <strong><em>markdown</em></strong> is a file format designed for the internet. Markdown files allow you to write plain text into a file, format that text, and embed code/images/data into the file (everything you are reading in this coursebook was written and created with markdown files). Markdown files are versatile because:</p>
 <ul>
 <li>Markdowns can be rendered into html, pdf, and doc files easily. Thus, markdown files can be turned into websites, email messages, reports, blogs, textbooks, and other forms of media without worry;</li>
 <li>Markdowns are independent of the operating system (Mac, PC, Linux, Android, and iOS devices can read them);</li>
@@ -1340,14 +1340,13 @@ changes in real-time.</p>
 </ul>
 <div id="r-markdowns" class="section level3">
 <h3><span class="header-section-number">3.7.1</span> R Markdowns</h3>
-<p>The R Studio IDE can create <strong><em>“R Markdowns”</em></strong> (file extension .Rmd) specifically for the R programming environment. An R markdown file allows you do lots of things; we will use them to create assignments and homework reports that display R code, code outputs, and text. To use the R markdown format, you need to install the <code>rmarkdown</code> package: <code>install.packages("rmarkdown")</code>.</p>
-<p><strong>Going forward, all of your homework and coding assignments will be created and submitted in the R Markdown format using either html or pdf outputs.</strong></p>
-<p>Each R markdown file contains three basic elements: header, text, and code chunks. I will explain each of these elements below, but I recommend a visit to the <a href="https://rmarkdown.rstudio.com/lesson-1.html">R Markdown tutorial section</a> on the RStudio website. A detailed guide on many of the R markdown output sytles (beyond just html and pdf files) is provided <a href="https://bookdown.org/yihui/rmarkdown/">here</a>.</p>
+<p>The R Studio IDE can create <strong><em>“R Markdowns”</em></strong> (file extension .Rmd) specifically for the R programming environment. An R markdown file allows you do lots of things; we will use them to create assignments and homework reports that display R code, the outputs of that code, and plain text. To use the R markdown format, you need to install the <code>rmarkdown</code> package: <code>install.packages("rmarkdown")</code>.</p>
+<p><strong>Going forward, all of your homework and coding assignments will be created and submitted in the R Markdown format using either html or pdf outputs. This may seem uncomfortable at first but you will get accustomed to this format quickly.</strong></p>
+<p>Each R markdown file contains three basic elements: header, text, and code chunks. I will explain each of these elements below, but I recommend a visit to the <a href="https://rmarkdown.rstudio.com/docs/articles/rmarkdown.html">R Markdown section</a> on the RStudio website. A detailed guide on many of the R markdown output styles (beyond just html and pdf files) is provided <a href="https://bookdown.org/yihui/rmarkdown/">here</a>.</p>
 </div>
-<div id="yaml-header" class="section level3">
-<h3><span class="header-section-number">3.7.2</span> YAML Header</h3>
-<p>The R Markdown “header” section is where you specify details about the file being created. A markdown header contains <strong>YAML</strong> metadata, which stands for <a href="https://yaml.org/spec/1.2/spec.html#Introduction"><em>“YAML Ain’t Markup Language”</em></a>. The YAML (pronounced like “camel”) header is essentially a list of directives (referred to as “key:value” pairs) that help application software read and interpret the file. A YAML can act simultaneously as a “configuration file”, a “log file”, and “translator file” - allowing one software program to read the output of another program. An example YAML is shown below.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="rprog2.html#cb54-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;./images/YAML_1_anno.png&quot;</span>)</span></code></pre></div>
+<div id="header" class="section level3">
+<h3><span class="header-section-number">3.7.2</span> Header</h3>
+<p>The R Markdown “header” section is where you specify details about the file being created. A markdown header contains <strong>YAML</strong> metadata, which stands for <a href="https://yaml.org/spec/1.2/spec.html#Introduction"><em>“YAML Ain’t Markup Language”</em></a>. The YAML (pronounced like “camel”) header is essentially a list of directives (referred to as “key:value” pairs) that help application software read and interpret the file. A YAML header can act simultaneously as a “configuration file”, a “log file”, and “translator file” - allowing one software program to read the output of another program. An example header with YAML metadata is shown below.</p>
 <div class="figure" style="text-align: center"><span id="fig:YAML-1"></span>
 <img src="images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file." width="500" />
 <p class="caption">
@@ -1357,9 +1356,17 @@ Figure 3.2: Example of a YAML header to render an R Markdown into an html file.
 <p>The header is delineated at the top of the file by a section that begins and ends with three dashes, “—”. Within the header are YAML metadata representing key:value pairs; <strong>what are “key:value” pairs?</strong> The <strong>“key:”</strong> is a directive that you want to give to the file and the <strong>“value”</strong> represents the level of detail or information that you want to associate with that directive. Key:value pairs provide instructions on how the file should be read, interpreted, and output. In Figure <a href="rprog2.html#fig:YAML-1">3.2</a>, the keys are <em>“title:”</em>, <em>“author:”</em>, <em>“date:”</em>, and <em>“output:”</em> and the corresponding values are <em>“Markdowns”</em>, <em>“JV”</em>, <em>“7/23/2020”</em>, and <em>“html_document”</em>. You can learn more about key:value pairs in the R Markdown Style Guide for <a href="https://bookdown.org/yihui/rmarkdown/html-document.html">html</a> and <a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html">pdf</a>.</p>
 <div class="rmdnote">
 <p>
-The YAML header is optional in an R Markdown and directives will defer to default key:value pairs if none are supplied. That said, I would encourage you to specify key directives like “author:”, “date:” and “output:” in your YAML headers.
+The YAML header is optional in an R Markdown and default key:value pairs will be implemented if none are supplied. That said, I would encourage you to specify key directives like “author:”, “date:” and “output:” in your YAML headers.
 </p>
 </div>
+<p>Sometimes, you will want to provide nested formatting directives in your markdown header. For example, you can specify the addition of a <strong><em>“table of contents”</em></strong> to your html output file that <strong><em>“floats”</em></strong> alongside the text. In that case, your YAML metadata would look like this:</p>
+<div class="figure" style="text-align: center"><span id="fig:YAML-2"></span>
+<img src="images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents." width="497" />
+<p class="caption">
+Figure 3.3: Example R Markdown header with nested YAML directives to render an html file with a floating table of contents.
+</p>
+</div>
+<p>An important detail to remember with nested YAML metadata is that each nested command <strong>must be indented by 2 spaces</strong> to be interpreted properly.</p>
 </div>
 <div id="text" class="section level3">
 <h3><span class="header-section-number">3.7.3</span> Text</h3>
@@ -1395,10 +1402,25 @@ The YAML header is optional in an R Markdown and directives will defer to defaul
 </tr>
 </tbody>
 </table>
+<p>To start a new paragraph in a markdown text section, end a line with two spaces (followed by a return).</p>
+<p>To see a more complete set of formatting options see the <a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf">R Markdown CheatSheet</a>.</p>
 </div>
 <div id="code-chunks" class="section level3">
 <h3><span class="header-section-number">3.7.4</span> Code Chunks</h3>
-<p>The code chunks are exactly what they sound like: places where you write and execute R code.</p>
+<p>Code chunks are the places where you write and execute R code. A code chunk is initiated with 3 back ticks ```, followed by a set of <em>braces</em> {} (aka curly brackets) where you can name the chunk and specify <code>chunk options</code>. The chunk options tell the <code>knitr</code> package (the package that renders an R markdown into an output style) how you want that chunk to run and what to do with the output. A list of chunk options can be found <a href="https://yihui.org/knitr/options/">here</a>. An example markdown is shown below:</p>
+<div class="figure" style="text-align: center"><span id="fig:markdown-1"></span>
+<img src="images/markdown_anno.png" alt="Example R Markdown showing header, text, and code chunks." width="1000" />
+<p class="caption">
+Figure 3.4: Example R Markdown showing header, text, and code chunks.
+</p>
+</div>
+<p>Once your markdown is complete, you can <em>render</em> it into an output file (e.g., html, pdf, doc, rtf) using the <code>knitr</code> package, which interprets your YAML header and “knits” it together into the desired format. Here is the same markdown rendered into an html document using the <code>knit</code> button.</p>
+<div class="figure" style="text-align: center"><span id="fig:markdown-2"></span>
+<img src="images/markdown_render.png" alt="Example R Markdown when &quot;rendered&quot; into an html document." width="700" />
+<p class="caption">
+Figure 3.5: Example R Markdown when “rendered” into an html document.
+</p>
+</div>
 </div>
 </div>
 <div id="class-exercises" class="section level2">
@@ -1459,10 +1481,10 @@ package</a>. Read the file into the R object
 <code>icu</code>.</li>
 </ul>
 <p>Example R code:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="rprog2.html#cb55-1"></a><span class="co"># Load the `readr` package</span></span>
-<span id="cb55-2"><a href="rprog2.html#cb55-2"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;readr&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="rprog2.html#cb56-1"></a><span class="co"># Use `read_tsv` to read this file. </span></span>
-<span id="cb56-2"><a href="rprog2.html#cb56-2"></a>ld_genetics &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="dt">file =</span> <span class="st">&quot;data/ld_genetics.txt&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="rprog2.html#cb54-1"></a><span class="co"># Load the `readr` package</span></span>
+<span id="cb54-2"><a href="rprog2.html#cb54-2"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;readr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="rprog2.html#cb55-1"></a><span class="co"># Use `read_tsv` to read this file. </span></span>
+<span id="cb55-2"><a href="rprog2.html#cb55-2"></a>ld_genetics &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="dt">file =</span> <span class="st">&quot;data/ld_genetics.txt&quot;</span>)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   pos = col_double(),
@@ -1475,7 +1497,7 @@ package</a>. Read the file into the R object
 ##   cGCsk = col_double(),
 ##   cTAsk = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="rprog2.html#cb58-1"></a><span class="kw">summary</span>(<span class="dt">object =</span> ld_genetics)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="rprog2.html#cb57-1"></a><span class="kw">summary</span>(<span class="dt">object =</span> ld_genetics)</span></code></pre></div>
 <pre><code>##       pos                nA            nC              nG       
 ##  Min.   :    500   Min.   :185   Min.   :120.0   Min.   : 85.0  
 ##  1st Qu.: 876000   1st Qu.:288   1st Qu.:173.0   1st Qu.:172.0  
@@ -1497,17 +1519,17 @@ package</a>. Read the file into the R object
 ##  Mean   : 7855  
 ##  3rd Qu.:15036  
 ##  Max.   :19049</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="rprog2.html#cb60-1"></a><span class="co"># Use `read_tsv` to read this file. Because the first line</span></span>
-<span id="cb60-2"><a href="rprog2.html#cb60-2"></a><span class="co"># of the file is *not* the column names, you need to specify what the column</span></span>
-<span id="cb60-3"><a href="rprog2.html#cb60-3"></a><span class="co"># names should be with the `col_names` parameter. </span></span>
-<span id="cb60-4"><a href="rprog2.html#cb60-4"></a>ca_measles &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="dt">file =</span> <span class="st">&quot;data/measles_data/02-09-2015.txt&quot;</span>,</span>
-<span id="cb60-5"><a href="rprog2.html#cb60-5"></a>                       <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span>, <span class="st">&quot;count&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="rprog2.html#cb59-1"></a><span class="co"># Use `read_tsv` to read this file. Because the first line</span></span>
+<span id="cb59-2"><a href="rprog2.html#cb59-2"></a><span class="co"># of the file is *not* the column names, you need to specify what the column</span></span>
+<span id="cb59-3"><a href="rprog2.html#cb59-3"></a><span class="co"># names should be with the `col_names` parameter. </span></span>
+<span id="cb59-4"><a href="rprog2.html#cb59-4"></a>ca_measles &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="dt">file =</span> <span class="st">&quot;data/measles_data/02-09-2015.txt&quot;</span>,</span>
+<span id="cb59-5"><a href="rprog2.html#cb59-5"></a>                       <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span>, <span class="st">&quot;count&quot;</span>))</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   city = col_character(),
 ##   count = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="rprog2.html#cb62-1"></a><span class="kw">head</span>(<span class="dt">x =</span> ca_measles)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="rprog2.html#cb61-1"></a><span class="kw">head</span>(<span class="dt">x =</span> ca_measles)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   city               count
 ##   &lt;chr&gt;              &lt;dbl&gt;
@@ -1517,11 +1539,11 @@ package</a>. Read the file into the R object
 ## 4 City of Pasadena       4
 ## 5 MARIN                  2
 ## 6 ORANGE                34</code></pre>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="rprog2.html#cb64-1"></a><span class="co"># You&#39;ll need the `readxl` package to read in the Excel file. Load that. </span></span>
-<span id="cb64-2"><a href="rprog2.html#cb64-2"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;readxl&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="rprog2.html#cb65-1"></a><span class="co"># Use the `read_excel` function to read in the file. </span></span>
-<span id="cb65-2"><a href="rprog2.html#cb65-2"></a>icd10 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="dt">path =</span> <span class="st">&quot;data/icd-10.xls&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="rprog2.html#cb66-1"></a><span class="kw">head</span>(<span class="dt">x =</span> icd10)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="rprog2.html#cb63-1"></a><span class="co"># You&#39;ll need the `readxl` package to read in the Excel file. Load that. </span></span>
+<span id="cb63-2"><a href="rprog2.html#cb63-2"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;readxl&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="rprog2.html#cb64-1"></a><span class="co"># Use the `read_excel` function to read in the file. </span></span>
+<span id="cb64-2"><a href="rprog2.html#cb64-2"></a>icd10 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="dt">path =</span> <span class="st">&quot;data/icd-10.xls&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="rprog2.html#cb65-1"></a><span class="kw">head</span>(<span class="dt">x =</span> icd10)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   Code    `ICD Title`                                       
 ##   &lt;chr&gt;   &lt;chr&gt;                                             
@@ -1531,12 +1553,12 @@ package</a>. Read the file into the R object
 ## 4 A00.0   Cholera due to Vibrio cholerae 01, biovar cholerae
 ## 5 A00.1   Cholera due to Vibrio cholerae 01, biovar eltor   
 ## 6 A00.9   Cholera, unspecified</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="rprog2.html#cb68-1"></a><span class="co"># You&#39;ll need the `haven` function to read in the SAS file. Load that.</span></span>
-<span id="cb68-2"><a href="rprog2.html#cb68-2"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;haven&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="rprog2.html#cb69-1"></a><span class="co"># Use the `read_sas` function to read in this file.</span></span>
-<span id="cb69-2"><a href="rprog2.html#cb69-2"></a>icu &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="dt">data_file =</span> <span class="st">&quot;data/icu.sas7bdat&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="rprog2.html#cb70-1"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;dplyr&quot;</span>)</span>
-<span id="cb70-2"><a href="rprog2.html#cb70-2"></a><span class="kw">slice</span>(<span class="dt">.data =</span> <span class="kw">select</span>(<span class="dt">.data =</span> icu, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>), <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="rprog2.html#cb67-1"></a><span class="co"># You&#39;ll need the `haven` function to read in the SAS file. Load that.</span></span>
+<span id="cb67-2"><a href="rprog2.html#cb67-2"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;haven&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="rprog2.html#cb68-1"></a><span class="co"># Use the `read_sas` function to read in this file.</span></span>
+<span id="cb68-2"><a href="rprog2.html#cb68-2"></a>icu &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="dt">data_file =</span> <span class="st">&quot;data/icu.sas7bdat&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="rprog2.html#cb69-1"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb69-2"><a href="rprog2.html#cb69-2"></a><span class="kw">slice</span>(<span class="dt">.data =</span> <span class="kw">select</span>(<span class="dt">.data =</span> icu, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>), <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 5
 ##      ID   STA   AGE GENDER  RACE
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
@@ -1560,12 +1582,12 @@ this part in R.) Keep the “measles” data in its own subdirectory (so, the
 “data” subdirectory of your project will have its own “measles” subdirectory,
 which will have those files).</p>
 <p>Check that you are, in fact, in the working directory you think you’re in. Run:</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="rprog2.html#cb72-1"></a><span class="kw">getwd</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="rprog2.html#cb71-1"></a><span class="kw">getwd</span>()</span></code></pre></div>
 <p>Does it agree with the R project name in the top right hand corner of your R
 Studio window?</p>
 <p>Now, use the <code>list.files</code> function to print out which files or subdirectories
 you have in your current working directory:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="rprog2.html#cb73-1"></a><span class="kw">list.files</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="rprog2.html#cb72-1"></a><span class="kw">list.files</span>()</span></code></pre></div>
 <p>Try the following tasks:</p>
 <ul>
 <li>Read in the ebola data in <code>country_timeseries.csv</code> from your current working
@@ -1592,28 +1614,28 @@ depending on the starting working directory?</li>
 <p>Read in the Ebola data in <code>country_timeseries.csv</code> from your current working
 directory. This will require you to use a relative filename to direct R to how
 to find that file in the “data” subdirectory of your current working directory.</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="rprog2.html#cb74-1"></a>ebola &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="rprog2.html#cb73-1"></a>ebola &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>)</span></code></pre></div>
 <p>How many rows and columns does it have? What are the names of the columns?</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="rprog2.html#cb75-1"></a><span class="kw">dim</span>(<span class="dt">x =</span> ebola)    <span class="co"># Get the dimensions of the data (`nrow` and `ncol` would also work)</span></span>
-<span id="cb75-2"><a href="rprog2.html#cb75-2"></a><span class="kw">colnames</span>(<span class="dt">x =</span> ebola) <span class="co"># Get the column names (you can also just print the object: `ebola`)</span></span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="rprog2.html#cb74-1"></a><span class="kw">dim</span>(<span class="dt">x =</span> ebola)    <span class="co"># Get the dimensions of the data (`nrow` and `ncol` would also work)</span></span>
+<span id="cb74-2"><a href="rprog2.html#cb74-2"></a><span class="kw">colnames</span>(<span class="dt">x =</span> ebola) <span class="co"># Get the column names (you can also just print the object: `ebola`)</span></span></code></pre></div>
 <p>While staying in the same working directory, used <code>list.files()</code> to print the
 names of the available files in the “data” subdirectory by using the <code>path</code>
 argument. How about in the “R” subdirectory (if you have one)?</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="rprog2.html#cb76-1"></a><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;data&quot;</span>)</span>
-<span id="cb76-2"><a href="rprog2.html#cb76-2"></a><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="rprog2.html#cb75-1"></a><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;data&quot;</span>)</span>
+<span id="cb75-2"><a href="rprog2.html#cb75-2"></a><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;R&quot;</span>)</span></code></pre></div>
 <p>Try to list the files in your “data” subdirectory using:
 + A relative pathname
 + An absolute pathname</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="rprog2.html#cb77-1"></a><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;data&quot;</span>) <span class="co"># This is using a relative pathname</span></span>
-<span id="cb77-2"><a href="rprog2.html#cb77-2"></a><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;/Users/brookeanderson/Documents/r_course_2018/data&quot;</span>) <span class="co"># Absolute pathname</span></span>
-<span id="cb77-3"><a href="rprog2.html#cb77-3"></a>     <span class="co"># (Yours will be different and will depend on how your computer file</span></span>
-<span id="cb77-4"><a href="rprog2.html#cb77-4"></a>     <span class="co"># structure is set up.)</span></span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="rprog2.html#cb76-1"></a><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;data&quot;</span>) <span class="co"># This is using a relative pathname</span></span>
+<span id="cb76-2"><a href="rprog2.html#cb76-2"></a><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;/Users/brookeanderson/Documents/r_course_2018/data&quot;</span>) <span class="co"># Absolute pathname</span></span>
+<span id="cb76-3"><a href="rprog2.html#cb76-3"></a>     <span class="co"># (Yours will be different and will depend on how your computer file</span></span>
+<span id="cb76-4"><a href="rprog2.html#cb76-4"></a>     <span class="co"># structure is set up.)</span></span></code></pre></div>
 <p>Now use a relative pathname along with <code>list.files()</code> to list all the files in
 the “measles_data” subdirectory.</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="rprog2.html#cb78-1"></a><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;data/measles_data&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="rprog2.html#cb77-1"></a><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;data/measles_data&quot;</span>)</span></code></pre></div>
 <p>Then try to read in the Ebola data using the appropriate <code>readr</code> function and a
 relative pathname</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="rprog2.html#cb79-1"></a>ebola &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="rprog2.html#cb78-1"></a>ebola &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>)</span></code></pre></div>
 <p>If you have extra time:</p>
 <ul>
 <li>Find out some more about this Ebola dataset by checking out <a href="https://github.com/cmrivers/ebola">Caitlin Rivers’
@@ -1638,29 +1660,29 @@ add comments to each line of code describing what the code is doing. Use the
 helpfiles for functions as needed to figure out functions we haven’t covered
 yet.</li>
 </ul>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="rprog2.html#cb80-1"></a><span class="co"># Copy this code to an R script and add comments describing what each line is doing</span></span>
-<span id="cb80-2"><a href="rprog2.html#cb80-2"></a><span class="co"># Install any packages that the code loads but that you don&#39;t have.</span></span>
-<span id="cb80-3"><a href="rprog2.html#cb80-3"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;haven&quot;</span>)</span>
-<span id="cb80-4"><a href="rprog2.html#cb80-4"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;forcats&quot;</span>)</span>
-<span id="cb80-5"><a href="rprog2.html#cb80-5"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;stringr&quot;</span>)</span>
-<span id="cb80-6"><a href="rprog2.html#cb80-6"></a></span>
-<span id="cb80-7"><a href="rprog2.html#cb80-7"></a>icu &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="dt">data_file =</span> <span class="st">&quot;data/icu.sas7bdat&quot;</span>)</span>
-<span id="cb80-8"><a href="rprog2.html#cb80-8"></a></span>
-<span id="cb80-9"><a href="rprog2.html#cb80-9"></a>icu &lt;-<span class="st"> </span><span class="kw">select</span>(<span class="dt">.data =</span> icu, ID, AGE, GENDER)</span>
-<span id="cb80-10"><a href="rprog2.html#cb80-10"></a></span>
-<span id="cb80-11"><a href="rprog2.html#cb80-11"></a>icu &lt;-<span class="st"> </span><span class="kw">rename</span>(<span class="dt">.data =</span> icu, </span>
-<span id="cb80-12"><a href="rprog2.html#cb80-12"></a>              <span class="dt">id =</span> ID,</span>
-<span id="cb80-13"><a href="rprog2.html#cb80-13"></a>              <span class="dt">age =</span> AGE,</span>
-<span id="cb80-14"><a href="rprog2.html#cb80-14"></a>              <span class="dt">gender =</span> GENDER)</span>
-<span id="cb80-15"><a href="rprog2.html#cb80-15"></a></span>
-<span id="cb80-16"><a href="rprog2.html#cb80-16"></a>icu &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> icu,</span>
-<span id="cb80-17"><a href="rprog2.html#cb80-17"></a>              <span class="dt">gender =</span> <span class="kw">as_factor</span>(<span class="dt">x =</span> gender),</span>
-<span id="cb80-18"><a href="rprog2.html#cb80-18"></a>              <span class="dt">gender =</span> <span class="kw">fct_recode</span>(<span class="dt">.f =</span> gender,</span>
-<span id="cb80-19"><a href="rprog2.html#cb80-19"></a>                                  <span class="dt">Male =</span> <span class="st">&quot;0&quot;</span>,</span>
-<span id="cb80-20"><a href="rprog2.html#cb80-20"></a>                                  <span class="dt">Female =</span> <span class="st">&quot;1&quot;</span>),</span>
-<span id="cb80-21"><a href="rprog2.html#cb80-21"></a>              <span class="dt">id =</span> <span class="kw">str_c</span>(id)) </span>
-<span id="cb80-22"><a href="rprog2.html#cb80-22"></a></span>
-<span id="cb80-23"><a href="rprog2.html#cb80-23"></a>icu</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="rprog2.html#cb79-1"></a><span class="co"># Copy this code to an R script and add comments describing what each line is doing</span></span>
+<span id="cb79-2"><a href="rprog2.html#cb79-2"></a><span class="co"># Install any packages that the code loads but that you don&#39;t have.</span></span>
+<span id="cb79-3"><a href="rprog2.html#cb79-3"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;haven&quot;</span>)</span>
+<span id="cb79-4"><a href="rprog2.html#cb79-4"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;forcats&quot;</span>)</span>
+<span id="cb79-5"><a href="rprog2.html#cb79-5"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;stringr&quot;</span>)</span>
+<span id="cb79-6"><a href="rprog2.html#cb79-6"></a></span>
+<span id="cb79-7"><a href="rprog2.html#cb79-7"></a>icu &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="dt">data_file =</span> <span class="st">&quot;data/icu.sas7bdat&quot;</span>)</span>
+<span id="cb79-8"><a href="rprog2.html#cb79-8"></a></span>
+<span id="cb79-9"><a href="rprog2.html#cb79-9"></a>icu &lt;-<span class="st"> </span><span class="kw">select</span>(<span class="dt">.data =</span> icu, ID, AGE, GENDER)</span>
+<span id="cb79-10"><a href="rprog2.html#cb79-10"></a></span>
+<span id="cb79-11"><a href="rprog2.html#cb79-11"></a>icu &lt;-<span class="st"> </span><span class="kw">rename</span>(<span class="dt">.data =</span> icu, </span>
+<span id="cb79-12"><a href="rprog2.html#cb79-12"></a>              <span class="dt">id =</span> ID,</span>
+<span id="cb79-13"><a href="rprog2.html#cb79-13"></a>              <span class="dt">age =</span> AGE,</span>
+<span id="cb79-14"><a href="rprog2.html#cb79-14"></a>              <span class="dt">gender =</span> GENDER)</span>
+<span id="cb79-15"><a href="rprog2.html#cb79-15"></a></span>
+<span id="cb79-16"><a href="rprog2.html#cb79-16"></a>icu &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> icu,</span>
+<span id="cb79-17"><a href="rprog2.html#cb79-17"></a>              <span class="dt">gender =</span> <span class="kw">as_factor</span>(<span class="dt">x =</span> gender),</span>
+<span id="cb79-18"><a href="rprog2.html#cb79-18"></a>              <span class="dt">gender =</span> <span class="kw">fct_recode</span>(<span class="dt">.f =</span> gender,</span>
+<span id="cb79-19"><a href="rprog2.html#cb79-19"></a>                                  <span class="dt">Male =</span> <span class="st">&quot;0&quot;</span>,</span>
+<span id="cb79-20"><a href="rprog2.html#cb79-20"></a>                                  <span class="dt">Female =</span> <span class="st">&quot;1&quot;</span>),</span>
+<span id="cb79-21"><a href="rprog2.html#cb79-21"></a>              <span class="dt">id =</span> <span class="kw">str_c</span>(id)) </span>
+<span id="cb79-22"><a href="rprog2.html#cb79-22"></a></span>
+<span id="cb79-23"><a href="rprog2.html#cb79-23"></a>icu</span></code></pre></div>
 <ul>
 <li>Following previous parts of the in-course exercise, you have an R object
 called <code>ebola</code> (if you need to, use some code from earlier in this in-course
@@ -1673,13 +1695,13 @@ observations?</li>
 observation (i.e., death counts divided by case counts).</li>
 </ul>
 <p>Example R code:</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="rprog2.html#cb81-1"></a><span class="co"># Load the dplyr package</span></span>
-<span id="cb81-2"><a href="rprog2.html#cb81-2"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;dplyr&quot;</span>)</span>
-<span id="cb81-3"><a href="rprog2.html#cb81-3"></a></span>
-<span id="cb81-4"><a href="rprog2.html#cb81-4"></a><span class="co">## Create a subset with just the Liberia columns and Date</span></span>
-<span id="cb81-5"><a href="rprog2.html#cb81-5"></a>ebola_liberia &lt;-<span class="st"> </span><span class="kw">select</span>(<span class="dt">.data =</span> ebola, </span>
-<span id="cb81-6"><a href="rprog2.html#cb81-6"></a>                        Date, Cases_Liberia, Deaths_Liberia)</span>
-<span id="cb81-7"><a href="rprog2.html#cb81-7"></a><span class="kw">head</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="rprog2.html#cb80-1"></a><span class="co"># Load the dplyr package</span></span>
+<span id="cb80-2"><a href="rprog2.html#cb80-2"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb80-3"><a href="rprog2.html#cb80-3"></a></span>
+<span id="cb80-4"><a href="rprog2.html#cb80-4"></a><span class="co">## Create a subset with just the Liberia columns and Date</span></span>
+<span id="cb80-5"><a href="rprog2.html#cb80-5"></a>ebola_liberia &lt;-<span class="st"> </span><span class="kw">select</span>(<span class="dt">.data =</span> ebola, </span>
+<span id="cb80-6"><a href="rprog2.html#cb80-6"></a>                        Date, Cases_Liberia, Deaths_Liberia)</span>
+<span id="cb80-7"><a href="rprog2.html#cb80-7"></a><span class="kw">head</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   Date       Cases_Liberia Deaths_Liberia
 ##   &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt;
@@ -1689,17 +1711,17 @@ observation (i.e., death counts divided by case counts).</li>
 ## 4 1/2/2015            8157           3496
 ## 5 12/31/2014          8115           3471
 ## 6 12/28/2014          8018           3423</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="rprog2.html#cb83-1"></a><span class="co">## How many colums and rows does the whole dataset have (could also use `dim`)?</span></span>
-<span id="cb83-2"><a href="rprog2.html#cb83-2"></a><span class="kw">ncol</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="rprog2.html#cb82-1"></a><span class="co">## How many colums and rows does the whole dataset have (could also use `dim`)?</span></span>
+<span id="cb82-2"><a href="rprog2.html#cb82-2"></a><span class="kw">ncol</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="rprog2.html#cb85-1"></a><span class="kw">nrow</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="rprog2.html#cb84-1"></a><span class="kw">nrow</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
 <pre><code>## [1] 122</code></pre>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="rprog2.html#cb87-1"></a><span class="co">## Rename the columns</span></span>
-<span id="cb87-2"><a href="rprog2.html#cb87-2"></a>ebola_liberia &lt;-<span class="st"> </span><span class="kw">rename</span>(<span class="dt">.data =</span> ebola_liberia,</span>
-<span id="cb87-3"><a href="rprog2.html#cb87-3"></a>                        <span class="dt">date =</span> Date,</span>
-<span id="cb87-4"><a href="rprog2.html#cb87-4"></a>                        <span class="dt">cases =</span> Cases_Liberia,</span>
-<span id="cb87-5"><a href="rprog2.html#cb87-5"></a>                        <span class="dt">deaths =</span> Deaths_Liberia)</span>
-<span id="cb87-6"><a href="rprog2.html#cb87-6"></a><span class="kw">head</span>(ebola_liberia)</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="rprog2.html#cb86-1"></a><span class="co">## Rename the columns</span></span>
+<span id="cb86-2"><a href="rprog2.html#cb86-2"></a>ebola_liberia &lt;-<span class="st"> </span><span class="kw">rename</span>(<span class="dt">.data =</span> ebola_liberia,</span>
+<span id="cb86-3"><a href="rprog2.html#cb86-3"></a>                        <span class="dt">date =</span> Date,</span>
+<span id="cb86-4"><a href="rprog2.html#cb86-4"></a>                        <span class="dt">cases =</span> Cases_Liberia,</span>
+<span id="cb86-5"><a href="rprog2.html#cb86-5"></a>                        <span class="dt">deaths =</span> Deaths_Liberia)</span>
+<span id="cb86-6"><a href="rprog2.html#cb86-6"></a><span class="kw">head</span>(ebola_liberia)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   date       cases deaths
 ##   &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;
@@ -1709,10 +1731,10 @@ observation (i.e., death counts divided by case counts).</li>
 ## 4 1/2/2015    8157   3496
 ## 5 12/31/2014  8115   3471
 ## 6 12/28/2014  8018   3423</code></pre>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="rprog2.html#cb89-1"></a><span class="co">## Add a `ratio` column</span></span>
-<span id="cb89-2"><a href="rprog2.html#cb89-2"></a>ebola_liberia &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> ebola_liberia, </span>
-<span id="cb89-3"><a href="rprog2.html#cb89-3"></a>                        <span class="dt">ratio =</span> deaths <span class="op">/</span><span class="st"> </span>cases)</span>
-<span id="cb89-4"><a href="rprog2.html#cb89-4"></a><span class="kw">head</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="rprog2.html#cb88-1"></a><span class="co">## Add a `ratio` column</span></span>
+<span id="cb88-2"><a href="rprog2.html#cb88-2"></a>ebola_liberia &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> ebola_liberia, </span>
+<span id="cb88-3"><a href="rprog2.html#cb88-3"></a>                        <span class="dt">ratio =</span> deaths <span class="op">/</span><span class="st"> </span>cases)</span>
+<span id="cb88-4"><a href="rprog2.html#cb88-4"></a><span class="kw">head</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   date       cases deaths  ratio
 ##   &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
@@ -1733,10 +1755,10 @@ with the highest death counts in Liberia. What date in this dataset had the
 most deaths?</li>
 </ul>
 <p>Example R code:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="rprog2.html#cb91-1"></a><span class="co">## Filter out the rows that are missing death counts for Liberia</span></span>
-<span id="cb91-2"><a href="rprog2.html#cb91-2"></a>ebola_liberia &lt;-<span class="st"> </span><span class="kw">filter</span>(<span class="dt">.data =</span> ebola_liberia, </span>
-<span id="cb91-3"><a href="rprog2.html#cb91-3"></a>                        <span class="op">!</span><span class="kw">is.na</span>(deaths))</span>
-<span id="cb91-4"><a href="rprog2.html#cb91-4"></a><span class="kw">head</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="rprog2.html#cb90-1"></a><span class="co">## Filter out the rows that are missing death counts for Liberia</span></span>
+<span id="cb90-2"><a href="rprog2.html#cb90-2"></a>ebola_liberia &lt;-<span class="st"> </span><span class="kw">filter</span>(<span class="dt">.data =</span> ebola_liberia, </span>
+<span id="cb90-3"><a href="rprog2.html#cb90-3"></a>                        <span class="op">!</span><span class="kw">is.na</span>(deaths))</span>
+<span id="cb90-4"><a href="rprog2.html#cb90-4"></a><span class="kw">head</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   date       cases deaths ratio
 ##   &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
@@ -1746,14 +1768,14 @@ most deaths?</li>
 ## 4 12/28/2014  8018   3423 0.427
 ## 5 12/24/2014  7977   3413 0.428
 ## 6 12/20/2014  7862   3384 0.430</code></pre>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="rprog2.html#cb93-1"></a><span class="kw">nrow</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="rprog2.html#cb92-1"></a><span class="kw">nrow</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
 <pre><code>## [1] 81</code></pre>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="rprog2.html#cb95-1"></a><span class="co">## Create an object with just the top five observations in terms of death counts</span></span>
-<span id="cb95-2"><a href="rprog2.html#cb95-2"></a>first_five &lt;-<span class="st"> </span><span class="kw">arrange</span>(<span class="dt">.data =</span> ebola_liberia, </span>
-<span id="cb95-3"><a href="rprog2.html#cb95-3"></a>                      <span class="kw">desc</span>(deaths)) <span class="co"># First, rearrange the rows by deaths</span></span>
-<span id="cb95-4"><a href="rprog2.html#cb95-4"></a>first_five &lt;-<span class="st"> </span><span class="kw">slice</span>(<span class="dt">.data =</span> first_five, </span>
-<span id="cb95-5"><a href="rprog2.html#cb95-5"></a>                    <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="co"># Limit the dataframe to the first five rows</span></span>
-<span id="cb95-6"><a href="rprog2.html#cb95-6"></a>first_five <span class="co"># Two days tied for the highest deaths counts (Jan. 2 and 3, 2015).</span></span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="rprog2.html#cb94-1"></a><span class="co">## Create an object with just the top five observations in terms of death counts</span></span>
+<span id="cb94-2"><a href="rprog2.html#cb94-2"></a>first_five &lt;-<span class="st"> </span><span class="kw">arrange</span>(<span class="dt">.data =</span> ebola_liberia, </span>
+<span id="cb94-3"><a href="rprog2.html#cb94-3"></a>                      <span class="kw">desc</span>(deaths)) <span class="co"># First, rearrange the rows by deaths</span></span>
+<span id="cb94-4"><a href="rprog2.html#cb94-4"></a>first_five &lt;-<span class="st"> </span><span class="kw">slice</span>(<span class="dt">.data =</span> first_five, </span>
+<span id="cb94-5"><a href="rprog2.html#cb94-5"></a>                    <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="co"># Limit the dataframe to the first five rows</span></span>
+<span id="cb94-6"><a href="rprog2.html#cb94-6"></a>first_five <span class="co"># Two days tied for the highest deaths counts (Jan. 2 and 3, 2015).</span></span></code></pre></div>
 <pre><code>## # A tibble: 5 x 4
 ##   date       cases deaths ratio
 ##   &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
@@ -1770,22 +1792,22 @@ most deaths?</li>
 <li>Copy the following “piped” code into an R script. Figure out what each line
 does, and add comments to each line of code describing what the code is doing.</li>
 </ul>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="rprog2.html#cb97-1"></a><span class="co"># Copy this code to an R script and add comments describing what each line is doing</span></span>
-<span id="cb97-2"><a href="rprog2.html#cb97-2"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;haven&quot;</span>)</span>
-<span id="cb97-3"><a href="rprog2.html#cb97-3"></a>icu &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="dt">data_file =</span> <span class="st">&quot;data/icu.sas7bdat&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb97-4"><a href="rprog2.html#cb97-4"></a><span class="st">  </span><span class="kw">select</span>(ID, AGE, GENDER) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb97-5"><a href="rprog2.html#cb97-5"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">id =</span> ID,</span>
-<span id="cb97-6"><a href="rprog2.html#cb97-6"></a>         <span class="dt">age =</span> AGE, </span>
-<span id="cb97-7"><a href="rprog2.html#cb97-7"></a>         <span class="dt">gender =</span> GENDER) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb97-8"><a href="rprog2.html#cb97-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gender =</span> <span class="kw">as_factor</span>(<span class="dt">x =</span> gender),</span>
-<span id="cb97-9"><a href="rprog2.html#cb97-9"></a>         <span class="dt">gender =</span> <span class="kw">fct_recode</span>(<span class="dt">.f =</span> gender, </span>
-<span id="cb97-10"><a href="rprog2.html#cb97-10"></a>                             <span class="dt">Male =</span> <span class="st">&quot;0&quot;</span>,</span>
-<span id="cb97-11"><a href="rprog2.html#cb97-11"></a>                             <span class="dt">Female =</span> <span class="st">&quot;1&quot;</span>),</span>
-<span id="cb97-12"><a href="rprog2.html#cb97-12"></a>         <span class="dt">id =</span> <span class="kw">str_c</span>(id)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb97-13"><a href="rprog2.html#cb97-13"></a><span class="st">  </span><span class="kw">arrange</span>(age) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb97-14"><a href="rprog2.html#cb97-14"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
-<span id="cb97-15"><a href="rprog2.html#cb97-15"></a></span>
-<span id="cb97-16"><a href="rprog2.html#cb97-16"></a>icu</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="rprog2.html#cb96-1"></a><span class="co"># Copy this code to an R script and add comments describing what each line is doing</span></span>
+<span id="cb96-2"><a href="rprog2.html#cb96-2"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;haven&quot;</span>)</span>
+<span id="cb96-3"><a href="rprog2.html#cb96-3"></a>icu &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="dt">data_file =</span> <span class="st">&quot;data/icu.sas7bdat&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb96-4"><a href="rprog2.html#cb96-4"></a><span class="st">  </span><span class="kw">select</span>(ID, AGE, GENDER) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb96-5"><a href="rprog2.html#cb96-5"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">id =</span> ID,</span>
+<span id="cb96-6"><a href="rprog2.html#cb96-6"></a>         <span class="dt">age =</span> AGE, </span>
+<span id="cb96-7"><a href="rprog2.html#cb96-7"></a>         <span class="dt">gender =</span> GENDER) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb96-8"><a href="rprog2.html#cb96-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gender =</span> <span class="kw">as_factor</span>(<span class="dt">x =</span> gender),</span>
+<span id="cb96-9"><a href="rprog2.html#cb96-9"></a>         <span class="dt">gender =</span> <span class="kw">fct_recode</span>(<span class="dt">.f =</span> gender, </span>
+<span id="cb96-10"><a href="rprog2.html#cb96-10"></a>                             <span class="dt">Male =</span> <span class="st">&quot;0&quot;</span>,</span>
+<span id="cb96-11"><a href="rprog2.html#cb96-11"></a>                             <span class="dt">Female =</span> <span class="st">&quot;1&quot;</span>),</span>
+<span id="cb96-12"><a href="rprog2.html#cb96-12"></a>         <span class="dt">id =</span> <span class="kw">str_c</span>(id)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb96-13"><a href="rprog2.html#cb96-13"></a><span class="st">  </span><span class="kw">arrange</span>(age) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb96-14"><a href="rprog2.html#cb96-14"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
+<span id="cb96-15"><a href="rprog2.html#cb96-15"></a></span>
+<span id="cb96-16"><a href="rprog2.html#cb96-16"></a>icu</span></code></pre></div>
 <ul>
 <li>In previous sections of the in-course exercise, you have created code to read
 in and clean the Ebola dataset to create <code>ebola_liberia</code>. This included the
@@ -1796,15 +1818,15 @@ Re-write this code to create and clean <code>ebola_liberia</code> as “piped”
 from reading in the raw data.</li>
 </ul>
 <p>Example R code:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="rprog2.html#cb98-1"></a>ebola_liberia &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb98-2"><a href="rprog2.html#cb98-2"></a><span class="st">  </span><span class="kw">select</span>(Date, Cases_Liberia, Deaths_Liberia) <span class="op">%&gt;%</span><span class="st">  </span></span>
-<span id="cb98-3"><a href="rprog2.html#cb98-3"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">date =</span> Date, </span>
-<span id="cb98-4"><a href="rprog2.html#cb98-4"></a>         <span class="dt">cases =</span> Cases_Liberia, </span>
-<span id="cb98-5"><a href="rprog2.html#cb98-5"></a>         <span class="dt">deaths =</span> Deaths_Liberia) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb98-6"><a href="rprog2.html#cb98-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ratio =</span> deaths <span class="op">/</span><span class="st"> </span>cases) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb98-7"><a href="rprog2.html#cb98-7"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(<span class="dt">x =</span> cases))</span>
-<span id="cb98-8"><a href="rprog2.html#cb98-8"></a></span>
-<span id="cb98-9"><a href="rprog2.html#cb98-9"></a><span class="kw">head</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="rprog2.html#cb97-1"></a>ebola_liberia &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb97-2"><a href="rprog2.html#cb97-2"></a><span class="st">  </span><span class="kw">select</span>(Date, Cases_Liberia, Deaths_Liberia) <span class="op">%&gt;%</span><span class="st">  </span></span>
+<span id="cb97-3"><a href="rprog2.html#cb97-3"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">date =</span> Date, </span>
+<span id="cb97-4"><a href="rprog2.html#cb97-4"></a>         <span class="dt">cases =</span> Cases_Liberia, </span>
+<span id="cb97-5"><a href="rprog2.html#cb97-5"></a>         <span class="dt">deaths =</span> Deaths_Liberia) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb97-6"><a href="rprog2.html#cb97-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ratio =</span> deaths <span class="op">/</span><span class="st"> </span>cases) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb97-7"><a href="rprog2.html#cb97-7"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(<span class="dt">x =</span> cases))</span>
+<span id="cb97-8"><a href="rprog2.html#cb97-8"></a></span>
+<span id="cb97-9"><a href="rprog2.html#cb97-9"></a><span class="kw">head</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   date       cases deaths ratio
 ##   &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;

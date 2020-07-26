@@ -1033,26 +1033,21 @@ changes in real-time.
 
 ## Markdowns
 
-A ***markdown*** is a file format designed for the internet. Markdowns allow you to write plain text into a file, format that text, and embed code/images/data into the file  (everything you are reading in this coursebook was written and created with markdown files).  Markdown files are versatile because:  
+A ***markdown*** is a file format designed for the internet. Markdown files allow you to write plain text into a file, format that text, and embed code/images/data into the file  (everything you are reading in this coursebook was written and created with markdown files).  Markdown files are versatile because:  
 
   * Markdowns can be rendered into html, pdf, and doc files easily. Thus, markdown files can be turned into websites, email messages, reports, blogs, textbooks, and other forms of media without worry;
   * Markdowns are independent of the operating system (Mac, PC, Linux, Android, and iOS devices can read them);
   * Markdowns can be opened by almost any application (the file format is non-proprietary), so you don't need to worry about having special software to read them. 
 
 ### R Markdowns
-The R Studio IDE can create ***"R Markdowns"*** (file extension .Rmd) specifically for the R programming environment. An R markdown file allows you do lots of things; we will use them to create assignments and homework reports that display R code, code outputs, and text. To use the R markdown format, you need to install the `rmarkdown` package: `install.packages("rmarkdown")`. 
+The R Studio IDE can create ***"R Markdowns"*** (file extension .Rmd) specifically for the R programming environment. An R markdown file allows you do lots of things; we will use them to create assignments and homework reports that display R code, the outputs of that code, and plain text. To use the R markdown format, you need to install the `rmarkdown` package: `install.packages("rmarkdown")`. 
 
-**Going forward, all of your homework and coding assignments will be created and submitted in the R Markdown format using either html or pdf outputs.**
+**Going forward, all of your homework and coding assignments will be created and submitted in the R Markdown format using either html or pdf outputs.  This may seem uncomfortable at first but you will get accustomed to this format quickly.**
 
-Each R markdown file contains three basic elements: header, text, and code chunks.  I will explain each of these elements below, but I recommend a visit to the [R Markdown tutorial section](https://rmarkdown.rstudio.com/lesson-1.html) on the RStudio website. A detailed guide on many of the R markdown output sytles (beyond just html and pdf files) is provided [here](https://bookdown.org/yihui/rmarkdown/).
+Each R markdown file contains three basic elements: header, text, and code chunks.  I will explain each of these elements below, but I recommend a visit to the [R Markdown  section](https://rmarkdown.rstudio.com/docs/articles/rmarkdown.html) on the RStudio website. A detailed guide on many of the R markdown output styles (beyond just html and pdf files) is provided [here](https://bookdown.org/yihui/rmarkdown/).
 
-### YAML Header
-The R Markdown "header" section is where you specify details about the file being created.  A markdown header contains **YAML** metadata, which stands for [*"YAML Ain't Markup Language"*](https://yaml.org/spec/1.2/spec.html#Introduction). The YAML (pronounced like “camel") header is essentially a list of directives (referred to as "key:value" pairs) that help application software read and interpret the file. A YAML can act simultaneously as a "configuration file", a "log file", and "translator file" - allowing one software program to read the output of another program.  An example YAML is shown below.
-
-
-```r
-knitr::include_graphics("./images/YAML_1_anno.png")
-```
+### Header
+The R Markdown "header" section is where you specify details about the file being created.  A markdown header contains **YAML** metadata, which stands for [*"YAML Ain't Markup Language"*](https://yaml.org/spec/1.2/spec.html#Introduction). The YAML (pronounced like “camel") header is essentially a list of directives (referred to as "key:value" pairs) that help application software read and interpret the file. A YAML header can act simultaneously as a "configuration file", a "log file", and "translator file" - allowing one software program to read the output of another program.  An example header with YAML metadata is shown below.
 
 <div class="figure" style="text-align: center">
 <img src="./images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file." width="500" />
@@ -1061,11 +1056,19 @@ knitr::include_graphics("./images/YAML_1_anno.png")
 The header is delineated at the top of the file by a section that begins and ends with three dashes, "---". Within the header are YAML metadata representing key:value pairs; **what are "key:value" pairs?** The **"key:"** is a directive that you want to give to the file and the **"value"** represents the level of detail or information that you want to associate with that directive. Key:value pairs provide instructions on how the file should be read, interpreted, and output. In Figure \@ref(fig:YAML-1), the keys are *"title:"*, *"author:"*, *"date:"*, and *"output:"* and the corresponding values are *"Markdowns"*, *"JV"*, *"7/23/2020"*, and *"html_document"*. You can learn more about key:value pairs in the R Markdown Style Guide for [html](https://bookdown.org/yihui/rmarkdown/html-document.html) and [pdf](https://bookdown.org/yihui/rmarkdown/pdf-document.html).
 
 <div class="rmdnote">
-<p>The YAML header is optional in an R Markdown and directives will defer to default key:value pairs if none are supplied. That said, I would encourage you to specify key directives like “author:”, “date:” and “output:” in your YAML headers.</p>
+<p>The YAML header is optional in an R Markdown and default key:value pairs will be implemented if none are supplied. That said, I would encourage you to specify key directives like “author:”, “date:” and “output:” in your YAML headers.</p>
 </div>
 
+Sometimes, you will want to provide nested formatting directives in your markdown header.  For example, you can specify the addition of a ***"table of contents"*** to your html output file that ***"floats"*** alongside the text. In that case, your YAML metadata would look like this: 
+
+<div class="figure" style="text-align: center">
+<img src="./images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents." width="497" />
+<p class="caption">(\#fig:YAML-2)Example R Markdown header with nested YAML directives to render an html file with a floating table of contents.</p>
+</div>
+An important detail to remember with nested YAML metadata is that each nested command **must be indented by 2 spaces** to be interpreted properly.
+
 ### Text
-The default space within an R markdown is a plain text editor, similar to a normal word processing file. Formatting text is more tedious in markdown files (a small price to pay given their versatility).  Some basic formatting operations are shown below.
+The default space within an R markdown is a plain text editor, similar to a normal word processing file. Formatting text is more tedious in markdown files (a small price to pay given their versatility).  Some basic formatting operations are shown below.  
 
 | **Format Desired** |    **Typeset in Markdown **   |    **Example Output**     |
 |:------------------:|:-----------------------------:|:-------------------------:|
@@ -1074,12 +1077,23 @@ The default space within an R markdown is a plain text editor, similar to a norm
 | Superscript        | superscript\^2\^              | superscript^2^            |
 | Subscript          | subscript\~2\~                | subscript~2~              |
 
+To start a new paragraph in a markdown text section, end a line with two spaces (followed by a return).  
+
+To see a more complete set of formatting options see the [R Markdown CheatSheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf).
+
 ### Code Chunks
-The code chunks are exactly what they sound like: places where you write and execute R code.
+Code chunks are the places where you write and execute R code.  A code chunk is initiated with 3 back ticks \`\`\`, followed by a set of *braces* \{\} (aka curly brackets) where you can name the chunk and specify `chunk options`.  The chunk options tell the `knitr` package (the package that renders an R markdown into an output style) how you want that chunk to run and what to do with the output. A list of chunk options can be found [here](https://yihui.org/knitr/options/).  An example markdown is shown below:
 
+<div class="figure" style="text-align: center">
+<img src="./images/markdown_anno.png" alt="Example R Markdown showing header, text, and code chunks." width="1000" />
+<p class="caption">(\#fig:markdown-1)Example R Markdown showing header, text, and code chunks.</p>
+</div>
+Once your markdown is complete, you can *render* it into an output file (e.g., html, pdf, doc, rtf) using the `knitr` package, which interprets your YAML header and "knits" it together into the desired format.  Here is the same markdown rendered into an html document using the `knit` button.
 
-
-
+<div class="figure" style="text-align: center">
+<img src="./images/markdown_render.png" alt="Example R Markdown when &quot;rendered&quot; into an html document." width="700" />
+<p class="caption">(\#fig:markdown-2)Example R Markdown when "rendered" into an html document.</p>
+</div>
 
 ## Class Exercises
 
