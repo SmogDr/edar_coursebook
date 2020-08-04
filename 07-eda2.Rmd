@@ -161,12 +161,6 @@ Those who understand internal combustion know that the number of cylinders is a 
 
 > Did you know that being a smoker is correlated with having a lighter in your pocket?  Furthermore, it can be shown that keeping a lighter in your pocket is correlated with an increased risk of developing heart disease and lung cancer.  Does this mean lighters in your pocket cause lung cancer?
 
-## Tukey Mean Difference Plot {#Tukey}
-* The Tukey mean-difference plot (also known as a Bland-Altman plot) shows **Difference** on the y-axis vs. **Mean** on the x-axis for two paired measurements.  This plot is most often used as a way to compare two instruments that measure the same thing.  The concept was introduced by the famous statistician John Tukey, and popularized in the field of clinical chemistry by Bland and Altman.    
-
-* The plot helps one examine agreement between two measurement methods as a function of scale.    
-* The plot is also useful for evaluating bias and precision (and *accuracy* if one of the instruments happens to be a "gold-standard" reference measure).  
-
 ## Exploring Multivariate Data
 With *multivariate data* we often consider more than just 2 variables of interest; however, visualizing more than 2 variables in a single plot can be challenging. There are advanced statistical approaches to exploring such data (e.g., multivariate regression, principal components, machine learning, etc.), but these techniques are beyond the scope of this course. Here, I will introduce a few graphical techniques that are useful for multivariate data exploration.  
 
@@ -175,12 +169,12 @@ One easy way to evaluate two or more variables is to create multiple plots (or f
 
 ``` {r facet-1, message=FALSE, warning=FALSE, fig.cap="Scatterplot of fuel economy vs. vehicle weight from the `mtcars` dataset."}
 
-# create a linear model
+# fit a linear model
 g1_model <- lm(mpg ~ wt, data=mtcars)
 
 #create a ggplot2 object
 g1 <- ggplot(data = mtcars, 
-             aes( x = wt, y = mpg)) + 
+             aes(x = wt, y = mpg)) + 
   geom_point() +
   geom_smooth(model = g1_model, method = "lm") + 
   ylab("Fuel Economy (mi/gal)") +
@@ -202,19 +196,17 @@ g1 + facet_grid(cols = vars(cyl),
 ```
 Interestingly, but perhaps not surprising, we can see that the vehicles with different cylinder numbers tend to have different fuel efficiencies, but even within these facets we still see a relationship between efficiency and vehicle weight.  
 
-Here is the same plot, but now faceted by rows instead of columns.
+Here are the same data in a plot that is faceted by rows instead of columns.
 ``` {r facet-3, message=FALSE, warning=FALSE, fig.cap="Scatterplots of fuel economy vs. vehicle weight by number of cylinders in the engine (data from the `mtcars` dataset)."}
 
 g1 + facet_grid(rows = vars(cyl),
                 labeller = label_both)
 ```
 
-
 ### Coloring
-We can also use color to indicate variation in data; this can be useful for introducing a third variable into things like scatterplots and time series plots. Note: when introducing a **color variable** into a plot, you must do so through an *aesthetic*, such as: `geom_point(aes(color = cyl))`
+We can also use color to indicate variation in data; this can be useful for introducing a third variable into scatterplots and time series plots. Note: when introducing a **color variable** into a plot, you must do so through an *aesthetic*, such as: `geom_point(aes(color = cyl))`
 
-In this case
-
+Let's recreate Figure \@ref(fig:facet-1) and highlight the `cyl` variable using difference colors. The addition of color provides us with the same level of insight as did the facets above.
 
 ``` {r colorplot-1, message=false, warning=FALSE, fig.cap="Vehicle fuel economy vs. weight and colored by number of engine cylinders (data from mtcars)"}
 # instruct R to treat the cyl variable as a factor with discrete levels
@@ -234,14 +226,28 @@ g3
 When using color, be aware that many people are unable to distinguish red from green or blue from yellow. Many options exist to avoid issues from color blindness (e.g., the `viridis` palette) and websites like [color-blindness.com](https://www.color-blindness.com/coblis-color-blindness-simulator/) allow you to upload image files as a test against common forms.
 ```
 
-Here is a better version of Figure \@ref(fig:colorplot-1) using colors that don't overlap with color blindness. 
+Here is an updated version of Figure \@ref(fig:colorplot-1) that avoids issues with color blindness and, better yet, differentiates the `cyl` variable with both colors and symbols.
 
 ``` {r colorplot-2, message=false, warning=FALSE, fig.cap="Vehicle fuel economy vs. weight and colored by number of engine cylinders (data from mtcars)"}
 
-g3 + scale_colour_manual(values = c("purple", "orange", "navy")) +
+#"#330099","#CC0066","#FF6633", "#0099CC", "#FF9900","#CC6633", "#33CC99",
+
+ggplot(data = mtcars, 
+             aes(x = wt, 
+                 y = mpg, 
+                 color = cyl, 
+                 shape = cyl)) + 
+  geom_point(size = 2) +
+  ylab("Fuel Economy (mi/gal)") +
+  xlab("Vehicle Weight, (x1000 lb)") +
+  scale_colour_manual(values = c("sandybrown", 
+                                 "orangered", 
+                                 "steelblue2")) +
   theme_classic()
 ```
-
+``` {block, type="rmdtip"}
+Whenever you use color to differentiate variables, use symbols, too. 
+```
 ### Contour Plots
 
 ### Time-Series Density

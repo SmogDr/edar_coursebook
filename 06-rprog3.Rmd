@@ -23,29 +23,125 @@ daily_show <- rename(.data = daily_show,
 
 This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:  
 
-- Describe how R stores the POSIXct date and time object internally
-- Convert a column to a date format using `lubridate` functions
-- Extract information from a date object (e.g., month, year, day of week) using `lubridate` functions
-- Search, organize, and visualize data that are linked to date objects
+- Define the meaning of "strings" and "date time" objects in R
 - Manipulate character strings using the `stringr` and `tidyr` packages of functions
 - Parse strings using regular expressions (regex)
+- Describe how R stores the POSIXct date and time object internally
+- Convert a column to a date format using functions from the `lubridate` package
+- Extract information from a date object (e.g., month, year, day of week) using `lubridate` functions
+- Search, organize, and visualize data that are linked to date objects
 - Define the primary characteristics of *"Tidy Data"*
-- Apply functions from the `dplyr` and `tidyr` packages to make dataframes "tidy"
+- Apply functions from the `dplyr` and `tidyr` packages to make data frames "tidy"
 
 ## Strings {#strings}
-Strings are class of character vectors
+A ***string*** is a character variable like "John", or "blue", or "John has entered his blue phase". *String variables are defined in R using quotes `" "`* Strings often show up in data analysis in one of two ways:  
+
+  1. As ***metadata***. Metadata means: "data that describe other data".  A *readme.txt* file is metadata; notes and code comments are metadata - all of these types of data usually come in the form of strings and are included *with the data your are analyzing* but not *in the data set* itself.  
+  
+  2. As ***vectorized data***.  In R programming, *"vectorized"* means: stored as a     column of data.  Examples of vectorized string variables you might find include things like: "participant names", or "survey responses to question 1", or "mode of failure".  The examples below show how strings are created in R. 
+    
+``` {r strings-1}
+# examples of vectorized string data
+names_respond <- c("Ahmed", 
+                   "Josh", 
+                   "Mateo", 
+                   "William", 
+                   "Ali", 
+                   "Wei", 
+                   "Steve-O")
+q1_responses <- c("because you told me to do it",
+                  "it seemed like the right thing to do at the time",
+                  "because I had been over-served",
+                  "I don't know, I just did it",
+                  "I got caught up in the heat of the moment",
+                  "I was given an opportunity, so I took my shot",
+                  "I plead the 5th")
+failure_mode <- c("fracture",
+                  "yielding", 
+                  "deflection", 
+                  "fatigue", 
+                  "creep")
+```
+    
+To analyze strings, you often begin by parsing each string. To parse means to examine the individual components. For example, when you read this sentence you parse out the words and then assign meaning to those words based on your memory, your understanding of grammar, and the contextual reality under which those words show up (i.e., whether you are reading an instruction manual, a text message, a novel, or a warrant for your arrest). Strings can be challenging to analyze because computers are built on logical operations and mathematics; strings are neither of those. Computers have fantastic memory, are OK at grammar, and are comically poor at contextualization. Taken together, this means that strings can be challenging (but not impossible) to analyze using computers. 
+
+``` {block, type="rmdnote"}
+Are you active on social media platforms like Instagram or Twitter?  You can bet that a computer program has downloaded and parsed all of your posts, each one as a string. You can learn a lot about a person (and their buying habits) from what they post online!
+```
+
+In this chapter, we will introduce a few simple string functions from `{base}` R and the `stringr` package. We will also introduce the concept of **regular expressions** as a means to perform more advanced string manipulation.
 
 ### String detect & match
+One of the simplest string operations is to search whether a string contains a pattern of interest. The `stringr` package (part of the [Tidyverse](https://stringr.tidyverse.org/)) was developed to make it easier for you to work with strings. Most of the functions in `stringr` begin with `str_` and end with a specific function name. A full list of functions is provided [here](https://stringr.tidyverse.org/reference/index.html). Some examples:  
 
+  **`str_detect()`** returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the `string` to be searched and the `pattern` to search for.  Let's search for the pattern "Josh" in our list of participants (`names_respond`):
+  
+``` {r string-2}
+str_detect(names_respond, "Josh")
+```
+  
+  **`str_match()`** takes the same arguments but returns a vector of the matched values (by string index).
+  
+``` {r string-3}
+str_match(names_respond, "Josh")
+```
+
+  **`str_subset()`** returns only the entries that were matched.  If we subset our short list of names to the pattern of letters "li", we get:
+  
+``` {r string-4}
+str_subset(names_respond, "li")
+```
+  
+In `{base}` R, these searches are performed with the `grep` family of functions. The term *"grep"* is an acronym for **<u>G</u>lobal <u>R</u>egular <u>E</u>xpression <u>P</u>attern** (more on *regular expressions* below).  Many of "old-school" coders use this family of functions (meaning: you will encounter them in the wild), so it's worth discussing them briefly.
+
+``` {r string-table, echo=FALSE}
+string_table <- tibble(
+  stringr_funcs = c("str_detect(x, pattern)", "str_match(x, pattern)", "str_subset(x, pattern)"),
+  base_funcs = c("grepl(pattern, x)","regexec(pattern, x) + regmatches()", "grep(pattern, x, value = TRUE)")
+)
+
+knitr::kable(string_table)
+```
 ### Regular Expressions
+Before going much farther, we should spend some time discussing ***regular expressions*** or *regex* for short. When we pass a `pattern` argument to a function like `str_detect()`, the function treats that argument like a "regex".
 
-### String split & separate
+``` {block, type="rmdnote"}
+A regular expression is a sequence of characters that define a search pattern to be implemented on a string. 
+```
+
+Regex sequences allow for pattern searching with logical and conditional relations, for example, the following "text search patterns" can be coded as regex:  
+
+  * "any letter followed by the numbers 3, 4, or 5" ...  [:alpha:][345]
+* "strings beginning with the letters 'ID' and followed by four numbers" ... ^ID[:digit:]{4}
+
+In the R programming language, regular expressions follow the POSIX 1003.2 standard (regex can have different syntax based on the underlying standard).
+
+**Regex** sequences have seemingly no end of sophistication and complexity; you could spend dozens of hours learning to use them and hundreds more learning to master them.  We will only introduce basic concepts here.  More in-depth study of regex syntax and usage can be found on [H. Wickham's R course](http://r4ds.had.co.nz/strings.html), on the `stringr` [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/strings.pdf) developed by RStudio, and 
+
+``` {r regex-1, echo=FALSE}
+table_regex <- tibble(
+  regex = c("\\\\d", "[abc]", "[a-z]", "[^abc]"),
+  matches = c("Any digit", 
+              "matches a, b, or c", 
+              "matches every character between a and z",
+              "matches anything except a, b, or c"),
+  example_code = c("\"\\\\\\\\d\"", "\"[abc]\"", "\"[a-z]\"", "\"[^abc]\"")
+)
+knitr::kable(table_regex, 
+             align = "c", 
+             col.names = c("Regex syntax","String match", "Example in R"))
+```
+
 
 ### String extract & remove
 
+### String split & separate
+
+
+
 ## Dates and Date-times
 
-To begin, we discuss how the core R code `{base}` handles dates and times, since there is a ton of code out there that utilizes these older functions. We will then quickly transition to the `lubridate` family of functions (part of the Tidyverse) because of their versatility and ease-of-use.  
+To begin, we discuss how `{base}` R code  handles dates and times, since there is a ton of code out there that utilizes these older functions. We will then quickly transition to the `lubridate` family of functions (part of the Tidyverse) because of their versatility and ease-of-use.  
 
 ### Dates and Times in base R
 
@@ -83,9 +179,9 @@ knitr::kable(date_time, col.names = NULL,
 ```
 
 ``` {block, type="rmdnote"}
-You will often see time referenced with a **"UTC"**, which stands for *"Universal Time, Coordinated"*.  UTC is preferred by programmers  because it doesn't have a timezone and it doesn't follow *Daylight Savings Time* conventions (DST is the bane of many coders).
+You will often see time referenced with a **"UTC"**, which stands for *"Universal Time, Coordinated"*.  UTC is preferred by programmers because it doesn't have a timezone and it doesn't follow *Daylight Savings Time* conventions (daylight savings is the bane of many coders).
 
-In practice, UTC is the same time as GMT (Greenwich Mean Time, pronounced "gren-itch") but with an important distinction.  GMT is one of the many [time-zones](https://wikipedia.org/wiki/List_of_tz_database_time_zones) across the planet, whereas, UTC has no time zone.
+In practice, UTC is the same time as GMT (Greenwich Mean Time, pronounced "gren-itch") but with an important distinction.  GMT is one of the many [time-zones](https://wikipedia.org/wiki/List_of_tz_database_time_zones) laid out across Earth's longitude, whereas, **UTC has no time zone**.
 ```
 
 ### Date-time classes in R

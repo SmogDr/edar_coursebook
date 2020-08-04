@@ -8,29 +8,180 @@
 
 This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:  
 
-- Describe how R stores the POSIXct date and time object internally
-- Convert a column to a date format using `lubridate` functions
-- Extract information from a date object (e.g., month, year, day of week) using `lubridate` functions
-- Search, organize, and visualize data that are linked to date objects
+- Define the meaning of "strings" and "date time" objects in R
 - Manipulate character strings using the `stringr` and `tidyr` packages of functions
 - Parse strings using regular expressions (regex)
+- Describe how R stores the POSIXct date and time object internally
+- Convert a column to a date format using functions from the `lubridate` package
+- Extract information from a date object (e.g., month, year, day of week) using `lubridate` functions
+- Search, organize, and visualize data that are linked to date objects
 - Define the primary characteristics of *"Tidy Data"*
-- Apply functions from the `dplyr` and `tidyr` packages to make dataframes "tidy"
+- Apply functions from the `dplyr` and `tidyr` packages to make data frames "tidy"
 
 ## Strings {#strings}
-Strings are class of character vectors
+A ***string*** is a character variable like "John", or "blue", or "John has entered his blue phase". *Note: strings are defined in R using quotes `" "`* Strings often show up in data analysis in one of two ways:  
+
+  1. As ***metadata***. Metadata means: "data that describe other data".  A *readme.txt* file is metadata; notes and code comments are metadata - all of these types of data usually come in the form of strings and are included *with the data your are analyzing* but not *in the data set* itself.  
+  
+  2. As ***vectorized data***.  In R programming, *"vectorized"* means: stored as a     column of data.  Examples of vectorized string variables you might find include things like: "participant names", or "survey responses to question 1", or "mode of failure".  The examples below show how strings are created in R. 
+    
+
+```r
+# examples of vectorized string data
+names_respond <- c("Ahmed", 
+                   "Josh", 
+                   "Mateo", 
+                   "William", 
+                   "Ali", 
+                   "Wei", 
+                   "Steve-O")
+q1_responses <- c("because you told me to do it",
+                  "it seemed like the right thing to do at the time",
+                  "because I had been over-served",
+                  "I don't know, I just did it",
+                  "I got caught up in the heat of the moment",
+                  "I was given an opportunity, so I took my shot",
+                  "I plead the 5th")
+failure_mode <- c("fracture",
+                  "yielding", 
+                  "deflection", 
+                  "fatigue", 
+                  "creep")
+```
+    
+To analyze strings, you often begin by parsing each string. To parse means to examine the individual components. For example, when you read this sentence you parse out the words and then assign meaning to those words based on your memory, your understanding of grammar, and the contextual reality under which those words show up (i.e., whether you are reading an instruction manual, a text message, a novel, or a warrant for your arrest). Strings can be challenging to analyze because computers are built on logical operations and mathematics; strings are neither of those. Computers have fantastic memory, are OK at grammar, and are comically poor at contextualization. Taken together, this means that strings can be challenging (but not impossible) to analyze using computers. 
+
+<div class="rmdnote">
+<p>Are you active on social media platforms like Instagram or Twitter? You can bet that a computer program has downloaded and parsed all of your posts, each one as a string. You can learn a lot about a person (and their buying habits) from what they post online!</p>
+</div>
+
+In this chapter, we will introduce a few simple string functions from `{base}` R and the `stringr` package. We will also introduce the concept of **regular expressions** as a means to perform more advanced string manipulation.
 
 ### String detect & match
+One of the simplest string operations is to search whether a string contains a pattern of interest. The `stringr` package (part of the [Tidyverse](https://stringr.tidyverse.org/)) was developed to make it easier for you to work with strings. Most of the functions in `stringr` begin with `str_` and end with a specific function name. A full list of functions is provided [here](https://stringr.tidyverse.org/reference/index.html). Some examples:  
 
+  **`str_detect`** returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the `string` to be searched and the `pattern` to search for.  If we search for the pattern "Josh" in our list of participants (`names_respond`), we get:
+  
+
+```r
+str_detect(names_respond, "Josh")
+```
+
+```
+## [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+```
+  
+  **`str_match`** takes the same arguments but returns a vector of the matched values (by string index).
+  
+
+```r
+str_match(names_respond, "Josh")
+```
+
+```
+##      [,1]  
+## [1,] NA    
+## [2,] "Josh"
+## [3,] NA    
+## [4,] NA    
+## [5,] NA    
+## [6,] NA    
+## [7,] NA
+```
+
+  **`str_subset`** returns only the entries from the vector where a match occurred.  If we subset our short list of names to the pattern of letters "li", we get:
+  
+
+```r
+str_subset(names_respond, "li")
+```
+
+```
+## [1] "William" "Ali"
+```
+  
+In `{base}` R, these searches are performed with the `grep` family of functions. The term *"grep"* is an acronym for **<u>G</u>lobal <u>R</u>egular <u>E</u>xpression <u>P</u>attern** (more on *regular expressions* below).  Many of "old-school" coders use this family of functions (meaning: you will encounter them in the wild), so it's worth discussing them briefly.
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> stringr_funcs </th>
+   <th style="text-align:left;"> base_funcs </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> str_detect(x, pattern) </td>
+   <td style="text-align:left;"> grepl(pattern, x) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> str_match(x, pattern) </td>
+   <td style="text-align:left;"> regexec(pattern, x) + regmatches() </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> str_subset(x, pattern) </td>
+   <td style="text-align:left;"> grep(pattern, x, value = TRUE) </td>
+  </tr>
+</tbody>
+</table>
 ### Regular Expressions
+Before going much farther, we should spend some time discussing ***regular expressions*** or *regex* for short. When we pass a `pattern` argument to a function like `str_detect()`, the function treats that argument like a "regex".
 
-### String split & separate
+<div class="rmdnote">
+<p>A regular expression is a sequence of characters that define a search pattern to be implemented on a string.</p>
+</div>
+
+Regex sequences allow for pattern searching with logical and conditional relations, for example, the following "text search patterns" can be coded as regex:  
+
+  * "any letter followed by the numbers 3, 4, or 5" ...  [:alpha:][345]
+* "strings beginning with the letters 'ID' and followed by four numbers" ... ^ID[:digit:]{4}
+
+In the R programming language, regular expressions follow the POSIX 1003.2 standard (regex can have different syntax based on the underlying standard).
+
+**Regex** sequences have seemingly no end of sophistication and complexity; you could spend dozens of hours learning to use them and hundreds more learning to master them.  We will only introduce basic concepts here.  More in-depth study of regex syntax and usage can be found on [H. Wickham's R course](http://r4ds.had.co.nz/strings.html), on the `stringr` [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/strings.pdf) developed by RStudio, and 
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> Regex syntax </th>
+   <th style="text-align:center;"> String match </th>
+   <th style="text-align:center;"> Example in R </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> \\d </td>
+   <td style="text-align:center;"> Any digit </td>
+   <td style="text-align:center;"> &quot;\\\\d&quot; </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> [abc] </td>
+   <td style="text-align:center;"> matches a, b, or c </td>
+   <td style="text-align:center;"> &quot;[abc]&quot; </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> [a-z] </td>
+   <td style="text-align:center;"> matches every character between a and z </td>
+   <td style="text-align:center;"> &quot;[a-z]&quot; </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> [^abc] </td>
+   <td style="text-align:center;"> matches anything except a, b, or c </td>
+   <td style="text-align:center;"> &quot;[^abc]&quot; </td>
+  </tr>
+</tbody>
+</table>
+
 
 ### String extract & remove
 
+### String split & separate
+
+
+
 ## Dates and Date-times
 
-To begin, we discuss how the core R code `{base}` handles dates and times, since there is a ton of code out there that utilizes these older functions. We will then quickly transition to the `lubridate` family of functions (part of the Tidyverse) because of their versatility and ease-of-use.  
+To begin, we discuss how `{base}` R code  handles dates and times, since there is a ton of code out there that utilizes these older functions. We will then quickly transition to the `lubridate` family of functions (part of the Tidyverse) because of their versatility and ease-of-use.  
 
 ### Dates and Times in base R
 
@@ -44,7 +195,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-07-23 17:25:08 MDT"
+## [1] "2020-08-03 17:43:24 MDT"
 ```
 As you can see, we got back the date, time, and current timezone used by my computer.  If you want to see how this time is stored in R internally, you can use `unclass()`, which returns an object value with its class attributes removed.  When we wrap `unclass()` around `Sys.time()`, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:
 
@@ -54,15 +205,15 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1595546709
+## [1] 1596498205
 ```
 
 That's a lot of seconds.  How many years is that?  
-Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] ~ 50.5944542 years.  
+Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] ~ 50.624626 years.  
 This calculation ignores leap years but you get the point...
 
 ### Date-time formats
-Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-07-23 17:25:09
+Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-08-03 17:43:24
 
 Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky.  You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:
 
@@ -82,8 +233,8 @@ Not everyone uses this exact ordering when they record dates and times, which is
 </table>
 
 <div class="rmdnote">
-<p>You will often see time referenced with a <strong>“UTC”</strong>, which stands for <em>“Universal Time, Coordinated”</em>. UTC is preferred by programmers because it doesn’t have a timezone and it doesn’t follow <em>Daylight Savings Time</em> conventions (DST is the bane of many coders).</p>
-<p>In practice, UTC is the same time as GMT (Greenwich Mean Time, pronounced “gren-itch”) but with an important distinction. GMT is one of the many <a href="https://wikipedia.org/wiki/List_of_tz_database_time_zones">time-zones</a> across the planet, whereas, UTC has no time zone.</p>
+<p>You will often see time referenced with a <strong>“UTC”</strong>, which stands for <em>“Universal Time, Coordinated”</em>. UTC is preferred by programmers because it doesn’t have a timezone and it doesn’t follow <em>Daylight Savings Time</em> conventions (daylight savings is the bane of many coders).</p>
+<p>In practice, UTC is the same time as GMT (Greenwich Mean Time, pronounced “gren-itch”) but with an important distinction. GMT is one of the many <a href="https://wikipedia.org/wiki/List_of_tz_database_time_zones">time-zones</a> laid out across Earth’s longitude, whereas, <strong>UTC has no time zone</strong>.</p>
 </div>
 
 ### Date-time classes in R
@@ -166,7 +317,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1595546710
+## [1] 1596498205
 ```
 
 
@@ -177,14 +328,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 9.58
-##  $ min   : int 25
+##  $ sec   : num 25
+##  $ min   : int 43
 ##  $ hour  : int 17
-##  $ mday  : int 23
-##  $ mon   : int 6
+##  $ mday  : int 3
+##  $ mon   : int 7
 ##  $ year  : int 120
-##  $ wday  : int 4
-##  $ yday  : int 204
+##  $ wday  : int 1
+##  $ yday  : int 215
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
