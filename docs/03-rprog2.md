@@ -248,12 +248,12 @@ There are two "tidyverse" packages, `readxl` and `haven`, that help with this.
 They allow you to read in files from the following formats:
 
 
-|File type |Function       |Package  |
-|:---------|:--------------|:--------|
-|Excel     |`read_excel()` |`readxl` |
-|SAS       |`read_sas()`   |`haven`  |
-|SPSS      |`read_spss()`  |`haven`  |
-|Stata     |`read_stata()` |`haven`  |
+File type   Function         Package  
+----------  ---------------  ---------
+Excel       `read_excel()`   `readxl` 
+SAS         `read_sas()`     `haven`  
+SPSS        `read_spss()`    `haven`  
+Stata       `read_stata()`   `haven`  
 
 ## Directories and pathnames
 
@@ -360,7 +360,7 @@ getwd()
 ```
 
 ```
-## [1] "/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook"
+## [1] "/Users/wendtke/Documents/R/edar_coursebook"
 ```
 
 This means that, for my current R session, R is working in the
@@ -455,12 +455,12 @@ relative pathname would no longer work.
 There are a few abbreviations that can be really useful for pathnames:
 
 
-|Shorthand |Meaning                                           |
-|:---------|:-------------------------------------------------|
-|`~`       |Home directory                                    |
-|`.`       |Current working directory                         |
-|`..`      |One directory up from current working directory   |
-|`../..`   |Two directories up from current working directory |
+Shorthand   Meaning                                           
+----------  --------------------------------------------------
+`~`         Home directory                                    
+`.`         Current working directory                         
+`..`        One directory up from current working directory   
+`../..`     Two directories up from current working directory 
 
 These can help you keep pathnames shorter and also help you move "up-and-over"
 to get to a file or directory that's not on the direct path below your current
@@ -664,12 +664,12 @@ some of the most common data-cleaning tasks, along with the corresponding
 `dplyr` function for each:
 
 
-|Task                       |`dplyr` function |
-|:--------------------------|:----------------|
-|Renaming columns           |`rename()`       |
-|Filtering to certain rows  |`filter()`       |
-|Selecting certain columns  |`select()`       |
-|Adding or changing columns |`mutate()`       |
+Task                         `dplyr` function 
+---------------------------  -----------------
+Renaming columns             `rename()`       
+Filtering to certain rows    `filter()`       
+Selecting certain columns    `select()`       
+Adding or changing columns   `mutate()`       
 
 In this section, I describe how to do each of these four tasks. For the
 examples in this section, I use example data listing guests to the Daily Show.
@@ -892,12 +892,12 @@ Just so you know, all of these `dplyr` functions have alternatives, either
 functions or processes, in base R:
 
 
-|`dplyr`    |Base R equivalent                   |
-|:----------|:-----------------------------------|
-|`rename()` |Reassign `colnames`                 |
-|`select()` |Square bracket indexing             |
-|`filter()` |`subset()`                          |
-|`mutate()` |Use `$` to change or create columns |
+`dplyr`      Base R equivalent                   
+-----------  ------------------------------------
+`rename()`   Reassign `colnames`                 
+`select()`   Square bracket indexing             
+`filter()`   `subset()`                          
+`mutate()`   Use `$` to change or create columns 
 
 You will see these alternatives used in older code examples.
 
@@ -1088,7 +1088,7 @@ Code chunks are the places where you write and execute R code.  A code chunk is 
 <img src="./images/markdown_anno.png" alt="Example R Markdown showing header, text, and code chunks." width="1000" />
 <p class="caption">(\#fig:markdown-1)Example R Markdown showing header, text, and code chunks.</p>
 </div>
-Once your markdown is complete, you can *render* it into an output file (e.g., html, pdf, doc, rtf) using the `knitr` package, which interprets your YAML header and "knits" it together into the desired format.  Here is the same markdown rendered into an html document using the `knit` button.
+Once your markdown is complete, you can *render* it into an output file (e.g., html, pdf, doc, rtf) using the `knitr` package, which interprets your YAML header and "knits" the markdown sections into the desired format.  Here is the same markdown rendered into an html document using the `knit` button.
 
 <div class="figure" style="text-align: center">
 <img src="./images/markdown_render.png" alt="Example R Markdown when &quot;rendered&quot; into an html document." width="700" />

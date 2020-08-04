@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Strings, Dates, and Tidying | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Strings, Dates, and Tidying | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-07-23" />
+<meta name="date" content="2020-08-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +50,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
@@ -170,11 +169,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
 <li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#class-exercises"><i class="fa fa-check"></i><b>2.7</b> Class Exercises</a></li>
-<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#homework"><i class="fa fa-check"></i><b>2.8</b> Homework</a></li>
+<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#class-exercises"><i class="fa fa-check"></i><b>2.7</b> Class Exercises</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="rprog1.html"><a href="rprog1.html#example-code"><i class="fa fa-check"></i><b>2.7.1</b> Example Code</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#homework"><i class="fa fa-check"></i><b>2.8</b> Homework</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="rprog1.html"><a href="rprog1.html#special-swirl-commands"><i class="fa fa-check"></i><b>2.8.1</b> Special <code>swirl</code> commands</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a><ul>
-<li class="chapter" data-level="3.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>3.1</b> Objectives</a></li>
+<li class="chapter" data-level="3.1" data-path="rprog2.html"><a href="rprog2.html#objectives-1"><i class="fa fa-check"></i><b>3.1</b> Objectives</a></li>
 <li class="chapter" data-level="3.2" data-path="rprog2.html"><a href="rprog2.html#overview"><i class="fa fa-check"></i><b>3.2</b> Overview</a></li>
 <li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="rprog2.html"><a href="rprog2.html#reading-local-flat-files"><i class="fa fa-check"></i><b>3.3.1</b> Reading local flat files</a></li>
@@ -201,8 +204,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7.3" data-path="rprog2.html"><a href="rprog2.html#text"><i class="fa fa-check"></i><b>3.7.3</b> Text</a></li>
 <li class="chapter" data-level="3.7.4" data-path="rprog2.html"><a href="rprog2.html#code-chunks"><i class="fa fa-check"></i><b>3.7.4</b> Code Chunks</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="rprog1.html"><a href="rprog1.html#class-exercises"><i class="fa fa-check"></i><b>3.8</b> Class Exercises</a></li>
-<li class="chapter" data-level="3.9" data-path="rprog1.html"><a href="rprog1.html#homework"><i class="fa fa-check"></i><b>3.9</b> Homework</a><ul>
+<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#class-exercises-1"><i class="fa fa-check"></i><b>3.8</b> Class Exercises</a></li>
+<li class="chapter" data-level="3.9" data-path="rprog2.html"><a href="rprog2.html#homework-1"><i class="fa fa-check"></i><b>3.9</b> Homework</a><ul>
 <li class="chapter" data-level="3.9.1" data-path="rprog2.html"><a href="rprog2.html#downloading-and-checking-out-the-example-data"><i class="fa fa-check"></i><b>3.9.1</b> Downloading and checking out the example data</a></li>
 <li class="chapter" data-level="3.9.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-different-types-of-files"><i class="fa fa-check"></i><b>3.9.2</b> Reading in different types of files</a></li>
 <li class="chapter" data-level="3.9.3" data-path="rprog2.html"><a href="rprog2.html#directory-structure-1"><i class="fa fa-check"></i><b>3.9.3</b> Directory structure</a></li>
@@ -212,7 +215,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a><ul>
-<li class="chapter" data-level="4.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
+<li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#objectives-2"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
 <li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#install-and-load-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Install and load <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#steps-to-create-a-ggplot2-object"><i class="fa fa-check"></i><b>4.3</b> Steps to create a <code>ggplot2</code> object</a></li>
 <li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#initializing-a-ggplot2-object"><i class="fa fa-check"></i><b>4.4</b> Initializing a <code>ggplot2</code> object</a></li>
@@ -224,12 +227,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.8" data-path="dataviz.html"><a href="dataviz.html#scales-useful-plot-edits"><i class="fa fa-check"></i><b>4.8</b> Scales: useful plot edits</a></li>
 <li class="chapter" data-level="4.9" data-path="dataviz.html"><a href="dataviz.html#example-plot"><i class="fa fa-check"></i><b>4.9</b> Example plot</a></li>
 <li class="chapter" data-level="4.10" data-path="dataviz.html"><a href="dataviz.html#store-and-save-ggplot2-objects"><i class="fa fa-check"></i><b>4.10</b> Store and save <code>ggplot2</code> objects</a></li>
-<li class="chapter" data-level="4.11" data-path="dataviz.html"><a href="dataviz.html#getting-help-with-ggplot2"><i class="fa fa-check"></i><b>4.11</b> Getting help with ggplot2</a></li>
-<li class="chapter" data-level="4.12" data-path="rprog1.html"><a href="rprog1.html#class-exercises"><i class="fa fa-check"></i><b>4.12</b> Class Exercises</a></li>
-<li class="chapter" data-level="4.13" data-path="rprog1.html"><a href="rprog1.html#homework"><i class="fa fa-check"></i><b>4.13</b> Homework</a></li>
+<li class="chapter" data-level="4.11" data-path="dataviz.html"><a href="dataviz.html#getting-help-with-ggplot2"><i class="fa fa-check"></i><b>4.11</b> Getting help with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="4.12" data-path="dataviz.html"><a href="dataviz.html#class-exercises-2"><i class="fa fa-check"></i><b>4.12</b> Class Exercises</a></li>
+<li class="chapter" data-level="4.13" data-path="dataviz.html"><a href="dataviz.html#homework-2"><i class="fa fa-check"></i><b>4.13</b> Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a><ul>
-<li class="chapter" data-level="5.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>5.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.1" data-path="eda1.html"><a href="eda1.html#objectives-3"><i class="fa fa-check"></i><b>5.1</b> Objectives</a></li>
 <li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univariate-data"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>5.2.1</b> Location, Dispersion, and Shape</a></li>
 </ul></li>
@@ -246,11 +249,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.7" data-path="eda1.html"><a href="eda1.html#partial-autocorrelation-plot"><i class="fa fa-check"></i><b>5.4.7</b> Partial Autocorrelation Plot</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="eda1.html"><a href="eda1.html#exploring-data"><i class="fa fa-check"></i><b>5.5</b> Exploring Data</a></li>
-<li class="chapter" data-level="5.6" data-path="rprog1.html"><a href="rprog1.html#class-exercises"><i class="fa fa-check"></i><b>5.6</b> Class Exercises</a></li>
-<li class="chapter" data-level="5.7" data-path="rprog1.html"><a href="rprog1.html#homework"><i class="fa fa-check"></i><b>5.7</b> Homework</a></li>
+<li class="chapter" data-level="5.6" data-path="eda1.html"><a href="eda1.html#class-exercises-3"><i class="fa fa-check"></i><b>5.6</b> Class Exercises</a></li>
+<li class="chapter" data-level="5.7" data-path="eda1.html"><a href="eda1.html#homework-3"><i class="fa fa-check"></i><b>5.7</b> Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a><ul>
-<li class="chapter" data-level="6.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
+<li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#objectives-4"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
 <li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="rprog3.html"><a href="rprog3.html#string-detect-match"><i class="fa fa-check"></i><b>6.2.1</b> String detect &amp; match</a></li>
 <li class="chapter" data-level="6.2.2" data-path="rprog3.html"><a href="rprog3.html#regular-expressions"><i class="fa fa-check"></i><b>6.2.2</b> Regular Expressions</a></li>
@@ -270,26 +273,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#tidy-data"><i class="fa fa-check"></i><b>6.5</b> Tidy Data</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a><ul>
-<li class="chapter" data-level="7.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>7.1</b> Objectives</a></li>
+<li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#objectives-5"><i class="fa fa-check"></i><b>7.1</b> Objectives</a></li>
 <li class="chapter" data-level="7.2" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>7.2</b> Bivariate Data</a></li>
 <li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="eda2.html"><a href="eda2.html#causality"><i class="fa fa-check"></i><b>7.3.1</b> Causality</a></li>
 <li class="chapter" data-level="7.3.2" data-path="eda2.html"><a href="eda2.html#correlation"><i class="fa fa-check"></i><b>7.3.2</b> Correlation</a></li>
 <li class="chapter" data-level="7.3.3" data-path="eda2.html"><a href="eda2.html#correlation-neq-causation"><i class="fa fa-check"></i><b>7.3.3</b> Correlation <span class="math inline">\(\neq\)</span> causation</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#Tukey"><i class="fa fa-check"></i><b>7.4</b> Tukey Mean Difference Plot</a></li>
-<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.5</b> Exploring Multivariate Data</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="eda2.html"><a href="eda2.html#faceting"><i class="fa fa-check"></i><b>7.5.1</b> Faceting</a></li>
-<li class="chapter" data-level="7.5.2" data-path="eda2.html"><a href="eda2.html#coloring"><i class="fa fa-check"></i><b>7.5.2</b> Coloring</a></li>
-<li class="chapter" data-level="7.5.3" data-path="eda2.html"><a href="eda2.html#contour-plots"><i class="fa fa-check"></i><b>7.5.3</b> Contour Plots</a></li>
-<li class="chapter" data-level="7.5.4" data-path="eda2.html"><a href="eda2.html#time-series-density"><i class="fa fa-check"></i><b>7.5.4</b> Time-Series Density</a></li>
+<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.4</b> Exploring Multivariate Data</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="eda2.html"><a href="eda2.html#faceting"><i class="fa fa-check"></i><b>7.4.1</b> Faceting</a></li>
+<li class="chapter" data-level="7.4.2" data-path="eda2.html"><a href="eda2.html#coloring"><i class="fa fa-check"></i><b>7.4.2</b> Coloring</a></li>
+<li class="chapter" data-level="7.4.3" data-path="eda2.html"><a href="eda2.html#contour-plots"><i class="fa fa-check"></i><b>7.4.3</b> Contour Plots</a></li>
+<li class="chapter" data-level="7.4.4" data-path="eda2.html"><a href="eda2.html#time-series-density"><i class="fa fa-check"></i><b>7.4.4</b> Time-Series Density</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a><ul>
 <li class="chapter" data-level="8.1" data-path="rprog4.html"><a href="rprog4.html#step-iii-1"><i class="fa fa-check"></i><b>8.1</b> Step III-1</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="eda3.html"><a href="eda3.html"><i class="fa fa-check"></i><b>9</b> Transformations and other Tricks</a><ul>
-<li class="chapter" data-level="9.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>9.1</b> Objectives</a></li>
+<li class="chapter" data-level="9.1" data-path="eda3.html"><a href="eda3.html#objectives-6"><i class="fa fa-check"></i><b>9.1</b> Objectives</a></li>
 <li class="chapter" data-level="9.2" data-path="eda3.html"><a href="eda3.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a><ul>
 <li class="chapter" data-level="9.2.1" data-path="eda3.html"><a href="eda3.html#centering"><i class="fa fa-check"></i><b>9.2.1</b> Centering</a></li>
 <li class="chapter" data-level="9.2.2" data-path="eda3.html"><a href="eda3.html#rescaling"><i class="fa fa-check"></i><b>9.2.2</b> Rescaling</a></li>
@@ -300,71 +302,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3.3" data-path="eda3.html"><a href="eda3.html#reducing-skewness"><i class="fa fa-check"></i><b>9.3.3</b> Reducing Skewness</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="eda3.html"><a href="eda3.html#stratification"><i class="fa fa-check"></i><b>9.4</b> Stratification</a></li>
-<li class="chapter" data-level="9.5" data-path="eda3.html"><a href="eda3.html#censoring-and-truncating-data"><i class="fa fa-check"></i><b>9.5</b> Censoring and Truncating Data</a></li>
-<li class="chapter" data-level="9.6" data-path="eda3.html"><a href="eda3.html#section"><i class="fa fa-check"></i><b>9.6</b> </a></li>
-<li class="chapter" data-level="9.7" data-path="eda3.html"><a href="eda3.html#call"><i class="fa fa-check"></i><b>9.7</b> Call:</a></li>
-<li class="chapter" data-level="9.8" data-path="eda3.html"><a href="eda3.html#lmformula-asthma.rate-black.carbon-data-asthma.data"><i class="fa fa-check"></i><b>9.8</b> lm(formula = asthma.rate ~ black.carbon, data = asthma.data)</a></li>
-<li class="chapter" data-level="9.9" data-path="eda3.html"><a href="eda3.html#section-1"><i class="fa fa-check"></i><b>9.9</b> </a></li>
-<li class="chapter" data-level="9.10" data-path="eda3.html"><a href="eda3.html#residuals"><i class="fa fa-check"></i><b>9.10</b> Residuals:</a></li>
-<li class="chapter" data-level="9.11" data-path="eda3.html"><a href="eda3.html#min-1q-median-3q-max"><i class="fa fa-check"></i><b>9.11</b> Min 1Q Median 3Q Max</a></li>
-<li class="chapter" data-level="9.12" data-path="eda3.html"><a href="eda3.html#section-2"><i class="fa fa-check"></i><b>9.12</b> -6.4206 -2.2643 0.3153 2.5175 5.7739</a></li>
-<li class="chapter" data-level="9.13" data-path="eda3.html"><a href="eda3.html#section-3"><i class="fa fa-check"></i><b>9.13</b> </a></li>
-<li class="chapter" data-level="9.14" data-path="eda3.html"><a href="eda3.html#coefficients"><i class="fa fa-check"></i><b>9.14</b> Coefficients:</a></li>
-<li class="chapter" data-level="9.15" data-path="eda3.html"><a href="eda3.html#estimate-std.-error-t-value-prt"><i class="fa fa-check"></i><b>9.15</b> Estimate Std. Error t value Pr(&gt;|t|)</a></li>
-<li><a href="eda3.html#intercept-8.9234-2.1595-4.132-0.00118-black.carbon-0.5414-0.3888-1.393-0.18713-signif.-codes-0-0.001-0.01-0.05-.-0.1-1-residual-standard-error-3.426-on-13-degrees-of-freedom-multiple-r-squared-0.1298-adjusted-r-squared-0.06286-f-statistic-1.939-on-1-and-13-df-p-value-0.1871"><span class="toc-section-number">9.16</span> (Intercept) 8.9234 2.1595 4.132 0.00118 **
-## black.carbon 0.5414 0.3888 1.393 0.18713<br />
-## —
-## Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1
-##
-## Residual standard error: 3.426 on 13 degrees of freedom
-## Multiple R-squared: 0.1298, Adjusted R-squared: 0.06286
-## F-statistic: 1.939 on 1 and 13 DF, p-value: 0.1871</a></li>
+<li class="chapter" data-level="9.5" data-path="eda3.html"><a href="eda3.html#censoring-and-truncating-data"><i class="fa fa-check"></i><b>9.5</b> Censoring and Truncating Data</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="eda3.html"><a href="eda3.html#measurement-bias-accuracy"><i class="fa fa-check"></i><b>9.5.1</b> Measurement Bias (accuracy)</a></li>
+<li class="chapter" data-level="9.5.2" data-path="eda3.html"><a href="eda3.html#measurement-uncertainty"><i class="fa fa-check"></i><b>9.5.2</b> Measurement Uncertainty</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a><ul>
-<li class="chapter" data-level="10.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>10.1</b> Objectives</a></li>
-<li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#samples-vs.-populations"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
-<li class="chapter" data-level="10.2.2" data-path="measure.html"><a href="measure.html#collecting-a-sample"><i class="fa fa-check"></i><b>10.2.2</b> Collecting a sample</a></li>
-<li class="chapter" data-level="10.2.3" data-path="measure.html"><a href="measure.html#simple-random-sampling"><i class="fa fa-check"></i><b>10.2.3</b> Simple Random Sampling</a></li>
-<li class="chapter" data-level="10.2.4" data-path="measure.html"><a href="measure.html#systematic-sampling"><i class="fa fa-check"></i><b>10.2.4</b> Systematic Sampling</a></li>
-<li class="chapter" data-level="10.2.5" data-path="measure.html"><a href="measure.html#stratified-sampling"><i class="fa fa-check"></i><b>10.2.5</b> Stratified Sampling</a></li>
-<li class="chapter" data-level="10.2.6" data-path="measure.html"><a href="measure.html#cluster-sampling"><i class="fa fa-check"></i><b>10.2.6</b> Cluster Sampling</a></li>
+<li class="chapter" data-level="9.6" data-path="eda3.html"><a href="eda3.html#failure-and-reliability"><i class="fa fa-check"></i><b>9.6</b> Failure and Reliability</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#limit-of-detection-quantification"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
-<li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic-range"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
-<li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#measurement-precision"><i class="fa fa-check"></i><b>10.3.3</b> Measurement Precision</a></li>
-<li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#measurement-bias-accuracy"><i class="fa fa-check"></i><b>10.3.4</b> Measurement Bias (accuracy)</a></li>
-<li class="chapter" data-level="10.3.5" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.3.5</b> Measurement Uncertainty</a></li>
+<li class="chapter" data-level="10" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>10</b> Modeling</a><ul>
+<li class="chapter" data-level="10.1" data-path="model.html"><a href="model.html#fitting"><i class="fa fa-check"></i><b>10.1</b> Fitting</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="model.html"><a href="model.html#pdf"><i class="fa fa-check"></i><b>10.1.1</b> Probability Density Function</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#failure-and-reliability"><i class="fa fa-check"></i><b>10.4</b> Failure and Reliability</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a><ul>
-<li class="chapter" data-level="11.1" data-path="model.html"><a href="model.html#fitting"><i class="fa fa-check"></i><b>11.1</b> Fitting</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="model.html"><a href="model.html#pdf"><i class="fa fa-check"></i><b>11.1.1</b> Probability Density Function</a></li>
-</ul></li>
-<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#qqplot"><i class="fa fa-check"></i><b>11.2</b> Q-Q Plot (Quantile-Quantile)</a></li>
-<li class="chapter" data-level="11.3" data-path="model.html"><a href="model.html#linear-models"><i class="fa fa-check"></i><b>11.3</b> Linear Models</a><ul>
-<li class="chapter" data-level="11.3.1" data-path="model.html"><a href="model.html#assumptions-of-linear-regression"><i class="fa fa-check"></i><b>11.3.1</b> Assumptions of Linear Regression</a></li>
-<li class="chapter" data-level="11.3.2" data-path="model.html"><a href="model.html#diagnostics"><i class="fa fa-check"></i><b>11.3.2</b> Diagnostics</a></li>
-<li class="chapter" data-level="11.3.3" data-path="model.html"><a href="model.html#ordinary-least-squares"><i class="fa fa-check"></i><b>11.3.3</b> Ordinary Least Squares</a></li>
-<li class="chapter" data-level="11.3.4" data-path="model.html"><a href="model.html#weighted-least-squares"><i class="fa fa-check"></i><b>11.3.4</b> Weighted Least Squares</a></li>
-<li class="chapter" data-level="11.3.5" data-path="model.html"><a href="model.html#deming-regression"><i class="fa fa-check"></i><b>11.3.5</b> Deming Regression</a></li>
-<li class="chapter" data-level="11.3.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.3.6</b> Calibration</a></li>
+<li class="chapter" data-level="10.2" data-path="model.html"><a href="model.html#qqplot"><i class="fa fa-check"></i><b>10.2</b> Q-Q Plot (Quantile-Quantile)</a></li>
+<li class="chapter" data-level="10.3" data-path="model.html"><a href="model.html#linear-models"><i class="fa fa-check"></i><b>10.3</b> Linear Models</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="model.html"><a href="model.html#assumptions-of-linear-regression"><i class="fa fa-check"></i><b>10.3.1</b> Assumptions of Linear Regression</a></li>
+<li class="chapter" data-level="10.3.2" data-path="model.html"><a href="model.html#diagnostics"><i class="fa fa-check"></i><b>10.3.2</b> Diagnostics</a></li>
+<li class="chapter" data-level="10.3.3" data-path="model.html"><a href="model.html#ordinary-least-squares"><i class="fa fa-check"></i><b>10.3.3</b> Ordinary Least Squares</a></li>
+<li class="chapter" data-level="10.3.4" data-path="model.html"><a href="model.html#weighted-least-squares"><i class="fa fa-check"></i><b>10.3.4</b> Weighted Least Squares</a></li>
+<li class="chapter" data-level="10.3.5" data-path="model.html"><a href="model.html#deming-regression"><i class="fa fa-check"></i><b>10.3.5</b> Deming Regression</a></li>
+<li class="chapter" data-level="10.3.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>10.3.6</b> Calibration</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="simulate.html"><a href="simulate.html"><i class="fa fa-check"></i><b>12</b> Simulation</a><ul>
-<li class="chapter" data-level="12.1" data-path="simulate.html"><a href="simulate.html#introduction-to-simulation"><i class="fa fa-check"></i><b>12.1</b> Introduction to simulation</a></li>
-<li class="chapter" data-level="12.2" data-path="simulate.html"><a href="simulate.html#simulation-example"><i class="fa fa-check"></i><b>12.2</b> Simulation Example:</a></li>
+<li class="chapter" data-level="11" data-path="simulate.html"><a href="simulate.html"><i class="fa fa-check"></i><b>11</b> Simulation</a><ul>
+<li class="chapter" data-level="11.1" data-path="simulate.html"><a href="simulate.html#introduction-to-simulation"><i class="fa fa-check"></i><b>11.1</b> Introduction to simulation</a></li>
+<li class="chapter" data-level="11.2" data-path="simulate.html"><a href="simulate.html#simulation-example"><i class="fa fa-check"></i><b>11.2</b> Simulation Example:</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>13</b> Appendix: Reference Distributions</a><ul>
-<li class="chapter" data-level="13.1" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>13.1</b> Uniform Distribution</a><ul>
-<li class="chapter" data-level="13.1.1" data-path="dist.html"><a href="dist.html#characteristic-plots-uniform-distribution"><i class="fa fa-check"></i><b>13.1.1</b> Characteristic Plots: Uniform Distribution</a></li>
+<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Reference Distributions</a><ul>
+<li class="chapter" data-level="12.1" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.1</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="dist.html"><a href="dist.html#characteristic-plots-uniform-distribution"><i class="fa fa-check"></i><b>12.1.1</b> Characteristic Plots: Uniform Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>13.2</b> Normal Distribution</a><ul>
-<li class="chapter" data-level="13.2.1" data-path="dist.html"><a href="dist.html#normal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>13.2.1</b> Normal Distribution: Characteristic Plots</a></li>
+<li class="chapter" data-level="12.2" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.2</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="dist.html"><a href="dist.html#normal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>12.2.1</b> Normal Distribution: Characteristic Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>13.3</b> Log-normal Distribution</a></li>
+<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>12.3</b> Log-normal Distribution</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -388,7 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="rprog3" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> Strings, Dates, and Tidying</h1>
-<div id="objectives" class="section level2">
+<div id="objectives-4" class="section level2">
 <h2><span class="header-section-number">6.1</span> Objectives</h2>
 <p>This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:</p>
 <ul>
@@ -405,31 +374,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="strings" class="section level2">
 <h2><span class="header-section-number">6.2</span> Strings</h2>
-<p>A <strong><em>string</em></strong> is a character variable like “John”, or “blue”, or “John has entered his blue phase”. <em>Note: strings are defined in R using quotes <code>" "</code></em> Strings often show up in data analysis in one of two ways:</p>
+<p>A <strong><em>string</em></strong> is a character variable like “John”, or “blue”, or “John has entered his blue phase”. <em>String variables are defined in R using quotes <code>" "</code></em> Strings often show up in data analysis in one of two ways:</p>
 <ol style="list-style-type: decimal">
 <li><p>As <strong><em>metadata</em></strong>. Metadata means: “data that describe other data”. A <em>readme.txt</em> file is metadata; notes and code comments are metadata - all of these types of data usually come in the form of strings and are included <em>with the data your are analyzing</em> but not <em>in the data set</em> itself.</p></li>
 <li><p>As <strong><em>vectorized data</em></strong>. In R programming, <em>“vectorized”</em> means: stored as a column of data. Examples of vectorized string variables you might find include things like: “participant names”, or “survey responses to question 1”, or “mode of failure”. The examples below show how strings are created in R.</p></li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rprog3.html#cb1-1"></a><span class="co"># examples of vectorized string data</span></span>
-<span id="cb1-2"><a href="rprog3.html#cb1-2"></a>names_respond &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ahmed&quot;</span>, </span>
-<span id="cb1-3"><a href="rprog3.html#cb1-3"></a>                   <span class="st">&quot;Josh&quot;</span>, </span>
-<span id="cb1-4"><a href="rprog3.html#cb1-4"></a>                   <span class="st">&quot;Mateo&quot;</span>, </span>
-<span id="cb1-5"><a href="rprog3.html#cb1-5"></a>                   <span class="st">&quot;William&quot;</span>, </span>
-<span id="cb1-6"><a href="rprog3.html#cb1-6"></a>                   <span class="st">&quot;Ali&quot;</span>, </span>
-<span id="cb1-7"><a href="rprog3.html#cb1-7"></a>                   <span class="st">&quot;Wei&quot;</span>, </span>
-<span id="cb1-8"><a href="rprog3.html#cb1-8"></a>                   <span class="st">&quot;Steve-O&quot;</span>)</span>
-<span id="cb1-9"><a href="rprog3.html#cb1-9"></a>q1_responses &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;because you told me to do it&quot;</span>,</span>
-<span id="cb1-10"><a href="rprog3.html#cb1-10"></a>                  <span class="st">&quot;it seemed like the right thing to do at the time&quot;</span>,</span>
-<span id="cb1-11"><a href="rprog3.html#cb1-11"></a>                  <span class="st">&quot;because I had been over-served&quot;</span>,</span>
-<span id="cb1-12"><a href="rprog3.html#cb1-12"></a>                  <span class="st">&quot;I don&#39;t know, I just did it&quot;</span>,</span>
-<span id="cb1-13"><a href="rprog3.html#cb1-13"></a>                  <span class="st">&quot;I got caught up in the heat of the moment&quot;</span>,</span>
-<span id="cb1-14"><a href="rprog3.html#cb1-14"></a>                  <span class="st">&quot;I was given an opportunity, so I took my shot&quot;</span>,</span>
-<span id="cb1-15"><a href="rprog3.html#cb1-15"></a>                  <span class="st">&quot;I plead the 5th&quot;</span>)</span>
-<span id="cb1-16"><a href="rprog3.html#cb1-16"></a>failure_mode &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fracture&quot;</span>,</span>
-<span id="cb1-17"><a href="rprog3.html#cb1-17"></a>                  <span class="st">&quot;yielding&quot;</span>, </span>
-<span id="cb1-18"><a href="rprog3.html#cb1-18"></a>                  <span class="st">&quot;deflection&quot;</span>, </span>
-<span id="cb1-19"><a href="rprog3.html#cb1-19"></a>                  <span class="st">&quot;fatigue&quot;</span>, </span>
-<span id="cb1-20"><a href="rprog3.html#cb1-20"></a>                  <span class="st">&quot;creep&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="rprog3.html#cb228-1"></a><span class="co"># examples of vectorized string data</span></span>
+<span id="cb228-2"><a href="rprog3.html#cb228-2"></a>names_respond &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ahmed&quot;</span>, </span>
+<span id="cb228-3"><a href="rprog3.html#cb228-3"></a>                   <span class="st">&quot;Josh&quot;</span>, </span>
+<span id="cb228-4"><a href="rprog3.html#cb228-4"></a>                   <span class="st">&quot;Mateo&quot;</span>, </span>
+<span id="cb228-5"><a href="rprog3.html#cb228-5"></a>                   <span class="st">&quot;William&quot;</span>, </span>
+<span id="cb228-6"><a href="rprog3.html#cb228-6"></a>                   <span class="st">&quot;Ali&quot;</span>, </span>
+<span id="cb228-7"><a href="rprog3.html#cb228-7"></a>                   <span class="st">&quot;Wei&quot;</span>, </span>
+<span id="cb228-8"><a href="rprog3.html#cb228-8"></a>                   <span class="st">&quot;Steve-O&quot;</span>)</span>
+<span id="cb228-9"><a href="rprog3.html#cb228-9"></a>q1_responses &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;because you told me to do it&quot;</span>,</span>
+<span id="cb228-10"><a href="rprog3.html#cb228-10"></a>                  <span class="st">&quot;it seemed like the right thing to do at the time&quot;</span>,</span>
+<span id="cb228-11"><a href="rprog3.html#cb228-11"></a>                  <span class="st">&quot;because I had been over-served&quot;</span>,</span>
+<span id="cb228-12"><a href="rprog3.html#cb228-12"></a>                  <span class="st">&quot;I don&#39;t know, I just did it&quot;</span>,</span>
+<span id="cb228-13"><a href="rprog3.html#cb228-13"></a>                  <span class="st">&quot;I got caught up in the heat of the moment&quot;</span>,</span>
+<span id="cb228-14"><a href="rprog3.html#cb228-14"></a>                  <span class="st">&quot;I was given an opportunity, so I took my shot&quot;</span>,</span>
+<span id="cb228-15"><a href="rprog3.html#cb228-15"></a>                  <span class="st">&quot;I plead the 5th&quot;</span>)</span>
+<span id="cb228-16"><a href="rprog3.html#cb228-16"></a>failure_mode &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fracture&quot;</span>,</span>
+<span id="cb228-17"><a href="rprog3.html#cb228-17"></a>                  <span class="st">&quot;yielding&quot;</span>, </span>
+<span id="cb228-18"><a href="rprog3.html#cb228-18"></a>                  <span class="st">&quot;deflection&quot;</span>, </span>
+<span id="cb228-19"><a href="rprog3.html#cb228-19"></a>                  <span class="st">&quot;fatigue&quot;</span>, </span>
+<span id="cb228-20"><a href="rprog3.html#cb228-20"></a>                  <span class="st">&quot;creep&quot;</span>)</span></code></pre></div>
 <p>To analyze strings, you often begin by parsing each string. To parse means to examine the individual components. For example, when you read this sentence you parse out the words and then assign meaning to those words based on your memory, your understanding of grammar, and the contextual reality under which those words show up (i.e., whether you are reading an instruction manual, a text message, a novel, or a warrant for your arrest). Strings can be challenging to analyze because computers are built on logical operations and mathematics; strings are neither of those. Computers have fantastic memory, are OK at grammar, and are comically poor at contextualization. Taken together, this means that strings can be challenging (but not impossible) to analyze using computers.</p>
 <div class="rmdnote">
 <p>
@@ -440,11 +409,11 @@ Are you active on social media platforms like Instagram or Twitter? You can bet 
 <div id="string-detect-match" class="section level3">
 <h3><span class="header-section-number">6.2.1</span> String detect &amp; match</h3>
 <p>One of the simplest string operations is to search whether a string contains a pattern of interest. The <code>stringr</code> package (part of the <a href="https://stringr.tidyverse.org/">Tidyverse</a>) was developed to make it easier for you to work with strings. Most of the functions in <code>stringr</code> begin with <code>str_</code> and end with a specific function name. A full list of functions is provided <a href="https://stringr.tidyverse.org/reference/index.html">here</a>. Some examples:</p>
-<p><strong><code>str_detect</code></strong> returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the <code>string</code> to be searched and the <code>pattern</code> to search for. If we search for the pattern “Josh” in our list of participants (<code>names_respond</code>), we get:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rprog3.html#cb2-1"></a><span class="kw">str_detect</span>(names_respond, <span class="st">&quot;Josh&quot;</span>)</span></code></pre></div>
+<p><strong><code>str_detect()</code></strong> returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the <code>string</code> to be searched and the <code>pattern</code> to search for. Let’s search for the pattern “Josh” in our list of participants (<code>names_respond</code>):</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="rprog3.html#cb229-1"></a><span class="kw">str_detect</span>(names_respond, <span class="st">&quot;Josh&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE</code></pre>
-<p><strong><code>str_match</code></strong> takes the same arguments but returns a vector of the matched values (by string index).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rprog3.html#cb4-1"></a><span class="kw">str_match</span>(names_respond, <span class="st">&quot;Josh&quot;</span>)</span></code></pre></div>
+<p><strong><code>str_match()</code></strong> takes the same arguments but returns a vector of the matched values (by string index).</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="rprog3.html#cb231-1"></a><span class="kw">str_match</span>(names_respond, <span class="st">&quot;Josh&quot;</span>)</span></code></pre></div>
 <pre><code>##      [,1]  
 ## [1,] NA    
 ## [2,] &quot;Josh&quot;
@@ -453,8 +422,8 @@ Are you active on social media platforms like Instagram or Twitter? You can bet 
 ## [5,] NA    
 ## [6,] NA    
 ## [7,] NA</code></pre>
-<p><strong><code>str_subset</code></strong> returns only the entries from the vector where a match occurred. If we subset our short list of names to the pattern of letters “li”, we get:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rprog3.html#cb6-1"></a><span class="kw">str_subset</span>(names_respond, <span class="st">&quot;li&quot;</span>)</span></code></pre></div>
+<p><strong><code>str_subset()</code></strong> returns only the entries that were matched. If we subset our short list of names to the pattern of letters “li”, we get:</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="rprog3.html#cb233-1"></a><span class="kw">str_subset</span>(names_respond, <span class="st">&quot;li&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;William&quot; &quot;Ali&quot;</code></pre>
 <p>In <code>{base}</code> R, these searches are performed with the <code>grep</code> family of functions. The term <em>“grep”</em> is an acronym for <strong><u>G</u>lobal <u>R</u>egular <u>E</u>xpression <u>P</u>attern</strong> (more on <em>regular expressions</em> below). Many of “old-school” coders use this family of functions (meaning: you will encounter them in the wild), so it’s worth discussing them briefly.</p>
 <table>
@@ -587,18 +556,18 @@ matches anything except a, b, or c
 <h3><span class="header-section-number">6.3.1</span> Dates and Times in base R</h3>
 <p>Dates and times in base R all proceed from an <em>“epoch”</em> or <em>time origin</em>. In R, the <em>epoch</em> or “dawn of time” occurred at midnight on January 1<sup>st</sup>, 1970. For the sake of the R programming world, the concept of time started at that precise moment and has moved forward ever since. To note: R can handle date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time” by calling the <code>Sys.time()</code> function.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="rprog3.html#cb8-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2020-08-03 17:43:24 MDT&quot;</code></pre>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="rprog3.html#cb235-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;2020-08-04 17:20:09 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and current timezone used by my computer. If you want to see how this time is stored in R internally, you can use <code>unclass()</code>, which returns an object value with its class attributes removed. When we wrap <code>unclass()</code> around <code>Sys.time()</code>, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="rprog3.html#cb10-1"></a><span class="kw">unclass</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1596498205</code></pre>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="rprog3.html#cb237-1"></a><span class="kw">unclass</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
+<pre><code>## [1] 1596583210</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
-Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span> 365d/yr] ~ 50.624626 years.<br />
+Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span> 365d/yr] ~ 50.6273215 years.<br />
 This calculation ignores leap years but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats</h3>
-<p>Note that the <code>Sys.time()</code> function provided the date in a <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong> format: 2020-08-03 17:43:24</p>
+<p>Note that the <code>Sys.time()</code> function provided the date in a <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong> format: 2020-08-04 17:20:09</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky. You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
@@ -726,23 +695,23 @@ TRUE, FALSE
 </table>
 <p>To discover the class of a vector (including a column in a dataframe – remember
 each column can be thought of as a vector), you can use <code>class()</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="rprog3.html#cb12-1"></a><span class="kw">class</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="rprog3.html#cb239-1"></a><span class="kw">class</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <p>Both the <code>POSIXct</code> and <code>POSIXlt</code> class of objects return the same value to the user; the difference is really in how these classes store date-time objects internally. To examine them, you can coerce <code>Sys.time()</code> into each of the two classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and then examine their attributes.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="rprog3.html#cb14-1"></a>time_now_ct &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">Sys.time</span>())</span>
-<span id="cb14-2"><a href="rprog3.html#cb14-2"></a><span class="kw">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1596498205</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="rprog3.html#cb16-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
-<span id="cb16-2"><a href="rprog3.html#cb16-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="rprog3.html#cb241-1"></a>time_now_ct &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">Sys.time</span>())</span>
+<span id="cb241-2"><a href="rprog3.html#cb241-2"></a><span class="kw">unclass</span>(time_now_ct)</span></code></pre></div>
+<pre><code>## [1] 1596583210</code></pre>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="rprog3.html#cb243-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
+<span id="cb243-2"><a href="rprog3.html#cb243-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 25
-##  $ min   : int 43
+##  $ sec   : num 9.72
+##  $ min   : int 20
 ##  $ hour  : int 17
-##  $ mday  : int 3
+##  $ mday  : int 4
 ##  $ mon   : int 7
 ##  $ year  : int 120
-##  $ wday  : int 1
-##  $ yday  : int 215
+##  $ wday  : int 2
+##  $ yday  : int 216
 ##  $ isdst : int 1
 ##  $ zone  : chr &quot;MDT&quot;
 ##  $ gmtoff: int -21600
@@ -862,28 +831,28 @@ date-time object of class POSIXlt
 <li><p>If a character vector is written in “<strong>y</strong>ear-<strong>m</strong>onth-<strong>d</strong>ay” format (i.e., <code>"2020-Dec-18"</code>), then the <code>lubridate</code> function to convert that vector is <code>ymd()</code>.</p></li>
 <li><p>If a character vector is written in “<strong>d</strong>ay-<strong>m</strong>onth-<strong>y</strong>ear” format (i.e., <code>"18-Dec-2020"</code>), then the <code>lubridate</code> function to convert that vector is <code>dmy()</code>. Try it out:</p></li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="rprog3.html#cb18-1"></a><span class="co">#create a character vector</span></span>
-<span id="cb18-2"><a href="rprog3.html#cb18-2"></a>date_old &lt;-<span class="st"> &quot;2020-Dec-18&quot;</span></span>
-<span id="cb18-3"><a href="rprog3.html#cb18-3"></a></span>
-<span id="cb18-4"><a href="rprog3.html#cb18-4"></a><span class="co">#prove to yourself it&#39;s a character class</span></span>
-<span id="cb18-5"><a href="rprog3.html#cb18-5"></a><span class="kw">class</span>(date_old)</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="rprog3.html#cb245-1"></a><span class="co">#create a character vector</span></span>
+<span id="cb245-2"><a href="rprog3.html#cb245-2"></a>date_old &lt;-<span class="st"> &quot;2020-Dec-18&quot;</span></span>
+<span id="cb245-3"><a href="rprog3.html#cb245-3"></a></span>
+<span id="cb245-4"><a href="rprog3.html#cb245-4"></a><span class="co">#prove to yourself it&#39;s a character class</span></span>
+<span id="cb245-5"><a href="rprog3.html#cb245-5"></a><span class="kw">class</span>(date_old)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="rprog3.html#cb20-1"></a><span class="co">#convert it to a `Date` class with `ymd()`</span></span>
-<span id="cb20-2"><a href="rprog3.html#cb20-2"></a>date_new &lt;-<span class="st"> </span><span class="kw">ymd</span>(date_old)</span>
-<span id="cb20-3"><a href="rprog3.html#cb20-3"></a></span>
-<span id="cb20-4"><a href="rprog3.html#cb20-4"></a><span class="co">#prove to yourself it worked</span></span>
-<span id="cb20-5"><a href="rprog3.html#cb20-5"></a><span class="kw">class</span>(date_new)</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="rprog3.html#cb247-1"></a><span class="co">#convert it to a `Date` class with `ymd()`</span></span>
+<span id="cb247-2"><a href="rprog3.html#cb247-2"></a>date_new &lt;-<span class="st"> </span><span class="kw">ymd</span>(date_old)</span>
+<span id="cb247-3"><a href="rprog3.html#cb247-3"></a></span>
+<span id="cb247-4"><a href="rprog3.html#cb247-4"></a><span class="co">#prove to yourself it worked</span></span>
+<span id="cb247-5"><a href="rprog3.html#cb247-5"></a><span class="kw">class</span>(date_new)</span></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 <p>That little conversion exercise may not have blown you away, but watch what happens when I feed the following set of wacky character vectors into that same <code>lubridate</code> parsing function, <code>ymd()</code>:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="rprog3.html#cb22-1"></a>messy_dates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2020------Dec the 12&quot;</span>,</span>
-<span id="cb22-2"><a href="rprog3.html#cb22-2"></a>                 <span class="st">&quot;20.-.12.-.12&quot;</span>,</span>
-<span id="cb22-3"><a href="rprog3.html#cb22-3"></a>                 <span class="st">&quot;2020aaa12aaa12&quot;</span>,</span>
-<span id="cb22-4"><a href="rprog3.html#cb22-4"></a>                 <span class="st">&quot;20,12,12&quot;</span>,</span>
-<span id="cb22-5"><a href="rprog3.html#cb22-5"></a>                 <span class="st">&quot;2020x12-12&quot;</span>,</span>
-<span id="cb22-6"><a href="rprog3.html#cb22-6"></a>                 <span class="st">&quot;2020   ....    12        ......     12&quot;</span>,</span>
-<span id="cb22-7"><a href="rprog3.html#cb22-7"></a>                 <span class="st">&quot;&#39;20.December-12&quot;</span>)</span>
-<span id="cb22-8"><a href="rprog3.html#cb22-8"></a></span>
-<span id="cb22-9"><a href="rprog3.html#cb22-9"></a><span class="kw">ymd</span>(messy_dates)</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="rprog3.html#cb249-1"></a>messy_dates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2020------Dec the 12&quot;</span>,</span>
+<span id="cb249-2"><a href="rprog3.html#cb249-2"></a>                 <span class="st">&quot;20.-.12.-.12&quot;</span>,</span>
+<span id="cb249-3"><a href="rprog3.html#cb249-3"></a>                 <span class="st">&quot;2020aaa12aaa12&quot;</span>,</span>
+<span id="cb249-4"><a href="rprog3.html#cb249-4"></a>                 <span class="st">&quot;20,12,12&quot;</span>,</span>
+<span id="cb249-5"><a href="rprog3.html#cb249-5"></a>                 <span class="st">&quot;2020x12-12&quot;</span>,</span>
+<span id="cb249-6"><a href="rprog3.html#cb249-6"></a>                 <span class="st">&quot;2020   ....    12        ......     12&quot;</span>,</span>
+<span id="cb249-7"><a href="rprog3.html#cb249-7"></a>                 <span class="st">&quot;&#39;20.December-12&quot;</span>)</span>
+<span id="cb249-8"><a href="rprog3.html#cb249-8"></a></span>
+<span id="cb249-9"><a href="rprog3.html#cb249-9"></a><span class="kw">ymd</span>(messy_dates)</span></code></pre></div>
 <pre><code>## [1] &quot;2020-12-12&quot; &quot;2020-12-12&quot; &quot;2020-12-12&quot; &quot;2020-12-12&quot; &quot;2020-12-12&quot;
 ## [6] &quot;2020-12-12&quot; &quot;2020-12-12&quot;</code></pre>
 <p>That’s right. The <code>ymd()</code> parsing function figured them all out correctly with almost no effort on your part. But wait, there’s more! The <code>lubridate</code> package contains parsing functions for almost any order you can dream up.</p>
@@ -970,40 +939,40 @@ year-month-day_hours-minutes-seconds
 <h3><span class="header-section-number">6.4.2</span> Date-time manipulation with <code>Lubridate</code></h3>
 <p>To convert the <code>date</code> column in the <code>daily_show</code> data into a Date
 class, then, you can run:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="rprog3.html#cb24-1"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;lubridate&quot;</span>)</span>
-<span id="cb24-2"><a href="rprog3.html#cb24-2"></a></span>
-<span id="cb24-3"><a href="rprog3.html#cb24-3"></a><span class="kw">class</span>(<span class="dt">x =</span> daily_show<span class="op">$</span>date) <span class="co"># Check the class of the &#39;date&#39; column before mutating it</span></span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="rprog3.html#cb251-1"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;lubridate&quot;</span>)</span>
+<span id="cb251-2"><a href="rprog3.html#cb251-2"></a></span>
+<span id="cb251-3"><a href="rprog3.html#cb251-3"></a><span class="kw">class</span>(<span class="dt">x =</span> daily_show<span class="op">$</span>date) <span class="co"># Check the class of the &#39;date&#39; column before mutating it</span></span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="rprog3.html#cb26-1"></a>daily_show &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> daily_show,</span>
-<span id="cb26-2"><a href="rprog3.html#cb26-2"></a>                     <span class="dt">date =</span> <span class="kw">mdy</span>(date))</span>
-<span id="cb26-3"><a href="rprog3.html#cb26-3"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dt">n =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="rprog3.html#cb253-1"></a>daily_show &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> daily_show,</span>
+<span id="cb253-2"><a href="rprog3.html#cb253-2"></a>                     <span class="dt">date =</span> <span class="kw">mdy</span>(date))</span>
+<span id="cb253-3"><a href="rprog3.html#cb253-3"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dt">n =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 5
 ##    year job                date       category guest_name     
 ##   &lt;dbl&gt; &lt;chr&gt;              &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;          
 ## 1  1999 actor              1999-01-11 Acting   Michael J. Fox 
 ## 2  1999 Comedian           1999-01-12 Comedy   Sandra Bernhard
 ## 3  1999 television actress 1999-01-13 Acting   Tracey Ullman</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="rprog3.html#cb28-1"></a><span class="kw">class</span>(<span class="dt">x =</span> daily_show<span class="op">$</span>date) <span class="co"># Check the class of the &#39;date&#39; column after mutating it</span></span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="rprog3.html#cb255-1"></a><span class="kw">class</span>(<span class="dt">x =</span> daily_show<span class="op">$</span>date) <span class="co"># Check the class of the &#39;date&#39; column after mutating it</span></span></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 <p>Once you have an object in the <code>Date</code> class, you can do things like plot by
 date, calculate the range of dates, and calculate the total number of days the
 dataset covers:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="rprog3.html#cb30-1"></a><span class="co"># report the min and max dates</span></span>
-<span id="cb30-2"><a href="rprog3.html#cb30-2"></a><span class="kw">range</span>(daily_show<span class="op">$</span>date)</span>
-<span id="cb30-3"><a href="rprog3.html#cb30-3"></a></span>
-<span id="cb30-4"><a href="rprog3.html#cb30-4"></a><span class="co"># calculate the duration from first to last date</span></span>
-<span id="cb30-5"><a href="rprog3.html#cb30-5"></a><span class="kw">diff</span>(<span class="dt">x =</span> <span class="kw">range</span>(daily_show<span class="op">$</span>date)) </span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="rprog3.html#cb257-1"></a><span class="co"># report the min and max dates</span></span>
+<span id="cb257-2"><a href="rprog3.html#cb257-2"></a><span class="kw">range</span>(daily_show<span class="op">$</span>date)</span>
+<span id="cb257-3"><a href="rprog3.html#cb257-3"></a></span>
+<span id="cb257-4"><a href="rprog3.html#cb257-4"></a><span class="co"># calculate the duration from first to last date</span></span>
+<span id="cb257-5"><a href="rprog3.html#cb257-5"></a><span class="kw">diff</span>(<span class="dt">x =</span> <span class="kw">range</span>(daily_show<span class="op">$</span>date)) </span></code></pre></div>
 <p>We could have used these to transform the date in <code>daily_show</code>, using the following pipe chain:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="rprog3.html#cb31-1"></a>daily_show &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>,</span>
-<span id="cb31-2"><a href="rprog3.html#cb31-2"></a>                       <span class="dt">skip =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span></span>
-<span id="cb31-3"><a href="rprog3.html#cb31-3"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">job =</span> GoogleKnowlege_Occupation, </span>
-<span id="cb31-4"><a href="rprog3.html#cb31-4"></a>         <span class="dt">date =</span> Show,</span>
-<span id="cb31-5"><a href="rprog3.html#cb31-5"></a>         <span class="dt">category =</span> Group,</span>
-<span id="cb31-6"><a href="rprog3.html#cb31-6"></a>         <span class="dt">guest_name =</span> Raw_Guest_List) <span class="op">%&gt;%</span></span>
-<span id="cb31-7"><a href="rprog3.html#cb31-7"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>YEAR) <span class="op">%&gt;%</span></span>
-<span id="cb31-8"><a href="rprog3.html#cb31-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">mdy</span>(date)) <span class="op">%&gt;%</span></span>
-<span id="cb31-9"><a href="rprog3.html#cb31-9"></a><span class="st">  </span><span class="kw">filter</span>(category <span class="op">==</span><span class="st"> &quot;Science&quot;</span>)</span>
-<span id="cb31-10"><a href="rprog3.html#cb31-10"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dt">n =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="rprog3.html#cb258-1"></a>daily_show &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>,</span>
+<span id="cb258-2"><a href="rprog3.html#cb258-2"></a>                       <span class="dt">skip =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span></span>
+<span id="cb258-3"><a href="rprog3.html#cb258-3"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">job =</span> GoogleKnowlege_Occupation, </span>
+<span id="cb258-4"><a href="rprog3.html#cb258-4"></a>         <span class="dt">date =</span> Show,</span>
+<span id="cb258-5"><a href="rprog3.html#cb258-5"></a>         <span class="dt">category =</span> Group,</span>
+<span id="cb258-6"><a href="rprog3.html#cb258-6"></a>         <span class="dt">guest_name =</span> Raw_Guest_List) <span class="op">%&gt;%</span></span>
+<span id="cb258-7"><a href="rprog3.html#cb258-7"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>YEAR) <span class="op">%&gt;%</span></span>
+<span id="cb258-8"><a href="rprog3.html#cb258-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">mdy</span>(date)) <span class="op">%&gt;%</span></span>
+<span id="cb258-9"><a href="rprog3.html#cb258-9"></a><span class="st">  </span><span class="kw">filter</span>(category <span class="op">==</span><span class="st"> &quot;Science&quot;</span>)</span>
+<span id="cb258-10"><a href="rprog3.html#cb258-10"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dt">n =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##   job          date       category guest_name     
 ##   &lt;chr&gt;        &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;          
@@ -1019,10 +988,10 @@ dataset covers:</p>
 <li><code>year</code> return the year pertaining to a date object</li>
 </ul>
 <p>For example, we could use <code>wday</code> to create a new column with the weekday of each show:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="rprog3.html#cb33-1"></a><span class="kw">mutate</span>(<span class="dt">.data =</span> daily_show,</span>
-<span id="cb33-2"><a href="rprog3.html#cb33-2"></a>       <span class="dt">show_day =</span> <span class="kw">wday</span>(<span class="dt">x =</span> date, <span class="dt">label =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb33-3"><a href="rprog3.html#cb33-3"></a><span class="st">  </span><span class="kw">select</span>(date, show_day, guest_name) <span class="op">%&gt;%</span></span>
-<span id="cb33-4"><a href="rprog3.html#cb33-4"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="rprog3.html#cb260-1"></a><span class="kw">mutate</span>(<span class="dt">.data =</span> daily_show,</span>
+<span id="cb260-2"><a href="rprog3.html#cb260-2"></a>       <span class="dt">show_day =</span> <span class="kw">wday</span>(<span class="dt">x =</span> date, <span class="dt">label =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb260-3"><a href="rprog3.html#cb260-3"></a><span class="st">  </span><span class="kw">select</span>(date, show_day, guest_name) <span class="op">%&gt;%</span></span>
+<span id="cb260-4"><a href="rprog3.html#cb260-4"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 3
 ##   date       show_day guest_name            
 ##   &lt;date&gt;     &lt;ord&gt;    &lt;chr&gt;                 

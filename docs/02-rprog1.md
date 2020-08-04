@@ -282,7 +282,7 @@ getRversion()
 ```
 
 ```
-## [1] '4.0.2'
+## [1] '3.6.2'
 ```
 
 Some functions will accept multiple arguments. For example, the `print()`
@@ -1283,12 +1283,12 @@ str(object = daily_show)
 ```
 
 ```
-## tibble [2,693 × 5] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
-##  $ YEAR                     : num [1:2693] 1999 1999 1999 1999 1999 ...
-##  $ GoogleKnowlege_Occupation: chr [1:2693] "actor" "Comedian" "television actress" "film actress" ...
-##  $ Show                     : chr [1:2693] "1/11/99" "1/12/99" "1/13/99" "1/14/99" ...
-##  $ Group                    : chr [1:2693] "Acting" "Comedy" "Acting" "Acting" ...
-##  $ Raw_Guest_List           : chr [1:2693] "Michael J. Fox" "Sandra Bernhard" "Tracey Ullman" "Gillian Anderson" ...
+## Classes 'spec_tbl_df', 'tbl_df', 'tbl' and 'data.frame':	2693 obs. of  5 variables:
+##  $ YEAR                     : num  1999 1999 1999 1999 1999 ...
+##  $ GoogleKnowlege_Occupation: chr  "actor" "Comedian" "television actress" "film actress" ...
+##  $ Show                     : chr  "1/11/99" "1/12/99" "1/13/99" "1/14/99" ...
+##  $ Group                    : chr  "Acting" "Comedy" "Acting" "Acting" ...
+##  $ Raw_Guest_List           : chr  "Michael J. Fox" "Sandra Bernhard" "Tracey Ullman" "Gillian Anderson" ...
 ##  - attr(*, "spec")=
 ##   .. cols(
 ##   ..   YEAR = col_double(),
@@ -1409,10 +1409,125 @@ hp_data[3, ] # Last row, all columns
 
 ## Class Exercises
 
-- Simple questions about packages, environment, objects, classes
-- Run a few of these commands in the console
-- Save a few in an R script
+0. Within your R project for this course, open a "fresh" R session (Session > Restart R, if RStudio is already open). Using `getwd()` in the console, confirm the working directory is your R project.
+
+1. Type `sessionInfo()` into the console. What R version are you using? What base R packages were loaded automatically in your R session?
+
+2. Still in the console and using `?`, open and examine the helpfile for one of the base R packages named above. Use the function listed in the "Details" section of the helpfile to call the full package documentation, including a list of functions. Call and examine the helpfile for one of these functions.
+
+3. Go to File > New File > R Script to open a new R script. Add your name to the top of the R script as a comment. Call `mtcars` (dataset about cars in base R) in the console. Then, using the `gets arrow`, save `mtcars` as an object named `mtcars_data` in your R script. Saving the relevant commands in the R script, examine the structure of `mtcars_data` and determine its dimensions and variable class types (e.g., numeric, logical).
+
+4. Install `dplyr`, a popular R package for data wrangling, from your console. In your R script, load `dplyr`. Using `dplyr::filter()`, determine the number of cars in `mtcars_data` with an average miles per gallon (`mpg`) above 25.
+
+5. Save your R script with an informative file name (e.g., "class-activity-DATE") in the `/R` folder of your R project.
+
+6. **If you have extra time**: Navigate to the "Tutorial" tab in your environment panel. Complete the "Data Basics" tutorial via `learnr`.
+
+### Example Code
+
+0. Working directory
+
+
+```r
+# confirm working directory is in high-level folder of R project
+base::getwd()
+```
+
+```
+## [1] "/Users/wendtke/Documents/R/edar_coursebook"
+```
+
+1. Session information 
+
+
+```r
+# identify R version and base R packages
+utils::sessionInfo()
+```
+
+2. Helpfiles
+
+
+```r
+# call main helpfile for whole base R package
+?stats
+# use function from Details section to call list of functions
+base::library(help = "stats")
+# call helpfile for one function
+?lm
+```
+
+3. Object assignment
+
+
+```r
+# load and view mtcars data
+mtcars
+# assign data as object in environment
+mtcars_data <- mtcars
+# view structure of mtcars_data
+str(mtcars_data)
+# a tidyverse alternative to `str()`
+tibble::glimpse(mtcars_data)
+# assess dimensions of mtcars_data
+dim(mtcars_data)
+# determine variable class types
+class(mtcars_data$mpg)
+```
+
+There are 32 observations (vehicle models) and 11 variables, all of which are 
+numeric.
+
+4. Data wrangling
+
+
+```r
+# install.packages("dplyr") if needed in the console
+# load `dplyr`, saving the command in your R script
+library(dplyr)
+# filter to vehicles with mpg above 25
+dplyr::filter(mtcars_data, mpg > 25.0)
+```
+There are six vehicles in `mtcars_data` with MPG above 25.
 
 ## Homework
 
-- `swirl` or `learnr` 
+You will complete five lessons in [`swirl`](https://swirlstats.com/), an
+R package for learning R **in** R, written by Roger Peng, Brooke Anderson, and
+Sean Kross. Each lesson might take 10-15 minutes.
+
+In a text file, record the lesson names and a very brief description of what
+you learned from each. Save this file under the `/homework` folder of your 
+GitHub repository, and email us the link.
+
+Follow the steps [here](https://swirlstats.com/students.html) to install, load,
+and start `swirl`. When you are prompted to install a course, you can load "R
+Programming," which covers material related to the recent class lectures. If
+you are already familiar with this content, feel free to select a different
+course such as "Exploratory Data Analysis."
+
+Here are some lessons from the "R Programming" course to complete. Feel free to
+do as many as you would like.
+
+- Module 1: Basic Building Blocks
+- Module 2: Workspace and Files
+- Module 3: Sequences of Numbers
+- Module 4: Vectors
+- Module 5: Missing Values
+
+`swirl` lessons have a mix of base R and `tidyverse` approaches, so don't be 
+alarmed or discouraged if you see some unfamiliar techniques or concepts. If
+you are interested in learning more about something from `swirl`, Google is a
+great place to start. We will cover a lot of the material later in the class.
+
+### Special `swirl` commands
+
+In the `swirl` environment, knowing about the following commands will be
+helpful:
+
+- The prompt `...` indicates you should press enter to continue in the lesson.
+- `skip()`: skip current question
+- `play()`: temporarily exit `swirl`
+- `nxt()`: return to `swirl` after `play()`ing around in the console
+- `main()`: return to `swirl`'s main menu
+- `bye()` or "escape" key: exit `swirl`

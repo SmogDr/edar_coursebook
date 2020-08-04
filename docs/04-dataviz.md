@@ -345,8 +345,7 @@ There are many scale elements that you can add onto a `ggplot2` object using
 
 For the example plots, we will continue to use the `mpg` dataset from the
 `ggplot2` package. We will use functions from the `dplyr` package, too, so both
-need to be loaded. Remember, `library(tidyverse)` loads `ggplot2`, `dplyr`, and
-several other `tidyverse` packages at once. 
+need to be loaded. Fortunately, the `ggplot2` package is loaded in addition to regualr `tidyverse` packages when you call `library(tidyverse)`. 
 
 In this figure, we will look at highway fuel efficiency for SUVs in 2008,
 ordered by manufacturer and colored by the engine displacement size in liters.
@@ -462,7 +461,7 @@ ggsave("images/mpg-bar.png",
        units = "cm")
 ```
 
-## Getting help with ggplot2
+## Getting help with `ggplot2`
 
 The `ggplot2` package has become so popular that most of my "how do I do this?"
 questions have already been asked, answered, and archived on sites like
@@ -479,7 +478,7 @@ all the function calls in an organized list, for which you can conduct a
 to reference while coding.
 
 If you would like some hands-on training in `ggplot2`, look for tutorials or
-webinars like [this one]() from Dr. Samantha Tyner, the creator and maintainer
+webinars like [this one](https://www.youtube.com/watch?v=umDKP7ofHKk&feature=youtu.be) from Dr. Samantha Tyner, the creator and maintainer
 of `geomnet`, a `ggplot2` extension. Speaking of which, the R community has
 created a large number of `ggplot2` extensions for different data visualization
 needs. If you are thinking about a custom `ggplot` style, it probably
