@@ -19,11 +19,13 @@ This Chapter is designed around the following learning objectives. Upon completi
 - Apply functions from the `dplyr` and `tidyr` packages to make data frames "tidy"
 
 ## Strings {#strings}
-A ***string*** is a character variable like "John", or "blue", or "John has entered his blue phase". *Note: strings are defined in R using quotes `" "`* Strings often show up in data analysis in one of two ways:  
+A ***string*** is a character variable like "John", or "blue", or "John's sample 8021A turned blue". 
 
-  1. As ***metadata***. Metadata means: "data that describe other data".  A *readme.txt* file is metadata; notes and code comments are metadata - all of these types of data usually come in the form of strings and are included *with the data your are analyzing* but not *in the data set* itself.  
+**String variables are defined in R using quotes `" "`** and stored as a `character` class; they often show up in data analysis in one of two ways:  
+
+  1. As ***metadata***. Metadata means: "data that describe other data".  A *readme.txt* file is metadata; notes and code comments are metadata - all of these types of data usually come in the form of strings and are included **with the data your are analyzing** but not **in the data set** itself.  
   
-  2. As ***vectorized data***.  In R programming, *"vectorized"* means: stored as a     column of data.  Examples of vectorized string variables you might find include things like: "participant names", or "survey responses to question 1", or "mode of failure".  The examples below show how strings are created in R. 
+  2. As ***vectorized data***.  In R programming, *"vectorized"* means: stored as a     column of data.  Examples of vectorized string variables you might find include things like: "participant names", or "survey responses to question 1", or "mode of failure".  The examples below show how string variables are created in R. 
     
 
 ```r
@@ -34,22 +36,31 @@ names_respond <- c("Ahmed",
                    "William", 
                    "Ali", 
                    "Wei", 
-                   "Steve-O")
-q1_responses <- c("because you told me to do it",
-                  "it seemed like the right thing to do at the time",
-                  "because I had been over-served",
-                  "I don't know, I just did it",
-                  "I got caught up in the heat of the moment",
-                  "I was given an opportunity, so I took my shot",
-                  "I plead the 5th")
+                   "Steve-O",
+                   "John")
+q1_responses <- c("Because you told me to do it.",
+                  "It seemed like the right thing to do at the time.",
+                  "Because I had been over-served.",
+                  "I don't know. I just did it.",
+                  "I got caught up in the heat of the moment.",
+                  "I was given an opportunity. I took my shot.",
+                  "I plead the 5th.",
+                  "I could ask you the same question.")
 failure_mode <- c("fracture",
                   "yielding", 
                   "deflection", 
                   "fatigue", 
                   "creep")
+
+#proof
+class(names_respond)
+```
+
+```
+## [1] "character"
 ```
     
-To analyze strings, you often begin by parsing each string. To parse means to examine the individual components. For example, when you read this sentence you parse out the words and then assign meaning to those words based on your memory, your understanding of grammar, and the contextual reality under which those words show up (i.e., whether you are reading an instruction manual, a text message, a novel, or a warrant for your arrest). Strings can be challenging to analyze because computers are built on logical operations and mathematics; strings are neither of those. Computers have fantastic memory, are OK at grammar, and are comically poor at contextualization. Taken together, this means that strings can be challenging (but not impossible) to analyze using computers. 
+The first step in analyzing a string is to parse it. **To parse means to examine the individual components.** For example, when you read this sentence you parse out the words and then assign meaning to those words based on your memory, your understanding of grammar, and the context in which those words occur (i.e., whether you are reading an instruction manual, a text message, a novel, or a warrant for your arrest). Strings can be challenging to analyze because computers are built on logical operations and mathematics; strings are neither of those. Computers have fantastic memory, are OK at grammar, and are comically poor at contextualization. Taken together, this means that strings can be challenging (but not impossible) to analyze using computers. 
 
 <div class="rmdnote">
 <p>Are you active on social media platforms like Instagram or Twitter? You can bet that a computer program has downloaded and parsed all of your posts, each one as a string. You can learn a lot about a person (and their buying habits) from what they post online!</p>
@@ -57,50 +68,67 @@ To analyze strings, you often begin by parsing each string. To parse means to ex
 
 In this chapter, we will introduce a few simple string functions from `{base}` R and the `stringr` package. We will also introduce the concept of **regular expressions** as a means to perform more advanced string manipulation.
 
-### String detect & match
-One of the simplest string operations is to search whether a string contains a pattern of interest. The `stringr` package (part of the [Tidyverse](https://stringr.tidyverse.org/)) was developed to make it easier for you to work with strings. Most of the functions in `stringr` begin with `str_` and end with a specific function name. A full list of functions is provided [here](https://stringr.tidyverse.org/reference/index.html). Some examples:  
+### String detect, match, subset
+One of the simplest string operations is to search whether a string contains a pattern of interest. The `stringr` package (part of the [Tidyverse](https://stringr.tidyverse.org/)) was developed to simplify the analysis of strings. Most of the functions in `stringr` begin with `str_` and end with a specific function name. A full list of functions is provided [here](https://stringr.tidyverse.org/reference/index.html). Some examples:  
 
-  **`str_detect`** returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the `string` to be searched and the `pattern` to search for.  If we search for the pattern "Josh" in our list of participants (`names_respond`), we get:
+  **`str_detect()`** returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the `string` to be searched and the `pattern` to search for.  Let's search for the pattern `"Josh"` in the character vector of strings, `names_respond`, that we created above:
   
 
 ```r
-str_detect(names_respond, "Josh")
+str_detect(string = names_respond, pattern = "Josh")
 ```
 
 ```
-## [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+## [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
 ```
-  
-  **`str_match`** takes the same arguments but returns a vector of the matched values (by string index).
+As expected, only one string in the vector produced a match.  
+
+An added benefit of logical functions like `str_detect()` is that return values of `TRUE` are coded as 1 and `FALSE` as 0.  Thus, if we `sum()` the result of the `str_detect()` search, we will get the cumulative number of matches to `"Josh"` from within our data.
+
+
+```r
+str_detect(string = names_respond, pattern = "Josh") %>%
+  sum()
+```
+
+```
+## [1] 1
+```
+In other words, logical functions like `str_detect()` allow us to do math on string data! For example, we can now calculate the proportion of `"Josh"` entries within our sample:
+
+
+```r
+str_detect(string = names_respond, pattern = "Josh") %>%
+  sum() / length(names_respond)
+```
+
+```
+## [1] 0.125
+```
+
+  **`str_extract()`** takes the same arguments as `str_detect()` but returns a vector of the matched values (by string index). By *"matched values"*, I mean only the portion of the string for which the search created a match.
   
 
 ```r
-str_match(names_respond, "Josh")
+str_extract(string = names_respond, pattern = "Jo")
 ```
 
 ```
-##      [,1]  
-## [1,] NA    
-## [2,] "Josh"
-## [3,] NA    
-## [4,] NA    
-## [5,] NA    
-## [6,] NA    
-## [7,] NA
+## [1] NA   "Jo" NA   NA   NA   NA   NA   "Jo"
 ```
 
-  **`str_subset`** returns only the entries from the vector where a match occurred.  If we subset our short list of names to the pattern of letters "li", we get:
+  **`str_subset()`** returns only the entries that were matched (i.e., if a match was detected, then the entire string that was matched is returned).  If we subset our short list of names to the pattern of letters `"li"`, we get:
   
 
 ```r
-str_subset(names_respond, "li")
+str_subset(string = names_respond, pattern = "li")
 ```
 
 ```
 ## [1] "William" "Ali"
 ```
   
-In `{base}` R, these searches are performed with the `grep` family of functions. The term *"grep"* is an acronym for **<u>G</u>lobal <u>R</u>egular <u>E</u>xpression <u>P</u>attern** (more on *regular expressions* below).  Many of "old-school" coders use this family of functions (meaning: you will encounter them in the wild), so it's worth discussing them briefly.
+To note, there are `{base}` R versions of all these stringr functions.  Most are performed with the `grep` family of functions. The term *"grep"* is an acronym for **<u>G</u>lobal <u>R</u>egular <u>E</u>xpression <u>P</u>attern** (more on *regular expressions* below).  Many of "old-school" coders use this family of functions (meaning: you will encounter them in the wild), so it's worth mentioning them.
 
 <table>
  <thead>
@@ -125,26 +153,28 @@ In `{base}` R, these searches are performed with the `grep` family of functions.
 </tbody>
 </table>
 ### Regular Expressions
-Before going much farther, we should spend some time discussing ***regular expressions*** or *regex* for short. When we pass a `pattern` argument to a function like `str_detect()`, the function treats that argument like a "regex".
+Before going much farther, we should spend some time discussing ***regular expressions*** or **regex** for short. When we pass a `pattern` argument to a function like `str_detect()`, the function treats that argument like a "regex". Up until this point, I have only passed simple character strings as `pattern` arguments (i.e., `pattern = "Josh"`).  In reality, we can create much more advanced search criteria using **regex** syntax within our search patterns. 
 
 <div class="rmdnote">
-<p>A regular expression is a sequence of characters that define a search pattern to be implemented on a string.</p>
+<p>A <strong>regular expression</strong> is a sequence of characters that define a search pattern to be implemented on a string.</p>
 </div>
 
-Regex sequences allow for pattern searching with logical and conditional relations, for example, the following "text search patterns" can be coded as regex:  
+Regex sequences allow for pattern searching with logical and conditional relations, for example, the following text search patterns can be coded as regex:  
 
   * "any letter followed by the numbers 3, 4, or 5" ...  [:alpha:][345]
 * "strings beginning with the letters 'ID' and followed by four numbers" ... ^ID[:digit:]{4}
 
-In the R programming language, regular expressions follow the POSIX 1003.2 standard (regex can have different syntax based on the underlying standard).
+In the R programming language, regular expressions follow the POSIX 1003.2 standard (regex can have different syntax based on the underlying standard). Regex are created by including search syntax (i.e., symbols that communicate search parameters) within your quoted string. For example, square brackets around a string `[]` indicate a search for *any* of the characters within the brackets (conversely, to match *all* the characters you simply include them in quotes). To search for any digit or whitespace, you would add a `\d` or a `\s` to the regex, respectively.
 
-**Regex** sequences have seemingly no end of sophistication and complexity; you could spend dozens of hours learning to use them and hundreds more learning to master them.  We will only introduce basic concepts here.  More in-depth study of regex syntax and usage can be found on [H. Wickham's R course](http://r4ds.had.co.nz/strings.html), on the `stringr` [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/strings.pdf) developed by RStudio, and 
+One challenging aspect of string searching in R, however, is that certain "special characters" like the quote `"` and the backslash `\` symbol must be explicitly identified within string in order to be interpreted by R correctly. To identify these *special characters* in a string, you need to ***"escape"*** that character using a second backslash `\`. In other words, whenever a regex requires the use of a `\`, you have to identify it within a string as `\\`. Or, if you want to search for a quote symbol, you would type in `\"`.  The table below shows some basic regex syntax and how they would be implemented in an R string.
+
 
 <table>
+<caption>(\#tab:regex-1)Basic Regex Search Syntax and Example Implementation in R</caption>
  <thead>
   <tr>
    <th style="text-align:center;"> Regex syntax </th>
-   <th style="text-align:center;"> String match </th>
+   <th style="text-align:center;"> String to be matched </th>
    <th style="text-align:center;"> Example in R </th>
   </tr>
  </thead>
@@ -169,15 +199,86 @@ In the R programming language, regular expressions follow the POSIX 1003.2 stand
    <td style="text-align:center;"> matches anything except a, b, or c </td>
    <td style="text-align:center;"> &quot;[^abc]&quot; </td>
   </tr>
+  <tr>
+   <td style="text-align:center;"> (abc) </td>
+   <td style="text-align:center;"> creates a &quot;capture group&quot; whereby abc must occur together </td>
+   <td style="text-align:center;"> &quot;(abc)&quot; </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> ^b </td>
+   <td style="text-align:center;"> look for &quot;b&quot; at the start of a string </td>
+   <td style="text-align:center;"> &quot;\^b&quot; </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> $b </td>
+   <td style="text-align:center;"> look for &quot;b&quot; at the end of a string </td>
+   <td style="text-align:center;"> &quot;\$b&quot; </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> a|b </td>
+   <td style="text-align:center;"> match a or b </td>
+   <td style="text-align:center;"> &quot;a|b&quot; </td>
+  </tr>
 </tbody>
 </table>
+**Regex** sequences have seemingly no end of sophistication and nuance; you could spend dozens of hours learning to use them and hundreds more learning to master them.  We will only introduce basic concepts here.  More in-depth introductions to regex syntax and usage can be found on [H. Wickham's R course](http://r4ds.had.co.nz/strings.html), on the `stringr` [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/strings.pdf) developed by RStudio, and through practice with, my personal favorite, a game of [Regex Golf](https://alf.nu/RegexGolf).
 
+### String split, replace
+  
+  `str_split()` will split a string into two (or more) pieces when a match is detected. The string will always be split at the first match and again at each additional match location, unless you specify that only a finite number of `n` matches should occur.  Note, the string is split on each side of the match, which itself is not included in the output.
+  
 
-### String extract & remove
+```r
+str_split(string = names_respond, pattern = "t")
+```
 
-### String split & separate
+```
+## [[1]]
+## [1] "Ahmed"
+## 
+## [[2]]
+## [1] "Josh"
+## 
+## [[3]]
+## [1] "Ma" "eo"
+## 
+## [[4]]
+## [1] "William"
+## 
+## [[5]]
+## [1] "Ali"
+## 
+## [[6]]
+## [1] "Wei"
+## 
+## [[7]]
+## [1] "S"     "eve-O"
+## 
+## [[8]]
+## [1] "John"
+```
+  
+  `str_replace()` searches for a match and then replaces the matched value with a new string of your choosing.  The function takes three arguments: the `string` to be searched, the `pattern` to match, and the `replacement` string to be inserted. Let's replace all the periods in `q1_responses` with question marks.  To do so requires us to *"escape"* each symbol with two backslashes `\\` since these are special characters.
+  
 
+```r
+str_replace(string = q1_responses, 
+            pattern = "\\.+", 
+            replacement = "\\?")
+```
 
+```
+## [1] "Because you told me to do it?"                    
+## [2] "It seemed like the right thing to do at the time?"
+## [3] "Because I had been over-served?"                  
+## [4] "I don't know? I just did it."                     
+## [5] "I got caught up in the heat of the moment?"       
+## [6] "I was given an opportunity? I took my shot."      
+## [7] "I plead the 5th?"                                 
+## [8] "I could ask you the same question?"
+```
+
+Note that `str_replace()` 
 
 ## Dates and Date-times
 
@@ -195,7 +296,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-08-03 17:43:24 MDT"
+## [1] "2020-08-05 12:19:41 MDT"
 ```
 As you can see, we got back the date, time, and current timezone used by my computer.  If you want to see how this time is stored in R internally, you can use `unclass()`, which returns an object value with its class attributes removed.  When we wrap `unclass()` around `Sys.time()`, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:
 
@@ -205,15 +306,15 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1596498205
+## [1] 1596651582
 ```
 
 That's a lot of seconds.  How many years is that?  
-Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] ~ 50.624626 years.  
+Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] ~ 50.6294895 years.  
 This calculation ignores leap years but you get the point...
 
 ### Date-time formats
-Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-08-03 17:43:24
+Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-08-05 12:19:41
 
 Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky.  You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:
 
@@ -317,7 +418,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1596498205
+## [1] 1596651582
 ```
 
 
@@ -328,14 +429,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 25
-##  $ min   : int 43
-##  $ hour  : int 17
-##  $ mday  : int 3
+##  $ sec   : num 41.7
+##  $ min   : int 19
+##  $ hour  : int 12
+##  $ mday  : int 5
 ##  $ mon   : int 7
 ##  $ year  : int 120
-##  $ wday  : int 1
-##  $ yday  : int 215
+##  $ wday  : int 3
+##  $ yday  : int 217
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
@@ -400,7 +501,7 @@ In **summary** here are a few `{base}` R functions on date-time object that are 
 </table>
 
 ## `Lubridate` {#lubridate}
-The `lubridate` package was developed specifically to make life easier when working with date-time objects. 
+The `lubridate` package was developed specifically to make life easier when working with date-time objects. You can find out more information on `lubridate` [here](https://lubridate.tidyverse.org/).
 
 ### `Lubridate` Parsing Functions
 One of best aspects of `lubridate` is its ability to parse date-time objects with simplicity and ease; the `lubridate` parsing functions are designed as "named-to-order". Let me explain:  
@@ -585,14 +686,14 @@ head(x = daily_show, n = 2)
 
 The `lubridate` package also includes functions to pull out certain elements of a date, including: 
 
-- `wday` return the day of the week pertaining to a Date object
-- `mday` return the day of the month pertaining to a Date object
-- `yday` return the day of the year pertaining to a Date object
-- `month` return the month pertaining to a Date object
-- `quarter` return the quarter of hte year pertaining to a Date object
-- `year` return the year pertaining to a date object
+- `wday()` return the day of the week pertaining to a Date object
+- `mday()` return the day of the month pertaining to a Date object
+- `yday()` return the day of the year pertaining to a Date object
+- `month()` return the month pertaining to a Date object
+- `quarter()` return the quarter of hte year pertaining to a Date object
+- `year()` return the year pertaining to a date object
 
-For example, we could use `wday` to create a new column with the weekday of each show: 
+For example, we could use `wday()` to create a new column with the weekday of each show: 
 
 
 ```r
@@ -617,8 +718,7 @@ mutate(.data = daily_show,
 <p>R functions tend to use the timezone of <strong>YOUR</strong> computer’s operating system by default, or UTC, or GMT. You need to be careful when working with dates and times to either specify the time zone or convince yourself the default behavior works for your application.</p>
 </div>
 
-
-## Tidy Data
-
+## Exercises  
+  * Provide link to 
 
 

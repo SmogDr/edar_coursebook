@@ -252,10 +252,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a><ul>
 <li class="chapter" data-level="6.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
 <li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="rprog3.html"><a href="rprog3.html#string-detect-match"><i class="fa fa-check"></i><b>6.2.1</b> String detect &amp; match</a></li>
+<li class="chapter" data-level="6.2.1" data-path="rprog3.html"><a href="rprog3.html#string-detect-match-subset"><i class="fa fa-check"></i><b>6.2.1</b> String detect, match, subset</a></li>
 <li class="chapter" data-level="6.2.2" data-path="rprog3.html"><a href="rprog3.html#regular-expressions"><i class="fa fa-check"></i><b>6.2.2</b> Regular Expressions</a></li>
-<li class="chapter" data-level="6.2.3" data-path="rprog3.html"><a href="rprog3.html#string-extract-remove"><i class="fa fa-check"></i><b>6.2.3</b> String extract &amp; remove</a></li>
-<li class="chapter" data-level="6.2.4" data-path="rprog3.html"><a href="rprog3.html#string-split-separate"><i class="fa fa-check"></i><b>6.2.4</b> String split &amp; separate</a></li>
+<li class="chapter" data-level="6.2.3" data-path="rprog3.html"><a href="rprog3.html#string-split-replace"><i class="fa fa-check"></i><b>6.2.3</b> String split, replace</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="rprog3.html"><a href="rprog3.html#dates-and-times-in-base-r"><i class="fa fa-check"></i><b>6.3.1</b> Dates and Times in base R</a></li>
@@ -267,7 +266,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4.1" data-path="rprog3.html"><a href="rprog3.html#lubridate-parsing-functions"><i class="fa fa-check"></i><b>6.4.1</b> <code>Lubridate</code> Parsing Functions</a></li>
 <li class="chapter" data-level="6.4.2" data-path="rprog3.html"><a href="rprog3.html#date-time-manipulation-with-lubridate"><i class="fa fa-check"></i><b>6.4.2</b> Date-time manipulation with <code>Lubridate</code></a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#tidy-data"><i class="fa fa-check"></i><b>6.5</b> Tidy Data</a></li>
+<li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#exercises"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a><ul>
 <li class="chapter" data-level="7.1" data-path="rprog1.html"><a href="rprog1.html#objectives"><i class="fa fa-check"></i><b>7.1</b> Objectives</a></li>
@@ -405,10 +404,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="strings" class="section level2">
 <h2><span class="header-section-number">6.2</span> Strings</h2>
-<p>A <strong><em>string</em></strong> is a character variable like “John”, or “blue”, or “John has entered his blue phase”. <em>Note: strings are defined in R using quotes <code>" "</code></em> Strings often show up in data analysis in one of two ways:</p>
+<p>A <strong><em>string</em></strong> is a character variable like “John”, or “blue”, or “John’s sample 8021A turned blue”.</p>
+<p><strong>String variables are defined in R using quotes <code>" "</code></strong> and stored as a <code>character</code> class; they often show up in data analysis in one of two ways:</p>
 <ol style="list-style-type: decimal">
-<li><p>As <strong><em>metadata</em></strong>. Metadata means: “data that describe other data”. A <em>readme.txt</em> file is metadata; notes and code comments are metadata - all of these types of data usually come in the form of strings and are included <em>with the data your are analyzing</em> but not <em>in the data set</em> itself.</p></li>
-<li><p>As <strong><em>vectorized data</em></strong>. In R programming, <em>“vectorized”</em> means: stored as a column of data. Examples of vectorized string variables you might find include things like: “participant names”, or “survey responses to question 1”, or “mode of failure”. The examples below show how strings are created in R.</p></li>
+<li><p>As <strong><em>metadata</em></strong>. Metadata means: “data that describe other data”. A <em>readme.txt</em> file is metadata; notes and code comments are metadata - all of these types of data usually come in the form of strings and are included <strong>with the data your are analyzing</strong> but not <strong>in the data set</strong> itself.</p></li>
+<li><p>As <strong><em>vectorized data</em></strong>. In R programming, <em>“vectorized”</em> means: stored as a column of data. Examples of vectorized string variables you might find include things like: “participant names”, or “survey responses to question 1”, or “mode of failure”. The examples below show how string variables are created in R.</p></li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rprog3.html#cb1-1"></a><span class="co"># examples of vectorized string data</span></span>
 <span id="cb1-2"><a href="rprog3.html#cb1-2"></a>names_respond &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ahmed&quot;</span>, </span>
@@ -417,46 +417,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-5"><a href="rprog3.html#cb1-5"></a>                   <span class="st">&quot;William&quot;</span>, </span>
 <span id="cb1-6"><a href="rprog3.html#cb1-6"></a>                   <span class="st">&quot;Ali&quot;</span>, </span>
 <span id="cb1-7"><a href="rprog3.html#cb1-7"></a>                   <span class="st">&quot;Wei&quot;</span>, </span>
-<span id="cb1-8"><a href="rprog3.html#cb1-8"></a>                   <span class="st">&quot;Steve-O&quot;</span>)</span>
-<span id="cb1-9"><a href="rprog3.html#cb1-9"></a>q1_responses &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;because you told me to do it&quot;</span>,</span>
-<span id="cb1-10"><a href="rprog3.html#cb1-10"></a>                  <span class="st">&quot;it seemed like the right thing to do at the time&quot;</span>,</span>
-<span id="cb1-11"><a href="rprog3.html#cb1-11"></a>                  <span class="st">&quot;because I had been over-served&quot;</span>,</span>
-<span id="cb1-12"><a href="rprog3.html#cb1-12"></a>                  <span class="st">&quot;I don&#39;t know, I just did it&quot;</span>,</span>
-<span id="cb1-13"><a href="rprog3.html#cb1-13"></a>                  <span class="st">&quot;I got caught up in the heat of the moment&quot;</span>,</span>
-<span id="cb1-14"><a href="rprog3.html#cb1-14"></a>                  <span class="st">&quot;I was given an opportunity, so I took my shot&quot;</span>,</span>
-<span id="cb1-15"><a href="rprog3.html#cb1-15"></a>                  <span class="st">&quot;I plead the 5th&quot;</span>)</span>
-<span id="cb1-16"><a href="rprog3.html#cb1-16"></a>failure_mode &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fracture&quot;</span>,</span>
-<span id="cb1-17"><a href="rprog3.html#cb1-17"></a>                  <span class="st">&quot;yielding&quot;</span>, </span>
-<span id="cb1-18"><a href="rprog3.html#cb1-18"></a>                  <span class="st">&quot;deflection&quot;</span>, </span>
-<span id="cb1-19"><a href="rprog3.html#cb1-19"></a>                  <span class="st">&quot;fatigue&quot;</span>, </span>
-<span id="cb1-20"><a href="rprog3.html#cb1-20"></a>                  <span class="st">&quot;creep&quot;</span>)</span></code></pre></div>
-<p>To analyze strings, you often begin by parsing each string. To parse means to examine the individual components. For example, when you read this sentence you parse out the words and then assign meaning to those words based on your memory, your understanding of grammar, and the contextual reality under which those words show up (i.e., whether you are reading an instruction manual, a text message, a novel, or a warrant for your arrest). Strings can be challenging to analyze because computers are built on logical operations and mathematics; strings are neither of those. Computers have fantastic memory, are OK at grammar, and are comically poor at contextualization. Taken together, this means that strings can be challenging (but not impossible) to analyze using computers.</p>
+<span id="cb1-8"><a href="rprog3.html#cb1-8"></a>                   <span class="st">&quot;Steve-O&quot;</span>,</span>
+<span id="cb1-9"><a href="rprog3.html#cb1-9"></a>                   <span class="st">&quot;John&quot;</span>)</span>
+<span id="cb1-10"><a href="rprog3.html#cb1-10"></a>q1_responses &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Because you told me to do it.&quot;</span>,</span>
+<span id="cb1-11"><a href="rprog3.html#cb1-11"></a>                  <span class="st">&quot;It seemed like the right thing to do at the time.&quot;</span>,</span>
+<span id="cb1-12"><a href="rprog3.html#cb1-12"></a>                  <span class="st">&quot;Because I had been over-served.&quot;</span>,</span>
+<span id="cb1-13"><a href="rprog3.html#cb1-13"></a>                  <span class="st">&quot;I don&#39;t know. I just did it.&quot;</span>,</span>
+<span id="cb1-14"><a href="rprog3.html#cb1-14"></a>                  <span class="st">&quot;I got caught up in the heat of the moment.&quot;</span>,</span>
+<span id="cb1-15"><a href="rprog3.html#cb1-15"></a>                  <span class="st">&quot;I was given an opportunity. I took my shot.&quot;</span>,</span>
+<span id="cb1-16"><a href="rprog3.html#cb1-16"></a>                  <span class="st">&quot;I plead the 5th.&quot;</span>,</span>
+<span id="cb1-17"><a href="rprog3.html#cb1-17"></a>                  <span class="st">&quot;I could ask you the same question.&quot;</span>)</span>
+<span id="cb1-18"><a href="rprog3.html#cb1-18"></a>failure_mode &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fracture&quot;</span>,</span>
+<span id="cb1-19"><a href="rprog3.html#cb1-19"></a>                  <span class="st">&quot;yielding&quot;</span>, </span>
+<span id="cb1-20"><a href="rprog3.html#cb1-20"></a>                  <span class="st">&quot;deflection&quot;</span>, </span>
+<span id="cb1-21"><a href="rprog3.html#cb1-21"></a>                  <span class="st">&quot;fatigue&quot;</span>, </span>
+<span id="cb1-22"><a href="rprog3.html#cb1-22"></a>                  <span class="st">&quot;creep&quot;</span>)</span>
+<span id="cb1-23"><a href="rprog3.html#cb1-23"></a></span>
+<span id="cb1-24"><a href="rprog3.html#cb1-24"></a><span class="co">#proof</span></span>
+<span id="cb1-25"><a href="rprog3.html#cb1-25"></a><span class="kw">class</span>(names_respond)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>The first step in analyzing a string is to parse it. <strong>To parse means to examine the individual components.</strong> For example, when you read this sentence you parse out the words and then assign meaning to those words based on your memory, your understanding of grammar, and the context in which those words occur (i.e., whether you are reading an instruction manual, a text message, a novel, or a warrant for your arrest). Strings can be challenging to analyze because computers are built on logical operations and mathematics; strings are neither of those. Computers have fantastic memory, are OK at grammar, and are comically poor at contextualization. Taken together, this means that strings can be challenging (but not impossible) to analyze using computers.</p>
 <div class="rmdnote">
 <p>
 Are you active on social media platforms like Instagram or Twitter? You can bet that a computer program has downloaded and parsed all of your posts, each one as a string. You can learn a lot about a person (and their buying habits) from what they post online!
 </p>
 </div>
 <p>In this chapter, we will introduce a few simple string functions from <code>{base}</code> R and the <code>stringr</code> package. We will also introduce the concept of <strong>regular expressions</strong> as a means to perform more advanced string manipulation.</p>
-<div id="string-detect-match" class="section level3">
-<h3><span class="header-section-number">6.2.1</span> String detect &amp; match</h3>
-<p>One of the simplest string operations is to search whether a string contains a pattern of interest. The <code>stringr</code> package (part of the <a href="https://stringr.tidyverse.org/">Tidyverse</a>) was developed to make it easier for you to work with strings. Most of the functions in <code>stringr</code> begin with <code>str_</code> and end with a specific function name. A full list of functions is provided <a href="https://stringr.tidyverse.org/reference/index.html">here</a>. Some examples:</p>
-<p><strong><code>str_detect</code></strong> returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the <code>string</code> to be searched and the <code>pattern</code> to search for. If we search for the pattern “Josh” in our list of participants (<code>names_respond</code>), we get:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rprog3.html#cb2-1"></a><span class="kw">str_detect</span>(names_respond, <span class="st">&quot;Josh&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE</code></pre>
-<p><strong><code>str_match</code></strong> takes the same arguments but returns a vector of the matched values (by string index).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rprog3.html#cb4-1"></a><span class="kw">str_match</span>(names_respond, <span class="st">&quot;Josh&quot;</span>)</span></code></pre></div>
-<pre><code>##      [,1]  
-## [1,] NA    
-## [2,] &quot;Josh&quot;
-## [3,] NA    
-## [4,] NA    
-## [5,] NA    
-## [6,] NA    
-## [7,] NA</code></pre>
-<p><strong><code>str_subset</code></strong> returns only the entries from the vector where a match occurred. If we subset our short list of names to the pattern of letters “li”, we get:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rprog3.html#cb6-1"></a><span class="kw">str_subset</span>(names_respond, <span class="st">&quot;li&quot;</span>)</span></code></pre></div>
+<div id="string-detect-match-subset" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> String detect, match, subset</h3>
+<p>One of the simplest string operations is to search whether a string contains a pattern of interest. The <code>stringr</code> package (part of the <a href="https://stringr.tidyverse.org/">Tidyverse</a>) was developed to simplify the analysis of strings. Most of the functions in <code>stringr</code> begin with <code>str_</code> and end with a specific function name. A full list of functions is provided <a href="https://stringr.tidyverse.org/reference/index.html">here</a>. Some examples:</p>
+<p><strong><code>str_detect()</code></strong> returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the <code>string</code> to be searched and the <code>pattern</code> to search for. Let’s search for the pattern <code>"Josh"</code> in the character vector of strings, <code>names_respond</code>, that we created above:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rprog3.html#cb3-1"></a><span class="kw">str_detect</span>(<span class="dt">string =</span> names_respond, <span class="dt">pattern =</span> <span class="st">&quot;Josh&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<p>As expected, only one string in the vector produced a match.</p>
+<p>An added benefit of logical functions like <code>str_detect()</code> is that return values of <code>TRUE</code> are coded as 1 and <code>FALSE</code> as 0. Thus, if we <code>sum()</code> the result of the <code>str_detect()</code> search, we will get the cumulative number of matches to <code>"Josh"</code> from within our data.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="rprog3.html#cb5-1"></a><span class="kw">str_detect</span>(<span class="dt">string =</span> names_respond, <span class="dt">pattern =</span> <span class="st">&quot;Josh&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb5-2"><a href="rprog3.html#cb5-2"></a><span class="st">  </span><span class="kw">sum</span>()</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>In other words, logical functions like <code>str_detect()</code> allow us to do math on string data! For example, we can now calculate the proportion of <code>"Josh"</code> entries within our sample:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="rprog3.html#cb7-1"></a><span class="kw">str_detect</span>(<span class="dt">string =</span> names_respond, <span class="dt">pattern =</span> <span class="st">&quot;Josh&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb7-2"><a href="rprog3.html#cb7-2"></a><span class="st">  </span><span class="kw">sum</span>() <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(names_respond)</span></code></pre></div>
+<pre><code>## [1] 0.125</code></pre>
+<p><strong><code>str_extract()</code></strong> takes the same arguments as <code>str_detect()</code> but returns a vector of the matched values (by string index). By <em>“matched values”</em>, I mean only the portion of the string for which the search created a match.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="rprog3.html#cb9-1"></a><span class="kw">str_extract</span>(<span class="dt">string =</span> names_respond, <span class="dt">pattern =</span> <span class="st">&quot;Jo&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] NA   &quot;Jo&quot; NA   NA   NA   NA   NA   &quot;Jo&quot;</code></pre>
+<p><strong><code>str_subset()</code></strong> returns only the entries that were matched (i.e., if a match was detected, then the entire string that was matched is returned). If we subset our short list of names to the pattern of letters <code>"li"</code>, we get:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="rprog3.html#cb11-1"></a><span class="kw">str_subset</span>(<span class="dt">string =</span> names_respond, <span class="dt">pattern =</span> <span class="st">&quot;li&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;William&quot; &quot;Ali&quot;</code></pre>
-<p>In <code>{base}</code> R, these searches are performed with the <code>grep</code> family of functions. The term <em>“grep”</em> is an acronym for <strong><u>G</u>lobal <u>R</u>egular <u>E</u>xpression <u>P</u>attern</strong> (more on <em>regular expressions</em> below). Many of “old-school” coders use this family of functions (meaning: you will encounter them in the wild), so it’s worth discussing them briefly.</p>
+<p>To note, there are <code>{base}</code> R versions of all these stringr functions. Most are performed with the <code>grep</code> family of functions. The term <em>“grep”</em> is an acronym for <strong><u>G</u>lobal <u>R</u>egular <u>E</u>xpression <u>P</u>attern</strong> (more on <em>regular expressions</em> below). Many of “old-school” coders use this family of functions (meaning: you will encounter them in the wild), so it’s worth mentioning them.</p>
 <table>
 <thead>
 <tr>
@@ -498,27 +506,30 @@ grep(pattern, x, value = TRUE)
 </div>
 <div id="regular-expressions" class="section level3">
 <h3><span class="header-section-number">6.2.2</span> Regular Expressions</h3>
-<p>Before going much farther, we should spend some time discussing <strong><em>regular expressions</em></strong> or <em>regex</em> for short. When we pass a <code>pattern</code> argument to a function like <code>str_detect()</code>, the function treats that argument like a “regex”.</p>
+<p>Before going much farther, we should spend some time discussing <strong><em>regular expressions</em></strong> or <strong>regex</strong> for short. When we pass a <code>pattern</code> argument to a function like <code>str_detect()</code>, the function treats that argument like a “regex”. Up until this point, I have only passed simple character strings as <code>pattern</code> arguments (i.e., <code>pattern = "Josh"</code>). In reality, we can create much more advanced search criteria using <strong>regex</strong> syntax within our search patterns.</p>
 <div class="rmdnote">
 <p>
-A regular expression is a sequence of characters that define a search pattern to be implemented on a string.
+A <strong>regular expression</strong> is a sequence of characters that define a search pattern to be implemented on a string.
 </p>
 </div>
-<p>Regex sequences allow for pattern searching with logical and conditional relations, for example, the following “text search patterns” can be coded as regex:</p>
+<p>Regex sequences allow for pattern searching with logical and conditional relations, for example, the following text search patterns can be coded as regex:</p>
 <ul>
 <li>“any letter followed by the numbers 3, 4, or 5” … [:alpha:][345]</li>
 <li>“strings beginning with the letters ‘ID’ and followed by four numbers” … ^ID[:digit:]{4}</li>
 </ul>
-<p>In the R programming language, regular expressions follow the POSIX 1003.2 standard (regex can have different syntax based on the underlying standard).</p>
-<p><strong>Regex</strong> sequences have seemingly no end of sophistication and complexity; you could spend dozens of hours learning to use them and hundreds more learning to master them. We will only introduce basic concepts here. More in-depth study of regex syntax and usage can be found on <a href="http://r4ds.had.co.nz/strings.html">H. Wickham’s R course</a>, on the <code>stringr</code> <a href="https://github.com/rstudio/cheatsheets/raw/master/strings.pdf">cheatsheet</a> developed by RStudio, and</p>
+<p>In the R programming language, regular expressions follow the POSIX 1003.2 standard (regex can have different syntax based on the underlying standard). Regex are created by including search syntax (i.e., symbols that communicate search parameters) within your quoted string. For example, square brackets around a string <code>[]</code> indicate a search for <em>any</em> of the characters within the brackets (conversely, to match <em>all</em> the characters you simply include them in quotes). To search for any digit or whitespace, you would add a <code>\d</code> or a <code>\s</code> to the regex, respectively.</p>
+<p>One challenging aspect of string searching in R, however, is that certain “special characters” like the quote <code>"</code> and the backslash <code>\</code> symbol must be explicitly identified within string in order to be interpreted by R correctly. To identify these <em>special characters</em> in a string, you need to <strong><em>“escape”</em></strong> that character using a second backslash <code>\</code>. In other words, whenever a regex requires the use of a <code>\</code>, you have to identify it within a string as <code>\\</code>. Or, if you want to search for a quote symbol, you would type in <code>\"</code>. The table below shows some basic regex syntax and how they would be implemented in an R string.</p>
 <table>
+<caption>
+<span id="tab:regex-1">Table 6.1: </span>Basic Regex Search Syntax and Example Implementation in R
+</caption>
 <thead>
 <tr>
 <th style="text-align:center;">
 Regex syntax
 </th>
 <th style="text-align:center;">
-String match
+String to be matched
 </th>
 <th style="text-align:center;">
 Example in R
@@ -570,14 +581,94 @@ matches anything except a, b, or c
 “[^abc]”
 </td>
 </tr>
+<tr>
+<td style="text-align:center;">
+(abc)
+</td>
+<td style="text-align:center;">
+creates a “capture group” whereby abc must occur together
+</td>
+<td style="text-align:center;">
+“(abc)”
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+^b
+</td>
+<td style="text-align:center;">
+look for “b” at the start of a string
+</td>
+<td style="text-align:center;">
+“^b”
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+$b
+</td>
+<td style="text-align:center;">
+look for “b” at the end of a string
+</td>
+<td style="text-align:center;">
+“$b”
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+a|b
+</td>
+<td style="text-align:center;">
+match a or b
+</td>
+<td style="text-align:center;">
+“a|b”
+</td>
+</tr>
 </tbody>
 </table>
+<p><strong>Regex</strong> sequences have seemingly no end of sophistication and nuance; you could spend dozens of hours learning to use them and hundreds more learning to master them. We will only introduce basic concepts here. More in-depth introductions to regex syntax and usage can be found on <a href="http://r4ds.had.co.nz/strings.html">H. Wickham’s R course</a>, on the <code>stringr</code> <a href="https://github.com/rstudio/cheatsheets/raw/master/strings.pdf">cheatsheet</a> developed by RStudio, and through practice with, my personal favorite, a game of <a href="https://alf.nu/RegexGolf">Regex Golf</a>.</p>
 </div>
-<div id="string-extract-remove" class="section level3">
-<h3><span class="header-section-number">6.2.3</span> String extract &amp; remove</h3>
-</div>
-<div id="string-split-separate" class="section level3">
-<h3><span class="header-section-number">6.2.4</span> String split &amp; separate</h3>
+<div id="string-split-replace" class="section level3">
+<h3><span class="header-section-number">6.2.3</span> String split, replace</h3>
+<p><code>str_split()</code> will split a string into two (or more) pieces when a match is detected. The string will always be split at the first match and again at each additional match location, unless you specify that only a finite number of <code>n</code> matches should occur. Note, the string is split on each side of the match, which itself is not included in the output.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="rprog3.html#cb13-1"></a><span class="kw">str_split</span>(<span class="dt">string =</span> names_respond, <span class="dt">pattern =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;Ahmed&quot;
+## 
+## [[2]]
+## [1] &quot;Josh&quot;
+## 
+## [[3]]
+## [1] &quot;Ma&quot; &quot;eo&quot;
+## 
+## [[4]]
+## [1] &quot;William&quot;
+## 
+## [[5]]
+## [1] &quot;Ali&quot;
+## 
+## [[6]]
+## [1] &quot;Wei&quot;
+## 
+## [[7]]
+## [1] &quot;S&quot;     &quot;eve-O&quot;
+## 
+## [[8]]
+## [1] &quot;John&quot;</code></pre>
+<p><code>str_replace()</code> searches for a match and then replaces the matched value with a new string of your choosing. The function takes three arguments: the <code>string</code> to be searched, the <code>pattern</code> to match, and the <code>replacement</code> string to be inserted. Let’s replace all the periods in <code>q1_responses</code> with question marks. To do so requires us to <em>“escape”</em> each symbol with two backslashes <code>\\</code> since these are special characters.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="rprog3.html#cb15-1"></a><span class="kw">str_replace</span>(<span class="dt">string =</span> q1_responses, </span>
+<span id="cb15-2"><a href="rprog3.html#cb15-2"></a>            <span class="dt">pattern =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">.+&quot;</span>, </span>
+<span id="cb15-3"><a href="rprog3.html#cb15-3"></a>            <span class="dt">replacement =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">?&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Because you told me to do it?&quot;                    
+## [2] &quot;It seemed like the right thing to do at the time?&quot;
+## [3] &quot;Because I had been over-served?&quot;                  
+## [4] &quot;I don&#39;t know? I just did it.&quot;                     
+## [5] &quot;I got caught up in the heat of the moment?&quot;       
+## [6] &quot;I was given an opportunity? I took my shot.&quot;      
+## [7] &quot;I plead the 5th?&quot;                                 
+## [8] &quot;I could ask you the same question?&quot;</code></pre>
+<p>Note that <code>str_replace()</code></p>
 </div>
 </div>
 <div id="dates-and-date-times" class="section level2">
@@ -587,22 +678,22 @@ matches anything except a, b, or c
 <h3><span class="header-section-number">6.3.1</span> Dates and Times in base R</h3>
 <p>Dates and times in base R all proceed from an <em>“epoch”</em> or <em>time origin</em>. In R, the <em>epoch</em> or “dawn of time” occurred at midnight on January 1<sup>st</sup>, 1970. For the sake of the R programming world, the concept of time started at that precise moment and has moved forward ever since. To note: R can handle date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time” by calling the <code>Sys.time()</code> function.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="rprog3.html#cb8-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2020-08-03 17:43:24 MDT&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="rprog3.html#cb17-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;2020-08-05 12:19:41 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and current timezone used by my computer. If you want to see how this time is stored in R internally, you can use <code>unclass()</code>, which returns an object value with its class attributes removed. When we wrap <code>unclass()</code> around <code>Sys.time()</code>, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="rprog3.html#cb10-1"></a><span class="kw">unclass</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1596498205</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="rprog3.html#cb19-1"></a><span class="kw">unclass</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
+<pre><code>## [1] 1596651582</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
-Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span> 365d/yr] ~ 50.624626 years.<br />
+Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span> 365d/yr] ~ 50.6294895 years.<br />
 This calculation ignores leap years but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats</h3>
-<p>Note that the <code>Sys.time()</code> function provided the date in a <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong> format: 2020-08-03 17:43:24</p>
+<p>Note that the <code>Sys.time()</code> function provided the date in a <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong> format: 2020-08-05 12:19:41</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky. You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:date-times-1">Table 6.1: </span>Date-time objects come in different forms
+<span id="tab:date-times-1">Table 6.2: </span>Date-time objects come in different forms
 </caption>
 <tbody>
 <tr>
@@ -726,23 +817,23 @@ TRUE, FALSE
 </table>
 <p>To discover the class of a vector (including a column in a dataframe – remember
 each column can be thought of as a vector), you can use <code>class()</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="rprog3.html#cb12-1"></a><span class="kw">class</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="rprog3.html#cb21-1"></a><span class="kw">class</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <p>Both the <code>POSIXct</code> and <code>POSIXlt</code> class of objects return the same value to the user; the difference is really in how these classes store date-time objects internally. To examine them, you can coerce <code>Sys.time()</code> into each of the two classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and then examine their attributes.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="rprog3.html#cb14-1"></a>time_now_ct &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">Sys.time</span>())</span>
-<span id="cb14-2"><a href="rprog3.html#cb14-2"></a><span class="kw">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1596498205</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="rprog3.html#cb16-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
-<span id="cb16-2"><a href="rprog3.html#cb16-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="rprog3.html#cb23-1"></a>time_now_ct &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">Sys.time</span>())</span>
+<span id="cb23-2"><a href="rprog3.html#cb23-2"></a><span class="kw">unclass</span>(time_now_ct)</span></code></pre></div>
+<pre><code>## [1] 1596651582</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="rprog3.html#cb25-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
+<span id="cb25-2"><a href="rprog3.html#cb25-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 25
-##  $ min   : int 43
-##  $ hour  : int 17
-##  $ mday  : int 3
+##  $ sec   : num 41.7
+##  $ min   : int 19
+##  $ hour  : int 12
+##  $ mday  : int 5
 ##  $ mon   : int 7
 ##  $ year  : int 120
-##  $ wday  : int 1
-##  $ yday  : int 215
+##  $ wday  : int 3
+##  $ yday  : int 217
 ##  $ isdst : int 1
 ##  $ zone  : chr &quot;MDT&quot;
 ##  $ gmtoff: int -21600
@@ -757,13 +848,13 @@ each column can be thought of as a vector), you can use <code>class()</code>:</p
 <li>Different programs store and handle dates and times in different ways<br />
 </li>
 <li>The existence of time zones means that date-time values can change with location</li>
-<li>Date-time strings can be separated with spaces, colons, commas, slashes, dashes, or a mix of all those together (see Table <a href="rprog3.html#tab:date-times-1">6.1</a>)</li>
+<li>Date-time strings can be separated with spaces, colons, commas, slashes, dashes, or a mix of all those together (see Table <a href="rprog3.html#tab:date-times-1">6.2</a>)</li>
 </ol>
 <p>The <code>{base}</code> R function to convert between <code>character</code> classes and <code>date-time</code> classes is the function <code>strptime()</code>, which is short for <em>“<strong>str</strong>ing <strong>p</strong>arse into date-<strong>time</strong>”</em>. I mention this function not because I encourage you to use it but because I want you to be able to recognize it. The function has over 39 conversion specifications that it can take as arguments. That is to say, this function not simple to master. If you are a glutton for punishment, I invite you to read the R Documentation <code>?strptime</code>.</p>
 <p>In <strong>summary</strong> here are a few <code>{base}</code> R functions on date-time object that are worth knowing:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:base-r-times">Table 6.2: </span>Basic Date-time functions
+<span id="tab:base-r-times">Table 6.3: </span>Basic Date-time functions
 </caption>
 <thead>
 <tr>
@@ -851,7 +942,7 @@ date-time object of class POSIXlt
 </div>
 <div id="lubridate" class="section level2">
 <h2><span class="header-section-number">6.4</span> <code>Lubridate</code></h2>
-<p>The <code>lubridate</code> package was developed specifically to make life easier when working with date-time objects.</p>
+<p>The <code>lubridate</code> package was developed specifically to make life easier when working with date-time objects. You can find out more information on <code>lubridate</code> <a href="https://lubridate.tidyverse.org/">here</a>.</p>
 <div id="lubridate-parsing-functions" class="section level3">
 <h3><span class="header-section-number">6.4.1</span> <code>Lubridate</code> Parsing Functions</h3>
 <p>One of best aspects of <code>lubridate</code> is its ability to parse date-time objects with simplicity and ease; the <code>lubridate</code> parsing functions are designed as “named-to-order”. Let me explain:</p>
@@ -862,28 +953,28 @@ date-time object of class POSIXlt
 <li><p>If a character vector is written in “<strong>y</strong>ear-<strong>m</strong>onth-<strong>d</strong>ay” format (i.e., <code>"2020-Dec-18"</code>), then the <code>lubridate</code> function to convert that vector is <code>ymd()</code>.</p></li>
 <li><p>If a character vector is written in “<strong>d</strong>ay-<strong>m</strong>onth-<strong>y</strong>ear” format (i.e., <code>"18-Dec-2020"</code>), then the <code>lubridate</code> function to convert that vector is <code>dmy()</code>. Try it out:</p></li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="rprog3.html#cb18-1"></a><span class="co">#create a character vector</span></span>
-<span id="cb18-2"><a href="rprog3.html#cb18-2"></a>date_old &lt;-<span class="st"> &quot;2020-Dec-18&quot;</span></span>
-<span id="cb18-3"><a href="rprog3.html#cb18-3"></a></span>
-<span id="cb18-4"><a href="rprog3.html#cb18-4"></a><span class="co">#prove to yourself it&#39;s a character class</span></span>
-<span id="cb18-5"><a href="rprog3.html#cb18-5"></a><span class="kw">class</span>(date_old)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="rprog3.html#cb27-1"></a><span class="co">#create a character vector</span></span>
+<span id="cb27-2"><a href="rprog3.html#cb27-2"></a>date_old &lt;-<span class="st"> &quot;2020-Dec-18&quot;</span></span>
+<span id="cb27-3"><a href="rprog3.html#cb27-3"></a></span>
+<span id="cb27-4"><a href="rprog3.html#cb27-4"></a><span class="co">#prove to yourself it&#39;s a character class</span></span>
+<span id="cb27-5"><a href="rprog3.html#cb27-5"></a><span class="kw">class</span>(date_old)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="rprog3.html#cb20-1"></a><span class="co">#convert it to a `Date` class with `ymd()`</span></span>
-<span id="cb20-2"><a href="rprog3.html#cb20-2"></a>date_new &lt;-<span class="st"> </span><span class="kw">ymd</span>(date_old)</span>
-<span id="cb20-3"><a href="rprog3.html#cb20-3"></a></span>
-<span id="cb20-4"><a href="rprog3.html#cb20-4"></a><span class="co">#prove to yourself it worked</span></span>
-<span id="cb20-5"><a href="rprog3.html#cb20-5"></a><span class="kw">class</span>(date_new)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="rprog3.html#cb29-1"></a><span class="co">#convert it to a `Date` class with `ymd()`</span></span>
+<span id="cb29-2"><a href="rprog3.html#cb29-2"></a>date_new &lt;-<span class="st"> </span><span class="kw">ymd</span>(date_old)</span>
+<span id="cb29-3"><a href="rprog3.html#cb29-3"></a></span>
+<span id="cb29-4"><a href="rprog3.html#cb29-4"></a><span class="co">#prove to yourself it worked</span></span>
+<span id="cb29-5"><a href="rprog3.html#cb29-5"></a><span class="kw">class</span>(date_new)</span></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 <p>That little conversion exercise may not have blown you away, but watch what happens when I feed the following set of wacky character vectors into that same <code>lubridate</code> parsing function, <code>ymd()</code>:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="rprog3.html#cb22-1"></a>messy_dates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2020------Dec the 12&quot;</span>,</span>
-<span id="cb22-2"><a href="rprog3.html#cb22-2"></a>                 <span class="st">&quot;20.-.12.-.12&quot;</span>,</span>
-<span id="cb22-3"><a href="rprog3.html#cb22-3"></a>                 <span class="st">&quot;2020aaa12aaa12&quot;</span>,</span>
-<span id="cb22-4"><a href="rprog3.html#cb22-4"></a>                 <span class="st">&quot;20,12,12&quot;</span>,</span>
-<span id="cb22-5"><a href="rprog3.html#cb22-5"></a>                 <span class="st">&quot;2020x12-12&quot;</span>,</span>
-<span id="cb22-6"><a href="rprog3.html#cb22-6"></a>                 <span class="st">&quot;2020   ....    12        ......     12&quot;</span>,</span>
-<span id="cb22-7"><a href="rprog3.html#cb22-7"></a>                 <span class="st">&quot;&#39;20.December-12&quot;</span>)</span>
-<span id="cb22-8"><a href="rprog3.html#cb22-8"></a></span>
-<span id="cb22-9"><a href="rprog3.html#cb22-9"></a><span class="kw">ymd</span>(messy_dates)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="rprog3.html#cb31-1"></a>messy_dates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2020------Dec the 12&quot;</span>,</span>
+<span id="cb31-2"><a href="rprog3.html#cb31-2"></a>                 <span class="st">&quot;20.-.12.-.12&quot;</span>,</span>
+<span id="cb31-3"><a href="rprog3.html#cb31-3"></a>                 <span class="st">&quot;2020aaa12aaa12&quot;</span>,</span>
+<span id="cb31-4"><a href="rprog3.html#cb31-4"></a>                 <span class="st">&quot;20,12,12&quot;</span>,</span>
+<span id="cb31-5"><a href="rprog3.html#cb31-5"></a>                 <span class="st">&quot;2020x12-12&quot;</span>,</span>
+<span id="cb31-6"><a href="rprog3.html#cb31-6"></a>                 <span class="st">&quot;2020   ....    12        ......     12&quot;</span>,</span>
+<span id="cb31-7"><a href="rprog3.html#cb31-7"></a>                 <span class="st">&quot;&#39;20.December-12&quot;</span>)</span>
+<span id="cb31-8"><a href="rprog3.html#cb31-8"></a></span>
+<span id="cb31-9"><a href="rprog3.html#cb31-9"></a><span class="kw">ymd</span>(messy_dates)</span></code></pre></div>
 <pre><code>## [1] &quot;2020-12-12&quot; &quot;2020-12-12&quot; &quot;2020-12-12&quot; &quot;2020-12-12&quot; &quot;2020-12-12&quot;
 ## [6] &quot;2020-12-12&quot; &quot;2020-12-12&quot;</code></pre>
 <p>That’s right. The <code>ymd()</code> parsing function figured them all out correctly with almost no effort on your part. But wait, there’s more! The <code>lubridate</code> package contains parsing functions for almost any order you can dream up.</p>
@@ -970,40 +1061,40 @@ year-month-day_hours-minutes-seconds
 <h3><span class="header-section-number">6.4.2</span> Date-time manipulation with <code>Lubridate</code></h3>
 <p>To convert the <code>date</code> column in the <code>daily_show</code> data into a Date
 class, then, you can run:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="rprog3.html#cb24-1"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;lubridate&quot;</span>)</span>
-<span id="cb24-2"><a href="rprog3.html#cb24-2"></a></span>
-<span id="cb24-3"><a href="rprog3.html#cb24-3"></a><span class="kw">class</span>(<span class="dt">x =</span> daily_show<span class="op">$</span>date) <span class="co"># Check the class of the &#39;date&#39; column before mutating it</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="rprog3.html#cb33-1"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;lubridate&quot;</span>)</span>
+<span id="cb33-2"><a href="rprog3.html#cb33-2"></a></span>
+<span id="cb33-3"><a href="rprog3.html#cb33-3"></a><span class="kw">class</span>(<span class="dt">x =</span> daily_show<span class="op">$</span>date) <span class="co"># Check the class of the &#39;date&#39; column before mutating it</span></span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="rprog3.html#cb26-1"></a>daily_show &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> daily_show,</span>
-<span id="cb26-2"><a href="rprog3.html#cb26-2"></a>                     <span class="dt">date =</span> <span class="kw">mdy</span>(date))</span>
-<span id="cb26-3"><a href="rprog3.html#cb26-3"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dt">n =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="rprog3.html#cb35-1"></a>daily_show &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> daily_show,</span>
+<span id="cb35-2"><a href="rprog3.html#cb35-2"></a>                     <span class="dt">date =</span> <span class="kw">mdy</span>(date))</span>
+<span id="cb35-3"><a href="rprog3.html#cb35-3"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dt">n =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 5
 ##    year job                date       category guest_name     
 ##   &lt;dbl&gt; &lt;chr&gt;              &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;          
 ## 1  1999 actor              1999-01-11 Acting   Michael J. Fox 
 ## 2  1999 Comedian           1999-01-12 Comedy   Sandra Bernhard
 ## 3  1999 television actress 1999-01-13 Acting   Tracey Ullman</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="rprog3.html#cb28-1"></a><span class="kw">class</span>(<span class="dt">x =</span> daily_show<span class="op">$</span>date) <span class="co"># Check the class of the &#39;date&#39; column after mutating it</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="rprog3.html#cb37-1"></a><span class="kw">class</span>(<span class="dt">x =</span> daily_show<span class="op">$</span>date) <span class="co"># Check the class of the &#39;date&#39; column after mutating it</span></span></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 <p>Once you have an object in the <code>Date</code> class, you can do things like plot by
 date, calculate the range of dates, and calculate the total number of days the
 dataset covers:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="rprog3.html#cb30-1"></a><span class="co"># report the min and max dates</span></span>
-<span id="cb30-2"><a href="rprog3.html#cb30-2"></a><span class="kw">range</span>(daily_show<span class="op">$</span>date)</span>
-<span id="cb30-3"><a href="rprog3.html#cb30-3"></a></span>
-<span id="cb30-4"><a href="rprog3.html#cb30-4"></a><span class="co"># calculate the duration from first to last date</span></span>
-<span id="cb30-5"><a href="rprog3.html#cb30-5"></a><span class="kw">diff</span>(<span class="dt">x =</span> <span class="kw">range</span>(daily_show<span class="op">$</span>date)) </span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="rprog3.html#cb39-1"></a><span class="co"># report the min and max dates</span></span>
+<span id="cb39-2"><a href="rprog3.html#cb39-2"></a><span class="kw">range</span>(daily_show<span class="op">$</span>date)</span>
+<span id="cb39-3"><a href="rprog3.html#cb39-3"></a></span>
+<span id="cb39-4"><a href="rprog3.html#cb39-4"></a><span class="co"># calculate the duration from first to last date</span></span>
+<span id="cb39-5"><a href="rprog3.html#cb39-5"></a><span class="kw">diff</span>(<span class="dt">x =</span> <span class="kw">range</span>(daily_show<span class="op">$</span>date)) </span></code></pre></div>
 <p>We could have used these to transform the date in <code>daily_show</code>, using the following pipe chain:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="rprog3.html#cb31-1"></a>daily_show &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>,</span>
-<span id="cb31-2"><a href="rprog3.html#cb31-2"></a>                       <span class="dt">skip =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span></span>
-<span id="cb31-3"><a href="rprog3.html#cb31-3"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">job =</span> GoogleKnowlege_Occupation, </span>
-<span id="cb31-4"><a href="rprog3.html#cb31-4"></a>         <span class="dt">date =</span> Show,</span>
-<span id="cb31-5"><a href="rprog3.html#cb31-5"></a>         <span class="dt">category =</span> Group,</span>
-<span id="cb31-6"><a href="rprog3.html#cb31-6"></a>         <span class="dt">guest_name =</span> Raw_Guest_List) <span class="op">%&gt;%</span></span>
-<span id="cb31-7"><a href="rprog3.html#cb31-7"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>YEAR) <span class="op">%&gt;%</span></span>
-<span id="cb31-8"><a href="rprog3.html#cb31-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">mdy</span>(date)) <span class="op">%&gt;%</span></span>
-<span id="cb31-9"><a href="rprog3.html#cb31-9"></a><span class="st">  </span><span class="kw">filter</span>(category <span class="op">==</span><span class="st"> &quot;Science&quot;</span>)</span>
-<span id="cb31-10"><a href="rprog3.html#cb31-10"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dt">n =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="rprog3.html#cb40-1"></a>daily_show &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>,</span>
+<span id="cb40-2"><a href="rprog3.html#cb40-2"></a>                       <span class="dt">skip =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span></span>
+<span id="cb40-3"><a href="rprog3.html#cb40-3"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">job =</span> GoogleKnowlege_Occupation, </span>
+<span id="cb40-4"><a href="rprog3.html#cb40-4"></a>         <span class="dt">date =</span> Show,</span>
+<span id="cb40-5"><a href="rprog3.html#cb40-5"></a>         <span class="dt">category =</span> Group,</span>
+<span id="cb40-6"><a href="rprog3.html#cb40-6"></a>         <span class="dt">guest_name =</span> Raw_Guest_List) <span class="op">%&gt;%</span></span>
+<span id="cb40-7"><a href="rprog3.html#cb40-7"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>YEAR) <span class="op">%&gt;%</span></span>
+<span id="cb40-8"><a href="rprog3.html#cb40-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">mdy</span>(date)) <span class="op">%&gt;%</span></span>
+<span id="cb40-9"><a href="rprog3.html#cb40-9"></a><span class="st">  </span><span class="kw">filter</span>(category <span class="op">==</span><span class="st"> &quot;Science&quot;</span>)</span>
+<span id="cb40-10"><a href="rprog3.html#cb40-10"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dt">n =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##   job          date       category guest_name     
 ##   &lt;chr&gt;        &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;          
@@ -1011,18 +1102,18 @@ dataset covers:</p>
 ## 2 scientist    2004-01-13 Science  Catherine Weitz</code></pre>
 <p>The <code>lubridate</code> package also includes functions to pull out certain elements of a date, including:</p>
 <ul>
-<li><code>wday</code> return the day of the week pertaining to a Date object</li>
-<li><code>mday</code> return the day of the month pertaining to a Date object</li>
-<li><code>yday</code> return the day of the year pertaining to a Date object</li>
-<li><code>month</code> return the month pertaining to a Date object</li>
-<li><code>quarter</code> return the quarter of hte year pertaining to a Date object</li>
-<li><code>year</code> return the year pertaining to a date object</li>
+<li><code>wday()</code> return the day of the week pertaining to a Date object</li>
+<li><code>mday()</code> return the day of the month pertaining to a Date object</li>
+<li><code>yday()</code> return the day of the year pertaining to a Date object</li>
+<li><code>month()</code> return the month pertaining to a Date object</li>
+<li><code>quarter()</code> return the quarter of hte year pertaining to a Date object</li>
+<li><code>year()</code> return the year pertaining to a date object</li>
 </ul>
-<p>For example, we could use <code>wday</code> to create a new column with the weekday of each show:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="rprog3.html#cb33-1"></a><span class="kw">mutate</span>(<span class="dt">.data =</span> daily_show,</span>
-<span id="cb33-2"><a href="rprog3.html#cb33-2"></a>       <span class="dt">show_day =</span> <span class="kw">wday</span>(<span class="dt">x =</span> date, <span class="dt">label =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb33-3"><a href="rprog3.html#cb33-3"></a><span class="st">  </span><span class="kw">select</span>(date, show_day, guest_name) <span class="op">%&gt;%</span></span>
-<span id="cb33-4"><a href="rprog3.html#cb33-4"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
+<p>For example, we could use <code>wday()</code> to create a new column with the weekday of each show:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="rprog3.html#cb42-1"></a><span class="kw">mutate</span>(<span class="dt">.data =</span> daily_show,</span>
+<span id="cb42-2"><a href="rprog3.html#cb42-2"></a>       <span class="dt">show_day =</span> <span class="kw">wday</span>(<span class="dt">x =</span> date, <span class="dt">label =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb42-3"><a href="rprog3.html#cb42-3"></a><span class="st">  </span><span class="kw">select</span>(date, show_day, guest_name) <span class="op">%&gt;%</span></span>
+<span id="cb42-4"><a href="rprog3.html#cb42-4"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 3
 ##   date       show_day guest_name            
 ##   &lt;date&gt;     &lt;ord&gt;    &lt;chr&gt;                 
@@ -1038,8 +1129,11 @@ R functions tend to use the timezone of <strong>YOUR</strong> computer’s opera
 </div>
 </div>
 </div>
-<div id="tidy-data" class="section level2">
-<h2><span class="header-section-number">6.5</span> Tidy Data</h2>
+<div id="exercises" class="section level2">
+<h2><span class="header-section-number">6.5</span> Exercises</h2>
+<ul>
+<li>Provide link to</li>
+</ul>
 
 </div>
 </div>
