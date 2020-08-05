@@ -19,7 +19,11 @@ This Chapter is designed around the following learning objectives. Upon completi
 - Apply functions from the `dplyr` and `tidyr` packages to make data frames "tidy"
 
 ## Strings {#strings}
+<<<<<<< HEAD
 A ***string*** is a character variable like "John", or "blue", or "John's sample 8021A turned blue". 
+=======
+A ***string*** is a character variable like "John", or "blue", or "John has entered his blue phase". *String variables are defined in R using quotes `" "`* Strings often show up in data analysis in one of two ways:  
+>>>>>>> 03487b24679c2114ea177404fe0a1119d13823c1
 
 **String variables are defined in R using quotes `" "`** and stored as a `character` class; they often show up in data analysis in one of two ways:  
 
@@ -71,7 +75,11 @@ In this chapter, we will introduce a few simple string functions from `{base}` R
 ### String detect, match, subset
 One of the simplest string operations is to search whether a string contains a pattern of interest. The `stringr` package (part of the [Tidyverse](https://stringr.tidyverse.org/)) was developed to simplify the analysis of strings. Most of the functions in `stringr` begin with `str_` and end with a specific function name. A full list of functions is provided [here](https://stringr.tidyverse.org/reference/index.html). Some examples:  
 
+<<<<<<< HEAD
   **`str_detect()`** returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the `string` to be searched and the `pattern` to search for.  Let's search for the pattern `"Josh"` in the character vector of strings, `names_respond`, that we created above:
+=======
+  **`str_detect()`** returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the `string` to be searched and the `pattern` to search for.  Let's search for the pattern "Josh" in our list of participants (`names_respond`):
+>>>>>>> 03487b24679c2114ea177404fe0a1119d13823c1
   
 
 ```r
@@ -81,6 +89,7 @@ str_detect(string = names_respond, pattern = "Josh")
 ```
 ## [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
 ```
+<<<<<<< HEAD
 As expected, only one string in the vector produced a match.  
 
 An added benefit of logical functions like `str_detect()` is that return values of `TRUE` are coded as 1 and `FALSE` as 0.  Thus, if we `sum()` the result of the `str_detect()` search, we will get the cumulative number of matches to `"Josh"` from within our data.
@@ -107,6 +116,10 @@ str_detect(string = names_respond, pattern = "Josh") %>%
 ```
 
   **`str_extract()`** takes the same arguments as `str_detect()` but returns a vector of the matched values (by string index). By *"matched values"*, I mean only the portion of the string for which the search created a match.
+=======
+  
+  **`str_match()`** takes the same arguments but returns a vector of the matched values (by string index).
+>>>>>>> 03487b24679c2114ea177404fe0a1119d13823c1
   
 
 ```r
@@ -117,7 +130,11 @@ str_extract(string = names_respond, pattern = "Jo")
 ## [1] NA   "Jo" NA   NA   NA   NA   NA   "Jo"
 ```
 
+<<<<<<< HEAD
   **`str_subset()`** returns only the entries that were matched (i.e., if a match was detected, then the entire string that was matched is returned).  If we subset our short list of names to the pattern of letters `"li"`, we get:
+=======
+  **`str_subset()`** returns only the entries that were matched.  If we subset our short list of names to the pattern of letters "li", we get:
+>>>>>>> 03487b24679c2114ea177404fe0a1119d13823c1
   
 
 ```r
@@ -296,7 +313,11 @@ Sys.time()
 ```
 
 ```
+<<<<<<< HEAD
 ## [1] "2020-08-05 12:19:41 MDT"
+=======
+## [1] "2020-08-04 17:20:09 MDT"
+>>>>>>> 03487b24679c2114ea177404fe0a1119d13823c1
 ```
 As you can see, we got back the date, time, and current timezone used by my computer.  If you want to see how this time is stored in R internally, you can use `unclass()`, which returns an object value with its class attributes removed.  When we wrap `unclass()` around `Sys.time()`, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:
 
@@ -306,6 +327,7 @@ unclass(Sys.time())
 ```
 
 ```
+<<<<<<< HEAD
 ## [1] 1596651582
 ```
 
@@ -315,6 +337,17 @@ This calculation ignores leap years but you get the point...
 
 ### Date-time formats
 Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-08-05 12:19:41
+=======
+## [1] 1596583210
+```
+
+That's a lot of seconds.  How many years is that?  
+Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] ~ 50.6273215 years.  
+This calculation ignores leap years but you get the point...
+
+### Date-time formats
+Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-08-04 17:20:09
+>>>>>>> 03487b24679c2114ea177404fe0a1119d13823c1
 
 Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky.  You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:
 
@@ -418,7 +451,11 @@ unclass(time_now_ct)
 ```
 
 ```
+<<<<<<< HEAD
 ## [1] 1596651582
+=======
+## [1] 1596583210
+>>>>>>> 03487b24679c2114ea177404fe0a1119d13823c1
 ```
 
 
@@ -429,6 +466,7 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
+<<<<<<< HEAD
 ##  $ sec   : num 41.7
 ##  $ min   : int 19
 ##  $ hour  : int 12
@@ -437,6 +475,16 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 ##  $ year  : int 120
 ##  $ wday  : int 3
 ##  $ yday  : int 217
+=======
+##  $ sec   : num 9.72
+##  $ min   : int 20
+##  $ hour  : int 17
+##  $ mday  : int 4
+##  $ mon   : int 7
+##  $ year  : int 120
+##  $ wday  : int 2
+##  $ yday  : int 216
+>>>>>>> 03487b24679c2114ea177404fe0a1119d13823c1
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
