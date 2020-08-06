@@ -4,7 +4,7 @@
 
 Measurement is a fundamental tool for characterization and verification in engineering (and many fields).  This chapter will provide a quick introduction to the science of measurement.  
 
-## Objectives
+## Ch. 9 Objectives
 This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:  
 
 - Explain the difference between a sample and a population; 
@@ -227,4 +227,3 @@ Like precision,
 ### Measurement Uncertainty
 Bias and precision, together, make up *uncertainty*.  A good way to estimate the uncertainty around a measurement is 
 
-## Failure and Reliability

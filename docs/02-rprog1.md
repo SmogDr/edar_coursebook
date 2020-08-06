@@ -282,7 +282,7 @@ getRversion()
 ```
 
 ```
-## [1] '3.6.2'
+## [1] '4.0.2'
 ```
 
 Some functions will accept multiple arguments. For example, the `print()`
@@ -1283,12 +1283,12 @@ str(object = daily_show)
 ```
 
 ```
-## Classes 'spec_tbl_df', 'tbl_df', 'tbl' and 'data.frame':	2693 obs. of  5 variables:
-##  $ YEAR                     : num  1999 1999 1999 1999 1999 ...
-##  $ GoogleKnowlege_Occupation: chr  "actor" "Comedian" "television actress" "film actress" ...
-##  $ Show                     : chr  "1/11/99" "1/12/99" "1/13/99" "1/14/99" ...
-##  $ Group                    : chr  "Acting" "Comedy" "Acting" "Acting" ...
-##  $ Raw_Guest_List           : chr  "Michael J. Fox" "Sandra Bernhard" "Tracey Ullman" "Gillian Anderson" ...
+## tibble [2,693 × 5] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ YEAR                     : num [1:2693] 1999 1999 1999 1999 1999 ...
+##  $ GoogleKnowlege_Occupation: chr [1:2693] "actor" "Comedian" "television actress" "film actress" ...
+##  $ Show                     : chr [1:2693] "1/11/99" "1/12/99" "1/13/99" "1/14/99" ...
+##  $ Group                    : chr [1:2693] "Acting" "Comedy" "Acting" "Acting" ...
+##  $ Raw_Guest_List           : chr [1:2693] "Michael J. Fox" "Sandra Bernhard" "Tracey Ullman" "Gillian Anderson" ...
 ##  - attr(*, "spec")=
 ##   .. cols(
 ##   ..   YEAR = col_double(),
@@ -1434,7 +1434,7 @@ base::getwd()
 ```
 
 ```
-## [1] "/Users/wendtke/Documents/R/edar_coursebook"
+## [1] "/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook"
 ```
 
 1. Session information 
