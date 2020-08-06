@@ -2,7 +2,7 @@
 
 
 
-## Objectives
+## Ch. 4 Objectives
 
 This chapter is designed around the following learning objectives for basic
 data visualization in R. Upon completing this chapter, you should be able to:  

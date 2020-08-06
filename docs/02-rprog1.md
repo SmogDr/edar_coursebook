@@ -2,7 +2,7 @@
 
 
 
-## Objectives
+## Ch. 2 Objectives
 
 This chapter is designed around the following learning objectives. Upon
 completing this chapter, you should be able to:  
