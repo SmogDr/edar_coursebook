@@ -7,6 +7,8 @@ This Chapter is designed around the following learning objectives. Upon completi
 
 - Define common approaches to data transformation  
 - Explain the differences between *centering*, *rescaling*, and *standardizing* univariate data. 
+- Stratify data into relevant groups for analysis
+- Discuss the risks and potential approaches to handling outliers
 
 
 ## Transformation
@@ -43,28 +45,28 @@ Some reasons to rescale data include:
 - when you want to render a variable dimensionless (e.g., when converting to percentage units).
 
 ## Normalization and Standardization
-In a generic sense, to ***"normalize"*** a variable means: **to transform that variable so that it can be compared, evaluated, or comprehended more easily.**  Normalization often involves a combination of centering and rescaling operations that not only change the location and spread of the data, but also the *meaning* of data.  Normalization is used all the time. 
+In a generic sense, to ***"normalize"*** a variable means: **to transform that variable so that it can be compared, evaluated, or comprehended more easily.**  Normalization often involves a combination of centering and rescaling operations that not only change the location and spread of the data, but also the *meaning* of data.  Normalization is performed all the time. 
 <div class="rmdwarning">
 <p>Like <em>“transformation”</em>, the word “<em>normalization</em>” is defined differently in different fields, so be explicit when using this term in your work. To some, the word normalization means to “make a variable normally distributed”; to others, it means to “normalize a database” so that redundancies are eliminated.</p>
 </div>
 
-There are many types of normalization operations; we will discuss a few examples here:  
+There are many types of normalization operations; we will discuss a few examples below.  
 
 ### Rate normalization
 To perform a rate normalization is **to divide one variable into another**, often to report something in terms of a rate.  
 
   - Two cars can have the same range (how many miles they can travel on one tank of gas) but different rates of fuel efficiency (miles traveled per gallon)  
-  - Two countries can have the same GDI (*gross domestic income*; the sum of all  wages earned) but widely different rates of "per capita" income. 
+  - Two countries can have the same GDI (*gross domestic income*; the sum of all  wages earned) but widely different rates of "per capita" income (GDI/total population size). 
 
 ### Standardizing
-Standardization is a special case of transformation/normalization where each value in a set of observations (or vector) is subtracted by some level (often the central tendency) and divided by the spread.  When working with normally distributed data, the standardization of variable x_i into z_i is:
+Standardization is a special case of transformation/normalization where each value in a set of observations (or vector) is subtracted by some level (often the central tendency) and divided by the spread.  When working with normally distributed data, the standardization of variable x~i~ into z~i~ is:
 
      $z_{i} = \frac{x_{i}-\overline{x}}{\sigma_{x}}$
 
-where the mean and standard deviation of x are $\overline{x}$ and $\sigma_{x}$, respectively. The *standardization* of a variable renders the mean to 0 and the standard deviation to 1.  This type of normalization is useful when you wish to study relationships between multiple variables, each with different scale.
+where the mean and standard deviation of x are $\overline{x}$ and $\sigma_{x}$, respectively. The *standardization* of a variable renders the mean to 0 and the standard deviation to 1.  This type of normalization is useful when you wish to study relationships between multiple variables, each with different scale. Note that standardization doesn't have to use  the mean and standard deviation as the centering and normalizing variables, but those are most common.
 
 ### Reducing Skewness
-Sometimes your data are *not normally distributed*, even though you want them to be. In that case you still have options.  Some transformations, like the log, square root, or inverse, will make the spread of the data symmetric and approximately Gaussian. These transformations are commonly used to meet the needs (read: underlying assumptions) of many statistical models.
+Sometimes your data are *not normally distributed*, even though you want them to be. In that case you still have options.  Some transformations, like the log, square root, or inverse, will make the spread of the data symmetric and approximately Gaussian. These transformations are commonly used to meet the needs (read: underlying assumptions) of many statistical models. We discuss model assumptions (and their evaluation) in the [modeling chapter](#model).
 
 
 
@@ -78,95 +80,121 @@ Sometimes your data are *not normally distributed*, even though you want them to
 Stratified analyses can be performed many ways; one particularly useful way is graphically, by creating a stratification plot.  A stratification plot is like any other visualization that you have created, except that the strata are identified (i.e., called out) through the use of color, lines, symbols, etc.  Let's use the following example to demonstrate:
 
 
-A manufacturing operation is investigating the production of an expensive titanium alloy, where a 25% increase in the production yield of the alloy manufacturing process means the difference between profit and loss.  The materials group believes that sample purity should have an effect on the yield and for the past month, all three reactors at the plant have been producing alloys from Ti feed stock of varying purity. After one month, you decide to visualize the relationship between *process yield* and *sample purity* with a scatterplot, `geom_point()`.
-
-
-```r
-knitr::include_graphics("./images/unstratified.png")
-```
+A manufacturing operation is investigating the production of an expensive titanium alloy, where a 25% increase in the production yield of the alloy manufacturing process means the difference between profit and loss.  The materials group believes that sample purity should have an effect on the yield and for the past month, all three reactors at the plant have been producing alloys from Ti feedstock of varying purity. After one month, you decide to visualize the relationship between *process yield* and *sample purity* with a scatterplot, `geom_point()`.
 
 <div class="figure" style="text-align: center">
-<img src="./images/unstratified.png" alt="Yield vs. Purity from the plant's three reactors over one month" width="1050" />
+<img src="./images/unstratified.png" alt="Yield vs. Purity from the plant's three reactors over one month" width="500" />
 <p class="caption">(\#fig:stratify2)Yield vs. Purity from the plant's three reactors over one month</p>
 </div>
 Examination of Figure \@ref(fig:stratify2) reveals that, while there is considerable variation in the data, a clear relationship is not apparent between sample purity and process yield. However, it occurs to you that perhaps there is variation in results between the three different reactors in the plant.  Therefore, you decide to repeat this analysis ***stratifying the data by reactor type***.  In this case, you repeat the `ggplot()` call with an extra aesthetic of `color = reactor` in the scatterplot.
 
 
 
-
-```r
-knitr::include_graphics("./images/stratified.png")
-```
-
 <div class="figure" style="text-align: center">
-<img src="./images/stratified.png" alt="Yield vs. Purity over one month, stratified by reactor type" width="1050" />
+<img src="./images/stratified.png" alt="Yield vs. Purity over one month, stratified by reactor type" width="500" />
 <p class="caption">(\#fig:stratify-png)Yield vs. Purity over one month, stratified by reactor type</p>
 </div>
 Figure \@ref(fig:stratify-png) tells a very different story! Now we can see that two relationships are clearly evident.  
 
-  1. There is a definite inverse relationship beteen *sample purity* and the *process yield* and  
+  1. There is a definite inverse relationship between *sample purity* and the *process yield* and  
   2. For a given purity level, each reactor has a different output.  Clearly, there is something different about each of these reactors that merits further study...  
   
-## Censoring and Truncating Data
+Figure \@ref(fig:stratify-png) raises a subtle, but very important, point: **data often have hierarchy** and that hierarchy may be influential. In this case, only when we account for the hierarchy (the reactor that produced each sample), do we see an important relationship arise.
+
+*Hierarchical data* means data that can be ordered into different ranks (or levels). Students at a university might be ordered by their their college, their major, or the year in which they matriculated. Those ranks may be important when analyzing student data; if so, your analysis should account for that!
+
+## Outliers and Censoring
 Have you ever heard the phrase ***"don't make the exception the rule"***? 
 
 I think this phrase means, *don't let your judgment be governed solely by outliers.*  Whether or not this is good advice probably depends on the situation, but I do think one should have the ability to detect ***when an outlier has leverage over a situation***. 
 
-Data visualization (like histograms, density plots, time-series, and boxplots) is a useful way to detect outliers, because these plots make it clear that one or more observations *"don't seem to belong with the rest"*.  For example, the plot below shows two boxplots: one depicts the rate of childhood asthma at 15 schools across a district, the other depicts the concentration of particulate black carbon (a type of air pollutant generated by incomplete combustion).
+<div class="rmdnote">
+<p>An <strong>outlier</strong> is an observation that lies an abnormal distance from other values in a random sample.</p>
+</div>
+
+### Detecting Outliers
+Data visualization (like histograms, density plots, time-series, and boxplots) can be useful for detecting outliers, because such graphs make it clear that one or more observations *"don't seem to belong with the rest"*.  For example, let's create an artificial dataframe called `asthma.data`. Within this dataframe are two variables:  
+
+  - `asthma.rate`: the percentage of kids with asthma in a given school district
+  - `black.carbon`: the concentration of airborne black carbon (a type of air pollutant generated by incomplete combustion, similar to what you see exhausted from a diesel truck) measured outside of a school at the center of each district.
 
 
 ```r
 asthma.data <- tibble(
-  asthma.rate = c(8, 6, 12, 18, 9, 8, 15, 14, 14, 10, 16, 9, 12, 15, 9),
-  black.carbon = c(3.2, 2.5, 4.6, 6.1, 3.3, 3.1, 6.1, 5.3, 4.5, 3.3, 6.4, 3.7, 5.1, 6.8, 12)
+  asthma.rate = c(8, 6, 12, 18, 9, 
+                  8, 15, 14, 14, 10,
+                  16, 9, 12, 15, 9),
+  black.carbon = c(3.2, 2.5, 4.6, 6.1, 3.3, 
+                   3.1, 6.1, 5.3, 4.5, 3.3, 
+                   6.4, 3.7, 5.1, 6.8, 12)
 )
-
-
-ggplot(data = asthma.data) +
-  geom_boxplot(aes(x = 1, y = asthma.rate)) +
-  geom_boxplot(aes(x = 2, y = black.carbon)) +
-  theme_classic()
 ```
 
-<img src="09-transf_files/figure-html/outlier1-1.png" width="672" />
+The plot below shows two boxplots: one depicts `asthma.rate` for the 15 school districts; the other depicts `black.carbon`. I've circled the apparent outlier. **Outliers are easy to see in boxplots because they fall outside the whiskers.**
 
-```r
-ggplot(data = asthma.data) +
-  geom_point(aes(x = black.carbon,
-                 y = asthma.rate)) +
-  theme_classic()
-```
-
-<img src="09-transf_files/figure-html/outlier1-2.png" width="672" />
-
-```r
-model <-lm(asthma.rate ~ black.carbon, data = asthma.data)
-summary(model)
-```
-
-```
-## 
-## Call:
-## lm(formula = asthma.rate ~ black.carbon, data = asthma.data)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -6.4206 -2.2643  0.3153  2.5175  5.7739 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(>|t|)   
-## (Intercept)    8.9234     2.1595   4.132  0.00118 **
-## black.carbon   0.5414     0.3888   1.393  0.18713   
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 3.426 on 13 degrees of freedom
-## Multiple R-squared:  0.1298,	Adjusted R-squared:  0.06286 
-## F-statistic: 1.939 on 1 and 13 DF,  p-value: 0.1871
-```
-
-<div class="rmdwarning">
-<p><strong>Censoring data is dangerous business.</strong> If you are going to censor an outlier, make sure to document <strong>how</strong> you discovered the outlier, <strong>why</strong> you believe it should be censored, and <strong>“whether or not that censoring had an effect on your results/conclusions”</strong>. Then make sure to broadcast your thinking to everyone who comes in contact with your report. If you try to hide your outliers, you are being unethical and setting yourself up for disaster.</p>
+<div class="figure" style="text-align: center">
+<img src="09-transf_files/figure-html/outlier-1-1.png" alt="Boxplots for two sets of data; the one on the right has an outlier." width="500" />
+<p class="caption">(\#fig:outlier-1)Boxplots for two sets of data; the one on the right has an outlier.</p>
 </div>
 
+Data visualization is *useful* for detecting outliers, but not definitive.  Indeed, there are no definitive methods for detecting outliers in data (mostly because that process is too contextual).  That said, there are some guidelines.
+
+**The "1.5 x IQR" rule** is what was used in the boxplot of Figure \@ref(fig:outlier-1).  
+
+This rule states that outliers are **any data points more than 1.5 times the inter-quartile range away from the upper and lower quartiles**.  This means data that are:  
+
+  - *greater than*: [0.75 quantile value] + 1.5*IQR
+  - *less than*: [0.25 quantile value] - 1.5*IQR
+  
+For the `black.carbon` data, we could calculate these thresholds with the following:
+
+
+```r
+upper <- quantile(x = asthma.data$black.carbon,
+                  probs = 0.75,
+                  names = FALSE) + 
+  1.5*IQR(x = asthma.data$black.carbon)
+
+lower <- quantile(x = asthma.data$black.carbon,
+                  probs = 0.25,
+                  names = FALSE) - 
+  1.5*IQR(x = asthma.data$black.carbon)
+
+upper
 ```
+
+```
+## [1] 10.3
+```
+
+```r
+lower
+```
+
+```
+## [1] -0.9
+```
+Interestingly, this rule suggests that outliers on the lower end need to be negative. Is that even possible for air pollution concentrations? (hint: NO) Other  statistical approaches for detecting outliers include:  
+
+* a threshold of standard deviations away from the mean (i.e., computing z-scores); 
+* Grubbs’ test;
+* Tietjen-Moore Test, and others.
+
+In the end, however, common sense and your contextual knowledge of the data are usually more important here.
+
+### Censoring outliers
+What should we do with outliers in our data? The answer depends on context (is this life and death data we're dealing with or just the size of tomatoes from your garden?) and on the questions you are asking. Here's an example:
+
+The black carbon boxplot (right side of \@ref(fig:outlier-1)) has a clear outlier that falls far outside of the rest of the data.  This might not seem like a big deal but take a look at what happens when we fit a regression line through the data <span style="color: orange;">with the outlier included</span> and <span style="color: blue;">without the outlier</span>. 
+<div class="figure" style="text-align: center">
+<img src="09-transf_files/figure-html/outlier-2-1.png" alt="Effect of an outlier on a linear model with n=15 data points." width="672" />
+<p class="caption">(\#fig:outlier-2)Effect of an outlier on a linear model with n=15 data points.</p>
+</div>
+Examination of Figure \@ref(fig:outlier-2) suggests that the outlier is having a strong effect on the relationship between air pollution and childhood asthma. If the censored data are correct, we have just detected a strong correlation between asthma rates and air pollution. If the uncensored data are correct then the association is positive but very weak. So what do we do about this?  
+
+Unfortunately, this sort of conundrum happens more often than we might like in the real world. *My advice would be to collect more data to prove/disprove the outlier. If that wasn't possible (and there was no other explanation available), I would probably show the analysis* ***both ways***.
+
+<div class="rmdwarning">
+<p><strong>Censoring data is dangerous business.</strong> If you are going to censor an outlier, make sure to document <strong>how</strong> you discovered/defined the outlier, <strong>why</strong> you believe it should be censored, and <strong>“whether or not that censoring had an effect on your results/conclusions”</strong>. Then make sure to broadcast your thinking to everyone who comes in contact with your report. If you try to hide outliers, you are being unethical and setting yourself up for disaster.</p>
+</div>
+
