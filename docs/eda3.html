@@ -303,7 +303,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3.3" data-path="eda3.html"><a href="eda3.html#reducing-skewness"><i class="fa fa-check"></i><b>9.3.3</b> Reducing Skewness</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="eda3.html"><a href="eda3.html#stratification"><i class="fa fa-check"></i><b>9.4</b> Stratification</a></li>
-<li class="chapter" data-level="9.5" data-path="eda3.html"><a href="eda3.html#censoring-and-truncating-data"><i class="fa fa-check"></i><b>9.5</b> Censoring and Truncating Data</a></li>
+<li class="chapter" data-level="9.5" data-path="eda3.html"><a href="eda3.html#outliers-and-censoring"><i class="fa fa-check"></i><b>9.5</b> Outliers and Censoring</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="eda3.html"><a href="eda3.html#detecting-outliers"><i class="fa fa-check"></i><b>9.5.1</b> Detecting Outliers</a></li>
+<li class="chapter" data-level="9.5.2" data-path="eda3.html"><a href="eda3.html#censoring-outliers"><i class="fa fa-check"></i><b>9.5.2</b> Censoring outliers</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a><ul>
 <li class="chapter" data-level="10.1" data-path="measure.html"><a href="measure.html#ch.-10-objectives"><i class="fa fa-check"></i><b>10.1</b> Ch. 10 Objectives</a></li>
@@ -338,7 +341,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.4.6" data-path="model.html"><a href="model.html#deming-regression"><i class="fa fa-check"></i><b>11.4.6</b> Deming Regression</a></li>
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="model.html"><a href="model.html#pdf"><i class="fa fa-check"></i><b>11.5</b> Probability Density Function</a><ul>
-<li class="chapter" data-level="11.5.1" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.5.1</b> Calibration</a></li>
+<li class="chapter" data-level="11.5.1" data-path="model.html"><a href="model.html#loess"><i class="fa fa-check"></i><b>11.5.1</b> LOESS</a></li>
+<li class="chapter" data-level="11.5.2" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.5.2</b> Calibration</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="simulate.html"><a href="simulate.html"><i class="fa fa-check"></i><b>12</b> Simulation</a><ul>
@@ -385,6 +389,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Define common approaches to data transformation<br />
 </li>
 <li>Explain the differences between <em>centering</em>, <em>rescaling</em>, and <em>standardizing</em> univariate data.</li>
+<li>Stratify data into relevant groups for analysis</li>
+<li>Discuss the risks and potential approaches to handling outliers</li>
 </ul>
 </div>
 <div id="transformation" class="section level2">
@@ -423,31 +429,31 @@ Figure 9.1: Data are sometimes centered to remove spurious values
 </div>
 <div id="normalization-and-standardization" class="section level2">
 <h2><span class="header-section-number">9.3</span> Normalization and Standardization</h2>
-In a generic sense, to <strong><em>“normalize”</em></strong> a variable means: <strong>to transform that variable so that it can be compared, evaluated, or comprehended more easily.</strong> Normalization often involves a combination of centering and rescaling operations that not only change the location and spread of the data, but also the <em>meaning</em> of data. Normalization is used all the time.
+In a generic sense, to <strong><em>“normalize”</em></strong> a variable means: <strong>to transform that variable so that it can be compared, evaluated, or comprehended more easily.</strong> Normalization often involves a combination of centering and rescaling operations that not only change the location and spread of the data, but also the <em>meaning</em> of data. Normalization is performed all the time.
 <div class="rmdwarning">
 <p>
 Like <em>“transformation”</em>, the word “<em>normalization</em>” is defined differently in different fields, so be explicit when using this term in your work. To some, the word normalization means to “make a variable normally distributed”; to others, it means to “normalize a database” so that redundancies are eliminated.
 </p>
 </div>
-<p>There are many types of normalization operations; we will discuss a few examples here:</p>
+<p>There are many types of normalization operations; we will discuss a few examples below.</p>
 <div id="rate-normalization" class="section level3">
 <h3><span class="header-section-number">9.3.1</span> Rate normalization</h3>
 <p>To perform a rate normalization is <strong>to divide one variable into another</strong>, often to report something in terms of a rate.</p>
 <ul>
 <li>Two cars can have the same range (how many miles they can travel on one tank of gas) but different rates of fuel efficiency (miles traveled per gallon)<br />
 </li>
-<li>Two countries can have the same GDI (<em>gross domestic income</em>; the sum of all wages earned) but widely different rates of “per capita” income.</li>
+<li>Two countries can have the same GDI (<em>gross domestic income</em>; the sum of all wages earned) but widely different rates of “per capita” income (GDI/total population size).</li>
 </ul>
 </div>
 <div id="standardizing" class="section level3">
 <h3><span class="header-section-number">9.3.2</span> Standardizing</h3>
-<p>Standardization is a special case of transformation/normalization where each value in a set of observations (or vector) is subtracted by some level (often the central tendency) and divided by the spread. When working with normally distributed data, the standardization of variable x_i into z_i is:</p>
+<p>Standardization is a special case of transformation/normalization where each value in a set of observations (or vector) is subtracted by some level (often the central tendency) and divided by the spread. When working with normally distributed data, the standardization of variable x<sub>i</sub> into z<sub>i</sub> is:</p>
 <p>     <span class="math inline">\(z_{i} = \frac{x_{i}-\overline{x}}{\sigma_{x}}\)</span></p>
-<p>where the mean and standard deviation of x are <span class="math inline">\(\overline{x}\)</span> and <span class="math inline">\(\sigma_{x}\)</span>, respectively. The <em>standardization</em> of a variable renders the mean to 0 and the standard deviation to 1. This type of normalization is useful when you wish to study relationships between multiple variables, each with different scale.</p>
+<p>where the mean and standard deviation of x are <span class="math inline">\(\overline{x}\)</span> and <span class="math inline">\(\sigma_{x}\)</span>, respectively. The <em>standardization</em> of a variable renders the mean to 0 and the standard deviation to 1. This type of normalization is useful when you wish to study relationships between multiple variables, each with different scale. Note that standardization doesn’t have to use the mean and standard deviation as the centering and normalizing variables, but those are most common.</p>
 </div>
 <div id="reducing-skewness" class="section level3">
 <h3><span class="header-section-number">9.3.3</span> Reducing Skewness</h3>
-<p>Sometimes your data are <em>not normally distributed</em>, even though you want them to be. In that case you still have options. Some transformations, like the log, square root, or inverse, will make the spread of the data symmetric and approximately Gaussian. These transformations are commonly used to meet the needs (read: underlying assumptions) of many statistical models.</p>
+<p>Sometimes your data are <em>not normally distributed</em>, even though you want them to be. In that case you still have options. Some transformations, like the log, square root, or inverse, will make the spread of the data symmetric and approximately Gaussian. These transformations are commonly used to meet the needs (read: underlying assumptions) of many statistical models. We discuss model assumptions (and their evaluation) in the <a href="model.html#model">modeling chapter</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:reduce-skew2"></span>
 <img src="images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable." width="640" />
 <p class="caption">
@@ -460,77 +466,109 @@ Figure 9.2: The log(x) transform is often used to reduce skewness in a variable.
 <h2><span class="header-section-number">9.4</span> Stratification</h2>
 <p><strong>To stratify a sample means: to divide the sample into subsets (aka strata).</strong></p>
 <p>Stratified analyses can be performed many ways; one particularly useful way is graphically, by creating a stratification plot. A stratification plot is like any other visualization that you have created, except that the strata are identified (i.e., called out) through the use of color, lines, symbols, etc. Let’s use the following example to demonstrate:</p>
-<p>A manufacturing operation is investigating the production of an expensive titanium alloy, where a 25% increase in the production yield of the alloy manufacturing process means the difference between profit and loss. The materials group believes that sample purity should have an effect on the yield and for the past month, all three reactors at the plant have been producing alloys from Ti feed stock of varying purity. After one month, you decide to visualize the relationship between <em>process yield</em> and <em>sample purity</em> with a scatterplot, <code>geom_point()</code>.</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="eda3.html#cb276-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;./images/unstratified.png&quot;</span>)</span></code></pre></div>
+<p>A manufacturing operation is investigating the production of an expensive titanium alloy, where a 25% increase in the production yield of the alloy manufacturing process means the difference between profit and loss. The materials group believes that sample purity should have an effect on the yield and for the past month, all three reactors at the plant have been producing alloys from Ti feedstock of varying purity. After one month, you decide to visualize the relationship between <em>process yield</em> and <em>sample purity</em> with a scatterplot, <code>geom_point()</code>.</p>
 <div class="figure" style="text-align: center"><span id="fig:stratify2"></span>
-<img src="images/unstratified.png" alt="Yield vs. Purity from the plant's three reactors over one month" width="1050" />
+<img src="images/unstratified.png" alt="Yield vs. Purity from the plant's three reactors over one month" width="500" />
 <p class="caption">
 Figure 9.3: Yield vs. Purity from the plant’s three reactors over one month
 </p>
 </div>
 <p>Examination of Figure <a href="eda3.html#fig:stratify2">9.3</a> reveals that, while there is considerable variation in the data, a clear relationship is not apparent between sample purity and process yield. However, it occurs to you that perhaps there is variation in results between the three different reactors in the plant. Therefore, you decide to repeat this analysis <strong><em>stratifying the data by reactor type</em></strong>. In this case, you repeat the <code>ggplot()</code> call with an extra aesthetic of <code>color = reactor</code> in the scatterplot.</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="eda3.html#cb277-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;./images/stratified.png&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:stratify-png"></span>
-<img src="images/stratified.png" alt="Yield vs. Purity over one month, stratified by reactor type" width="1050" />
+<img src="images/stratified.png" alt="Yield vs. Purity over one month, stratified by reactor type" width="500" />
 <p class="caption">
 Figure 9.4: Yield vs. Purity over one month, stratified by reactor type
 </p>
 </div>
 <p>Figure <a href="eda3.html#fig:stratify-png">9.4</a> tells a very different story! Now we can see that two relationships are clearly evident.</p>
 <ol style="list-style-type: decimal">
-<li>There is a definite inverse relationship beteen <em>sample purity</em> and the <em>process yield</em> and<br />
+<li>There is a definite inverse relationship between <em>sample purity</em> and the <em>process yield</em> and<br />
 </li>
 <li>For a given purity level, each reactor has a different output. Clearly, there is something different about each of these reactors that merits further study…</li>
 </ol>
+<p>Figure <a href="eda3.html#fig:stratify-png">9.4</a> raises a subtle, but very important, point: <strong>data often have hierarchy</strong> and that hierarchy may be influential. In this case, only when we account for the hierarchy (the reactor that produced each sample), do we see an important relationship arise.</p>
+<p><em>Hierarchical data</em> means data that can be ordered into different ranks (or levels). Students at a university might be ordered by their their college, their major, or the year in which they matriculated. Those ranks may be important when analyzing student data; if so, your analysis should account for that!</p>
 </div>
-<div id="censoring-and-truncating-data" class="section level2">
-<h2><span class="header-section-number">9.5</span> Censoring and Truncating Data</h2>
+<div id="outliers-and-censoring" class="section level2">
+<h2><span class="header-section-number">9.5</span> Outliers and Censoring</h2>
 <p>Have you ever heard the phrase <strong><em>“don’t make the exception the rule”</em></strong>?</p>
 <p>I think this phrase means, <em>don’t let your judgment be governed solely by outliers.</em> Whether or not this is good advice probably depends on the situation, but I do think one should have the ability to detect <strong><em>when an outlier has leverage over a situation</em></strong>.</p>
-<p>Data visualization (like histograms, density plots, time-series, and boxplots) is a useful way to detect outliers, because these plots make it clear that one or more observations <em>“don’t seem to belong with the rest”</em>. For example, the plot below shows two boxplots: one depicts the rate of childhood asthma at 15 schools across a district, the other depicts the concentration of particulate black carbon (a type of air pollutant generated by incomplete combustion).</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="eda3.html#cb278-1"></a>asthma.data &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb278-2"><a href="eda3.html#cb278-2"></a>  <span class="dt">asthma.rate =</span> <span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">10</span>, <span class="dv">16</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">9</span>),</span>
-<span id="cb278-3"><a href="eda3.html#cb278-3"></a>  <span class="dt">black.carbon =</span> <span class="kw">c</span>(<span class="fl">3.2</span>, <span class="fl">2.5</span>, <span class="fl">4.6</span>, <span class="fl">6.1</span>, <span class="fl">3.3</span>, <span class="fl">3.1</span>, <span class="fl">6.1</span>, <span class="fl">5.3</span>, <span class="fl">4.5</span>, <span class="fl">3.3</span>, <span class="fl">6.4</span>, <span class="fl">3.7</span>, <span class="fl">5.1</span>, <span class="fl">6.8</span>, <span class="dv">12</span>)</span>
-<span id="cb278-4"><a href="eda3.html#cb278-4"></a>)</span>
-<span id="cb278-5"><a href="eda3.html#cb278-5"></a></span>
-<span id="cb278-6"><a href="eda3.html#cb278-6"></a></span>
-<span id="cb278-7"><a href="eda3.html#cb278-7"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> asthma.data) <span class="op">+</span></span>
-<span id="cb278-8"><a href="eda3.html#cb278-8"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> asthma.rate)) <span class="op">+</span></span>
-<span id="cb278-9"><a href="eda3.html#cb278-9"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">2</span>, <span class="dt">y =</span> black.carbon)) <span class="op">+</span></span>
-<span id="cb278-10"><a href="eda3.html#cb278-10"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
-<p><img src="09-transf_files/figure-html/outlier1-1.png" width="672" /></p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="eda3.html#cb279-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> asthma.data) <span class="op">+</span></span>
-<span id="cb279-2"><a href="eda3.html#cb279-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> black.carbon,</span>
-<span id="cb279-3"><a href="eda3.html#cb279-3"></a>                 <span class="dt">y =</span> asthma.rate)) <span class="op">+</span></span>
-<span id="cb279-4"><a href="eda3.html#cb279-4"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
-<p><img src="09-transf_files/figure-html/outlier1-2.png" width="672" /></p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="eda3.html#cb280-1"></a>model &lt;-<span class="kw">lm</span>(asthma.rate <span class="op">~</span><span class="st"> </span>black.carbon, <span class="dt">data =</span> asthma.data)</span>
-<span id="cb280-2"><a href="eda3.html#cb280-2"></a><span class="kw">summary</span>(model)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = asthma.rate ~ black.carbon, data = asthma.data)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -6.4206 -2.2643  0.3153  2.5175  5.7739 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)   
-## (Intercept)    8.9234     2.1595   4.132  0.00118 **
-## black.carbon   0.5414     0.3888   1.393  0.18713   
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 3.426 on 13 degrees of freedom
-## Multiple R-squared:  0.1298,	Adjusted R-squared:  0.06286 
-## F-statistic: 1.939 on 1 and 13 DF,  p-value: 0.1871</code></pre>
-<div class="rmdwarning">
+<div class="rmdnote">
 <p>
-<strong>Censoring data is dangerous business.</strong> If you are going to censor an outlier, make sure to document <strong>how</strong> you discovered the outlier, <strong>why</strong> you believe it should be censored, and <strong>“whether or not that censoring had an effect on your results/conclusions”</strong>. Then make sure to broadcast your thinking to everyone who comes in contact with your report. If you try to hide your outliers, you are being unethical and setting yourself up for disaster.
+An <strong>outlier</strong> is an observation that lies an abnormal distance from other values in a random sample.
 </p>
 </div>
-<p>```</p>
+<div id="detecting-outliers" class="section level3">
+<h3><span class="header-section-number">9.5.1</span> Detecting Outliers</h3>
+<p>Data visualization (like histograms, density plots, time-series, and boxplots) can be useful for detecting outliers, because such graphs make it clear that one or more observations <em>“don’t seem to belong with the rest”</em>. For example, let’s create an artificial dataframe called <code>asthma.data</code>. Within this dataframe are two variables:</p>
+<ul>
+<li><code>asthma.rate</code>: the percentage of kids with asthma in a given school district</li>
+<li><code>black.carbon</code>: the concentration of airborne black carbon (a type of air pollutant generated by incomplete combustion, similar to what you see exhausted from a diesel truck) measured outside of a school at the center of each district.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="eda3.html#cb1-1"></a>asthma.data &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb1-2"><a href="eda3.html#cb1-2"></a>  <span class="dt">asthma.rate =</span> <span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">9</span>, </span>
+<span id="cb1-3"><a href="eda3.html#cb1-3"></a>                  <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">10</span>,</span>
+<span id="cb1-4"><a href="eda3.html#cb1-4"></a>                  <span class="dv">16</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">9</span>),</span>
+<span id="cb1-5"><a href="eda3.html#cb1-5"></a>  <span class="dt">black.carbon =</span> <span class="kw">c</span>(<span class="fl">3.2</span>, <span class="fl">2.5</span>, <span class="fl">4.6</span>, <span class="fl">6.1</span>, <span class="fl">3.3</span>, </span>
+<span id="cb1-6"><a href="eda3.html#cb1-6"></a>                   <span class="fl">3.1</span>, <span class="fl">6.1</span>, <span class="fl">5.3</span>, <span class="fl">4.5</span>, <span class="fl">3.3</span>, </span>
+<span id="cb1-7"><a href="eda3.html#cb1-7"></a>                   <span class="fl">6.4</span>, <span class="fl">3.7</span>, <span class="fl">5.1</span>, <span class="fl">6.8</span>, <span class="dv">12</span>)</span>
+<span id="cb1-8"><a href="eda3.html#cb1-8"></a>)</span></code></pre></div>
+<p>The plot below shows two boxplots: one depicts <code>asthma.rate</code> for the 15 school districts; the other depicts <code>black.carbon</code>. I’ve circled the apparent outlier. <strong>Outliers are easy to see in boxplots because they fall outside the whiskers.</strong></p>
+<div class="figure" style="text-align: center"><span id="fig:outlier-1"></span>
+<img src="09-transf_files/figure-html/outlier-1-1.png" alt="Boxplots for two sets of data; the one on the right has an outlier." width="500" />
+<p class="caption">
+Figure 9.5: Boxplots for two sets of data; the one on the right has an outlier.
+</p>
+</div>
+<p>Data visualization is <em>useful</em> for detecting outliers, but not definitive. Indeed, there are no definitive methods for detecting outliers in data (mostly because that process is too contextual). That said, there are some guidelines.</p>
+<p><strong>The “1.5 x IQR” rule</strong> is what was used in the boxplot of Figure <a href="eda3.html#fig:outlier-1">9.5</a>.</p>
+<p>This rule states that outliers are <strong>any data points more than 1.5 times the inter-quartile range away from the upper and lower quartiles</strong>. This means data that are:</p>
+<ul>
+<li><em>greater than</em>: [0.75 quantile value] + 1.5*IQR</li>
+<li><em>less than</em>: [0.25 quantile value] - 1.5*IQR</li>
+</ul>
+<p>For the <code>black.carbon</code> data, we could calculate these thresholds with the following:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="eda3.html#cb2-1"></a>upper &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon,</span>
+<span id="cb2-2"><a href="eda3.html#cb2-2"></a>                  <span class="dt">probs =</span> <span class="fl">0.75</span>,</span>
+<span id="cb2-3"><a href="eda3.html#cb2-3"></a>                  <span class="dt">names =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb2-4"><a href="eda3.html#cb2-4"></a><span class="st">  </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon)</span>
+<span id="cb2-5"><a href="eda3.html#cb2-5"></a></span>
+<span id="cb2-6"><a href="eda3.html#cb2-6"></a>lower &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon,</span>
+<span id="cb2-7"><a href="eda3.html#cb2-7"></a>                  <span class="dt">probs =</span> <span class="fl">0.25</span>,</span>
+<span id="cb2-8"><a href="eda3.html#cb2-8"></a>                  <span class="dt">names =</span> <span class="ot">FALSE</span>) <span class="op">-</span><span class="st"> </span></span>
+<span id="cb2-9"><a href="eda3.html#cb2-9"></a><span class="st">  </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon)</span>
+<span id="cb2-10"><a href="eda3.html#cb2-10"></a></span>
+<span id="cb2-11"><a href="eda3.html#cb2-11"></a>upper</span></code></pre></div>
+<pre><code>## [1] 10.3</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="eda3.html#cb4-1"></a>lower</span></code></pre></div>
+<pre><code>## [1] -0.9</code></pre>
+<p>Interestingly, this rule suggests that outliers on the lower end need to be negative. Is that even possible for air pollution concentrations? (hint: NO) Other statistical approaches for detecting outliers include:</p>
+<ul>
+<li>a threshold of standard deviations away from the mean (i.e., computing z-scores);</li>
+<li>Grubbs’ test;</li>
+<li>Tietjen-Moore Test, and others.</li>
+</ul>
+<p>In the end, however, common sense and your contextual knowledge of the data are usually more important here.</p>
+</div>
+<div id="censoring-outliers" class="section level3">
+<h3><span class="header-section-number">9.5.2</span> Censoring outliers</h3>
+<p>What should we do with outliers in our data? The answer depends on context (is this life and death data we’re dealing with or just the size of tomatoes from your garden?) and on the questions you are asking. Here’s an example:</p>
+The black carbon boxplot (right side of <a href="eda3.html#fig:outlier-1">9.5</a>) has a clear outlier that falls far outside of the rest of the data. This might not seem like a big deal but take a look at what happens when we fit a regression line through the data <span style="color: orange;">with the outlier included</span> and <span style="color: blue;">without the outlier</span>.
+<div class="figure" style="text-align: center"><span id="fig:outlier-2"></span>
+<img src="09-transf_files/figure-html/outlier-2-1.png" alt="Effect of an outlier on a linear model with n=15 data points." width="672" />
+<p class="caption">
+Figure 9.6: Effect of an outlier on a linear model with n=15 data points.
+</p>
+</div>
+<p>Examination of Figure <a href="eda3.html#fig:outlier-2">9.6</a> suggests that the outlier is having a strong effect on the relationship between air pollution and childhood asthma. If the censored data are correct, we have just detected a strong correlation between asthma rates and air pollution. If the uncensored data are correct then the association is positive but very weak. So what do we do about this?</p>
+<p>Unfortunately, this sort of conundrum happens more often than we might like in the real world. <em>My advice would be to collect more data to prove/disprove the outlier. If that wasn’t possible (and there was no other explanation available), I would probably show the analysis</em> <strong><em>both ways</em></strong>.</p>
+<div class="rmdwarning">
+<p>
+<strong>Censoring data is dangerous business.</strong> If you are going to censor an outlier, make sure to document <strong>how</strong> you discovered/defined the outlier, <strong>why</strong> you believe it should be censored, and <strong>“whether or not that censoring had an effect on your results/conclusions”</strong>. Then make sure to broadcast your thinking to everyone who comes in contact with your report. If you try to hide outliers, you are being unethical and setting yourself up for disaster.
+</p>
+</div>
 
+</div>
 </div>
 </div>
             </section>
