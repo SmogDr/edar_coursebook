@@ -12,14 +12,13 @@ library(scales)
 
 Exploratory Data Analysis (also known as EDA) is largely a visual technique
 based on the human trait of **pattern recognition**. The purpose of EDA is
-simple: learn about your data through diagnostic visualization.
+simple: learn about your data by visualizing it.
 
 *Why is Exploratory Data Analysis (EDA) useful?* Because getting to know a
 dataset is a key step towards making sense of it, and EDA is a great way to
-familiarize oneself with a dataset. As a result, you can use EDA to do many
-powerful things quickly.
+familiarize oneself with a data set. EDA is fast, efficient, and intuitive.
 
-Think of the word **"Exploratory"** in terms of **"Hypothesis-Building"**.In
+Think of the word **"Exploratory"** in terms of **"Hypothesis-Building"**. In
 other words, modeling and statistical inference testing should come *after*
 EDA. You can use EDA to jump-start ideas on *"what do I do with my data?"*!  
 
@@ -41,7 +40,7 @@ completing this Chapter, you should be able to:
 
 ## Univariate Data
 
-*Univariate* means "only one variable" being considered. Just like medical
+*Univariate* means that "only one variable" is being considered. Just like medical
 doctors, statisticians enjoy the use fancy words to describe basic things.  
 
 *Univariate data analyses* describe ways to discover features about a single
@@ -53,7 +52,7 @@ might examine in a univariate sense. This is, of course, a potentially risky
 procedure because, as engineers, we are taught about *mechanisms* and
 *dependencies* that imply that variable A is inextricably linked to variable B
 through some physical process. That's OK to admit. Univariate analyses are
-still useful. Trust me for now, or skip ahead to multivariate analyses---your
+still useful. Trust me for now, or skip ahead to [multivariate analyses](#eda2) or [modeling](#model)---your
 choice.
 
 ### Location, Dispersion, and Shape
@@ -69,9 +68,10 @@ discovery; they give out Nobel Prizes for that stuff! Let's start with "what"
 
 #### Location
 
-The location of univariate data means: where do most of the values or
+The location of univariate data means: where do the values or
 observations fall? Do the values tend to be large or small, based on what you
-know about the variable?
+know about the variable? Do the observations have a *central tendency* - a 
+region where values are more likely to show up?
 
 #### Dispersion
 
@@ -80,28 +80,27 @@ bound in a small range, or do they vary widely from one observation to the
 next? Note that the phrase "varies widely" is contextual. The variation in the
 cost of an ice cream cone from one location to the next might look small to
 you, but could mean the difference between joy and sorrow for a 10-year-old
-with only $1.50 in his pocket. 
+with only $1.50 in their pocket. 
 
 #### Shape
 
 The shape of the distribution is actually a combination of location and
 dispersion but with some mathematical nuance. Knowing the shape of your data
 distribution means that you have insight into its 
-*probability density function*. It is important to know the "shape" of the
-distribution because, once you know a distribution's shape, you can model it. 
-And if you can model the distribution, you can begin to make inferences about
-it (e.g., extrapolations, predictions). More on this later in
-[**Modeling**](#model).
+*probability density function*. Once you know a distribution's shape, you can 
+model it. And if you can model the distribution, you can begin to make 
+inferences about it (e.g., extrapolations, predictions). More on this later in
+[Modeling](#model).
 
 The shape of a distribution of data is often categorized based on whether it
-follows that of a **[reference distribution](#dist)**, of which there are
+follows that of a [reference distribution](#dist), of which there are
 many types. You can think of reference distributions like species of living
 organisms; there are lots out there, but once you categorize one, you can
 likely predict its behavior. In other words, if the shape of your data matches
 a reference distribution, most of your modeling work is already done! Examples
 of reference distributions include the uniform distribution, normal
 distribution, and the lognormal distribution. More on different types of
-reference distributions [**here**](#dist). 
+reference distributions [here](#dist). 
 
 ##### Example: Location and Dispersion  
 
@@ -115,12 +114,12 @@ We will consider going camping in two lovely spots: the forest preserves along
 the Na Pali coast in Kauai, Hawaii or the sunny hiking and climbing region
 around Jack's Canyon in southwest Colorado. Let's examine the location and
 dispersion of hourly temperatures in these two regions for the month of July,
-2010. We can download such data from the
+2010. We can access this information from the
 [NOAA Climate Data Center](https://www.ncdc.noaa.gov/cdo-web/search) 
 that provides weather data for these two regions. Once we know the *location*
 and *dispersion* of these data, we can decide what clothes to bring.
 
-In Figure \@ref(fig:noaa-temp-plot), we use `geom_jitter()` to plot the hourly
+In Figure \@ref(fig:noaa-temp-plot), I use `geom_jitter()` to plot the hourly
 temperatures measured at these two regions for July 2010. For this plot, we
 define three aesthetics:  
 
@@ -149,8 +148,7 @@ noaa_temp %>%
   geom_jitter(height = 0.15,
               size = 1.5,
               shape = 1) +
-  labs(title = "Comparing location and dispersion of hourly July temperatures",
-       y = "Region",
+  labs(y = "Region",
        x = "Temperature (°F)") +
   theme_bw() +
   theme(legend.position = "none") +
@@ -173,21 +171,23 @@ temperatures that seem very pleasant. The average is about
 `r round(noaa_temp_avg$temp_avg[1], digits = 1)` $^\circ$F in Colorado and 
 `r round(noaa_temp_avg$temp_avg[2], digits = 1)` $^\circ$F in Hawaii. When we
 calculate an average value, we are creating an indicator of a variable's
-*location*. But if we look at the *dispersion* of temperature observations
+*location* (in this case the *central tendency*). But if we look at the 
+*dispersion* of temperature observations
 (i.e., how the temperatures vary across the month), we can make an important
 distinction: the range of observed temperature values in Hawaii is fairly
 narrow, whereas the range in Colorado spans from `r min(noaa_temp$temp_hr_f)`
-to `r max(noaa_temp$temp_hr_f)` $^\circ$F in July 2010! 
+to `r max(noaa_temp$temp_hr_f)` $^\circ$F! 
 
 The conclusion to be drawn here is that the ***central tendencies*** of hourly
 temperature are nearly identical between Hawaii and Colorado, but the
 ***dispersion*** of the temperature data suggests that you might want to pack
-more layers if you want to be comfortable in Colorado. See Figure
+more layers to be comfortable in Colorado. See Figure
 \@ref(fig:noaa-temp-anno).
 
-You will discover that there are many ways to communicate location (e.g., mode,
-mean, median) and dispersion (e.g., range, interquartile range, standard
-deviation). We will discuss several such descriptors in this course.
+You will discover that there are many ways to communicate location (e.g., 
+`mode()`, `mean()`, `median()`) and dispersion (e.g., `range()`, interquartile 
+range `IQR()`, and standard deviation `sd()`). We will discuss several such 
+descriptors in this course.
 
 ```{r noaa-temp-anno, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="The temperature data from Hawaii and Colorado have similar locations (central tendencies) but differing dispersion (spread)."}
 knitr::include_graphics("./images/NOAA_temps_annotate.png")
@@ -206,32 +206,33 @@ A "quantile" represents a fractional portion of an ordered, univariate
 distribution.
 ```
 
-In other words, quantiles break a set of observations into similarly sized
+Quantiles break a set of observations into similarly sized
 "chunks", wherein each chunk represents an equal fraction of the total
-distribution from start to finish. If you line your data up from smallest to
+distribution, from start to finish. If you line your data up from smallest to
 largest and then slice that list into sections, you have created a set of
 quantiles. For example, when a distribution is broken into 10 equal chunks, or
-*deciles*, the first quantile (the 10^th^ % or the 0.1 fraction) represents the
+*deciles*, the first quantile (the 10^th^% or the 0.1 fraction) represents the
 value that bounds the lower 10% of the observed data; the second quantile (0.2
 fraction) represents the 20^th^% value for the observed data, and so on. 
 
-There are two important aspects about quantiles to remember: (1) each quantile
-is defined only by its upper-end value; and (2) quantiles are defined after
-the data have been rank-ordered from lowest to highest value.
+There are two important aspects about quantiles to remember: 
+**(1) each quantile is defined only by its upper-end value**; 
+and (2) **quantiles are defined after**
+**the data have been rank-ordered from lowest to highest value**.
 
 Quantiles are often used to communicate **descriptive statistics** for
 univariate data. 
 
 The two most extreme quantiles define the ***range***:  
 
-- Minimum (`min()` in R): the 0% or lowest value; the zeroth quantile
+- Minimum,`min()`: the 0% or lowest value; the zeroth quantile
 
-- Maximum (`max()` in R): the 100^th^ percentile (or 1.0 in fractional terms); the highest value observed; the n^th^ quantile   
+- Maximum,`max()`: the 100^th^ percentile (or 1.0 in fractional terms); the highest value observed; the n^th^ quantile   
 
 If you break a distribution into quarters, you have created *quartiles*.  Let's
 generate a sample of random numbers between 0 and 100 and break the resulting
 data into quartiles. A random number generator, using the R function `runif()`,
-will create a [**uniform distribution**](#unif_dist) across the sample range
+will create a [uniform distribution](#unif_dist) across the sample range
 provided because all values within that range have equal probability of being
 chosen. With that in mind, you can probably guess what the quartiles will look
 like, given a sufficiently large sample...
@@ -240,9 +241,13 @@ like, given a sufficiently large sample...
 # "set seed" to generate the same results each time
 set.seed(1)
 # create uniform distribution
-univar <- runif(n = 1000, min = 0, max = 100) 
+univar <- runif(n = 1000, 
+                min = 0, 
+                max = 100) 
 # split uniform distribution into quantiles
-univar_quart <- quantile(univar, probs = seq(0, 1, 0.25)) %>% round(1) 
+univar_quart <- quantile(univar, 
+                         probs = seq(0, 1, 0.25)) %>% 
+  round(1) 
 ```
 
 ``` {r unif-quartiles, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Quartiles estimated from n=1000 samples of a uniform distribution between 0 and 100."}
@@ -294,12 +299,12 @@ quant_desc %>%
 ```
 
 A couple notes: You might wonder why I didn't include *summary statistics* like
-the mean (`mean()` in R) or standard deviation (`sd()`) in this list. It is not
-because I dislike those descriptors; rather, it is because their use implies
-that one knows the type or "shape" of the distribution being described (e.g.,
-normal, log-normal, bi-modal). Use of descriptors like mean and standard
-deviation are very useful when applied properly but can be misleading when the
-distribution is skewed (more on that later). 
+the `mean()` or standard deviation, `sd()`, in this list. I like using these
+descriptors, but their use implies that one knows the type or "shape" of the 
+distribution being described (e.g., normal, log-normal, bi-modal). 
+Use of descriptors like mean and standard deviation are very useful when applied 
+properly but can be misleading when the distribution is skewed 
+(more on that later). 
 
 On the other hand, quantile descriptors are agnostic to the type of
 distribution they describe. For example, the median is ALWAYS at the 0.5
@@ -312,11 +317,11 @@ the "middle part" of the distribution. The IQR is similar in concept to a
 standard deviation but makes no assumptions about the type or shape of the
 distribution in question.
 
-Now let's create quantiles from a *normal distribution* of data with a mean of
-50 and standard deviation of 15. We'll start by randomly sampling 1000 values,
-using `rnorm()`, and then arranging them with the `quanitle()` function. Note
-that the second half of the code chunk below shows how to calculate quantiles
-manually.
+Now let's create quantiles from a [*normal distribution*](#normal_dist) of data
+with a mean of 50 and standard deviation of 15. We'll start by randomly sampling
+1000 values, using `rnorm()`, and then arranging them with the `quanitle()` 
+function. Note that the second half of the code chunk below shows how to 
+calculate quantiles manually.
 
 ``` {r gen-norm-quantiles}
 # "set seed" to generate the same results each time
@@ -361,19 +366,22 @@ below are simple, powerful, and often underutilized.
 ### Summary vs. Enumerative Plots
 
 Univariate data visualizations can be broken down into two categories:
-summary plots and enumerative plots. A *summary plot* shows you the data
+summary plots and enumerative plots. A **summary plot** shows you the data
 summarized in some way; a data analysis or manipulation happens prior
-generating a summary plot. *Enumerative* is a fancy word meaning "to name or
-show" ALL of the data without modification. This type of plot shows the all,
-raw data in a single plot. There are strengths and weaknesses to both these
-approaches.
+generating a summary plot. **Enumerative** is a fancy word meaning "to name or
+show" all of the data without modification. Enumerative plots visualize all the
+data in a single plot. There are strengths and weaknesses to both:
 
 * Summary plots  
   * Strengths: Easy to read; easy to see the "main points".
-  * Weaknesses: Don't show all of the data; only show you a summary. You are more likely to miss nuances or special features when looking at a summary plot.
+  * Weaknesses: Don't show all of the data; only show you a summary. 
+  You are more likely to miss nuances or special features when looking at 
+  a summary plot.
 * Enumerative plots
-  * Strengths: Show *all* of the data without manipulation. This is considered a strength because many analysts like to see raw data; *"the data don't lie!"*
-  * Weaknesses: Can take more time and energy to understand. Sometimes more data mean more work for your brain.  
+  * Strengths: Show *all* of the data without manipulation. This is considered 
+  a strength because many analysts like to see raw data; *"the data don't lie!"*
+  * Weaknesses: Can take more time and energy to understand. Sometimes more data 
+  mean more work for your brain.  
 
 ### Cumulative Distribution Plot
 
@@ -485,7 +493,7 @@ ordered_salaries <- raw_salaries %>%
                                   by = 1/length(salary))) 
 ```
 
-``` {r me-salary-plot, include=FALSE}
+``` {r me-salary-plot, eval=FALSE, message=FALSE}
 # alternate method if you don't want to calculate cumulative fractions
 ordered_salaries %>% 
   ggplot2::ggplot(mapping = aes(x = salary)) +
@@ -509,25 +517,23 @@ ordered_salaries %>%
                aes(x = x, y = y, xend = xend, yend = yend),
                color = "red",
                linetype = "dashed") +
-  theme_bw() + 
+  theme_bw(base_size = 13)
   ggsave("./images/cdf_me_salaries.png", dpi = 150)
 ```
 
-``` {r cdf-me-salaries, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Annual Salaries Reported by US Graduates (all ages) with a Mechanical Engineering Degree"}
+``` {r cdf-me-salaries, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Annual Salaries (2017) for US Graduates (all ages) with a Mechanical Engineering Degree", out.width="500"}
 knitr::include_graphics("./images/cdf_me_salaries.png")
 ```
 
 The good news is that if you can survive the undergraduate grind in Mechanical
-Engineering, you have a good chance of making a great living wage. The median
-salary is $
+Engineering, you have a reasonable chance of making a great living wage. 
+The median salary is $
 `r format(quantile(ordered_salaries$salary, probs = 0.5), scientific = FALSE, big.mark = ",")`. Note this is for graduates of all ages across the country in
 the year 2017. Don't expect that kind of paycheck on your first day on the job!
 
-One interesting thing you may notice in Figure \@ref(fig:cdf-me-salaries) is
-that the "tails" of the plot (i.e., the shape of the curves about the median
-value) are not symmetrical. One tail looks longer than the other. This lack of
-symmetry implies a degree of *skewness* in the data. Why is that? We will
-explore skewness at several points in this course and discuss some of the
+Look at the "tails" of the curve in Figure \@ref(fig:cdf-me-salaries); the shape
+of the curves on either side of the median are not symmetrical. One tail looks longer than the other. This *lack of symmetry* means that the data are *skewed*. Why is that? We will
+explore skewed data at several points in this course and discuss some of the
 mechanisms that cause data to be skewed.
 
 ### Histogram {#hist}
@@ -617,8 +623,7 @@ potential outliers in the data: the apparent spike in observations around `x =`
 200. Outliers are interesting features and should neither be ignored nor
 deleted outright. Outliers exist for some reason, and usually only through
 detective work or mechanistic knowledge can you elucidate their source. We will
-delve into managing outliers later on; for now, it's enough to know that they
-exist. 
+delve into managing outliers in [Chapter 9](#outliers); for now, it's enough to know that they exist and may warrant attention. 
 
 In Figure \@ref(fig:skew-hist-anno), the central tendency is evident, but the
 spread of the data is not symmetrical about that central tendency. One outcome
@@ -634,7 +639,7 @@ knitr::include_graphics("./images/hist_anno_3.png")
 Another, potentially more troubling, outcome of skewed data is that certain
 measures of the spread of the data such as the standard deviation can lead to
 misleading conclusions. For example, if we calculate and extend "one standard
-deviation" to the mean of the data in Figure \@ref(fig:skew-hist-anno-2), we
+deviation" to the mean of the data in Figure \@ref(fig:skew-hist-anno-2), this
 would imply the existence of negative values (87 - 113 = -26), which is often
 impossible in the case of physical measurements. This is a common mistake in
 data analysis: the application of "normal" descriptors like mean and standard
@@ -658,7 +663,7 @@ exist in the real world.
 
 A general "rule of thumb" is that *additive* variability tends to produce
 normally distributed data, whereas mechanisms that cause *multiplicative*
-variability tend to produce skewed data---log-normal, in the case of Figure
+variability tend to produce skewed data---often log-normal, as seen in Figure
 \@ref(fig:skew-hist-anno-2)). By "additive", I mean that variable `x` tends to
 vary in a "plus/minus" sense about its central tendency. Examples of additive
 variability include the distribution of heights measured in a sample of 3^rd^
@@ -666,14 +671,14 @@ graders or the variability in the mass of a 3D-printed part produced 100 times
 by the same machine.  
 
 Multiplicative (or log-normal) variability arises when the mechanism(s)
-controlling the variation of "x" are multipliers (or divisors) of x. Many
+controlling the variation of `x` are multipliers (or divisors) of `x`. Many
 real-world phenomena create multiplicative variability in observed data: the
 strength of a WiFi signal at different locations within a building, the
 magnitude of earthquakes measured at a given position on the Earth's surface,
 the size of rocks found in a section of a riverbed, or the size of particles
 found in air. All of these phenomena tend to be governed by multiplicative
 factors. In other words, all of these observations are controlled by mechanisms
-that suggest $x = a * b * c$ not $x = a + b + c$. Explicit examples of
+that suggest $x = a * b * c$ not $x = a\cdot b\cdot c$. Explicit examples of
 multiplicative variability and how it leads to log-normal data are provided
 [here](#log_normal_dist). 
 
@@ -689,13 +694,14 @@ Thus, the height of the box depicts the inter-quartile range of the data.
 Boxplots are often drawn with lines extending out from each end of the box
 called "whiskers". These whisker lines vary in their representation. For some
 plots, the whiskers represent either the maximum and minimum values,
-respectively, or a distance of $1.5 * IQR$ if either the maximum or minimum 
-value are larger than $1.5 * IQR$.  Other times the whiskers represent the 0.9
-or 0.95 quantiles or $1.58 * IQR \div \sqrt(2)$. Because of these variations,
+respectively, or a distance of $1.5\cdot IQR$ if either the maximum or minimum 
+value are larger than $1.5\cdot IQR$.  Other times the whiskers represent the 0.9
+or 0.95 quantiles or $\frac{1.58\cdot IQR}{\sqrt(2)}$. Because of these variations,
 it's best to define the whiskers for the viewer either in the text or the
 Figure caption.  
 
-Here is the R definition from the helpfile `?geom_boxplot`:
+Here is the R definition from the help file when you type `?geom_boxplot` into
+the console:
 
 > The upper whisker extends from the hinge to the largest value no further than 1.5 * IQR from the hinge (where IQR is the inter-quartile range, or distance between the first and third quartiles). The lower whisker extends from the hinge to the smallest value at most 1.5 * IQR of the hinge. Data beyond the end of the whiskers are called "outlying" points and are plotted individually.
 
@@ -718,15 +724,15 @@ knitr::include_graphics("./images/boxplot_1_anno.png")
 ```
 
 Boxplots *can be created* for a single univariate distribution, as shown in
-Figure \@ref(fig:boxplot-anno)), but the strength of the boxplot really comes
+Figure \@ref(fig:boxplot-anno), but the strength of the boxplot really comes
 from drawing several together, so that one univariate distribution can be
 compared to another. In my opinion, single boxplots are quite boring by
 themselves, and the same information presented by a boxplot is just as easy to
 get from a cumulative distribution plot.  Nonetheless, I think it's faster to
 view quartiles and the IQR on the boxplot, so a plot with multiple boxplots has
-its advantages. For example, let's look at the data from Figure \@ref(fig:noaa-temp-plot) as two boxplots.
+advantages. For example, let's look at the data from Figure \@ref(fig:noaa-temp-plot) as two boxplots.
 
-``` {r temp-boxplot, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Boxplots of hourly temperatures in Colorado and Hawaii for July, 2010. Whiskers represent 1.5*IQR."}
+``` {r temp-boxplot, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Boxplots of hourly temperatures in CO and HI for July, 2010. Whiskers represent 1.5*IQR.", out.width="500"}
 # boxplots to compare temperature in CO and HI
 noaa_temp %>% 
   ggplot2::ggplot(mapping = aes(y = temp_hr_f,
@@ -760,9 +766,7 @@ time-series plot allows you to do several things:
 * Identify the **timing** of events!
 
 Let's plot the same temperature data from Hawaii as shown in Figure
-\@ref(fig:noaa-temp-plot) as a time series. We will use  `geom_point()` and
-`geom_line()` to create this plot, both of which require the following
-aesthetics: `x = ` and `y = `.
+\@ref(fig:noaa-temp-plot) as a time series. We will use  `geom_point()` to add the data and `geom_line()` to connect the dots for this plot.
 
 ```{r noaa-time-series, include=FALSE, message=FALSE}
 # plot temperature (y) vs time (y) for Hawaii data
@@ -841,7 +845,8 @@ plot.
 The autocorrelation plot is a summary plot that gives the Pearson
 correlation coefficient (*r*) between all measurements (x~i~) and their lags
 (x~i+n~), where *x* represents an observation and *i* represents a point in
-time.
+time. You can learn more about correlation coefficients (and how to calculate
+them) from the `cor()` function: type `?cor` into the console.
 
 An autocorrelation plot can help answer the following questions:
 
