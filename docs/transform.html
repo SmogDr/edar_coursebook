@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 13 Appendix: Reference Distributions | Engineering Data Analysis in R</title>
+  <title>Chapter 9 Transformations and other Tricks | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 13 Appendix: Reference Distributions | Engineering Data Analysis in R" />
+  <meta property="og:title" content="Chapter 9 Transformations and other Tricks | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 13 Appendix: Reference Distributions | Engineering Data Analysis in R" />
+  <meta name="twitter:title" content="Chapter 9 Transformations and other Tricks | Engineering Data Analysis in R" />
   
   <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="simulate.html"/>
-
+<link rel="prev" href="rprog4.html"/>
+<link rel="next" href="measure.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -379,92 +379,196 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dist" class="section level1">
-<h1><span class="header-section-number">Chapter 13</span> Appendix: Reference Distributions</h1>
-<p>In this chapter I discuss a handful of reference distributions that you may encounter while working thorugh this course. I don’t go into great detail on any of these distributions (or their mathematical structure) because smarter, better, and more authoritative descriptions can be found elsehwere in reference texts or online. This is the $1 tour.</p>
-<div id="unif_dist" class="section level2">
-<h2><span class="header-section-number">13.1</span> Uniform Distribution</h2>
-<p>The uniform distribution describes a situation where all obervations have an equal probability of occurrence. Examples of uniform distributions include: the outcome of a single roll of a 6-sided die, or the flip of a coin, or the chance of picking a spade, heart, diamond, or club from a well-shuffled deck of cards. In each of these cases, all potential outcomes have an equal chance of occuring. A uniform distribition may be specified simply by setting the range of possible outcomes (i.e., a minimum, maximum, and anything in between). The “in-between” part also lets you specify whether you want to allow outcome values that are continuous (like from a random-number generator), integers (like from a dice roll), or some other format (like a binary 0 or 1; heads or tails).</p>
-<p>Below, we create a <a href="model.html#pdf">probability density function</a> for the first roll of a six-sided die; this is a <em>discrete uniform distribition</em> since we only allow integers to occur. A uniform distribution is appropriate here because any of the numbers between 1 and 6 has equal probability of being rolled. Notice the shape of the histogram…flat.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="dist.html#cb303-1"></a><span class="co">#create a uniform distribition for the first roll of a 6-sided die</span></span>
-<span id="cb303-2"><a href="dist.html#cb303-2"></a>six_sided &lt;-<span class="st"> </span><span class="kw">ceiling</span>(<span class="kw">runif</span>(<span class="fl">10e4</span>, <span class="dt">min=</span><span class="dv">0</span>, <span class="dt">max=</span><span class="dv">6</span>))</span>
-<span id="cb303-3"><a href="dist.html#cb303-3"></a></span>
-<span id="cb303-4"><a href="dist.html#cb303-4"></a><span class="co">#create a histogram of the probability density for a uniform distribution </span></span>
-<span id="cb303-5"><a href="dist.html#cb303-5"></a><span class="kw">hist</span>(six_sided, </span>
-<span id="cb303-6"><a href="dist.html#cb303-6"></a>      <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>, <span class="fl">5.5</span>, <span class="fl">6.5</span>), </span>
-<span id="cb303-7"><a href="dist.html#cb303-7"></a>      <span class="dt">freq =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb303-8"><a href="dist.html#cb303-8"></a>      <span class="dt">xlab =</span> <span class="st">&quot;Number&quot;</span>,</span>
-<span id="cb303-9"><a href="dist.html#cb303-9"></a>      <span class="dt">ylab =</span> <span class="st">&quot;Probability&quot;</span>,</span>
-<span id="cb303-10"><a href="dist.html#cb303-10"></a>      <span class="dt">main =</span> <span class="st">&quot;Outcome probability for the first roll of a 6-sided die&quot;</span>)</span></code></pre></div>
-<p><img src="13-distributions_files/figure-html/unif_dist-1.png" width="672" /></p>
-<div id="characteristic-plots-uniform-distribution" class="section level3">
-<h3><span class="header-section-number">13.1.1</span> Characteristic Plots: Uniform Distribution</h3>
-<p>Below, we show the cumulative distribition plot and probability density function for a uniform distribution between 0 and 1.
-<img src="13-distributions_files/figure-html/unif_dist_plots2-1.png" width="672" /></p>
+<div id="transform" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> Transformations and other Tricks</h1>
+<p>This chapter provides an introduction to several common techniques to organize, transform, and/or manipulate univariate data. I use the word <em>manipulate</em> here with good reason; many of these techniques can be used inappropriately or lead to inadvertent consequences, so tread carefully! That warning aside, these techniques are useful and often allow you to gain insight into <em>“what the data are trying to tell you”</em>.</p>
+<div id="ch.-9-objectives" class="section level2">
+<h2><span class="header-section-number">9.1</span> Ch. 9 Objectives</h2>
+<p>This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:</p>
+<ul>
+<li>Define common approaches to data transformation<br />
+</li>
+<li>Explain the differences between <em>centering</em>, <em>rescaling</em>, and <em>standardizing</em> univariate data.</li>
+<li>Stratify data into relevant groups for analysis</li>
+<li>Discuss the risks and potential approaches to handling outliers</li>
+</ul>
+</div>
+<div id="transformation" class="section level2">
+<h2><span class="header-section-number">9.2</span> Transformation</h2>
+<p>The phrase <em>“Data Transformation”</em> means different things in different fields so we will define it here, in the statistical sense, as: <strong><em>applying one ore more mathematical operations to a variable</em></strong> (or in our case, all elements of numeric vector). You are undoubtedly familiar with data transformation, even if you haven’t previously recognized it. Some examples include:
+- adding, subtracting, or multiplying a constant to all elements in a vector;
+- taking the log, square root, or reciprocal of a variable;
+- some combination of these approaches.</p>
+<p>For example, your data are transformed whenever you convert temperature units from °F to °C, length units from inches to millimeters, or render a variable dimensionless (e.g., converting to units of percent, parts per million, or some other unitless value). In addition to these “units transformations”, we also conduct transformations to make the <strong><em>location</em></strong> and <strong><em>spread</em></strong> of data consistent, or to change the <strong><em>shape</em></strong> of a distribution of data (e.g., to reduce skewness or to linearize a variable). These latter approaches are often employed during multivariate analyses to help your variables “play nicely together” within the analytic framework you set forth. More on this to come.</p>
+<div class="rmdnote">
+<p>
+There are two key facets to data transformation: <strong>justification</strong> and <strong>documentation</strong>. Whenever data are transformed, you must provide a good reason for doing so (hint: there are many good reasons and also a few bad ones). Furthermore, <strong>you must adequately document “how” and “why” the data were transformed</strong>, so that others can understand your work and reproduce your results if needed.
+</p>
+</div>
+<div id="centering" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Centering</h3>
+<p>Centering means <strong><em>to subtract a constant from all values</em></strong> in a vector. The <strong>constant</strong> to be subtracted could be an estimate of the data’s central tendency, like the mean or median (hence the term <em>center</em>-ing), or it could be some residual value that you want to remove from all observations. If you subtract the mean from every value of a vector, then the new vector will have a mean of 0; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location. Centering <strong><em>changes the location</em></strong> of a variable but <strong><em>spread stays the same</em></strong>.</p>
+<p>In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to “background subtract” or “zero” a set of univariate observations. If you have ever used a digital scale to measure the weight of an object, you’ve probably noticed that when you turn it on, the scale does not always read zero. Most of the time the instrument has a way to “re-zero” itself prior to use, but this is not always the case. If your scale shows a mass of 298 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 298 from all subsequent weights that you perform with this scale. That subtraction is an example of a “centering” transformation.</p>
+<div class="figure" style="text-align: center"><span id="fig:centering-anno"></span>
+<img src="images/centering_anno.png" alt="Data are sometimes centered to remove spurious values" width="640" />
+<p class="caption">
+Figure 9.1: Data are sometimes centered to remove spurious values
+</p>
 </div>
 </div>
-<div id="normal_dist" class="section level2">
-<h2><span class="header-section-number">13.2</span> Normal Distribution</h2>
-<p>The normal distribution arises from phenomena that tend to have <em>additive</em> variability. By “additive”, I mean that the outcome (or variable of interest) tends to vary in a +/- fashion from one obervation to the next. Lots of things have additive variability: the heights of 1<sup>st</sup> graders, the size of pollen grains from a tree or plant, the variation in blood pressure across the population, or the average temperature in Fort Collins, CO for the month of June.</p>
-<p>Let’s examine what <em>additive variability</em> looks like using the 6-sided dice mentioned above. Although a dice roll has a uniform distribution of possible outcomes (rolling a 1,2,3,4,5, or 6), the variability associated with adding up the sum of three or more dice creates a normal distribition of outcomes. If we were to roll four, 6-sided dice and sum the result (getting a value between 4 and 24 for each roll), and then repeat this experiment 10,000 times, we see the distribution shown below. The smooth line represents a fit using a normal distribution - a pretty nice fit considering that we are working with a discrete (integer-based) dataset!
-<img src="13-distributions_files/figure-html/normal1-1.png" width="672" /></p>
-<div id="normal-distribution-characteristic-plots" class="section level3">
-<h3><span class="header-section-number">13.2.1</span> Normal Distribution: Characteristic Plots</h3>
-<p>Unlike the uniform distribution, the normal distribution is not specified by a range (it doesn’t have one). The normal distribution is specified by a <em>central tendancy</em> (a most-common value) and a measure of data’s <em>dispersion</em> or spread (a standard deviation). A normal distribution is symmetric, meaning that the spread of the data is equal on each side of the central tendency. This symmetry also means that the mode (the most common value), the median (the 50<sup>th</sup> percentile or 0.5 quantile) and the mean (the average value) are all equal. A series of normal distributions of varying dispersion is shown in the panels below.</p>
-<p><img src="13-distributions_files/figure-html/normal2-1.png" width="576" /><img src="13-distributions_files/figure-html/normal2-2.png" width="576" /></p>
+<div id="rescaling" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> Rescaling</h3>
+<p><strong>To rescale a variable means to divide (or multiply) all values by a constant</strong>. Whereas <em>centering</em> is an arithmetic transformation, the process of <em>rescaling</em> data is multiplicative. Rescaling changes both the location and spread of the data.</p>
+<p>Some reasons to rescale data include:</p>
+<ul>
+<li>to show variables of different magnitudes together on the same axis of a plot;</li>
+<li>to make the spread of two or more variables similar (e.g., when conducting an analysis of variance or multivariate regression with variables that each have different scales);</li>
+<li>when you want to render a variable dimensionless (e.g., when converting to percentage units).</li>
+</ul>
 </div>
 </div>
-<div id="log_normal_dist" class="section level2">
-<h2><span class="header-section-number">13.3</span> Log-normal Distribution</h2>
-<p>Multiplicative variation is what gives rise to a “log-normal” distribution: a special type of skewed data.</p>
-<p>Let’s create two normal distributions for variables ‘a’ and ‘b’:</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="dist.html#cb304-1"></a><span class="co">#create two variables that are normally distributed</span></span>
-<span id="cb304-2"><a href="dist.html#cb304-2"></a>normal_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">15</span>, <span class="dt">sd =</span> <span class="dv">5</span>),</span>
-<span id="cb304-3"><a href="dist.html#cb304-3"></a>                   <span class="dt">b =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">3</span>))</span></code></pre></div>
-<p>Individually, we know that these data are normally distributed (because we created them that way), but what does the distribution look like if we add these two variables together?</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="dist.html#cb305-1"></a><span class="co">#add those variables together and you get a normal distribution</span></span>
-<span id="cb305-2"><a href="dist.html#cb305-2"></a>normal_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">c =</span> a <span class="op">+</span><span class="st"> </span>b) -&gt;<span class="st"> </span>normal_data</span>
-<span id="cb305-3"><a href="dist.html#cb305-3"></a></span>
-<span id="cb305-4"><a href="dist.html#cb305-4"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> normal_data) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb305-5"><a href="dist.html#cb305-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(c),</span>
-<span id="cb305-6"><a href="dist.html#cb305-6"></a>                 <span class="dt">bins =</span> <span class="dv">30</span>,</span>
-<span id="cb305-7"><a href="dist.html#cb305-7"></a>                 <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb305-8"><a href="dist.html#cb305-8"></a>                 <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></span>
-<span id="cb305-9"><a href="dist.html#cb305-9"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
-<span id="cb305-10"><a href="dist.html#cb305-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>))</span></code></pre></div>
-<p><img src="13-distributions_files/figure-html/a_b_histogram-1.png" width="672" /></p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="dist.html#cb306-1"></a><span class="kw">ggsave</span>(<span class="st">&quot;./images/hist_a_b.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
-<pre><code>## Saving 7 x 5 in image</code></pre>
-<p>Answer: still normal. Since all we did here was add together two normal distributions, we simply created a third (normal) distribution with more additive variability.</p>
-<p>What happens, however, if we multiply together a series of normally distributed variables?</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="dist.html#cb308-1"></a><span class="co">#multiply together three normal variables</span></span>
-<span id="cb308-2"><a href="dist.html#cb308-2"></a>normal_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb308-3"><a href="dist.html#cb308-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">d =</span> <span class="kw">sample</span>(a<span class="op">*</span>b<span class="op">*</span>c, <span class="dv">1000</span>)) -&gt;<span class="st"> </span>log_data</span>
-<span id="cb308-4"><a href="dist.html#cb308-4"></a></span>
-<span id="cb308-5"><a href="dist.html#cb308-5"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> log_data) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb308-6"><a href="dist.html#cb308-6"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(d),</span>
-<span id="cb308-7"><a href="dist.html#cb308-7"></a>                 <span class="dt">bins =</span> <span class="dv">30</span>,</span>
-<span id="cb308-8"><a href="dist.html#cb308-8"></a>                 <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb308-9"><a href="dist.html#cb308-9"></a>                 <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></span>
-<span id="cb308-10"><a href="dist.html#cb308-10"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
-<span id="cb308-11"><a href="dist.html#cb308-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>))</span></code></pre></div>
-<p><img src="13-distributions_files/figure-html/a_b_lognormal-1.png" width="672" /></p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="dist.html#cb309-1"></a><span class="kw">ggsave</span>(<span class="st">&quot;./images/hist_skew_out.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
-<pre><code>## Saving 7 x 5 in image</code></pre>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="dist.html#cb311-1"></a><span class="co">#plot the same data on a log scale (x axis)</span></span>
-<span id="cb311-2"><a href="dist.html#cb311-2"></a></span>
-<span id="cb311-3"><a href="dist.html#cb311-3"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> log_data) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb311-4"><a href="dist.html#cb311-4"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(d),</span>
-<span id="cb311-5"><a href="dist.html#cb311-5"></a>                 <span class="dt">bins =</span> <span class="dv">25</span>,</span>
-<span id="cb311-6"><a href="dist.html#cb311-6"></a>                 <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb311-7"><a href="dist.html#cb311-7"></a>                 <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></span>
-<span id="cb311-8"><a href="dist.html#cb311-8"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
-<span id="cb311-9"><a href="dist.html#cb311-9"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
-<span id="cb311-10"><a href="dist.html#cb311-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>))</span></code></pre></div>
-<p><img src="13-distributions_files/figure-html/a_b_lognormal_log_axis-1.png" width="672" /></p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="dist.html#cb312-1"></a><span class="kw">ggsave</span>(<span class="st">&quot;./images/hist_skew_out_logx.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
-<pre><code>## Saving 7 x 5 in image</code></pre>
+<div id="normalization-and-standardization" class="section level2">
+<h2><span class="header-section-number">9.3</span> Normalization and Standardization</h2>
+In a generic sense, to <strong><em>“normalize”</em></strong> a variable means: <strong>to transform that variable so that it can be compared, evaluated, or comprehended more easily.</strong> Normalization often involves a combination of centering and rescaling operations that not only change the location and spread of the data, but also the <em>meaning</em> of data. Normalization is performed all the time.
+<div class="rmdwarning">
+<p>
+Like <em>“transformation”</em>, the word “<em>normalization</em>” is defined differently in different fields, so be explicit when using this term in your work. To some, the word normalization means to “make a variable normally distributed”; to others, it means to “normalize a database” so that redundancies are eliminated.
+</p>
+</div>
+<p>There are many types of normalization operations; we will discuss a few examples below.</p>
+<div id="rate-normalization" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> Rate normalization</h3>
+<p>To perform a rate normalization is <strong>to divide one variable into another</strong>, often to report something in terms of a rate.</p>
+<ul>
+<li>Two cars can have the same range (how many miles they can travel on one tank of gas) but different rates of fuel efficiency (miles traveled per gallon)<br />
+</li>
+<li>Two countries can have the same GDI (<em>gross domestic income</em>; the sum of all wages earned) but widely different rates of “per capita” income (GDI/total population size).</li>
+</ul>
+</div>
+<div id="standardizing" class="section level3">
+<h3><span class="header-section-number">9.3.2</span> Standardizing</h3>
+<p>Standardization is a special case of transformation/normalization where each value in a set of observations (or vector) is subtracted by some level (often the central tendency) and divided by the spread. When working with normally distributed data, the standardization of variable x<sub>i</sub> into z<sub>i</sub> is:</p>
+<p>     <span class="math inline">\(z_{i} = \frac{x_{i}-\overline{x}}{\sigma_{x}}\)</span></p>
+<p>where the mean and standard deviation of x are <span class="math inline">\(\overline{x}\)</span> and <span class="math inline">\(\sigma_{x}\)</span>, respectively. The <em>standardization</em> of a variable renders the mean to 0 and the standard deviation to 1. This type of normalization is useful when you wish to study relationships between multiple variables, each with different scale. Note that standardization doesn’t have to use the mean and standard deviation as the centering and normalizing variables, but those are most common.</p>
+</div>
+<div id="reducing-skewness" class="section level3">
+<h3><span class="header-section-number">9.3.3</span> Reducing Skewness</h3>
+<p>Sometimes your data are <em>not normally distributed</em>, even though you want them to be. In that case you still have options. Some transformations, like the log, square root, or inverse, will make the spread of the data symmetric and approximately Gaussian. These transformations are commonly used to meet the needs (read: underlying assumptions) of many statistical models. We discuss model assumptions (and their evaluation) in the <a href="model.html#model">modeling chapter</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:reduce-skew2"></span>
+<img src="images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable." width="640" />
+<p class="caption">
+Figure 9.2: The log(x) transform is often used to reduce skewness in a variable.
+</p>
+</div>
+</div>
+</div>
+<div id="stratification" class="section level2">
+<h2><span class="header-section-number">9.4</span> Stratification</h2>
+<p><strong>To stratify a sample means: to divide the sample into subsets (aka strata).</strong></p>
+<p>Stratified analyses can be performed many ways; one particularly useful way is graphically, by creating a stratification plot. A stratification plot is like any other visualization that you have created, except that the strata are identified (i.e., called out) through the use of color, lines, symbols, etc. Let’s use the following example to demonstrate:</p>
+<p>A manufacturing operation is investigating the production of an expensive titanium alloy, where a 25% increase in the production yield of the alloy manufacturing process means the difference between profit and loss. The materials group believes that sample purity should have an effect on the yield and for the past month, all three reactors at the plant have been producing alloys from Ti feedstock of varying purity. After one month, you decide to visualize the relationship between <em>process yield</em> and <em>sample purity</em> with a scatterplot, <code>geom_point()</code>.</p>
+<div class="figure" style="text-align: center"><span id="fig:stratify2"></span>
+<img src="images/unstratified.png" alt="Yield vs. Purity from the plant's three reactors over one month" width="500" />
+<p class="caption">
+Figure 9.3: Yield vs. Purity from the plant’s three reactors over one month
+</p>
+</div>
+<p>Examination of Figure <a href="transform.html#fig:stratify2">9.3</a> reveals that, while there is considerable variation in the data, a clear relationship is not apparent between sample purity and process yield. However, it occurs to you that perhaps there is variation in results between the three different reactors in the plant. Therefore, you decide to repeat this analysis <strong><em>stratifying the data by reactor type</em></strong>. In this case, you repeat the <code>ggplot()</code> call with an extra aesthetic of <code>color = reactor</code> in the scatterplot.</p>
+<div class="figure" style="text-align: center"><span id="fig:stratify-png"></span>
+<img src="images/stratified.png" alt="Yield vs. Purity over one month, stratified by reactor type" width="500" />
+<p class="caption">
+Figure 9.4: Yield vs. Purity over one month, stratified by reactor type
+</p>
+</div>
+<p>Figure <a href="transform.html#fig:stratify-png">9.4</a> tells a very different story! Now we can see that two relationships are clearly evident.</p>
+<ol style="list-style-type: decimal">
+<li>There is a definite inverse relationship between <em>sample purity</em> and the <em>process yield</em> and<br />
+</li>
+<li>For a given purity level, each reactor has a different output. Clearly, there is something different about each of these reactors that merits further study…</li>
+</ol>
+<p>Figure <a href="transform.html#fig:stratify-png">9.4</a> raises a subtle, but very important, point: <strong>data often have hierarchy</strong> and that hierarchy may be influential. In this case, only when we account for the hierarchy (the reactor that produced each sample), do we see an important relationship arise.</p>
+<p><em>Hierarchical data</em> means data that can be ordered into different ranks (or levels). Students at a university might be ordered by their their college, their major, or the year in which they matriculated. Those ranks may be important when analyzing student data; if so, your analysis should account for that!</p>
+</div>
+<div id="outliers-and-censoring" class="section level2">
+<h2><span class="header-section-number">9.5</span> Outliers and Censoring</h2>
+<p>Have you ever heard the phrase <strong><em>“don’t make the exception the rule”</em></strong>?</p>
+<p>I think this phrase means, <em>don’t let your judgment be governed solely by outliers.</em> Whether or not this is good advice probably depends on the situation, but I do think one should have the ability to detect <strong><em>when an outlier has leverage over a situation</em></strong>.</p>
+<div class="rmdnote">
+<p>
+An <strong>outlier</strong> is an observation that lies an abnormal distance from other values in a random sample.
+</p>
+</div>
+<div id="detecting-outliers" class="section level3">
+<h3><span class="header-section-number">9.5.1</span> Detecting Outliers</h3>
+<p>Data visualization (like histograms, density plots, time-series, and boxplots) can be useful for detecting outliers, because such graphs make it clear that one or more observations <em>“don’t seem to belong with the rest”</em>. For example, let’s create an artificial dataframe called <code>asthma.data</code>. Within this dataframe are two variables:</p>
+<ul>
+<li><code>asthma.rate</code>: the percentage of kids with asthma in a given school district</li>
+<li><code>black.carbon</code>: the concentration of airborne black carbon (a type of air pollutant generated by incomplete combustion, similar to what you see exhausted from a diesel truck) measured outside of a school at the center of each district.</li>
+</ul>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="transform.html#cb276-1"></a>asthma.data &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb276-2"><a href="transform.html#cb276-2"></a>  <span class="dt">asthma.rate =</span> <span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">9</span>, </span>
+<span id="cb276-3"><a href="transform.html#cb276-3"></a>                  <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">10</span>,</span>
+<span id="cb276-4"><a href="transform.html#cb276-4"></a>                  <span class="dv">16</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">9</span>),</span>
+<span id="cb276-5"><a href="transform.html#cb276-5"></a>  <span class="dt">black.carbon =</span> <span class="kw">c</span>(<span class="fl">3.2</span>, <span class="fl">2.5</span>, <span class="fl">4.6</span>, <span class="fl">6.1</span>, <span class="fl">3.3</span>, </span>
+<span id="cb276-6"><a href="transform.html#cb276-6"></a>                   <span class="fl">3.1</span>, <span class="fl">6.1</span>, <span class="fl">5.3</span>, <span class="fl">4.5</span>, <span class="fl">3.3</span>, </span>
+<span id="cb276-7"><a href="transform.html#cb276-7"></a>                   <span class="fl">6.4</span>, <span class="fl">3.7</span>, <span class="fl">5.1</span>, <span class="fl">6.8</span>, <span class="dv">12</span>)</span>
+<span id="cb276-8"><a href="transform.html#cb276-8"></a>)</span></code></pre></div>
+<p>The plot below shows two boxplots: one depicts <code>asthma.rate</code> for the 15 school districts; the other depicts <code>black.carbon</code>. I’ve circled the apparent outlier. <strong>Outliers are easy to see in boxplots because they fall outside the whiskers.</strong></p>
+<div class="figure" style="text-align: center"><span id="fig:outlier-1"></span>
+<img src="09-transf_files/figure-html/outlier-1-1.png" alt="Boxplots for two sets of data; the one on the right has an outlier." width="500" />
+<p class="caption">
+Figure 9.5: Boxplots for two sets of data; the one on the right has an outlier.
+</p>
+</div>
+<p>Data visualization is <em>useful</em> for detecting outliers, but not definitive. Indeed, there are no definitive methods for detecting outliers in data (mostly because that process is too contextual). That said, there are some guidelines.</p>
+<p><strong>The “1.5 x IQR” rule</strong> is what was used in the boxplot of Figure <a href="transform.html#fig:outlier-1">9.5</a>.</p>
+<p>This rule states that outliers are <strong>any data points more than 1.5 times the inter-quartile range away from the upper and lower quartiles</strong>. This means data that are:</p>
+<ul>
+<li><em>greater than</em>: [0.75 quantile value] + 1.5*IQR</li>
+<li><em>less than</em>: [0.25 quantile value] - 1.5*IQR</li>
+</ul>
+<p>For the <code>black.carbon</code> data, we could calculate these thresholds with the following:</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="transform.html#cb277-1"></a>upper &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon,</span>
+<span id="cb277-2"><a href="transform.html#cb277-2"></a>                  <span class="dt">probs =</span> <span class="fl">0.75</span>,</span>
+<span id="cb277-3"><a href="transform.html#cb277-3"></a>                  <span class="dt">names =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb277-4"><a href="transform.html#cb277-4"></a><span class="st">  </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon)</span>
+<span id="cb277-5"><a href="transform.html#cb277-5"></a></span>
+<span id="cb277-6"><a href="transform.html#cb277-6"></a>lower &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon,</span>
+<span id="cb277-7"><a href="transform.html#cb277-7"></a>                  <span class="dt">probs =</span> <span class="fl">0.25</span>,</span>
+<span id="cb277-8"><a href="transform.html#cb277-8"></a>                  <span class="dt">names =</span> <span class="ot">FALSE</span>) <span class="op">-</span><span class="st"> </span></span>
+<span id="cb277-9"><a href="transform.html#cb277-9"></a><span class="st">  </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon)</span>
+<span id="cb277-10"><a href="transform.html#cb277-10"></a></span>
+<span id="cb277-11"><a href="transform.html#cb277-11"></a>upper</span></code></pre></div>
+<pre><code>## [1] 10.3</code></pre>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="transform.html#cb279-1"></a>lower</span></code></pre></div>
+<pre><code>## [1] -0.9</code></pre>
+<p>Interestingly, this rule suggests that outliers on the lower end need to be negative. Is that even possible for air pollution concentrations? (hint: NO) Other statistical approaches for detecting outliers include:</p>
+<ul>
+<li>a threshold of standard deviations away from the mean (i.e., computing z-scores);</li>
+<li>Grubbs’ test;</li>
+<li>Tietjen-Moore Test, and others.</li>
+</ul>
+<p>In the end, however, common sense and your contextual knowledge of the data are usually more important here.</p>
+</div>
+<div id="censoring-outliers" class="section level3">
+<h3><span class="header-section-number">9.5.2</span> Censoring outliers</h3>
+<p>What should we do with outliers in our data? The answer depends on context (is this life and death data we’re dealing with or just the size of tomatoes from your garden?) and on the questions you are asking. Here’s an example:</p>
+The black carbon boxplot (right side of <a href="transform.html#fig:outlier-1">9.5</a>) has a clear outlier that falls far outside of the rest of the data. This might not seem like a big deal but take a look at what happens when we fit a regression line through the data <span style="color: orange;">with the outlier included</span> and <span style="color: blue;">without the outlier</span>.
+<div class="figure" style="text-align: center"><span id="fig:outlier-2"></span>
+<img src="09-transf_files/figure-html/outlier-2-1.png" alt="Effect of an outlier on a linear model with n=15 data points." width="672" />
+<p class="caption">
+Figure 9.6: Effect of an outlier on a linear model with n=15 data points.
+</p>
+</div>
+<p>Examination of Figure <a href="transform.html#fig:outlier-2">9.6</a> suggests that the outlier is having a strong effect on the relationship between air pollution and childhood asthma. If the censored data are correct, we have just detected a strong correlation between asthma rates and air pollution. If the uncensored data are correct then the association is positive but very weak. So what do we do about this?</p>
+<p>Unfortunately, this sort of conundrum happens more often than we might like in the real world. <em>My advice would be to collect more data to prove/disprove the outlier. If that wasn’t possible (and there was no other explanation available), I would probably show the analysis</em> <strong><em>both ways</em></strong>.</p>
+<div class="rmdwarning">
+<p>
+<strong>Censoring data is dangerous business.</strong> If you are going to censor an outlier, make sure to document <strong>how</strong> you discovered/defined the outlier, <strong>why</strong> you believe it should be censored, and <strong>“whether or not that censoring had an effect on your results/conclusions”</strong>. Then make sure to broadcast your thinking to everyone who comes in contact with your report. If you try to hide outliers, you are being unethical and setting yourself up for disaster.
+</p>
+</div>
 
+</div>
 </div>
 </div>
             </section>
@@ -472,8 +576,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="simulate.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="rprog4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="measure.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -404,12 +404,9 @@ Both models explained ~80% of the variance in our dependent variable. Based on o
 ## Probability Density Function {#pdf}  
 The histogram is really an attempt to visualize the **probability density function** (pdf) for a distribution of univariate data.  The pdf is a mathematical representation of the likelihood of sampling a given value from the distribution, assuming a random draw.  Unlike the histogram (which bins data into groups), the pdf is a continuous function that can be solved at any datum.  A pdf can be expressed empirically (as a numeric approximation) or as an exact analytic equation (in the case normal, lognormal, and other *known* distributional forms). 
 
+### Univariate Data Fits
 
-
-How to fit a distribution
-### LOESS
-
-### Calibration
+## Calibration
 
 ## Exercises
 

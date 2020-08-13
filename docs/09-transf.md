@@ -1,4 +1,4 @@
-# Transformations and other Tricks {#eda3}
+# Transformations and other Tricks {#transform}
 
 This chapter provides an introduction to several common techniques to organize, transform, and/or manipulate univariate data. I use the word *manipulate* here with good reason; many of these techniques can be used inappropriately or lead to inadvertent consequences, so tread carefully!  That warning aside, these techniques are useful and often allow you to gain insight into *"what the data are trying to tell you"*.  
 

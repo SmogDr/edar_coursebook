@@ -24,7 +24,7 @@ Take the molecular diameter of an oxygen molecule. Even if we could measure the 
 
 This is to say that the **population** is the thing we strive to make conclusions about but the **sample** is the thing (read: the data) that we have to work with.
 
-### Collecting a sample  
+### Collecting a sample (#sample.collect)
 Samples are collected to provide estimates of populations so that those estimates can be used for ***inference*** (a fancy word that means: to make conclusions).  Many statistical procedures are based on the assumption that your sample is ***representative*** of the population you are trying to model/understand.  Assuming that your sample is good (read: representative) is a dangerous thing to do. In fact, MOST samples have some degree of un-good.  Just ask the polling experts from the 2016 U.S. presidential election, or the now humiliated and vilified [doctor who concluded that vaccines were the cause of childhood autism based on a sample of 12 kids](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2954080/) taken from a single birthday party...  
 
 A sample is representative if each measure is drawn in a way that makes it ***independent*** from the next AND if the measurement method itself is ***unbiased*** (i.e., the making of the measurement does not alter the way the sample is counted). We will talk more about ***bias*** later in this Chapter, but suffice it so say that if I made you watch a 10-minute video on catastrophic airplane disasters and then gave you a survey about your fears of flying, I might be introducing some bias into that measurement.
@@ -225,5 +225,5 @@ Precision and bias are easy to view graphically. In Figure \@ref(fig:bias-precis
 Like precision, 
 
 ### Measurement Uncertainty
-Bias and precision, together, make up *uncertainty*.  A good way to estimate the uncertainty around a measurement is 
+Bias and precision, together, make up *uncertainty*.  A good way to estimate the uncertainty around a measurement is through **error propagation**.
 
