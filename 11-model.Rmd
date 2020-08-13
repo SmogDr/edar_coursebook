@@ -112,31 +112,41 @@ Now that you have an idea "how" OLS works, let's talk about the assumptions of O
 
 (1) **The form of the model is linear in the coefficients.**  
     * *Linear in the coefficients* means that the parameter estimates ($\beta_{0}$, $\beta_{1}$,...$\beta_{n}$) all show up in the final model as being added together.  An important point here is that the ***model variables do not need to be linear terms***.  You can use linear regression with non-linear predictor variables, such that the following model would be considered "linear" in the parameters: $Y = \beta_{0} + \beta_{1}\cdot{X_{1}^{2}} + \beta_{2}\cdot{X_{2}^{3}} + \epsilon$.  This model is still "linear" because the $\beta$-terms are being added together. 
-      * How to check: It's easy to tell if your model is linear in the coefficients by just looking at it, since this is a structural requirement. If the $\beta$-terms show up in non-arithmetic ways (e.g., $\cos(\beta_{1})\cdot X^{\beta_{2}}$) then you are developing a *non-linear* model (signifying that it's time to take a statistics course).
+      * *How to check*: It's easy to tell if your model is linear in the coefficients by just looking at it, since this is a structural requirement. If the $\beta$-terms show up in non-arithmetic ways (e.g., $\cos(\beta_{1})\cdot X^{\beta_{2}}$) then you are developing a *non-linear* model (signifying that it's time to take a statistics course).  
+      * *Why you care*: You model will not run (at least not correctly) if not set up correctly. Attempting to fit an OLS linear fit on a non-linear model is bad news.
 (2) **The model is correctly specified.**  
     * This assumption speaks to the actual variables included in the model and their form. How many independent variables are needed and to what power do you raise each (if not to the first power)? Is the function $Y = f(X_{1},X_{2})$ appropriate or is $log(Y) = f(X_{1}^{2})$ or $Y = f(\frac{X_{1}}{X_{2}^{2}})$?  
-      * How to check: This is a tough assumption to evaluate in advance. The best way to specify the model correctly is through a combination of (1) checking the other assumptions, (2) using your experience/process knowledge to inform the model design, (3) conducting an exploratory data analysis to inform your thinking and (4) following an established model selection procedure (this last one *also* suggests that you to take a formal class on statistics).
-      * Why you care: If the model is not specified correctly it might perform poorly under validation, or, it might suggest that a variable is not important, when in fact it is!  
+      * *How to check*: This is a tough assumption to evaluate in advance. The best way to specify the model correctly is through a combination of (1) checking the other assumptions, (2) using your experience/process knowledge to inform the model design, (3) conducting an exploratory data analysis to inform your thinking and (4) following an established model selection procedure (this last one *also* suggests that you to take a formal class on statistics).
+      * *Why you care*: If the model is not specified correctly it might perform poorly under validation, or, it might suggest that a variable is not important, when in fact it is!  
 (3) **No collinearity between predictor variables.** 
     * The *no collinearity* assumption only applies when your model has more than one predictor variable ($X_{1}$, $X_{2}$, $X_{3}$, etc.). An example would be using waist size (as $X_{1}$) and body mass (as $X_{2}$) to predict a person's height ($Y$). The two predictor variables (waist size and mass) are likely to be strongly correlated (more on *that* topic below).
-      * How to check: Run a correlation analysis on pairs of the independent variables (i.e., calculate a Pearson or Spearman correlation coefficient) and create a correlation plot matrix (a panel of [scatterplots](#scatt)) for all pairs of independent variables to examine *how* they are correlated.
-      * Why you care: When two or more predictor variables are highly correlated, the model will struggle to fit parameter estimates (e.g., $\beta_{1}$, $\beta_{2}$) for the correlated variables (read: the parameters for the correlated variables will become very sensitive to small changes in the model, which is NOT good). Note that if you don't care about individual parameters (you only care about the model output) then violating this assumption is less important. If you do care about parameter estimates for individual predictors, the model could very well assign the wrong sign to one of the $\beta$ coefficients.
+      * *How to check*: Run a correlation analysis on pairs of the independent variables (i.e., calculate a Pearson or Spearman correlation coefficient) and create a correlation plot matrix (a panel of [scatterplots](#scatt)) for all pairs of independent variables to examine *how* they are correlated.
+      * *Why you care*: When two or more predictor variables are highly correlated, the model will struggle to fit parameter estimates (e.g., $\beta_{1}$, $\beta_{2}$) for the correlated variables (read: the parameters for the correlated variables will become very sensitive to small changes in the model, which is NOT good). Note that if you don't care about individual parameters (you only care about the model output) then violating this assumption is less important. If you do care about parameter estimates for individual predictors, the model could very well assign the wrong sign to one of the $\beta$ coefficients.
 
 #### Back-end assumptions:  
 
-* The **error term** (4) has a **mean of zero**, is (5) **normally distributed**, (6) **homoscedastic**, and has (7) **no autocorrelation** or (8) **correlation with predictor (independent) variables**.  There's a lot riding on that little error term, $\epsilon$!  
-    (4) The first requirement for a mean of zero ($\overline{\epsilon} = 0$) will be fulfilled if the model is set up and the OLS algorithm is implemented correctly.
-      * How to check: calculate the model residuals and take their `mean()`.
-      * Why you care: if $\overline{\epsilon} \neq 0$, or very close to zero, then something has gone seriously wrong with your model implementation. 
-    (5) The general opinion among statisticians is that non-normal residuals are not a deal-breaker for your model. Non-normal residuals will affect your ability to generate confidence intervals about your estimates, but the estimates themselves should still be "BLUE", which stands for *"Best Linear Unbiased Estimator"*.
-      * How to check: create a [Q-Q plot](#qq.plot) about your residuals.
-      * Why you care: violation of the normality assumption can affect the precision of your estimates.
-    (6) The term *"homoscedastic"* means to **have equal variance**.  In the case of residuals, we want to see that their magnitude remains relatively constant as the dependent variable increases, $Y$.
-      * How to check: create a [scatterplot](#scatt) of residuals (y-axis) vs. the fitted values, $\hat{Y_{i}}$ (x-axis; yes, I know that sounds weird to plot the Y-variable on the x-axis...). The residuals should appear evenly scattered in both directions about zero with no apparent change in magnitude as the Y variable increases.  
-      * Why you care: Heteroscedasticity (one of my favorite "don't I sound smart?" words) can affect the precision of your estimates and can also inflate your confidence in your results (read: you might think you are on to something when actually, you aren't). If your residuals are heteroscedastic, consider applying a [transformation](#transform) to your dependent variable to normalize the error variance. The BoxCox method one of my favorites.
-    (7, 8) Autocorrelation among residuals and/or correlation with independent variables is a strong indicator that your model is not correctly specified.  
-      * How to check: Create [autocorrelation and partial autocorrelation](#autocorr) plots for your residuals. Perform a Durbin-Watson test. Conduct a correlation analysis on your residuals and independent variables, create [scatterplots](#scatter) to investigate the nature of the correlation (when present).
-      * Why you care: Autocorrelation among residuals is a strong indicator that your model is not correctly specified. You can do better!
+The **error term** (4) has a **mean of zero**, is (5) **normally distributed**, (6) **homoscedastic**, and has (7) **no autocorrelation** or (8) **correlation with predictor (independent) variables**.  There's a lot riding on that little error term, $\epsilon$!.
+
+(4) **Mean of residuals is zero**.  
+    * The first requirement for a mean of zero ($\overline{\epsilon} = 0$) will be fulfilled if the model is set up and the OLS algorithm is implemented correctly.  
+      * *How to check*: calculate the model residuals and take their `mean()`.  
+      * *Why you care*: if $\overline{\epsilon} \neq 0$, or if $\overline{\epsilon}$ is not very close to zero, then something has gone seriously wrong with your model implementation.  
+(5) **Residuals are normally distributed.**  
+    * The general opinion among statisticians is that non-normal residuals are not a deal-breaker for your model. Non-normal residuals will affect your ability to generate confidence intervals about your estimates, but the estimates themselves should still be "BLUE", which stands for *"Best Linear Unbiased Estimator"*.  
+      * *How to check*: create a [Q-Q plot](#qq.plot) about your residuals.  
+      * *Why you care*: violation of the normality assumption can affect the precision of your estimates.  
+(6) **Residuals are homoscedstic (not heteroscedastic).**  
+    * The term *"homoscedastic"* means to **have equal variance**.  In the case of residuals, we want to see that their magnitude remains relatively constant as the dependent variable increases, $Y$.  
+      * *How to check*: create a [scatterplot](#scatt) of residuals (y-axis) vs. the fitted values, $\hat{Y_{i}}$ (x-axis; yes, I know that sounds weird to plot the Y-variable on the x-axis...). The residuals should appear evenly scattered in both directions about zero with no apparent change in magnitude as the Y variable increases.  
+      * *Why you care*: Heteroscedasticity (one of my favorite "don't I sound smart?" words) can affect the precision of your estimates and can also inflate your confidence in your results (read: you might think you are on to something when actually, you aren't). If your residuals are heteroscedastic, consider applying a [transformation](#transform) to your dependent variable to normalize the error variance. The BoxCox method one of my favorites.  
+(7) **No residual autocorrelation.**  
+    * Autocorrelation among residuals is a strong indicator that your model is not correctly specified.  
+      * *How to check*: Create [autocorrelation and partial autocorrelation](#autocorr) plots for your residuals. Perform a Durbin-Watson test.  
+      * *Why you care*: Autocorrelation among residuals is a strong indicator that your model is not correctly specified.
+(8) **No residual correlation with independent variables.**  
+    * Likewise, residual correlation with independent variables is a strong indicator that your model is not correctly specified.  
+      * *How to check*: Conduct a correlation analysis on your residuals and independent variables, create [scatterplots](#scatter) to investigate the nature of the correlation (when present).  
+      * *Why you care*: Correlation between residuals and independent variables is a strong indicator that your model is not correctly specified. You can do better!
 
 ## Example: OLS Linear Regression
 Let's conduct a simple linear regression with two variables that we know are correlated: a person's waist size and their weight. We will use data collected by the US Centers for Disease Control as part of the [National Health and Nutrition Examination Survey (NHANES)](https://www.cdc.gov/nchs/nhanes/about_nhanes.htm) - a detailed annual survey of ~5,000 people living in the US.
@@ -193,11 +203,11 @@ Thus, substituting one equation into another, we arrive at the conclusion that m
 $$mass \sim Circumference^{2}$$
 Or, another way to say this is that the square root of mass is linearly related to body circumference.
 $$\sqrt{mass} \sim Circumference$$
-``` {r cylinder-comic, echo=FALSE, message=FALSE, fig.aling="center"}
+``` {r cylinder-comic, echo=FALSE, message=FALSE, fig.align="center"}
 knitr::include_graphics("./images/cylinder_comic.png")
 ```
 
-Let's transform $mass \rightarrow \sqrt{mass}$ and examine the two scatterplots side by side.
+Let's transform $mass \rightarrow \sqrt{mass}$ and then examine the two scatterplots side by side.
 ``` {r model-compare, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="Side-by-side comparison of two model specifications. Does one look more linear than the other?"}
 p1 <- ggplot(data = data_18) +
   geom_point(aes(x = waist, y = mass),
@@ -298,7 +308,7 @@ This assumption can be checked several ways, but my preference is to create a Q-
 
 Here are the Q-Q plots for `model1` and `model2`.
 
-```{r qqplot}
+```{r qqplot, fig.cap="Q-Q plots of residuals for two linear models. Which set of residuals better approximates a normal distribution?"}
 p3 <- ggplot(data  = model1$model, aes(sample = model1$residuals)) +
   geom_qq(alpha = 0.1,
           color = "maroon4") +
@@ -315,12 +325,13 @@ p4 <- ggplot(data  = model2$model, aes(sample = model2$residuals)) +
 
 grid.arrange(p3, p4, ncol = 2)
 ```
+
 Both models reasonable follow the expected quantile plots, although `model1` shows more deviation from normality at the upper tail.  If I hadn't seen `model2`, which looks nearly perfect, I probably would have said that `model1` was adequate.  Advantage: `model2`. 
 
 **Assumption #6: The error term is homoscedatic**  
 To evaluate this assumption, we create a [scatterplot](#scatt) of residuals vs. the fitted values, $\hat{Y_{i}}$.  Both of these data are contained in the model output lists.
 
-``` {r residual-plot}
+``` {r residual-plot, fig.cap="Residuals vs. fitted values as a check for homoscedasticity."}
 p5 <- ggplot(data = model1$model) + 
   geom_point(aes(x = model1$fitted.values, y =model1$residuals),
              alpha = 0.25,
@@ -339,12 +350,13 @@ p6 <- ggplot(data = model2$model)+
 
 grid.arrange(p5, p6, ncol = 1)
 ```
+
 Looking at these plots, the residuals don't show major changes across the range of fitted values (for both plots) - this is a good outcome because it implies the residuals are homoscedastic.  There are slight differences between the two models, however.  For example, `model1` tends to have positive residuals at low and high values of $\hat{Y_{i}}$, whereas, `model2` seems to have more constant error across the range of $\hat{Y_{i}}$. Boring residuals are what you want. *Advantage: `model2`.*
 
 **Assumption 7: No autocorrelation among residuals**
 This assumption is evaluated by making a [partial autocorrelation plot](#autocorr) of your residuals. We will accomplish these plots using `pacf()` function from the `{stats}` package.
 
-``` {r resid-autocorr}
+``` {r resid-autocorr, fig.cap="Partial autocorrelation plots of residuals."}
 stats::pacf(model1$residuals, 
             main = "Model 1 Partial Autocorrelation Plot")
 stats::pacf(model2$residuals, 

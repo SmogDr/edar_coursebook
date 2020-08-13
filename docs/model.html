@@ -487,15 +487,17 @@ The terms “residual sum of squares” and “error sum of squares” are inter
 <ul>
 <li><em>Linear in the coefficients</em> means that the parameter estimates (<span class="math inline">\(\beta_{0}\)</span>, <span class="math inline">\(\beta_{1}\)</span>,…<span class="math inline">\(\beta_{n}\)</span>) all show up in the final model as being added together. An important point here is that the <strong><em>model variables do not need to be linear terms</em></strong>. You can use linear regression with non-linear predictor variables, such that the following model would be considered “linear” in the parameters: <span class="math inline">\(Y = \beta_{0} + \beta_{1}\cdot{X_{1}^{2}} + \beta_{2}\cdot{X_{2}^{3}} + \epsilon\)</span>. This model is still “linear” because the <span class="math inline">\(\beta\)</span>-terms are being added together.
 <ul>
-<li>How to check: It’s easy to tell if your model is linear in the coefficients by just looking at it, since this is a structural requirement. If the <span class="math inline">\(\beta\)</span>-terms show up in non-arithmetic ways (e.g., <span class="math inline">\(\cos(\beta_{1})\cdot X^{\beta_{2}}\)</span>) then you are developing a <em>non-linear</em> model (signifying that it’s time to take a statistics course).</li>
+<li><em>How to check</em>: It’s easy to tell if your model is linear in the coefficients by just looking at it, since this is a structural requirement. If the <span class="math inline">\(\beta\)</span>-terms show up in non-arithmetic ways (e.g., <span class="math inline">\(\cos(\beta_{1})\cdot X^{\beta_{2}}\)</span>) then you are developing a <em>non-linear</em> model (signifying that it’s time to take a statistics course).<br />
+</li>
+<li><em>Why you care</em>: You model will not run (at least not correctly) if not set up correctly. Attempting to fit an OLS linear fit on a non-linear model is bad news.</li>
 </ul></li>
 </ul></li>
 <li><strong>The model is correctly specified.</strong>
 <ul>
 <li>This assumption speaks to the actual variables included in the model and their form. How many independent variables are needed and to what power do you raise each (if not to the first power)? Is the function <span class="math inline">\(Y = f(X_{1},X_{2})\)</span> appropriate or is <span class="math inline">\(log(Y) = f(X_{1}^{2})\)</span> or <span class="math inline">\(Y = f(\frac{X_{1}}{X_{2}^{2}})\)</span>?
 <ul>
-<li>How to check: This is a tough assumption to evaluate in advance. The best way to specify the model correctly is through a combination of (1) checking the other assumptions, (2) using your experience/process knowledge to inform the model design, (3) conducting an exploratory data analysis to inform your thinking and (4) following an established model selection procedure (this last one <em>also</em> suggests that you to take a formal class on statistics).</li>
-<li>Why you care: If the model is not specified correctly it might perform poorly under validation, or, it might suggest that a variable is not important, when in fact it is!<br />
+<li><em>How to check</em>: This is a tough assumption to evaluate in advance. The best way to specify the model correctly is through a combination of (1) checking the other assumptions, (2) using your experience/process knowledge to inform the model design, (3) conducting an exploratory data analysis to inform your thinking and (4) following an established model selection procedure (this last one <em>also</em> suggests that you to take a formal class on statistics).</li>
+<li><em>Why you care</em>: If the model is not specified correctly it might perform poorly under validation, or, it might suggest that a variable is not important, when in fact it is!<br />
 </li>
 </ul></li>
 </ul></li>
@@ -503,31 +505,65 @@ The terms “residual sum of squares” and “error sum of squares” are inter
 <ul>
 <li>The <em>no collinearity</em> assumption only applies when your model has more than one predictor variable (<span class="math inline">\(X_{1}\)</span>, <span class="math inline">\(X_{2}\)</span>, <span class="math inline">\(X_{3}\)</span>, etc.). An example would be using waist size (as <span class="math inline">\(X_{1}\)</span>) and body mass (as <span class="math inline">\(X_{2}\)</span>) to predict a person’s height (<span class="math inline">\(Y\)</span>). The two predictor variables (waist size and mass) are likely to be strongly correlated (more on <em>that</em> topic below).
 <ul>
-<li>How to check: Run a correlation analysis on pairs of the independent variables (i.e., calculate a Pearson or Spearman correlation coefficient) and create a correlation plot matrix (a panel of <a href="eda2.html#scatt">scatterplots</a>) for all pairs of independent variables to examine <em>how</em> they are correlated.</li>
-<li>Why you care: When two or more predictor variables are highly correlated, the model will struggle to fit parameter estimates (e.g., <span class="math inline">\(\beta_{1}\)</span>, <span class="math inline">\(\beta_{2}\)</span>) for the correlated variables (read: the parameters for the correlated variables will become very sensitive to small changes in the model, which is NOT good). Note that if you don’t care about individual parameters (you only care about the model output) then violating this assumption is less important. If you do care about parameter estimates for individual predictors, the model could very well assign the wrong sign to one of the <span class="math inline">\(\beta\)</span> coefficients.</li>
+<li><em>How to check</em>: Run a correlation analysis on pairs of the independent variables (i.e., calculate a Pearson or Spearman correlation coefficient) and create a correlation plot matrix (a panel of <a href="eda2.html#scatt">scatterplots</a>) for all pairs of independent variables to examine <em>how</em> they are correlated.</li>
+<li><em>Why you care</em>: When two or more predictor variables are highly correlated, the model will struggle to fit parameter estimates (e.g., <span class="math inline">\(\beta_{1}\)</span>, <span class="math inline">\(\beta_{2}\)</span>) for the correlated variables (read: the parameters for the correlated variables will become very sensitive to small changes in the model, which is NOT good). Note that if you don’t care about individual parameters (you only care about the model output) then violating this assumption is less important. If you do care about parameter estimates for individual predictors, the model could very well assign the wrong sign to one of the <span class="math inline">\(\beta\)</span> coefficients.</li>
 </ul></li>
 </ul></li>
 </ol>
 </div>
 <div id="back-end-assumptions" class="section level4">
 <h4><span class="header-section-number">11.4.1.2</span> Back-end assumptions:</h4>
-<ul>
-<li>The <strong>error term</strong> (4) has a <strong>mean of zero</strong>, is (5) <strong>normally distributed</strong>, (6) <strong>homoscedastic</strong>, and has (7) <strong>no autocorrelation</strong> or (8) <strong>correlation with predictor (independent) variables</strong>. There’s a lot riding on that little error term, <span class="math inline">\(\epsilon\)</span>!
+<p>The <strong>error term</strong> (4) has a <strong>mean of zero</strong>, is (5) <strong>normally distributed</strong>, (6) <strong>homoscedastic</strong>, and has (7) <strong>no autocorrelation</strong> or (8) <strong>correlation with predictor (independent) variables</strong>. There’s a lot riding on that little error term, <span class="math inline">\(\epsilon\)</span>!.</p>
 <ol start="4" style="list-style-type: decimal">
+<li><strong>Mean of residuals is zero</strong>.
+<ul>
 <li>The first requirement for a mean of zero (<span class="math inline">\(\overline{\epsilon} = 0\)</span>) will be fulfilled if the model is set up and the OLS algorithm is implemented correctly.
-* How to check: calculate the model residuals and take their <code>mean()</code>.
-* Why you care: if <span class="math inline">\(\overline{\epsilon} \neq 0\)</span>, or very close to zero, then something has gone seriously wrong with your model implementation.</li>
+<ul>
+<li><em>How to check</em>: calculate the model residuals and take their <code>mean()</code>.<br />
+</li>
+<li><em>Why you care</em>: if <span class="math inline">\(\overline{\epsilon} \neq 0\)</span>, or if <span class="math inline">\(\overline{\epsilon}\)</span> is not very close to zero, then something has gone seriously wrong with your model implementation.<br />
+</li>
+</ul></li>
+</ul></li>
+<li><strong>Residuals are normally distributed.</strong>
+<ul>
 <li>The general opinion among statisticians is that non-normal residuals are not a deal-breaker for your model. Non-normal residuals will affect your ability to generate confidence intervals about your estimates, but the estimates themselves should still be “BLUE”, which stands for <em>“Best Linear Unbiased Estimator”</em>.
-* How to check: create a <a href="#qq.plot">Q-Q plot</a> about your residuals.
-* Why you care: violation of the normality assumption can affect the precision of your estimates.</li>
+<ul>
+<li><em>How to check</em>: create a <a href="#qq.plot">Q-Q plot</a> about your residuals.<br />
+</li>
+<li><em>Why you care</em>: violation of the normality assumption can affect the precision of your estimates.<br />
+</li>
+</ul></li>
+</ul></li>
+<li><strong>Residuals are homoscedstic (not heteroscedastic).</strong>
+<ul>
 <li>The term <em>“homoscedastic”</em> means to <strong>have equal variance</strong>. In the case of residuals, we want to see that their magnitude remains relatively constant as the dependent variable increases, <span class="math inline">\(Y\)</span>.
-* How to check: create a <a href="eda2.html#scatt">scatterplot</a> of residuals (y-axis) vs. the fitted values, <span class="math inline">\(\hat{Y_{i}}\)</span> (x-axis; yes, I know that sounds weird to plot the Y-variable on the x-axis…). The residuals should appear evenly scattered in both directions about zero with no apparent change in magnitude as the Y variable increases.<br />
-* Why you care: Heteroscedasticity (one of my favorite “don’t I sound smart?” words) can affect the precision of your estimates and can also inflate your confidence in your results (read: you might think you are on to something when actually, you aren’t). If your residuals are heteroscedastic, consider applying a <a href="transform.html#transform">transformation</a> to your dependent variable to normalize the error variance. The BoxCox method one of my favorites.
-(7, 8) Autocorrelation among residuals and/or correlation with independent variables is a strong indicator that your model is not correctly specified.<br />
-* How to check: Create <a href="eda1.html#autocorr">autocorrelation and partial autocorrelation</a> plots for your residuals. Perform a Durbin-Watson test. Conduct a correlation analysis on your residuals and independent variables, create <a href="#scatter">scatterplots</a> to investigate the nature of the correlation (when present).
-* Why you care: Autocorrelation among residuals is a strong indicator that your model is not correctly specified. You can do better!</li>
-</ol></li>
-</ul>
+<ul>
+<li><em>How to check</em>: create a <a href="eda2.html#scatt">scatterplot</a> of residuals (y-axis) vs. the fitted values, <span class="math inline">\(\hat{Y_{i}}\)</span> (x-axis; yes, I know that sounds weird to plot the Y-variable on the x-axis…). The residuals should appear evenly scattered in both directions about zero with no apparent change in magnitude as the Y variable increases.<br />
+</li>
+<li><em>Why you care</em>: Heteroscedasticity (one of my favorite “don’t I sound smart?” words) can affect the precision of your estimates and can also inflate your confidence in your results (read: you might think you are on to something when actually, you aren’t). If your residuals are heteroscedastic, consider applying a <a href="transform.html#transform">transformation</a> to your dependent variable to normalize the error variance. The BoxCox method one of my favorites.<br />
+</li>
+</ul></li>
+</ul></li>
+<li><strong>No residual autocorrelation.</strong>
+<ul>
+<li>Autocorrelation among residuals is a strong indicator that your model is not correctly specified.
+<ul>
+<li><em>How to check</em>: Create <a href="eda1.html#autocorr">autocorrelation and partial autocorrelation</a> plots for your residuals. Perform a Durbin-Watson test.<br />
+</li>
+<li><em>Why you care</em>: Autocorrelation among residuals is a strong indicator that your model is not correctly specified.</li>
+</ul></li>
+</ul></li>
+<li><strong>No residual correlation with independent variables.</strong>
+<ul>
+<li>Likewise, residual correlation with independent variables is a strong indicator that your model is not correctly specified.
+<ul>
+<li><em>How to check</em>: Conduct a correlation analysis on your residuals and independent variables, create <a href="#scatter">scatterplots</a> to investigate the nature of the correlation (when present).<br />
+</li>
+<li><em>Why you care</em>: Correlation between residuals and independent variables is a strong indicator that your model is not correctly specified. You can do better!</li>
+</ul></li>
+</ul></li>
+</ol>
 </div>
 </div>
 </div>
@@ -552,8 +588,8 @@ Thus, substituting one equation into another, we arrive at the conclusion that m
 <span class="math display">\[mass \sim Circumference^{2}\]</span>
 Or, another way to say this is that the square root of mass is linearly related to body circumference.
 <span class="math display">\[\sqrt{mass} \sim Circumference\]</span>
-<img src="images/cylinder_comic.png" width="552" /></p>
-Let’s transform <span class="math inline">\(mass \rightarrow \sqrt{mass}\)</span> and examine the two scatterplots side by side.
+<img src="images/cylinder_comic.png" width="552" style="display: block; margin: auto;" /></p>
+Let’s transform <span class="math inline">\(mass \rightarrow \sqrt{mass}\)</span> and then examine the two scatterplots side by side.
 <div class="figure"><span id="fig:model-compare"></span>
 <img src="11-model_files/figure-html/model-compare-1.png" alt="Side-by-side comparison of two model specifications. Does one look more linear than the other?" width="672" />
 <p class="caption">
@@ -671,8 +707,13 @@ This assumption can be checked several ways, but my preference is to create a Q-
 <span id="cb295-13"><a href="model.html#cb295-13"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
 <span id="cb295-14"><a href="model.html#cb295-14"></a></span>
 <span id="cb295-15"><a href="model.html#cb295-15"></a><span class="kw">grid.arrange</span>(p3, p4, <span class="dt">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="11-model_files/figure-html/qqplot-1.png" width="672" />
-Both models reasonable follow the expected quantile plots, although <code>model1</code> shows more deviation from normality at the upper tail. If I hadn’t seen <code>model2</code>, which looks nearly perfect, I probably would have said that <code>model1</code> was adequate. Advantage: <code>model2</code>.</p>
+<div class="figure"><span id="fig:qqplot"></span>
+<img src="11-model_files/figure-html/qqplot-1.png" alt="Q-Q plots of residuals for two linear models. Which set of residuals better approximates a normal distribution?" width="672" />
+<p class="caption">
+Figure 11.6: Q-Q plots of residuals for two linear models. Which set of residuals better approximates a normal distribution?
+</p>
+</div>
+<p>Both models reasonable follow the expected quantile plots, although <code>model1</code> shows more deviation from normality at the upper tail. If I hadn’t seen <code>model2</code>, which looks nearly perfect, I probably would have said that <code>model1</code> was adequate. Advantage: <code>model2</code>.</p>
 <p><strong>Assumption #6: The error term is homoscedatic</strong><br />
 To evaluate this assumption, we create a <a href="eda2.html#scatt">scatterplot</a> of residuals vs. the fitted values, <span class="math inline">\(\hat{Y_{i}}\)</span>. Both of these data are contained in the model output lists.</p>
 <div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="model.html#cb296-1"></a>p5 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> model1<span class="op">$</span>model) <span class="op">+</span><span class="st"> </span></span>
@@ -692,17 +733,32 @@ To evaluate this assumption, we create a <a href="eda2.html#scatt">scatterplot</
 <span id="cb296-15"><a href="model.html#cb296-15"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">aspect.ratio =</span> <span class="fl">0.5</span>)</span>
 <span id="cb296-16"><a href="model.html#cb296-16"></a></span>
 <span id="cb296-17"><a href="model.html#cb296-17"></a><span class="kw">grid.arrange</span>(p5, p6, <span class="dt">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="11-model_files/figure-html/residual-plot-1.png" width="672" />
-Looking at these plots, the residuals don’t show major changes across the range of fitted values (for both plots) - this is a good outcome because it implies the residuals are homoscedastic. There are slight differences between the two models, however. For example, <code>model1</code> tends to have positive residuals at low and high values of <span class="math inline">\(\hat{Y_{i}}\)</span>, whereas, <code>model2</code> seems to have more constant error across the range of <span class="math inline">\(\hat{Y_{i}}\)</span>. Boring residuals are what you want. <em>Advantage: <code>model2</code>.</em></p>
+<div class="figure"><span id="fig:residual-plot"></span>
+<img src="11-model_files/figure-html/residual-plot-1.png" alt="Residuals vs. fitted values as a check for homoscedasticity." width="672" />
+<p class="caption">
+Figure 11.7: Residuals vs. fitted values as a check for homoscedasticity.
+</p>
+</div>
+<p>Looking at these plots, the residuals don’t show major changes across the range of fitted values (for both plots) - this is a good outcome because it implies the residuals are homoscedastic. There are slight differences between the two models, however. For example, <code>model1</code> tends to have positive residuals at low and high values of <span class="math inline">\(\hat{Y_{i}}\)</span>, whereas, <code>model2</code> seems to have more constant error across the range of <span class="math inline">\(\hat{Y_{i}}\)</span>. Boring residuals are what you want. <em>Advantage: <code>model2</code>.</em></p>
 <p><strong>Assumption 7: No autocorrelation among residuals</strong>
 This assumption is evaluated by making a <a href="eda1.html#autocorr">partial autocorrelation plot</a> of your residuals. We will accomplish these plots using <code>pacf()</code> function from the <code>{stats}</code> package.</p>
 <div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="model.html#cb297-1"></a>stats<span class="op">::</span><span class="kw">pacf</span>(model1<span class="op">$</span>residuals, </span>
 <span id="cb297-2"><a href="model.html#cb297-2"></a>            <span class="dt">main =</span> <span class="st">&quot;Model 1 Partial Autocorrelation Plot&quot;</span>)</span></code></pre></div>
-<p><img src="11-model_files/figure-html/resid-autocorr-1.png" width="672" /></p>
+<div class="figure"><span id="fig:resid-autocorr-1"></span>
+<img src="11-model_files/figure-html/resid-autocorr-1.png" alt="Partial autocorrelation plots of residuals." width="672" />
+<p class="caption">
+Figure 11.8: Partial autocorrelation plots of residuals.
+</p>
+</div>
 <div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="model.html#cb298-1"></a>stats<span class="op">::</span><span class="kw">pacf</span>(model2<span class="op">$</span>residuals, </span>
 <span id="cb298-2"><a href="model.html#cb298-2"></a>            <span class="dt">main =</span> <span class="st">&quot;Model 2 Partial Autocorrelation Plot&quot;</span>)</span></code></pre></div>
-<p><img src="11-model_files/figure-html/resid-autocorr-2.png" width="672" />
-Neither plot shows a <em>strong</em> degree of autocorrelation, though both plots suggest that lag-5 autocorrelation is borderline significant (moreso for <code>model1</code>). Autocorrelation among the residuals suggests that your model is not correctly specified and these results suggest that <code>model2</code> is slightly better specified than <code>model1</code>. Perhaps something is missing from these models?</p>
+<div class="figure"><span id="fig:resid-autocorr-2"></span>
+<img src="11-model_files/figure-html/resid-autocorr-2.png" alt="Partial autocorrelation plots of residuals." width="672" />
+<p class="caption">
+Figure 11.9: Partial autocorrelation plots of residuals.
+</p>
+</div>
+<p>Neither plot shows a <em>strong</em> degree of autocorrelation, though both plots suggest that lag-5 autocorrelation is borderline significant (moreso for <code>model1</code>). Autocorrelation among the residuals suggests that your model is not correctly specified and these results suggest that <code>model2</code> is slightly better specified than <code>model1</code>. Perhaps something is missing from these models?</p>
 <p><strong>Assumption 8: Residuals are not correlated with predictor variables.</strong>
 This assumption can be evaluated through a correlation analysis. The <code>cor()</code> function from the <code>{stats}</code> package allows you to calculate correlation coefficients (e.g., Pearson, Spearman) among variables in a data frame. If you supply a data frame as an argument to <code>cor()</code> it will calculate correlations among all possible variable combinations. Otherwise, you can supply it with two vectors: <code>x =</code> and <code>y =</code>.</p>
 <div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="model.html#cb299-1"></a><span class="kw">cor</span>(<span class="dt">x =</span> model1<span class="op">$</span>residuals, </span>
