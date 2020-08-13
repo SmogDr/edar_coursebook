@@ -78,7 +78,7 @@ Outside of a pipeline, you can use the following conventions to initialize a
 
 ```r
 ## generic code; will not run
-object <- ggplot(my_dataframe, aes(x = data_column_1, y = data_column_2))
+object <- ggplot(data = my_dataframe, aes(x = data_column_1, y = data_column_2))
 ```
 
 The dataframe is the first parameter in a `ggplot()` function and, if you like,
@@ -119,9 +119,10 @@ ggplot(data = mpg, aes(x = class)) +
 </div>
 
 Let's call this plot again with a second aesthetic, the `fill` color, which
-will be mapped to vehicle drive type (i.e., 4-wheel, font-wheel, or
-rear-wheel). The x-position will continue to show vehicle class, and the
-y-position will show the counts of vehicles, now colored by the drive types.
+will be mapped to `drv`, a variable in the `mpg` data frame that specifies 
+vehicle drive type (i.e., 4-wheel, font-wheel, or
+rear-wheel). The x-position will continue to show vehicle class (`class`), and the
+y-position will show the counts of vehicles, now colored by `drv`.
 
 
 ```r
@@ -157,15 +158,15 @@ include:
 <tbody>
   <tr>
    <td style="text-align:left;"> `x` </td>
-   <td style="text-align:left;"> Position on x-axis </td>
+   <td style="text-align:left;"> Variable to plot on x-axis </td>
   </tr>
   <tr>
    <td style="text-align:left;"> `y` </td>
-   <td style="text-align:left;"> Position on y-axis </td>
+   <td style="text-align:left;"> Variable to plot on y-axis </td>
   </tr>
   <tr>
    <td style="text-align:left;"> `shape` </td>
-   <td style="text-align:left;"> Shape </td>
+   <td style="text-align:left;"> Shape of the element being plotted </td>
   </tr>
   <tr>
    <td style="text-align:left;"> `color` </td>
@@ -177,7 +178,7 @@ include:
   </tr>
   <tr>
    <td style="text-align:left;"> `size` </td>
-   <td style="text-align:left;"> Size </td>
+   <td style="text-align:left;"> Size of the element </td>
   </tr>
   <tr>
    <td style="text-align:left;"> `alpha` </td>
@@ -255,7 +256,17 @@ ggplot() +
 geom_bar(data = mpg, aes(x = class, fill = drv))
 ```
 
-This flexibility also comes with occasional confusion, as you can often
+For most plots that you make, the first example is best, where the aesthetics 
+are called out as arguments within the first line call to `ggplot()`, such as:
+
+`ggplot(data = mpg, aes(x = class, fill = drv)) +`  
+`geom_bar()`
+
+In this case, the `geom_bar()` function inherits the aesthetics that were called
+above in the main `ggplot` call.  Specifying aesthetics in the main call to
+`ggplot()` makes it easier to keep track of what you are trying to do!
+
+The `ggplot` flexibility also comes with occasional confusion, as you can often
 ***override*** one mapping with another one later on in the same call. For
 example, see what happens when two different `fill` mappings are specified at
 different points in the call:
@@ -295,7 +306,10 @@ example), while some are either empty (1) or solid (19).
 If you want to set color to be a constant value, you can do that in R using
 character strings for different colors. Figure \@ref(fig:color-examples) gives
 an example of some of the different blues available in R. To find links to
-listings of different R colors, look up "R colors" and search by "Images".
+listings of different R colors, look up "R colors" and search by "Images". Note 
+that colors are specified as *character strings* and define using quotes `" "`. 
+See the code chunk for Figures \@ref(fig:mpg-green) where color is defined by
+`fill = "darkgreen"`.
 
 <div class="figure" style="text-align: center">
 <img src="04-dataviz_files/figure-html/color-examples-1.png" alt="Example of available shades of blue in R." width="480" />
