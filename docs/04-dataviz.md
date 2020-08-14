@@ -308,7 +308,7 @@ character strings for different colors. Figure \@ref(fig:color-examples) gives
 an example of some of the different blues available in R. To find links to
 listings of different R colors, look up "R colors" and search by "Images". Note 
 that colors are specified as *character strings* and define using quotes `" "`. 
-See the code chunk for Figures \@ref(fig:mpg-green) where color is defined by
+See the code chunk for Figure \@ref(fig:mpg-green) where color is defined by
 `fill = "darkgreen"`.
 
 <div class="figure" style="text-align: center">
@@ -432,7 +432,6 @@ ggplot() +
 </div>
 
 What conclusions can you draw from examining Figure \@ref(fig:mpg-custom-plot)?
-
 In general, model year 2008 SUVs did not have great fuel economy, evidenced by
 both the means and the individual data points.  
 
@@ -487,8 +486,7 @@ nice, concise summary of how to call and customize plot objects. I recommend
 starting there because (1) it is created and maintained by the `ggplot2`
 developers (and, thus, is authoritative) and (2) the reference page contains
 all the function calls in an organized list, for which you can conduct a
-'control/command F' search. You can also print this RStudio `ggplot2` cheat
-[sheet](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+'control/command F' search. You can also print this RStudio `ggplot2` [cheat sheet](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
 to reference while coding.
 
 If you would like some hands-on training in `ggplot2`, look for tutorials or
@@ -500,7 +498,7 @@ already exists! Before building your own (which is sometimes necessary and/or
 fun), take a look at this [compilation](https://exts.ggplot2.tidyverse.org/) of
 `ggplot2` extensions.
 
-## Class Exercises
+## Ch-4 Exercises
 
 Using built-in dataset
 
@@ -509,6 +507,6 @@ Using built-in dataset
 3. Vary fill, color, line for whole plot
 4. Create fill, color aesthetics
 
-## Homework
+## Ch-4 Homework
 
 - R Markdown template with data import, wrangling, basic plotting

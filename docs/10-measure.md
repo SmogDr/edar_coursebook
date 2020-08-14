@@ -227,3 +227,7 @@ Like precision,
 ### Measurement Uncertainty
 Bias and precision, together, make up *uncertainty*.  A good way to estimate the uncertainty around a measurement is through **error propagation**.
 
+
+## Ch-10 Exercises
+
+## CH-10 Homework

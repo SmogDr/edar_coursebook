@@ -1407,7 +1407,7 @@ hp_data[3, ] # Last row, all columns
 <p>If you forget to put the comma in the indexing for a dataframe (e.g., <code>fibonacci_seq[1:2]</code>), you will index out the <em>columns</em> that fall at that position or positions. To avoid confusion, I suggest that you always use indexing with a comma when working with dataframes.</p>
 </div>
 
-## Class Exercises
+## Ch-2 Exercises
 
 0. Within your R project for this course, open a "fresh" R session (Session > Restart R, if RStudio is already open). Using `getwd()` in the console, confirm the working directory is your R project.
 
@@ -1490,7 +1490,7 @@ dplyr::filter(mtcars_data, mpg > 25.0)
 ```
 There are six vehicles in `mtcars_data` with MPG above 25.
 
-## Homework
+## Ch-2 Homework
 
 You will complete five lessons in [`swirl`](https://swirlstats.com/), an
 R package for learning R **in** R, written by Roger Peng, Brooke Anderson, and

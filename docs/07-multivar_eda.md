@@ -200,3 +200,7 @@ ggplot(data = mtcars,
 ### Contour Plots
 
 ### Time-Series Density
+
+## Ch-7 Exercises
+
+## Ch-7 Homework

@@ -1095,14 +1095,14 @@ Once your markdown is complete, you can *render* it into an output file (e.g., h
 <p class="caption">(\#fig:markdown-2)Example R Markdown when "rendered" into an html document.</p>
 </div>
 
-## Class Exercises
+## Ch-3 Exercises
 
 - Import local and/or online data file and assign to object name
 - Examine object structure
 - Think about what kind of data wrangling needs to be done and sketch out the desired dataframe result
 - Practice a few `dplyr` verbs within pipe to clean up dataframe
 
-## Homework
+## Ch-3 Homework
 
 - Change data to something related to engineering (pollution/air quality in Fort Collins)
 - Use Brooke's structure below to create homework assignment

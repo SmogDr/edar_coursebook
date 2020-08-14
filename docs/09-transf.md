@@ -112,7 +112,7 @@ I think this phrase means, *don't let your judgment be governed solely by outlie
 <p>An <strong>outlier</strong> is an observation that lies an abnormal distance from other values in a random sample.</p>
 </div>
 
-### Detecting Outliers
+### Detecting Outliers (#outliers)
 Data visualization (like histograms, density plots, time-series, and boxplots) can be useful for detecting outliers, because such graphs make it clear that one or more observations *"don't seem to belong with the rest"*.  For example, let's create an artificial dataframe called `asthma.data`. Within this dataframe are two variables:  
 
   - `asthma.rate`: the percentage of kids with asthma in a given school district
@@ -197,4 +197,8 @@ Unfortunately, this sort of conundrum happens more often than we might like in t
 <div class="rmdwarning">
 <p><strong>Censoring data is dangerous business.</strong> If you are going to censor an outlier, make sure to document <strong>how</strong> you discovered/defined the outlier, <strong>why</strong> you believe it should be censored, and <strong>“whether or not that censoring had an effect on your results/conclusions”</strong>. Then make sure to broadcast your thinking to everyone who comes in contact with your report. If you try to hide outliers, you are being unethical and setting yourself up for disaster.</p>
 </div>
+
+## Ch-9 Exercises
+
+## Ch-9 Homework
 

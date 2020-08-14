@@ -432,7 +432,7 @@ The histogram is really an attempt to visualize the **probability density functi
 
 ## Calibration
 
-## Exercises
+## Ch-11 Exercises
 
 hh1 - fit a two parameter model that suffers from multicollinearity (height ~ weight + waist) and use diagnostics to discover the problem.  Discuss how process knowledge suggests that a negative beta in this case makes absolutely no sense. 
 
@@ -446,5 +446,6 @@ Use the employees.csv data to fit a model (vendor ~ metal).  Discover autocorrel
 
 Calculate residuals from a model manually and prove that they are equal to the model$residuals values.
 
+## Ch-11 Homework
 
 
