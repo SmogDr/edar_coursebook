@@ -126,7 +126,7 @@ tinytex::install_tinytex()
 
 2. Install Git and create a GitHub account. 
 
-- Install [Git](https://git-scm.com/downloads); see [here](https://happygitwithr.com/install-git.html) and [here](https://rstats.wtf/set-up-an-r-dev-environment.html) for OS-specific installation instructions (e.g., install *parts of* Xcode on Mac).
+- Install [Git](https://git-scm.com/downloads); see [here](https://happygitwithr.com/install-git.html) and [here](https://rstats.wtf/set-up-an-r-dev-environment.html) for OS-specific installation instructions (e.g., need to install *parts of* Xcode for Mac OS).
 - Create a [GitHub](https://github.com) account. Pick a good [user name](https://happygitwithr.com/github-acct.html)! 
 - [Introduce](https://happygitwithr.com/hello-git.html) yourself to Git in RStudio with the following code in the Console. Provide your given name, not your user name, and the email address you used in creating your GitHub account. These commands return nothing, but you can check that it worked with `git config --global --list` in the [shell](https://happygitwithr.com/shell.html). 
 
@@ -135,7 +135,8 @@ tinytex::install_tinytex()
 ## install.packages("usethis")
 
 library(usethis)
-use_git_config(user.name = "John Doe", user.email = "john.doe@colostate.edu")
+usethis::use_git_config(user.name = "John Doe", 
+                        user.email = "john.doe@colostate.edu")
 ```
 
 - Optional but recommended for new users: Consider downloading a [GUI Git Client](https://happygitwithr.com/git-client.html) to make version control easier and to build intuition. [GitHub Desktop](https://desktop.github.com/) is likely sufficient for this course, but your choice is yours.
@@ -148,7 +149,7 @@ use_git_config(user.name = "John Doe", user.email = "john.doe@colostate.edu")
 4. Create new project, GitHub first
 
 - Keep in mind: You should save the local R Project from this step in a top-level directory. We suggest creating an `R` folder at the top of your `Documents` folder (or OS-specific equivalent) to contain all of your R Projects. For the duration of this course, you should just have a directory pathname like `/user/Documents/R/MECH481A6.Rproj`. We will discuss directory structures and pathnames more in the next chapter.
-- Read and follow these [instructions](https://happygitwithr.com/new-github-first.html) *exactly* with the following additions: Name the repository *MECH481A6* and make it *private*
+- Read and follow these [instructions](https://happygitwithr.com/new-github-first.html) *exactly* with the following additions: Name the repository *MECH481A6* and make it *private* within the class GitHub organization
 - Within your MECH481A6.Rproj folder, add subfolders called `data`, `code`, and `figs` to practice a [project-oriented workflow](https://uncoast-unconf.github.io/uu-2019-day-zero/02-project-workflows/workflow.html#13).
 
 ## Asking for help (properly)
