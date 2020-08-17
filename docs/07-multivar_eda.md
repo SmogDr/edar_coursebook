@@ -226,7 +226,7 @@ download.file(url = "https://www.fueleconomy.gov/feg/epadata/vehicles.csv.zip",
               destfile = temp, 
               mode="wb")
 
-temp2 <- unzip(temp, "vehicles.csv") #unzip the file into a csv
+temp2 <- unzip(temp, "vehicles.csv", exdir = "./data/") #unzip .csv to /data dir
 
 raw_data <- read_csv(temp2) #read the csv into a data frame
 
@@ -264,6 +264,7 @@ vars_needed <- c("id",
 df_mpg<-raw_data %>%
   dplyr::select(all_of(vars_needed))  
 #all_of tells dplyr::select to expect a character vector of column names
+rm(raw_data) #remove large file from memory
 ```
 
 Some of these variables can be coded as **factors** (*categorical* variables 

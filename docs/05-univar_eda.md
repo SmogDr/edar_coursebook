@@ -824,7 +824,7 @@ trying to tell you. Let your eyes do the listening at first.
 
 1. List which plot types discussed in this chapter are *enumerative* vs. *summary*.
 
-2. Practice creating histogram, CDF, time-series, and ACF; extract relevant features from each.
+2. Practice creating histogram, CDF, time-series, and ACF; extract relevant features from each. Use ozone dataset.
 
 5. Visualize data from a bi-modal distribution (hist, cum dist). Talk about why `mean` is not a good representation of the central tendency.
 

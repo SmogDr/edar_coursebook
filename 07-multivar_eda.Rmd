@@ -277,7 +277,7 @@ download.file(url = "https://www.fueleconomy.gov/feg/epadata/vehicles.csv.zip",
               destfile = temp, 
               mode="wb")
 
-temp2 <- unzip(temp, "vehicles.csv") #unzip the file into a csv
+temp2 <- unzip(temp, "vehicles.csv", exdir = "./data/") #unzip .csv to /data dir
 
 raw_data <- read_csv(temp2) #read the csv into a data frame
 

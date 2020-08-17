@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-08-13" />
+<meta name="date" content="2020-08-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -492,17 +492,17 @@ Figure 7.3: Scatterplot of Engine Displacement vs. Fuel Economy
 <div id="faceting" class="section level3">
 <h3><span class="header-section-number">7.4.1</span> Faceting</h3>
 <p>One easy way to evaluate two or more variables is to create multiple plots (or facets) through the <code>ggplot2::facet</code> function. This function creates a series of plots, as panels, where each panel represents a different value (or level) of a third variable of interest. For example, let’s create a ggplot2 object from the <code>mtcars</code> data set that explores the relationship between a vehicle’s fuel economy and its weight. First, let’s create a simple bivariate scatterplot of these data (<code>mpg</code> vs. <code>wt</code>) and fit a linear model through the data (note: we haven’t yet discussed modeling but more on <a href="model.html#model">that here</a>).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="eda2.html#cb1-1"></a><span class="co"># fit a linear model</span></span>
-<span id="cb1-2"><a href="eda2.html#cb1-2"></a>g1_model &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>wt, <span class="dt">data=</span>mtcars)</span>
-<span id="cb1-3"><a href="eda2.html#cb1-3"></a></span>
-<span id="cb1-4"><a href="eda2.html#cb1-4"></a><span class="co">#create a ggplot2 object</span></span>
-<span id="cb1-5"><a href="eda2.html#cb1-5"></a>g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> mtcars, </span>
-<span id="cb1-6"><a href="eda2.html#cb1-6"></a>             <span class="kw">aes</span>(<span class="dt">x =</span> wt, <span class="dt">y =</span> mpg)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb1-7"><a href="eda2.html#cb1-7"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb1-8"><a href="eda2.html#cb1-8"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">model =</span> g1_model, <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb1-9"><a href="eda2.html#cb1-9"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Fuel Economy (mi/gal)&quot;</span>) <span class="op">+</span></span>
-<span id="cb1-10"><a href="eda2.html#cb1-10"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Vehicle Weight (x1000 lb)&quot;</span>)</span>
-<span id="cb1-11"><a href="eda2.html#cb1-11"></a>g1</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="eda2.html#cb272-1"></a><span class="co"># fit a linear model</span></span>
+<span id="cb272-2"><a href="eda2.html#cb272-2"></a>g1_model &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>wt, <span class="dt">data=</span>mtcars)</span>
+<span id="cb272-3"><a href="eda2.html#cb272-3"></a></span>
+<span id="cb272-4"><a href="eda2.html#cb272-4"></a><span class="co">#create a ggplot2 object</span></span>
+<span id="cb272-5"><a href="eda2.html#cb272-5"></a>g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> mtcars, </span>
+<span id="cb272-6"><a href="eda2.html#cb272-6"></a>             <span class="kw">aes</span>(<span class="dt">x =</span> wt, <span class="dt">y =</span> mpg)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb272-7"><a href="eda2.html#cb272-7"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb272-8"><a href="eda2.html#cb272-8"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">model =</span> g1_model, <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb272-9"><a href="eda2.html#cb272-9"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Fuel Economy (mi/gal)&quot;</span>) <span class="op">+</span></span>
+<span id="cb272-10"><a href="eda2.html#cb272-10"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Vehicle Weight (x1000 lb)&quot;</span>)</span>
+<span id="cb272-11"><a href="eda2.html#cb272-11"></a>g1</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:facet-1"></span>
 <img src="07-multivar_eda_files/figure-html/facet-1-1.png" alt="Scatterplot of fuel economy vs. vehicle weight from the `mtcars` dataset." width="672" />
 <p class="caption">
@@ -515,8 +515,8 @@ Figure 7.4: Scatterplot of fuel economy vs. vehicle weight from the <code>mtcar
 <li>The variable being used to create the facets.</li>
 </ol>
 <p>In our case, column facets probably make the most sense so we would add code, <code>facet_grid(cols = vars(cyl)</code>, to the <code>ggplot2</code> object as follows:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="eda2.html#cb2-1"></a>g1 <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(<span class="dt">cols =</span> <span class="kw">vars</span>(cyl),</span>
-<span id="cb2-2"><a href="eda2.html#cb2-2"></a>                <span class="dt">labeller =</span> label_both) <span class="co">#this code adds names &amp; values to the panel label</span></span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="eda2.html#cb273-1"></a>g1 <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(<span class="dt">cols =</span> <span class="kw">vars</span>(cyl),</span>
+<span id="cb273-2"><a href="eda2.html#cb273-2"></a>                <span class="dt">labeller =</span> label_both) <span class="co">#this code adds names &amp; values to the panel label</span></span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:facet-2"></span>
 <img src="07-multivar_eda_files/figure-html/facet-2-1.png" alt="Scatterplots of fuel economy vs. vehicle weight by number of cylinders in the engine (data from the `mtcars` dataset)." width="672" />
 <p class="caption">
@@ -525,8 +525,8 @@ Figure 7.5: Scatterplots of fuel economy vs. vehicle weight by number of cylind
 </div>
 <p>Interestingly, but perhaps not surprising, we can see that the vehicles with different cylinder numbers tend to have different fuel efficiencies, but even within these facets we still see a relationship between efficiency and vehicle weight.</p>
 <p>Here are the same data in a plot that is faceted by rows instead of columns.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="eda2.html#cb3-1"></a>g1 <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(<span class="dt">rows =</span> <span class="kw">vars</span>(cyl),</span>
-<span id="cb3-2"><a href="eda2.html#cb3-2"></a>                <span class="dt">labeller =</span> label_both)</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="eda2.html#cb274-1"></a>g1 <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(<span class="dt">rows =</span> <span class="kw">vars</span>(cyl),</span>
+<span id="cb274-2"><a href="eda2.html#cb274-2"></a>                <span class="dt">labeller =</span> label_both)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:facet-3"></span>
 <img src="07-multivar_eda_files/figure-html/facet-3-1.png" alt="Scatterplots of fuel economy vs. vehicle weight by number of cylinders in the engine (data from the `mtcars` dataset)." width="672" />
 <p class="caption">
@@ -538,17 +538,17 @@ Figure 7.6: Scatterplots of fuel economy vs. vehicle weight by number of cylind
 <h3><span class="header-section-number">7.4.2</span> Coloring</h3>
 <p>We can also use color to indicate variation in data; this can be useful for introducing a third variable into scatterplots and time series plots. Note: when introducing a <strong>color variable</strong> into a plot, you must do so through an <em>aesthetic</em>, such as: <code>geom_point(aes(color = cyl))</code></p>
 <p>Let’s recreate Figure <a href="eda2.html#fig:facet-1">7.4</a> and highlight the <code>cyl</code> variable using difference colors. The addition of color provides us with the same level of insight as did the facets above.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="eda2.html#cb4-1"></a><span class="co"># instruct R to treat the cyl variable as a factor with discrete levels</span></span>
-<span id="cb4-2"><a href="eda2.html#cb4-2"></a><span class="co"># this, in turn, tells ggplot2 to assign discrete colors to each level</span></span>
-<span id="cb4-3"><a href="eda2.html#cb4-3"></a>mtcars<span class="op">$</span>cyl &lt;-<span class="st"> </span><span class="kw">as.factor</span>(mtcars<span class="op">$</span>cyl)</span>
-<span id="cb4-4"><a href="eda2.html#cb4-4"></a></span>
-<span id="cb4-5"><a href="eda2.html#cb4-5"></a>g3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> mtcars, </span>
-<span id="cb4-6"><a href="eda2.html#cb4-6"></a>             <span class="kw">aes</span>(<span class="dt">x =</span> wt, <span class="dt">y =</span> mpg, <span class="dt">color =</span> cyl)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb4-7"><a href="eda2.html#cb4-7"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb4-8"><a href="eda2.html#cb4-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Fuel Economy (mi/gal)&quot;</span>) <span class="op">+</span></span>
-<span id="cb4-9"><a href="eda2.html#cb4-9"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Vehicle Weight, (x1000 lb)&quot;</span>)</span>
-<span id="cb4-10"><a href="eda2.html#cb4-10"></a></span>
-<span id="cb4-11"><a href="eda2.html#cb4-11"></a>g3</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="eda2.html#cb275-1"></a><span class="co"># instruct R to treat the cyl variable as a factor with discrete levels</span></span>
+<span id="cb275-2"><a href="eda2.html#cb275-2"></a><span class="co"># this, in turn, tells ggplot2 to assign discrete colors to each level</span></span>
+<span id="cb275-3"><a href="eda2.html#cb275-3"></a>mtcars<span class="op">$</span>cyl &lt;-<span class="st"> </span><span class="kw">as.factor</span>(mtcars<span class="op">$</span>cyl)</span>
+<span id="cb275-4"><a href="eda2.html#cb275-4"></a></span>
+<span id="cb275-5"><a href="eda2.html#cb275-5"></a>g3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> mtcars, </span>
+<span id="cb275-6"><a href="eda2.html#cb275-6"></a>             <span class="kw">aes</span>(<span class="dt">x =</span> wt, <span class="dt">y =</span> mpg, <span class="dt">color =</span> cyl)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb275-7"><a href="eda2.html#cb275-7"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb275-8"><a href="eda2.html#cb275-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Fuel Economy (mi/gal)&quot;</span>) <span class="op">+</span></span>
+<span id="cb275-9"><a href="eda2.html#cb275-9"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Vehicle Weight, (x1000 lb)&quot;</span>)</span>
+<span id="cb275-10"><a href="eda2.html#cb275-10"></a></span>
+<span id="cb275-11"><a href="eda2.html#cb275-11"></a>g3</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:colorplot-1"></span>
 <img src="07-multivar_eda_files/figure-html/colorplot-1-1.png" alt="Vehicle fuel economy vs. weight and colored by number of engine cylinders (data from mtcars)" width="672" />
 <p class="caption">
@@ -561,20 +561,20 @@ When using color, be aware that many people are unable to distinguish red from g
 </p>
 </div>
 <p>Here is an updated version of Figure <a href="eda2.html#fig:colorplot-1">7.7</a> that avoids issues with color blindness and, better yet, differentiates the <code>cyl</code> variable with both colors and symbols.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="eda2.html#cb5-1"></a><span class="co">#&quot;#330099&quot;,&quot;#CC0066&quot;,&quot;#FF6633&quot;, &quot;#0099CC&quot;, &quot;#FF9900&quot;,&quot;#CC6633&quot;, &quot;#33CC99&quot;,</span></span>
-<span id="cb5-2"><a href="eda2.html#cb5-2"></a></span>
-<span id="cb5-3"><a href="eda2.html#cb5-3"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mtcars, </span>
-<span id="cb5-4"><a href="eda2.html#cb5-4"></a>             <span class="kw">aes</span>(<span class="dt">x =</span> wt, </span>
-<span id="cb5-5"><a href="eda2.html#cb5-5"></a>                 <span class="dt">y =</span> mpg, </span>
-<span id="cb5-6"><a href="eda2.html#cb5-6"></a>                 <span class="dt">color =</span> cyl, </span>
-<span id="cb5-7"><a href="eda2.html#cb5-7"></a>                 <span class="dt">shape =</span> cyl)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb5-8"><a href="eda2.html#cb5-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb5-9"><a href="eda2.html#cb5-9"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Fuel Economy (mi/gal)&quot;</span>) <span class="op">+</span></span>
-<span id="cb5-10"><a href="eda2.html#cb5-10"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Vehicle Weight, (x1000 lb)&quot;</span>) <span class="op">+</span></span>
-<span id="cb5-11"><a href="eda2.html#cb5-11"></a><span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;sandybrown&quot;</span>, </span>
-<span id="cb5-12"><a href="eda2.html#cb5-12"></a>                                 <span class="st">&quot;orangered&quot;</span>, </span>
-<span id="cb5-13"><a href="eda2.html#cb5-13"></a>                                 <span class="st">&quot;steelblue2&quot;</span>)) <span class="op">+</span></span>
-<span id="cb5-14"><a href="eda2.html#cb5-14"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="eda2.html#cb276-1"></a><span class="co">#&quot;#330099&quot;,&quot;#CC0066&quot;,&quot;#FF6633&quot;, &quot;#0099CC&quot;, &quot;#FF9900&quot;,&quot;#CC6633&quot;, &quot;#33CC99&quot;,</span></span>
+<span id="cb276-2"><a href="eda2.html#cb276-2"></a></span>
+<span id="cb276-3"><a href="eda2.html#cb276-3"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mtcars, </span>
+<span id="cb276-4"><a href="eda2.html#cb276-4"></a>             <span class="kw">aes</span>(<span class="dt">x =</span> wt, </span>
+<span id="cb276-5"><a href="eda2.html#cb276-5"></a>                 <span class="dt">y =</span> mpg, </span>
+<span id="cb276-6"><a href="eda2.html#cb276-6"></a>                 <span class="dt">color =</span> cyl, </span>
+<span id="cb276-7"><a href="eda2.html#cb276-7"></a>                 <span class="dt">shape =</span> cyl)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb276-8"><a href="eda2.html#cb276-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb276-9"><a href="eda2.html#cb276-9"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Fuel Economy (mi/gal)&quot;</span>) <span class="op">+</span></span>
+<span id="cb276-10"><a href="eda2.html#cb276-10"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Vehicle Weight, (x1000 lb)&quot;</span>) <span class="op">+</span></span>
+<span id="cb276-11"><a href="eda2.html#cb276-11"></a><span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;sandybrown&quot;</span>, </span>
+<span id="cb276-12"><a href="eda2.html#cb276-12"></a>                                 <span class="st">&quot;orangered&quot;</span>, </span>
+<span id="cb276-13"><a href="eda2.html#cb276-13"></a>                                 <span class="st">&quot;steelblue2&quot;</span>)) <span class="op">+</span></span>
+<span id="cb276-14"><a href="eda2.html#cb276-14"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:colorplot-2"></span>
 <img src="07-multivar_eda_files/figure-html/colorplot-2-1.png" alt="Vehicle fuel economy vs. weight and colored by number of engine cylinders (data from mtcars)" width="672" />
 <p class="caption">
@@ -609,20 +609,20 @@ above.</p>
 website and into a temp file using <code>download.file()</code> from base R. We will then
 <code>unzip()</code> that temp file into a .csv and use <code>readr</code> to read that .csv into a
 data frame named <code>raw_data</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="eda2.html#cb6-1"></a><span class="co">#create a temp file to hold the zipped data</span></span>
-<span id="cb6-2"><a href="eda2.html#cb6-2"></a>temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</span>
-<span id="cb6-3"><a href="eda2.html#cb6-3"></a><span class="co">#download the file into temp file</span></span>
-<span id="cb6-4"><a href="eda2.html#cb6-4"></a><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;https://www.fueleconomy.gov/feg/epadata/vehicles.csv.zip&quot;</span>,</span>
-<span id="cb6-5"><a href="eda2.html#cb6-5"></a>              <span class="dt">destfile =</span> temp, </span>
-<span id="cb6-6"><a href="eda2.html#cb6-6"></a>              <span class="dt">mode=</span><span class="st">&quot;wb&quot;</span>)</span>
-<span id="cb6-7"><a href="eda2.html#cb6-7"></a></span>
-<span id="cb6-8"><a href="eda2.html#cb6-8"></a>temp2 &lt;-<span class="st"> </span><span class="kw">unzip</span>(temp, <span class="st">&quot;vehicles.csv&quot;</span>) <span class="co">#unzip the file into a csv</span></span>
-<span id="cb6-9"><a href="eda2.html#cb6-9"></a></span>
-<span id="cb6-10"><a href="eda2.html#cb6-10"></a>raw_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(temp2) <span class="co">#read the csv into a data frame</span></span>
-<span id="cb6-11"><a href="eda2.html#cb6-11"></a></span>
-<span id="cb6-12"><a href="eda2.html#cb6-12"></a><span class="kw">unlink</span>(temp) <span class="co">#delete the temp file</span></span>
-<span id="cb6-13"><a href="eda2.html#cb6-13"></a></span>
-<span id="cb6-14"><a href="eda2.html#cb6-14"></a><span class="kw">rm</span>(temp, temp2) <span class="co">#remove the two temp objects from local environment</span></span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="eda2.html#cb277-1"></a><span class="co">#create a temp file to hold the zipped data</span></span>
+<span id="cb277-2"><a href="eda2.html#cb277-2"></a>temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</span>
+<span id="cb277-3"><a href="eda2.html#cb277-3"></a><span class="co">#download the file into temp file</span></span>
+<span id="cb277-4"><a href="eda2.html#cb277-4"></a><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;https://www.fueleconomy.gov/feg/epadata/vehicles.csv.zip&quot;</span>,</span>
+<span id="cb277-5"><a href="eda2.html#cb277-5"></a>              <span class="dt">destfile =</span> temp, </span>
+<span id="cb277-6"><a href="eda2.html#cb277-6"></a>              <span class="dt">mode=</span><span class="st">&quot;wb&quot;</span>)</span>
+<span id="cb277-7"><a href="eda2.html#cb277-7"></a></span>
+<span id="cb277-8"><a href="eda2.html#cb277-8"></a>temp2 &lt;-<span class="st"> </span><span class="kw">unzip</span>(temp, <span class="st">&quot;vehicles.csv&quot;</span>, <span class="dt">exdir =</span> <span class="st">&quot;./data/&quot;</span>) <span class="co">#unzip .csv to /data dir</span></span>
+<span id="cb277-9"><a href="eda2.html#cb277-9"></a></span>
+<span id="cb277-10"><a href="eda2.html#cb277-10"></a>raw_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(temp2) <span class="co">#read the csv into a data frame</span></span>
+<span id="cb277-11"><a href="eda2.html#cb277-11"></a></span>
+<span id="cb277-12"><a href="eda2.html#cb277-12"></a><span class="kw">unlink</span>(temp) <span class="co">#delete the temp file</span></span>
+<span id="cb277-13"><a href="eda2.html#cb277-13"></a></span>
+<span id="cb277-14"><a href="eda2.html#cb277-14"></a><span class="kw">rm</span>(temp, temp2) <span class="co">#remove the two temp objects from local environment</span></span></code></pre></div>
 <p>Looking at the <code>raw_data</code> data frame, we see there are 83 variables with over
 42,000 observations. That’s a LOT of vehicles! In most analyses of large data
 sets, we don’t need to inspect every variable. Let’s create a vector of
@@ -630,25 +630,26 @@ variables (<code>vars_needed</code>) that we do want and then pass that vector t
 vector as an argument to <code>dplyr::select()</code>, we use the <code>all_of()</code>
 function - a <code>&lt;tidy-select&gt;</code> argument modifier. You can type
 <code>?tidyr_tidy_select</code> to learn more.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="eda2.html#cb7-1"></a>vars_needed &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>,</span>
-<span id="cb7-2"><a href="eda2.html#cb7-2"></a>                 <span class="st">&quot;make&quot;</span>,</span>
-<span id="cb7-3"><a href="eda2.html#cb7-3"></a>                 <span class="st">&quot;model&quot;</span>,</span>
-<span id="cb7-4"><a href="eda2.html#cb7-4"></a>                 <span class="st">&quot;year&quot;</span>,</span>
-<span id="cb7-5"><a href="eda2.html#cb7-5"></a>                 <span class="st">&quot;cylinders&quot;</span>, </span>
-<span id="cb7-6"><a href="eda2.html#cb7-6"></a>                 <span class="st">&quot;displ&quot;</span>, </span>
-<span id="cb7-7"><a href="eda2.html#cb7-7"></a>                 <span class="st">&quot;drive&quot;</span>,</span>
-<span id="cb7-8"><a href="eda2.html#cb7-8"></a>                 <span class="st">&quot;trany&quot;</span>,</span>
-<span id="cb7-9"><a href="eda2.html#cb7-9"></a>                 <span class="st">&quot;VClass&quot;</span>,</span>
-<span id="cb7-10"><a href="eda2.html#cb7-10"></a>                 <span class="st">&quot;fuelType1&quot;</span>,</span>
-<span id="cb7-11"><a href="eda2.html#cb7-11"></a>                 <span class="st">&quot;comb08&quot;</span>,</span>
-<span id="cb7-12"><a href="eda2.html#cb7-12"></a>                 <span class="st">&quot;highway08&quot;</span>,</span>
-<span id="cb7-13"><a href="eda2.html#cb7-13"></a>                 <span class="st">&quot;city08&quot;</span>,</span>
-<span id="cb7-14"><a href="eda2.html#cb7-14"></a>                 <span class="st">&quot;co2TailpipeGpm&quot;</span></span>
-<span id="cb7-15"><a href="eda2.html#cb7-15"></a>                 )</span>
-<span id="cb7-16"><a href="eda2.html#cb7-16"></a></span>
-<span id="cb7-17"><a href="eda2.html#cb7-17"></a>df_mpg&lt;-raw_data <span class="op">%&gt;%</span></span>
-<span id="cb7-18"><a href="eda2.html#cb7-18"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">all_of</span>(vars_needed))  </span>
-<span id="cb7-19"><a href="eda2.html#cb7-19"></a><span class="co">#all_of tells dplyr::select to expect a character vector of column names</span></span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="eda2.html#cb278-1"></a>vars_needed &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>,</span>
+<span id="cb278-2"><a href="eda2.html#cb278-2"></a>                 <span class="st">&quot;make&quot;</span>,</span>
+<span id="cb278-3"><a href="eda2.html#cb278-3"></a>                 <span class="st">&quot;model&quot;</span>,</span>
+<span id="cb278-4"><a href="eda2.html#cb278-4"></a>                 <span class="st">&quot;year&quot;</span>,</span>
+<span id="cb278-5"><a href="eda2.html#cb278-5"></a>                 <span class="st">&quot;cylinders&quot;</span>, </span>
+<span id="cb278-6"><a href="eda2.html#cb278-6"></a>                 <span class="st">&quot;displ&quot;</span>, </span>
+<span id="cb278-7"><a href="eda2.html#cb278-7"></a>                 <span class="st">&quot;drive&quot;</span>,</span>
+<span id="cb278-8"><a href="eda2.html#cb278-8"></a>                 <span class="st">&quot;trany&quot;</span>,</span>
+<span id="cb278-9"><a href="eda2.html#cb278-9"></a>                 <span class="st">&quot;VClass&quot;</span>,</span>
+<span id="cb278-10"><a href="eda2.html#cb278-10"></a>                 <span class="st">&quot;fuelType1&quot;</span>,</span>
+<span id="cb278-11"><a href="eda2.html#cb278-11"></a>                 <span class="st">&quot;comb08&quot;</span>,</span>
+<span id="cb278-12"><a href="eda2.html#cb278-12"></a>                 <span class="st">&quot;highway08&quot;</span>,</span>
+<span id="cb278-13"><a href="eda2.html#cb278-13"></a>                 <span class="st">&quot;city08&quot;</span>,</span>
+<span id="cb278-14"><a href="eda2.html#cb278-14"></a>                 <span class="st">&quot;co2TailpipeGpm&quot;</span></span>
+<span id="cb278-15"><a href="eda2.html#cb278-15"></a>                 )</span>
+<span id="cb278-16"><a href="eda2.html#cb278-16"></a></span>
+<span id="cb278-17"><a href="eda2.html#cb278-17"></a>df_mpg&lt;-raw_data <span class="op">%&gt;%</span></span>
+<span id="cb278-18"><a href="eda2.html#cb278-18"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">all_of</span>(vars_needed))  </span>
+<span id="cb278-19"><a href="eda2.html#cb278-19"></a><span class="co">#all_of tells dplyr::select to expect a character vector of column names</span></span>
+<span id="cb278-20"><a href="eda2.html#cb278-20"></a><span class="kw">rm</span>(raw_data) <span class="co">#remove large file from memory</span></span></code></pre></div>
 <p>Some of these variables can be coded as <strong>factors</strong> (<em>categorical</em> variables
 that may be enumerated into <em>discrete levels</em>). For example, there are a
 finite number of vehicle transmission <code>trany</code> or drivetrain <code>drive</code> types on
@@ -661,23 +662,23 @@ to apply the same transformation to multiple columns in a data frame. We will
 also take the opportunity to rename a few of these variables (following our
 naming guidelines discussed earlier) and to filter the data to retain only
 vehciles made after the year 2000.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="eda2.html#cb8-1"></a><span class="co"># ID the columns that we want as class:factor</span></span>
-<span id="cb8-2"><a href="eda2.html#cb8-2"></a>vars_factr &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;make&quot;</span>, <span class="st">&quot;drive&quot;</span>, <span class="st">&quot;trany&quot;</span>, <span class="st">&quot;VClass&quot;</span>, <span class="st">&quot;fuelType1&quot;</span>)</span>
-<span id="cb8-3"><a href="eda2.html#cb8-3"></a></span>
-<span id="cb8-4"><a href="eda2.html#cb8-4"></a>df_mpg <span class="op">%&gt;%</span></span>
-<span id="cb8-5"><a href="eda2.html#cb8-5"></a><span class="st">  </span><span class="co"># mutate(across(a)) applies the as.factor function only to the vars of interest</span></span>
-<span id="cb8-6"><a href="eda2.html#cb8-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="kw">across</span>(<span class="kw">all_of</span>(vars_factr), <span class="dt">.fns =</span> as.factor)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-7"><a href="eda2.html#cb8-7"></a><span class="st">  </span><span class="co">#create simpler names</span></span>
-<span id="cb8-8"><a href="eda2.html#cb8-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">fuel_type =</span> fuelType1, </span>
-<span id="cb8-9"><a href="eda2.html#cb8-9"></a>                <span class="dt">cyl =</span> cylinders, </span>
-<span id="cb8-10"><a href="eda2.html#cb8-10"></a>                <span class="dt">tran =</span> trany, </span>
-<span id="cb8-11"><a href="eda2.html#cb8-11"></a>                <span class="dt">v_class =</span> VClass) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># easier string to type</span></span>
-<span id="cb8-12"><a href="eda2.html#cb8-12"></a><span class="st">  </span><span class="co"># keep only data collected after 2000 for the sake of a millennial audience</span></span>
-<span id="cb8-13"><a href="eda2.html#cb8-13"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2000</span>) -&gt;<span class="st"> </span>df_mpg </span>
-<span id="cb8-14"><a href="eda2.html#cb8-14"></a></span>
-<span id="cb8-15"><a href="eda2.html#cb8-15"></a><span class="kw">rm</span>(vars_needed, vars_factr) <span class="co"># won&#39;t be needing these anymore</span></span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="eda2.html#cb279-1"></a><span class="co"># ID the columns that we want as class:factor</span></span>
+<span id="cb279-2"><a href="eda2.html#cb279-2"></a>vars_factr &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;make&quot;</span>, <span class="st">&quot;drive&quot;</span>, <span class="st">&quot;trany&quot;</span>, <span class="st">&quot;VClass&quot;</span>, <span class="st">&quot;fuelType1&quot;</span>)</span>
+<span id="cb279-3"><a href="eda2.html#cb279-3"></a></span>
+<span id="cb279-4"><a href="eda2.html#cb279-4"></a>df_mpg <span class="op">%&gt;%</span></span>
+<span id="cb279-5"><a href="eda2.html#cb279-5"></a><span class="st">  </span><span class="co"># mutate(across(a)) applies the as.factor function only to the vars of interest</span></span>
+<span id="cb279-6"><a href="eda2.html#cb279-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="kw">across</span>(<span class="kw">all_of</span>(vars_factr), <span class="dt">.fns =</span> as.factor)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb279-7"><a href="eda2.html#cb279-7"></a><span class="st">  </span><span class="co">#create simpler names</span></span>
+<span id="cb279-8"><a href="eda2.html#cb279-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">fuel_type =</span> fuelType1, </span>
+<span id="cb279-9"><a href="eda2.html#cb279-9"></a>                <span class="dt">cyl =</span> cylinders, </span>
+<span id="cb279-10"><a href="eda2.html#cb279-10"></a>                <span class="dt">tran =</span> trany, </span>
+<span id="cb279-11"><a href="eda2.html#cb279-11"></a>                <span class="dt">v_class =</span> VClass) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># easier string to type</span></span>
+<span id="cb279-12"><a href="eda2.html#cb279-12"></a><span class="st">  </span><span class="co"># keep only data collected after 2000 for the sake of a millennial audience</span></span>
+<span id="cb279-13"><a href="eda2.html#cb279-13"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2000</span>) -&gt;<span class="st"> </span>df_mpg </span>
+<span id="cb279-14"><a href="eda2.html#cb279-14"></a></span>
+<span id="cb279-15"><a href="eda2.html#cb279-15"></a><span class="kw">rm</span>(vars_needed, vars_factr) <span class="co"># won&#39;t be needing these anymore</span></span></code></pre></div>
 <p>Begin as we always do, by simply looking at some of the data.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="eda2.html#cb9-1"></a><span class="kw">head</span>(df_mpg)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="eda2.html#cb280-1"></a><span class="kw">head</span>(df_mpg)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 14
 ##      id make  model  year   cyl displ drive tran  v_class fuel_type comb08
 ##   &lt;dbl&gt; &lt;fct&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;      &lt;dbl&gt;
@@ -689,18 +690,18 @@ vehciles made after the year 2000.</p>
 ## 6 15594 BMW   Z3 R…  2000     6   2.5 Rear… Auto… Two Se… Premium …     19
 ## # … with 3 more variables: highway08 &lt;dbl&gt;, city08 &lt;dbl&gt;, co2TailpipeGpm &lt;dbl&gt;</code></pre>
 <p>Next, let’s take a look at some of the factor levels. There are lots of ways to do this in R.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="eda2.html#cb11-1"></a><span class="co">#print a character vector of levels for the drive variable in df_mpg</span></span>
-<span id="cb11-2"><a href="eda2.html#cb11-2"></a><span class="kw">levels</span>(df_mpg<span class="op">$</span>drive) </span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="eda2.html#cb282-1"></a><span class="co">#print a character vector of levels for the drive variable in df_mpg</span></span>
+<span id="cb282-2"><a href="eda2.html#cb282-2"></a><span class="kw">levels</span>(df_mpg<span class="op">$</span>drive) </span></code></pre></div>
 <pre><code>## [1] &quot;2-Wheel Drive&quot;              &quot;4-Wheel Drive&quot;             
 ## [3] &quot;4-Wheel or All-Wheel Drive&quot; &quot;All-Wheel Drive&quot;           
 ## [5] &quot;Front-Wheel Drive&quot;          &quot;Part-time 4-Wheel Drive&quot;   
 ## [7] &quot;Rear-Wheel Drive&quot;</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="eda2.html#cb13-1"></a><span class="co">#print a character vector of levels for the fuel_type variable in df_mpg</span></span>
-<span id="cb13-2"><a href="eda2.html#cb13-2"></a><span class="kw">levels</span>(df_mpg<span class="op">$</span>fuel_type) </span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="eda2.html#cb284-1"></a><span class="co">#print a character vector of levels for the fuel_type variable in df_mpg</span></span>
+<span id="cb284-2"><a href="eda2.html#cb284-2"></a><span class="kw">levels</span>(df_mpg<span class="op">$</span>fuel_type) </span></code></pre></div>
 <pre><code>## [1] &quot;Diesel&quot;            &quot;Electricity&quot;       &quot;Midgrade Gasoline&quot;
 ## [4] &quot;Natural Gas&quot;       &quot;Premium Gasoline&quot;  &quot;Regular Gasoline&quot;</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="eda2.html#cb15-1"></a><span class="co">#print a character vector of levels for the v_class variable in df_mpg</span></span>
-<span id="cb15-2"><a href="eda2.html#cb15-2"></a><span class="kw">levels</span>(df_mpg<span class="op">$</span>v_class) </span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="eda2.html#cb286-1"></a><span class="co">#print a character vector of levels for the v_class variable in df_mpg</span></span>
+<span id="cb286-2"><a href="eda2.html#cb286-2"></a><span class="kw">levels</span>(df_mpg<span class="op">$</span>v_class) </span></code></pre></div>
 <pre><code>##  [1] &quot;Compact Cars&quot;                       &quot;Large Cars&quot;                        
 ##  [3] &quot;Midsize Cars&quot;                       &quot;Midsize Station Wagons&quot;            
 ##  [5] &quot;Midsize-Large Station Wagons&quot;       &quot;Minicompact Cars&quot;                  
@@ -719,15 +720,15 @@ vehciles made after the year 2000.</p>
 ## [31] &quot;Vans&quot;                               &quot;Vans Passenger&quot;                    
 ## [33] &quot;Vans, Cargo Type&quot;                   &quot;Vans, Passenger Type&quot;</code></pre>
 <p>Next, let’s see whether any variables contain missing data (NAs). A simple way is to map the combined functions of <code>sum()</code> and <code>is.na()</code> to each column of the data frame. We do this using the <code>map_dfc</code> function (reads: map a function across columns of a dataframe) from the <code>purr::</code> package.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="eda2.html#cb17-1"></a>df_mpg <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_dfc</span>(<span class="op">~</span><span class="kw">sum</span>(<span class="kw">is.na</span>(.)))</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="eda2.html#cb288-1"></a>df_mpg <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_dfc</span>(<span class="op">~</span><span class="kw">sum</span>(<span class="kw">is.na</span>(.)))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 14
 ##      id  make model  year   cyl displ drive  tran v_class fuel_type comb08
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;   &lt;int&gt;     &lt;int&gt;  &lt;int&gt;
 ## 1     0     0     0     0   231   230     4     9       0         0      0
 ## # … with 3 more variables: highway08 &lt;int&gt;, city08 &lt;int&gt;, co2TailpipeGpm &lt;int&gt;</code></pre>
 <p>If we filter the <code>df_mpg</code> data for entries that contain <code>NA</code> we discover that most of them are due to electric vehicles. This may be a variable level that we choose to exclude from certain analyses later on…</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="eda2.html#cb19-1"></a>missing_data &lt;-<span class="st"> </span>df_mpg <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter_all</span>(<span class="kw">any_vars</span>(<span class="kw">is.na</span>(.)))</span>
-<span id="cb19-2"><a href="eda2.html#cb19-2"></a><span class="kw">head</span>(missing_data, <span class="dt">n=</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="eda2.html#cb290-1"></a>missing_data &lt;-<span class="st"> </span>df_mpg <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter_all</span>(<span class="kw">any_vars</span>(<span class="kw">is.na</span>(.)))</span>
+<span id="cb290-2"><a href="eda2.html#cb290-2"></a><span class="kw">head</span>(missing_data, <span class="dt">n=</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 14
 ##       id make  model  year   cyl displ drive tran  v_class fuel_type comb08
 ##    &lt;dbl&gt; &lt;fct&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;      &lt;dbl&gt;
@@ -749,66 +750,66 @@ for all vehicle observations. The fuel economy data will be shown with boxplots
 overlain with violin plots. We will use a log-scale y-axis due to the large
 variation expected and outliers will be made more transparent to soften their
 effect.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="eda2.html#cb21-1"></a>e1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df_mpg, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> comb08)) <span class="op">+</span></span>
-<span id="cb21-2"><a href="eda2.html#cb21-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">group =</span> year),</span>
-<span id="cb21-3"><a href="eda2.html#cb21-3"></a>               <span class="dt">outlier.shape =</span> <span class="ot">NA</span>,</span>
-<span id="cb21-4"><a href="eda2.html#cb21-4"></a>               <span class="dt">fill =</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="op">+</span></span>
-<span id="cb21-5"><a href="eda2.html#cb21-5"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">group =</span> year),</span>
-<span id="cb21-6"><a href="eda2.html#cb21-6"></a>               <span class="dt">fill =</span> <span class="ot">NA</span>,</span>
-<span id="cb21-7"><a href="eda2.html#cb21-7"></a>               <span class="dt">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></span>
-<span id="cb21-8"><a href="eda2.html#cb21-8"></a><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">100</span>)) <span class="op">+</span></span>
-<span id="cb21-9"><a href="eda2.html#cb21-9"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span>
-<span id="cb21-10"><a href="eda2.html#cb21-10"></a>e1</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="eda2.html#cb292-1"></a>e1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df_mpg, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> comb08)) <span class="op">+</span></span>
+<span id="cb292-2"><a href="eda2.html#cb292-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">group =</span> year),</span>
+<span id="cb292-3"><a href="eda2.html#cb292-3"></a>               <span class="dt">outlier.shape =</span> <span class="ot">NA</span>,</span>
+<span id="cb292-4"><a href="eda2.html#cb292-4"></a>               <span class="dt">fill =</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="op">+</span></span>
+<span id="cb292-5"><a href="eda2.html#cb292-5"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">group =</span> year),</span>
+<span id="cb292-6"><a href="eda2.html#cb292-6"></a>               <span class="dt">fill =</span> <span class="ot">NA</span>,</span>
+<span id="cb292-7"><a href="eda2.html#cb292-7"></a>               <span class="dt">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></span>
+<span id="cb292-8"><a href="eda2.html#cb292-8"></a><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">100</span>)) <span class="op">+</span></span>
+<span id="cb292-9"><a href="eda2.html#cb292-9"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span>
+<span id="cb292-10"><a href="eda2.html#cb292-10"></a>e1</span></code></pre></div>
 <p><img src="07-multivar_eda_files/figure-html/expl-plot1-1.png" width="672" style="display: block; margin: auto;" />
 This <a href="https://afdc.energy.gov/data/10562">DOE website</a> outlines the EPA <em>Corporate Average Fuel Economy</em> (CAFE) standards that require vehicles to meet set fuel economy levels (in terms of miles-per-gallon; mpg) across the ‘fleet’ of available vehicles. Let’s load a .csv file named <code>cafe</code> and look at the requirements by year.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="eda2.html#cb22-1"></a>cafe &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/CAFE_stds.csv&quot;</span>, <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;mpg_avg&quot;</span>), <span class="dt">skip =</span> <span class="dv">1</span>)</span>
-<span id="cb22-2"><a href="eda2.html#cb22-2"></a></span>
-<span id="cb22-3"><a href="eda2.html#cb22-3"></a><span class="kw">ggplot</span>(cafe, <span class="kw">aes</span>(year, mpg_avg)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">fill =</span> <span class="st">&quot;maroon&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb22-4"><a href="eda2.html#cb22-4"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb22-5"><a href="eda2.html#cb22-5"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
-<span id="cb22-6"><a href="eda2.html#cb22-6"></a><span class="st">  </span><span class="kw">labs</span>( <span class="dt">y =</span> <span class="st">&quot;Required Average Fuel Efficiency (mpg)&quot;</span>, </span>
-<span id="cb22-7"><a href="eda2.html#cb22-7"></a>        <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>, </span>
-<span id="cb22-8"><a href="eda2.html#cb22-8"></a>        <span class="dt">title =</span> <span class="st">&quot;Federal Combined Average Fuel Economy (CAFE) Standards&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="eda2.html#cb293-1"></a>cafe &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/CAFE_stds.csv&quot;</span>, <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;mpg_avg&quot;</span>), <span class="dt">skip =</span> <span class="dv">1</span>)</span>
+<span id="cb293-2"><a href="eda2.html#cb293-2"></a></span>
+<span id="cb293-3"><a href="eda2.html#cb293-3"></a><span class="kw">ggplot</span>(cafe, <span class="kw">aes</span>(year, mpg_avg)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">fill =</span> <span class="st">&quot;maroon&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb293-4"><a href="eda2.html#cb293-4"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb293-5"><a href="eda2.html#cb293-5"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb293-6"><a href="eda2.html#cb293-6"></a><span class="st">  </span><span class="kw">labs</span>( <span class="dt">y =</span> <span class="st">&quot;Required Average Fuel Efficiency (mpg)&quot;</span>, </span>
+<span id="cb293-7"><a href="eda2.html#cb293-7"></a>        <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>, </span>
+<span id="cb293-8"><a href="eda2.html#cb293-8"></a>        <span class="dt">title =</span> <span class="st">&quot;Federal Combined Average Fuel Economy (CAFE) Standards&quot;</span>)</span></code></pre></div>
 <p><img src="07-multivar_eda_files/figure-html/CAFE-stds-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>This is a nice <a href="https://www.edmunds.com/fuel-economy/faq-new-corporate-average-fuel-economy-standards.html">explanatory story</a> of why the average fuel economy numbers don’t match well to the published CAFE standards.</p>
 <p>Create a series of geom_density plots showing combined fuel economy <code>comb08</code>
 across all vehicles and years as a function of <code>fuel_type</code>.<br />
 Break out the different <code>fuel_type</code> categories into facets (ncol = 3).</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="eda2.html#cb23-1"></a>g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df_mpg) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb23-2"><a href="eda2.html#cb23-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(comb08, <span class="dt">fill =</span> fuel_type)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb23-3"><a href="eda2.html#cb23-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>fuel_type, <span class="dt">ncol =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb23-4"><a href="eda2.html#cb23-4"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
-<span id="cb23-5"><a href="eda2.html#cb23-5"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb23-6"><a href="eda2.html#cb23-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb23-7"><a href="eda2.html#cb23-7"></a></span>
-<span id="cb23-8"><a href="eda2.html#cb23-8"></a>g1</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="eda2.html#cb294-1"></a>g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df_mpg) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb294-2"><a href="eda2.html#cb294-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(comb08, <span class="dt">fill =</span> fuel_type)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb294-3"><a href="eda2.html#cb294-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>fuel_type, <span class="dt">ncol =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb294-4"><a href="eda2.html#cb294-4"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
+<span id="cb294-5"><a href="eda2.html#cb294-5"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb294-6"><a href="eda2.html#cb294-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb294-7"><a href="eda2.html#cb294-7"></a></span>
+<span id="cb294-8"><a href="eda2.html#cb294-8"></a>g1</span></code></pre></div>
 <p><img src="07-multivar_eda_files/figure-html/EDA%20on%20fuel%20type%201-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Show the same plot without facets.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="eda2.html#cb24-1"></a>g2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df_mpg, <span class="kw">aes</span>(<span class="dt">x=</span>comb08)) <span class="op">+</span></span>
-<span id="cb24-2"><a href="eda2.html#cb24-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> fuel_type),</span>
-<span id="cb24-3"><a href="eda2.html#cb24-3"></a>                 <span class="dt">position =</span> <span class="st">&quot;identity&quot;</span>,</span>
-<span id="cb24-4"><a href="eda2.html#cb24-4"></a>                 <span class="dt">alpha =</span> <span class="fl">0.6</span>,</span>
-<span id="cb24-5"><a href="eda2.html#cb24-5"></a>               <span class="dt">adjust =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb24-6"><a href="eda2.html#cb24-6"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
-<span id="cb24-7"><a href="eda2.html#cb24-7"></a><span class="st">  </span><span class="kw">theme_bw</span>() </span>
-<span id="cb24-8"><a href="eda2.html#cb24-8"></a></span>
-<span id="cb24-9"><a href="eda2.html#cb24-9"></a>g2</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="eda2.html#cb295-1"></a>g2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df_mpg, <span class="kw">aes</span>(<span class="dt">x=</span>comb08)) <span class="op">+</span></span>
+<span id="cb295-2"><a href="eda2.html#cb295-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> fuel_type),</span>
+<span id="cb295-3"><a href="eda2.html#cb295-3"></a>                 <span class="dt">position =</span> <span class="st">&quot;identity&quot;</span>,</span>
+<span id="cb295-4"><a href="eda2.html#cb295-4"></a>                 <span class="dt">alpha =</span> <span class="fl">0.6</span>,</span>
+<span id="cb295-5"><a href="eda2.html#cb295-5"></a>               <span class="dt">adjust =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb295-6"><a href="eda2.html#cb295-6"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
+<span id="cb295-7"><a href="eda2.html#cb295-7"></a><span class="st">  </span><span class="kw">theme_bw</span>() </span>
+<span id="cb295-8"><a href="eda2.html#cb295-8"></a></span>
+<span id="cb295-9"><a href="eda2.html#cb295-9"></a>g2</span></code></pre></div>
 <p><img src="07-multivar_eda_files/figure-html/EDA%20on%20fuel%20type%202-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Q1: Among <em>4-cylinder</em> vehicles with <em>Front-Wheel Drive</em>, what make/model has the best <em>highway fuel economy</em> in 2018?</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="eda2.html#cb25-1"></a>df_mpg <span class="op">%&gt;%</span></span>
-<span id="cb25-2"><a href="eda2.html#cb25-2"></a><span class="st">  </span><span class="kw">filter</span>(cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>, drive <span class="op">==</span><span class="st"> &quot;Front-Wheel Drive&quot;</span>, year <span class="op">==</span><span class="st"> </span><span class="dv">2018</span>) <span class="op">%&gt;%</span></span>
-<span id="cb25-3"><a href="eda2.html#cb25-3"></a><span class="st">  </span><span class="kw">slice_max</span>(<span class="dt">order_by =</span> highway08, <span class="dt">n=</span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
-<span id="cb25-4"><a href="eda2.html#cb25-4"></a><span class="st">  </span><span class="kw">select</span>(make, model, drive, year, highway08)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="eda2.html#cb296-1"></a>df_mpg <span class="op">%&gt;%</span></span>
+<span id="cb296-2"><a href="eda2.html#cb296-2"></a><span class="st">  </span><span class="kw">filter</span>(cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>, drive <span class="op">==</span><span class="st"> &quot;Front-Wheel Drive&quot;</span>, year <span class="op">==</span><span class="st"> </span><span class="dv">2018</span>) <span class="op">%&gt;%</span></span>
+<span id="cb296-3"><a href="eda2.html#cb296-3"></a><span class="st">  </span><span class="kw">slice_max</span>(<span class="dt">order_by =</span> highway08, <span class="dt">n=</span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb296-4"><a href="eda2.html#cb296-4"></a><span class="st">  </span><span class="kw">select</span>(make, model, drive, year, highway08)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 5
 ##   make    model      drive              year highway08
 ##   &lt;fct&gt;   &lt;chr&gt;      &lt;fct&gt;             &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 Hyundai Ioniq Blue Front-Wheel Drive  2018        59</code></pre>
 <p>Q2: Among <em>8-cylinder</em> vehicles with <em>Rear-wheel Drive</em>, what make/model has the worst <em>city fuel economy</em> in 2019?</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="eda2.html#cb27-1"></a>df_mpg <span class="op">%&gt;%</span></span>
-<span id="cb27-2"><a href="eda2.html#cb27-2"></a><span class="st">  </span><span class="kw">filter</span>(cyl <span class="op">==</span><span class="st"> </span><span class="dv">8</span>, drive <span class="op">==</span><span class="st"> &quot;Rear-Wheel Drive&quot;</span>, year <span class="op">==</span><span class="st"> </span><span class="dv">2019</span>) <span class="op">%&gt;%</span></span>
-<span id="cb27-3"><a href="eda2.html#cb27-3"></a><span class="st">  </span><span class="kw">slice_min</span>(<span class="dt">order_by =</span> city08) <span class="op">%&gt;%</span></span>
-<span id="cb27-4"><a href="eda2.html#cb27-4"></a><span class="st">  </span><span class="co">#top_n(n = -1, wt = city08) %&gt;%</span></span>
-<span id="cb27-5"><a href="eda2.html#cb27-5"></a><span class="st">  </span><span class="kw">select</span>(make, model, drive, year, city08)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="eda2.html#cb298-1"></a>df_mpg <span class="op">%&gt;%</span></span>
+<span id="cb298-2"><a href="eda2.html#cb298-2"></a><span class="st">  </span><span class="kw">filter</span>(cyl <span class="op">==</span><span class="st"> </span><span class="dv">8</span>, drive <span class="op">==</span><span class="st"> &quot;Rear-Wheel Drive&quot;</span>, year <span class="op">==</span><span class="st"> </span><span class="dv">2019</span>) <span class="op">%&gt;%</span></span>
+<span id="cb298-3"><a href="eda2.html#cb298-3"></a><span class="st">  </span><span class="kw">slice_min</span>(<span class="dt">order_by =</span> city08) <span class="op">%&gt;%</span></span>
+<span id="cb298-4"><a href="eda2.html#cb298-4"></a><span class="st">  </span><span class="co">#top_n(n = -1, wt = city08) %&gt;%</span></span>
+<span id="cb298-5"><a href="eda2.html#cb298-5"></a><span class="st">  </span><span class="kw">select</span>(make, model, drive, year, city08)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 5
 ##   make    model    drive             year city08
 ##   &lt;fct&gt;   &lt;chr&gt;    &lt;fct&gt;            &lt;dbl&gt;  &lt;dbl&gt;
