@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-08-17" />
+<meta name="date" content="2020-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -142,10 +142,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a><ul>
-<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#other-helpful-books-not-required"><i class="fa fa-check"></i><b>1.5.1</b> Other helpful books (not required)</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#asking-for-help-properly"><i class="fa fa-check"></i><b>1.5</b> Asking for help (properly)</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.6</b> Coursebook</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="index.html"><a href="index.html#other-helpful-books-not-required"><i class="fa fa-check"></i><b>1.6.1</b> Other helpful books (not required)</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.7</b> Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a><ul>
 <li class="chapter" data-level="2.1" data-path="rprog1.html"><a href="rprog1.html#ch.-2-objectives"><i class="fa fa-check"></i><b>2.1</b> Ch. 2 Objectives</a></li>
@@ -396,7 +397,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Engineering Data Analysis in R</h1>
 <p class="author"><em>John Volckens and Kathleen E. Wendt</em></p>
-<p class="date"><em>2020-08-17</em></p>
+<p class="date"><em>2020-08-19</em></p>
 </div>
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
@@ -486,38 +487,102 @@ Homework
 </div>
 <div id="course-set-up" class="section level2">
 <h2><span class="header-section-number">1.4</span> Course set-up</h2>
-<p>Please download and install the latest version of R and RStudio.</p>
+<p>This might be painful, but bear with me. There will be a lot of software
+development jargon (e.g., “commit”, “push”, “pull”, “branch”, “merge conflict”,
+“pull request”), but the general idea is: We want to set up and learn how to
+use a collaborative tracking system. Git is a version control system (i.e.,
+Word’s “track changes” feature on steroids). GitHub is the most common
+git-based collaborative cloud (i.e., Dropbox on steroids). Everything in this
+class will be done within an RStudio Project on your local computer that is
+mirrored on a private GitHub repository. If you do not use GitHub (properly),
+you will receive an “incomplete” on the given assignment, so it is imperative
+that you take your time with these steps and read carefully. If you have any
+questions at each stage, ask!</p>
+<p>The following guidance regarding R/RStudio and Git/GitHub draws heavily on
+<a href="https://jennybryan.org/">Jenny Bryan</a>’s book, <a href="https://happygitwithr.com/">Happy Git with R</a>, and her related
+<a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1399928">paper</a> on
+version control. I sprinkled in some suggestions from others. If you would like
+to gain more background on basic Git and GitHub, take a look at <a href="https://uncoast-unconf.github.io/uu-2019-day-zero/01-git-github-cornucopia/git-github-cornucopia.html#1">these slides</a> from <a href="https://twitter.com/AmeliaMN">Dr. Amelia McNamara</a>.</p>
+<ol style="list-style-type: decimal">
+<li>Install R and RStudio appropriate for your personal computer’s operating system.</li>
+</ol>
 <ul>
-<li>R: <a href="https://cran.r-project.org" class="uri">https://cran.r-project.org</a></li>
-<li>RStudio: <a href="https://rstudio.com/products/rstudio/download/#download" class="uri">https://rstudio.com/products/rstudio/download/#download</a></li>
+<li>Download and install the pre-compiled binary of <a href="https://cran.r-project.org">R</a></li>
+<li>Download and install the preview version of <a href="https://rstudio.com/products/rstudio/download/#download">RStudio</a>; then, navigate to RStudio &gt; Preferences to <em>NOT</em> “Restore .RData into workspace at setup” and <em>NEVER</em> “save workspace to .RData on exit” (it is okay that you might not know what this means)</li>
+<li>If you’ve installed R and RStudio in the past, please download the latest versions and update the R packages with the following code:</li>
 </ul>
-<p>Students will also need to download and install git software and create a
-GitHub account.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1"></a><span class="co"># if you&#39;ve previously installed R and RStudio, also update your R packages </span></span>
+<span id="cb6-2"><a href="index.html#cb6-2"></a><span class="kw">update.packages</span>(<span class="dt">ask =</span> <span class="ot">FALSE</span>, <span class="dt">checkBuilt =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <ul>
-<li>Install git: <a href="https://git-scm.com/downloads" class="uri">https://git-scm.com/downloads</a></li>
-<li>Create a GitHub account: <a href="https://github.com" class="uri">https://github.com</a></li>
+<li>If you want to generate PDF output from R Markdown documents, you will also need to install LaTex. I suggest taking the following approach in the RStudio Console, if you have never installed LaTex on your personal computer. More installation guidance can be found <a href="https://bookdown.org/yihui/rmarkdown/installation.html">here</a>.</li>
 </ul>
-<p><a href="https://happygitwithr.com/">Happy Git with R</a> by Dr. Jenny Bryan is a helpful
-resource for installation and set-up. Also, a team associated with the Colorado
-State University Statistics Department is actively developing a series of
-one-credit modules for undergraduate students new to R. Their
-<a href="https://csu-r.github.io/Module1/">videos</a> on software installation and RStudio
-orientation may be particularly helpful at this stage.</p>
-<p>If you want to generate PDF output from R Markdown documents, you will also
-need to install LaTex. I suggest taking the following approach, if you have
-never installed LaTex on your personal computer. More installation guidance can
-be found <a href="https://bookdown.org/yihui/rmarkdown/installation.html">here</a>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1"></a><span class="co"># install R package</span></span>
-<span id="cb6-2"><a href="index.html#cb6-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
-<span id="cb6-3"><a href="index.html#cb6-3"></a><span class="co"># install LaTex &quot;ingredients&quot;</span></span>
-<span id="cb6-4"><a href="index.html#cb6-4"></a>tinytex<span class="op">::</span><span class="kw">install_tinytex</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="index.html#cb7-1"></a><span class="co"># install R package</span></span>
+<span id="cb7-2"><a href="index.html#cb7-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
+<span id="cb7-3"><a href="index.html#cb7-3"></a><span class="co"># install LaTex &quot;ingredients&quot;</span></span>
+<span id="cb7-4"><a href="index.html#cb7-4"></a>tinytex<span class="op">::</span><span class="kw">install_tinytex</span>()</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Install Git and create a GitHub account.</li>
+</ol>
+<ul>
+<li>Install <a href="https://git-scm.com/downloads">Git</a>; see <a href="https://happygitwithr.com/install-git.html">here</a> and <a href="https://rstats.wtf/set-up-an-r-dev-environment.html">here</a> for OS-specific installation instructions (e.g., need to install <em>parts of</em> Xcode for Mac OS).</li>
+<li>Create a <a href="https://github.com">GitHub</a> account. Pick a good <a href="https://happygitwithr.com/github-acct.html">user name</a>!</li>
+<li><a href="https://happygitwithr.com/hello-git.html">Introduce</a> yourself to Git in RStudio with the following code in the Console. Provide your given name, not your user name, and the email address you used in creating your GitHub account. These commands return nothing, but you can check that it worked with <code>git config --global --list</code> in the <a href="https://happygitwithr.com/shell.html">shell</a>.</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="index.html#cb8-1"></a><span class="co"># install `usethis` R package if needed (do this exactly once):</span></span>
+<span id="cb8-2"><a href="index.html#cb8-2"></a><span class="co">## install.packages(&quot;usethis&quot;)</span></span>
+<span id="cb8-3"><a href="index.html#cb8-3"></a></span>
+<span id="cb8-4"><a href="index.html#cb8-4"></a><span class="kw">library</span>(usethis)</span>
+<span id="cb8-5"><a href="index.html#cb8-5"></a>usethis<span class="op">::</span><span class="kw">use_git_config</span>(<span class="dt">user.name =</span> <span class="st">&quot;John Doe&quot;</span>, </span>
+<span id="cb8-6"><a href="index.html#cb8-6"></a>                        <span class="dt">user.email =</span> <span class="st">&quot;john.doe@colostate.edu&quot;</span>)</span></code></pre></div>
+<ul>
+<li>Optional but recommended for new users: Consider downloading a <a href="https://happygitwithr.com/git-client.html">GUI Git Client</a> to make version control easier and to build intuition. <a href="https://desktop.github.com/">GitHub Desktop</a> is likely sufficient for this course, but your choice is yours.</li>
+<li>Optional: Sign up for free student perks via <a href="https://education.github.com/">GitHub Education</a>.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Connect Git, GitHub, and RStudio</li>
+</ol>
+<ul>
+<li>Read and follow the <a href="https://happygitwithr.com/connect-intro.html">instructions</a> in Chapters 9-13 <em>exactly.</em> I hope you won’t need to look at Chapter 14! Move slowly and carefully, and pay attention to the specific needs for your operating system.</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>Create new project, GitHub first</li>
+</ol>
+<ul>
+<li>Keep in mind: You should save the local R Project from this step in a top-level directory. We suggest creating an <code>R</code> folder at the top of your <code>Documents</code> folder (or OS-specific equivalent) to contain all of your R Projects. For the duration of this course, you should just have a directory pathname like <code>/user/Documents/R/MECH481A6.Rproj</code>. We will discuss directory structures and pathnames more in the next chapter.</li>
+<li>Read and follow these <a href="https://happygitwithr.com/new-github-first.html">instructions</a> <em>exactly</em> with the following additions: Name the repository <em>MECH481A6</em> and make it <em>private</em> within the class GitHub organization</li>
+<li>Within your MECH481A6.Rproj folder, add subfolders called <code>data</code>, <code>code</code>, and <code>figs</code> to practice a <a href="https://uncoast-unconf.github.io/uu-2019-day-zero/02-project-workflows/workflow.html#13">project-oriented workflow</a>.</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>Use RStudio/GitHub system for homework submission</li>
+</ol>
+<ul>
+<li>For homework submission, you will download the R Markdown templates provided
+to you and save and edit them within your own R Project. You will regularly
+<em>commit</em> the changes to GitHub with meaningful <em>commit messages</em> in order to
+track your changes. Your private GitHub repository will be hosted within the
+class GitHub organization. You will open <em>GitHub issues</em> when you need to ask
+homework questions.</li>
+</ul>
+</div>
+<div id="asking-for-help-properly" class="section level2">
+<h2><span class="header-section-number">1.5</span> Asking for help (properly)</h2>
+<p>All questions regarding technology and code should be directed to the Teaching
+Assistant via GitHub Issues in YOUR private repository for this course (see
+syllabus). If the question requires you to include full code, please use the R
+package for reproducible examples: <code>reprex</code>. Please watch this
+<a href="https://reprex.tidyverse.org/articles/articles/learn-reprex.html">tutorial</a> on
+how to use <code>reprex</code>. Essentially, you are copy-pasting self-contained code in
+the GitHub Issue, so I can recreate your work and help you more effectively.
+You won’t do things perfectly as you start, but, hopefully by the end of the
+semester, you will have an efficient, reproducible workflow and effective
+solution-seeking toolbox.</p>
 </div>
 <div id="coursebook" class="section level2">
-<h2><span class="header-section-number">1.5</span> Coursebook</h2>
+<h2><span class="header-section-number">1.6</span> Coursebook</h2>
 <p>This coursebook will serve as the only required textbook for this course. I
 regularly edit and add to this book, so content may change somewhat over the
 semester. We typically cover about a chapter of the book every 1-2 weeks of the
-course.</p>
+course. You need to follow along and read this book thoroughly.</p>
 <p>This coursebook includes:</p>
 <ul>
 <li>Links to the slides presented in class for each topic</li>
@@ -528,8 +593,7 @@ exercise</li>
 <li>A list of vocabulary and concepts that should be mastered for each quiz</li>
 </ul>
 <p>If you find any typos or bugs, or if you have any suggestions for how the book
-can be improved, feel free to post it on the book’s <a href="https://github.com/SmogDr/edar_coursebook/issues">GitHub Issues
-page</a>.</p>
+can be improved, feel free to post it on the book’s <a href="https://github.com/SmogDr/edar_coursebook/issues">GitHub Issues</a>.</p>
 <p>This book was developed using Yihui Xie’s <a href="https://bookdown.org">bookdown</a>
 framework. The book is built using code that combines R code, data, and text to
 create a book for which R code and examples can be re-executed every time the
@@ -537,7 +601,7 @@ book is re-built, which helps identify bugs and broken code examples quickly.
 The online book is hosted using GitHub’s free <a href="https://pages.github.com">GitHub Pages</a>. All material for this book is
 available and can be explored at the book’s <a href="https://github.com/SmogDr/edar_coursebook">GitHub repository</a>.</p>
 <div id="other-helpful-books-not-required" class="section level3">
-<h3><span class="header-section-number">1.5.1</span> Other helpful books (not required)</h3>
+<h3><span class="header-section-number">1.6.1</span> Other helpful books (not required)</h3>
 <p>The best book to supplement the coursebook and lectures for this course is <a href="http://r4ds.had.co.nz">R for Data Science</a> by Garrett Grolemund and Hadley
 Wickham. The entire book is freely available online through the same format of
 the coursebook. You can also purchase a paper version of the book published by
@@ -560,8 +624,8 @@ online through the CSU library.</p>
 </div>
 </div>
 <div id="acknowledgements" class="section level2">
-<h2><span class="header-section-number">1.6</span> Acknowledgements</h2>
-<p>Most of the introductory material for this book was adapted from Professor <a href="https://geanders.github.io/RProgrammingForResearch/">Brooke Anderson’s R Programming Coursebook</a>, to whom I owe
+<h2><span class="header-section-number">1.7</span> Acknowledgements</h2>
+<p>Most of the introductory material for this book was adapted from Dr. Brooke Anderson’s course on <a href="https://geanders.github.io/RProgrammingForResearch/">R Programming for Research</a>, to whom I owe
 thanks not only for the materials but for the many helpful discussions. I would
 also like to acknowledge <a href="http://rsbm.royalsocietypublishing.org/content/49/537.full.pdf+html">John Tukey</a>,
 one of the pioneers of exploratory data analysis, and the creators of the <a href="https://doi.org/10.18434/M32189">NIST Engineering Statistics Handbook</a>, from which I

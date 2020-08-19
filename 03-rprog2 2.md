@@ -248,12 +248,12 @@ There are two "tidyverse" packages, `readxl` and `haven`, that help with this.
 They allow you to read in files from the following formats:
 
 
-|File type |Function       |Package  |
-|:---------|:--------------|:--------|
-|Excel     |`read_excel()` |`readxl` |
-|SAS       |`read_sas()`   |`haven`  |
-|SPSS      |`read_spss()`  |`haven`  |
-|Stata     |`read_stata()` |`haven`  |
+File type   Function         Package  
+----------  ---------------  ---------
+Excel       `read_excel()`   `readxl` 
+SAS         `read_sas()`     `haven`  
+SPSS        `read_spss()`    `haven`  
+Stata       `read_stata()`   `haven`  
 
 ## Directories and pathnames
 
@@ -455,12 +455,12 @@ relative pathname would no longer work.
 There are a few abbreviations that can be really useful for pathnames:
 
 
-|Shorthand |Meaning                                           |
-|:---------|:-------------------------------------------------|
-|`~`       |Home directory                                    |
-|`.`       |Current working directory                         |
-|`..`      |One directory up from current working directory   |
-|`../..`   |Two directories up from current working directory |
+Shorthand   Meaning                                           
+----------  --------------------------------------------------
+`~`         Home directory                                    
+`.`         Current working directory                         
+`..`        One directory up from current working directory   
+`../..`     Two directories up from current working directory 
 
 These can help you keep pathnames shorter and also help you move "up-and-over"
 to get to a file or directory that's not on the direct path below your current
@@ -664,12 +664,12 @@ some of the most common data-cleaning tasks, along with the corresponding
 `dplyr` function for each:
 
 
-|Task                       |`dplyr` function |
-|:--------------------------|:----------------|
-|Renaming columns           |`rename()`       |
-|Filtering to certain rows  |`filter()`       |
-|Selecting certain columns  |`select()`       |
-|Adding or changing columns |`mutate()`       |
+Task                         `dplyr` function 
+---------------------------  -----------------
+Renaming columns             `rename()`       
+Filtering to certain rows    `filter()`       
+Selecting certain columns    `select()`       
+Adding or changing columns   `mutate()`       
 
 In this section, I describe how to do each of these four tasks. For the
 examples in this section, I use example data listing guests to the Daily Show.
@@ -892,12 +892,12 @@ Just so you know, all of these `dplyr` functions have alternatives, either
 functions or processes, in base R:
 
 
-|`dplyr`    |Base R equivalent                   |
-|:----------|:-----------------------------------|
-|`rename()` |Reassign `colnames`                 |
-|`select()` |Square bracket indexing             |
-|`filter()` |`subset()`                          |
-|`mutate()` |Use `$` to change or create columns |
+`dplyr`      Base R equivalent                   
+-----------  ------------------------------------
+`rename()`   Reassign `colnames`                 
+`select()`   Square bracket indexing             
+`filter()`   `subset()`                          
+`mutate()`   Use `$` to change or create columns 
 
 You will see these alternatives used in older code examples.
 
@@ -1050,7 +1050,7 @@ Each R markdown file contains three basic elements: header, text, and code chunk
 The R Markdown "header" section is where you specify details about the file being created.  A markdown header contains **YAML** metadata, which stands for [*"YAML Ain't Markup Language"*](https://yaml.org/spec/1.2/spec.html#Introduction). The YAML (pronounced like “camel") header is essentially a list of directives (referred to as "key:value" pairs) that help application software read and interpret the file. A YAML header can act simultaneously as a "configuration file", a "log file", and "translator file" - allowing one software program to read the output of another program.  An example header with YAML metadata is shown below.
 
 <div class="figure" style="text-align: center">
-<img src="./images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file."  />
+<img src="./images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file." width="500" />
 <p class="caption">(\#fig:YAML-1)Example of a YAML header to render an R Markdown into an html file.</p>
 </div>
 The header is delineated at the top of the file by a section that begins and ends with three dashes, "---". Within the header are YAML metadata representing key:value pairs; **what are "key:value" pairs?** The **"key:"** is a directive that you want to give to the file and the **"value"** represents the level of detail or information that you want to associate with that directive. Key:value pairs provide instructions on how the file should be read, interpreted, and output. In Figure \@ref(fig:YAML-1), the keys are *"title:"*, *"author:"*, *"date:"*, and *"output:"* and the corresponding values are *"Markdowns"*, *"JV"*, *"7/23/2020"*, and *"html_document"*. You can learn more about key:value pairs in the R Markdown Style Guide for [html](https://bookdown.org/yihui/rmarkdown/html-document.html) and [pdf](https://bookdown.org/yihui/rmarkdown/pdf-document.html).
@@ -1062,7 +1062,7 @@ The header is delineated at the top of the file by a section that begins and end
 Sometimes, you will want to provide nested formatting directives in your markdown header.  For example, you can specify the addition of a ***"table of contents"*** to your html output file that ***"floats"*** alongside the text. In that case, your YAML metadata would look like this: 
 
 <div class="figure" style="text-align: center">
-<img src="./images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents."  />
+<img src="./images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents." width="497" />
 <p class="caption">(\#fig:YAML-2)Example R Markdown header with nested YAML directives to render an html file with a floating table of contents.</p>
 </div>
 An important detail to remember with nested YAML metadata is that each nested command **must be indented by 2 spaces** to be interpreted properly.

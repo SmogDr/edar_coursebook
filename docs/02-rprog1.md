@@ -1434,7 +1434,7 @@ base::getwd()
 ```
 
 ```
-## [1] "/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook"
+## [1] "/Users/wendtke/Documents/R/edar_coursebook"
 ```
 
 1. Session information 
