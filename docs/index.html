@@ -494,7 +494,7 @@ Homework
 <div id="course-set-up" class="section level2">
 <h2><span class="header-section-number">1.4</span> Course set-up</h2>
 <p>This might be painful, but bear with me. There will be a lot of software
-development jargon (e.g., “commit”, “push”, “pull”), but the general idea is:
+development <a href="https://docs.github.com/en/github/getting-started-with-github/github-glossary">jargon</a> (e.g., “commit”, “push”, “pull”), but the general idea is:
 We want to set up and learn how to use a collaborative tracking system. Git is
 a version control system (i.e., Word’s “track changes” feature on steroids).
 GitHub is the most common Git-based collaborative cloud (i.e., Dropbox on
@@ -511,8 +511,8 @@ to gain more background on basic Git and GitHub, take a look at <a href="https:/
 <div id="install-r-and-rstudio" class="section level3">
 <h3><span class="header-section-number">1.4.1</span> Install R and RStudio</h3>
 <ol style="list-style-type: decimal">
-<li>Download and install the pre-compiled binary of <a href="https://cran.r-project.org">R</a> appropriate for your machine’s operating system</li>
-<li>Download and install the preview version of <a href="https://rstudio.com/products/rstudio/download/#download">RStudio</a>; then, navigate to RStudio &gt; Preferences to <em>NOT</em> “Restore .RData into workspace at setup” and <em>NEVER</em> “save workspace to .RData on exit” (it is okay that you might not know what this means yet)</li>
+<li>Download and install the pre-compiled binary of the most recent version (4.0+) of <a href="https://cran.r-project.org">R</a> appropriate for your machine’s operating system</li>
+<li>Download and install the most recent, preview version of <a href="https://rstudio.com/products/rstudio/download/#download">RStudio</a>; then, navigate to RStudio &gt; Preferences to <em>NOT</em> “Restore .RData into workspace at setup” and <em>NEVER</em> “save workspace to .RData on exit” (it is okay that you might not know what this means yet)</li>
 <li>If you’ve installed R and RStudio in the past, please download the latest versions and update the R packages with the following code:</li>
 </ol>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1"></a><span class="co"># if you&#39;ve previously installed R and RStudio, also update your R packages </span></span>
@@ -528,9 +528,9 @@ to gain more background on basic Git and GitHub, take a look at <a href="https:/
 <div id="install-git-and-create-a-github-account" class="section level3">
 <h3><span class="header-section-number">1.4.2</span> Install Git and create a GitHub account</h3>
 <ol style="list-style-type: decimal">
-<li>Install <a href="https://git-scm.com/downloads">Git</a>; see <a href="https://happygitwithr.com/install-git.html">here</a> and <a href="https://rstats.wtf/set-up-an-r-dev-environment.html">here</a> for OS-specific installation instructions (e.g., need to install <em>parts of</em> Xcode for Mac OS).</li>
-<li>Create a <a href="https://github.com">GitHub</a> account. Pick a good <a href="https://happygitwithr.com/github-acct.html">user name</a>!</li>
-<li><a href="https://happygitwithr.com/hello-git.html">Introduce</a> yourself to Git in RStudio with the following code in the Console. Provide your given name, not your user name, and the email address you used in creating your GitHub account. These commands return nothing, but you can check that it worked with <code>git config --global --list</code> in the <a href="https://happygitwithr.com/shell.html">shell</a>.</li>
+<li><p>Install <a href="https://git-scm.com/downloads">Git</a>. See <a href="https://happygitwithr.com/install-git.html">here</a> and <a href="https://rstats.wtf/set-up-an-r-dev-environment.html">here</a> for OS-specific installation instructions. For Mac users, you need to install <em>parts of</em> <a href="https://thecoatlessprofessor.com/programming/cpp/r-compiler-tools-for-rcpp-on-macos/">Xcode for Mac OS</a> and <a href="https://mac.R-project.org/tools/">other things</a>). For R 4.0+, this process is easier, as R now uses <a href="https://github.com/fxcoudert/gfortran-for-macOS/releases">Apple Xcode 10.1 and GNU Fortran 8.2</a>.</p></li>
+<li><p>Create a <a href="https://github.com">GitHub</a> account. Pick a good <a href="https://happygitwithr.com/github-acct.html">user name</a>!</p></li>
+<li><p><a href="https://happygitwithr.com/hello-git.html">Introduce</a> yourself to Git in RStudio with the following code in the Console. Provide your given name, not your user name, and the email address you used in creating your GitHub account. These commands return nothing, but you can check that it worked with <code>git config --global --list</code> in the <a href="https://happygitwithr.com/shell.html">shell</a>.</p></li>
 </ol>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="index.html#cb8-1"></a><span class="co"># install `usethis` R package if needed (do this exactly once):</span></span>
 <span id="cb8-2"><a href="index.html#cb8-2"></a><span class="co">## install.packages(&quot;usethis&quot;)</span></span>
@@ -538,8 +538,9 @@ to gain more background on basic Git and GitHub, take a look at <a href="https:/
 <span id="cb8-4"><a href="index.html#cb8-4"></a><span class="kw">library</span>(usethis)</span>
 <span id="cb8-5"><a href="index.html#cb8-5"></a>usethis<span class="op">::</span><span class="kw">use_git_config</span>(<span class="dt">user.name =</span> <span class="st">&quot;John Doe&quot;</span>, </span>
 <span id="cb8-6"><a href="index.html#cb8-6"></a>                        <span class="dt">user.email =</span> <span class="st">&quot;john.doe@colostate.edu&quot;</span>)</span></code></pre></div>
+<p>Note: Avoid committing credentials or other sensitive information to GitHub by “<a href="https://github.com/uncoast-unconf/uu-2019-day-zero/blob/master/00-preparation/03-usethis/README.md">vaccinating</a>” with <code>usethis::git_vaccinate()</code>.</p>
 <ol start="4" style="list-style-type: decimal">
-<li>Optional but recommended for new users: Consider downloading a <a href="https://happygitwithr.com/git-client.html">GUI Git Client</a> to make version control easier and to build intuition. <a href="https://desktop.github.com/">GitHub Desktop</a> is likely sufficient for this course, but your choice is yours.</li>
+<li>Optional but recommended for new users: Consider downloading a <a href="https://happygitwithr.com/git-client.html">GUI Git Client</a> to make version control easier and to build intuition. <a href="https://desktop.github.com/">GitHub Desktop</a> is likely sufficient for this course, but the choice is yours.</li>
 <li>Optional: Sign up for free student perks via <a href="https://education.github.com/">GitHub Education</a>.</li>
 </ol>
 </div>
@@ -552,24 +553,23 @@ to gain more background on basic Git and GitHub, take a look at <a href="https:/
 <div id="create-new-project-github-first" class="section level3">
 <h3><span class="header-section-number">1.4.4</span> Create new project, GitHub first</h3>
 <ol start="0" style="list-style-type: decimal">
-<li>Keep in mind: You should save the local R Project from this step in a top-level directory. We suggest creating an <code>R</code> folder at the top of your <code>Documents</code> folder (or OS-specific equivalent) to contain all of your R Projects. For the duration of this course, you should just have a directory pathname like <code>/user/Documents/R/MECH481A6.Rproj</code>. We will discuss directory structures and pathnames more in the next chapter.</li>
+<li>Keep in mind: You should save the local R Project from this step in a top-level directory. We suggest creating an <code>R</code> folder at the top of your <code>Documents</code> folder (or OS-specific equivalent) to contain all of your R Projects. For the duration of this course, you should have a directory pathname like <code>/user/Documents/R/[YourLastName]-MECH481A6</code>. We will discuss directory structures and pathnames more in the next chapter.</li>
 <li>Read and follow these <a href="https://happygitwithr.com/new-github-first.html">instructions</a> <em>exactly</em> with the following additions:</li>
 </ol>
 <ul>
-<li>Give your GitHub username to the TA, so you can be added to the <a href="https://github.com/MECH481A6">course GitHub Organization</a></li>
+<li>Give your GitHub username to the TA, so you can be added to our <a href="https://github.com/MECH481A6">GitHub Organization</a></li>
 <li>Work with the TA to create a <em>private</em> repository within the organization, labeled <em>[YourLastName]-MECH481A6</em></li>
-<li>Confirm connection between your R Project and the GitHub repository, make
-subfolders (<code>data</code>, <code>code</code>, <code>figs</code>) within your <code>MECH481A6.Rproj</code> folder on
-your local drive, and push them up to GitHub; this supports a <a href="https://uncoast-unconf.github.io/uu-2019-day-zero/02-project-workflows/workflow.html#13">project-oriented workflow</a></li>
+<li>Confirm connection between your R Project and the GitHub repository, make subfolders (<code>data</code>, <code>code</code>, <code>figs</code>) within your <code>[YourLastName]-MECH481A6</code> folder on your local drive, and push them up to GitHub; this supports a <a href="https://uncoast-unconf.github.io/uu-2019-day-zero/02-project-workflows/workflow.html#13">project-oriented workflow</a></li>
 </ul>
 </div>
 <div id="use-rstudiogithub-system-for-homework-submission" class="section level3">
 <h3><span class="header-section-number">1.4.5</span> Use RStudio/GitHub system for homework submission</h3>
 <p>For homework submission, you will download the R Markdown templates provided
-to you and save and edit them within your own R Project. You will regularly
-<em>commit</em> the changes to GitHub with meaningful <em>commit messages</em> in order to
-track your changes. Your private GitHub repository will be hosted within the
-class GitHub organization.</p>
+to you and save and edit them within your own R Project, which is connected a
+private repository on the class GitHub Organization. In order to track your
+changes and communicate with the Instructor and TA, you will
+regularly <em>commit</em> changes to your R Project files with meaningful <em>commit messages</em>. We will practice commits, pushes, and pulls to the <em>master branch</em>
+(main copy of R Project) during class.</p>
 </div>
 <div id="asking-for-help-properly" class="section level3">
 <h3><span class="header-section-number">1.4.6</span> Asking for help (properly)</h3>
