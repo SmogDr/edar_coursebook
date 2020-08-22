@@ -973,6 +973,13 @@ knitr::include_graphics("./images/markdown_render.png")
 
 ## Ch-3 Exercises
 
+Import local and/or online data file and assign to object name
+-- package::function() of choice depends on file type.. Do your students typically work with csv, xls/xlsx, MATLAB?
+Examine object structure and column classes with str(), tibble::glimpse(), class(), and the like
+Think about and discuss(?) what kind of data wrangling needs to be done and sketch out the desired dataframe result --or at least list the desired changes (e.g., clean up variable names)
+Practice a few dplyr verbs within pipeline to clean up dataframe (e.g., rename() column, compute new variable with mutate())
+Bonus question: introduce janitor package, especially the clean_names() function to clean all variable names at once
+
 - Import local and/or online data file and assign to object name
 - Examine object structure
 - Think about what kind of data wrangling needs to be done and sketch out the desired dataframe result
@@ -982,7 +989,11 @@ knitr::include_graphics("./images/markdown_render.png")
 
 - Change data to something related to engineering (pollution/air quality in Fort Collins)
 - Use Brooke's structure below to create homework assignment
-- Provide R Markdown template.
+- Provide R Markdown template
+
+Find the maximum and minimum values for the month (and compare them to the standard, even though it’s only a 1-hr measurement)
+Count how many values are above 0.07 in the dataset
+Mutate the sample_measurement column to convert “parts-per-million” into “parts-per-billion” units (i.e., multiply by 1000)
 
 ### Downloading and checking out the example data
 
