@@ -13,7 +13,7 @@ description: "This is an undergraduate technical elective course for mechanical 
 
 
 ```
-## ── Attaching packages ─────────────────────────────────── tidyverse 1.3.0 ──
+## ── Attaching packages ──────────────────────────────────── tidyverse 1.3.0 ──
 ```
 
 ```
@@ -24,7 +24,7 @@ description: "This is an undergraduate technical elective course for mechanical 
 ```
 
 ```
-## ── Conflicts ────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ─────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 ```
@@ -197,6 +197,26 @@ private repository on the class GitHub Organization. In order to track your
 changes and communicate with the Instructor and TA, you will
 regularly *commit* changes to your R Project files with meaningful *commit messages*. We will practice commits, pushes, and pulls to the *master branch*
 (main copy of R Project) during class. 
+
+### Confirm successful set-up
+
+At this point, you should be able to commit, push to, and pull from the master
+branch of your private GitHub repository within the RStudio IDE. In later
+chapters, we will provide more information on these interfaces, and you will
+have plenty of opportunities to practice this workflow. For now, "minimally 
+functional" is good enough!
+
+Once you have successfully installed and connected R/RStudio and Git/GitHub, 
+**open an issue** on YOUR private repository within the [GitHub Organization](https://github.com/MECH481A6). Mention/assign Kathleen (TA)
+@wendtke to let her know everything is working properly, or to request more
+help.
+
+Then, in the [public repository](https://github.com/MECH481A6/questions) for
+class-related questions and discussion, **open another issue**. You can ask a
+question, share any course-related concerns, or post a brief comment about what
+you hope to gain from this course. Remember to mention/assign Kathleen @wendtke, so she is alerted to your post. 
+
+Kathleen will then close both of your issues, and you will be ready to go!
 
 ### Asking for help (properly)
 
