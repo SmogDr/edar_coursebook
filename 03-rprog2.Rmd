@@ -971,18 +971,39 @@ Once your markdown is complete, you can *render* it into an output file (e.g., h
 knitr::include_graphics("./images/markdown_render.png")
 ```
 
-## Ch-3 Exercises
+## Chapter 3 Exercises
 
 - Import local and/or online data file and assign to object name
 - Examine object structure
 - Think about what kind of data wrangling needs to be done and sketch out the desired dataframe result
 - Practice a few `dplyr` verbs within pipe to clean up dataframe
 
+Import local and/or online data file and assign to object name
+-- package::function() of choice depends on file type.. Do your students typically work with csv, xls/xlsx, MATLAB?
+Examine object structure and column classes with str(), tibble::glimpse(), class(), and the like
+Think about and discuss(?) what kind of data wrangling needs to be done and sketch out the desired dataframe result --or at least list the desired changes (e.g., clean up variable names)
+Practice a few dplyr verbs within pipeline to clean up dataframe (e.g., rename() column, compute new variable with mutate())
+Bonus question: introduce janitor package, especially the clean_names() function to clean all variable names at once
+
+### Day 1: Data import and working directories
+
+0. Open your class R Project locally.
+1. Create a new R Markdown file (`.Rmd`) in RStudio IDE (File > New File > R Markdown) and pick a title (of document, not file) such as "Chapter 3 Exercises". Name the file ("ch-3-exercises.Rmd") and save it to your local R Project in the `code` sub-folder. 
+2. In the RStudio Console, determine your current working directory. Make sure the working directory is pointed to the location of `.Rmd` within your R Project. If it is not, navigate to Session > Set Working Directory > To Source File Location. Again, check your current working directory to confirm. 
+2. Knit the sample R Markdown to HTML and/or PDF (if you installed LaTex).  
+3. Commit and push the sample R Markdown and its knitted counterpart to your repository on GitHub with a short, informative commit message such as "test rmd template and html knit".
+4. Delete the sample content from the R Markdown file.
+
 ## Ch-3 Homework
 
 - Change data to something related to engineering (pollution/air quality in Fort Collins)
 - Use Brooke's structure below to create homework assignment
 - Provide R Markdown template.
+
+Find the maximum and minimum values for the month (and compare them to the standard, even though it’s only a 1-hr measurement)
+Count how many values are above 0.07 in the dataset
+Mutate the sample_measurement column to convert “parts-per-million” into “parts-per-billion” units (i.e., multiply by 1000)
+
 
 ### Downloading and checking out the example data
 
