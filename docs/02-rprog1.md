@@ -1504,8 +1504,9 @@ lessons in [`swirl`](https://swirlstats.com/), an R package for learning R
 might take 10-15 minutes.
 
 In a text file, record the lesson names and a very brief description of what
-you learned from each. Save this file in your private GitHub repository. Don't 
-forget to mention/assign @wendtke and @SmogDr.
+you learned from each. Save this file in your local R Project in the 
+appropriate directory (e.g., `/homework`) and commit/push the file with regular
+updates to your private GitHub repository. 
 
 Follow the steps [here](https://swirlstats.com/students.html) to install, load,
 and start `swirl`. When you are prompted to install a course, you can load "R
