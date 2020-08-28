@@ -1407,7 +1407,9 @@ hp_data[3, ] # Last row, all columns
 <p>If you forget to put the comma in the indexing for a dataframe (e.g., <code>fibonacci_seq[1:2]</code>), you will index out the <em>columns</em> that fall at that position or positions. To avoid confusion, I suggest that you always use indexing with a comma when working with dataframes.</p>
 </div>
 
-## Ch-2 Exercises
+## Chapter 2 Exercises
+
+### Day 1 (August 28)
 
 0. Within your R project for this course, open a "fresh" R session (Session > Restart R, if RStudio is already open). Using `getwd()` in the console, confirm the working directory is your R project.
 
@@ -1417,13 +1419,7 @@ hp_data[3, ] # Last row, all columns
 
 3. Go to File > New File > R Script to open a new R script. Add your name to the top of the R script as a comment. Call `mtcars` (dataset about cars in base R) in the console. Then, using the `gets arrow`, save `mtcars` as an object named `mtcars_data` in your R script. Saving the relevant commands in the R script, examine the structure of `mtcars_data` and determine its dimensions and variable class types (e.g., numeric, logical).
 
-4. Install `dplyr`, a popular R package for data wrangling, from your console. In your R script, load `dplyr`. Using `dplyr::filter()`, determine the number of cars in `mtcars_data` with an average miles per gallon (`mpg`) above 25.
-
-5. Save your R script with an informative file name (e.g., "class-activity-DATE") in the `/R` folder of your R project.
-
-6. **If you have extra time**: Navigate to the "Tutorial" tab in your environment panel. Complete the "Data Basics" tutorial via `learnr`.
-
-### Example Code
+#### Example Code
 
 0. Working directory
 
@@ -1478,6 +1474,16 @@ class(mtcars_data$mpg)
 There are 32 observations (vehicle models) and 11 variables, all of which are 
 numeric.
 
+### Day 2 (August 31)
+
+4. Install `dplyr`, a popular R package for data wrangling, from your console. In your R script, load `dplyr`. Using `dplyr::filter()`, determine the number of cars in `mtcars_data` with an average miles per gallon (`mpg`) above 25.
+
+5. Save your R script with an informative file name (e.g., "class-activity-DATE") in the `/R` folder of your R project.
+
+6. **If you have extra time**: Navigate to the "Tutorial" tab in your environment panel. Complete the "Data Basics" tutorial via `learnr`.
+
+#### Example Code
+
 4. Data wrangling
 
 
@@ -1490,15 +1496,16 @@ dplyr::filter(mtcars_data, mpg > 25.0)
 ```
 There are six vehicles in `mtcars_data` with MPG above 25.
 
-## Ch-2 Homework
+## Chapter 2 Homework
 
-You will complete five lessons in [`swirl`](https://swirlstats.com/), an
-R package for learning R **in** R, written by Roger Peng, Brooke Anderson, and
-Sean Kross. Each lesson might take 10-15 minutes.
+During the next few class periods and for homework, you will complete ten
+lessons in [`swirl`](https://swirlstats.com/), an R package for learning R
+**in** R, written by Roger Peng, Brooke Anderson, and Sean Kross. Each lesson
+might take 10-15 minutes.
 
 In a text file, record the lesson names and a very brief description of what
-you learned from each. Save this file under the `/homework` folder of your 
-GitHub repository, and email us the link.
+you learned from each. Save this file in your private GitHub repository. Don't 
+forget to mention/assign @wendtke and @SmogDr.
 
 Follow the steps [here](https://swirlstats.com/students.html) to install, load,
 and start `swirl`. When you are prompted to install a course, you can load "R
@@ -1506,14 +1513,18 @@ Programming," which covers material related to the recent class lectures. If
 you are already familiar with this content, feel free to select a different
 course such as "Exploratory Data Analysis."
 
-Here are some lessons from the "R Programming" course to complete. Feel free to
-do as many as you would like.
+Please complete the following `swirl` lessons: 
 
 - Module 1: Basic Building Blocks
 - Module 2: Workspace and Files
 - Module 3: Sequences of Numbers
 - Module 4: Vectors
 - Module 5: Missing Values
+- Module 6: Subsetting Vectors
+- Module 7: Matrices and Data Frames
+- Module 8: Logic
+- Module 9: Functions
+- Module 12: Looking at Data
 
 `swirl` lessons have a mix of base R and `tidyverse` approaches, so don't be 
 alarmed or discouraged if you see some unfamiliar techniques or concepts. If
