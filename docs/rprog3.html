@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-08-28" />
+<meta name="date" content="2020-08-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -140,6 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a><ul>
 <li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a><ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#install-r-and-rstudio"><i class="fa fa-check"></i><b>1.4.1</b> Install R and RStudio</a></li>
@@ -179,8 +180,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
 </ul></li>
 <li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#chapter-2-exercises"><i class="fa fa-check"></i><b>2.7</b> Chapter 2 Exercises</a><ul>
-<li class="chapter" data-level="2.7.1" data-path="rprog1.html"><a href="rprog1.html#day-1-august-28"><i class="fa fa-check"></i><b>2.7.1</b> Day 1 (August 28)</a></li>
-<li class="chapter" data-level="2.7.2" data-path="rprog1.html"><a href="rprog1.html#day-2-august-31"><i class="fa fa-check"></i><b>2.7.2</b> Day 2 (August 31)</a></li>
+<li class="chapter" data-level="2.7.1" data-path="rprog1.html"><a href="rprog1.html#set-1-session-helpfiles-scripts-and-objects"><i class="fa fa-check"></i><b>2.7.1</b> Set 1: Session, helpfiles, scripts, and objects</a></li>
+<li class="chapter" data-level="2.7.2" data-path="rprog1.html"><a href="rprog1.html#set-2-loading-and-using-packages"><i class="fa fa-check"></i><b>2.7.2</b> Set 2: Loading and using packages</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#chapter-2-homework"><i class="fa fa-check"></i><b>2.8</b> Chapter 2 Homework</a><ul>
 <li class="chapter" data-level="2.8.1" data-path="rprog1.html"><a href="rprog1.html#special-swirl-commands"><i class="fa fa-check"></i><b>2.8.1</b> Special <code>swirl</code> commands</a></li>
@@ -696,17 +697,17 @@ match a or b
 <p>Dates and times in base R all proceed from an <em>“epoch”</em> or <em>time origin</em>. In R, the <em>epoch</em> or “dawn of time” occurred at midnight on January 1<sup>st</sup>, 1970. For the sake of the R programming world, the concept of time started at that precise moment and has moved forward ever since. To note: R can handle date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time” by calling the <code>Sys.time()</code> function.</p>
 <div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="rprog3.html#cb247-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2020-08-28 14:04:43 MDT&quot;</code></pre>
+<pre><code>## [1] &quot;2020-08-31 11:13:41 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and current timezone used by my computer. If you want to see how this time is stored in R internally, you can use <code>unclass()</code>, which returns an object value with its class attributes removed. When we wrap <code>unclass()</code> around <code>Sys.time()</code>, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:</p>
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="rprog3.html#cb249-1"></a><span class="kw">unclass</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1598645083</code></pre>
+<pre><code>## [1] 1598894021</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
-Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span> 365d/yr] ~ 50.692703 years.<br />
+Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span> 365d/yr] ~ 50.7005968 years.<br />
 This calculation ignores leap years but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats</h3>
-<p>Note that the <code>Sys.time()</code> function provided the date in a <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong> format: 2020-08-28 14:04:43</p>
+<p>Note that the <code>Sys.time()</code> function provided the date in a <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong> format: 2020-08-31 11:13:41</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky. You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
@@ -839,18 +840,18 @@ each column can be thought of as a vector), you can use <code>class()</code>:</p
 <p>Both the <code>POSIXct</code> and <code>POSIXlt</code> class of objects return the same value to the user; the difference is really in how these classes store date-time objects internally. To examine them, you can coerce <code>Sys.time()</code> into each of the two classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and then examine their attributes.</p>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="rprog3.html#cb253-1"></a>time_now_ct &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb253-2"><a href="rprog3.html#cb253-2"></a><span class="kw">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1598645083</code></pre>
+<pre><code>## [1] 1598894022</code></pre>
 <div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="rprog3.html#cb255-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb255-2"><a href="rprog3.html#cb255-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 43.2
-##  $ min   : int 4
-##  $ hour  : int 14
-##  $ mday  : int 28
+##  $ sec   : num 41.7
+##  $ min   : int 13
+##  $ hour  : int 11
+##  $ mday  : int 31
 ##  $ mon   : int 7
 ##  $ year  : int 120
-##  $ wday  : int 5
-##  $ yday  : int 240
+##  $ wday  : int 1
+##  $ yday  : int 243
 ##  $ isdst : int 1
 ##  $ zone  : chr &quot;MDT&quot;
 ##  $ gmtoff: int -21600

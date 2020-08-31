@@ -1150,7 +1150,7 @@ indexing with a comma when working with dataframes.
 
 ## Chapter 2 Exercises
 
-### Day 1 (August 28)
+### Set 1: Session, helpfiles, scripts, and objects
 
 0. Within your R project for this course, open a "fresh" R session (Session > Restart R, if RStudio is already open). Using `getwd()` in the console, confirm the working directory is your R project.
 
@@ -1158,7 +1158,7 @@ indexing with a comma when working with dataframes.
 
 2. Still in the console and using `?`, open and examine the helpfile for one of the base R packages named above. Use the function listed in the "Details" section of the helpfile to call the full package documentation, including a list of functions. Call and examine the helpfile for one of these functions.
 
-3. Go to File > New File > R Script to open a new R script. Add your name to the top of the R script as a comment. Call `mtcars` (dataset about cars in base R) in the console. Then, using the `gets arrow`, save `mtcars` as an object named `mtcars_data` in your R script. Saving the relevant commands in the R script, examine the structure of `mtcars_data` and determine its dimensions and variable class types (e.g., numeric, logical).
+3. Go to File > New File > R Script to open a new R script. Add your name to the top of the R script as a comment. Call `mtcars` (dataset about cars in base R) in the console. Then, using the `gets arrow`, save `mtcars` as an object named `mtcars_data` in your R script. Saving the relevant commands in the R script, examine the structure of `mtcars_data` and determine its dimensions and variable class types (e.g., numeric, logical). Save your R script with an informative file name (e.g., "class-activity-DATE") in the `/R` folder of your R project and commit your changes to GitHub with a meaningful commit message and push the changes.
 
 #### Example Code
 
@@ -1196,24 +1196,23 @@ mtcars
 mtcars_data <- mtcars
 # view structure of mtcars_data
 str(mtcars_data)
-# a tidyverse alternative to `str()`
+# a tidyverse alternative to `str()` 
+## extra: https://stackoverflow.com/questions/23660094/whats-the-difference-between-integer-class-and-numeric-class-in-r
 tibble::glimpse(mtcars_data)
 # assess dimensions of mtcars_data
 dim(mtcars_data)
-# determine variable class types
+# determine variable class types (by individual variable)
 class(mtcars_data$mpg)
 ```
 
 There are 32 observations (vehicle models) and 11 variables, all of which are 
 numeric.
 
-### Day 2 (August 31)
+### Set 2: Loading and using packages
 
-4. Install `dplyr`, a popular R package for data wrangling, from your console. In your R script, load `dplyr`. Using `dplyr::filter()`, determine the number of cars in `mtcars_data` with an average miles per gallon (`mpg`) above 25.
+4. Reopen the R script from the above set of exercises. Install `dplyr`, a popular R package for data wrangling, from your console. In your R script, load `dplyr`. Using `dplyr::filter()`, determine the number of cars in `mtcars_data` with an average miles per gallon (`mpg`) above 25. Save the R script and commit the changes to GitHub with a meaningful commit message; push the changes.
 
-5. Save your R script with an informative file name (e.g., "class-activity-DATE") in the `/R` folder of your R project.
-
-6. **If you have extra time**: Navigate to the "Tutorial" tab in your environment panel. Complete the "Data Basics" tutorial via `learnr`.
+5. Navigate to the "Tutorial" tab in your environment panel. Complete the "Data Basics" tutorial via `learnr`.
 
 #### Example Code
 
@@ -1226,6 +1225,7 @@ library(dplyr)
 # filter to vehicles with mpg above 25
 dplyr::filter(mtcars_data, mpg > 25.0)
 ```
+
 There are six vehicles in `mtcars_data` with MPG above 25.
 
 ## Chapter 2 Homework
