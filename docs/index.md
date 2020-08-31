@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens and Kathleen E. Wendt"
-date: "2020-08-28"
+date: "2020-08-31"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
@@ -114,6 +114,19 @@ Course grades will be determined by the following five components:
 </tbody>
 </table>
 
+### Homework submission
+
+There will be a homework assignment per coursebook chapter. Each homework will
+be due at the start of the class period when lecture coverage of the *next*
+chapter commences. For example, Chapter 2 Homework will be due at the start 
+of the first lecture regarding Chapter 3.
+
+From RStudio, you will  upload ("commit"/"push") your homework to a private
+folder on our class GitHub Organization. Your commits will be time-stamped; any
+commit after the start of class on a given day will be considered late, and the
+assignment will be graded (or not graded) accordingly. Guidance on installing
+and connecting R/RStudio and Git/GitHub is provided in the next section.
+
 ## Course set-up
 
 This might be painful, but bear with me. There will be a lot of software
@@ -214,7 +227,8 @@ help.
 Then, in the [public repository](https://github.com/MECH481A6/questions) for
 class-related questions and discussion, **open another issue**. You can ask a
 question, share any course-related concerns, or post a brief comment about what
-you hope to gain from this course. Remember to mention/assign Kathleen @wendtke, so she is alerted to your post. 
+you hope to gain from this course. Remember to mention/assign Kathleen
+@wendtke, so she is alerted to your post. 
 
 Kathleen will then close both of your issues, and you will be ready to go!
 
