@@ -977,9 +977,11 @@ knitr::include_graphics("./images/markdown_render.png")
 The following sections includes exercises for each lecture regarding Chapter 3.
 Rhetorical or group discussion questions are also included to help you think 
 about *why* we are making certain workflow recommendations and to get you in
-the habit of doing these things regularly. The third set of exercises ends with
-several challenges questions that will require you to look outside of the 
-lecture and coursebook. These are optional, but give them a shot.
+the habit of doing these things regularly. Throughout, I included challenge
+questions will require you to look outside of the lecture and coursebook. These
+are optional and do not include answers within the coursebook, but give them a
+shot. They cover concepts that are important to you as an independent R
+programmer.
 
 ### Set 1: Pathnames and data import 
 
@@ -1024,11 +1026,14 @@ small, regular commits and intermittent pushes in everything you do in R.
 ```{r set-1-ex-code, eval=FALSE}
 # 1. working directory
 getwd()
+
 # 4. relative pathname 
 ozone_data <- readr::read_csv(file = "data/ftc_o3.csv")
+
 # 4. absolute pathname - for illustration - not recommended usually
 ozone_abs_path <- base::paste0("~/Documents/R/edar_coursebook/data/ftc_o3.csv")
 ozone_abs_ex <- readr::read_csv(file = ozone_abs_path)
+
 # 5. possible functions for initial data view and check
 tibble::glimpse(ozone_data)
 head(ozone_data)
@@ -1045,35 +1050,91 @@ class(ozone_data$[selected_colname]) # example structure; will not run
 
 ### Set 2: Data wrangling and piping
 
-Note: In the real world, you would not receive such a "tidy" data file as you
+_Note_: In the real world, you would not receive such a "tidy" data file as you
 will use for the following exercises. You would normally need to clean up the
 file structure, variables, and column names before anything else, typically
-within a "pipe" of "verbs" from `dplyr`. 
-
-Before you write any code, however, you need to think about what kind of
-wrangling needs to be done for your data. I recommend you *literally* sketch
-our your desired dataframe result. 
-
-But, in this case, don't worry because we did that leg work for you; the ozone
-data file is clean upon import. In the future, keep the handy function `janitor::clean_names()` in mind to clean all variable names at once. Also,
+within a "pipe" of "verbs" from `dplyr`. Before you write any code, however,
+you need to think about what kind of wrangling needs to be done for your data.
+I recommend you *literally* sketch our your desired dataframe result. But, in
+this case, don't worry because we did that leg work for you; the ozone
+data file is clean upon import. In the future, keep the handy function
+`janitor::clean_names()` in mind to clean all variable names at once. Also,
 peruse Hadley Wickham's [paper](https://vita.had.co.nz/papers/tidy-data.pdf) on
 "tidy data" to understand what it is and how to make messy data tidy.
 
 0. Open your class R Project locally. Restart session, if R Project is already
 open. Open R script you used for the first set of exercises. Rerun the code to
 populate your environment, i.e., load and view the data.
+
 1. Using `dplyr::select()` and the pipe (`%>%`), select the
-`sample_measurement` and `datetime` and assign the resulting dataframe/tibble
-to an object called `ozone_hourly`. 
-2. 
+`sample_measurement`, `units_of_measure`, and `datetime` and assign the
+resulting dataframe/tibble to an object called `ozone_hourly`. Remember to load
+(and install, if needed) the related R packages! _What are some of the R packages that contain the pipe? There are many, and you have been introduced to at least one._
 
-Find the maximum and minimum values for the month (and compare them to the standard, even though it’s only a 1-hr measurement)
-Count how many values are above 0.07 in the dataset
-Mutate the sample_measurement column to convert “parts-per-million” into “parts-per-billion” units (i.e., multiply by 1000)
+2. Examine the `ozone_hourly` dataframe. Do you notice anything strange about 
+the `sample_measurement` values? If not, try to find the range, minimum, or 
+maximum of those values. You can't---there are `NA` values. Add a line to your
+`ozone_hourly` pipe in the previous question that removes the missing
+observations, using `drop_na()` from the `tidyr` package. _Note_: There are
+base R alternatives for removing missing observations, but, for the sake of 
+continuity within your pipe, try to use `drop_na()`. Remember, not all 
+functions require formal arguments. 
 
-- `dplyr` verbs on df
-- logical operators within `dplyr::filter()`
-- piping
+3. How many observations do you lose due to missingness? Obtain a six-number
+summary of the `sample_measurement` vector. What is the minimum value? Maximum?
+How do these compare to the median and mean? 
+
+4. Using another `dplyr` verb but no pipe, determine how many times the ozone
+measurement was above 0.07. Now, re-write the code on a new line using a pipe.
+Save the output of one of these approaches to a new `df`, following naming 
+conventions.
+
+5. Overwriting the `ozone_hourly` dataframe and using a different `dplyr` verb within a pipe, create a new column (`ozone_ppb`) by multiplying the "parts-per-million" values from `sample_measurement` by 1000.
+
+6. **Challenge**: Generate a histogram of `sample_measurement`.
+
+```{r set-2-ex-code, eval=FALSE}
+# 0. set-up
+## rerun code from the first set of exercises
+
+# 1. select variables and create new df
+library(magrittr) # original R package for pipe %>%
+library(dplyr) # for verbs; also contains pipe
+ozone_hourly <- ozone_data %>% 
+  dplyr::select(sample_measurement,
+                datetime) %>% 
+  tidyr::drop_na() 
+
+# 2. check df
+## see example code from first set for possible initial viewing functions
+range(ozone_hourly$sample_measurement)
+min(ozone_hourly$sample_measurement)
+max(ozone_hourly$sample_measurement)
+# manage missingness
+ozone_hourly <- ozone_data %>% 
+  dplyr::select(sample_measurement,
+                datetime) %>% 
+  tidyr::drop_na() 
+
+# 3. missingness and summary
+## 606 observations were lost due to missingness
+summary(ozone_hourly$sample_measurement)
+
+# 4. filter ozone level
+## without pipe
+dplyr::filter(.data = ozone_data,
+              sample_measurement > 0.070)
+## with pipe
+ozone_hourly %>% 
+  dplyr::filter(sample_measurement > 0.070)
+## save output from one of the above approaches
+high_ozone <- ozone_hourly %>% 
+  dplyr::filter(sample_measurement > 0.070)
+
+# create new column 
+ozone_hourly <- ozone_hourly %>% 
+  dplyr::mutate(ozone_ppb = sample_measurement*1000)
+```
 
 ### Set 3: R Markdown
 
