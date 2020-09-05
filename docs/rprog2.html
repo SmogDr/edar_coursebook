@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-08-31" />
+<meta name="date" content="2020-09-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -215,15 +215,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7.3" data-path="rprog2.html"><a href="rprog2.html#text"><i class="fa fa-check"></i><b>3.7.3</b> Text</a></li>
 <li class="chapter" data-level="3.7.4" data-path="rprog2.html"><a href="rprog2.html#code-chunks"><i class="fa fa-check"></i><b>3.7.4</b> Code Chunks</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#ch-3-exercises"><i class="fa fa-check"></i><b>3.8</b> Ch-3 Exercises</a></li>
-<li class="chapter" data-level="3.9" data-path="rprog2.html"><a href="rprog2.html#ch-3-homework"><i class="fa fa-check"></i><b>3.9</b> Ch-3 Homework</a><ul>
-<li class="chapter" data-level="3.9.1" data-path="rprog2.html"><a href="rprog2.html#downloading-and-checking-out-the-example-data"><i class="fa fa-check"></i><b>3.9.1</b> Downloading and checking out the example data</a></li>
-<li class="chapter" data-level="3.9.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-different-types-of-files"><i class="fa fa-check"></i><b>3.9.2</b> Reading in different types of files</a></li>
-<li class="chapter" data-level="3.9.3" data-path="rprog2.html"><a href="rprog2.html#directory-structure-1"><i class="fa fa-check"></i><b>3.9.3</b> Directory structure</a></li>
-<li class="chapter" data-level="3.9.4" data-path="rprog2.html"><a href="rprog2.html#cleaning-up-data-1"><i class="fa fa-check"></i><b>3.9.4</b> Cleaning up data #1</a></li>
-<li class="chapter" data-level="3.9.5" data-path="rprog2.html"><a href="rprog2.html#cleaning-up-data-2"><i class="fa fa-check"></i><b>3.9.5</b> Cleaning up data #2</a></li>
-<li class="chapter" data-level="3.9.6" data-path="rprog2.html"><a href="rprog2.html#piping-1"><i class="fa fa-check"></i><b>3.9.6</b> Piping</a></li>
+<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#chapter-3-exercises"><i class="fa fa-check"></i><b>3.8</b> Chapter 3 Exercises</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="rprog2.html"><a href="rprog2.html#set-1-pathnames-and-data-import"><i class="fa fa-check"></i><b>3.8.1</b> Set 1: Pathnames and data import</a></li>
+<li class="chapter" data-level="3.8.2" data-path="rprog2.html"><a href="rprog2.html#set-2-data-wrangling-and-piping"><i class="fa fa-check"></i><b>3.8.2</b> Set 2: Data wrangling and piping</a></li>
+<li class="chapter" data-level="3.8.3" data-path="rprog2.html"><a href="rprog2.html#set-3-r-markdown"><i class="fa fa-check"></i><b>3.8.3</b> Set 3: R Markdown</a></li>
 </ul></li>
+<li class="chapter" data-level="3.9" data-path="rprog2.html"><a href="rprog2.html#chapter-3-homework"><i class="fa fa-check"></i><b>3.9</b> Chapter 3 Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a><ul>
 <li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#ch.-4-objectives"><i class="fa fa-check"></i><b>4.1</b> Ch. 4 Objectives</a></li>
@@ -427,6 +424,7 @@ relative and absolute pathnames</li>
 <li>Apply logical operators in conjunction with <code>dplyr</code>’s <code>filter()</code> function to
 create subsets of a dataframe based on logical conditions</li>
 <li>Apply a sequence of <code>dplyr</code> functions to a dataframe using piping (<code>%&gt;%</code>)</li>
+<li>Learn the basics of R Markdown</li>
 </ul>
 </div>
 <div id="overview" class="section level2">
@@ -556,10 +554,10 @@ delimiter; however, you will need to specify the type of delimiter using the
 <p>For example, to read in the Ebola data, which is comma-delimited, you could
 either use <code>read_table()</code> with a <code>delim</code> argument specified or use
 <code>read_csv()</code>, in which case you don’t have to specify <code>delim</code>:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="rprog2.html#cb117-1"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;readr&quot;</span>)</span>
-<span id="cb117-2"><a href="rprog2.html#cb117-2"></a><span class="co"># The following two calls do the same thing</span></span>
-<span id="cb117-3"><a href="rprog2.html#cb117-3"></a>ebola &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_delim</span>(<span class="dt">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="rprog2.html#cb118-1"></a>ebola &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="rprog2.html#cb116-1"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;readr&quot;</span>)</span>
+<span id="cb116-2"><a href="rprog2.html#cb116-2"></a><span class="co"># The following two calls do the same thing</span></span>
+<span id="cb116-3"><a href="rprog2.html#cb116-3"></a>ebola &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_delim</span>(<span class="dt">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="rprog2.html#cb117-1"></a>ebola &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   Date = col_character(),
@@ -784,7 +782,7 @@ will be one of the directories somewhere in your computer’s directory
 structure. At any time, you can figure out which directory R is working in by
 running the command <code>getwd()</code> (short for “get working directory”). For example,
 my R session is currently running in the following directory:</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="rprog2.html#cb121-1"></a><span class="kw">getwd</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="rprog2.html#cb120-1"></a><span class="kw">getwd</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;/Users/wendtke/Documents/R/edar_coursebook&quot;</code></pre>
 <p>This means that, for my current R session, R is working in the
 <code>edar_coursebook</code> subdirectory of my <code>johnvolckens</code> directory (home directory).</p>
@@ -830,7 +828,7 @@ regardless of your current working directory, because it gives directions from
 the root. In other words, it will always be clear to R exactly what file you’re
 talking about. Here’s the code to use to read that file in using the
 <code>read.csv()</code> function with the file’s absolute pathname:</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="rprog2.html#cb124-1"></a>heat_mort &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;/Users/brookeanderson/Desktop/RCourseFall2015/CourseText/heat_mort.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="rprog2.html#cb123-1"></a>heat_mort &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;/Users/brookeanderson/Desktop/RCourseFall2015/CourseText/heat_mort.csv&quot;</span>)</span></code></pre></div>
 <p>The <em>relative pathname</em>, on the other hand, gives R the directions for how to
 get to a directory or file from the current working directory. If the file or
 directory you’re looking for is pretty close to your current working directory
@@ -848,7 +846,7 @@ would be:</p>
 <pre><code>&quot;CourseText/heat_mort.csv&quot;</code></pre>
 <p>You can use this relative pathname to tell R where to find and read in the
 file:</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="rprog2.html#cb126-1"></a>heat_mort &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;CourseText/heat_mort.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="rprog2.html#cb125-1"></a>heat_mort &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;CourseText/heat_mort.csv&quot;</span>)</span></code></pre></div>
 <p>While this pathname is much shorter than the absolute pathname, it is important
 to remember that if you are working in a different working directory, this
 relative pathname would no longer work.</p>
@@ -944,11 +942,11 @@ resulting vector will only be one element long for basic uses of <code>paste()</
 while the inputs will be several different character stings.) You separate all
 the different things you want to paste together using with commas in the
 function call. For example:</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="rprog2.html#cb131-1"></a><span class="kw">paste</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="rprog2.html#cb130-1"></a><span class="kw">paste</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Sunday Monday Tuesday&quot;</code></pre>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="rprog2.html#cb133-1"></a><span class="kw">length</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="rprog2.html#cb132-1"></a><span class="kw">length</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="rprog2.html#cb135-1"></a><span class="kw">length</span>(<span class="dt">x =</span> <span class="kw">paste</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="rprog2.html#cb134-1"></a><span class="kw">length</span>(<span class="dt">x =</span> <span class="kw">paste</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>The <code>paste()</code> function has an option called <code>sep =</code>. This tells R what you
 want to use to separate the values you’re pasting together in the output. The
@@ -956,13 +954,13 @@ default is for R to use a space, as shown in the example above. To change the
 separator, you can change this option, and you can put in just about anything
 you want. For example, if you wanted to paste all the values together without
 spaces, you could use <code>sep = ""</code>:</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="rprog2.html#cb137-1"></a><span class="kw">paste</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="rprog2.html#cb136-1"></a><span class="kw">paste</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;SundayMondayTuesday&quot;</code></pre>
 <p>As a shortcut, instead of using the <code>sep = ""</code> option, you could achieve the
 same thing using the <code>paste0</code> function. This function is almost exactly like
 <code>paste</code>, but it defaults to <code>""</code> (i.e., no space) as the separator between
 values by default:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="rprog2.html#cb139-1"></a><span class="kw">paste0</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="rprog2.html#cb138-1"></a><span class="kw">paste0</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;SundayMondayTuesday&quot;</code></pre>
 <p>With pathnames, you will usually not want spaces. Therefore, you could think
 about using <code>paste0()</code> to write an object with the pathname you want to
@@ -988,10 +986,10 @@ a non-secure webpage (i.e., one that starts with <code>http</code>) and for file
 secure webpage (i.e., one that starts with <code>https</code>), including GitHub and
 Dropbox.</p>
 <p>For example, to read in data from this <a href="https://raw.githubusercontent.com/cmrivers/ebola/master/country_timeseries.csv">GitHub repository of Ebola data</a>, you can run:</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="rprog2.html#cb142-1"></a>url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;https://raw.githubusercontent.com/cmrivers/&quot;</span>,</span>
-<span id="cb142-2"><a href="rprog2.html#cb142-2"></a>              <span class="st">&quot;ebola/master/country_timeseries.csv&quot;</span>)</span>
-<span id="cb142-3"><a href="rprog2.html#cb142-3"></a>ebola &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> url)</span>
-<span id="cb142-4"><a href="rprog2.html#cb142-4"></a><span class="kw">slice</span>(<span class="dt">.data =</span> (dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> ebola, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)), <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="rprog2.html#cb141-1"></a>url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;https://raw.githubusercontent.com/cmrivers/&quot;</span>,</span>
+<span id="cb141-2"><a href="rprog2.html#cb141-2"></a>              <span class="st">&quot;ebola/master/country_timeseries.csv&quot;</span>)</span>
+<span id="cb141-3"><a href="rprog2.html#cb141-3"></a>ebola &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> url)</span>
+<span id="cb141-4"><a href="rprog2.html#cb141-4"></a><span class="kw">slice</span>(<span class="dt">.data =</span> (dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> ebola, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)), <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   Date       Day Cases_Guinea
 ##   &lt;chr&gt;    &lt;dbl&gt;        &lt;dbl&gt;
@@ -1041,11 +1039,11 @@ examples in this section, I use example data listing guests to the Daily Show.
 To follow along with these examples, you’ll want to load that data, as well as
 load the <code>dplyr</code> package. Install it using <code>install.packages()</code> if you have not
 done so already.</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="rprog2.html#cb144-1"></a><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
-<span id="cb144-2"><a href="rprog2.html#cb144-2"></a>daily_show &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>, <span class="dt">skip =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="rprog2.html#cb143-1"></a><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb143-2"><a href="rprog2.html#cb143-2"></a>daily_show &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>, <span class="dt">skip =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p>I’ve used this data in previous examples, but as a reminder, here’s what it
 looks like:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="rprog2.html#cb145-1"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="rprog2.html#cb144-1"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##    YEAR GoogleKnowlege_Occupation Show    Group  Raw_Guest_List  
 ##   &lt;dbl&gt; &lt;chr&gt;                     &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;           
@@ -1067,26 +1065,26 @@ work with a column name that:</p>
 <p>You can check out the column names for a dataframe using the <code>colnames()</code>
 function, with the dataframe object as the argument. Several of the column
 names in <code>daily_show</code> have some of these issues:</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="rprog2.html#cb147-1"></a><span class="kw">colnames</span>(<span class="dt">x =</span> daily_show)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="rprog2.html#cb146-1"></a><span class="kw">colnames</span>(<span class="dt">x =</span> daily_show)</span></code></pre></div>
 <pre><code>## [1] &quot;YEAR&quot;                      &quot;GoogleKnowlege_Occupation&quot;
 ## [3] &quot;Show&quot;                      &quot;Group&quot;                    
 ## [5] &quot;Raw_Guest_List&quot;</code></pre>
 <p>To rename these columns, use <code>rename()</code>. The basic syntax is:</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="rprog2.html#cb149-1"></a><span class="co">## generic code; will not run</span></span>
-<span id="cb149-2"><a href="rprog2.html#cb149-2"></a>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">.data =</span> dataframe,</span>
-<span id="cb149-3"><a href="rprog2.html#cb149-3"></a>              <span class="dt">new_column_name_1 =</span> old_column_name_<span class="dv">1</span>,</span>
-<span id="cb149-4"><a href="rprog2.html#cb149-4"></a>              <span class="dt">new_column_name_2 =</span> old_column_name_<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="rprog2.html#cb148-1"></a><span class="co">## generic code; will not run</span></span>
+<span id="cb148-2"><a href="rprog2.html#cb148-2"></a>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">.data =</span> dataframe,</span>
+<span id="cb148-3"><a href="rprog2.html#cb148-3"></a>              <span class="dt">new_column_name_1 =</span> old_column_name_<span class="dv">1</span>,</span>
+<span id="cb148-4"><a href="rprog2.html#cb148-4"></a>              <span class="dt">new_column_name_2 =</span> old_column_name_<span class="dv">2</span>)</span></code></pre></div>
 <p>The first argument is the dataframe for which you’d like to rename columns.
 Then you list each pair of new and old column names (in that order) for each
 of the columns you want to rename. To rename columns in the <code>daily_show</code> data
 using <code>rename()</code>, for example, you would run:</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="rprog2.html#cb150-1"></a>daily_show &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">.data =</span> daily_show,</span>
-<span id="cb150-2"><a href="rprog2.html#cb150-2"></a>                            <span class="dt">year =</span> YEAR,</span>
-<span id="cb150-3"><a href="rprog2.html#cb150-3"></a>                            <span class="dt">job =</span> GoogleKnowlege_Occupation,</span>
-<span id="cb150-4"><a href="rprog2.html#cb150-4"></a>                            <span class="dt">date =</span> Show,</span>
-<span id="cb150-5"><a href="rprog2.html#cb150-5"></a>                            <span class="dt">category =</span> Group,</span>
-<span id="cb150-6"><a href="rprog2.html#cb150-6"></a>                            <span class="dt">guest_name =</span> Raw_Guest_List)</span>
-<span id="cb150-7"><a href="rprog2.html#cb150-7"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="rprog2.html#cb149-1"></a>daily_show &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">.data =</span> daily_show,</span>
+<span id="cb149-2"><a href="rprog2.html#cb149-2"></a>                            <span class="dt">year =</span> YEAR,</span>
+<span id="cb149-3"><a href="rprog2.html#cb149-3"></a>                            <span class="dt">job =</span> GoogleKnowlege_Occupation,</span>
+<span id="cb149-4"><a href="rprog2.html#cb149-4"></a>                            <span class="dt">date =</span> Show,</span>
+<span id="cb149-5"><a href="rprog2.html#cb149-5"></a>                            <span class="dt">category =</span> Group,</span>
+<span id="cb149-6"><a href="rprog2.html#cb149-6"></a>                            <span class="dt">guest_name =</span> Raw_Guest_List)</span>
+<span id="cb149-7"><a href="rprog2.html#cb149-7"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 5
 ##    year job                date    category guest_name     
 ##   &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;          
@@ -1104,13 +1102,13 @@ Many of the functions in tidyverse packages, including those in <code>dplyr</cod
 <p>Next, you may want to select only some columns of the dataframe. You can use
 the <code>select()</code> function from <code>dplyr</code> to subset the dataframe to certain
 columns. The basic structure of this command is:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="rprog2.html#cb152-1"></a><span class="co">## generic code; will not run</span></span>
-<span id="cb152-2"><a href="rprog2.html#cb152-2"></a>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> dataframe, column_name_<span class="dv">1</span>, column_name_<span class="dv">2</span>, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="rprog2.html#cb151-1"></a><span class="co">## generic code; will not run</span></span>
+<span id="cb151-2"><a href="rprog2.html#cb151-2"></a>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> dataframe, column_name_<span class="dv">1</span>, column_name_<span class="dv">2</span>, ...)</span></code></pre></div>
 <p>In this call, you first specify the dataframe to use and then list all of the
 column names to include in the output dataframe, with commas between each
 column name. For example, to select all columns in <code>daily_show</code> except <code>year</code>
 (since that information is already included in <code>date</code>), run:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="rprog2.html#cb153-1"></a>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> daily_show, job, date, category, guest_name)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="rprog2.html#cb152-1"></a>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> daily_show, job, date, category, guest_name)</span></code></pre></div>
 <pre><code>## # A tibble: 2,693 x 4
 ##    job                date    category guest_name      
 ##    &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;           
@@ -1134,8 +1132,8 @@ Don’t forget that, if you want to change column names in the saved object, you
 example, we wanted all the columns except one. Instead of writing out all the
 columns we want, we can use <code>-</code> with only the columns we don’t want to
 save time (notice the object reassignment/override):</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="rprog2.html#cb155-1"></a>daily_show &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> daily_show, <span class="op">-</span>year)</span>
-<span id="cb155-2"><a href="rprog2.html#cb155-2"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dt">n =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="rprog2.html#cb154-1"></a>daily_show &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> daily_show, <span class="op">-</span>year)</span>
+<span id="cb154-2"><a href="rprog2.html#cb154-2"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dt">n =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 4
 ##   job                date    category guest_name     
 ##   &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;          
@@ -1147,14 +1145,14 @@ save time (notice the object reassignment/override):</p>
 <h3><span class="header-section-number">3.5.3</span> Add or change columns</h3>
 <p>You can change a column or add a new column using the <code>mutate()</code> function from
 the <code>dplyr</code> package. That function has the syntax:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="rprog2.html#cb157-1"></a><span class="co"># generic code; will not run</span></span>
-<span id="cb157-2"><a href="rprog2.html#cb157-2"></a>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data =</span> dataframe,</span>
-<span id="cb157-3"><a href="rprog2.html#cb157-3"></a>              <span class="dt">changed_column =</span> <span class="cf">function</span>(changed_column),</span>
-<span id="cb157-4"><a href="rprog2.html#cb157-4"></a>              <span class="dt">new_column =</span> <span class="cf">function</span>(other arguments))</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="rprog2.html#cb156-1"></a><span class="co"># generic code; will not run</span></span>
+<span id="cb156-2"><a href="rprog2.html#cb156-2"></a>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data =</span> dataframe,</span>
+<span id="cb156-3"><a href="rprog2.html#cb156-3"></a>              <span class="dt">changed_column =</span> <span class="cf">function</span>(changed_column),</span>
+<span id="cb156-4"><a href="rprog2.html#cb156-4"></a>              <span class="dt">new_column =</span> <span class="cf">function</span>(other arguments))</span></code></pre></div>
 <p>For example, the <code>job</code> column in <code>daily_show</code> sometimes uses upper case and
 sometimes does not. This call uses the <code>unique()</code> function to list only unique
 values in this column:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="rprog2.html#cb158-1"></a><span class="kw">head</span>(<span class="dt">x =</span> <span class="kw">unique</span>(<span class="dt">x =</span> daily_show<span class="op">$</span>job), <span class="dt">n =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="rprog2.html#cb157-1"></a><span class="kw">head</span>(<span class="dt">x =</span> <span class="kw">unique</span>(<span class="dt">x =</span> daily_show<span class="op">$</span>job), <span class="dt">n =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##  [1] &quot;actor&quot;              &quot;Comedian&quot;           &quot;television actress&quot;
 ##  [4] &quot;film actress&quot;       &quot;Singer-lyricist&quot;    &quot;model&quot;             
 ##  [7] &quot;stand-up comedian&quot;  &quot;actress&quot;            &quot;comedian&quot;          
@@ -1162,9 +1160,9 @@ values in this column:</p>
 <p>To make all the observations in the <code>job</code> column lowercase, use the
 <code>str_to_lower()</code> function from the <code>stringr</code> package within a <code>mutate()</code>
 function:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="rprog2.html#cb160-1"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;stringr&quot;</span>)</span>
-<span id="cb160-2"><a href="rprog2.html#cb160-2"></a><span class="kw">mutate</span>(<span class="dt">.data =</span> daily_show, </span>
-<span id="cb160-3"><a href="rprog2.html#cb160-3"></a>       <span class="dt">job =</span> <span class="kw">str_to_lower</span>(<span class="dt">string =</span> job))</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="rprog2.html#cb159-1"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;stringr&quot;</span>)</span>
+<span id="cb159-2"><a href="rprog2.html#cb159-2"></a><span class="kw">mutate</span>(<span class="dt">.data =</span> daily_show, </span>
+<span id="cb159-3"><a href="rprog2.html#cb159-3"></a>       <span class="dt">job =</span> <span class="kw">str_to_lower</span>(<span class="dt">string =</span> job))</span></code></pre></div>
 <pre><code>## # A tibble: 2,693 x 4
 ##    job                date    category guest_name      
 ##    &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;           
@@ -1219,14 +1217,14 @@ might want to get a dataset with only the guests from 2015, or only guests who
 are scientists.</p>
 <p>You can use the <code>filter()</code> function from <code>dplyr</code> to filter a dataframe down to
 a subset of rows. The syntax is:</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="rprog2.html#cb162-1"></a><span class="co">## generic code; will not run</span></span>
-<span id="cb162-2"><a href="rprog2.html#cb162-2"></a><span class="kw">filter</span>(<span class="dt">.data =</span> dataframe, logical expression)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="rprog2.html#cb161-1"></a><span class="co">## generic code; will not run</span></span>
+<span id="cb161-2"><a href="rprog2.html#cb161-2"></a><span class="kw">filter</span>(<span class="dt">.data =</span> dataframe, logical expression)</span></code></pre></div>
 <p>The <code>logical expression</code> in this call gives the condition that a row must meet
 to be included in the output data frame. For example, if you want to create a
 data frame that only includes guests who were scientists, you can run:</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="rprog2.html#cb163-1"></a>scientists &lt;-<span class="st"> </span><span class="kw">filter</span>(<span class="dt">.data =</span> daily_show, </span>
-<span id="cb163-2"><a href="rprog2.html#cb163-2"></a>                     category <span class="op">==</span><span class="st"> &quot;Science&quot;</span>)</span>
-<span id="cb163-3"><a href="rprog2.html#cb163-3"></a><span class="kw">head</span>(<span class="dt">x =</span> scientists)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="rprog2.html#cb162-1"></a>scientists &lt;-<span class="st"> </span><span class="kw">filter</span>(<span class="dt">.data =</span> daily_show, </span>
+<span id="cb162-2"><a href="rprog2.html#cb162-2"></a>                     category <span class="op">==</span><span class="st"> &quot;Science&quot;</span>)</span>
+<span id="cb162-3"><a href="rprog2.html#cb162-3"></a><span class="kw">head</span>(<span class="dt">x =</span> scientists)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   job            date    category guest_name            
 ##   &lt;chr&gt;          &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;                 
@@ -1301,45 +1299,45 @@ trick called “piping” (with <code>%&gt;%</code>) that will let you complete 
 wrangling steps at once.</p>
 <p>If you look at the format of these <code>dplyr</code> functions, you’ll notice that they
 all take a dataframe as their first argument:</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="rprog2.html#cb165-1"></a><span class="co"># generic code; will not run</span></span>
-<span id="cb165-2"><a href="rprog2.html#cb165-2"></a><span class="kw">rename</span>(<span class="dt">.data =</span> dataframe, </span>
-<span id="cb165-3"><a href="rprog2.html#cb165-3"></a>       <span class="dt">new_column_name_1 =</span> old_column_name_<span class="dv">1</span>,</span>
-<span id="cb165-4"><a href="rprog2.html#cb165-4"></a>       <span class="dt">new_column_name_2 =</span> old_column_name_<span class="dv">2</span>)</span>
-<span id="cb165-5"><a href="rprog2.html#cb165-5"></a><span class="kw">select</span>(<span class="dt">.data =</span> dataframe, </span>
-<span id="cb165-6"><a href="rprog2.html#cb165-6"></a>       column_name_<span class="dv">1</span>, column_name_<span class="dv">2</span>)</span>
-<span id="cb165-7"><a href="rprog2.html#cb165-7"></a><span class="kw">filter</span>(<span class="dt">.data =</span> dataframe, </span>
-<span id="cb165-8"><a href="rprog2.html#cb165-8"></a>       logical expression)</span>
-<span id="cb165-9"><a href="rprog2.html#cb165-9"></a><span class="kw">mutate</span>(<span class="dt">.data =</span> dataframe,</span>
-<span id="cb165-10"><a href="rprog2.html#cb165-10"></a>       <span class="dt">changed_column =</span> <span class="cf">function</span>(changed_column),</span>
-<span id="cb165-11"><a href="rprog2.html#cb165-11"></a>       <span class="dt">new_column =</span> <span class="cf">function</span>(other arguments))</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="rprog2.html#cb164-1"></a><span class="co"># generic code; will not run</span></span>
+<span id="cb164-2"><a href="rprog2.html#cb164-2"></a><span class="kw">rename</span>(<span class="dt">.data =</span> dataframe, </span>
+<span id="cb164-3"><a href="rprog2.html#cb164-3"></a>       <span class="dt">new_column_name_1 =</span> old_column_name_<span class="dv">1</span>,</span>
+<span id="cb164-4"><a href="rprog2.html#cb164-4"></a>       <span class="dt">new_column_name_2 =</span> old_column_name_<span class="dv">2</span>)</span>
+<span id="cb164-5"><a href="rprog2.html#cb164-5"></a><span class="kw">select</span>(<span class="dt">.data =</span> dataframe, </span>
+<span id="cb164-6"><a href="rprog2.html#cb164-6"></a>       column_name_<span class="dv">1</span>, column_name_<span class="dv">2</span>)</span>
+<span id="cb164-7"><a href="rprog2.html#cb164-7"></a><span class="kw">filter</span>(<span class="dt">.data =</span> dataframe, </span>
+<span id="cb164-8"><a href="rprog2.html#cb164-8"></a>       logical expression)</span>
+<span id="cb164-9"><a href="rprog2.html#cb164-9"></a><span class="kw">mutate</span>(<span class="dt">.data =</span> dataframe,</span>
+<span id="cb164-10"><a href="rprog2.html#cb164-10"></a>       <span class="dt">changed_column =</span> <span class="cf">function</span>(changed_column),</span>
+<span id="cb164-11"><a href="rprog2.html#cb164-11"></a>       <span class="dt">new_column =</span> <span class="cf">function</span>(other arguments))</span></code></pre></div>
 <p>Without piping, you have to reassign the dataframe object at each step of this
 cleaning if you want the changes saved in the object:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="rprog2.html#cb166-1"></a>daily_show &lt;-<span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>,</span>
-<span id="cb166-2"><a href="rprog2.html#cb166-2"></a>                      <span class="dt">skip =</span> <span class="dv">4</span>)</span>
-<span id="cb166-3"><a href="rprog2.html#cb166-3"></a>daily_show &lt;-<span class="st"> </span><span class="kw">rename</span>(<span class="dt">.data =</span> daily_show, </span>
-<span id="cb166-4"><a href="rprog2.html#cb166-4"></a>                     <span class="dt">job =</span> GoogleKnowlege_Occupation,</span>
-<span id="cb166-5"><a href="rprog2.html#cb166-5"></a>                     <span class="dt">date =</span> Show,</span>
-<span id="cb166-6"><a href="rprog2.html#cb166-6"></a>                     <span class="dt">category =</span> Group,</span>
-<span id="cb166-7"><a href="rprog2.html#cb166-7"></a>                     <span class="dt">guest_name =</span> Raw_Guest_List)</span>
-<span id="cb166-8"><a href="rprog2.html#cb166-8"></a>daily_show &lt;-<span class="st"> </span><span class="kw">select</span>(<span class="dt">.data =</span> daily_show, </span>
-<span id="cb166-9"><a href="rprog2.html#cb166-9"></a>                     <span class="op">-</span>YEAR) </span>
-<span id="cb166-10"><a href="rprog2.html#cb166-10"></a>daily_show &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> daily_show, </span>
-<span id="cb166-11"><a href="rprog2.html#cb166-11"></a>                     <span class="dt">job =</span> <span class="kw">str_to_lower</span>(job))</span>
-<span id="cb166-12"><a href="rprog2.html#cb166-12"></a>daily_show &lt;-<span class="st"> </span><span class="kw">filter</span>(<span class="dt">.data =</span> daily_show, </span>
-<span id="cb166-13"><a href="rprog2.html#cb166-13"></a>                     category <span class="op">==</span><span class="st"> &quot;Science&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="rprog2.html#cb165-1"></a>daily_show &lt;-<span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>,</span>
+<span id="cb165-2"><a href="rprog2.html#cb165-2"></a>                      <span class="dt">skip =</span> <span class="dv">4</span>)</span>
+<span id="cb165-3"><a href="rprog2.html#cb165-3"></a>daily_show &lt;-<span class="st"> </span><span class="kw">rename</span>(<span class="dt">.data =</span> daily_show, </span>
+<span id="cb165-4"><a href="rprog2.html#cb165-4"></a>                     <span class="dt">job =</span> GoogleKnowlege_Occupation,</span>
+<span id="cb165-5"><a href="rprog2.html#cb165-5"></a>                     <span class="dt">date =</span> Show,</span>
+<span id="cb165-6"><a href="rprog2.html#cb165-6"></a>                     <span class="dt">category =</span> Group,</span>
+<span id="cb165-7"><a href="rprog2.html#cb165-7"></a>                     <span class="dt">guest_name =</span> Raw_Guest_List)</span>
+<span id="cb165-8"><a href="rprog2.html#cb165-8"></a>daily_show &lt;-<span class="st"> </span><span class="kw">select</span>(<span class="dt">.data =</span> daily_show, </span>
+<span id="cb165-9"><a href="rprog2.html#cb165-9"></a>                     <span class="op">-</span>YEAR) </span>
+<span id="cb165-10"><a href="rprog2.html#cb165-10"></a>daily_show &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> daily_show, </span>
+<span id="cb165-11"><a href="rprog2.html#cb165-11"></a>                     <span class="dt">job =</span> <span class="kw">str_to_lower</span>(job))</span>
+<span id="cb165-12"><a href="rprog2.html#cb165-12"></a>daily_show &lt;-<span class="st"> </span><span class="kw">filter</span>(<span class="dt">.data =</span> daily_show, </span>
+<span id="cb165-13"><a href="rprog2.html#cb165-13"></a>                     category <span class="op">==</span><span class="st"> &quot;Science&quot;</span>)</span></code></pre></div>
 <p>Piping lets you streamline this process. It can be used with any function that
 inputs a dataframe as its first argument. It <em>pipes</em> the dataframe created
 right before the pipe (<code>%&gt;%</code>) into the function right after the pipe. With
 piping, therefore, the above data cleaning looks like:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="rprog2.html#cb167-1"></a>daily_show &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>,</span>
-<span id="cb167-2"><a href="rprog2.html#cb167-2"></a>                              <span class="dt">skip =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span></span>
-<span id="cb167-3"><a href="rprog2.html#cb167-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">job =</span> GoogleKnowlege_Occupation,</span>
-<span id="cb167-4"><a href="rprog2.html#cb167-4"></a>                <span class="dt">date =</span> Show,</span>
-<span id="cb167-5"><a href="rprog2.html#cb167-5"></a>                <span class="dt">category =</span> Group,</span>
-<span id="cb167-6"><a href="rprog2.html#cb167-6"></a>                <span class="dt">guest_name =</span> Raw_Guest_List) <span class="op">%&gt;%</span></span>
-<span id="cb167-7"><a href="rprog2.html#cb167-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>YEAR) <span class="op">%&gt;%</span></span>
-<span id="cb167-8"><a href="rprog2.html#cb167-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">job =</span> <span class="kw">str_to_lower</span>(job)) <span class="op">%&gt;%</span></span>
-<span id="cb167-9"><a href="rprog2.html#cb167-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(category <span class="op">==</span><span class="st"> &quot;Science&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="rprog2.html#cb166-1"></a>daily_show &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>,</span>
+<span id="cb166-2"><a href="rprog2.html#cb166-2"></a>                              <span class="dt">skip =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span></span>
+<span id="cb166-3"><a href="rprog2.html#cb166-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">job =</span> GoogleKnowlege_Occupation,</span>
+<span id="cb166-4"><a href="rprog2.html#cb166-4"></a>                <span class="dt">date =</span> Show,</span>
+<span id="cb166-5"><a href="rprog2.html#cb166-5"></a>                <span class="dt">category =</span> Group,</span>
+<span id="cb166-6"><a href="rprog2.html#cb166-6"></a>                <span class="dt">guest_name =</span> Raw_Guest_List) <span class="op">%&gt;%</span></span>
+<span id="cb166-7"><a href="rprog2.html#cb166-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>YEAR) <span class="op">%&gt;%</span></span>
+<span id="cb166-8"><a href="rprog2.html#cb166-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">job =</span> <span class="kw">str_to_lower</span>(job)) <span class="op">%&gt;%</span></span>
+<span id="cb166-9"><a href="rprog2.html#cb166-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(category <span class="op">==</span><span class="st"> &quot;Science&quot;</span>)</span></code></pre></div>
 <p>Notice that, when piping, the first argument (name of the dataframe) is
 excluded from all function calls that follow a pipe. This is because piping
 sends the dataframe from the last step into each of the following functions as
@@ -1442,421 +1440,220 @@ Figure 3.5: Example R Markdown when “rendered” into an html document.
 </div>
 </div>
 </div>
-<div id="ch-3-exercises" class="section level2">
-<h2><span class="header-section-number">3.8</span> Ch-3 Exercises</h2>
-<ul>
-<li>Import local and/or online data file and assign to object name</li>
-<li>Examine object structure</li>
-<li>Think about what kind of data wrangling needs to be done and sketch out the desired dataframe result</li>
-<li>Practice a few <code>dplyr</code> verbs within pipe to clean up dataframe</li>
-</ul>
+<div id="chapter-3-exercises" class="section level2">
+<h2><span class="header-section-number">3.8</span> Chapter 3 Exercises</h2>
+<p>The following sections includes exercises for each lecture regarding Chapter 3.
+Rhetorical or group discussion questions are also included to help you think
+about <em>why</em> we are making certain workflow recommendations and to get you in
+the habit of doing these things regularly. Throughout, I included challenge
+questions will require you to look outside of the lecture and coursebook. These
+are optional and do not include answers within the coursebook, but give them a
+shot. They cover concepts that are important to you as an independent R
+programmer.</p>
+<div id="set-1-pathnames-and-data-import" class="section level3">
+<h3><span class="header-section-number">3.8.1</span> Set 1: Pathnames and data import</h3>
+<ol start="0" style="list-style-type: decimal">
+<li><p>Open your class R Project locally. Restart session, if your R Project is
+already open. Create an R script (e.g., <code>ch-3-exercises.R</code>) and save it in the
+<code>/code</code> folder.</p></li>
+<li><p>In the RStudio Console, determine your current working directory. Make sure
+the working directory is pointed to the location of <code>ch-3-exercises.R</code> within
+your R Project. If it is not, navigate to Session &gt; Set Working Directory &gt; To
+Source File Location. Again, check your current working directory to confirm.</p></li>
+<li><p>Write “metadata” at the top of the R script using <code>#</code>, including your name,
+today’s date, class, and chapter. Add a heading called “Pathnames and Data
+Import”.</p></li>
+<li><p>Download the Fort Collins ozone dataset locally and save the <code>.csv</code> file in
+the <code>/data</code> folder in your R Project. What would be a better, more descriptive
+name for the data file that also follows file-naming conventions (e.g., no
+spaces, human- and machine-readable)? Change the file name locally. Commit the
+additions to GitHub (e.g., “add ozone data file”, “create ch3 r script”) but
+leave a queue of commits to push at the end of the class.</p></li>
+<li><p>What is the absolute pathname of the ozone data file on your local computer?
+Using <code>paste0()</code>, save your absolute pathname as an object called
+<code>ozone_abs_path</code>. What is the relative pathname of the ozone data file on your
+local computer? Using the appropriate function call from the <code>readr</code> package,
+within the <code>package::function()</code> coding style, import the ozone data using the
+<em>relative pathname</em> and assign it to a dataframe/tibble object called
+<code>ozone_data</code>. Now, try importing the data using the <code>ozone_abs_path</code> object.
+Commit this work. <em>What kind of problems would you encounter if you regularly used absolute pathnames in your R scripts in setting the working directory or importing/exporting files?</em></p></li>
+<li><p>Rerun the line of code for data import with the relative pathname.
+<em>What kind of message did R return in the console when you imported the data file? What information can you glean from this?</em>
+In your R script, execute some of the suggested function calls (from previous
+lectures and chapters) that provide similar information to “see” and explore
+the dataframe/tibble object. Examine the output. Make a commit.</p></li>
+<li><p>Push all queued commits to GitHub. PSA: Regularly follow this workflow of
+small, regular commits and intermittent pushes in everything you do in R.</p></li>
+</ol>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="rprog2.html#cb167-1"></a><span class="co"># 1. working directory</span></span>
+<span id="cb167-2"><a href="rprog2.html#cb167-2"></a><span class="kw">getwd</span>()</span>
+<span id="cb167-3"><a href="rprog2.html#cb167-3"></a></span>
+<span id="cb167-4"><a href="rprog2.html#cb167-4"></a><span class="co"># 4. relative pathname </span></span>
+<span id="cb167-5"><a href="rprog2.html#cb167-5"></a>ozone_data &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/ftc_o3.csv&quot;</span>)</span>
+<span id="cb167-6"><a href="rprog2.html#cb167-6"></a></span>
+<span id="cb167-7"><a href="rprog2.html#cb167-7"></a><span class="co"># 4. absolute pathname - for illustration - not recommended usually</span></span>
+<span id="cb167-8"><a href="rprog2.html#cb167-8"></a>ozone_abs_path &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">paste0</span>(<span class="st">&quot;~/Documents/R/edar_coursebook/data/ftc_o3.csv&quot;</span>)</span>
+<span id="cb167-9"><a href="rprog2.html#cb167-9"></a>ozone_abs_ex &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> ozone_abs_path)</span>
+<span id="cb167-10"><a href="rprog2.html#cb167-10"></a></span>
+<span id="cb167-11"><a href="rprog2.html#cb167-11"></a><span class="co"># 5. possible functions for initial data view and check</span></span>
+<span id="cb167-12"><a href="rprog2.html#cb167-12"></a>tibble<span class="op">::</span><span class="kw">glimpse</span>(ozone_data)</span>
+<span id="cb167-13"><a href="rprog2.html#cb167-13"></a><span class="kw">head</span>(ozone_data)</span>
+<span id="cb167-14"><a href="rprog2.html#cb167-14"></a><span class="kw">tail</span>(ozone_data)</span>
+<span id="cb167-15"><a href="rprog2.html#cb167-15"></a><span class="kw">str</span>(ozone_data)</span>
+<span id="cb167-16"><a href="rprog2.html#cb167-16"></a><span class="kw">summary</span>(ozone_data)</span>
+<span id="cb167-17"><a href="rprog2.html#cb167-17"></a><span class="kw">dim</span>(ozone_data)</span>
+<span id="cb167-18"><a href="rprog2.html#cb167-18"></a><span class="kw">nrow</span>(ozone_data)</span>
+<span id="cb167-19"><a href="rprog2.html#cb167-19"></a><span class="kw">ncol</span>(ozone_data)</span>
+<span id="cb167-20"><a href="rprog2.html#cb167-20"></a><span class="kw">length</span>(ozone_data)</span>
+<span id="cb167-21"><a href="rprog2.html#cb167-21"></a><span class="kw">colnames</span>(ozone_data)</span>
+<span id="cb167-22"><a href="rprog2.html#cb167-22"></a><span class="kw">class</span>(ozone_data<span class="op">$</span>[selected_colname]) <span class="co"># example structure; will not run</span></span></code></pre></div>
 </div>
-<div id="ch-3-homework" class="section level2">
-<h2><span class="header-section-number">3.9</span> Ch-3 Homework</h2>
-<ul>
-<li>Change data to something related to engineering (pollution/air quality in Fort Collins)</li>
-<li>Use Brooke’s structure below to create homework assignment</li>
-<li>Provide R Markdown template.</li>
-</ul>
-<div id="downloading-and-checking-out-the-example-data" class="section level3">
-<h3><span class="header-section-number">3.9.1</span> Downloading and checking out the example data</h3>
-<p>Download the whole directory for this week from Github
-(<a href="https://github.com/geanders/week_2_data" class="uri">https://github.com/geanders/week_2_data</a>). To do that, go the the <a href="https://github.com/geanders/week_2_data">GitHub page
-with data for this week’s exercise</a>
-and, in the top right, choose “Clone or Download” and then choose “Download
-ZIP”. This will download a compressed file with the full directory of data,
-probably to your computer’s “Downloads” folder. Then move the directory into
-your course Project directory and “unzip” it (try double-clicking the file, or
-right click on the file and see if there’s a “decompress” or “unzip” option).
-All the files will be in a subdirectory—move them into the main Project
-directory (don’t do this in R, just use whatever technique you usually use on
-your computer to move files between directories).</p>
-<ul>
-<li>Look through the structure of the “data” directory. What files are in the
-directory? Which files are <strong>flat files</strong>? Which are <strong>delimited</strong> (one
-category of flat files), and what are their delimiters?</li>
-<li>Create a new R script to put all the code you use for this exercise. Create a
-subdirectory in your course directory called “R” and save this script there
-using a <code>.R</code> extension (e.g., “week_2.R”).</li>
-</ul>
+<div id="set-2-data-wrangling-and-piping" class="section level3">
+<h3><span class="header-section-number">3.8.2</span> Set 2: Data wrangling and piping</h3>
+<p><em>Note</em>: In the real world, you would not receive such a “tidy” data file as you
+will use for the following exercises. You would normally need to clean up the
+file structure, variables, and column names before anything else, typically
+within a “pipe” of “verbs” from <code>dplyr</code>. Before you write any code, however,
+you need to think about what kind of wrangling needs to be done for your data.
+I recommend you <em>literally</em> sketch our your desired dataframe result. But, in
+this case, don’t worry because we did that leg work for you; the ozone
+data file is clean upon import. In the future, keep the handy function
+<code>janitor::clean_names()</code> in mind to clean all variable names at once. Also,
+peruse Hadley Wickham’s <a href="https://vita.had.co.nz/papers/tidy-data.pdf">paper</a> on
+“tidy data” to understand what it is and how to make messy data tidy.</p>
+<ol start="0" style="list-style-type: decimal">
+<li><p>Open your class R Project locally. Restart session, if R Project is already
+open. Open R script you used for the first set of exercises. Rerun the code to
+populate your environment, i.e., load and view the data.</p></li>
+<li><p>Using <code>dplyr::select()</code> and the pipe (<code>%&gt;%</code>), select the
+<code>sample_measurement</code>, <code>units_of_measure</code>, and <code>datetime</code> and assign the
+resulting dataframe/tibble to an object called <code>ozone_hourly</code>. Remember to load
+(and install, if needed) the related R packages! <em>What are some of the R packages that contain the pipe? There are many, and you have been introduced to at least one.</em></p></li>
+<li><p>Examine the <code>ozone_hourly</code> dataframe. Do you notice anything strange about
+the <code>sample_measurement</code> values? If not, try to find the range, minimum, or
+maximum of those values. You can’t—there are <code>NA</code> values. Add a line to your
+<code>ozone_hourly</code> pipe in the previous question that removes the missing
+observations, using <code>drop_na()</code> from the <code>tidyr</code> package. <em>Note</em>: There are
+base R alternatives for removing missing observations, but, for the sake of
+continuity within your pipe, try to use <code>drop_na()</code>. Remember, not all
+functions require formal arguments.</p></li>
+<li><p>How many observations do you lose due to missingness? Obtain a six-number
+summary of the <code>sample_measurement</code> vector. What is the minimum value? Maximum?
+How do these compare to the median and mean?</p></li>
+<li><p>Using another <code>dplyr</code> verb but no pipe, determine how many times the ozone
+measurement was above 0.07. Now, re-write the code on a new line using a pipe.
+Save the output of one of these approaches to a new <code>df</code>, following naming
+conventions.</p></li>
+<li><p>Overwriting the <code>ozone_hourly</code> dataframe and using a different <code>dplyr</code> verb within a pipe, create a new column (<code>ozone_ppb</code>) by multiplying the “parts-per-million” values from <code>sample_measurement</code> by 1000.</p></li>
+<li><p><strong>Challenge</strong>: Generate a histogram of <code>sample_measurement</code>.</p></li>
+</ol>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="rprog2.html#cb168-1"></a><span class="co"># 0. set-up</span></span>
+<span id="cb168-2"><a href="rprog2.html#cb168-2"></a><span class="co">## rerun code from the first set of exercises</span></span>
+<span id="cb168-3"><a href="rprog2.html#cb168-3"></a></span>
+<span id="cb168-4"><a href="rprog2.html#cb168-4"></a><span class="co"># 1. select variables and create new df</span></span>
+<span id="cb168-5"><a href="rprog2.html#cb168-5"></a><span class="kw">library</span>(magrittr) <span class="co"># original R package for pipe %&gt;%</span></span>
+<span id="cb168-6"><a href="rprog2.html#cb168-6"></a><span class="kw">library</span>(dplyr) <span class="co"># for verbs; also contains pipe</span></span>
+<span id="cb168-7"><a href="rprog2.html#cb168-7"></a>ozone_hourly &lt;-<span class="st"> </span>ozone_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb168-8"><a href="rprog2.html#cb168-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(sample_measurement,</span>
+<span id="cb168-9"><a href="rprog2.html#cb168-9"></a>                datetime) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb168-10"><a href="rprog2.html#cb168-10"></a><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">drop_na</span>() </span>
+<span id="cb168-11"><a href="rprog2.html#cb168-11"></a></span>
+<span id="cb168-12"><a href="rprog2.html#cb168-12"></a><span class="co"># 2. check df</span></span>
+<span id="cb168-13"><a href="rprog2.html#cb168-13"></a><span class="co">## see example code from first set for possible initial viewing functions</span></span>
+<span id="cb168-14"><a href="rprog2.html#cb168-14"></a><span class="kw">range</span>(ozone_hourly<span class="op">$</span>sample_measurement)</span>
+<span id="cb168-15"><a href="rprog2.html#cb168-15"></a><span class="kw">min</span>(ozone_hourly<span class="op">$</span>sample_measurement)</span>
+<span id="cb168-16"><a href="rprog2.html#cb168-16"></a><span class="kw">max</span>(ozone_hourly<span class="op">$</span>sample_measurement)</span>
+<span id="cb168-17"><a href="rprog2.html#cb168-17"></a><span class="co"># manage missingness</span></span>
+<span id="cb168-18"><a href="rprog2.html#cb168-18"></a>ozone_hourly &lt;-<span class="st"> </span>ozone_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb168-19"><a href="rprog2.html#cb168-19"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(sample_measurement,</span>
+<span id="cb168-20"><a href="rprog2.html#cb168-20"></a>                datetime) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb168-21"><a href="rprog2.html#cb168-21"></a><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">drop_na</span>() </span>
+<span id="cb168-22"><a href="rprog2.html#cb168-22"></a></span>
+<span id="cb168-23"><a href="rprog2.html#cb168-23"></a><span class="co"># 3. missingness and summary</span></span>
+<span id="cb168-24"><a href="rprog2.html#cb168-24"></a><span class="co">## 606 observations were lost due to missingness</span></span>
+<span id="cb168-25"><a href="rprog2.html#cb168-25"></a><span class="kw">summary</span>(ozone_hourly<span class="op">$</span>sample_measurement)</span>
+<span id="cb168-26"><a href="rprog2.html#cb168-26"></a></span>
+<span id="cb168-27"><a href="rprog2.html#cb168-27"></a><span class="co"># 4. filter ozone level</span></span>
+<span id="cb168-28"><a href="rprog2.html#cb168-28"></a><span class="co">## without pipe</span></span>
+<span id="cb168-29"><a href="rprog2.html#cb168-29"></a>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data =</span> ozone_data,</span>
+<span id="cb168-30"><a href="rprog2.html#cb168-30"></a>              sample_measurement <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.070</span>)</span>
+<span id="cb168-31"><a href="rprog2.html#cb168-31"></a><span class="co">## with pipe</span></span>
+<span id="cb168-32"><a href="rprog2.html#cb168-32"></a>ozone_hourly <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb168-33"><a href="rprog2.html#cb168-33"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(sample_measurement <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.070</span>)</span>
+<span id="cb168-34"><a href="rprog2.html#cb168-34"></a><span class="co">## save output from one of the above approaches</span></span>
+<span id="cb168-35"><a href="rprog2.html#cb168-35"></a>high_ozone &lt;-<span class="st"> </span>ozone_hourly <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb168-36"><a href="rprog2.html#cb168-36"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(sample_measurement <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.070</span>)</span>
+<span id="cb168-37"><a href="rprog2.html#cb168-37"></a></span>
+<span id="cb168-38"><a href="rprog2.html#cb168-38"></a><span class="co"># create new column </span></span>
+<span id="cb168-39"><a href="rprog2.html#cb168-39"></a>ozone_hourly &lt;-<span class="st"> </span>ozone_hourly <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb168-40"><a href="rprog2.html#cb168-40"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">ozone_ppb =</span> sample_measurement<span class="op">*</span><span class="dv">1000</span>)</span></code></pre></div>
 </div>
-<div id="reading-in-different-types-of-files" class="section level3">
-<h3><span class="header-section-number">3.9.2</span> Reading in different types of files</h3>
-<p>Now you’ll try reading in data from a variety of types of file formats.</p>
-<p>Try the following tasks:</p>
-<ul>
-<li>What type of flat file do you think the “ld_genetics.txt” file is? See if
-you can read it in and save it as the R object <code>ld_genetics</code>. Use the <code>summary</code>
-function to check out basic statistics on the data.</li>
-<li>Check out the file “measles_data/02-09-2015.txt”. What type of flat file do
-you think it is? Since it’s in a subdirectory, you’ll need to tell R how to get
-to it from the project directory, using something called a
-<strong>relative pathname</strong> (we’ll talk about this a lot more in the next section of the lecture). Read this file into R as an object named <code>ca_measles</code>, using the relative pathname (“measles_data/02-09-2015.txt”) in place of the file name in the <code>read_tsv</code> function call. Use the <code>col_names</code> option to name the columns “city” and “count”. What would the default column names be if you didn’t use this option (try this out by running <code>read_csv()</code> without the <code>col_names</code> option)?</li>
-<li>Read in the Excel file “icd-10.xls” and assign it to the object name <code>idc10</code>.
-Use the <a href="https://github.com/hadley/readxl"><code>readxl</code> package to do that</a>
-(examples are at the bottom of the linked page).</li>
-<li>Read in the SAS file <code>icu.sas7bdat</code>. To do this, use the <a href="https://github.com/hadley/haven"><code>haven</code>
-package</a>. Read the file into the R object
-<code>icu</code>.</li>
-</ul>
-<p>Example R code:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="rprog2.html#cb168-1"></a><span class="co"># Load the `readr` package</span></span>
-<span id="cb168-2"><a href="rprog2.html#cb168-2"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;readr&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="rprog2.html#cb169-1"></a><span class="co"># Use `read_tsv` to read this file. </span></span>
-<span id="cb169-2"><a href="rprog2.html#cb169-2"></a>ld_genetics &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="dt">file =</span> <span class="st">&quot;data/ld_genetics.txt&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   pos = col_double(),
-##   nA = col_double(),
-##   nC = col_double(),
-##   nG = col_double(),
-##   nT = col_double(),
-##   GCsk = col_double(),
-##   TAsk = col_double(),
-##   cGCsk = col_double(),
-##   cTAsk = col_double()
-## )</code></pre>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="rprog2.html#cb171-1"></a><span class="kw">summary</span>(<span class="dt">object =</span> ld_genetics)</span></code></pre></div>
-<pre><code>##       pos                nA            nC              nG       
-##  Min.   :    500   Min.   :185   Min.   :120.0   Min.   : 85.0  
-##  1st Qu.: 876000   1st Qu.:288   1st Qu.:173.0   1st Qu.:172.0  
-##  Median :1751500   Median :308   Median :190.0   Median :189.0  
-##  Mean   :1751500   Mean   :309   Mean   :191.9   Mean   :191.8  
-##  3rd Qu.:2627000   3rd Qu.:329   3rd Qu.:209.0   3rd Qu.:208.0  
-##  Max.   :3502500   Max.   :463   Max.   :321.0   Max.   :326.0  
-##        nT             GCsk                TAsk              cGCsk      
-##  Min.   :188.0   Min.   :-189.0000   Min.   :-254.000   Min.   : -453  
-##  1st Qu.:286.0   1st Qu.: -30.0000   1st Qu.: -36.000   1st Qu.:10796  
-##  Median :306.0   Median :   0.0000   Median :  -2.000   Median :23543  
-##  Mean   :307.2   Mean   :  -0.1293   Mean   :  -1.736   Mean   :22889  
-##  3rd Qu.:328.0   3rd Qu.:  29.0000   3rd Qu.:  32.500   3rd Qu.:34940  
-##  Max.   :444.0   Max.   : 134.0000   Max.   : 205.000   Max.   :46085  
-##      cTAsk      
-##  Min.   :-6247  
-##  1st Qu.: 1817  
-##  Median : 7656  
-##  Mean   : 7855  
-##  3rd Qu.:15036  
-##  Max.   :19049</code></pre>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="rprog2.html#cb173-1"></a><span class="co"># Use `read_tsv` to read this file. Because the first line</span></span>
-<span id="cb173-2"><a href="rprog2.html#cb173-2"></a><span class="co"># of the file is *not* the column names, you need to specify what the column</span></span>
-<span id="cb173-3"><a href="rprog2.html#cb173-3"></a><span class="co"># names should be with the `col_names` parameter. </span></span>
-<span id="cb173-4"><a href="rprog2.html#cb173-4"></a>ca_measles &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="dt">file =</span> <span class="st">&quot;data/measles_data/02-09-2015.txt&quot;</span>,</span>
-<span id="cb173-5"><a href="rprog2.html#cb173-5"></a>                       <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span>, <span class="st">&quot;count&quot;</span>))</span></code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   city = col_character(),
-##   count = col_double()
-## )</code></pre>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="rprog2.html#cb175-1"></a><span class="kw">head</span>(<span class="dt">x =</span> ca_measles)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 2
-##   city               count
-##   &lt;chr&gt;              &lt;dbl&gt;
-## 1 ALAMEDA                6
-## 2 LOS ANGELES           20
-## 3 City of Long Beach     2
-## 4 City of Pasadena       4
-## 5 MARIN                  2
-## 6 ORANGE                34</code></pre>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="rprog2.html#cb177-1"></a><span class="co"># You&#39;ll need the `readxl` package to read in the Excel file. Load that. </span></span>
-<span id="cb177-2"><a href="rprog2.html#cb177-2"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;readxl&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="rprog2.html#cb178-1"></a><span class="co"># Use the `read_excel` function to read in the file. </span></span>
-<span id="cb178-2"><a href="rprog2.html#cb178-2"></a>icd10 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="dt">path =</span> <span class="st">&quot;data/icd-10.xls&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="rprog2.html#cb179-1"></a><span class="kw">head</span>(<span class="dt">x =</span> icd10)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 2
-##   Code    `ICD Title`                                       
-##   &lt;chr&gt;   &lt;chr&gt;                                             
-## 1 A00-B99 I. Certain infectious and parasitic diseases      
-## 2 A00-A09 Intestinal infectious diseases                    
-## 3 A00     Cholera                                           
-## 4 A00.0   Cholera due to Vibrio cholerae 01, biovar cholerae
-## 5 A00.1   Cholera due to Vibrio cholerae 01, biovar eltor   
-## 6 A00.9   Cholera, unspecified</code></pre>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="rprog2.html#cb181-1"></a><span class="co"># You&#39;ll need the `haven` function to read in the SAS file. Load that.</span></span>
-<span id="cb181-2"><a href="rprog2.html#cb181-2"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;haven&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="rprog2.html#cb182-1"></a><span class="co"># Use the `read_sas` function to read in this file.</span></span>
-<span id="cb182-2"><a href="rprog2.html#cb182-2"></a>icu &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="dt">data_file =</span> <span class="st">&quot;data/icu.sas7bdat&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="rprog2.html#cb183-1"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;dplyr&quot;</span>)</span>
-<span id="cb183-2"><a href="rprog2.html#cb183-2"></a><span class="kw">slice</span>(<span class="dt">.data =</span> <span class="kw">select</span>(<span class="dt">.data =</span> icu, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>), <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 5 x 5
-##      ID   STA   AGE GENDER  RACE
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-## 1     4     1    87      1     1
-## 2     8     0    27      1     1
-## 3    12     0    59      0     1
-## 4    14     0    77      0     1
-## 5    27     1    76      1     1</code></pre>
+<div id="set-3-r-markdown" class="section level3">
+<h3><span class="header-section-number">3.8.3</span> Set 3: R Markdown</h3>
+<ol start="0" style="list-style-type: decimal">
+<li><p>Open your class R Project locally. Restart session, if R Project is already
+open.</p></li>
+<li><p>Create a new R Markdown file (<code>.Rmd</code>) in RStudio IDE (File &gt; New File &gt; R
+Markdown) and pick a title (of document, not file) such as “Chapter 3
+Exercises”. Name the file (“ch-3-exercises.Rmd”) and save it to your local R
+Project in <code>/code</code>.</p></li>
+<li><p>In the RStudio Console, determine your current working directory. Make sure
+the working directory is pointed to the location of <code>.Rmd</code> within your R
+Project. If it is not, navigate to Session &gt; Set Working Directory &gt; To Source
+File Location. Again, check your current working directory to confirm.</p></li>
+<li><p>Knit the sample R Markdown to HTML and/or PDF (if you installed LaTex).</p></li>
+<li><p>Commit and push the sample R Markdown and its knitted counterpart to your
+repository on GitHub with a short, informative commit message such as “test
+knit rmd template”.</p></li>
+<li><p>Delete the sample content from the R Markdown file (line 8 and beyond) and
+recommit the change (e.g., “delete rmd template contents”).</p></li>
+<li><p>Below the YAML ( <em>where does the YAML end, and what tells you that?</em> ), copy
+your code from the R script you used for the prior sets of exercises into the R
+Markdown file. Organize this code into relevant headings and within
+thematically appropriate code chunks. For example, the code for data import
+would be in its own code chunk.</p></li>
+<li><p>Add first- , second-, and third-order headings (e.g., “Data Import”, “Using
+Relative Pathname”, "Using Absolute Pathname), using the appropriate Markdown
+symbol. <em>What does this symbol also do (to a completely different effect) within R scripts or inside R Markdown code chunks?</em></p></li>
+<li><p>Knit this document to HTML and/or PDF and examine how R Markdown returns
+output.</p></li>
+</ol>
+<div id="challenge-questions" class="section level4">
+<h4><span class="header-section-number">3.8.3.1</span> Challenge Questions</h4>
+<ol style="list-style-type: decimal">
+<li><p>Change the date to a YYYY-MM-DD format within the R Markdown YAML such that
+it changes <em>every time</em> you re-knit the document on a different day.</p></li>
+<li><p>Implement a change to the code chunk <em>itself</em> that suppresses the message
+returned upon data import.</p></li>
+<li><p>Create a global chunk option below the YAML, telling the R Markdown file (a)
+where to automatically save figures within your R Project directory using a
+short, relative pathname and (b) to suppress warnings and messages when
+knitting. What are some other things you can do in a global options code chunk?
+Compare these to what can be done in an individual code chunk.</p></li>
+</ol>
 </div>
-<div id="directory-structure-1" class="section level3">
-<h3><span class="header-section-number">3.9.3</span> Directory structure</h3>
-<p>Once you have the data, I’d like you to try using <code>getwd()</code> to figure out your
-current working directory and <code>list.files()</code> to figure out which files you have
-in the directories near that current working directory.</p>
-<p>Start by creating a new subdirectory called “data” in your R Project directory
-for this class (if you don’t already have that subdirectory). Move the data you
-downloaded in the start of this In-Course Exercise into that “data”
-subdirectory. (For this, use whatever tools you would normally use on your
-computer to move files from one directory to another—you don’t have to do
-this part in R.) Keep the “measles” data in its own subdirectory (so, the
-“data” subdirectory of your project will have its own “measles” subdirectory,
-which will have those files).</p>
-<p>Check that you are, in fact, in the working directory you think you’re in. Run:</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="rprog2.html#cb185-1"></a><span class="kw">getwd</span>()</span></code></pre></div>
-<p>Does it agree with the R project name in the top right hand corner of your R
-Studio window?</p>
-<p>Now, use the <code>list.files</code> function to print out which files or subdirectories
-you have in your current working directory:</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="rprog2.html#cb186-1"></a><span class="kw">list.files</span>()</span></code></pre></div>
-<p>Try the following tasks:</p>
-<ul>
-<li>Read in the ebola data in <code>country_timeseries.csv</code> from your current working
-directory. This will require you to use a relative filename to direct R to how
-to find that file in the “data” subdirectory of your current working directory.</li>
-<li>Assign the data you read in to an R object named <code>ebola</code>. How many rows and
-columns does it have? What are the names of the columns?</li>
-<li>While staying in the same working directory, used <code>list.files()</code> to print the
-names of the available files in the “data” subdirectory using the <code>path</code>
-argument. How about in the “R” subdirectory (if you have one)?</li>
-<li>Try to list the files in your “data” subdirectory using:
-<ul>
-<li>A relative pathname</li>
-<li>An absolute pathname</li>
-</ul></li>
-<li>Now use a relative pathname along with <code>list.files()</code> to list all the files
-in the “measles_data” subdirectory.</li>
-<li>Then try to read in the Ebola data using the appropriate <code>readr</code> function and
-a relative pathname.</li>
-<li>Which method (absolute or relative pathnames) always used the same code,
-regardless of your current working directory? Which method used different code,
-depending on the starting working directory?</li>
-</ul>
-<p>Read in the Ebola data in <code>country_timeseries.csv</code> from your current working
-directory. This will require you to use a relative filename to direct R to how
-to find that file in the “data” subdirectory of your current working directory.</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="rprog2.html#cb187-1"></a>ebola &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>)</span></code></pre></div>
-<p>How many rows and columns does it have? What are the names of the columns?</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="rprog2.html#cb188-1"></a><span class="kw">dim</span>(<span class="dt">x =</span> ebola)    <span class="co"># Get the dimensions of the data (`nrow` and `ncol` would also work)</span></span>
-<span id="cb188-2"><a href="rprog2.html#cb188-2"></a><span class="kw">colnames</span>(<span class="dt">x =</span> ebola) <span class="co"># Get the column names (you can also just print the object: `ebola`)</span></span></code></pre></div>
-<p>While staying in the same working directory, used <code>list.files()</code> to print the
-names of the available files in the “data” subdirectory by using the <code>path</code>
-argument. How about in the “R” subdirectory (if you have one)?</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="rprog2.html#cb189-1"></a><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;data&quot;</span>)</span>
-<span id="cb189-2"><a href="rprog2.html#cb189-2"></a><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;R&quot;</span>)</span></code></pre></div>
-<p>Try to list the files in your “data” subdirectory using:
-+ A relative pathname
-+ An absolute pathname</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="rprog2.html#cb190-1"></a><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;data&quot;</span>) <span class="co"># This is using a relative pathname</span></span>
-<span id="cb190-2"><a href="rprog2.html#cb190-2"></a><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;/Users/brookeanderson/Documents/r_course_2018/data&quot;</span>) <span class="co"># Absolute pathname</span></span>
-<span id="cb190-3"><a href="rprog2.html#cb190-3"></a>     <span class="co"># (Yours will be different and will depend on how your computer file</span></span>
-<span id="cb190-4"><a href="rprog2.html#cb190-4"></a>     <span class="co"># structure is set up.)</span></span></code></pre></div>
-<p>Now use a relative pathname along with <code>list.files()</code> to list all the files in
-the “measles_data” subdirectory.</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="rprog2.html#cb191-1"></a><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;data/measles_data&quot;</span>)</span></code></pre></div>
-<p>Then try to read in the Ebola data using the appropriate <code>readr</code> function and a
-relative pathname</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="rprog2.html#cb192-1"></a>ebola &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>)</span></code></pre></div>
-<p>If you have extra time:</p>
-<ul>
-<li>Find out some more about this Ebola dataset by checking out <a href="https://github.com/cmrivers/ebola">Caitlin Rivers’
-Ebola data GitHub repository</a>. Who is
-Caitlin
-Rivers? How did she put this dataset together?</li>
-<li>Search for R code related to Ebola research on GitHub. Go to the <a href="https://github.com">GitHub home
-page</a> and use the search bar to search for “ebola”. On the
-results page, scroll down and use the “Language” sidebar on the left to choose
-repositories with R code. Did you find any interesting projects?</li>
-<li>When you <code>list.files()</code> for the “data” subdirectory, almost everything listed
-has a file extension, like <code>.csv</code>, <code>.xls</code>, <code>.sas7bdat</code>. One thing does not.
-Which one? Why does this listing not have a file extension?</li>
-</ul>
 </div>
-<div id="cleaning-up-data-1" class="section level3">
-<h3><span class="header-section-number">3.9.4</span> Cleaning up data #1</h3>
-<p>Try out the following tasks:</p>
-<ul>
-<li>Copy the following code into an R script. Figure out what each line does, and
-add comments to each line of code describing what the code is doing. Use the
-helpfiles for functions as needed to figure out functions we haven’t covered
-yet.</li>
-</ul>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="rprog2.html#cb193-1"></a><span class="co"># Copy this code to an R script and add comments describing what each line is doing</span></span>
-<span id="cb193-2"><a href="rprog2.html#cb193-2"></a><span class="co"># Install any packages that the code loads but that you don&#39;t have.</span></span>
-<span id="cb193-3"><a href="rprog2.html#cb193-3"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;haven&quot;</span>)</span>
-<span id="cb193-4"><a href="rprog2.html#cb193-4"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;forcats&quot;</span>)</span>
-<span id="cb193-5"><a href="rprog2.html#cb193-5"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;stringr&quot;</span>)</span>
-<span id="cb193-6"><a href="rprog2.html#cb193-6"></a></span>
-<span id="cb193-7"><a href="rprog2.html#cb193-7"></a>icu &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="dt">data_file =</span> <span class="st">&quot;data/icu.sas7bdat&quot;</span>)</span>
-<span id="cb193-8"><a href="rprog2.html#cb193-8"></a></span>
-<span id="cb193-9"><a href="rprog2.html#cb193-9"></a>icu &lt;-<span class="st"> </span><span class="kw">select</span>(<span class="dt">.data =</span> icu, ID, AGE, GENDER)</span>
-<span id="cb193-10"><a href="rprog2.html#cb193-10"></a></span>
-<span id="cb193-11"><a href="rprog2.html#cb193-11"></a>icu &lt;-<span class="st"> </span><span class="kw">rename</span>(<span class="dt">.data =</span> icu, </span>
-<span id="cb193-12"><a href="rprog2.html#cb193-12"></a>              <span class="dt">id =</span> ID,</span>
-<span id="cb193-13"><a href="rprog2.html#cb193-13"></a>              <span class="dt">age =</span> AGE,</span>
-<span id="cb193-14"><a href="rprog2.html#cb193-14"></a>              <span class="dt">gender =</span> GENDER)</span>
-<span id="cb193-15"><a href="rprog2.html#cb193-15"></a></span>
-<span id="cb193-16"><a href="rprog2.html#cb193-16"></a>icu &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> icu,</span>
-<span id="cb193-17"><a href="rprog2.html#cb193-17"></a>              <span class="dt">gender =</span> <span class="kw">as_factor</span>(<span class="dt">x =</span> gender),</span>
-<span id="cb193-18"><a href="rprog2.html#cb193-18"></a>              <span class="dt">gender =</span> <span class="kw">fct_recode</span>(<span class="dt">.f =</span> gender,</span>
-<span id="cb193-19"><a href="rprog2.html#cb193-19"></a>                                  <span class="dt">Male =</span> <span class="st">&quot;0&quot;</span>,</span>
-<span id="cb193-20"><a href="rprog2.html#cb193-20"></a>                                  <span class="dt">Female =</span> <span class="st">&quot;1&quot;</span>),</span>
-<span id="cb193-21"><a href="rprog2.html#cb193-21"></a>              <span class="dt">id =</span> <span class="kw">str_c</span>(id)) </span>
-<span id="cb193-22"><a href="rprog2.html#cb193-22"></a></span>
-<span id="cb193-23"><a href="rprog2.html#cb193-23"></a>icu</span></code></pre></div>
-<ul>
-<li>Following previous parts of the in-course exercise, you have an R object
-called <code>ebola</code> (if you need to, use some code from earlier in this in-course
-exercise to read in the data and create that object). Create an object called
-<code>ebola_liberia</code> that only has the columns with the date and the number of cases
-and deaths in Liberia. How many columns does this new dataframe have? How many
-observations?</li>
-<li>Change the column names to <code>date</code>, <code>cases</code>, and <code>deaths</code>.</li>
-<li>Add a column called <code>ratio</code> that has the ratio of deaths to cases for each
-observation (i.e., death counts divided by case counts).</li>
-</ul>
-<p>Example R code:</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="rprog2.html#cb194-1"></a><span class="co"># Load the dplyr package</span></span>
-<span id="cb194-2"><a href="rprog2.html#cb194-2"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;dplyr&quot;</span>)</span>
-<span id="cb194-3"><a href="rprog2.html#cb194-3"></a></span>
-<span id="cb194-4"><a href="rprog2.html#cb194-4"></a><span class="co">## Create a subset with just the Liberia columns and Date</span></span>
-<span id="cb194-5"><a href="rprog2.html#cb194-5"></a>ebola_liberia &lt;-<span class="st"> </span><span class="kw">select</span>(<span class="dt">.data =</span> ebola, </span>
-<span id="cb194-6"><a href="rprog2.html#cb194-6"></a>                        Date, Cases_Liberia, Deaths_Liberia)</span>
-<span id="cb194-7"><a href="rprog2.html#cb194-7"></a><span class="kw">head</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 3
-##   Date       Cases_Liberia Deaths_Liberia
-##   &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt;
-## 1 1/5/2015              NA             NA
-## 2 1/4/2015              NA             NA
-## 3 1/3/2015            8166           3496
-## 4 1/2/2015            8157           3496
-## 5 12/31/2014          8115           3471
-## 6 12/28/2014          8018           3423</code></pre>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="rprog2.html#cb196-1"></a><span class="co">## How many colums and rows does the whole dataset have (could also use `dim`)?</span></span>
-<span id="cb196-2"><a href="rprog2.html#cb196-2"></a><span class="kw">ncol</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="rprog2.html#cb198-1"></a><span class="kw">nrow</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
-<pre><code>## [1] 122</code></pre>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="rprog2.html#cb200-1"></a><span class="co">## Rename the columns</span></span>
-<span id="cb200-2"><a href="rprog2.html#cb200-2"></a>ebola_liberia &lt;-<span class="st"> </span><span class="kw">rename</span>(<span class="dt">.data =</span> ebola_liberia,</span>
-<span id="cb200-3"><a href="rprog2.html#cb200-3"></a>                        <span class="dt">date =</span> Date,</span>
-<span id="cb200-4"><a href="rprog2.html#cb200-4"></a>                        <span class="dt">cases =</span> Cases_Liberia,</span>
-<span id="cb200-5"><a href="rprog2.html#cb200-5"></a>                        <span class="dt">deaths =</span> Deaths_Liberia)</span>
-<span id="cb200-6"><a href="rprog2.html#cb200-6"></a><span class="kw">head</span>(ebola_liberia)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 3
-##   date       cases deaths
-##   &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;
-## 1 1/5/2015      NA     NA
-## 2 1/4/2015      NA     NA
-## 3 1/3/2015    8166   3496
-## 4 1/2/2015    8157   3496
-## 5 12/31/2014  8115   3471
-## 6 12/28/2014  8018   3423</code></pre>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="rprog2.html#cb202-1"></a><span class="co">## Add a `ratio` column</span></span>
-<span id="cb202-2"><a href="rprog2.html#cb202-2"></a>ebola_liberia &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> ebola_liberia, </span>
-<span id="cb202-3"><a href="rprog2.html#cb202-3"></a>                        <span class="dt">ratio =</span> deaths <span class="op">/</span><span class="st"> </span>cases)</span>
-<span id="cb202-4"><a href="rprog2.html#cb202-4"></a><span class="kw">head</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 4
-##   date       cases deaths  ratio
-##   &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1 1/5/2015      NA     NA NA    
-## 2 1/4/2015      NA     NA NA    
-## 3 1/3/2015    8166   3496  0.428
-## 4 1/2/2015    8157   3496  0.429
-## 5 12/31/2014  8115   3471  0.428
-## 6 12/28/2014  8018   3423  0.427</code></pre>
 </div>
-<div id="cleaning-up-data-2" class="section level3">
-<h3><span class="header-section-number">3.9.5</span> Cleaning up data #2</h3>
-<ul>
-<li>Filter out all rows from the <code>ebola_liberia</code> dataframe that are missing death
-counts for Liberia. How many rows are in the dataframe now?</li>
-<li>Create a new object called <code>first_five</code> that has only the five observations
-with the highest death counts in Liberia. What date in this dataset had the
-most deaths?</li>
-</ul>
-<p>Example R code:</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="rprog2.html#cb204-1"></a><span class="co">## Filter out the rows that are missing death counts for Liberia</span></span>
-<span id="cb204-2"><a href="rprog2.html#cb204-2"></a>ebola_liberia &lt;-<span class="st"> </span><span class="kw">filter</span>(<span class="dt">.data =</span> ebola_liberia, </span>
-<span id="cb204-3"><a href="rprog2.html#cb204-3"></a>                        <span class="op">!</span><span class="kw">is.na</span>(deaths))</span>
-<span id="cb204-4"><a href="rprog2.html#cb204-4"></a><span class="kw">head</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 4
-##   date       cases deaths ratio
-##   &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-## 1 1/3/2015    8166   3496 0.428
-## 2 1/2/2015    8157   3496 0.429
-## 3 12/31/2014  8115   3471 0.428
-## 4 12/28/2014  8018   3423 0.427
-## 5 12/24/2014  7977   3413 0.428
-## 6 12/20/2014  7862   3384 0.430</code></pre>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="rprog2.html#cb206-1"></a><span class="kw">nrow</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
-<pre><code>## [1] 81</code></pre>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="rprog2.html#cb208-1"></a><span class="co">## Create an object with just the top five observations in terms of death counts</span></span>
-<span id="cb208-2"><a href="rprog2.html#cb208-2"></a>first_five &lt;-<span class="st"> </span><span class="kw">arrange</span>(<span class="dt">.data =</span> ebola_liberia, </span>
-<span id="cb208-3"><a href="rprog2.html#cb208-3"></a>                      <span class="kw">desc</span>(deaths)) <span class="co"># First, rearrange the rows by deaths</span></span>
-<span id="cb208-4"><a href="rprog2.html#cb208-4"></a>first_five &lt;-<span class="st"> </span><span class="kw">slice</span>(<span class="dt">.data =</span> first_five, </span>
-<span id="cb208-5"><a href="rprog2.html#cb208-5"></a>                    <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="co"># Limit the dataframe to the first five rows</span></span>
-<span id="cb208-6"><a href="rprog2.html#cb208-6"></a>first_five <span class="co"># Two days tied for the highest deaths counts (Jan. 2 and 3, 2015).</span></span></code></pre></div>
-<pre><code>## # A tibble: 5 x 4
-##   date       cases deaths ratio
-##   &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-## 1 1/3/2015    8166   3496 0.428
-## 2 1/2/2015    8157   3496 0.429
-## 3 12/31/2014  8115   3471 0.428
-## 4 12/28/2014  8018   3423 0.427
-## 5 12/24/2014  7977   3413 0.428</code></pre>
-</div>
-<div id="piping-1" class="section level3">
-<h3><span class="header-section-number">3.9.6</span> Piping</h3>
-<p>Try the following tasks:</p>
-<ul>
-<li>Copy the following “piped” code into an R script. Figure out what each line
-does, and add comments to each line of code describing what the code is doing.</li>
-</ul>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="rprog2.html#cb210-1"></a><span class="co"># Copy this code to an R script and add comments describing what each line is doing</span></span>
-<span id="cb210-2"><a href="rprog2.html#cb210-2"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;haven&quot;</span>)</span>
-<span id="cb210-3"><a href="rprog2.html#cb210-3"></a>icu &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="dt">data_file =</span> <span class="st">&quot;data/icu.sas7bdat&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb210-4"><a href="rprog2.html#cb210-4"></a><span class="st">  </span><span class="kw">select</span>(ID, AGE, GENDER) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb210-5"><a href="rprog2.html#cb210-5"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">id =</span> ID,</span>
-<span id="cb210-6"><a href="rprog2.html#cb210-6"></a>         <span class="dt">age =</span> AGE, </span>
-<span id="cb210-7"><a href="rprog2.html#cb210-7"></a>         <span class="dt">gender =</span> GENDER) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb210-8"><a href="rprog2.html#cb210-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gender =</span> <span class="kw">as_factor</span>(<span class="dt">x =</span> gender),</span>
-<span id="cb210-9"><a href="rprog2.html#cb210-9"></a>         <span class="dt">gender =</span> <span class="kw">fct_recode</span>(<span class="dt">.f =</span> gender, </span>
-<span id="cb210-10"><a href="rprog2.html#cb210-10"></a>                             <span class="dt">Male =</span> <span class="st">&quot;0&quot;</span>,</span>
-<span id="cb210-11"><a href="rprog2.html#cb210-11"></a>                             <span class="dt">Female =</span> <span class="st">&quot;1&quot;</span>),</span>
-<span id="cb210-12"><a href="rprog2.html#cb210-12"></a>         <span class="dt">id =</span> <span class="kw">str_c</span>(id)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb210-13"><a href="rprog2.html#cb210-13"></a><span class="st">  </span><span class="kw">arrange</span>(age) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb210-14"><a href="rprog2.html#cb210-14"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
-<span id="cb210-15"><a href="rprog2.html#cb210-15"></a></span>
-<span id="cb210-16"><a href="rprog2.html#cb210-16"></a>icu</span></code></pre></div>
-<ul>
-<li>In previous sections of the in-course exercise, you have created code to read
-in and clean the Ebola dataset to create <code>ebola_liberia</code>. This included the
-following cleaning steps: (1) selecting certain columns, (2) renaming those
-columns, (3) adding a <code>ratio</code> column, and (4)
-removing observations for which the count of deaths in Liberia is missing.
-Re-write this code to create and clean <code>ebola_liberia</code> as “piped” code. Start
-from reading in the raw data.</li>
-</ul>
-<p>Example R code:</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="rprog2.html#cb211-1"></a>ebola_liberia &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb211-2"><a href="rprog2.html#cb211-2"></a><span class="st">  </span><span class="kw">select</span>(Date, Cases_Liberia, Deaths_Liberia) <span class="op">%&gt;%</span><span class="st">  </span></span>
-<span id="cb211-3"><a href="rprog2.html#cb211-3"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">date =</span> Date, </span>
-<span id="cb211-4"><a href="rprog2.html#cb211-4"></a>         <span class="dt">cases =</span> Cases_Liberia, </span>
-<span id="cb211-5"><a href="rprog2.html#cb211-5"></a>         <span class="dt">deaths =</span> Deaths_Liberia) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb211-6"><a href="rprog2.html#cb211-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ratio =</span> deaths <span class="op">/</span><span class="st"> </span>cases) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb211-7"><a href="rprog2.html#cb211-7"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(<span class="dt">x =</span> cases))</span>
-<span id="cb211-8"><a href="rprog2.html#cb211-8"></a></span>
-<span id="cb211-9"><a href="rprog2.html#cb211-9"></a><span class="kw">head</span>(<span class="dt">x =</span> ebola_liberia)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 4
-##   date       cases deaths ratio
-##   &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-## 1 1/3/2015    8166   3496 0.428
-## 2 1/2/2015    8157   3496 0.429
-## 3 12/31/2014  8115   3471 0.428
-## 4 12/28/2014  8018   3423 0.427
-## 5 12/24/2014  7977   3413 0.428
-## 6 12/20/2014  7862   3384 0.430</code></pre>
+<div id="chapter-3-homework" class="section level2">
+<h2><span class="header-section-number">3.9</span> Chapter 3 Homework</h2>
+<p>You will continue to explore and manipulate data on ozone measurements in Fort
+Collins, CO during January 2019.</p>
+<p>On Canvas, download the ozone data (.csv) and R Markdown template (.Rmd),
+which includes a description of the data, the homework questions, and the
+general framework of code-figure-text integration, including the framework for
+a code appendix. Save the data and template files in your local R Project in
+the <code>/data</code> and <code>/homework</code> folders, respectively.</p>
+<p>Remember to check and set your working directory (e.g., Session &gt; Set Working
+Directory &gt; To Source File Location) to point from the R Markdown
+file and detect the data file in <code>/data</code> and also points to <code>/figs</code> as the
+place to save figures and images, which is determined in the R Markdown global
+option chunk I include in the R Markdown template.</p>
+<p>This homework assignment is due at the start of the class when we begin Chapter
+4. We will look for the R Markdown file and the corresponding knitted PDF or
+HTML document within your <code>/homework</code> file. Remember, make regular, memorable
+commits, so you never lose your work. Your work will be considered late if the
+latest knit occurs after the deadline.</p>
 
-</div>
 </div>
 </div>
             </section>

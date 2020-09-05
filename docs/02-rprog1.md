@@ -1417,7 +1417,7 @@ hp_data[3, ] # Last row, all columns
 
 2. Still in the console and using `?`, open and examine the helpfile for one of the base R packages named above. Use the function listed in the "Details" section of the helpfile to call the full package documentation, including a list of functions. Call and examine the helpfile for one of these functions.
 
-3. Go to File > New File > R Script to open a new R script. Add your name to the top of the R script as a comment. Call `mtcars` (dataset about cars in base R) in the console. Then, using the `gets arrow`, save `mtcars` as an object named `mtcars_data` in your R script. Saving the relevant commands in the R script, examine the structure of `mtcars_data` and determine its dimensions and variable class types (e.g., numeric, logical). Save your R script with an informative file name (e.g., "class-activity-DATE") in the `/R` folder of your R project and commit your changes to GitHub with a meaningful commit message and push the changes.
+3. Go to File > New File > R Script to open a new R script. Add your name to the top of the R script as a comment. Call `mtcars` (dataset about cars in base R) in the console. Then, using the `gets arrow`, save `mtcars` as an object named `mtcars_data` in your R script. Saving the relevant commands in the R script, examine the structure of `mtcars_data` and determine its dimensions and variable class types (e.g., numeric, logical). Save your R script with an informative file name (e.g., "class-activity-DATE") in the `/code` folder of your R project and commit your changes to GitHub with a meaningful commit message and push the changes.
 
 #### Example Code
 
@@ -1427,10 +1427,6 @@ hp_data[3, ] # Last row, all columns
 ```r
 # confirm working directory is in high-level folder of R project
 base::getwd()
-```
-
-```
-## [1] "/Users/wendtke/Documents/R/edar_coursebook"
 ```
 
 1. Session information 
@@ -1464,7 +1460,7 @@ mtcars_data <- mtcars
 # view structure of mtcars_data
 str(mtcars_data)
 # a tidyverse alternative to `str()` 
-## note: numeric and double precision vectors are essentially the same in R
+## extra: https://stackoverflow.com/questions/23660094/whats-the-difference-between-integer-class-and-numeric-class-in-r
 tibble::glimpse(mtcars_data)
 # assess dimensions of mtcars_data
 dim(mtcars_data)
