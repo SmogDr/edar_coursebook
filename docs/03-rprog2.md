@@ -24,6 +24,7 @@ relative and absolute pathnames
 - Apply logical operators in conjunction with `dplyr`'s `filter()` function to
 create subsets of a dataframe based on logical conditions 
 - Apply a sequence of `dplyr` functions to a dataframe using piping (`%>%`)
+- Learn the basics of R Markdown
 
 ## Overview
 
@@ -1040,6 +1041,7 @@ A ***markdown*** is a file format designed for the internet. Markdown files allo
   * Markdowns can be opened by almost any application (the file format is non-proprietary), so you don't need to worry about having special software to read them. 
 
 ### R Markdowns
+
 The R Studio IDE can create ***"R Markdowns"*** (file extension .Rmd) specifically for the R programming environment. An R markdown file allows you do lots of things; we will use them to create assignments and homework reports that display R code, the outputs of that code, and plain text. To use the R markdown format, you need to install the `rmarkdown` package: `install.packages("rmarkdown")`. 
 
 **Going forward, all of your homework and coding assignments will be created and submitted in the R Markdown format using either html or pdf outputs.  This may seem uncomfortable at first but you will get accustomed to this format quickly.**
@@ -1047,12 +1049,14 @@ The R Studio IDE can create ***"R Markdowns"*** (file extension .Rmd) specifical
 Each R markdown file contains three basic elements: header, text, and code chunks.  I will explain each of these elements below, but I recommend a visit to the [R Markdown  section](https://rmarkdown.rstudio.com/docs/articles/rmarkdown.html) on the RStudio website. A detailed guide on many of the R markdown output styles (beyond just html and pdf files) is provided [here](https://bookdown.org/yihui/rmarkdown/).
 
 ### Header
+
 The R Markdown "header" section is where you specify details about the file being created.  A markdown header contains **YAML** metadata, which stands for [*"YAML Ain't Markup Language"*](https://yaml.org/spec/1.2/spec.html#Introduction). The YAML (pronounced like “camel") header is essentially a list of directives (referred to as "key:value" pairs) that help application software read and interpret the file. A YAML header can act simultaneously as a "configuration file", a "log file", and "translator file" - allowing one software program to read the output of another program.  An example header with YAML metadata is shown below.
 
 <div class="figure" style="text-align: center">
 <img src="./images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file."  />
 <p class="caption">(\#fig:YAML-1)Example of a YAML header to render an R Markdown into an html file.</p>
 </div>
+
 The header is delineated at the top of the file by a section that begins and ends with three dashes, "---". Within the header are YAML metadata representing key:value pairs; **what are "key:value" pairs?** The **"key:"** is a directive that you want to give to the file and the **"value"** represents the level of detail or information that you want to associate with that directive. Key:value pairs provide instructions on how the file should be read, interpreted, and output. In Figure \@ref(fig:YAML-1), the keys are *"title:"*, *"author:"*, *"date:"*, and *"output:"* and the corresponding values are *"Markdowns"*, *"JV"*, *"7/23/2020"*, and *"html_document"*. You can learn more about key:value pairs in the R Markdown Style Guide for [html](https://bookdown.org/yihui/rmarkdown/html-document.html) and [pdf](https://bookdown.org/yihui/rmarkdown/pdf-document.html).
 
 <div class="rmdnote">
@@ -1065,6 +1069,7 @@ Sometimes, you will want to provide nested formatting directives in your markdow
 <img src="./images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents."  />
 <p class="caption">(\#fig:YAML-2)Example R Markdown header with nested YAML directives to render an html file with a floating table of contents.</p>
 </div>
+
 An important detail to remember with nested YAML metadata is that each nested command **must be indented by 2 spaces** to be interpreted properly.
 
 ### Text
@@ -1082,12 +1087,14 @@ To start a new paragraph in a markdown text section, end a line with two spaces 
 To see a more complete set of formatting options see the [R Markdown CheatSheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf).
 
 ### Code Chunks
+
 Code chunks are the places where you write and execute R code.  A code chunk is initiated with 3 back ticks \`\`\`, followed by a set of *braces* \{\} (aka curly brackets) where you can name the chunk and specify `chunk options`.  The chunk options tell the `knitr` package (the package that renders an R markdown into an output style) how you want that chunk to run and what to do with the output. A list of chunk options can be found [here](https://yihui.org/knitr/options/).  An example markdown is shown below:
 
 <div class="figure" style="text-align: center">
 <img src="./images/markdown_anno.png" alt="Example R Markdown showing header, text, and code chunks." width="1000" />
 <p class="caption">(\#fig:markdown-1)Example R Markdown showing header, text, and code chunks.</p>
 </div>
+
 Once your markdown is complete, you can *render* it into an output file (e.g., html, pdf, doc, rtf) using the `knitr` package, which interprets your YAML header and "knits" the markdown sections into the desired format.  Here is the same markdown rendered into an html document using the `knit` button.
 
 <div class="figure" style="text-align: center">
@@ -1095,579 +1102,242 @@ Once your markdown is complete, you can *render* it into an output file (e.g., h
 <p class="caption">(\#fig:markdown-2)Example R Markdown when "rendered" into an html document.</p>
 </div>
 
-## Ch-3 Exercises
+## Chapter 3 Exercises
 
-- Import local and/or online data file and assign to object name
-- Examine object structure
-- Think about what kind of data wrangling needs to be done and sketch out the desired dataframe result
-- Practice a few `dplyr` verbs within pipe to clean up dataframe
+The following sections includes exercises for each lecture regarding Chapter 3.
+Rhetorical or group discussion questions are also included to help you think 
+about *why* we are making certain workflow recommendations and to get you in
+the habit of doing these things regularly. Throughout, I included challenge
+questions will require you to look outside of the lecture and coursebook. These
+are optional and do not include answers within the coursebook, but give them a
+shot. They cover concepts that are important to you as an independent R
+programmer.
 
-## Ch-3 Homework
+### Set 1: Pathnames and data import 
 
-- Change data to something related to engineering (pollution/air quality in Fort Collins)
-- Use Brooke's structure below to create homework assignment
-- Provide R Markdown template.
+0. Open your class R Project locally. Restart session, if your R Project is
+already open. Create an R script (e.g., `ch-3-exercises.R`) and save it in the
+`/code` folder. 
 
-### Downloading and checking out the example data
+1. In the RStudio Console, determine your current working directory. Make sure
+the working directory is pointed to the location of `ch-3-exercises.R` within
+your R Project. If it is not, navigate to Session > Set Working Directory > To
+Source File Location. Again, check your current working directory to confirm.
 
-Download the whole directory for this week from Github
-(https://github.com/geanders/week_2_data). To do that, go the the [GitHub page
-with data for this week's exercise](https://github.com/geanders/week_2_data)
-and, in the top right, choose "Clone or Download" and then choose "Download
-ZIP". This will download a compressed file with the full directory of data,
-probably to your computer's "Downloads" folder. Then move the directory into
-your course Project directory and "unzip" it (try double-clicking the file, or
-right click on the file and see if there's a "decompress" or "unzip" option).
-All the files will be in a subdirectory---move them into the main Project
-directory (don't do this in R, just use whatever technique you usually use on
-your computer to move files between directories).
+2. Write "metadata" at the top of the R script using `#`, including your name,
+today's date, class, and chapter. Add a heading called "Pathnames and Data
+Import".
 
-- Look through the structure of the "data" directory. What files are in the
-directory? Which files are **flat files**? Which are **delimited** (one
-category of flat files), and what are their delimiters?
-- Create a new R script to put all the code you use for this exercise. Create a
-subdirectory in your course directory called "R" and save this script there
-using a `.R` extension (e.g., "week_2.R").
+3. Download the Fort Collins ozone dataset locally and save the `.csv` file in
+the `/data` folder in your R Project. What would be a better, more descriptive
+name for the data file that also follows file-naming conventions (e.g., no
+spaces, human- and machine-readable)? Change the file name locally. Commit the
+additions to GitHub (e.g., "add ozone data file", "create ch3 r script") but
+leave a queue of commits to push at the end of the class.
 
-### Reading in different types of files
+4. What is the absolute pathname of the ozone data file on your local computer?
+Using `paste0()`, save your absolute pathname as an object called
+`ozone_abs_path`. What is the relative pathname of the ozone data file on your
+local computer? Using the appropriate function call from the `readr` package,
+within the `package::function()` coding style, import the ozone data using the
+*relative pathname* and assign it to a dataframe/tibble object called
+`ozone_data`. Now, try importing the data using the `ozone_abs_path` object.
+Commit this work. _What kind of problems would you encounter if you regularly used absolute pathnames in your R scripts in setting the working directory or importing/exporting files?_
 
-Now you'll try reading in data from a variety of types of file formats.  
+5. Rerun the line of code for data import with the relative pathname. 
+_What kind of message did R return in the console when you imported the data file? What information can you glean from this?_ 
+In your R script, execute some of the suggested function calls (from previous
+lectures and chapters) that provide similar information to "see" and explore
+the dataframe/tibble object. Examine the output. Make a commit.
 
-Try the following tasks:
-
-- What type of flat file do you think the "ld\_genetics.txt" file is? See if 
-you can read it in and save it as the R object `ld_genetics`. Use the `summary`
-function to check out basic statistics on the data.
-- Check out the file "measles\_data/02-09-2015.txt". What type of flat file do
-you think it is? Since it's in a subdirectory, you'll need to tell R how to get
-to it from the project directory, using something called a 
-**relative pathname** (we'll talk about this a lot more in the next section of the lecture). Read this file into R as an object named `ca_measles`, using the relative pathname ("measles\_data/02-09-2015.txt") in place of the file name in the `read_tsv` function call. Use the `col_names` option to name the columns "city" and "count". What would the default column names be if you didn't use this option (try this out by running `read_csv()` without the `col_names` option)?
-- Read in the Excel file "icd-10.xls" and assign it to the object name `idc10`.
-Use the [`readxl` package to do that](https://github.com/hadley/readxl)
-(examples are at the bottom of the linked page).
-- Read in the SAS file `icu.sas7bdat`. To do this, use the [`haven`
-package](https://github.com/hadley/haven). Read the file into the R object
-`icu`.
-
-Example R code:
+6. Push all queued commits to GitHub. PSA: Regularly follow this workflow of
+small, regular commits and intermittent pushes in everything you do in R.
 
 
 ```r
-# Load the `readr` package
-library(package = "readr")
-```
-
-
-```r
-# Use `read_tsv` to read this file. 
-ld_genetics <- read_tsv(file = "data/ld_genetics.txt")
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   pos = col_double(),
-##   nA = col_double(),
-##   nC = col_double(),
-##   nG = col_double(),
-##   nT = col_double(),
-##   GCsk = col_double(),
-##   TAsk = col_double(),
-##   cGCsk = col_double(),
-##   cTAsk = col_double()
-## )
-```
-
-
-```r
-summary(object = ld_genetics)
-```
-
-```
-##       pos                nA            nC              nG       
-##  Min.   :    500   Min.   :185   Min.   :120.0   Min.   : 85.0  
-##  1st Qu.: 876000   1st Qu.:288   1st Qu.:173.0   1st Qu.:172.0  
-##  Median :1751500   Median :308   Median :190.0   Median :189.0  
-##  Mean   :1751500   Mean   :309   Mean   :191.9   Mean   :191.8  
-##  3rd Qu.:2627000   3rd Qu.:329   3rd Qu.:209.0   3rd Qu.:208.0  
-##  Max.   :3502500   Max.   :463   Max.   :321.0   Max.   :326.0  
-##        nT             GCsk                TAsk              cGCsk      
-##  Min.   :188.0   Min.   :-189.0000   Min.   :-254.000   Min.   : -453  
-##  1st Qu.:286.0   1st Qu.: -30.0000   1st Qu.: -36.000   1st Qu.:10796  
-##  Median :306.0   Median :   0.0000   Median :  -2.000   Median :23543  
-##  Mean   :307.2   Mean   :  -0.1293   Mean   :  -1.736   Mean   :22889  
-##  3rd Qu.:328.0   3rd Qu.:  29.0000   3rd Qu.:  32.500   3rd Qu.:34940  
-##  Max.   :444.0   Max.   : 134.0000   Max.   : 205.000   Max.   :46085  
-##      cTAsk      
-##  Min.   :-6247  
-##  1st Qu.: 1817  
-##  Median : 7656  
-##  Mean   : 7855  
-##  3rd Qu.:15036  
-##  Max.   :19049
-```
-
-
-```r
-# Use `read_tsv` to read this file. Because the first line
-# of the file is *not* the column names, you need to specify what the column
-# names should be with the `col_names` parameter. 
-ca_measles <- read_tsv(file = "data/measles_data/02-09-2015.txt",
-                       col_names = c("city", "count"))
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   city = col_character(),
-##   count = col_double()
-## )
-```
-
-
-```r
-head(x = ca_measles)
-```
-
-```
-## # A tibble: 6 x 2
-##   city               count
-##   <chr>              <dbl>
-## 1 ALAMEDA                6
-## 2 LOS ANGELES           20
-## 3 City of Long Beach     2
-## 4 City of Pasadena       4
-## 5 MARIN                  2
-## 6 ORANGE                34
-```
-
-
-```r
-# You'll need the `readxl` package to read in the Excel file. Load that. 
-library(package = "readxl")
-```
-
-
-```r
-# Use the `read_excel` function to read in the file. 
-icd10 <- read_excel(path = "data/icd-10.xls")
-```
-
-
-
-```r
-head(x = icd10)
-```
-
-```
-## # A tibble: 6 x 2
-##   Code    `ICD Title`                                       
-##   <chr>   <chr>                                             
-## 1 A00-B99 I. Certain infectious and parasitic diseases      
-## 2 A00-A09 Intestinal infectious diseases                    
-## 3 A00     Cholera                                           
-## 4 A00.0   Cholera due to Vibrio cholerae 01, biovar cholerae
-## 5 A00.1   Cholera due to Vibrio cholerae 01, biovar eltor   
-## 6 A00.9   Cholera, unspecified
-```
-
-
-```r
-# You'll need the `haven` function to read in the SAS file. Load that.
-library(package = "haven")
-```
-
-
-```r
-# Use the `read_sas` function to read in this file.
-icu <- read_sas(data_file = "data/icu.sas7bdat")
-```
-
-
-
-```r
-library(package = "dplyr")
-slice(.data = select(.data = icu, 1:5), 1:5)
-```
-
-```
-## # A tibble: 5 x 5
-##      ID   STA   AGE GENDER  RACE
-##   <dbl> <dbl> <dbl>  <dbl> <dbl>
-## 1     4     1    87      1     1
-## 2     8     0    27      1     1
-## 3    12     0    59      0     1
-## 4    14     0    77      0     1
-## 5    27     1    76      1     1
-```
-
-### Directory structure 
-
-Once you have the data, I'd like you to try using `getwd()` to figure out your
-current working directory and `list.files()` to figure out which files you have
-in the directories near that current working directory.
-
-Start by creating a new subdirectory called "data" in your R Project directory
-for this class (if you don't already have that subdirectory). Move the data you
-downloaded in the start of this In-Course Exercise into that "data"
-subdirectory. (For this, use whatever tools you would normally use on your
-computer to move files from one directory to another---you don't have to do
-this part in R.) Keep the "measles" data in its own subdirectory (so, the
-"data" subdirectory of your project will have its own "measles" subdirectory,
-which will have those files).
-
-Check that you are, in fact, in the working directory you think you're in. Run:
-
-
-```r
+# 1. working directory
 getwd()
+
+# 4. relative pathname 
+ozone_data <- readr::read_csv(file = "data/ftc_o3.csv")
+
+# 4. absolute pathname - for illustration - not recommended usually
+ozone_abs_path <- base::paste0("~/Documents/R/edar_coursebook/data/ftc_o3.csv")
+ozone_abs_ex <- readr::read_csv(file = ozone_abs_path)
+
+# 5. possible functions for initial data view and check
+tibble::glimpse(ozone_data)
+head(ozone_data)
+tail(ozone_data)
+str(ozone_data)
+summary(ozone_data)
+dim(ozone_data)
+nrow(ozone_data)
+ncol(ozone_data)
+length(ozone_data)
+colnames(ozone_data)
+class(ozone_data$[selected_colname]) # example structure; will not run
 ```
 
-Does it agree with the R project name in the top right hand corner of your R
-Studio window?
+### Set 2: Data wrangling and piping
 
-Now, use the `list.files` function to print out which files or subdirectories
-you have in your current working directory:
+_Note_: In the real world, you would not receive such a "tidy" data file as you
+will use for the following exercises. You would normally need to clean up the
+file structure, variables, and column names before anything else, typically
+within a "pipe" of "verbs" from `dplyr`. Before you write any code, however,
+you need to think about what kind of wrangling needs to be done for your data.
+I recommend you *literally* sketch our your desired dataframe result. But, in
+this case, don't worry because we did that leg work for you; the ozone
+data file is clean upon import. In the future, keep the handy function
+`janitor::clean_names()` in mind to clean all variable names at once. Also,
+peruse Hadley Wickham's [paper](https://vita.had.co.nz/papers/tidy-data.pdf) on
+"tidy data" to understand what it is and how to make messy data tidy.
+
+0. Open your class R Project locally. Restart session, if R Project is already
+open. Open R script you used for the first set of exercises. Rerun the code to
+populate your environment, i.e., load and view the data.
+
+1. Using `dplyr::select()` and the pipe (`%>%`), select the
+`sample_measurement`, `units_of_measure`, and `datetime` and assign the
+resulting dataframe/tibble to an object called `ozone_hourly`. Remember to load
+(and install, if needed) the related R packages! _What are some of the R packages that contain the pipe? There are many, and you have been introduced to at least one._
+
+2. Examine the `ozone_hourly` dataframe. Do you notice anything strange about 
+the `sample_measurement` values? If not, try to find the range, minimum, or 
+maximum of those values. You can't---there are `NA` values. Add a line to your
+`ozone_hourly` pipe in the previous question that removes the missing
+observations, using `drop_na()` from the `tidyr` package. _Note_: There are
+base R alternatives for removing missing observations, but, for the sake of 
+continuity within your pipe, try to use `drop_na()`. Remember, not all 
+functions require formal arguments. 
+
+3. How many observations do you lose due to missingness? Obtain a six-number
+summary of the `sample_measurement` vector. What is the minimum value? Maximum?
+How do these compare to the median and mean? 
+
+4. Using another `dplyr` verb but no pipe, determine how many times the ozone
+measurement was above 0.07. Now, re-write the code on a new line using a pipe.
+Save the output of one of these approaches to a new `df`, following naming 
+conventions.
+
+5. Overwriting the `ozone_hourly` dataframe and using a different `dplyr` verb within a pipe, create a new column (`ozone_ppb`) by multiplying the "parts-per-million" values from `sample_measurement` by 1000.
+
+6. **Challenge**: Generate a histogram of `sample_measurement`.
 
 
 ```r
-list.files()
+# 0. set-up
+## rerun code from the first set of exercises
+
+# 1. select variables and create new df
+library(magrittr) # original R package for pipe %>%
+library(dplyr) # for verbs; also contains pipe
+ozone_hourly <- ozone_data %>% 
+  dplyr::select(sample_measurement,
+                datetime) %>% 
+  tidyr::drop_na() 
+
+# 2. check df
+## see example code from first set for possible initial viewing functions
+range(ozone_hourly$sample_measurement)
+min(ozone_hourly$sample_measurement)
+max(ozone_hourly$sample_measurement)
+# manage missingness
+ozone_hourly <- ozone_data %>% 
+  dplyr::select(sample_measurement,
+                datetime) %>% 
+  tidyr::drop_na() 
+
+# 3. missingness and summary
+## 606 observations were lost due to missingness
+summary(ozone_hourly$sample_measurement)
+
+# 4. filter ozone level
+## without pipe
+dplyr::filter(.data = ozone_data,
+              sample_measurement > 0.070)
+## with pipe
+ozone_hourly %>% 
+  dplyr::filter(sample_measurement > 0.070)
+## save output from one of the above approaches
+high_ozone <- ozone_hourly %>% 
+  dplyr::filter(sample_measurement > 0.070)
+
+# create new column 
+ozone_hourly <- ozone_hourly %>% 
+  dplyr::mutate(ozone_ppb = sample_measurement*1000)
 ```
 
-Try the following tasks: 
-
-* Read in the ebola data in `country_timeseries.csv` from your current working
-directory. This will require you to use a relative filename to direct R to how
-to find that file in the "data" subdirectory of your current working directory.
-* Assign the data you read in to an R object named `ebola`. How many rows and
-columns does it have? What are the names of the columns?
-* While staying in the same working directory, used `list.files()` to print the
-names of the available files in the "data" subdirectory using the `path`
-argument. How about in the "R" subdirectory (if you have one)?
-* Try to list the files in your "data" subdirectory using:
-    + A relative pathname
-    + An absolute pathname
-* Now use a relative pathname along with `list.files()` to list all the files
-in the "measles_data" subdirectory.
-* Then try to read in the Ebola data using the appropriate `readr` function and
-a relative pathname.
-* Which method (absolute or relative pathnames) always used the same code,
-regardless of your current working directory? Which method used different code,
-depending on the starting working directory?
-
-Read in the Ebola data in `country_timeseries.csv` from your current working
-directory. This will require you to use a relative filename to direct R to how
-to find that file in the "data" subdirectory of your current working directory.
-
-
-```r
-ebola <- read_csv(file = "data/country_timeseries.csv")
-```
-
-How many rows and columns does it have? What are the names of the columns?
-
-
-```r
-dim(x = ebola)    # Get the dimensions of the data (`nrow` and `ncol` would also work)
-colnames(x = ebola) # Get the column names (you can also just print the object: `ebola`)
-```
-
-While staying in the same working directory, used `list.files()` to print the
-names of the available files in the "data" subdirectory by using the `path`
-argument. How about in the "R" subdirectory (if you have one)?
-
-
-```r
-list.files(path = "data")
-list.files(path = "R")
-```
-
-Try to list the files in your "data" subdirectory using:
-    + A relative pathname
-    + An absolute pathname
-    
-
-```r
-list.files(path = "data") # This is using a relative pathname
-list.files(path = "/Users/brookeanderson/Documents/r_course_2018/data") # Absolute pathname
-     # (Yours will be different and will depend on how your computer file
-     # structure is set up.)
-```
-
-Now use a relative pathname along with `list.files()` to list all the files in
-the "measles_data" subdirectory.
-
-
-```r
-list.files(path = "data/measles_data")
-```
-
-Then try to read in the Ebola data using the appropriate `readr` function and a
-relative pathname
-
-
-```r
-ebola <- read_csv(file = "data/country_timeseries.csv")
-```
-
-If you have extra time: 
-
-- Find out some more about this Ebola dataset by checking out [Caitlin Rivers'
-Ebola data GitHub repository](https://github.com/cmrivers/ebola). Who is 
-Caitlin
-Rivers? How did she put this dataset together?
-- Search for R code related to Ebola research on GitHub. Go to the [GitHub home
-page](https://github.com) and use the search bar to search for "ebola". On the
-results page, scroll down and use the "Language" sidebar on the left to choose
-repositories with R code. Did you find any interesting projects?
-- When you `list.files()` for the "data" subdirectory, almost everything listed
-has a file extension, like `.csv`, `.xls`, `.sas7bdat`. One thing does not.
-Which one? Why does this listing not have a file extension?
-
-### Cleaning up data #1
-
-Try out the following tasks:
-
-- Copy the following code into an R script. Figure out what each line does, and
-add comments to each line of code describing what the code is doing. Use the 
-helpfiles for functions as needed to figure out functions we haven't covered 
-yet.
-
-
-```r
-# Copy this code to an R script and add comments describing what each line is doing
-# Install any packages that the code loads but that you don't have.
-library(package = "haven")
-library(package = "forcats")
-library(package = "stringr")
-
-icu <- read_sas(data_file = "data/icu.sas7bdat")
-
-icu <- select(.data = icu, ID, AGE, GENDER)
-
-icu <- rename(.data = icu, 
-              id = ID,
-              age = AGE,
-              gender = GENDER)
-
-icu <- mutate(.data = icu,
-              gender = as_factor(x = gender),
-              gender = fct_recode(.f = gender,
-                                  Male = "0",
-                                  Female = "1"),
-              id = str_c(id)) 
-
-icu
-```
-
-- Following previous parts of the in-course exercise, you have an R object
-called `ebola` (if you need to, use some code from earlier in this in-course
-exercise to read in the data and create that object). Create an object called
-`ebola_liberia` that only has the columns with the date and the number of cases
-and deaths in Liberia. How many columns does this new dataframe have? How many
-observations?
-- Change the column names to `date`, `cases`, and `deaths`.
-- Add a column called `ratio` that has the ratio of deaths to cases for each
-observation (i.e., death counts divided by case counts).
-
-Example R code:
-
-
-```r
-# Load the dplyr package
-library(package = "dplyr")
-
-## Create a subset with just the Liberia columns and Date
-ebola_liberia <- select(.data = ebola, 
-                        Date, Cases_Liberia, Deaths_Liberia)
-head(x = ebola_liberia)
-```
-
-```
-## # A tibble: 6 x 3
-##   Date       Cases_Liberia Deaths_Liberia
-##   <chr>              <dbl>          <dbl>
-## 1 1/5/2015              NA             NA
-## 2 1/4/2015              NA             NA
-## 3 1/3/2015            8166           3496
-## 4 1/2/2015            8157           3496
-## 5 12/31/2014          8115           3471
-## 6 12/28/2014          8018           3423
-```
-
-```r
-## How many colums and rows does the whole dataset have (could also use `dim`)?
-ncol(x = ebola_liberia)
-```
-
-```
-## [1] 3
-```
-
-```r
-nrow(x = ebola_liberia)
-```
-
-```
-## [1] 122
-```
-
-```r
-## Rename the columns
-ebola_liberia <- rename(.data = ebola_liberia,
-                        date = Date,
-                        cases = Cases_Liberia,
-                        deaths = Deaths_Liberia)
-head(ebola_liberia)
-```
-
-```
-## # A tibble: 6 x 3
-##   date       cases deaths
-##   <chr>      <dbl>  <dbl>
-## 1 1/5/2015      NA     NA
-## 2 1/4/2015      NA     NA
-## 3 1/3/2015    8166   3496
-## 4 1/2/2015    8157   3496
-## 5 12/31/2014  8115   3471
-## 6 12/28/2014  8018   3423
-```
-
-```r
-## Add a `ratio` column
-ebola_liberia <- mutate(.data = ebola_liberia, 
-                        ratio = deaths / cases)
-head(x = ebola_liberia)
-```
-
-```
-## # A tibble: 6 x 4
-##   date       cases deaths  ratio
-##   <chr>      <dbl>  <dbl>  <dbl>
-## 1 1/5/2015      NA     NA NA    
-## 2 1/4/2015      NA     NA NA    
-## 3 1/3/2015    8166   3496  0.428
-## 4 1/2/2015    8157   3496  0.429
-## 5 12/31/2014  8115   3471  0.428
-## 6 12/28/2014  8018   3423  0.427
-```
-
-### Cleaning up data #2
-
-- Filter out all rows from the `ebola_liberia` dataframe that are missing death
-counts for Liberia. How many rows are in the dataframe now?
-- Create a new object called `first_five` that has only the five observations
-with the highest death counts in Liberia. What date in this dataset had the
-most deaths?
-
-Example R code:
-
-
-```r
-## Filter out the rows that are missing death counts for Liberia
-ebola_liberia <- filter(.data = ebola_liberia, 
-                        !is.na(deaths))
-head(x = ebola_liberia)
-```
-
-```
-## # A tibble: 6 x 4
-##   date       cases deaths ratio
-##   <chr>      <dbl>  <dbl> <dbl>
-## 1 1/3/2015    8166   3496 0.428
-## 2 1/2/2015    8157   3496 0.429
-## 3 12/31/2014  8115   3471 0.428
-## 4 12/28/2014  8018   3423 0.427
-## 5 12/24/2014  7977   3413 0.428
-## 6 12/20/2014  7862   3384 0.430
-```
-
-```r
-nrow(x = ebola_liberia)
-```
-
-```
-## [1] 81
-```
-
-```r
-## Create an object with just the top five observations in terms of death counts
-first_five <- arrange(.data = ebola_liberia, 
-                      desc(deaths)) # First, rearrange the rows by deaths
-first_five <- slice(.data = first_five, 
-                    1:5) # Limit the dataframe to the first five rows
-first_five # Two days tied for the highest deaths counts (Jan. 2 and 3, 2015).
-```
-
-```
-## # A tibble: 5 x 4
-##   date       cases deaths ratio
-##   <chr>      <dbl>  <dbl> <dbl>
-## 1 1/3/2015    8166   3496 0.428
-## 2 1/2/2015    8157   3496 0.429
-## 3 12/31/2014  8115   3471 0.428
-## 4 12/28/2014  8018   3423 0.427
-## 5 12/24/2014  7977   3413 0.428
-```
-
-### Piping
-
-Try the following tasks: 
-
-- Copy the following "piped" code into an R script. Figure out what each line
-does, and add comments to each line of code describing what the code is doing.
-
-
-```r
-# Copy this code to an R script and add comments describing what each line is doing
-library(package = "haven")
-icu <- read_sas(data_file = "data/icu.sas7bdat") %>% 
-  select(ID, AGE, GENDER) %>% 
-  rename(id = ID,
-         age = AGE, 
-         gender = GENDER) %>% 
-  mutate(gender = as_factor(x = gender),
-         gender = fct_recode(.f = gender, 
-                             Male = "0",
-                             Female = "1"),
-         id = str_c(id)) %>% 
-  arrange(age) %>% 
-  slice(1:10)
-
-icu
-```
-
-- In previous sections of the in-course exercise, you have created code to read
-in and clean the Ebola dataset to create `ebola_liberia`. This included the
-following cleaning steps: (1) selecting certain columns, (2) renaming those
-columns, (3) adding a `ratio` column, and (4)
-removing observations for which the count of deaths in Liberia is missing.
-Re-write this code to create and clean `ebola_liberia` as "piped" code. Start
-from reading in the raw data.
-
-Example R code:
-
-
-```r
-ebola_liberia <- read_csv(file = "data/country_timeseries.csv") %>% 
-  select(Date, Cases_Liberia, Deaths_Liberia) %>%  
-  rename(date = Date, 
-         cases = Cases_Liberia, 
-         deaths = Deaths_Liberia) %>% 
-  mutate(ratio = deaths / cases) %>% 
-  filter(!is.na(x = cases))
-
-head(x = ebola_liberia)
-```
-
-```
-## # A tibble: 6 x 4
-##   date       cases deaths ratio
-##   <chr>      <dbl>  <dbl> <dbl>
-## 1 1/3/2015    8166   3496 0.428
-## 2 1/2/2015    8157   3496 0.429
-## 3 12/31/2014  8115   3471 0.428
-## 4 12/28/2014  8018   3423 0.427
-## 5 12/24/2014  7977   3413 0.428
-## 6 12/20/2014  7862   3384 0.430
-```
+### Set 3: R Markdown
+
+0. Open your class R Project locally. Restart session, if R Project is already
+open. 
+
+1. Create a new R Markdown file (`.Rmd`) in RStudio IDE (File > New File > R
+Markdown) and pick a title (of document, not file) such as "Chapter 3
+Exercises". Name the file ("ch-3-exercises.Rmd") and save it to your local R
+Project in `/code`. 
+
+2. In the RStudio Console, determine your current working directory. Make sure
+the working directory is pointed to the location of `.Rmd` within your R
+Project. If it is not, navigate to Session > Set Working Directory > To Source
+File Location. Again, check your current working directory to confirm. 
+
+3. Knit the sample R Markdown to HTML and/or PDF (if you installed LaTex).  
+
+4. Commit and push the sample R Markdown and its knitted counterpart to your
+repository on GitHub with a short, informative commit message such as "test
+knit rmd template".
+
+5. Delete the sample content from the R Markdown file (line 8 and beyond) and
+recommit the change (e.g., "delete rmd template contents").
+
+6. Below the YAML ( _where does the YAML end, and what tells you that?_ ), copy
+your code from the R script you used for the prior sets of exercises into the R
+Markdown file. Organize this code into relevant headings and within
+thematically appropriate code chunks. For example, the code for data import
+would be in its own code chunk. 
+
+7. Add first- , second-, and third-order headings (e.g., "Data Import", "Using
+Relative Pathname", "Using Absolute Pathname), using the appropriate Markdown
+symbol. _What does this symbol also do (to a completely different effect) within R scripts or inside R Markdown code chunks?_ 
+
+8. Knit this document to HTML and/or PDF and examine how R Markdown returns
+output. 
+
+#### Challenge Questions
+
+1. Change the date to a YYYY-MM-DD format within the R Markdown YAML such that
+it changes *every time* you re-knit the document on a different day.
+
+2. Implement a change to the code chunk *itself* that suppresses the message
+returned upon data import.
+
+3. Create a global chunk option below the YAML, telling the R Markdown file (a)
+where to automatically save figures within your R Project directory using a
+short, relative pathname and (b) to suppress warnings and messages when
+knitting. What are some other things you can do in a global options code chunk?
+Compare these to what can be done in an individual code chunk.
+
+## Chapter 3 Homework
+
+You will continue to explore and manipulate data on ozone measurements in Fort
+Collins, CO during January 2019.
+
+On Canvas, download the ozone data (.csv) and R Markdown template (.Rmd),
+which includes a description of the data, the homework questions, and the
+general framework of code-figure-text integration, including the framework for
+a code appendix. Save the data and template files in your local R Project in
+the `/data` and `/homework` folders, respectively. 
+
+Remember to check and set your working directory (e.g., Session > Set Working
+Directory > To Source File Location) to point from the R Markdown
+file and detect the data file in `/data`  and also points to `/figs` as the
+place to save figures and images, which is determined in the R Markdown global
+option chunk I include in the R Markdown template.
+
+This homework assignment is due at the start of the class when we begin Chapter
+4. We will look for the R Markdown file and the corresponding knitted PDF or
+HTML document within your `/homework` file. Remember, make regular, memorable
+commits, so you never lose your work. Your work will be considered late if the 
+latest knit occurs after the deadline.
