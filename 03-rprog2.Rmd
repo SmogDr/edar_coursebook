@@ -974,49 +974,177 @@ knitr::include_graphics("./images/markdown_render.png")
 
 ## Chapter 3 Exercises
 
-- flat file: delimited (types) and fixed
-- working directory and directory structure; relative vs. absolute pathnames
-- data import from flat and binary files
+The following sections includes exercises for each lecture regarding Chapter 3.
+Rhetorical or group discussion questions are also included to help you think 
+about *why* we are making certain workflow recommendations and to get you in
+the habit of doing these things regularly. The third set of exercises ends with
+several challenges questions that will require you to look outside of the 
+lecture and coursebook. These are optional, but give them a shot.
+
+### Set 1: Pathnames and data import 
+
+0. Open your class R Project locally. Restart session, if your R Project is
+already open. Create an R script (e.g., `ch-3-exercises.R`) and save it in the
+`/code` folder. 
+
+1. In the RStudio Console, determine your current working directory. Make sure
+the working directory is pointed to the location of `ch-3-exercises.R` within
+your R Project. If it is not, navigate to Session > Set Working Directory > To
+Source File Location. Again, check your current working directory to confirm.
+
+2. Write "metadata" at the top of the R script using `#`, including your name,
+today's date, class, and chapter. Add a heading called "Pathnames and Data
+Import".
+
+3. Download the Fort Collins ozone dataset locally and save the `.csv` file in
+the `/data` folder in your R Project. What would be a better, more descriptive
+name for the data file that also follows file-naming conventions (e.g., no
+spaces, human- and machine-readable)? Change the file name locally. Commit the
+additions to GitHub (e.g., "add ozone data file", "create ch3 r script") but
+leave a queue of commits to push at the end of the class.
+
+4. What is the absolute pathname of the ozone data file on your local computer?
+Using `paste0()`, save your absolute pathname as an object called
+`ozone_abs_path`. What is the relative pathname of the ozone data file on your
+local computer? Using the appropriate function call from the `readr` package,
+within the `package::function()` coding style, import the ozone data using the
+*relative pathname* and assign it to a dataframe/tibble object called
+`ozone_data`. Now, try importing the data using the `ozone_abs_path` object.
+Commit this work. _What kind of problems would you encounter if you regularly used absolute pathnames in your R scripts in setting the working directory or importing/exporting files?_
+
+5. Rerun the line of code for data import with the relative pathname. 
+_What kind of message did R return in the console when you imported the data file? What information can you glean from this?_ 
+In your R script, execute some of the suggested function calls (from previous
+lectures and chapters) that provide similar information to "see" and explore
+the dataframe/tibble object. Examine the output. Make a commit.
+
+6. Push all queued commits to GitHub. PSA: Regularly follow this workflow of
+small, regular commits and intermittent pushes in everything you do in R.
+
+```{r set-1-ex-code, eval=FALSE}
+# 1. working directory
+getwd()
+# 4. relative pathname 
+ozone_data <- readr::read_csv(file = "data/ftc_o3.csv")
+# 4. absolute pathname - for illustration - not recommended usually
+ozone_abs_path <- base::paste0("~/Documents/R/edar_coursebook/data/ftc_o3.csv")
+ozone_abs_ex <- readr::read_csv(file = ozone_abs_path)
+# 5. possible functions for initial data view and check
+tibble::glimpse(ozone_data)
+head(ozone_data)
+tail(ozone_data)
+str(ozone_data)
+summary(ozone_data)
+dim(ozone_data)
+nrow(ozone_data)
+ncol(ozone_data)
+length(ozone_data)
+colnames(ozone_data)
+class(ozone_data$[selected_colname]) # example structure; will not run
+```
+
+### Set 2: Data wrangling and piping
+
+Note: In the real world, you would not receive such a "tidy" data file as you
+will use for the following exercises. You would normally need to clean up the
+file structure, variables, and column names before anything else, typically
+within a "pipe" of "verbs" from `dplyr`. 
+
+Before you write any code, however, you need to think about what kind of
+wrangling needs to be done for your data. I recommend you *literally* sketch
+our your desired dataframe result. 
+
+But, in this case, don't worry because we did that leg work for you; the ozone
+data file is clean upon import. In the future, keep the handy function `janitor::clean_names()` in mind to clean all variable names at once. Also,
+peruse Hadley Wickham's [paper](https://vita.had.co.nz/papers/tidy-data.pdf) on
+"tidy data" to understand what it is and how to make messy data tidy.
+
+0. Open your class R Project locally. Restart session, if R Project is already
+open. Open R script you used for the first set of exercises. Rerun the code to
+populate your environment, i.e., load and view the data.
+1. Using `dplyr::select()` and the pipe (`%>%`), select the
+`sample_measurement` and `datetime` and assign the resulting dataframe/tibble
+to an object called `ozone_hourly`. 
+2. 
+
+Find the maximum and minimum values for the month (and compare them to the standard, even though it’s only a 1-hr measurement)
+Count how many values are above 0.07 in the dataset
+Mutate the sample_measurement column to convert “parts-per-million” into “parts-per-billion” units (i.e., multiply by 1000)
+
 - `dplyr` verbs on df
 - logical operators within `dplyr::filter()`
 - piping
 
-- Import local and/or online data file and assign to object name
-- Examine object structure
-- Think about what kind of data wrangling needs to be done and sketch out the desired dataframe result
-- Practice a few `dplyr` verbs within pipe to clean up dataframe
+### Set 3: R Markdown
 
-Import local and/or online data file and assign to object name
--- package::function() of choice depends on file type.. Do your students typically work with csv, xls/xlsx, MATLAB?
-Examine object structure and column classes with str(), tibble::glimpse(), class(), and the like
-Think about and discuss(?) what kind of data wrangling needs to be done and sketch out the desired dataframe result --or at least list the desired changes (e.g., clean up variable names)
-Practice a few dplyr verbs within pipeline to clean up dataframe (e.g., rename() column, compute new variable with mutate())
-Bonus question: introduce janitor package, especially the clean_names() function to clean all variable names at once
+0. Open your class R Project locally. Restart session, if R Project is already
+open. 
 
-### Set 1: R Markdown
+1. Create a new R Markdown file (`.Rmd`) in RStudio IDE (File > New File > R
+Markdown) and pick a title (of document, not file) such as "Chapter 3
+Exercises". Name the file ("ch-3-exercises.Rmd") and save it to your local R
+Project in `/code`. 
 
-0. Open your class R Project locally.
-1. Create a new R Markdown file (`.Rmd`) in RStudio IDE (File > New File > R Markdown) and pick a title (of document, not file) such as "Chapter 3 Exercises". Name the file ("ch-3-exercises.Rmd") and save it to your local R Project in the `code` sub-folder. 
-2. In the RStudio Console, determine your current working directory. Make sure the working directory is pointed to the location of `.Rmd` within your R Project. If it is not, navigate to Session > Set Working Directory > To Source File Location. Again, check your current working directory to confirm. 
-2. Knit the sample R Markdown to HTML and/or PDF (if you installed LaTex).  
-3. Commit and push the sample R Markdown and its knitted counterpart to your repository on GitHub with a short, informative commit message such as "test: knit rmd template".
-4. Delete the sample content from the R Markdown file (line 8 and beyond) and recommit the change (e.g., "delete rmd contents").
+2. In the RStudio Console, determine your current working directory. Make sure
+the working directory is pointed to the location of `.Rmd` within your R
+Project. If it is not, navigate to Session > Set Working Directory > To Source
+File Location. Again, check your current working directory to confirm. 
 
-### Set 2: Data import and working directories
+3. Knit the sample R Markdown to HTML and/or PDF (if you installed LaTex).  
+
+4. Commit and push the sample R Markdown and its knitted counterpart to your
+repository on GitHub with a short, informative commit message such as "test
+knit rmd template".
+
+5. Delete the sample content from the R Markdown file (line 8 and beyond) and
+recommit the change (e.g., "delete rmd template contents").
+
+6. Below the YAML ( _where does the YAML end, and what tells you that?_ ), copy
+your code from the R script you used for the prior sets of exercises into the R
+Markdown file. Organize this code into relevant headings and within
+thematically appropriate code chunks. For example, the code for data import
+would be in its own code chunk. 
+
+7. Add first- , second-, and third-order headings (e.g., "Data Import", "Using
+Relative Pathname", "Using Absolute Pathname), using the appropriate Markdown
+symbol. _What does this symbol also do (to a completely different effect) within R scripts or inside R Markdown code chunks?_ 
+
+8. Knit this document to HTML and/or PDF and examine how R Markdown returns
+output. 
+
+#### Challenge Questions
+
+1. Change the date to a YYYY-MM-DD format within the R Markdown YAML such that
+it changes *every time* you re-knit the document on a different day.
+
+2. Implement a change to the code chunk *itself* that suppresses the message
+returned upon data import.
+
+3. Create a global chunk option below the YAML, telling the R Markdown file (a)
+where to automatically save figures within your R Project directory using a
+short, relative pathname and (b) to suppress warnings and messages when
+knitting. What are some other things you can do in a global options code chunk?
+Compare these to what can be done in an individual code chunk.
 
 ## Chapter 3 Homework
 
-You will explore data on ozone measurements in Fort Collins, CO during July
-2019. 
+You will continue to explore and manipulate data on ozone measurements in Fort
+Collins, CO during January 2019.
 
 On Canvas, download the ozone data (.csv) and R Markdown template (.Rmd),
 which includes a description of the data, the homework questions, and the
 general framework of code-figure-text integration, including the framework for
-a code appendix.
+a code appendix. Save the data and template files in your local R Project in
+the `/data` and `/homework` folders, respectively. 
 
-Save the data and template files in your local R Project in the corresponding
-subfolders. Remember to check and set your working directory (e.g., Session >
-Set Working Directory > To Source File Location) to point from the R Markdown
+Remember to check and set your working directory (e.g., Session > Set Working
+Directory > To Source File Location) to point from the R Markdown
 file and detect the data file in `/data`  and also points to `/figs` as the
 place to save figures and images, which is determined in the R Markdown global
 option chunk I include in the R Markdown template.
+
+This homework assignment is due at the start of the class when we begin Chapter
+4. We will look for the R Markdown file and the corresponding knitted PDF or
+HTML document within your `/homework` file. Remember, make regular, memorable
+commits, so you never lose your work. Your work will be considered late if the 
+latest knit occurs after the deadline.
