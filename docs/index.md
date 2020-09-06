@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens and Kathleen E. Wendt"
-date: "2020-08-17"
+date: "2020-09-05"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
@@ -11,19 +11,20 @@ link-citations: yes
 description: "This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language."
 ---
 
+
 ```
-## ── Attaching packages ─────────────── tidyverse 1.3.0 ──
+## ── Attaching packages ─────────────────────────────────── tidyverse 1.3.0 ──
 ```
 
 ```
 ## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
-## ✓ tibble  3.0.3     ✓ dplyr   1.0.1
+## ✓ tibble  3.0.3     ✓ dplyr   1.0.2
 ## ✓ tidyr   1.1.1     ✓ stringr 1.4.0
 ## ✓ readr   1.3.1     ✓ forcats 0.5.0
 ```
 
 ```
-## ── Conflicts ────────────────── tidyverse_conflicts() ──
+## ── Conflicts ────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 ```
@@ -113,30 +114,51 @@ Course grades will be determined by the following five components:
 </tbody>
 </table>
 
+### Homework submission
+
+There will be a homework assignment per coursebook chapter. Each homework will
+be due at the start of the class period when lecture coverage of the *next*
+chapter commences. For example, Chapter 2 Homework will be due at the start 
+of the first lecture regarding Chapter 3.
+
+From RStudio, you will  upload ("commit"/"push") your homework to a private
+folder on our class GitHub Organization. Your commits will be time-stamped; any
+commit after the start of class on a given day will be considered late, and the
+assignment will be graded (or not graded) accordingly. Guidance on installing
+and connecting R/RStudio and Git/GitHub is provided in the next section.
+
 ## Course set-up
 
-Please download and install the latest version of R and RStudio. 
+This might be painful, but bear with me. There will be a lot of software
+development [jargon](https://docs.github.com/en/github/getting-started-with-github/github-glossary) (e.g., "commit", "push", "pull"), but the general idea is:
+We want to set up and learn how to use a collaborative tracking system. Git is
+a version control system (i.e., Word's "track changes" feature on steroids).
+GitHub is the most common Git-based collaborative cloud (i.e., Dropbox on
+steroids). Everything in this class will be done within an RStudio Project on
+your local computer that is mirrored on a private GitHub repository. If you do
+not use GitHub (properly), you will receive an "incomplete" on the given
+assignment, so it is imperative that you take your time with these steps and
+read carefully. If you have any questions at each stage, ask! 
 
-- R: https://cran.r-project.org 
-- RStudio: https://rstudio.com/products/rstudio/download/#download
+The following guidance regarding R/RStudio and Git/GitHub draws heavily on
+[Jenny Bryan](https://jennybryan.org/)'s book, [Happy Git with R](https://happygitwithr.com/), and her related
+[paper](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1399928) on
+version control. I sprinkled in some suggestions from others. If you would like
+to gain more background on basic Git and GitHub, take a look at [these slides](https://uncoast-unconf.github.io/uu-2019-day-zero/01-git-github-cornucopia/git-github-cornucopia.html#1) from [Dr. Amelia McNamara](https://twitter.com/AmeliaMN).  
 
-Students will also need to download and install git software and create a
-GitHub account.
+### Install R and RStudio
 
-- Install git: https://git-scm.com/downloads 
-- Create a GitHub account: https://github.com 
+1. Download and install the pre-compiled binary of the most recent version (4.0+) of [R](https://cran.r-project.org) appropriate for your machine's operating system
+2. Download and install the most recent, preview version of [RStudio](https://rstudio.com/products/rstudio/download/#download); then, navigate to RStudio > Preferences to *NOT* "Restore .RData into workspace at setup" and *NEVER* "save workspace to .RData on exit" (it is okay that you might not know what this means yet)
+3. If you've installed R and RStudio in the past, please download the latest versions and update the R packages with the following code:
 
-[Happy Git with R](https://happygitwithr.com/) by Dr. Jenny Bryan is a helpful
-resource for installation and set-up. Also, a team associated with the Colorado
-State University Statistics Department is actively developing a series of
-one-credit modules for undergraduate students new to R. Their
-[videos](https://csu-r.github.io/Module1/) on software installation and RStudio
-orientation may be particularly helpful at this stage.
 
-If you want to generate PDF output from R Markdown documents, you will also
-need to install LaTex. I suggest taking the following approach, if you have
-never installed LaTex on your personal computer. More installation guidance can
-be found [here](https://bookdown.org/yihui/rmarkdown/installation.html). 
+```r
+# if you've previously installed R and RStudio, also update your R packages 
+update.packages(ask = FALSE, checkBuilt = TRUE)
+```
+
+4. If you want to generate PDF output from R Markdown documents, you will also need to install LaTex. I suggest taking the following approach in the RStudio Console, if you have never installed LaTex. More installation guidance can be found [here](https://bookdown.org/yihui/rmarkdown/installation.html). 
 
 
 ```r
@@ -146,12 +168,89 @@ install.packages("tinytex")
 tinytex::install_tinytex()
 ```
 
+### Install Git and create a GitHub account
+
+1. Install [Git](https://git-scm.com/downloads). See [here](https://happygitwithr.com/install-git.html) and [here](https://rstats.wtf/set-up-an-r-dev-environment.html) for OS-specific installation instructions. For Mac users, you need to install *parts of* [Xcode for Mac OS](https://thecoatlessprofessor.com/programming/cpp/r-compiler-tools-for-rcpp-on-macos/) and [other things](https://mac.R-project.org/tools/)). For R 4.0+, this process is easier, as R now uses [Apple Xcode 10.1 and GNU Fortran 8.2](https://github.com/fxcoudert/gfortran-for-macOS/releases). 
+
+2. Create a [GitHub](https://github.com) account. Pick a good [user name](https://happygitwithr.com/github-acct.html)! 
+3. [Introduce](https://happygitwithr.com/hello-git.html) yourself to Git in RStudio with the following code in the Console. Provide your given name, not your user name, and the email address you used in creating your GitHub account. These commands return nothing, but you can check that it worked with `git config --global --list` in the [shell](https://happygitwithr.com/shell.html). 
+
+
+```r
+# install `usethis` R package if needed (do this exactly once):
+## install.packages("usethis")
+
+library(usethis)
+usethis::use_git_config(user.name = "John Doe", 
+                        user.email = "john.doe@colostate.edu")
+```
+
+Note: Avoid committing credentials or other sensitive information to GitHub by "[vaccinating](https://github.com/uncoast-unconf/uu-2019-day-zero/blob/master/00-preparation/03-usethis/README.md)" with `usethis::git_vaccinate()`.
+
+4. Optional but recommended for new users: Consider downloading a [GUI Git Client](https://happygitwithr.com/git-client.html) to make version control easier and to build intuition. [GitHub Desktop](https://desktop.github.com/) is likely sufficient for this course, but the choice is yours.
+5. Optional: Sign up for free student perks via [GitHub Education](https://education.github.com/).
+
+### Connect Git, GitHub, and RStudio
+
+1. Read and follow the [instructions](https://happygitwithr.com/connect-intro.html) in Chapters 9-13 *exactly.* I hope you won't need to look at Chapter 14! Move slowly and carefully, and pay attention to the specific needs for your operating system.
+
+### Create new project, GitHub first
+
+0. Keep in mind: You should save the local R Project from this step in a top-level directory. We suggest creating an `R` folder at the top of your `Documents` folder (or OS-specific equivalent) to contain all of your R Projects. For the duration of this course, you should have a directory pathname like `/user/Documents/R/[YourLastName]-MECH481A6`. We will discuss directory structures and pathnames more in the next chapter.
+1. Read and follow these [instructions](https://happygitwithr.com/new-github-first.html) *exactly* with the following additions: 
+- Give your GitHub username to the TA, so you can be added to our [GitHub Organization](https://github.com/MECH481A6)
+- Work with the TA to create a *private* repository within the organization, labeled *[YourLastName]-MECH481A6*
+- Confirm connection between your R Project and the GitHub repository, make subfolders (`data`, `code`, `figs`) within your `[YourLastName]-MECH481A6` folder on your local drive, and push them up to GitHub; this supports a [project-oriented workflow](https://uncoast-unconf.github.io/uu-2019-day-zero/02-project-workflows/workflow.html#13)
+
+### Use RStudio/GitHub system for homework submission
+
+For homework submission, you will download the R Markdown templates provided
+to you and save and edit them within your own R Project, which is connected a
+private repository on the class GitHub Organization. In order to track your
+changes and communicate with the Instructor and TA, you will
+regularly *commit* changes to your R Project files with meaningful *commit messages*. We will practice commits, pushes, and pulls to the *master branch*
+(main copy of R Project) during class. 
+
+### Confirm successful set-up
+
+At this point, you should be able to commit, push to, and pull from the master
+branch of your private GitHub repository within the RStudio IDE. In later
+chapters, we will provide more information on these interfaces, and you will
+have plenty of opportunities to practice this workflow. For now, "minimally 
+functional" is good enough!
+
+Once you have successfully installed and connected R/RStudio and Git/GitHub, 
+**open an issue** on YOUR private repository within the [GitHub Organization](https://github.com/MECH481A6). Mention/assign Kathleen (TA)
+@wendtke to let her know everything is working properly, or to request more
+help.
+
+Then, in the [public repository](https://github.com/MECH481A6/questions) for
+class-related questions and discussion, **open another issue**. You can ask a
+question, share any course-related concerns, or post a brief comment about what
+you hope to gain from this course. Remember to mention/assign Kathleen
+@wendtke, so she is alerted to your post. 
+
+Kathleen will then close both of your issues, and you will be ready to go!
+
+### Asking for help (properly)
+
+All questions regarding technology and code should be directed to the Teaching
+Assistant via GitHub Issues on [this repository](https://github.com/MECH481A6/questions). If the question requires
+you to include full code, please consider using the R package to generate
+reproducible examples: `reprex`. Please watch this
+[tutorial](https://reprex.tidyverse.org/articles/articles/learn-reprex.html) on
+how to use `reprex`. Essentially, you are copy-pasting self-contained code in
+the GitHub Issue, so I can recreate your work and help you more effectively.
+You won't do things perfectly as you start, but, hopefully by the end of the 
+semester, you will have an efficient, reproducible workflow and effective
+solution-seeking toolbox. 
+
 ## Coursebook
 
 This coursebook will serve as the only required textbook for this course. I
 regularly edit and add to this book, so content may change somewhat over the
 semester. We typically cover about a chapter of the book every 1-2 weeks of the
-course.
+course. You need to follow along and read this book thoroughly.
 
 This coursebook includes: 
 
@@ -163,8 +262,7 @@ exercise
 - A list of vocabulary and concepts that should be mastered for each quiz
 
 If you find any typos or bugs, or if you have any suggestions for how the book
-can be improved, feel free to post it on the book's [GitHub Issues
-page](https://github.com/SmogDr/edar_coursebook/issues).
+can be improved, feel free to post it on the book's [GitHub Issues](https://github.com/SmogDr/edar_coursebook/issues).
 
 This book was developed using Yihui Xie's [bookdown](https://bookdown.org)
 framework. The book is built using code that combines R code, data, and text to
@@ -198,7 +296,7 @@ online through the CSU library.
 
 ## Acknowledgements
 
-Most of the introductory material for this book was adapted from Professor [Brooke Anderson's R Programming Coursebook](https://geanders.github.io/RProgrammingForResearch/), to whom I owe
+Most of the introductory material for this book was adapted from Dr. Brooke Anderson's course on [R Programming for Research](https://geanders.github.io/RProgrammingForResearch/), to whom I owe
 thanks not only for the materials but for the many helpful discussions. I would
 also like to acknowledge [John Tukey](http://rsbm.royalsocietypublishing.org/content/49/537.full.pdf+html),
 one of the pioneers of exploratory data analysis, and the creators of the [NIST Engineering Statistics Handbook](https://doi.org/10.18434/M32189), from which I

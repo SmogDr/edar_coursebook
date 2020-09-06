@@ -84,19 +84,31 @@ knitr::kable(grading,
                            full_width = F)
 ```
 
+### Homework submission
+
+There will be a homework assignment per coursebook chapter. Each homework will
+be due at the start of the class period when lecture coverage of the *next*
+chapter commences. For example, Chapter 2 Homework will be due at the start 
+of the first lecture regarding Chapter 3.
+
+From RStudio, you will  upload ("commit"/"push") your homework to a private
+folder on our class GitHub Organization. Your commits will be time-stamped; any
+commit after the start of class on a given day will be considered late, and the
+assignment will be graded (or not graded) accordingly. Guidance on installing
+and connecting R/RStudio and Git/GitHub is provided in the next section.
+
 ## Course set-up
 
 This might be painful, but bear with me. There will be a lot of software
-development jargon (e.g., "commit", "push", "pull", "branch", "merge conflict",
-"pull request"), but the general idea is: We want to set up and learn how to
-use a collaborative tracking system. Git is a version control system (i.e.,
-Word's "track changes" feature on steroids). GitHub is the most common
-git-based collaborative cloud (i.e., Dropbox on steroids). Everything in this
-class will be done within an RStudio Project on your local computer that is
-mirrored on a private GitHub repository. If you do not use GitHub (properly),
-you will receive an "incomplete" on the given assignment, so it is imperative
-that you take your time with these steps and read carefully. If you have any
-questions at each stage, ask! 
+development [jargon](https://docs.github.com/en/github/getting-started-with-github/github-glossary) (e.g., "commit", "push", "pull"), but the general idea is:
+We want to set up and learn how to use a collaborative tracking system. Git is
+a version control system (i.e., Word's "track changes" feature on steroids).
+GitHub is the most common Git-based collaborative cloud (i.e., Dropbox on
+steroids). Everything in this class will be done within an RStudio Project on
+your local computer that is mirrored on a private GitHub repository. If you do
+not use GitHub (properly), you will receive an "incomplete" on the given
+assignment, so it is imperative that you take your time with these steps and
+read carefully. If you have any questions at each stage, ask! 
 
 The following guidance regarding R/RStudio and Git/GitHub draws heavily on
 [Jenny Bryan](https://jennybryan.org/)'s book, [Happy Git with R](https://happygitwithr.com/), and her related
@@ -104,18 +116,18 @@ The following guidance regarding R/RStudio and Git/GitHub draws heavily on
 version control. I sprinkled in some suggestions from others. If you would like
 to gain more background on basic Git and GitHub, take a look at [these slides](https://uncoast-unconf.github.io/uu-2019-day-zero/01-git-github-cornucopia/git-github-cornucopia.html#1) from [Dr. Amelia McNamara](https://twitter.com/AmeliaMN).  
 
-1. Install R and RStudio appropriate for your personal computer's operating system.
+### Install R and RStudio
 
-- Download and install the pre-compiled binary of [R](https://cran.r-project.org)
-- Download and install the preview version of [RStudio](https://rstudio.com/products/rstudio/download/#download); then, navigate to RStudio > Preferences to *NOT* "Restore .RData into workspace at setup" and *NEVER* "save workspace to .RData on exit" (it is okay that you might not know what this means)
-- If you've installed R and RStudio in the past, please download the latest versions and update the R packages with the following code:
+1. Download and install the pre-compiled binary of the most recent version (4.0+) of [R](https://cran.r-project.org) appropriate for your machine's operating system
+2. Download and install the most recent, preview version of [RStudio](https://rstudio.com/products/rstudio/download/#download); then, navigate to RStudio > Preferences to *NOT* "Restore .RData into workspace at setup" and *NEVER* "save workspace to .RData on exit" (it is okay that you might not know what this means yet)
+3. If you've installed R and RStudio in the past, please download the latest versions and update the R packages with the following code:
 
 ```{r r-pkg-update, eval=FALSE}
 # if you've previously installed R and RStudio, also update your R packages 
 update.packages(ask = FALSE, checkBuilt = TRUE)
 ```
 
-- If you want to generate PDF output from R Markdown documents, you will also need to install LaTex. I suggest taking the following approach in the RStudio Console, if you have never installed LaTex on your personal computer. More installation guidance can be found [here](https://bookdown.org/yihui/rmarkdown/installation.html). 
+4. If you want to generate PDF output from R Markdown documents, you will also need to install LaTex. I suggest taking the following approach in the RStudio Console, if you have never installed LaTex. More installation guidance can be found [here](https://bookdown.org/yihui/rmarkdown/installation.html). 
 
 ```{r tinytex, eval=FALSE}
 # install R package
@@ -124,11 +136,12 @@ install.packages("tinytex")
 tinytex::install_tinytex()
 ```
 
-2. Install Git and create a GitHub account. 
+### Install Git and create a GitHub account
 
-- Install [Git](https://git-scm.com/downloads); see [here](https://happygitwithr.com/install-git.html) and [here](https://rstats.wtf/set-up-an-r-dev-environment.html) for OS-specific installation instructions (e.g., need to install *parts of* Xcode for Mac OS).
-- Create a [GitHub](https://github.com) account. Pick a good [user name](https://happygitwithr.com/github-acct.html)! 
-- [Introduce](https://happygitwithr.com/hello-git.html) yourself to Git in RStudio with the following code in the Console. Provide your given name, not your user name, and the email address you used in creating your GitHub account. These commands return nothing, but you can check that it worked with `git config --global --list` in the [shell](https://happygitwithr.com/shell.html). 
+1. Install [Git](https://git-scm.com/downloads). See [here](https://happygitwithr.com/install-git.html) and [here](https://rstats.wtf/set-up-an-r-dev-environment.html) for OS-specific installation instructions. For Mac users, you need to install *parts of* [Xcode for Mac OS](https://thecoatlessprofessor.com/programming/cpp/r-compiler-tools-for-rcpp-on-macos/) and [other things](https://mac.R-project.org/tools/)). For R 4.0+, this process is easier, as R now uses [Apple Xcode 10.1 and GNU Fortran 8.2](https://github.com/fxcoudert/gfortran-for-macOS/releases). 
+
+2. Create a [GitHub](https://github.com) account. Pick a good [user name](https://happygitwithr.com/github-acct.html)! 
+3. [Introduce](https://happygitwithr.com/hello-git.html) yourself to Git in RStudio with the following code in the Console. Provide your given name, not your user name, and the email address you used in creating your GitHub account. These commands return nothing, but you can check that it worked with `git config --global --list` in the [shell](https://happygitwithr.com/shell.html). 
 
 ```{r git-intro, eval=FALSE}
 # install `usethis` R package if needed (do this exactly once):
@@ -139,34 +152,59 @@ usethis::use_git_config(user.name = "John Doe",
                         user.email = "john.doe@colostate.edu")
 ```
 
-- Optional but recommended for new users: Consider downloading a [GUI Git Client](https://happygitwithr.com/git-client.html) to make version control easier and to build intuition. [GitHub Desktop](https://desktop.github.com/) is likely sufficient for this course, but your choice is yours.
-- Optional: Sign up for free student perks via [GitHub Education](https://education.github.com/).
+Note: Avoid committing credentials or other sensitive information to GitHub by "[vaccinating](https://github.com/uncoast-unconf/uu-2019-day-zero/blob/master/00-preparation/03-usethis/README.md)" with `usethis::git_vaccinate()`.
 
-3. Connect Git, GitHub, and RStudio
+4. Optional but recommended for new users: Consider downloading a [GUI Git Client](https://happygitwithr.com/git-client.html) to make version control easier and to build intuition. [GitHub Desktop](https://desktop.github.com/) is likely sufficient for this course, but the choice is yours.
+5. Optional: Sign up for free student perks via [GitHub Education](https://education.github.com/).
 
-- Read and follow the [instructions](https://happygitwithr.com/connect-intro.html) in Chapters 9-13 *exactly.* I hope you won't need to look at Chapter 14! Move slowly and carefully, and pay attention to the specific needs for your operating system.
+### Connect Git, GitHub, and RStudio
 
-4. Create new project, GitHub first
+1. Read and follow the [instructions](https://happygitwithr.com/connect-intro.html) in Chapters 9-13 *exactly.* I hope you won't need to look at Chapter 14! Move slowly and carefully, and pay attention to the specific needs for your operating system.
 
-- Keep in mind: You should save the local R Project from this step in a top-level directory. We suggest creating an `R` folder at the top of your `Documents` folder (or OS-specific equivalent) to contain all of your R Projects. For the duration of this course, you should just have a directory pathname like `/user/Documents/R/MECH481A6.Rproj`. We will discuss directory structures and pathnames more in the next chapter.
-- Read and follow these [instructions](https://happygitwithr.com/new-github-first.html) *exactly* with the following additions: Name the repository *MECH481A6* and make it *private* within the class GitHub organization
-- Within your MECH481A6.Rproj folder, add subfolders called `data`, `code`, and `figs` to practice a [project-oriented workflow](https://uncoast-unconf.github.io/uu-2019-day-zero/02-project-workflows/workflow.html#13).
+### Create new project, GitHub first
 
-5. Use RStudio/GitHub system for homework submission
+0. Keep in mind: You should save the local R Project from this step in a top-level directory. We suggest creating an `R` folder at the top of your `Documents` folder (or OS-specific equivalent) to contain all of your R Projects. For the duration of this course, you should have a directory pathname like `/user/Documents/R/[YourLastName]-MECH481A6`. We will discuss directory structures and pathnames more in the next chapter.
+1. Read and follow these [instructions](https://happygitwithr.com/new-github-first.html) *exactly* with the following additions: 
+- Give your GitHub username to the TA, so you can be added to our [GitHub Organization](https://github.com/MECH481A6)
+- Work with the TA to create a *private* repository within the organization, labeled *[YourLastName]-MECH481A6*
+- Confirm connection between your R Project and the GitHub repository, make subfolders (`data`, `code`, `figs`) within your `[YourLastName]-MECH481A6` folder on your local drive, and push them up to GitHub; this supports a [project-oriented workflow](https://uncoast-unconf.github.io/uu-2019-day-zero/02-project-workflows/workflow.html#13)
 
-- For homework submission, you will download the R Markdown templates provided
-to you and save and edit them within your own R Project. You will regularly 
-*commit* the changes to GitHub with meaningful *commit messages* in order to
-track your changes. Your private GitHub repository will be hosted within the
-class GitHub organization. You will open *GitHub issues* when you need to ask
-homework questions. 
+### Use RStudio/GitHub system for homework submission
 
-## Asking for help (properly)
+For homework submission, you will download the R Markdown templates provided
+to you and save and edit them within your own R Project, which is connected a
+private repository on the class GitHub Organization. In order to track your
+changes and communicate with the Instructor and TA, you will
+regularly *commit* changes to your R Project files with meaningful *commit messages*. We will practice commits, pushes, and pulls to the *master branch*
+(main copy of R Project) during class. 
+
+### Confirm successful set-up
+
+At this point, you should be able to commit, push to, and pull from the master
+branch of your private GitHub repository within the RStudio IDE. In later
+chapters, we will provide more information on these interfaces, and you will
+have plenty of opportunities to practice this workflow. For now, "minimally 
+functional" is good enough!
+
+Once you have successfully installed and connected R/RStudio and Git/GitHub, 
+**open an issue** on YOUR private repository within the [GitHub Organization](https://github.com/MECH481A6). Mention/assign Kathleen (TA)
+@wendtke to let her know everything is working properly, or to request more
+help.
+
+Then, in the [public repository](https://github.com/MECH481A6/questions) for
+class-related questions and discussion, **open another issue**. You can ask a
+question, share any course-related concerns, or post a brief comment about what
+you hope to gain from this course. Remember to mention/assign Kathleen
+@wendtke, so she is alerted to your post. 
+
+Kathleen will then close both of your issues, and you will be ready to go!
+
+### Asking for help (properly)
 
 All questions regarding technology and code should be directed to the Teaching
-Assistant via GitHub Issues in YOUR private repository for this course (see
-syllabus). If the question requires you to include full code, please use the R
-package for reproducible examples: `reprex`. Please watch this
+Assistant via GitHub Issues on [this repository](https://github.com/MECH481A6/questions). If the question requires
+you to include full code, please consider using the R package to generate
+reproducible examples: `reprex`. Please watch this
 [tutorial](https://reprex.tidyverse.org/articles/articles/learn-reprex.html) on
 how to use `reprex`. Essentially, you are copy-pasting self-contained code in
 the GitHub Issue, so I can recreate your work and help you more effectively.
