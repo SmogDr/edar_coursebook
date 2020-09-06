@@ -31,7 +31,7 @@ In engineering, the most common reason for centering data is not to subtract the
 
 
 <div class="figure" style="text-align: center">
-<img src="./images/centering_anno.png" alt="Data are sometimes centered to remove spurious values"  />
+<img src="./images/centering_anno.png" alt="Data are sometimes centered to remove spurious values" width="640" />
 <p class="caption">(\#fig:centering-anno)Data are sometimes centered to remove spurious values</p>
 </div>
 
@@ -71,7 +71,7 @@ Sometimes your data are *not normally distributed*, even though you want them to
 
 
 <div class="figure" style="text-align: center">
-<img src="./images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable."  />
+<img src="./images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable." width="640" />
 <p class="caption">(\#fig:reduce-skew2)The log(x) transform is often used to reduce skewness in a variable.</p>
 </div>
 ## Stratification
@@ -112,7 +112,7 @@ I think this phrase means, *don't let your judgment be governed solely by outlie
 <p>An <strong>outlier</strong> is an observation that lies an abnormal distance from other values in a random sample.</p>
 </div>
 
-### Detecting Outliers (#outliers)
+### Detecting Outliers {#outliers}
 Data visualization (like histograms, density plots, time-series, and boxplots) can be useful for detecting outliers, because such graphs make it clear that one or more observations *"don't seem to belong with the rest"*.  For example, let's create an artificial dataframe called `asthma.data`. Within this dataframe are two variables:  
 
   - `asthma.rate`: the percentage of kids with asthma in a given school district
@@ -183,19 +183,19 @@ Interestingly, this rule suggests that outliers on the lower end need to be nega
 In the end, however, common sense and your contextual knowledge of the data are usually more important here.
 
 ### Censoring outliers
-What should we do with outliers in our data? The answer depends on context (is this life and death data we're dealing with or just the size of tomatoes from your garden?) and on the questions you are asking. Here's an example:
+What should we do with outliers in our data? The answer depends on context (*are these life and death data we're dealing with or just the size of tomatoes from your garden?*) and on the questions you are asking. Here's an example:
 
 The black carbon boxplot (right side of \@ref(fig:outlier-1)) has a clear outlier that falls far outside of the rest of the data.  This might not seem like a big deal but take a look at what happens when we fit a regression line through the data <span style="color: orange;">with the outlier included</span> and <span style="color: blue;">without the outlier</span>. 
 <div class="figure" style="text-align: center">
 <img src="09-transf_files/figure-html/outlier-2-1.png" alt="Effect of an outlier on a linear model with n=15 data points." width="672" />
 <p class="caption">(\#fig:outlier-2)Effect of an outlier on a linear model with n=15 data points.</p>
 </div>
-Examination of Figure \@ref(fig:outlier-2) suggests that the outlier is having a strong effect on the relationship between air pollution and childhood asthma. If the censored data are correct, we have just detected a strong correlation between asthma rates and air pollution. If the uncensored data are correct then the association is positive but very weak. So what do we do about this?  
+Examination of Figure \@ref(fig:outlier-2) suggests that the outlier is having a strong effect on the relationship between air pollution and childhood asthma. If the censored data are correct, we have just detected a strong correlation between asthma rates and air pollution. If the uncensored data are correct then the association is positive but very weak. So how do we handle this apparent outlier?  
 
-Unfortunately, this sort of conundrum happens more often than we might like in the real world. *My advice would be to collect more data to prove/disprove the outlier. If that wasn't possible (and there was no other explanation available), I would probably show the analysis* ***both ways***.
+Unfortunately, this sort of conundrum happens more often than we might like in the real world. *My advice would be to collect more data to support/discount the outlier. If that isn't possible (and no other explanation was forthcoming), I would probably show the analysis* ***both ways***.
 
 <div class="rmdwarning">
-<p><strong>Censoring data is dangerous business.</strong> If you are going to censor an outlier, make sure to document <strong>how</strong> you discovered/defined the outlier, <strong>why</strong> you believe it should be censored, and <strong>“whether or not that censoring had an effect on your results/conclusions”</strong>. Then make sure to broadcast your thinking to everyone who comes in contact with your report. If you try to hide outliers, you are being unethical and setting yourself up for disaster.</p>
+<p><strong>Censoring data is dangerous business.</strong> If you are going to censor an outlier, make sure to document <strong>how</strong> you discovered/defined the outlier, <strong>why</strong> you believe it should be censored, and <strong>“whether or not that censoring had an effect on your results/conclusions”</strong>. Then make sure to broadcast your thinking to everyone who comes in contact with your analysis If you try to hide outliers, you are being unethical and setting yourself up for disaster.</p>
 </div>
 
 ## Ch-9 Exercises

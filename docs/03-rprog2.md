@@ -1128,7 +1128,7 @@ provided by RStudio.
 
 ### Code Chunks
 
-Code chunks are the places where you write and execute R code.  A code chunk is initiated with 3 back ticks ```` ``` ````, followed by a set of *braces* \{ \}, or curly brackets, where you can name the chunk and specify `chunk options`.  The chunk options tell the `knitr` package (the package that renders an R markdown into an output style) how you want that chunk to run and what to do with the output. A list of chunk options can be found [here](https://yihui.org/knitr/options/).  An example markdown is shown below:
+Code chunks are the places where you write and execute R code.  A code chunk is initiated with 3 back ticks ```` ``` ````, followed by a set of *braces* \{ \}, or curly brackets, wihtin which you can name the chunk and specify `chunk options`.  The chunk options tell the `knitr` package (the package that renders an R markdown into an output style) how you want that chunk to run and what to do with the output. A list of chunk options can be found [here](https://yihui.org/knitr/options/).  An example markdown is shown below:
 
 <div class="figure" style="text-align: center">
 <img src="./images/markdown_anno.png" alt="Example R Markdown showing header, text, and code chunks." width="1000" />

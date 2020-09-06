@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-09-05" />
+<meta name="date" content="2020-09-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,7 @@
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -318,7 +319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="transform.html"><a href="transform.html#stratification"><i class="fa fa-check"></i><b>9.4</b> Stratification</a></li>
 <li class="chapter" data-level="9.5" data-path="transform.html"><a href="transform.html#outliers-and-censoring"><i class="fa fa-check"></i><b>9.5</b> Outliers and Censoring</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="transform.html"><a href="transform.html#detecting-outliers-outliers"><i class="fa fa-check"></i><b>9.5.1</b> Detecting Outliers (#outliers)</a></li>
+<li class="chapter" data-level="9.5.1" data-path="transform.html"><a href="transform.html#outliers"><i class="fa fa-check"></i><b>9.5.1</b> Detecting Outliers</a></li>
 <li class="chapter" data-level="9.5.2" data-path="transform.html"><a href="transform.html#censoring-outliers"><i class="fa fa-check"></i><b>9.5.2</b> Censoring outliers</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="transform.html"><a href="transform.html#ch-9-exercises"><i class="fa fa-check"></i><b>9.6</b> Ch-9 Exercises</a></li>
@@ -457,7 +458,7 @@ Are you active on social media platforms like Instagram or Twitter? You can bet 
 </p>
 </div>
 <p>In this chapter, we will introduce a few simple string functions from <code>{base}</code> R and the <code>stringr</code> package. We will also introduce the concept of <strong>regular expressions</strong> as a means to perform more advanced string manipulation.</p>
-<p><img src="images/parse_comic.png" style="display: block; margin: auto;" /></p>
+<p><img src="images/parse_comic.png" width="1000" style="display: block; margin: auto;" /></p>
 <div id="string-detect-match-subset" class="section level3">
 <h3><span class="header-section-number">6.2.1</span> String detect, match, subset</h3>
 <p>One of the simplest string operations is to search whether a string contains a pattern of interest. The <code>stringr</code> package (part of the <a href="https://stringr.tidyverse.org/">Tidyverse</a>) was developed to simplify the analysis of strings. Most of the functions in <code>stringr</code> begin with <code>str_</code> and end with a specific function name. A full list of functions is provided <a href="https://stringr.tidyverse.org/reference/index.html">here</a>. Some examples:</p>
@@ -694,17 +695,17 @@ match a or b
 <p>Dates and times in base R all proceed from an <em>“epoch”</em> or <em>time origin</em>. In R, the <em>epoch</em> or “dawn of time” occurred at midnight on January 1<sup>st</sup>, 1970. For the sake of the R programming world, the concept of time started at that precise moment and has moved forward ever since. To note: R can handle date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time” by calling the <code>Sys.time()</code> function.</p>
 <div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="rprog3.html#cb203-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2020-09-05 07:36:13 MDT&quot;</code></pre>
+<pre><code>## [1] &quot;2020-09-06 13:00:23 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and current timezone used by my computer. If you want to see how this time is stored in R internally, you can use <code>unclass()</code>, which returns an object value with its class attributes removed. When we wrap <code>unclass()</code> around <code>Sys.time()</code>, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="rprog3.html#cb205-1"></a><span class="kw">unclass</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1599312974</code></pre>
+<pre><code>## [1] 1599418824</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
-Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span> 365d/yr] ~ 50.7138817 years.<br />
+Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span> 365d/yr] ~ 50.7172382 years.<br />
 This calculation ignores leap years but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats</h3>
-<p>Note that the <code>Sys.time()</code> function provided the date in a <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong> format: 2020-09-05 07:36:13</p>
+<p>Note that the <code>Sys.time()</code> function provided the date in a <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong> format: 2020-09-06 13:00:23</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky. You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
@@ -837,18 +838,18 @@ each column can be thought of as a vector), you can use <code>class()</code>:</p
 <p>Both the <code>POSIXct</code> and <code>POSIXlt</code> class of objects return the same value to the user; the difference is really in how these classes store date-time objects internally. To examine them, you can coerce <code>Sys.time()</code> into each of the two classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and then examine their attributes.</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="rprog3.html#cb209-1"></a>time_now_ct &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb209-2"><a href="rprog3.html#cb209-2"></a><span class="kw">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1599312974</code></pre>
+<pre><code>## [1] 1599418824</code></pre>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="rprog3.html#cb211-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb211-2"><a href="rprog3.html#cb211-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 14.1
-##  $ min   : int 36
-##  $ hour  : int 7
-##  $ mday  : int 5
+##  $ sec   : num 24
+##  $ min   : int 0
+##  $ hour  : int 13
+##  $ mday  : int 6
 ##  $ mon   : int 8
 ##  $ year  : int 120
-##  $ wday  : int 6
-##  $ yday  : int 248
+##  $ wday  : int 0
+##  $ yday  : int 249
 ##  $ isdst : int 1
 ##  $ zone  : chr &quot;MDT&quot;
 ##  $ gmtoff: int -21600
