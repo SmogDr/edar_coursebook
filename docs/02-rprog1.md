@@ -372,7 +372,7 @@ you figure out which arguments are **required** and which are **optional** in
 the Usage section of the helpfile.
 
 <div class="figure" style="text-align: center">
-<img src="figures/helpfile_arguments.jpg" alt="Navigating a helpfile. This example shows some key parts of the helpfile for the 'mean' function." width="500pt" />
+<img src="figures/helpfile_arguments.jpg" alt="Navigating a helpfile. This example shows some key parts of the helpfile for the 'mean' function." width="700pt" />
 <p class="caption">(\#fig:helpfile)Navigating a helpfile. This example shows some key parts of the helpfile for the 'mean' function.</p>
 </div>
 
