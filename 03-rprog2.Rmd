@@ -26,7 +26,7 @@ relative and absolute pathnames
 - Apply logical operators in conjunction with `dplyr`'s `filter()` function to
 create subsets of a dataframe based on logical conditions 
 - Apply a sequence of `dplyr` functions to a dataframe using piping (`%>%`)
-- Learn the basics of R Markdown
+- Create R Markdown documents and describe their basic content and function
 
 ## Overview
 
@@ -37,9 +37,9 @@ in R:
 directory? If it's online, what's the link?
 2. Read data into R (e.g., using a function like `read_delim()` or `read_csv()`
 from the `readr` package) using the file path you figured out in step 1
-3. Check to make sure the data came in correctly using `dim`, `head`, `tail`,
-`str`)
-4. Clean the data up 
+3. Check to make sure the data came in correctly using functions like `dim()`, `head()`, `tail()`, `str()`, and/or `glimpse()`.
+4. Clean the data up by removing missing (or nonsense) values, renaming or reclassifying variables, performing units conversions, or other actions that
+support a streamlined data analysis.
 
 In this chapter, I'll go over the basics for each of these steps and dive a bit
 deeper into some related topics you should learn now to make your life easier
@@ -48,10 +48,10 @@ as you get started using R for data analysis.
 ## Reading data into R
 
 Data comes in files of all shapes and sizes. R has the capability to import
-data from many of these, even proprietary files for other software. Here are
-some of the types of data files that R can read and work with:
+data from many files types and locations, even proprietary files for other 
+software. Here are some of the types of data files that R can read and work with:
 
-- Flat files (much more about these in just a minute)
+- Flat files (more about these soon)
 - Files from other software packages such as MATLAB or Excel
 - Tables on webpages (e.g., the table on Ebola outbreaks near the end of [this
 Wikipedia
@@ -67,12 +67,15 @@ you)
 
 Often, it is possible to import and wrangle extremely messy data by using
 functions like `scan()` and `readLines()` to read the data in a line at a time,
-and then using regular expressions to clean up the data.
+and then using regular expressions to clean up the data as it gets imported. For
+this course, however, we will begin with less challenging file formats (and 
+degrees of messiness).
 
 ### Reading local flat files
 
-Much of the data that you will want to read in will be in **flat files**.
-Basically, these are files that you can open using a text editor. The most
+Much of the data that you will want to read in will be in **flat files** that
+are stored locally (i.e., on your computer's hard drive). A *flat file* is 
+basically a file that you can open using a text editor. The most
 common type you'll work with are probably comma-separated files, often with a
 `.csv` or `.txt` file extension. Most flat files come in two general
 categories:
@@ -126,19 +129,17 @@ like `.csv` for a comma-delimited file (.csv stands for
 R can read in data from both fixed-width and delimited flat files. The only
 catch is that you need to tell R a bit more about the format of the flat file,
 including whether it is fixed-width or delimited. If the file is fixed-width,
-you will usually have to tell R the width of each column. If the file is
-delimited, you'll need to tell R which delimiter, such as comma or tab, is
-being used.
+you will usually have to provide R with information about each column (see `read_fwf()` for details). If the file is delimited, you'll need to tell R which delimiter, such as comma or tab, is being used.
 
-If the file is delimited, you can use the `read_delim()` family of functions
-from the `readr` package to import the data. This family of functions includes
-several specialized functions. All members of the `read_delim()` family are
-doing the same basic thing. The only difference is what defaults each function
-has for the delimiter (`delim`). Members of the `read_delim()` family include:
+The `read_delim()` family of functions are used to read delimited flat files into
+R - these functions come from the `readr` package, which we will use extensively
+in ths course. All members of the `read_delim()` family do the same basic thing:
+import flat files into a `tibble`. The major difference is what defaults each 
+function has for the delimiter (`delim`). Members of the `read_delim()` family include:
 
 Function        | Delimiter
 --------------- | ------------
-`read_csv()`    |  comma     
+`read_csv()`    | comma     
 `read_csv2()`   | semi-colon 
 `read_table2()` | whitespace
 `read_tsv()`    | tab
@@ -148,8 +149,8 @@ delimiter; however, you will need to specify the type of delimiter using the
 `delim` argument. If you remember the more specialized function call (e.g.,
 `read_csv()` for a comma-delimited file), you can save yourself some typing. 
 
-For example, to read in the Ebola data, which is comma-delimited, you could
-either use `read_table()` with a `delim` argument specified or use
+For example, to read in the Ebola data data file, which is comma-delimited, 
+you could either use `read_table()` with a `delim` argument specified or use
 `read_csv()`, in which case you don't have to specify `delim`:
 
 ```{r ebola-delim, message=FALSE}
@@ -184,10 +185,10 @@ arguments to use in `read_delim()` for that file, you could include the option
 
 Option  | Description
 ------- | -----------
-`skip()`    | How many lines of the start of the file should you skip?
-`col_names()`  | What would you like to use as the column names?
-`col_types()`   | What would you like to use as the column types?
-`n_max()`   | How many rows do you want to read in?
+`skip()`  | How many lines of the start of the file should you skip?
+`col_names()` | Use the column names provided or define your own names?
+`col_types()` | What are the column types (e.g., chr, num, int, logi etc.])?
+`n_max()` | How many rows do you want to read in?
 `na()` | How are missing values coded?
 
 
@@ -203,7 +204,7 @@ data files. There is a similar family of functions available in base R, the
 `read.table()` family of functions. The `readr` family of functions is very
 similar to the base R `read.table()` functions, but have some more sensible
 defaults. Compared to the `read.table()` function family, the `readr`
-functions: 
+functions are: 
 
 - Faster; show progress bar of data import
 - Work better with large datasets
@@ -219,6 +220,9 @@ Functions in the `read.table` family include:
 - `read.delim()`
 - `read.table()` 
 - `read.fwf()`
+
+Note: these base R functions use periods (`read.`) whereas the `readr` functions
+use underscores (`read_`).
 
 ```{block, type='rmdnote'}
 The `readr` package is a member of the `tidyverse` suite of R packages. The
@@ -263,8 +267,6 @@ knitr::kable(read_funcs, col.names = c("File type", "Function", "Package"))
 
 ## Directories and pathnames
 
-The following video covers this section on "Directories and pathnames" 
-
 ### Directory structure
 
 So far, we've only looked at reading in files that are located in your current
@@ -294,7 +296,7 @@ once you get the idea of it. There are a couple of very good reasons why it's
 worth learning now.
 
 First, many of the most frustrating errors you get when you start using R
-traceback to understanding directories and filepaths. For example, when you try
+trace back to understanding directories and filepaths. For example, when you try
 to read a file into R using only the filename, and that file is not in your 
 current working directory, you will get an error like:
 
@@ -377,7 +379,10 @@ by double-clicking on the R icon in "Applications" (or the start menu on a
 PC), R will start in its default working directory. You can find out what this
 is, or change it, in RStudio's "Preferences". Finally, if you open an R
 Project, R will start in that project's working directory---where the `.Rproj`
-file for the project is stored.
+file for the project is stored. This is one of the reasons why we always create
+a new R Project when starting a data analysis - RStudio projects remember where
+to look!
+
 
 ### File and directory pathnames
 
@@ -485,11 +490,10 @@ in this case is:
 "../Week2_Aug31/example_data/heat_mort.csv"
 ```
 
-This tells R to look one directory up from the working directory (`..`) (this
-is also known as the **parent directory** of the current directory), which in
-this case is to `RCourseFall2015`, and then down within that directory to
-`Week2_Aug31`, then to `example_data`, and then to look there for the file
-`heat_mort.csv`.
+The `../` tells R to look one directory up from the working directory (the 
+directory that is one level above the current directory is also known as the 
+**parent directory**), which in this case is to `RCourseFall2015`, and then down within that directory to `Week2_Aug31`, then to `example_data`, and then to look
+wihtin that directory for the file `heat_mort.csv`.
 
 The relative pathname to read this file while R is working in the `CourseTest`
 directory would be:
@@ -498,7 +502,7 @@ directory would be:
 heat_mort <- read_csv("../Week2_Aug31/example_data/heat_mort.csv")
 ```
 
-Relative pathnames "break" as soon as you tried them from a different working
+Relative pathnames "break" as soon as you try them from a different working
 directory---this fact might make it seem like you would never want to use
 relative pathnames, and would always want to use absolute ones instead, even if
 they're longer. If that were the only consideration (length of the pathname),
@@ -516,7 +520,11 @@ for yours.
 If you're getting errors reading in files, and you think it's related to the
 relative pathname you're using, it's often helpful to use `list.files()` to
 make sure the file you're trying to load is in the directory guided by the
-relative pathname.
+relative pathname.  The `list.files()` function is very useful because it 
+returnsa character vector of filenames (and paths, if desired). Once you have a 
+vector of filenames you can do things like ask logical questions (does this file 
+exist?), or count the number of files, or pass a relative path to a new 
+function...
 
 ### Tangent: `paste`
 
@@ -614,10 +622,6 @@ slice(.data = (dplyr::select(.data = ebola, 1:3)), 1:3)
 
 ## Data cleaning
 
-The following video covers the section on "Data Cleaning" from 2018:
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EUJcgIU8xmY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
 Once you have loaded data into R, you'll likely need to clean it up a little
 before you're ready to analyze it. Here, I'll go over the first steps of how to
 do that with functions from `dplyr`, another package in the tidyverse. Here are
@@ -707,6 +711,19 @@ session as its own object, which means you don't need to use parentheses---most
 of the time.
 ```
 
+If you have been paying close attention to the code snippets, you may have 
+noticed the last bit of code included both the `package name` and the `function`
+call separated by two colons, as in `dplyr::rename()`. This syntax of `package.name::package.function` is used for the sake of being **explicit**,
+because (as you may have guessed) some R packages use the same for functions 
+that do entirely different things! For example, both the base R `stats` package
+and the `dplyr` package have a function called `filter()` - the former is used
+to pick our rows from a data frame and the latter is used to manipulate 
+time-series objects.  When two packages are loaded containing functions with the
+same name, R will default to using the function for the most recently loaded 
+package (and send you a message stating as much). This can be tricky business 
+when your R session has many packages running, which is why it never hurts to 
+be **explicit** in your function calls.
+
 ### Selecting columns
 
 Next, you may want to select only some columns of the dataframe. You can use
@@ -777,6 +794,9 @@ mutate(.data = daily_show,
        job = str_to_lower(string = job))
 ```
 
+We will take a deeper dive into strings and the `stringr` package 
+[later on](#rprog3).
+
 ### Base R equivalents to `dplyr` functions
 
 Just so you know, all of these `dplyr` functions have alternatives, either
@@ -787,7 +807,7 @@ dplyr_vs_base <- data.frame(dplyr = c("`rename()`",
                                       "`select()`",
                                       "`filter()`",
                                       "`mutate()`"),
-                            base = c("Reassign `colnames`",
+                            base = c("Reassign `colnames()`",
                                      "Square bracket indexing",
                                      "`subset()`",
                                      "Use `$` to change or create columns"))
@@ -828,7 +848,7 @@ Operator  | Meaning | Example
 --------- | ------- | ---------------------------------
 `==`      | equals  | `category == "Acting"`
 `!=`      | does not equal | `category != "Comedy`
-`%in%`    | is in | `category %in% c("Academic", "Science")`
+`%in%`    | match; contains the following | `category %in% c("Academic", "Science")`
 `is.na()` | is missing | `is.na(job)`
 `!is.na()`| is not missing | `!is.na(job)`
 `&`       | and | `year == 2015 & category == "Academic"`
@@ -838,7 +858,7 @@ We'll use these logical operators and expressions a lot more as the course
 continues, so they're worth memorizing.
 
 ```{block, type='rmdwarning'}
-Two common errors with logical operators are: (1) Using `=` instead of `==` to
+Two common mistakes with logical operators are: (1) Using `=` instead of `==` to
 check if two values are equal; and (2) Using `== NA` instead of `is.na` to
 check for missing observations.
 ```
@@ -887,9 +907,10 @@ daily_show <- filter(.data = daily_show,
 ```
 
 Piping lets you streamline this process. It can be used with any function that
-inputs a dataframe as its first argument. It *pipes* the dataframe created
-right before the pipe (`%>%`) into the function right after the pipe. With
-piping, therefore, the above data cleaning looks like:
+inputs a dataframe (or vector) as its first argument. The `%>%` operator *pipes* 
+the object on the left-hand-side of the pipe (`%>%`) into the function on the 
+right-hand-side (immediately after the pipe). With piping, therefore, all of the
+data cleaning steps shown avove would look like:
 
 ```{r daily-pipe-clean, message=FALSE}
 daily_show <- readr::read_csv(file = "data/daily_show_guests.csv",
@@ -903,40 +924,63 @@ daily_show <- readr::read_csv(file = "data/daily_show_guests.csv",
   dplyr::filter(category == "Science")
 ```
 
-Notice that, when piping, the first argument (name of the dataframe) is
-excluded from all function calls that follow a pipe. This is because piping
-sends the dataframe from the last step into each of the following functions as
-the dataframe argument. Remember: Order matters in a data wrangling pipeline.
-For example, if you removea column in an early line of code in the pipeline but
-then reference that column name later, R will throw an error. You can use
-selective highlighting to run one line at a time to see how the dataframe
-changes in real-time.
+Notice that, when piping a data frame, the first argument (name of the data 
+frame) is excluded from all function calls that follow a pipe. This is because 
+piping sends the dataframe from the last step into each of the following 
+functions as the dataframe argument. Remember: Order matters in a data wrangling pipeline. For example, if you removea a column in an early line of code in the 
+pipeline but then reference that column name later, R will throw an error. 
+You can use selective highlighting to run one line at a time to see how the 
+dataframe changes in real-time as you move through successive pipes.
+
+``` {block, type='rmdnote'}
+Piping with `%>%` should only be used when you want to perform succesive data
+wrangling steps on a **single object**. Each pipe operation should be followed
+by a new line, as shown above. Creating a new line after each pipe step aids readability of the pipe, since each new action occurs on a new line
+of code. Also, if a single pipe function contains multiple arguments, consider 
+putting each argument on a separate line, too (also shown in the code snippet 
+above).
+```
 
 ## Markdowns
 
-A ***markdown*** is a file format designed for the internet. Markdown files allow you to write plain text into a file, format that text, and embed code/images/data into the file  (everything you are reading in this coursebook was written and created with markdown files).  Markdown files are versatile because:  
+A ***markdown*** is a file format designed for the internet. Markdown files 
+allow you to enter plain text into a file, format that text, and embed 
+code/images/data into the file (everything you are reading in this coursebook 
+was written and created with markdown files).  
+Markdown files are versatile because:  
 
-  * Markdowns can be rendered into html, pdf, and doc files easily. Thus, markdown files can be turned into websites, email messages, reports, blogs, textbooks, and other forms of media without worry;
-  * Markdowns are independent of the operating system (Mac, PC, Linux, Android, and iOS devices can read them);
-  * Markdowns can be opened by almost any application (the file format is non-proprietary), so you don't need to worry about having special software to read them. 
+  * Markdowns can be rendered into html, pdf, and doc files easily. Thus, 
+  markdown files can be turned into websites, email messages, reports, blogs, textbooks, and other forms of media without worry;
+  * Markdowns are independent of the operating system (Mac, PC, Linux, Android, 
+  and iOS devices can read them);
+  * Markdowns can be opened by almost any application (the file format is non-proprietary), so you don't need to worry about having special software to 
+  read them.  
+  * A markdown document provides an excellent template for 
+  *reproducible research* - allowing you to communicate what you did, how and 
+  why you did it, what you found, and any conclusions (or follow-on questions) 
+  you can draw from the work.
 
 ### R Markdowns
 
-The R Studio IDE can create ***"R Markdowns"*** (file extension .Rmd) specifically for the R programming environment. An R markdown file allows you do lots of things; we will use them to create assignments and homework reports that display R code, the outputs of that code, and plain text. To use the R markdown format, you need to install the `rmarkdown` package: `install.packages("rmarkdown")`. 
+The R Studio IDE can create ***"R Markdowns"*** (file extension .Rmd) 
+specifically for the R programming environment. An R markdown file allows you 
+do lots of things; we will use them to create assignments and homework reports 
+that display R code, the outputs of that code, and plain text. To use the R 
+markdown format, you need to install the `rmarkdown` package: `install.packages("rmarkdown")`. 
 
 **Going forward, all of your homework and coding assignments will be created and submitted in the R Markdown format using either html or pdf outputs.  This may seem uncomfortable at first but you will get accustomed to this format quickly.**
 
-Each R markdown file contains three basic elements: header, text, and code chunks.  I will explain each of these elements below, but I recommend a visit to the [R Markdown  section](https://rmarkdown.rstudio.com/docs/articles/rmarkdown.html) on the RStudio website. A detailed guide on many of the R markdown output styles (beyond just html and pdf files) is provided [here](https://bookdown.org/yihui/rmarkdown/).
+Each R markdown file contains three basic elements: header, text, and code chunks.  I will explain each of these elements below, but I recommend a visit to the [R Markdown  section](https://rmarkdown.rstudio.com/docs/articles/rmarkdown.html) on the RStudio website. A detailed guide on many of the R markdown output styles (beyond just html and pdf files) is provided in [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/).
 
 ### Header
 
-The R Markdown "header" section is where you specify details about the file being created.  A markdown header contains **YAML** metadata, which stands for [*"YAML Ain't Markup Language"*](https://yaml.org/spec/1.2/spec.html#Introduction). The YAML (pronounced like “camel") header is essentially a list of directives (referred to as "key:value" pairs) that help application software read and interpret the file. A YAML header can act simultaneously as a "configuration file", a "log file", and "translator file" - allowing one software program to read the output of another program.  An example header with YAML metadata is shown below.
+The R Markdown "header" section is where you specify details about the file being created.  A markdown header contains **YAML** metadata, which stands for [*"YAML Ain't Markup Language"*](https://yaml.org/spec/1.2/spec.html#Introduction). The YAML (pronounced like “camel") header is essentially a list of directives (referred to as "key:value" pairs) that help application software interpret the file. A YAML header can act simultaneously as a "configuration file", a "log file", and "translator file" - allowing one software program to read the output of another program.  An example header with YAML metadata is shown below.
 
 ```{r YAML-1, echo=FALSE, fig.align='center', fig.cap="Example of a YAML header to render an R Markdown into an html file."}
 knitr::include_graphics("./images/YAML_1_anno.png")
 ```
 
-The header is delineated at the top of the file by a section that begins and ends with three dashes, "---". Within the header are YAML metadata representing key:value pairs; **what are "key:value" pairs?** The **"key:"** is a directive that you want to give to the file and the **"value"** represents the level of detail or information that you want to associate with that directive. Key:value pairs provide instructions on how the file should be read, interpreted, and output. In Figure \@ref(fig:YAML-1), the keys are *"title:"*, *"author:"*, *"date:"*, and *"output:"* and the corresponding values are *"Markdowns"*, *"JV"*, *"7/23/2020"*, and *"html_document"*. You can learn more about key:value pairs in the R Markdown Style Guide for [html](https://bookdown.org/yihui/rmarkdown/html-document.html) and [pdf](https://bookdown.org/yihui/rmarkdown/pdf-document.html).
+The header is delineated at the top of the file by a section that begins and ends with three dashes, "---". Within the header are YAML metadata representing key:value pairs. **What are "key:value" pairs?** The **"key:"** is a directive that you want to give to the file and the **"value"** represents the level of detail or information that you want to associate with that directive. Key:value pairs provide instructions on how the file should be read, interpreted, and output. In Figure \@ref(fig:YAML-1), the keys are *"title:"*, *"author:"*, *"date:"*, and *"output:"* and the corresponding values are *"Markdowns"*, *"JV"*, *"7/23/2020"*, and *"html_document"*. You can learn more about key:value pairs in the R Markdown Style Guide for [html](https://bookdown.org/yihui/rmarkdown/html-document.html) and [pdf](https://bookdown.org/yihui/rmarkdown/pdf-document.html).
 
 ```{block, type="rmdnote"}
 The YAML header is optional in an R Markdown and default key:value pairs will be implemented if none are supplied.  That said, I would encourage you to specify key directives like "author:", "date:" and "output:" in your YAML headers.
@@ -955,18 +999,19 @@ The default space within an R markdown is a plain text editor, similar to a norm
 
 | **Format Desired** |    **Typeset in Markdown **   |    **Example Output**     |
 |:------------------:|:-----------------------------:|:-------------------------:|
-| Italics            |  \*one star on each side\*    |  *one star each side*     |
+| Italics            |  \*one star on each side\*    |  *one star on each side*  |
 | Bold               | \*\*two stars on each side\*\*| **two stars on each side**|
 | Superscript        | superscript\^2\^              | superscript^2^            |
 | Subscript          | subscript\~2\~                | subscript~2~              |
 
 To start a new paragraph in a markdown text section, end a line with two spaces (followed by a return).  
 
-To see a more complete set of formatting options see the [R Markdown CheatSheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf).
+To see a more complete set of formatting options see the [R Markdown CheatSheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
+provided by RStudio.
 
 ### Code Chunks
 
-Code chunks are the places where you write and execute R code.  A code chunk is initiated with 3 back ticks \`\`\`, followed by a set of *braces* \{\} (aka curly brackets) where you can name the chunk and specify `chunk options`.  The chunk options tell the `knitr` package (the package that renders an R markdown into an output style) how you want that chunk to run and what to do with the output. A list of chunk options can be found [here](https://yihui.org/knitr/options/).  An example markdown is shown below:
+Code chunks are the places where you write and execute R code.  A code chunk is initiated with 3 back ticks ```` ``` ````, followed by a set of *braces* \{ \}, or curly brackets, wihtin which you can name the chunk and specify `chunk options`.  The chunk options tell the `knitr` package (the package that renders an R markdown into an output style) how you want that chunk to run and what to do with the output. A list of chunk options can be found [here](https://yihui.org/knitr/options/).  An example markdown is shown below:
 
 ```{r markdown-1, echo=FALSE, fig.align='center', fig.cap="Example R Markdown showing header, text, and code chunks.", out.width=1000}
 knitr::include_graphics("./images/markdown_anno.png")
