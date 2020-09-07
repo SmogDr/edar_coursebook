@@ -410,7 +410,7 @@ data visualization in R. Upon completing this chapter, you should be able to:</p
 <ul>
 <li>Install, load, and use <code>ggplot2</code> functions to visualize dataframe elements</li>
 <li>Differentiate between data, aesthetics, and layers in a <code>ggplot2</code> object</li>
-<li>Determine how to change color and shape elements in a <code>ggplot2</code> layer</li>
+<li>Customize element properties such as color, size, and shape in a <code>ggplot2</code> layer</li>
 <li>Create, store, and save a <code>ggplot2</code> object in an R script</li>
 </ul>
 </div>
@@ -420,21 +420,21 @@ data visualization in R. Upon completing this chapter, you should be able to:</p
 <p><span style="color: blue;"> “The best design gets out of the way between the viewer’s brain and the content.” - Edward Tufte </span></p>
 </blockquote>
 <p>In this chapter, you will learn how to make basic plots using the <code>ggplot2</code>
-package in R, which is another package in <code>tidyverse</code>, like <code>dplyr</code> from
-Chapter 2. This section will focus on making <strong>useful</strong>, rather than
+package in R, which is another package in <code>tidyverse</code>, like <code>dplyr</code> and <code>readr</code>.
+This section will focus on making <strong>useful</strong>, rather than
 <strong>attractive</strong> graphs because, at this stage, we are focusing on exploring data
-rather than presenting results to others. Later on, I will explain more about
-how you can customize <code>ggplot2</code> objects to help you make plots that “get out of
-the way” between content you wish to present and the viewer’s brain, where you
-hope understanding takes root.</p>
+rather than presenting results to others. Later on, you will learn about
+how to customize <code>ggplot2</code> objects. Customization often helps to make plots that
+“get out of the way” between the content you wish to present and the viewer’s
+brain, wherein you hope understanding takes root.</p>
 <p>If you don’t already have <code>ggplot2</code> installed, you’ll need to install it. You
 then need to load the package in your current session of R:</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="dataviz.html#cb169-1"></a><span class="co"># install ggplot2 package (done once per R/RStudio installation)</span></span>
-<span id="cb169-2"><a href="dataviz.html#cb169-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)  </span>
-<span id="cb169-3"><a href="dataviz.html#cb169-3"></a><span class="co"># load ggplot2 in current R session</span></span>
-<span id="cb169-4"><a href="dataviz.html#cb169-4"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="dataviz.html#cb1-1"></a><span class="co"># install ggplot2 package (done once per R/RStudio installation)</span></span>
+<span id="cb1-2"><a href="dataviz.html#cb1-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)  </span>
+<span id="cb1-3"><a href="dataviz.html#cb1-3"></a><span class="co"># load ggplot2 in current R session</span></span>
+<span id="cb1-4"><a href="dataviz.html#cb1-4"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
 <p>Alternatively, if you are planning on using other <code>tidyverse</code> R packages in the
-same R session, you can simply install (if needed) and load the <code>tidyverse</code> “R
+same R session, you can simply install and load the <code>tidyverse</code> “R
 package suite of R packages” with <code>library(tidyverse)</code>.</p>
 </div>
 <div id="steps-to-create-a-ggplot2-object" class="section level2">
@@ -444,8 +444,10 @@ bit different than most of the code you’ve seen so far in R, although it is
 somewhat similar to the idea of piping I introduced in the last chapter. The
 basic steps behind creating a plot with <code>ggplot2</code> are:</p>
 <ol style="list-style-type: decimal">
-<li><p>Create an object of the <code>ggplot2</code> class, typically specifying the <strong>data</strong> and some or all of the <strong>aesthetics</strong></p></li>
-<li><p>Add a layer or <strong>geom</strong> to the plot, along with other specific elements, using <code>+</code></p></li>
+<li><p>Create an object of the <code>ggplot2</code> class, typically specifying the <strong>data</strong>
+and some or all of the <strong>aesthetics</strong></p></li>
+<li><p>Add a layer or <strong>geom</strong> to the plot, along with other specific elements,
+using <code>+</code></p></li>
 </ol>
 <p><strong>Aesthetics</strong> or <code>aes()</code> in R represent the things that we are plotting: the x
 and y data. <strong>Geoms</strong> like <code>geom_point()</code> represent the way in which we layer
@@ -454,11 +456,6 @@ the aesthetics onto the plot. The geom is the type of plot that we are calling.<
 range from very simple to very customized. We will start by focusing on simple
 geoms and added elements; later on, we will explore more options for
 customization.</p>
-<div class="rmdwarning">
-<p>
-A common error when writing <code>ggplot2</code> code is to put the <code>+</code> to add a geom or element at the beginning of a line rather than the end of a previous line. In this case, R will try to execute the call too soon. If R gets to the end of a line and there is no indication to continue the call (e.g., <code>%&gt;%</code> for piping or <code>+</code> for <code>ggplot2</code> plots), R interprets that as a message to run the call without reading in further code. Thus, to avoid errors, be sure to end each line in <code>ggplot2</code> calls with <code>+</code>, except for the final line when the call is actually done. Don’t start lines with <code>+</code>.
-</p>
-</div>
 </div>
 <div id="initializing-a-ggplot2-object" class="section level2">
 <h2><span class="header-section-number">4.4</span> Initializing a <code>ggplot2</code> object</h2>
@@ -469,15 +466,15 @@ which aesthetics will be mapped to certain columns of that data frame.
 Aesthetics are explained more in the next subsection.</p>
 <p>Outside of a pipeline, you can use the following conventions to initialize a
 <code>ggplot2</code> object:</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="dataviz.html#cb170-1"></a><span class="co">## generic code; will not run</span></span>
-<span id="cb170-2"><a href="dataviz.html#cb170-2"></a>object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> my_dataframe, <span class="kw">aes</span>(<span class="dt">x =</span> data_column_<span class="dv">1</span>, <span class="dt">y =</span> data_column_<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="dataviz.html#cb2-1"></a><span class="co">## generic code; will not run</span></span>
+<span id="cb2-2"><a href="dataviz.html#cb2-2"></a>object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> my_dataframe, <span class="kw">aes</span>(<span class="dt">x =</span> data_column_<span class="dv">1</span>, <span class="dt">y =</span> data_column_<span class="dv">2</span>))</span></code></pre></div>
 <p>The dataframe is the first parameter in a <code>ggplot()</code> function and, if you like,
 you can use the parameter definition with that call (e.g., <code>data = dataframe</code>).
 Aesthetics are defined within an <code>aes()</code> function call that is typically
 defined within the <code>ggplot()</code> function.</p>
 <div class="rmdnote">
 <p>
-While the <code>ggplot()</code> call is the place where you will most often see an <code>aes()</code> call, you can also make calls to <code>aes()</code> within the calls to specific geoms. This can be particularly useful if you want to map aesthetics differently for different geoms in your plot. We’ll see some examples of this use of <code>aes()</code> more in later sections, when we talk about customizing plots. The <code>data</code> parameter can also be used in geom calls in order to use a different dataframe from the one defined when creating the original ggplot object, although this is less common.
+While the <code>ggplot()</code> call is the place where you will most often see an <code>aes()</code> call, you can also make calls to <code>aes()</code> within the calls to specific geoms. This can be particularly useful if you want to map aesthetics differently for different geoms in your plot. We’ll see some examples of this use of <code>aes()</code> more in later sections, when we talk about customizing plots. The <code>data =</code> argument can be used in specific geom calls to use different dataframes (from the one defined when creating the original ggplot object), although this is less common.
 </p>
 </div>
 </div>
@@ -496,9 +493,9 @@ the dataframe structure and variable classes.</p>
 <blockquote>
 <p>“This dataset contains a subset of the fuel economy data that the EPA makes available on <a href="http://fueleconomy.gov">http://fueleconomy.gov</a>. It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car.”</p>
 </blockquote>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="dataviz.html#cb171-1"></a><span class="co"># use ggplot() to map the data and a single aesthetic (variable = class)</span></span>
-<span id="cb171-2"><a href="dataviz.html#cb171-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb171-3"><a href="dataviz.html#cb171-3"></a><span class="st">  </span><span class="kw">geom_bar</span>() <span class="co"># call to a specific geom to plot the mapped data</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="dataviz.html#cb3-1"></a><span class="co"># use ggplot() to map the data and a single aesthetic (variable = class)</span></span>
+<span id="cb3-2"><a href="dataviz.html#cb3-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb3-3"><a href="dataviz.html#cb3-3"></a><span class="st">  </span><span class="kw">geom_bar</span>() <span class="co"># call to a specific geom to plot the mapped data</span></span></code></pre></div>
 <div class="figure"><span id="fig:mpg-bar"></span>
 <img src="04-dataviz_files/figure-html/mpg-bar-1.png" alt="Example of a simple call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe." width="672" />
 <p class="caption">
@@ -507,18 +504,24 @@ Figure 4.1: Example of a simple call to <code>ggplot</code> showing counts of ve
 </div>
 <p>Let’s call this plot again with a second aesthetic, the <code>fill</code> color, which
 will be mapped to <code>drv</code>, a variable in the <code>mpg</code> data frame that specifies
-vehicle drive type (i.e., 4-wheel, font-wheel, or
-rear-wheel). The x-position will continue to show vehicle class (<code>class</code>), and the
-y-position will show the counts of vehicles, now colored by <code>drv</code>.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="dataviz.html#cb172-1"></a><span class="co"># call to ggplot to map the data and a single aesthetic</span></span>
-<span id="cb172-2"><a href="dataviz.html#cb172-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">fill =</span> drv)) <span class="op">+</span></span>
-<span id="cb172-3"><a href="dataviz.html#cb172-3"></a><span class="st">  </span><span class="kw">geom_bar</span>()  <span class="co"># call to a specific geom to plot the mapped data</span></span></code></pre></div>
+vehicle drive type (i.e., 4-wheel, font-wheel, or rear-wheel). The x-position
+will continue to show vehicle class (<code>class</code>), but we will <code>fill</code> each bar
+with colors pertaining to <code>drv</code> (i.e., to show the counts within each vehicle
+class colored colored by <code>drv</code>).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="dataviz.html#cb4-1"></a><span class="co"># call to ggplot to map the data and a single aesthetic</span></span>
+<span id="cb4-2"><a href="dataviz.html#cb4-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">fill =</span> drv)) <span class="op">+</span></span>
+<span id="cb4-3"><a href="dataviz.html#cb4-3"></a><span class="st">  </span><span class="kw">geom_bar</span>()  <span class="co"># call to a specific geom to plot the mapped data</span></span></code></pre></div>
 <div class="figure"><span id="fig:mpg-fill"></span>
 <img src="04-dataviz_files/figure-html/mpg-fill-1.png" alt="Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)." width="672" />
 <p class="caption">
 Figure 4.2: Example of a call to <code>ggplot</code> showing counts of vehicle classes from the <code>mpg</code> dataframe and colored by the <code>fill</code> aesthetic mapped to drive type (<code>drv</code>).
 </p>
 </div>
+<p>What new information can we learn from the Figure <a href="dataviz.html#fig:mpg-fill">4.2</a>? For
+starters, we can see that compact and mid-size cars tend to be front-wheel
+drive, whereas pickups and SUVs (who tend to share the same chassis) tend to
+be 4-wheel drive; <em>this result is not surprising to anyone who studies cars and</em>
+<em>trucks, but it’s nice to confirm one’s knowledge with quantitative data!</em></p>
 <div class="rmdnote">
 <p>
 <code>ggplot()</code> will choose colors and add legends to plots when an aesthetic mapping creates such opportunities. You will learn ways to customize colors, legends, and other plot elements later.
@@ -527,9 +530,8 @@ Figure 4.2: Example of a call to <code>ggplot</code> showing counts of vehicle c
 <p>Which aesthetics are required for a plot depend on which geoms (more on those
 in a second) you’re adding to the plot. You can find out the aesthetics you can
 use for a geom in the “Aesthetics” section of the geom’s helpfile (e.g.,
-<code>?geom_bar</code>). Required aesthetics are in bold in this section of the helpfile
-and optional ones are not. Common plot aesthetics you might want to specify
-include:</p>
+<code>?geom_bar</code>). Required aesthetics are often shown <strong>in bold</strong> in this section of
+the helpfile. Common plot aesthetics you might want to specify include:</p>
 <table>
 <caption>
 <span id="tab:aes-table">Table 4.1: </span>Common Plot Aesthetics
@@ -666,6 +668,11 @@ Line graph (2 numeric variables)
 </tr>
 </tbody>
 </table>
+<div class="rmdwarning">
+<p>
+A common error when writing <code>ggplot2</code> code is to put the <code>+</code> to add a geom or element at the beginning of a line rather than the end of a previous line. In this case, R will try to execute the call too soon. If R gets to the end of a line and there is no indication to continue the call (e.g., <code>%&gt;%</code> for piping or <code>+</code> for <code>ggplot2</code> plots), R interprets that as a message to run the call without reading in further code. Thus, to avoid errors, be sure to end each line in <code>ggplot2</code> calls with <code>+</code>, except for the final line when the call is actually done. Don’t start lines with <code>+</code>.
+</p>
+</div>
 <div id="aesthetic-override-a-warning" class="section level3">
 <h3><span class="header-section-number">4.6.1</span> Aesthetic override: a warning</h3>
 <p>The <code>ggplot2</code> package, like many <code>tidyverse</code> packages, is both flexible and
@@ -677,21 +684,21 @@ contents of the legend; instead, <code>ggplot2</code> figured those out for us. 
 mappings can be structured. For example, the following four calls all produce
 the same (identical) plot as shown in Figure <a href="dataviz.html#fig:mpg-fill">4.2</a>. Try it for
 yourself.</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="dataviz.html#cb173-1"></a><span class="co"># call to ggplot() with aes() specified in main call</span></span>
-<span id="cb173-2"><a href="dataviz.html#cb173-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">fill =</span> drv)) <span class="op">+</span></span>
-<span id="cb173-3"><a href="dataviz.html#cb173-3"></a><span class="kw">geom_bar</span>()</span>
-<span id="cb173-4"><a href="dataviz.html#cb173-4"></a></span>
-<span id="cb173-5"><a href="dataviz.html#cb173-5"></a><span class="co"># call to ggplot() with aes() specified in geom</span></span>
-<span id="cb173-6"><a href="dataviz.html#cb173-6"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span></span>
-<span id="cb173-7"><a href="dataviz.html#cb173-7"></a><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">fill =</span> drv))</span>
-<span id="cb173-8"><a href="dataviz.html#cb173-8"></a></span>
-<span id="cb173-9"><a href="dataviz.html#cb173-9"></a><span class="co"># call to ggplot() with a mix of aes() mappings </span></span>
-<span id="cb173-10"><a href="dataviz.html#cb173-10"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class)) <span class="op">+</span></span>
-<span id="cb173-11"><a href="dataviz.html#cb173-11"></a><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> drv))</span>
-<span id="cb173-12"><a href="dataviz.html#cb173-12"></a></span>
-<span id="cb173-13"><a href="dataviz.html#cb173-13"></a><span class="co"># call to ggplot() with all mappings in the geom </span></span>
-<span id="cb173-14"><a href="dataviz.html#cb173-14"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb173-15"><a href="dataviz.html#cb173-15"></a><span class="kw">geom_bar</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">fill =</span> drv))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="dataviz.html#cb5-1"></a><span class="co"># call to ggplot() with aes() specified in main call</span></span>
+<span id="cb5-2"><a href="dataviz.html#cb5-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">fill =</span> drv)) <span class="op">+</span></span>
+<span id="cb5-3"><a href="dataviz.html#cb5-3"></a><span class="kw">geom_bar</span>()</span>
+<span id="cb5-4"><a href="dataviz.html#cb5-4"></a></span>
+<span id="cb5-5"><a href="dataviz.html#cb5-5"></a><span class="co"># call to ggplot() with aes() specified in geom</span></span>
+<span id="cb5-6"><a href="dataviz.html#cb5-6"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span></span>
+<span id="cb5-7"><a href="dataviz.html#cb5-7"></a><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">fill =</span> drv))</span>
+<span id="cb5-8"><a href="dataviz.html#cb5-8"></a></span>
+<span id="cb5-9"><a href="dataviz.html#cb5-9"></a><span class="co"># call to ggplot() with a mix of aes() mappings </span></span>
+<span id="cb5-10"><a href="dataviz.html#cb5-10"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class)) <span class="op">+</span></span>
+<span id="cb5-11"><a href="dataviz.html#cb5-11"></a><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> drv))</span>
+<span id="cb5-12"><a href="dataviz.html#cb5-12"></a></span>
+<span id="cb5-13"><a href="dataviz.html#cb5-13"></a><span class="co"># call to ggplot() with all mappings in the geom </span></span>
+<span id="cb5-14"><a href="dataviz.html#cb5-14"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb5-15"><a href="dataviz.html#cb5-15"></a><span class="kw">geom_bar</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">fill =</span> drv))</span></code></pre></div>
 <p>For most plots that you make, the first example is best, where the aesthetics
 are called out as arguments within the first line call to <code>ggplot()</code>, such as:</p>
 <p><code>ggplot(data = mpg, aes(x = class, fill = drv)) +</code><br />
@@ -703,9 +710,9 @@ above in the main <code>ggplot</code> call. Specifying aesthetics in the main ca
 <strong><em>override</em></strong> one mapping with another one later on in the same call. For
 example, see what happens when two different <code>fill</code> mappings are specified at
 different points in the call:</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="dataviz.html#cb174-1"></a><span class="co"># call to ggplot where one `fill` overrides another</span></span>
-<span id="cb174-2"><a href="dataviz.html#cb174-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">fill =</span> drv)) <span class="op">+</span></span>
-<span id="cb174-3"><a href="dataviz.html#cb174-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">fill =</span> <span class="st">&quot;darkgreen&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="dataviz.html#cb6-1"></a><span class="co"># call to ggplot where one `fill` overrides another</span></span>
+<span id="cb6-2"><a href="dataviz.html#cb6-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">fill =</span> drv)) <span class="op">+</span></span>
+<span id="cb6-3"><a href="dataviz.html#cb6-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">fill =</span> <span class="st">&quot;darkgreen&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:mpg-green"></span>
 <img src="04-dataviz_files/figure-html/mpg-green-1.png" alt="Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)." width="672" />
 <p class="caption">
@@ -836,41 +843,41 @@ displacement has an effect on fuel efficiency. Note the additional aesthetic
 calls for <code>color =</code> in each layer. The final part of the call in
 <code>theme_classic()</code> tells <code>ggplot()</code> to remove the gray background and the grid
 lines, which are neither necessary nor visually appealing.</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="dataviz.html#cb175-1"></a><span class="co"># load required R packages - alternatively, use `library(tidyverse)`, if you will need multiple tidyverse packages</span></span>
-<span id="cb175-2"><a href="dataviz.html#cb175-2"></a><span class="kw">library</span>(dplyr) <span class="co"># for data wrangling and manipulation</span></span>
-<span id="cb175-3"><a href="dataviz.html#cb175-3"></a><span class="kw">library</span>(ggplot2) <span class="co"># for data visualization</span></span>
-<span id="cb175-4"><a href="dataviz.html#cb175-4"></a></span>
-<span id="cb175-5"><a href="dataviz.html#cb175-5"></a><span class="co"># use dplyr to create a summary subset from the `mpg` dataframe</span></span>
-<span id="cb175-6"><a href="dataviz.html#cb175-6"></a>mpg_subset &lt;-<span class="st"> </span>mpg <span class="op">%&gt;%</span></span>
-<span id="cb175-7"><a href="dataviz.html#cb175-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(class <span class="op">==</span><span class="st"> &quot;suv&quot;</span>, year <span class="op">==</span><span class="st"> </span><span class="dv">2008</span>) <span class="op">%&gt;%</span></span>
-<span id="cb175-8"><a href="dataviz.html#cb175-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(manufacturer) <span class="op">%&gt;%</span></span>
-<span id="cb175-9"><a href="dataviz.html#cb175-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(<span class="dt">hwy_mean =</span> <span class="kw">mean</span>(hwy), <span class="dt">displ_mean =</span> <span class="kw">mean</span>(displ))</span>
-<span id="cb175-10"><a href="dataviz.html#cb175-10"></a></span>
-<span id="cb175-11"><a href="dataviz.html#cb175-11"></a><span class="co"># call to ggplot, note that data and aesthetics are called in each geom layer</span></span>
-<span id="cb175-12"><a href="dataviz.html#cb175-12"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb175-13"><a href="dataviz.html#cb175-13"></a><span class="st">  </span><span class="co"># first layer</span></span>
-<span id="cb175-14"><a href="dataviz.html#cb175-14"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">data =</span> <span class="kw">filter</span>(mpg, class <span class="op">==</span><span class="st"> &quot;suv&quot;</span>, year <span class="op">==</span><span class="st"> </span><span class="dv">2008</span>),</span>
-<span id="cb175-15"><a href="dataviz.html#cb175-15"></a>           <span class="kw">aes</span>(<span class="dt">x =</span> manufacturer, </span>
-<span id="cb175-16"><a href="dataviz.html#cb175-16"></a>               <span class="dt">y =</span> hwy, </span>
-<span id="cb175-17"><a href="dataviz.html#cb175-17"></a>               <span class="dt">color =</span> displ),</span>
-<span id="cb175-18"><a href="dataviz.html#cb175-18"></a>           <span class="dt">width =</span> <span class="fl">0.1</span>,</span>
-<span id="cb175-19"><a href="dataviz.html#cb175-19"></a>           <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb175-20"><a href="dataviz.html#cb175-20"></a><span class="st">  </span><span class="co"># second layer</span></span>
-<span id="cb175-21"><a href="dataviz.html#cb175-21"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">data =</span> mpg_subset,</span>
-<span id="cb175-22"><a href="dataviz.html#cb175-22"></a>             <span class="kw">aes</span>(<span class="dt">x =</span> manufacturer,</span>
-<span id="cb175-23"><a href="dataviz.html#cb175-23"></a>                 <span class="dt">ymin =</span> hwy_mean,</span>
-<span id="cb175-24"><a href="dataviz.html#cb175-24"></a>                 <span class="dt">ymax =</span> hwy_mean,</span>
-<span id="cb175-25"><a href="dataviz.html#cb175-25"></a>                 <span class="dt">color =</span> displ_mean),</span>
-<span id="cb175-26"><a href="dataviz.html#cb175-26"></a>             <span class="dt">alpha =</span> <span class="fl">0.5</span>,</span>
-<span id="cb175-27"><a href="dataviz.html#cb175-27"></a>             <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb175-28"><a href="dataviz.html#cb175-28"></a><span class="st">  </span><span class="co"># customize plot labels</span></span>
-<span id="cb175-29"><a href="dataviz.html#cb175-29"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Fuel Economy for 2008 SUVs by Manufacturer and Engine Displacement&quot;</span>,</span>
-<span id="cb175-30"><a href="dataviz.html#cb175-30"></a>       <span class="dt">color =</span> <span class="st">&quot;Disp (L)&quot;</span>) <span class="op">+</span></span>
-<span id="cb175-31"><a href="dataviz.html#cb175-31"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;highway fuel economy (miles/gal)&quot;</span>) <span class="op">+</span></span>
-<span id="cb175-32"><a href="dataviz.html#cb175-32"></a><span class="st">  </span><span class="co"># add a fancy color scale</span></span>
-<span id="cb175-33"><a href="dataviz.html#cb175-33"></a><span class="st">  </span><span class="kw">scale_color_viridis_c</span>(<span class="dt">option =</span> <span class="st">&quot;D&quot;</span>, <span class="dt">direction =</span> <span class="dv">-1</span>) <span class="op">+</span></span>
-<span id="cb175-34"><a href="dataviz.html#cb175-34"></a><span class="st">  </span><span class="co"># adopt a theme without gray background</span></span>
-<span id="cb175-35"><a href="dataviz.html#cb175-35"></a><span class="st">  </span><span class="kw">theme_classic</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="dataviz.html#cb7-1"></a><span class="co"># load required R packages - alternatively, use `library(tidyverse)`, if you will need multiple tidyverse packages</span></span>
+<span id="cb7-2"><a href="dataviz.html#cb7-2"></a><span class="kw">library</span>(dplyr) <span class="co"># for data wrangling and manipulation</span></span>
+<span id="cb7-3"><a href="dataviz.html#cb7-3"></a><span class="kw">library</span>(ggplot2) <span class="co"># for data visualization</span></span>
+<span id="cb7-4"><a href="dataviz.html#cb7-4"></a></span>
+<span id="cb7-5"><a href="dataviz.html#cb7-5"></a><span class="co"># use dplyr to create a summary subset from the `mpg` dataframe</span></span>
+<span id="cb7-6"><a href="dataviz.html#cb7-6"></a>mpg_subset &lt;-<span class="st"> </span>mpg <span class="op">%&gt;%</span></span>
+<span id="cb7-7"><a href="dataviz.html#cb7-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(class <span class="op">==</span><span class="st"> &quot;suv&quot;</span>, year <span class="op">==</span><span class="st"> </span><span class="dv">2008</span>) <span class="op">%&gt;%</span></span>
+<span id="cb7-8"><a href="dataviz.html#cb7-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(manufacturer) <span class="op">%&gt;%</span></span>
+<span id="cb7-9"><a href="dataviz.html#cb7-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(<span class="dt">hwy_mean =</span> <span class="kw">mean</span>(hwy), <span class="dt">displ_mean =</span> <span class="kw">mean</span>(displ))</span>
+<span id="cb7-10"><a href="dataviz.html#cb7-10"></a></span>
+<span id="cb7-11"><a href="dataviz.html#cb7-11"></a><span class="co"># call to ggplot, note that data and aesthetics are called in each geom layer</span></span>
+<span id="cb7-12"><a href="dataviz.html#cb7-12"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb7-13"><a href="dataviz.html#cb7-13"></a><span class="st">  </span><span class="co"># first layer</span></span>
+<span id="cb7-14"><a href="dataviz.html#cb7-14"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">data =</span> <span class="kw">filter</span>(mpg, class <span class="op">==</span><span class="st"> &quot;suv&quot;</span>, year <span class="op">==</span><span class="st"> </span><span class="dv">2008</span>),</span>
+<span id="cb7-15"><a href="dataviz.html#cb7-15"></a>           <span class="kw">aes</span>(<span class="dt">x =</span> manufacturer, </span>
+<span id="cb7-16"><a href="dataviz.html#cb7-16"></a>               <span class="dt">y =</span> hwy, </span>
+<span id="cb7-17"><a href="dataviz.html#cb7-17"></a>               <span class="dt">color =</span> displ),</span>
+<span id="cb7-18"><a href="dataviz.html#cb7-18"></a>           <span class="dt">width =</span> <span class="fl">0.1</span>,</span>
+<span id="cb7-19"><a href="dataviz.html#cb7-19"></a>           <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb7-20"><a href="dataviz.html#cb7-20"></a><span class="st">  </span><span class="co"># second layer</span></span>
+<span id="cb7-21"><a href="dataviz.html#cb7-21"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">data =</span> mpg_subset,</span>
+<span id="cb7-22"><a href="dataviz.html#cb7-22"></a>             <span class="kw">aes</span>(<span class="dt">x =</span> manufacturer,</span>
+<span id="cb7-23"><a href="dataviz.html#cb7-23"></a>                 <span class="dt">ymin =</span> hwy_mean,</span>
+<span id="cb7-24"><a href="dataviz.html#cb7-24"></a>                 <span class="dt">ymax =</span> hwy_mean,</span>
+<span id="cb7-25"><a href="dataviz.html#cb7-25"></a>                 <span class="dt">color =</span> displ_mean),</span>
+<span id="cb7-26"><a href="dataviz.html#cb7-26"></a>             <span class="dt">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb7-27"><a href="dataviz.html#cb7-27"></a>             <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb7-28"><a href="dataviz.html#cb7-28"></a><span class="st">  </span><span class="co"># customize plot labels</span></span>
+<span id="cb7-29"><a href="dataviz.html#cb7-29"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Fuel Economy for 2008 SUVs by Manufacturer and Engine Displacement&quot;</span>,</span>
+<span id="cb7-30"><a href="dataviz.html#cb7-30"></a>       <span class="dt">color =</span> <span class="st">&quot;Disp (L)&quot;</span>) <span class="op">+</span></span>
+<span id="cb7-31"><a href="dataviz.html#cb7-31"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;highway fuel economy (miles/gal)&quot;</span>) <span class="op">+</span></span>
+<span id="cb7-32"><a href="dataviz.html#cb7-32"></a><span class="st">  </span><span class="co"># add a fancy color scale</span></span>
+<span id="cb7-33"><a href="dataviz.html#cb7-33"></a><span class="st">  </span><span class="kw">scale_color_viridis_c</span>(<span class="dt">option =</span> <span class="st">&quot;D&quot;</span>, <span class="dt">direction =</span> <span class="dv">-1</span>) <span class="op">+</span></span>
+<span id="cb7-34"><a href="dataviz.html#cb7-34"></a><span class="st">  </span><span class="co"># adopt a theme without gray background</span></span>
+<span id="cb7-35"><a href="dataviz.html#cb7-35"></a><span class="st">  </span><span class="kw">theme_classic</span>() </span></code></pre></div>
 <div class="figure"><span id="fig:mpg-custom-plot"></span>
 <img src="04-dataviz_files/figure-html/mpg-custom-plot-1.png" alt="A two-layer (two `geom`) plot with customization" width="672" />
 <p class="caption">
@@ -889,9 +896,9 @@ same way as you would create and assign a name to any other object in R. But
 remember to <strong>use descriptive plot names</strong> following the naming advice from
 Chapter 3 (i.e., meaningful words; lowercase; underscore as separator). In the
 following example, <code>plot1</code> does not follow this advice!</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="dataviz.html#cb176-1"></a><span class="co"># create a ggplot object called &quot;plot1&quot;</span></span>
-<span id="cb176-2"><a href="dataviz.html#cb176-2"></a>plot1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class)) <span class="op">+</span></span>
-<span id="cb176-3"><a href="dataviz.html#cb176-3"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="dataviz.html#cb8-1"></a><span class="co"># create a ggplot object called &quot;plot1&quot;</span></span>
+<span id="cb8-2"><a href="dataviz.html#cb8-2"></a>plot1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class)) <span class="op">+</span></span>
+<span id="cb8-3"><a href="dataviz.html#cb8-3"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span></code></pre></div>
 <div class="rmdnote">
 <p>
 When you create and store a <code>ggplot()</code> object, the plot itself will be created and stored but not returned as output.If you want to “see” the plot, just enter its name into the console or script.
@@ -901,16 +908,16 @@ When you create and store a <code>ggplot()</code> object, the plot itself will b
 <code>ggsave()</code> function. This function requires a file name but also allows you to
 specify parameters including image resolution (<code>dpi = 300</code>), image type
 (<code>device = png()</code>), and image <code>height</code>, <code>width</code> and <code>units</code> of measurement.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="dataviz.html#cb177-1"></a><span class="co"># create a ggplot object called &quot;plot1&quot;</span></span>
-<span id="cb177-2"><a href="dataviz.html#cb177-2"></a>plot1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class)) <span class="op">+</span></span>
-<span id="cb177-3"><a href="dataviz.html#cb177-3"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span>
-<span id="cb177-4"><a href="dataviz.html#cb177-4"></a></span>
-<span id="cb177-5"><a href="dataviz.html#cb177-5"></a><span class="kw">ggsave</span>(<span class="st">&quot;images/mpg-bar.png&quot;</span>,</span>
-<span id="cb177-6"><a href="dataviz.html#cb177-6"></a>       <span class="dt">plot =</span> plot1,</span>
-<span id="cb177-7"><a href="dataviz.html#cb177-7"></a>       <span class="dt">dpi =</span> <span class="dv">150</span>,</span>
-<span id="cb177-8"><a href="dataviz.html#cb177-8"></a>       <span class="dt">device =</span> <span class="kw">png</span>(),</span>
-<span id="cb177-9"><a href="dataviz.html#cb177-9"></a>       <span class="dt">width =</span> <span class="dv">20</span>,</span>
-<span id="cb177-10"><a href="dataviz.html#cb177-10"></a>       <span class="dt">units =</span> <span class="st">&quot;cm&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="dataviz.html#cb9-1"></a><span class="co"># create a ggplot object called &quot;plot1&quot;</span></span>
+<span id="cb9-2"><a href="dataviz.html#cb9-2"></a>plot1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class)) <span class="op">+</span></span>
+<span id="cb9-3"><a href="dataviz.html#cb9-3"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span>
+<span id="cb9-4"><a href="dataviz.html#cb9-4"></a></span>
+<span id="cb9-5"><a href="dataviz.html#cb9-5"></a><span class="kw">ggsave</span>(<span class="st">&quot;images/mpg-bar.png&quot;</span>,</span>
+<span id="cb9-6"><a href="dataviz.html#cb9-6"></a>       <span class="dt">plot =</span> plot1,</span>
+<span id="cb9-7"><a href="dataviz.html#cb9-7"></a>       <span class="dt">dpi =</span> <span class="dv">150</span>,</span>
+<span id="cb9-8"><a href="dataviz.html#cb9-8"></a>       <span class="dt">device =</span> <span class="kw">png</span>(),</span>
+<span id="cb9-9"><a href="dataviz.html#cb9-9"></a>       <span class="dt">width =</span> <span class="dv">20</span>,</span>
+<span id="cb9-10"><a href="dataviz.html#cb9-10"></a>       <span class="dt">units =</span> <span class="st">&quot;cm&quot;</span>)</span></code></pre></div>
 </div>
 <div id="getting-help-with-ggplot2" class="section level2">
 <h2><span class="header-section-number">4.11</span> Getting help with <code>ggplot2</code></h2>

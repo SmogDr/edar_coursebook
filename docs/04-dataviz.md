@@ -9,7 +9,7 @@ data visualization in R. Upon completing this chapter, you should be able to:
 
 - Install, load, and use `ggplot2` functions to visualize dataframe elements
 - Differentiate between data, aesthetics, and layers in a `ggplot2` object
-- Determine how to change color and shape elements in a `ggplot2` layer
+- Customize element properties such as color, size, and shape in a `ggplot2` layer
 - Create, store, and save a `ggplot2` object in an R script
 
 ## Install and load `ggplot2`
@@ -17,13 +17,13 @@ data visualization in R. Upon completing this chapter, you should be able to:
 > <span style="color: blue;"> "The best design gets out of the way between the viewer’s brain and the content." - Edward Tufte </span>
 
 In this chapter, you will learn how to make basic plots using the `ggplot2`
-package in R, which is another package in `tidyverse`, like `dplyr` from
-Chapter 2. This section will focus on making **useful**, rather than
+package in R, which is another package in `tidyverse`, like `dplyr` and `readr`.
+This section will focus on making **useful**, rather than
 **attractive** graphs because, at this stage, we are focusing on exploring data
-rather than presenting results to others. Later on, I will explain more about
-how you can customize `ggplot2` objects to help you make plots that "get out of
-the way" between content you wish to present and the viewer's brain, where you
-hope understanding takes root.  
+rather than presenting results to others. Later on, you will learn about
+how to customize `ggplot2` objects. Customization often helps to make plots that
+"get out of the way" between the content you wish to present and the viewer's 
+brain, wherein you hope understanding takes root.  
 
 If you don't already have `ggplot2` installed, you'll need to install it. You
 then need to load the package in your current session of R:
@@ -37,7 +37,7 @@ library(ggplot2)
 ```
 
 Alternatively, if you are planning on using other `tidyverse` R packages in the
-same R session, you can simply install (if needed) and load the `tidyverse` "R
+same R session, you can simply install and load the `tidyverse` "R
 package suite of R packages" with `library(tidyverse)`.
 
 ## Steps to create a `ggplot2` object
@@ -47,9 +47,11 @@ bit different than most of the code you've seen so far in R, although it is
 somewhat similar to the idea of piping I introduced in the last chapter. The
 basic steps behind creating a plot with `ggplot2` are:
 
-1. Create an object of the `ggplot2` class, typically specifying the **data** and some or all of the **aesthetics**
+1. Create an object of the `ggplot2` class, typically specifying the **data** 
+and some or all of the **aesthetics**
 
-2. Add a layer or **geom** to the plot, along with other specific elements, using `+`
+2. Add a layer or **geom** to the plot, along with other specific elements, 
+using `+`
 
 **Aesthetics** or `aes()` in R represent the things that we are plotting: the x
 and y data. **Geoms** like `geom_point()` represent the way in which we layer
@@ -59,10 +61,6 @@ You can layer on one or many geoms and other elements to create plots that
 range from very simple to very customized. We will start by focusing on simple
 geoms and added elements; later on, we will explore more options for
 customization. 
-
-<div class="rmdwarning">
-<p>A common error when writing <code>ggplot2</code> code is to put the <code>+</code> to add a geom or element at the beginning of a line rather than the end of a previous line. In this case, R will try to execute the call too soon. If R gets to the end of a line and there is no indication to continue the call (e.g., <code>%&gt;%</code> for piping or <code>+</code> for <code>ggplot2</code> plots), R interprets that as a message to run the call without reading in further code. Thus, to avoid errors, be sure to end each line in <code>ggplot2</code> calls with <code>+</code>, except for the final line when the call is actually done. Don’t start lines with <code>+</code>.</p>
-</div>
 
 ## Initializing a `ggplot2` object
 
@@ -87,7 +85,7 @@ Aesthetics are defined within an `aes()` function call that is typically
 defined within the `ggplot()` function. 
 
 <div class="rmdnote">
-<p>While the <code>ggplot()</code> call is the place where you will most often see an <code>aes()</code> call, you can also make calls to <code>aes()</code> within the calls to specific geoms. This can be particularly useful if you want to map aesthetics differently for different geoms in your plot. We’ll see some examples of this use of <code>aes()</code> more in later sections, when we talk about customizing plots. The <code>data</code> parameter can also be used in geom calls in order to use a different dataframe from the one defined when creating the original ggplot object, although this is less common.</p>
+<p>While the <code>ggplot()</code> call is the place where you will most often see an <code>aes()</code> call, you can also make calls to <code>aes()</code> within the calls to specific geoms. This can be particularly useful if you want to map aesthetics differently for different geoms in your plot. We’ll see some examples of this use of <code>aes()</code> more in later sections, when we talk about customizing plots. The <code>data =</code> argument can be used in specific geom calls to use different dataframes (from the one defined when creating the original ggplot object), although this is less common.</p>
 </div>
 
 ## Plot aesthetics
@@ -120,9 +118,10 @@ ggplot(data = mpg, aes(x = class)) +
 
 Let's call this plot again with a second aesthetic, the `fill` color, which
 will be mapped to `drv`, a variable in the `mpg` data frame that specifies 
-vehicle drive type (i.e., 4-wheel, font-wheel, or
-rear-wheel). The x-position will continue to show vehicle class (`class`), and the
-y-position will show the counts of vehicles, now colored by `drv`.
+vehicle drive type (i.e., 4-wheel, font-wheel, or rear-wheel). The x-position 
+will continue to show vehicle class (`class`), but  we will `fill` each bar 
+with colors pertaining to `drv` (i.e., to show the counts within each vehicle 
+class colored colored by `drv`).
 
 
 ```r
@@ -136,6 +135,12 @@ ggplot(data = mpg, aes(x = class, fill = drv)) +
 <p class="caption">(\#fig:mpg-fill)Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`).</p>
 </div>
 
+What new information can we learn from the Figure \@ref(fig:mpg-fill)?  For 
+starters, we can see that compact and mid-size cars tend to be front-wheel
+drive, whereas pickups and SUVs (who tend to share the same chassis) tend to
+be 4-wheel drive; *this result is not surprising to anyone who studies cars and*
+*trucks, but it's nice to confirm one's knowledge with quantitative data!* 
+
 <div class="rmdnote">
 <p><code>ggplot()</code> will choose colors and add legends to plots when an aesthetic mapping creates such opportunities. You will learn ways to customize colors, legends, and other plot elements later.</p>
 </div>
@@ -143,9 +148,8 @@ ggplot(data = mpg, aes(x = class, fill = drv)) +
 Which aesthetics are required for a plot depend on which geoms (more on those
 in a second) you're adding to the plot. You can find out the aesthetics you can
 use for a geom in the "Aesthetics" section of the geom's helpfile (e.g.,
-`?geom_bar`). Required aesthetics are in bold in this section of the helpfile
-and optional ones are not. Common plot aesthetics you might want to specify
-include: 
+`?geom_bar`). Required aesthetics are often shown **in bold** in this section of 
+the helpfile. Common plot aesthetics you might want to specify include: 
 
 <table>
 <caption>(\#tab:aes-table)Common Plot Aesthetics</caption>
@@ -224,6 +228,10 @@ You can add these with `+` after the `ggplot()` statement to initialize the
   </tr>
 </tbody>
 </table>
+
+<div class="rmdwarning">
+<p>A common error when writing <code>ggplot2</code> code is to put the <code>+</code> to add a geom or element at the beginning of a line rather than the end of a previous line. In this case, R will try to execute the call too soon. If R gets to the end of a line and there is no indication to continue the call (e.g., <code>%&gt;%</code> for piping or <code>+</code> for <code>ggplot2</code> plots), R interprets that as a message to run the call without reading in further code. Thus, to avoid errors, be sure to end each line in <code>ggplot2</code> calls with <code>+</code>, except for the final line when the call is actually done. Don’t start lines with <code>+</code>.</p>
+</div>
 
 ### Aesthetic override: a warning
 
