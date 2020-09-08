@@ -265,7 +265,7 @@ geom_bar(data = mpg, aes(x = class, fill = drv))
 ```
 
 For most plots that you make, the first example is best, where the aesthetics 
-are called out as arguments within the first line call to `ggplot()`, such as:
+are called out as arguments within the main call to `ggplot()`, such as:
 
 `ggplot(data = mpg, aes(x = class, fill = drv)) +`  
 `geom_bar()`
@@ -363,13 +363,149 @@ There are many scale elements that you can add onto a `ggplot2` object using
 </tbody>
 </table>
 
-## Example plot
+## ggplot2 example 1 
 
 For the example plots, we will continue to use the `mpg` dataset from the
 `ggplot2` package. We will use functions from the `dplyr` package, too, so both
 need to be loaded. Fortunately, the `ggplot2` package is loaded in addition to regualr `tidyverse` packages when you call `library(tidyverse)`. 
 
-In this figure, we will look at highway fuel efficiency for SUVs in 2008,
+The first example is actually two similar [scatterplots](#scatt): one using 
+`geom_point()` and one using `geom_jitter()`. These plots will examine the 
+agreement (i.e., the [correlation](#corr)) between a vehicle's highway (`hwy`) 
+and city (`cty`) fuel economies for model year 2008.
+
+Because the `mpg` dataset contains data from model year 1999 and 2008, we will 
+apply a `dplyr::filter()` command within our call to `ggplot()` to limit the 
+data to `year == 2008`.  
+
+We will also color the points on the plot according to the `class` of vehicle.  
+If you are wondering what types of vehicle classes are included with `mpg`, you 
+could type `unique(mpg$class)` or, if you want to see a quantitative summary, 
+you could pipe together the following:
+
+
+```r
+mpg %>% 
+  filter(year == 2008) %>%
+  group_by(class) %>%
+  tally()
+```
+
+```
+## # A tibble: 7 x 2
+##   class          n
+##   <chr>      <int>
+## 1 2seater        3
+## 2 compact       22
+## 3 midsize       21
+## 4 minivan        5
+## 5 pickup        17
+## 6 subcompact    16
+## 7 suv           33
+```
+
+```r
+#or another way: mpg %>% filter(year == 2008) %>% count(class)
+```
+
+```r
+# load required R packages - alternatively, use `library(tidyverse)`, 
+# if you will need multiple tidyverse packages
+library(dplyr) # for data wrangling and manipulation
+library(ggplot2) # for data visualization
+
+ggplot() +
+  geom_point(data = filter(mpg, year == 2008),
+             aes(x = hwy, y = cty, color = class)) 
+```
+
+<div class="figure">
+<img src="04-dataviz_files/figure-html/mpg-example1-1.png" alt="Scatterplot (geom_point) of highway vs. city fuel economy for model year 2008, colored by vehicle type" width="672" />
+<p class="caption">(\#fig:mpg-example1)Scatterplot (geom_point) of highway vs. city fuel economy for model year 2008, colored by vehicle type</p>
+</div>
+A few things to note about this plot.  First, there is a clear relationship 
+between a vehicle's highway and city fuel economy, but the correlation is not
+necessarily one-to-one.  Second, we can see that compact and midsize cars tend
+to have better fuel efficiency that pickups and SUVs (...duh).  Third, in my
+opinion, this plot has a few drawbacks:  
+
+* If you were paying close attention, the sum of the `tally()` function above
+  reported over 100 different entries (117 to be precise), but the plot above
+  shows only about 50 data points....Why?  (hint: if you look at the `mpg` 
+  data, the fuel economies are rounded to the nearest mi/gal).  
+  * We will address this issue with `geom_jitter()` below.  
+* The limits of the x- and y-axes are not equal, which distorts the relationship 
+a bit.  
+  * We will address this issue with `coord_fixed()` below.  
+* The relationship between `cty` and `hwy` might be easier to distinguish if
+  we drew a "one-to-one" line on the plot (i.e. y = x).  
+  * We will accomplish this need with `geom_abline` below.  
+* Personally, I don't like the grey background and I think that the x and y 
+  axis labels are a little vague.  I prefer my axis labels to be more 
+  descriptive and to communicate the units being plotted.  
+  * We will use a `theme_` call to clean up the background and will specify
+    axis labels with `xlab()` and `ylab()` elements.
+
+Below is the same data from Figure \@ref(fig:mpg-example1) plotted using 
+`geom_jitter()` - this geom is just like `geom_point()` except that it allows 
+the plotted points to contain some "jitter" (a small amount of wobble as to where
+the point actually shows up in x and y space) so that overlapping data points 
+can be distinguished from one another. The degree of jitter is set using 
+`height =` and/or `width = ` arguments. Note that adding jitter to data is the 
+same as making the plotted data less precise (in a random way) so be careful not 
+to add too much jitter to a plot...aim for just enough jitter so that the points 
+are visible without impacting the overall conclusion to be drawn from the plot.
+
+We can also add a degree of transparency to the plotted data by
+using `alpha = 0.6` within the `geom_jitter()` layer. The `alpha =` argument is 
+available in most geoms within the `GGplot2` package and allows you to set the
+degree of transparency between 0 (see through) and 1 (completely solid).
+
+We add a one-to-one line (y = x) that communincates what perfect 
+agreeement between variables would look like.  This is accomplished using 
+`geom_abline()` (*the name comes from drawing a line between points a and b on*
+*a plot*).  A `geom_abline()` call requires us to specify a slope and an 
+intercept, which we will set to 1 and 0, respectively.
+
+Finally, we clean up the plot by:  
+
+* fixing the scale of the x and y axes (i.e., ensuring that 10 units of x 
+  distance are equal to 10 units of y distance) by specifying a 
+  *fixed coordinate system* with `coord_fixed()`;  
+* adding x and y axis labels using strings as arguments to `xlab()` and 
+  `ylab()` elements;  
+* setting a **theme** for the plot that removes the grey background using
+  `theme_minimal()`.
+
+
+```r
+# load required R packages - alternatively, use `library(tidyverse)`, if you will need multiple tidyverse packages
+library(dplyr) # for data wrangling and manipulation
+library(ggplot2) # for data visualization
+
+ggplot() +
+  geom_jitter(data = filter(mpg, year == 2008),
+             aes(x = hwy, y = cty, color = class),
+             width = 0.4,
+             alpha = 0.6,
+             size = 2) +
+  geom_abline(intercept = 0,
+              slope = 1) +
+  coord_fixed() +
+  xlim(c(0,40)) +
+  ylim(c(0,40)) +
+  xlab("Highway Fuel Economy, mi/gal") +
+  ylab("City Fuel Economy, mi/gal") +
+  theme_minimal()
+```
+
+<div class="figure">
+<img src="04-dataviz_files/figure-html/mpg-example1a-1.png" alt="Scatterplot (geom_jitter) of highway vs. city fuel economy for model year 2008, colored by vehicle type" width="672" />
+<p class="caption">(\#fig:mpg-example1a)Scatterplot (geom_jitter) of highway vs. city fuel economy for model year 2008, colored by vehicle type</p>
+</div>
+
+## ggplot2 example 2
+In Example 2, we will look at highway fuel efficiency for SUVs in 2008,
 ordered by manufacturer and colored by the engine displacement size in liters.
 We create subsets of the `mpg` dataframe in two ways:  
 
@@ -387,7 +523,9 @@ plot. Here, we have called `geom_jitter()` to display the individual values for
 2008 SUV fuel economy on the highway as a function of manufacturer.
 
 * The second layer (`geom_errorbar()`) is a horizontal line plot showing the
-mean values for SUV models within each manufacturer.
+mean values for SUV models within each manufacturer.  The `geom_errorbar()`
+function is often used to show precision (or uncertainty) about data; here we
+are using it to identify a single value (the mean) for each SUV manufacturer.
 
 We also add custom lables and a color scale to investigate whether engine
 displacement has an effect on fuel efficiency. Note the additional aesthetic
@@ -397,10 +535,6 @@ lines, which are neither necessary nor visually appealing.
 
 
 ```r
-# load required R packages - alternatively, use `library(tidyverse)`, if you will need multiple tidyverse packages
-library(dplyr) # for data wrangling and manipulation
-library(ggplot2) # for data visualization
-
 # use dplyr to create a summary subset from the `mpg` dataframe
 mpg_subset <- mpg %>%
   dplyr::filter(class == "suv", year == 2008) %>%
@@ -410,7 +544,7 @@ mpg_subset <- mpg %>%
 # call to ggplot, note that data and aesthetics are called in each geom layer
 ggplot() +
   # first layer
-  geom_jitter(data = filter(mpg, class == "suv", year == 2008),
+  geom_jitter(data = filter(mpg, class == "suv" & year == 2008),
            aes(x = manufacturer, 
                y = hwy, 
                color = displ),
@@ -435,11 +569,11 @@ ggplot() +
 ```
 
 <div class="figure">
-<img src="04-dataviz_files/figure-html/mpg-custom-plot-1.png" alt="A two-layer (two `geom`) plot with customization" width="672" />
-<p class="caption">(\#fig:mpg-custom-plot)A two-layer (two `geom`) plot with customization</p>
+<img src="04-dataviz_files/figure-html/mpg-example2-1.png" alt="A two-layer (two `geom`) plot with customization" width="672" />
+<p class="caption">(\#fig:mpg-example2)A two-layer (two `geom`) plot with customization</p>
 </div>
 
-What conclusions can you draw from examining Figure \@ref(fig:mpg-custom-plot)?
+What conclusions can you draw from examining Figure \@ref(fig:mpg-example2)?
 In general, model year 2008 SUVs did not have great fuel economy, evidenced by
 both the means and the individual data points.  
 
