@@ -696,17 +696,17 @@ match a or b
 <p>Dates and times in base R all proceed from an <em>“epoch”</em> or <em>time origin</em>. In R, the <em>epoch</em> or “dawn of time” occurred at midnight on January 1<sup>st</sup>, 1970. For the sake of the R programming world, the concept of time started at that precise moment and has moved forward ever since. To note: R can handle date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time” by calling the <code>Sys.time()</code> function.</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="rprog3.html#cb208-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2020-09-09 11:16:27 MDT&quot;</code></pre>
+<pre><code>## [1] &quot;2020-09-09 11:28:55 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and current timezone used by my computer. If you want to see how this time is stored in R internally, you can use <code>unclass()</code>, which returns an object value with its class attributes removed. When we wrap <code>unclass()</code> around <code>Sys.time()</code>, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="rprog3.html#cb210-1"></a><span class="kw">unclass</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1599671788</code></pre>
+<pre><code>## [1] 1599672535</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
-Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span> 365d/yr] ~ 50.7252596 years.<br />
+Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span> 365d/yr] ~ 50.7252833 years.<br />
 This calculation ignores leap years but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats</h3>
-<p>Note that the <code>Sys.time()</code> function provided the date in a <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong> format: 2020-09-09 11:16:27</p>
+<p>Note that the <code>Sys.time()</code> function provided the date in a <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong> format: 2020-09-09 11:28:55</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky. You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
@@ -839,12 +839,12 @@ each column can be thought of as a vector), you can use <code>class()</code>:</p
 <p>Both the <code>POSIXct</code> and <code>POSIXlt</code> class of objects return the same value to the user; the difference is really in how these classes store date-time objects internally. To examine them, you can coerce <code>Sys.time()</code> into each of the two classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and then examine their attributes.</p>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="rprog3.html#cb214-1"></a>time_now_ct &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb214-2"><a href="rprog3.html#cb214-2"></a><span class="kw">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1599671788</code></pre>
+<pre><code>## [1] 1599672536</code></pre>
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="rprog3.html#cb216-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb216-2"><a href="rprog3.html#cb216-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 27.8
-##  $ min   : int 16
+##  $ sec   : num 55.5
+##  $ min   : int 28
 ##  $ hour  : int 11
 ##  $ mday  : int 9
 ##  $ mon   : int 8

@@ -1537,21 +1537,22 @@ small, regular commits and intermittent pushes in everything you do in R.</p></l
 <span id="cb167-5"><a href="rprog2.html#cb167-5"></a>ozone_data &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/ftc_o3.csv&quot;</span>)</span>
 <span id="cb167-6"><a href="rprog2.html#cb167-6"></a></span>
 <span id="cb167-7"><a href="rprog2.html#cb167-7"></a><span class="co"># 4. absolute pathname - for illustration - not recommended usually</span></span>
-<span id="cb167-8"><a href="rprog2.html#cb167-8"></a>ozone_abs_path &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">paste0</span>(<span class="st">&quot;/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook/data/ftc_o3.csv&quot;</span>)</span>
-<span id="cb167-9"><a href="rprog2.html#cb167-9"></a>ozone_abs_ex &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> ozone_abs_path)</span>
-<span id="cb167-10"><a href="rprog2.html#cb167-10"></a></span>
-<span id="cb167-11"><a href="rprog2.html#cb167-11"></a><span class="co"># 5. possible functions for initial data view and check</span></span>
-<span id="cb167-12"><a href="rprog2.html#cb167-12"></a>tibble<span class="op">::</span><span class="kw">glimpse</span>(ozone_data)</span>
-<span id="cb167-13"><a href="rprog2.html#cb167-13"></a><span class="kw">head</span>(ozone_data)</span>
-<span id="cb167-14"><a href="rprog2.html#cb167-14"></a><span class="kw">tail</span>(ozone_data)</span>
-<span id="cb167-15"><a href="rprog2.html#cb167-15"></a><span class="kw">str</span>(ozone_data)</span>
-<span id="cb167-16"><a href="rprog2.html#cb167-16"></a><span class="kw">summary</span>(ozone_data)</span>
-<span id="cb167-17"><a href="rprog2.html#cb167-17"></a><span class="kw">dim</span>(ozone_data)</span>
-<span id="cb167-18"><a href="rprog2.html#cb167-18"></a><span class="kw">nrow</span>(ozone_data)</span>
-<span id="cb167-19"><a href="rprog2.html#cb167-19"></a><span class="kw">ncol</span>(ozone_data)</span>
-<span id="cb167-20"><a href="rprog2.html#cb167-20"></a><span class="kw">length</span>(ozone_data)</span>
-<span id="cb167-21"><a href="rprog2.html#cb167-21"></a><span class="kw">colnames</span>(ozone_data)</span>
-<span id="cb167-22"><a href="rprog2.html#cb167-22"></a><span class="kw">class</span>(ozone_data<span class="op">$</span>[selected_colname]) <span class="co"># example structure; will not run</span></span></code></pre></div>
+<span id="cb167-8"><a href="rprog2.html#cb167-8"></a>ozone_abs_path &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">paste0</span>(<span class="st">&quot;/Users/johnvolckens/Documents/Teaching/DataSci&quot;</span>,</span>
+<span id="cb167-9"><a href="rprog2.html#cb167-9"></a><span class="st">&quot;/edar_coursebook/data/ftc_o3.csv&quot;</span>)</span>
+<span id="cb167-10"><a href="rprog2.html#cb167-10"></a>ozone_abs_ex &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> ozone_abs_path)</span>
+<span id="cb167-11"><a href="rprog2.html#cb167-11"></a></span>
+<span id="cb167-12"><a href="rprog2.html#cb167-12"></a><span class="co"># 5. possible functions for initial data view and check</span></span>
+<span id="cb167-13"><a href="rprog2.html#cb167-13"></a>tibble<span class="op">::</span><span class="kw">glimpse</span>(ozone_data)</span>
+<span id="cb167-14"><a href="rprog2.html#cb167-14"></a><span class="kw">head</span>(ozone_data)</span>
+<span id="cb167-15"><a href="rprog2.html#cb167-15"></a><span class="kw">tail</span>(ozone_data)</span>
+<span id="cb167-16"><a href="rprog2.html#cb167-16"></a><span class="kw">str</span>(ozone_data)</span>
+<span id="cb167-17"><a href="rprog2.html#cb167-17"></a><span class="kw">summary</span>(ozone_data)</span>
+<span id="cb167-18"><a href="rprog2.html#cb167-18"></a><span class="kw">dim</span>(ozone_data)</span>
+<span id="cb167-19"><a href="rprog2.html#cb167-19"></a><span class="kw">nrow</span>(ozone_data)</span>
+<span id="cb167-20"><a href="rprog2.html#cb167-20"></a><span class="kw">ncol</span>(ozone_data)</span>
+<span id="cb167-21"><a href="rprog2.html#cb167-21"></a><span class="kw">length</span>(ozone_data)</span>
+<span id="cb167-22"><a href="rprog2.html#cb167-22"></a><span class="kw">colnames</span>(ozone_data)</span>
+<span id="cb167-23"><a href="rprog2.html#cb167-23"></a><span class="kw">class</span>(ozone_data<span class="op">$</span>[selected_colname]) <span class="co"># example structure; will not run</span></span></code></pre></div>
 </div>
 <div id="set-2-data-wrangling-and-piping" class="section level3">
 <h3><span class="header-section-number">3.8.2</span> Set 2: Data wrangling and piping</h3>
