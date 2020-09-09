@@ -408,10 +408,10 @@ I **strongly advise against the use of absolute pathnames** because of the
 aforementioned collaborative issue, but I will include some details here
 nonetheless. *Absolute pathnames* give the full directions to a directory or
 file, starting all the way at the root directory. For example, the
-`heat_mort.csv` file in the `CourseText` directory has the absolute pathname:
+`daily_show_guests.csv` file in the `data` directory has the absolute pathname:
 
 ```
-"/Users/brookeanderson/Desktop/RCourseFall2015/CourseText/heat_mort.csv"
+"/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv"
 ```
 
 You can use this absolute pathname to read this file in using any of the
@@ -423,7 +423,7 @@ talking about. Here's the code to use to read that file in using the
 
 
 ```r
-heat_mort <- readr::read_csv(file = "/Users/brookeanderson/Desktop/RCourseFall2015/CourseText/heat_mort.csv")
+daily_show <- readr::read_csv(file = "/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv")
 ```
 
 The *relative pathname*, on the other hand, gives R the directions for how to
@@ -435,15 +435,14 @@ pathname depends on your current working directory---the relative pathname that
 works perfectly when you're working in one directory will not work at all once
 you move into a different working directory.
 
-As an example of a relative pathname, say you're working in the directory
-`RCourseFall2015` within the file structure shown in Figure \@ref(fig:filedirstructure), and you want to read in the `heat_mort.csv` file
-in the `CourseText` directory. To get from `RCourseFall2015` to that file,
-you'd need to look in the subdirectory `CourseText`, where you could find
-`heat_mort.csv`. Therefore, the relative pathname from your working directory
-would be:
+As an example of a relative pathname, say you're working directory is 
+`edar_coursebook` and you want to read in the `daily_show_guests.csv` file
+in the `data` directory (one of the `edar_coursebook` subdirectories). To get from `edar_coursebook` to that file,
+you'd need to look in the subdirectory `data`, where you could find
+`daily_show_guests.csv`. Therefore, the relative pathname from your working directory would be:
 
 ```
-"CourseText/heat_mort.csv"
+"data/daily_show_guests.csv"
 ```
 
 You can use this relative pathname to tell R where to find and read in the
@@ -451,12 +450,10 @@ file:
 
 
 ```r
-heat_mort <- readr::read_csv("CourseText/heat_mort.csv")
+daily_show <- readr::read_csv("data/daily_show_guests.csv")
 ```
 
-While this pathname is much shorter than the absolute pathname, it is important
-to remember that if you are working in a different working directory, this
-relative pathname would no longer work.
+While this pathname is much shorter than the absolute pathname, it is important to remember that if you are working in a different working directory, this relative pathname would no longer work.
 
 There are a few abbreviations that can be really useful for pathnames:
 
@@ -468,21 +465,17 @@ There are a few abbreviations that can be really useful for pathnames:
 |`..`      |One directory up from current working directory   |
 |`../..`   |Two directories up from current working directory |
 
-These can help you keep pathnames shorter and also help you move "up-and-over"
-to get to a file or directory that's not on the direct path below your current
-working directory.
+These can help you keep pathnames shorter and also help you move "up-and-over" to get to a file or directory that's not on the direct path below your current working directory.
 
 For example, my home directory is `/Users/johnvolckens`. You can use the
-`list.files()` function to list all the files in a directory. If I wanted to
-list all the files in my `Downloads` directory, which is a direct sub-directory
-of my home directory, I could use:
+`list.files()` function to list all the files in a directory. If I wanted to list all the files in my `Downloads` directory, which is a direct sub-directory of my home directory, I could use:
 
 ```
 list.files("~/Downloads")
 ```
 
 As a second example, say I was working in the working directory `CourseText`,
-but I wanted to read in the `heat_mort.csv` file that's in the `example_data`
+ (see Figure \@ref(fig:filedirstructure) but I wanted to read in the `heat_mort.csv` file that's in the `example_data`
 directory, rather than the one in the `CourseText` directory. I can use the 
 `..` abbreviation to tell R to look up one directory from the current working
 directory, and then down within a subdirectory of that. The relative pathname
@@ -494,8 +487,9 @@ in this case is:
 
 The `../` tells R to look one directory up from the working directory (the 
 directory that is one level above the current directory is also known as the 
-**parent directory**), which in this case is to `RCourseFall2015`, and then down within that directory to `Week2_Aug31`, then to `example_data`, and then to look
-wihtin that directory for the file `heat_mort.csv`.
+**parent directory**), which in this case is to `RCourseFall2015`, and then 
+down within that directory to `Week2_Aug31`, then to `example_data`, and then 
+to look wihtin that directory for the file `heat_mort.csv`.
 
 The relative pathname to read this file while R is working in the `CourseTest`
 directory would be:
@@ -1202,7 +1196,7 @@ getwd()
 ozone_data <- readr::read_csv(file = "data/ftc_o3.csv")
 
 # 4. absolute pathname - for illustration - not recommended usually
-ozone_abs_path <- base::paste0("~/Documents/R/edar_coursebook/data/ftc_o3.csv")
+ozone_abs_path <- base::paste0("/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook/data/ftc_o3.csv")
 ozone_abs_ex <- readr::read_csv(file = ozone_abs_path)
 
 # 5. possible functions for initial data view and check

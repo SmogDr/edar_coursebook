@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-09-07" />
+<meta name="date" content="2020-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -826,15 +826,15 @@ this second point a bit more later in this section.</p>
 aforementioned collaborative issue, but I will include some details here
 nonetheless. <em>Absolute pathnames</em> give the full directions to a directory or
 file, starting all the way at the root directory. For example, the
-<code>heat_mort.csv</code> file in the <code>CourseText</code> directory has the absolute pathname:</p>
-<pre><code>&quot;/Users/brookeanderson/Desktop/RCourseFall2015/CourseText/heat_mort.csv&quot;</code></pre>
+<code>daily_show_guests.csv</code> file in the <code>data</code> directory has the absolute pathname:</p>
+<pre><code>&quot;/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv&quot;</code></pre>
 <p>You can use this absolute pathname to read this file in using any of the
 <code>readr</code> functions to read in data. This absolute pathname will <em>always</em> work,
 regardless of your current working directory, because it gives directions from
 the root. In other words, it will always be clear to R exactly what file you’re
 talking about. Here’s the code to use to read that file in using the
 <code>read.csv()</code> function with the file’s absolute pathname:</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="rprog2.html#cb123-1"></a>heat_mort &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;/Users/brookeanderson/Desktop/RCourseFall2015/CourseText/heat_mort.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="rprog2.html#cb123-1"></a>daily_show &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv&quot;</span>)</span></code></pre></div>
 <p>The <em>relative pathname</em>, on the other hand, gives R the directions for how to
 get to a directory or file from the current working directory. If the file or
 directory you’re looking for is pretty close to your current working directory
@@ -843,19 +843,16 @@ to tell R how to get to the file than an absolute pathname. But, the relative
 pathname depends on your current working directory—the relative pathname that
 works perfectly when you’re working in one directory will not work at all once
 you move into a different working directory.</p>
-<p>As an example of a relative pathname, say you’re working in the directory
-<code>RCourseFall2015</code> within the file structure shown in Figure <a href="rprog2.html#fig:filedirstructure">3.1</a>, and you want to read in the <code>heat_mort.csv</code> file
-in the <code>CourseText</code> directory. To get from <code>RCourseFall2015</code> to that file,
-you’d need to look in the subdirectory <code>CourseText</code>, where you could find
-<code>heat_mort.csv</code>. Therefore, the relative pathname from your working directory
-would be:</p>
-<pre><code>&quot;CourseText/heat_mort.csv&quot;</code></pre>
+<p>As an example of a relative pathname, say you’re working directory is
+<code>edar_coursebook</code> and you want to read in the <code>daily_show_guests.csv</code> file
+in the <code>data</code> directory (one of the <code>edar_coursebook</code> subdirectories). To get from <code>edar_coursebook</code> to that file,
+you’d need to look in the subdirectory <code>data</code>, where you could find
+<code>daily_show_guests.csv</code>. Therefore, the relative pathname from your working directory would be:</p>
+<pre><code>&quot;data/daily_show_guests.csv&quot;</code></pre>
 <p>You can use this relative pathname to tell R where to find and read in the
 file:</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="rprog2.html#cb125-1"></a>heat_mort &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;CourseText/heat_mort.csv&quot;</span>)</span></code></pre></div>
-<p>While this pathname is much shorter than the absolute pathname, it is important
-to remember that if you are working in a different working directory, this
-relative pathname would no longer work.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="rprog2.html#cb125-1"></a>daily_show &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/daily_show_guests.csv&quot;</span>)</span></code></pre></div>
+<p>While this pathname is much shorter than the absolute pathname, it is important to remember that if you are working in a different working directory, this relative pathname would no longer work.</p>
 <p>There are a few abbreviations that can be really useful for pathnames:</p>
 <table>
 <thead>
@@ -883,16 +880,12 @@ relative pathname would no longer work.</p>
 </tr>
 </tbody>
 </table>
-<p>These can help you keep pathnames shorter and also help you move “up-and-over”
-to get to a file or directory that’s not on the direct path below your current
-working directory.</p>
+<p>These can help you keep pathnames shorter and also help you move “up-and-over” to get to a file or directory that’s not on the direct path below your current working directory.</p>
 <p>For example, my home directory is <code>/Users/johnvolckens</code>. You can use the
-<code>list.files()</code> function to list all the files in a directory. If I wanted to
-list all the files in my <code>Downloads</code> directory, which is a direct sub-directory
-of my home directory, I could use:</p>
+<code>list.files()</code> function to list all the files in a directory. If I wanted to list all the files in my <code>Downloads</code> directory, which is a direct sub-directory of my home directory, I could use:</p>
 <pre><code>list.files(&quot;~/Downloads&quot;)</code></pre>
 <p>As a second example, say I was working in the working directory <code>CourseText</code>,
-but I wanted to read in the <code>heat_mort.csv</code> file that’s in the <code>example_data</code>
+(see Figure <a href="rprog2.html#fig:filedirstructure">3.1</a> but I wanted to read in the <code>heat_mort.csv</code> file that’s in the <code>example_data</code>
 directory, rather than the one in the <code>CourseText</code> directory. I can use the
 <code>..</code> abbreviation to tell R to look up one directory from the current working
 directory, and then down within a subdirectory of that. The relative pathname
@@ -900,8 +893,9 @@ in this case is:</p>
 <pre><code>&quot;../Week2_Aug31/example_data/heat_mort.csv&quot;</code></pre>
 <p>The <code>../</code> tells R to look one directory up from the working directory (the
 directory that is one level above the current directory is also known as the
-<strong>parent directory</strong>), which in this case is to <code>RCourseFall2015</code>, and then down within that directory to <code>Week2_Aug31</code>, then to <code>example_data</code>, and then to look
-wihtin that directory for the file <code>heat_mort.csv</code>.</p>
+<strong>parent directory</strong>), which in this case is to <code>RCourseFall2015</code>, and then
+down within that directory to <code>Week2_Aug31</code>, then to <code>example_data</code>, and then
+to look wihtin that directory for the file <code>heat_mort.csv</code>.</p>
 <p>The relative pathname to read this file while R is working in the <code>CourseTest</code>
 directory would be:</p>
 <pre><code>heat_mort &lt;- read_csv(&quot;../Week2_Aug31/example_data/heat_mort.csv&quot;)</code></pre>
@@ -1534,7 +1528,7 @@ small, regular commits and intermittent pushes in everything you do in R.</p></l
 <span id="cb167-5"><a href="rprog2.html#cb167-5"></a>ozone_data &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/ftc_o3.csv&quot;</span>)</span>
 <span id="cb167-6"><a href="rprog2.html#cb167-6"></a></span>
 <span id="cb167-7"><a href="rprog2.html#cb167-7"></a><span class="co"># 4. absolute pathname - for illustration - not recommended usually</span></span>
-<span id="cb167-8"><a href="rprog2.html#cb167-8"></a>ozone_abs_path &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">paste0</span>(<span class="st">&quot;~/Documents/R/edar_coursebook/data/ftc_o3.csv&quot;</span>)</span>
+<span id="cb167-8"><a href="rprog2.html#cb167-8"></a>ozone_abs_path &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">paste0</span>(<span class="st">&quot;/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook/data/ftc_o3.csv&quot;</span>)</span>
 <span id="cb167-9"><a href="rprog2.html#cb167-9"></a>ozone_abs_ex &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> ozone_abs_path)</span>
 <span id="cb167-10"><a href="rprog2.html#cb167-10"></a></span>
 <span id="cb167-11"><a href="rprog2.html#cb167-11"></a><span class="co"># 5. possible functions for initial data view and check</span></span>
