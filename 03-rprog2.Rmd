@@ -806,16 +806,23 @@ functions or processes, in base R:
 dplyr_vs_base <- data.frame(dplyr = c("`rename()`",
                                       "`select()`",
                                       "`filter()`",
-                                      "`mutate()`"),
+                                      "`mutate()`",
+                                      "`slice()`"),
                             base = c("Reassign `colnames()`",
                                      "Square bracket indexing",
                                      "`subset()`",
-                                     "Use `$` to change or create columns"))
+                                     "Use `$` to change or create columns",
+                                     "`subset()` with logical expression"))
 knitr::kable(dplyr_vs_base, col.names = c("`dplyr`", 
                                           "Base R equivalent"))
 ```
 
-You will see these alternatives used in older code examples.
+You will see these alternatives used in older code examples. Some of these
+functions have variants specific to particular data wrangling needs. For
+example, under `slice()`, there are others such as `slice_max()` and
+`slice_min()`, which extract the top and bottom values, respectively, from a
+dataset based on user input in the required arguments, including `n` and
+`order_by`. 
 
 ### Filtering to certain rows
 
