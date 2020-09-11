@@ -306,7 +306,7 @@ be easily adapted to suit other file types and formats.  As you develop your
 coding skills, a good strategy is to keep useful functions in a .R script
 file so that you can call upon them when needed: `source(import.w.name.R)`
 
-## Functional Programming with `purr::`
+## Functional Prog. with `purr::`
 The `purr::` package was designed specifically with functional programming in mind.
 Similar to the discussion of *vectorized operations* above, `purr::` was created
 to help you apply functions to vectors in a way that is easy to implement and 
