@@ -297,7 +297,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-09-11 12:17:27 MDT"
+## [1] "2020-09-11 12:41:56 MDT"
 ```
 As you can see, we got back the date, time, and current timezone used by my computer.  If you want to see how this time is stored in R internally, you can use `unclass()`, which returns an object value with its class attributes removed.  When we wrap `unclass()` around `Sys.time()`, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:
 
@@ -307,15 +307,15 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1599848247
+## [1] 1599849717
 ```
 
 That's a lot of seconds.  How many years is that?  
-Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] ~ 50.7308551 years.  
+Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] ~ 50.7309017 years.  
 This calculation ignores leap years but you get the point...
 
 ### Date-time formats
-Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-09-11 12:17:27
+Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-09-11 12:41:57
 
 Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky.  You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:
 
@@ -419,7 +419,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1599848247
+## [1] 1599849717
 ```
 
 
@@ -430,8 +430,8 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 27.3
-##  $ min   : int 17
+##  $ sec   : num 57.2
+##  $ min   : int 41
 ##  $ hour  : int 12
 ##  $ mday  : int 11
 ##  $ mon   : int 8
