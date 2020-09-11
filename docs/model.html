@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-09-09" />
+<meta name="date" content="2020-09-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -303,9 +303,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a><ul>
 <li class="chapter" data-level="8.1" data-path="rprog4.html"><a href="rprog4.html#ch.-8-objectives"><i class="fa fa-check"></i><b>8.1</b> Ch. 8 Objectives</a></li>
-<li class="chapter" data-level="8.2" data-path="rprog4.html"><a href="rprog4.html#step-iii-1"><i class="fa fa-check"></i><b>8.2</b> Step III-1</a></li>
-<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#ch-8-exercises"><i class="fa fa-check"></i><b>8.3</b> Ch-8 Exercises</a></li>
-<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#ch-8-homework"><i class="fa fa-check"></i><b>8.4</b> Ch-8 Homework</a></li>
+<li class="chapter" data-level="8.2" data-path="rprog4.html"><a href="rprog4.html#what-is-functional-programming"><i class="fa fa-check"></i><b>8.2</b> What is <strong><em>functional programming</em></strong>?</a></li>
+<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="rprog4.html"><a href="rprog4.html#example-function-my_mean"><i class="fa fa-check"></i><b>8.3.1</b> Example Function: my_mean</a></li>
+<li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: “import.w.name”</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#functional-programming-with-purr"><i class="fa fa-check"></i><b>8.4</b> Functional Programming with <code>purr::</code></a><ul>
+<li class="chapter" data-level="8.4.1" data-path="rprog4.html"><a href="rprog4.html#function-mapping"><i class="fa fa-check"></i><b>8.4.1</b> Function Mapping</a></li>
+<li class="chapter" data-level="8.4.2" data-path="rprog4.html"><a href="rprog4.html#working-with-lists"><i class="fa fa-check"></i><b>8.4.2</b> Working with Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#exercises"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+<li class="chapter" data-level="8.6" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.6</b> Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and other Tricks</a><ul>
 <li class="chapter" data-level="9.1" data-path="transform.html"><a href="transform.html#ch.-9-objectives"><i class="fa fa-check"></i><b>9.1</b> Ch. 9 Objectives</a></li>
@@ -621,7 +629,7 @@ Figure 11.4: Side-by-side comparison of two model specifications. Does one look 
 </div>
 <p>Looking at the right plot in Figure <a href="model.html#fig:model-compare">11.4</a>, where <span class="math inline">\(\sqrt(mass)\)</span> is plotted, helps make the slight curvature in the left-side plot more evident. Both plots appear “mostly” linear but the one on the right “looks better”, at least to me! Our process knowledge suggests that the model on the right is better specified. Let’s fit both models and find out!</p>
 <p>The NHANES data we use here is from 2017-2018 (saved as <code>bodysize.csv</code> and read into a data frame labeled: <code>data_18</code>). These data have been filtered to include adults only (<code>filter(age &gt; 18)</code>). The first few lines of data look like this:</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="model.html#cb271-1"></a><span class="kw">head</span>(data_<span class="dv">18</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="model.html#cb288-1"></a><span class="kw">head</span>(data_<span class="dv">18</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 7
 ##      id  mass waist height gender   age sqrt_mass
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
@@ -634,9 +642,9 @@ Figure 11.4: Side-by-side comparison of two model specifications. Does one look 
 <div id="the-lm-function" class="section level3">
 <h3><span class="header-section-number">11.5.1</span> The <code>lm()</code> function</h3>
 <p>The <code>lm()</code> function in R stands for <em>“linear model”</em> and will perform an OLS fit on any linear model you specify. The function requires two arguments: a <code>formula</code> (i.e., the model specification) and the <code>data</code> with which to fit that model. Formulas are specified as <code>y ~ x</code>, so our call to <code>lm()</code> looks like this for each model:</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="model.html#cb273-1"></a>model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(mass <span class="op">~</span><span class="st"> </span>waist, <span class="dt">data =</span> data_<span class="dv">18</span>)</span>
-<span id="cb273-2"><a href="model.html#cb273-2"></a></span>
-<span id="cb273-3"><a href="model.html#cb273-3"></a>model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(sqrt_mass <span class="op">~</span><span class="st"> </span>waist, <span class="dt">data =</span> data_<span class="dv">18</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="model.html#cb290-1"></a>model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(mass <span class="op">~</span><span class="st"> </span>waist, <span class="dt">data =</span> data_<span class="dv">18</span>)</span>
+<span id="cb290-2"><a href="model.html#cb290-2"></a></span>
+<span id="cb290-3"><a href="model.html#cb290-3"></a>model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(sqrt_mass <span class="op">~</span><span class="st"> </span>waist, <span class="dt">data =</span> data_<span class="dv">18</span>)</span></code></pre></div>
 <p>Now that we have stored each model as an object (<code>model1</code>, <code>model2</code>), so we can examine what they contain. The output of <code>lm()</code> is a list of class “lm”. If we type <code>view(model1)</code> the contents of the list become apparent.</p>
 <div class="figure"><span id="fig:model1-list"></span>
 <img src="images/model1_list.png" alt="The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more." width="632" />
@@ -652,7 +660,7 @@ Figure 11.5: The <code>lm()</code> function provides a self-contained list of th
 </ul>
 <p>These are the primary outputs of the OLS fit; they define the line of “best fit” for which the SSE have been minimized.</p>
 <p>To examine the overall fit of the model, we can call the <code>summary()</code> function with the model object as an argument. Here is the summary for <code>model1</code>:</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="model.html#cb274-1"></a><span class="kw">summary</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="model.html#cb291-1"></a><span class="kw">summary</span>(model1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mass ~ waist, data = data_18)
@@ -673,7 +681,7 @@ Figure 11.5: The <code>lm()</code> function provides a self-contained list of th
 ## Multiple R-squared:  0.8025,	Adjusted R-squared:  0.8025 
 ## F-statistic: 2.104e+04 on 1 and 5178 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>and here is the summary for <code>model2</code>:</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="model.html#cb276-1"></a><span class="kw">summary</span>(model2)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="model.html#cb293-1"></a><span class="kw">summary</span>(model2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = sqrt_mass ~ waist, data = data_18)
@@ -707,29 +715,29 @@ This one is hard to answer (right now) but our process knowledge (the physics of
 This assumption is automatically valid because we have only one independent predictor variable in each model, ruling out any possibility of collinearity.</p>
 <p><strong>Assumption #4: The error term has a mean of zero.</strong><br />
 We can calculate this from our two model objects.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="model.html#cb278-1"></a><span class="kw">mean</span>(model1<span class="op">$</span>residuals)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="model.html#cb295-1"></a><span class="kw">mean</span>(model1<span class="op">$</span>residuals)</span></code></pre></div>
 <pre><code>## [1] -6.665725e-17</code></pre>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="model.html#cb280-1"></a><span class="kw">mean</span>(model2<span class="op">$</span>residuals)</span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="model.html#cb297-1"></a><span class="kw">mean</span>(model2<span class="op">$</span>residuals)</span></code></pre></div>
 <pre><code>## [1] 6.226994e-19</code></pre>
 <p>Those are pretty small numbers. Check and check.</p>
 <p><strong>Assumption #5: The error term is normally distributed</strong><br />
 This assumption can be checked several ways, but my preference is to create a Q-Q plot about the residuals (the Q’s stand for <em>“quantile-quantile”</em>). A Q-Q plot is a scatterplot that relates the quantile values of your data against the quantiles of an “expected distribution” - in this case the <a href="dist.html#normal_dist">normal distribution</a>. If “your data” follow the shape of the “expected data” then both datasets can be said to follow the same distribution. Thus, when you plot residuals on a “normal Q-Q plot”, you are looking for your data to fall along a straight line through the center. The <code>{ggplot}</code> package allow you to create Q-Q plots using <code>geom_qq()</code> function, which creates the plot, and <code>geom_qq_line()</code>, which adds the “expected” line to aid your eye. The <code>{stats}</code> package in base R also allows you to do this with the <code>qqnorm()</code> and the <code>qqline()</code> functions.</p>
 <p>Here are the Q-Q plots for <code>model1</code> and <code>model2</code>.</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="model.html#cb282-1"></a>p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data  =</span> model1<span class="op">$</span>model, <span class="kw">aes</span>(<span class="dt">sample =</span> model1<span class="op">$</span>residuals)) <span class="op">+</span></span>
-<span id="cb282-2"><a href="model.html#cb282-2"></a><span class="st">  </span><span class="kw">geom_qq</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>,</span>
-<span id="cb282-3"><a href="model.html#cb282-3"></a>          <span class="dt">color =</span> <span class="st">&quot;maroon4&quot;</span>) <span class="op">+</span></span>
-<span id="cb282-4"><a href="model.html#cb282-4"></a><span class="st">  </span><span class="kw">geom_qq_line</span>(<span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span></span>
-<span id="cb282-5"><a href="model.html#cb282-5"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Model 1: mass ~ waist&quot;</span>) <span class="op">+</span></span>
-<span id="cb282-6"><a href="model.html#cb282-6"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
-<span id="cb282-7"><a href="model.html#cb282-7"></a></span>
-<span id="cb282-8"><a href="model.html#cb282-8"></a>p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data  =</span> model2<span class="op">$</span>model, <span class="kw">aes</span>(<span class="dt">sample =</span> model2<span class="op">$</span>residuals)) <span class="op">+</span></span>
-<span id="cb282-9"><a href="model.html#cb282-9"></a><span class="st">  </span><span class="kw">geom_qq</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>,</span>
-<span id="cb282-10"><a href="model.html#cb282-10"></a>          <span class="dt">color =</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="op">+</span></span>
-<span id="cb282-11"><a href="model.html#cb282-11"></a><span class="st">  </span><span class="kw">geom_qq_line</span>(<span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span></span>
-<span id="cb282-12"><a href="model.html#cb282-12"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Model 2: sqrt(mass) ~ waist&quot;</span>) <span class="op">+</span></span>
-<span id="cb282-13"><a href="model.html#cb282-13"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
-<span id="cb282-14"><a href="model.html#cb282-14"></a></span>
-<span id="cb282-15"><a href="model.html#cb282-15"></a><span class="kw">grid.arrange</span>(p3, p4, <span class="dt">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="model.html#cb299-1"></a>p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data  =</span> model1<span class="op">$</span>model, <span class="kw">aes</span>(<span class="dt">sample =</span> model1<span class="op">$</span>residuals)) <span class="op">+</span></span>
+<span id="cb299-2"><a href="model.html#cb299-2"></a><span class="st">  </span><span class="kw">geom_qq</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>,</span>
+<span id="cb299-3"><a href="model.html#cb299-3"></a>          <span class="dt">color =</span> <span class="st">&quot;maroon4&quot;</span>) <span class="op">+</span></span>
+<span id="cb299-4"><a href="model.html#cb299-4"></a><span class="st">  </span><span class="kw">geom_qq_line</span>(<span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span></span>
+<span id="cb299-5"><a href="model.html#cb299-5"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Model 1: mass ~ waist&quot;</span>) <span class="op">+</span></span>
+<span id="cb299-6"><a href="model.html#cb299-6"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb299-7"><a href="model.html#cb299-7"></a></span>
+<span id="cb299-8"><a href="model.html#cb299-8"></a>p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data  =</span> model2<span class="op">$</span>model, <span class="kw">aes</span>(<span class="dt">sample =</span> model2<span class="op">$</span>residuals)) <span class="op">+</span></span>
+<span id="cb299-9"><a href="model.html#cb299-9"></a><span class="st">  </span><span class="kw">geom_qq</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>,</span>
+<span id="cb299-10"><a href="model.html#cb299-10"></a>          <span class="dt">color =</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="op">+</span></span>
+<span id="cb299-11"><a href="model.html#cb299-11"></a><span class="st">  </span><span class="kw">geom_qq_line</span>(<span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span></span>
+<span id="cb299-12"><a href="model.html#cb299-12"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Model 2: sqrt(mass) ~ waist&quot;</span>) <span class="op">+</span></span>
+<span id="cb299-13"><a href="model.html#cb299-13"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb299-14"><a href="model.html#cb299-14"></a></span>
+<span id="cb299-15"><a href="model.html#cb299-15"></a><span class="kw">grid.arrange</span>(p3, p4, <span class="dt">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:qqplot"></span>
 <img src="11-model_files/figure-html/qqplot-1.png" alt="Q-Q plots of residuals for two linear models. Which set of residuals better approximates a normal distribution?" width="672" />
 <p class="caption">
@@ -739,23 +747,23 @@ Figure 11.6: Q-Q plots of residuals for two linear models. Which set of residual
 <p>Both models reasonable follow the expected quantile plots, although <code>model1</code> shows more deviation from normality at the upper tail. If I hadn’t seen <code>model2</code>, which looks nearly perfect, I probably would have said that <code>model1</code> was adequate. Advantage: <code>model2</code>.</p>
 <p><strong>Assumption #6: The error term is homoscedatic</strong><br />
 To evaluate this assumption, we create a <a href="eda2.html#scatt">scatterplot</a> of residuals vs. the fitted values, <span class="math inline">\(\hat{Y_{i}}\)</span>. Both of these data are contained in the model output lists.</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="model.html#cb283-1"></a>p5 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> model1<span class="op">$</span>model) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb283-2"><a href="model.html#cb283-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> model1<span class="op">$</span>fitted.values, <span class="dt">y =</span>model1<span class="op">$</span>residuals),</span>
-<span id="cb283-3"><a href="model.html#cb283-3"></a>             <span class="dt">alpha =</span> <span class="fl">0.25</span>,</span>
-<span id="cb283-4"><a href="model.html#cb283-4"></a>             <span class="dt">color =</span> <span class="st">&quot;maroon3&quot;</span>) <span class="op">+</span></span>
-<span id="cb283-5"><a href="model.html#cb283-5"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb283-6"><a href="model.html#cb283-6"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
-<span id="cb283-7"><a href="model.html#cb283-7"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">aspect.ratio =</span> <span class="fl">0.5</span>)</span>
-<span id="cb283-8"><a href="model.html#cb283-8"></a></span>
-<span id="cb283-9"><a href="model.html#cb283-9"></a>p6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> model2<span class="op">$</span>model)<span class="op">+</span><span class="st"> </span></span>
-<span id="cb283-10"><a href="model.html#cb283-10"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> model2<span class="op">$</span>fitted.values, <span class="dt">y =</span>model2<span class="op">$</span>residuals),</span>
-<span id="cb283-11"><a href="model.html#cb283-11"></a>             <span class="dt">alpha =</span> <span class="fl">0.25</span>,</span>
-<span id="cb283-12"><a href="model.html#cb283-12"></a>             <span class="dt">color=</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="op">+</span></span>
-<span id="cb283-13"><a href="model.html#cb283-13"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb283-14"><a href="model.html#cb283-14"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
-<span id="cb283-15"><a href="model.html#cb283-15"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">aspect.ratio =</span> <span class="fl">0.5</span>)</span>
-<span id="cb283-16"><a href="model.html#cb283-16"></a></span>
-<span id="cb283-17"><a href="model.html#cb283-17"></a><span class="kw">grid.arrange</span>(p5, p6, <span class="dt">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="model.html#cb300-1"></a>p5 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> model1<span class="op">$</span>model) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb300-2"><a href="model.html#cb300-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> model1<span class="op">$</span>fitted.values, <span class="dt">y =</span>model1<span class="op">$</span>residuals),</span>
+<span id="cb300-3"><a href="model.html#cb300-3"></a>             <span class="dt">alpha =</span> <span class="fl">0.25</span>,</span>
+<span id="cb300-4"><a href="model.html#cb300-4"></a>             <span class="dt">color =</span> <span class="st">&quot;maroon3&quot;</span>) <span class="op">+</span></span>
+<span id="cb300-5"><a href="model.html#cb300-5"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb300-6"><a href="model.html#cb300-6"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb300-7"><a href="model.html#cb300-7"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">aspect.ratio =</span> <span class="fl">0.5</span>)</span>
+<span id="cb300-8"><a href="model.html#cb300-8"></a></span>
+<span id="cb300-9"><a href="model.html#cb300-9"></a>p6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> model2<span class="op">$</span>model)<span class="op">+</span><span class="st"> </span></span>
+<span id="cb300-10"><a href="model.html#cb300-10"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> model2<span class="op">$</span>fitted.values, <span class="dt">y =</span>model2<span class="op">$</span>residuals),</span>
+<span id="cb300-11"><a href="model.html#cb300-11"></a>             <span class="dt">alpha =</span> <span class="fl">0.25</span>,</span>
+<span id="cb300-12"><a href="model.html#cb300-12"></a>             <span class="dt">color=</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="op">+</span></span>
+<span id="cb300-13"><a href="model.html#cb300-13"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb300-14"><a href="model.html#cb300-14"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb300-15"><a href="model.html#cb300-15"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">aspect.ratio =</span> <span class="fl">0.5</span>)</span>
+<span id="cb300-16"><a href="model.html#cb300-16"></a></span>
+<span id="cb300-17"><a href="model.html#cb300-17"></a><span class="kw">grid.arrange</span>(p5, p6, <span class="dt">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:residual-plot"></span>
 <img src="11-model_files/figure-html/residual-plot-1.png" alt="Residuals vs. fitted values as a check for homoscedasticity." width="672" />
 <p class="caption">
@@ -765,16 +773,16 @@ Figure 11.7: Residuals vs. fitted values as a check for homoscedasticity.
 <p>Looking at these plots, the residuals don’t show major changes across the range of fitted values (for both plots) - this is a good outcome because it implies the residuals are homoscedastic. There are slight differences between the two models, however. For example, <code>model1</code> tends to have positive residuals at low and high values of <span class="math inline">\(\hat{Y_{i}}\)</span>, whereas, <code>model2</code> seems to have more constant error across the range of <span class="math inline">\(\hat{Y_{i}}\)</span>. Boring residuals are what you want. <em>Advantage: <code>model2</code>.</em></p>
 <p><strong>Assumption 7: No autocorrelation among residuals</strong>
 This assumption is evaluated by making a <a href="eda1.html#autocorr">partial autocorrelation plot</a> of your residuals. We will accomplish these plots using <code>pacf()</code> function from the <code>{stats}</code> package.</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="model.html#cb284-1"></a>stats<span class="op">::</span><span class="kw">pacf</span>(model1<span class="op">$</span>residuals, </span>
-<span id="cb284-2"><a href="model.html#cb284-2"></a>            <span class="dt">main =</span> <span class="st">&quot;Model 1 Partial Autocorrelation Plot&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="model.html#cb301-1"></a>stats<span class="op">::</span><span class="kw">pacf</span>(model1<span class="op">$</span>residuals, </span>
+<span id="cb301-2"><a href="model.html#cb301-2"></a>            <span class="dt">main =</span> <span class="st">&quot;Model 1 Partial Autocorrelation Plot&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:resid-autocorr-1"></span>
 <img src="11-model_files/figure-html/resid-autocorr-1.png" alt="Partial autocorrelation plots of residuals." width="672" />
 <p class="caption">
 Figure 11.8: Partial autocorrelation plots of residuals.
 </p>
 </div>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="model.html#cb285-1"></a>stats<span class="op">::</span><span class="kw">pacf</span>(model2<span class="op">$</span>residuals, </span>
-<span id="cb285-2"><a href="model.html#cb285-2"></a>            <span class="dt">main =</span> <span class="st">&quot;Model 2 Partial Autocorrelation Plot&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="model.html#cb302-1"></a>stats<span class="op">::</span><span class="kw">pacf</span>(model2<span class="op">$</span>residuals, </span>
+<span id="cb302-2"><a href="model.html#cb302-2"></a>            <span class="dt">main =</span> <span class="st">&quot;Model 2 Partial Autocorrelation Plot&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:resid-autocorr-2"></span>
 <img src="11-model_files/figure-html/resid-autocorr-2.png" alt="Partial autocorrelation plots of residuals." width="672" />
 <p class="caption">
@@ -784,13 +792,13 @@ Figure 11.9: Partial autocorrelation plots of residuals.
 <p>Neither plot shows a <em>strong</em> degree of autocorrelation, though both plots suggest that lag-5 autocorrelation is borderline significant (moreso for <code>model1</code>). Autocorrelation among the residuals suggests that your model is not correctly specified and these results suggest that <code>model2</code> is slightly better specified than <code>model1</code>. Perhaps something is missing from these models?</p>
 <p><strong>Assumption 8: Residuals are not correlated with predictor variables.</strong>
 This assumption can be evaluated through a correlation analysis. The <code>cor()</code> function from the <code>{stats}</code> package allows you to calculate correlation coefficients (e.g., Pearson, Spearman) among variables in a data frame. If you supply a data frame as an argument to <code>cor()</code> it will calculate correlations among all possible variable combinations. Otherwise, you can supply it with two vectors: <code>x =</code> and <code>y =</code>.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="model.html#cb286-1"></a><span class="kw">cor</span>(<span class="dt">x =</span> model1<span class="op">$</span>residuals, </span>
-<span id="cb286-2"><a href="model.html#cb286-2"></a>    <span class="dt">y =</span> model1<span class="op">$</span>model[,<span class="dv">2</span>],</span>
-<span id="cb286-3"><a href="model.html#cb286-3"></a>    <span class="dt">method =</span> <span class="st">&quot;pearson&quot;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="model.html#cb303-1"></a><span class="kw">cor</span>(<span class="dt">x =</span> model1<span class="op">$</span>residuals, </span>
+<span id="cb303-2"><a href="model.html#cb303-2"></a>    <span class="dt">y =</span> model1<span class="op">$</span>model[,<span class="dv">2</span>],</span>
+<span id="cb303-3"><a href="model.html#cb303-3"></a>    <span class="dt">method =</span> <span class="st">&quot;pearson&quot;</span> )</span></code></pre></div>
 <pre><code>## [1] -1.420982e-16</code></pre>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="model.html#cb288-1"></a><span class="kw">cor</span>(<span class="dt">x =</span> model2<span class="op">$</span>residuals, </span>
-<span id="cb288-2"><a href="model.html#cb288-2"></a>    <span class="dt">y =</span> model1<span class="op">$</span>model[,<span class="dv">2</span>],</span>
-<span id="cb288-3"><a href="model.html#cb288-3"></a>    <span class="dt">method =</span> <span class="st">&quot;pearson&quot;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="model.html#cb305-1"></a><span class="kw">cor</span>(<span class="dt">x =</span> model2<span class="op">$</span>residuals, </span>
+<span id="cb305-2"><a href="model.html#cb305-2"></a>    <span class="dt">y =</span> model1<span class="op">$</span>model[,<span class="dv">2</span>],</span>
+<span id="cb305-3"><a href="model.html#cb305-3"></a>    <span class="dt">method =</span> <span class="st">&quot;pearson&quot;</span> )</span></code></pre></div>
 <pre><code>## [1] -1.012153e-16</code></pre>
 <p>The correlation coefficients are both nearly zero, so this last assumption is validated.</p>
 <p><strong><em>Which model is best?</em></strong>

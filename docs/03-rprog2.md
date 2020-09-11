@@ -423,7 +423,7 @@ talking about. Here's the code to use to read that file in using the
 
 
 ```r
-daily_show <- readr::read_csv(file = "/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv")
+daily_show <- readr::read_csv(file = "/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv", skip = 4)
 ```
 
 The *relative pathname*, on the other hand, gives R the directions for how to

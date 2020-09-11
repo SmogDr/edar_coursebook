@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-09-09" />
+<meta name="date" content="2020-09-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -303,9 +303,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a><ul>
 <li class="chapter" data-level="8.1" data-path="rprog4.html"><a href="rprog4.html#ch.-8-objectives"><i class="fa fa-check"></i><b>8.1</b> Ch. 8 Objectives</a></li>
-<li class="chapter" data-level="8.2" data-path="rprog4.html"><a href="rprog4.html#step-iii-1"><i class="fa fa-check"></i><b>8.2</b> Step III-1</a></li>
-<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#ch-8-exercises"><i class="fa fa-check"></i><b>8.3</b> Ch-8 Exercises</a></li>
-<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#ch-8-homework"><i class="fa fa-check"></i><b>8.4</b> Ch-8 Homework</a></li>
+<li class="chapter" data-level="8.2" data-path="rprog4.html"><a href="rprog4.html#what-is-functional-programming"><i class="fa fa-check"></i><b>8.2</b> What is <strong><em>functional programming</em></strong>?</a></li>
+<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="rprog4.html"><a href="rprog4.html#example-function-my_mean"><i class="fa fa-check"></i><b>8.3.1</b> Example Function: my_mean</a></li>
+<li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: “import.w.name”</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#functional-programming-with-purr"><i class="fa fa-check"></i><b>8.4</b> Functional Programming with <code>purr::</code></a><ul>
+<li class="chapter" data-level="8.4.1" data-path="rprog4.html"><a href="rprog4.html#function-mapping"><i class="fa fa-check"></i><b>8.4.1</b> Function Mapping</a></li>
+<li class="chapter" data-level="8.4.2" data-path="rprog4.html"><a href="rprog4.html#working-with-lists"><i class="fa fa-check"></i><b>8.4.2</b> Working with Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#exercises"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+<li class="chapter" data-level="8.6" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.6</b> Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and other Tricks</a><ul>
 <li class="chapter" data-level="9.1" data-path="transform.html"><a href="transform.html#ch.-9-objectives"><i class="fa fa-check"></i><b>9.1</b> Ch. 9 Objectives</a></li>
@@ -409,16 +417,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">13.1</span> Uniform Distribution</h2>
 <p>The uniform distribution describes a situation where all obervations have an equal probability of occurrence. Examples of uniform distributions include: the outcome of a single roll of a 6-sided die, or the flip of a coin, or the chance of picking a spade, heart, diamond, or club from a well-shuffled deck of cards. In each of these cases, all potential outcomes have an equal chance of occuring. A uniform distribition may be specified simply by setting the range of possible outcomes (i.e., a minimum, maximum, and anything in between). The “in-between” part also lets you specify whether you want to allow outcome values that are continuous (like from a random-number generator), integers (like from a dice roll), or some other format (like a binary 0 or 1; heads or tails).</p>
 <p>Below, we create a <a href="model.html#pdf">probability density function</a> for the first roll of a six-sided die; this is a <em>discrete uniform distribition</em> since we only allow integers to occur. A uniform distribution is appropriate here because any of the numbers between 1 and 6 has equal probability of being rolled. Notice the shape of the histogram…flat.</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="dist.html#cb290-1"></a><span class="co">#create a uniform distribition for the first roll of a 6-sided die</span></span>
-<span id="cb290-2"><a href="dist.html#cb290-2"></a>six_sided &lt;-<span class="st"> </span><span class="kw">ceiling</span>(<span class="kw">runif</span>(<span class="fl">10e4</span>, <span class="dt">min=</span><span class="dv">0</span>, <span class="dt">max=</span><span class="dv">6</span>))</span>
-<span id="cb290-3"><a href="dist.html#cb290-3"></a></span>
-<span id="cb290-4"><a href="dist.html#cb290-4"></a><span class="co">#create a histogram of the probability density for a uniform distribution </span></span>
-<span id="cb290-5"><a href="dist.html#cb290-5"></a><span class="kw">hist</span>(six_sided, </span>
-<span id="cb290-6"><a href="dist.html#cb290-6"></a>      <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>, <span class="fl">5.5</span>, <span class="fl">6.5</span>), </span>
-<span id="cb290-7"><a href="dist.html#cb290-7"></a>      <span class="dt">freq =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb290-8"><a href="dist.html#cb290-8"></a>      <span class="dt">xlab =</span> <span class="st">&quot;Number&quot;</span>,</span>
-<span id="cb290-9"><a href="dist.html#cb290-9"></a>      <span class="dt">ylab =</span> <span class="st">&quot;Probability&quot;</span>,</span>
-<span id="cb290-10"><a href="dist.html#cb290-10"></a>      <span class="dt">main =</span> <span class="st">&quot;Outcome probability for the first roll of a 6-sided die&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="dist.html#cb307-1"></a><span class="co">#create a uniform distribition for the first roll of a 6-sided die</span></span>
+<span id="cb307-2"><a href="dist.html#cb307-2"></a>six_sided &lt;-<span class="st"> </span><span class="kw">ceiling</span>(<span class="kw">runif</span>(<span class="fl">10e4</span>, <span class="dt">min=</span><span class="dv">0</span>, <span class="dt">max=</span><span class="dv">6</span>))</span>
+<span id="cb307-3"><a href="dist.html#cb307-3"></a></span>
+<span id="cb307-4"><a href="dist.html#cb307-4"></a><span class="co">#create a histogram of the probability density for a uniform distribution </span></span>
+<span id="cb307-5"><a href="dist.html#cb307-5"></a><span class="kw">hist</span>(six_sided, </span>
+<span id="cb307-6"><a href="dist.html#cb307-6"></a>      <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>, <span class="fl">5.5</span>, <span class="fl">6.5</span>), </span>
+<span id="cb307-7"><a href="dist.html#cb307-7"></a>      <span class="dt">freq =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb307-8"><a href="dist.html#cb307-8"></a>      <span class="dt">xlab =</span> <span class="st">&quot;Number&quot;</span>,</span>
+<span id="cb307-9"><a href="dist.html#cb307-9"></a>      <span class="dt">ylab =</span> <span class="st">&quot;Probability&quot;</span>,</span>
+<span id="cb307-10"><a href="dist.html#cb307-10"></a>      <span class="dt">main =</span> <span class="st">&quot;Outcome probability for the first roll of a 6-sided die&quot;</span>)</span></code></pre></div>
 <p><img src="13-distributions_files/figure-html/unif_dist-1.png" width="672" /></p>
 <div id="characteristic-plots-uniform-distribution" class="section level3">
 <h3><span class="header-section-number">13.1.1</span> Characteristic Plots: Uniform Distribution</h3>
@@ -441,51 +449,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">13.3</span> Log-normal Distribution</h2>
 <p>Multiplicative variation is what gives rise to a “log-normal” distribution: a special type of skewed data.</p>
 <p>Let’s create two normal distributions for variables ‘a’ and ‘b’:</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="dist.html#cb291-1"></a><span class="co">#create two variables that are normally distributed</span></span>
-<span id="cb291-2"><a href="dist.html#cb291-2"></a>normal_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">15</span>, <span class="dt">sd =</span> <span class="dv">5</span>),</span>
-<span id="cb291-3"><a href="dist.html#cb291-3"></a>                   <span class="dt">b =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="dist.html#cb308-1"></a><span class="co">#create two variables that are normally distributed</span></span>
+<span id="cb308-2"><a href="dist.html#cb308-2"></a>normal_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">15</span>, <span class="dt">sd =</span> <span class="dv">5</span>),</span>
+<span id="cb308-3"><a href="dist.html#cb308-3"></a>                   <span class="dt">b =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">3</span>))</span></code></pre></div>
 <p>Individually, we know that these data are normally distributed (because we created them that way), but what does the distribution look like if we add these two variables together?</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="dist.html#cb292-1"></a><span class="co">#add those variables together and you get a normal distribution</span></span>
-<span id="cb292-2"><a href="dist.html#cb292-2"></a>normal_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">c =</span> a <span class="op">+</span><span class="st"> </span>b) -&gt;<span class="st"> </span>normal_data</span>
-<span id="cb292-3"><a href="dist.html#cb292-3"></a></span>
-<span id="cb292-4"><a href="dist.html#cb292-4"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> normal_data) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb292-5"><a href="dist.html#cb292-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(c),</span>
-<span id="cb292-6"><a href="dist.html#cb292-6"></a>                 <span class="dt">bins =</span> <span class="dv">30</span>,</span>
-<span id="cb292-7"><a href="dist.html#cb292-7"></a>                 <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb292-8"><a href="dist.html#cb292-8"></a>                 <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></span>
-<span id="cb292-9"><a href="dist.html#cb292-9"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
-<span id="cb292-10"><a href="dist.html#cb292-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="dist.html#cb309-1"></a><span class="co">#add those variables together and you get a normal distribution</span></span>
+<span id="cb309-2"><a href="dist.html#cb309-2"></a>normal_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">c =</span> a <span class="op">+</span><span class="st"> </span>b) -&gt;<span class="st"> </span>normal_data</span>
+<span id="cb309-3"><a href="dist.html#cb309-3"></a></span>
+<span id="cb309-4"><a href="dist.html#cb309-4"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> normal_data) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb309-5"><a href="dist.html#cb309-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(c),</span>
+<span id="cb309-6"><a href="dist.html#cb309-6"></a>                 <span class="dt">bins =</span> <span class="dv">30</span>,</span>
+<span id="cb309-7"><a href="dist.html#cb309-7"></a>                 <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb309-8"><a href="dist.html#cb309-8"></a>                 <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></span>
+<span id="cb309-9"><a href="dist.html#cb309-9"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb309-10"><a href="dist.html#cb309-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>))</span></code></pre></div>
 <p><img src="13-distributions_files/figure-html/a_b_histogram-1.png" width="672" /></p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="dist.html#cb293-1"></a><span class="kw">ggsave</span>(<span class="st">&quot;./images/hist_a_b.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="dist.html#cb310-1"></a><span class="kw">ggsave</span>(<span class="st">&quot;./images/hist_a_b.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
 <pre><code>## Saving 7 x 5 in image</code></pre>
 <p>Answer: still normal. Since all we did here was add together two normal distributions, we simply created a third (normal) distribution with more additive variability.</p>
 <p>What happens, however, if we multiply together a series of normally distributed variables?</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="dist.html#cb295-1"></a><span class="co">#multiply together three normal variables</span></span>
-<span id="cb295-2"><a href="dist.html#cb295-2"></a>normal_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb295-3"><a href="dist.html#cb295-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">d =</span> <span class="kw">sample</span>(a<span class="op">*</span>b<span class="op">*</span>c, <span class="dv">1000</span>)) -&gt;<span class="st"> </span>log_data</span>
-<span id="cb295-4"><a href="dist.html#cb295-4"></a></span>
-<span id="cb295-5"><a href="dist.html#cb295-5"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> log_data) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb295-6"><a href="dist.html#cb295-6"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(d),</span>
-<span id="cb295-7"><a href="dist.html#cb295-7"></a>                 <span class="dt">bins =</span> <span class="dv">30</span>,</span>
-<span id="cb295-8"><a href="dist.html#cb295-8"></a>                 <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb295-9"><a href="dist.html#cb295-9"></a>                 <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></span>
-<span id="cb295-10"><a href="dist.html#cb295-10"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
-<span id="cb295-11"><a href="dist.html#cb295-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="dist.html#cb312-1"></a><span class="co">#multiply together three normal variables</span></span>
+<span id="cb312-2"><a href="dist.html#cb312-2"></a>normal_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb312-3"><a href="dist.html#cb312-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">d =</span> <span class="kw">sample</span>(a<span class="op">*</span>b<span class="op">*</span>c, <span class="dv">1000</span>)) -&gt;<span class="st"> </span>log_data</span>
+<span id="cb312-4"><a href="dist.html#cb312-4"></a></span>
+<span id="cb312-5"><a href="dist.html#cb312-5"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> log_data) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb312-6"><a href="dist.html#cb312-6"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(d),</span>
+<span id="cb312-7"><a href="dist.html#cb312-7"></a>                 <span class="dt">bins =</span> <span class="dv">30</span>,</span>
+<span id="cb312-8"><a href="dist.html#cb312-8"></a>                 <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb312-9"><a href="dist.html#cb312-9"></a>                 <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></span>
+<span id="cb312-10"><a href="dist.html#cb312-10"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb312-11"><a href="dist.html#cb312-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>))</span></code></pre></div>
 <p><img src="13-distributions_files/figure-html/a_b_lognormal-1.png" width="672" /></p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="dist.html#cb296-1"></a><span class="kw">ggsave</span>(<span class="st">&quot;./images/hist_skew_out.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="dist.html#cb313-1"></a><span class="kw">ggsave</span>(<span class="st">&quot;./images/hist_skew_out.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
 <pre><code>## Saving 7 x 5 in image</code></pre>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="dist.html#cb298-1"></a><span class="co">#plot the same data on a log scale (x axis)</span></span>
-<span id="cb298-2"><a href="dist.html#cb298-2"></a></span>
-<span id="cb298-3"><a href="dist.html#cb298-3"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> log_data) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb298-4"><a href="dist.html#cb298-4"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(d),</span>
-<span id="cb298-5"><a href="dist.html#cb298-5"></a>                 <span class="dt">bins =</span> <span class="dv">25</span>,</span>
-<span id="cb298-6"><a href="dist.html#cb298-6"></a>                 <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb298-7"><a href="dist.html#cb298-7"></a>                 <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></span>
-<span id="cb298-8"><a href="dist.html#cb298-8"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
-<span id="cb298-9"><a href="dist.html#cb298-9"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
-<span id="cb298-10"><a href="dist.html#cb298-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="dist.html#cb315-1"></a><span class="co">#plot the same data on a log scale (x axis)</span></span>
+<span id="cb315-2"><a href="dist.html#cb315-2"></a></span>
+<span id="cb315-3"><a href="dist.html#cb315-3"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> log_data) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb315-4"><a href="dist.html#cb315-4"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(d),</span>
+<span id="cb315-5"><a href="dist.html#cb315-5"></a>                 <span class="dt">bins =</span> <span class="dv">25</span>,</span>
+<span id="cb315-6"><a href="dist.html#cb315-6"></a>                 <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb315-7"><a href="dist.html#cb315-7"></a>                 <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></span>
+<span id="cb315-8"><a href="dist.html#cb315-8"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb315-9"><a href="dist.html#cb315-9"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
+<span id="cb315-10"><a href="dist.html#cb315-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>))</span></code></pre></div>
 <p><img src="13-distributions_files/figure-html/a_b_lognormal_log_axis-1.png" width="672" /></p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="dist.html#cb299-1"></a><span class="kw">ggsave</span>(<span class="st">&quot;./images/hist_skew_out_logx.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="dist.html#cb316-1"></a><span class="kw">ggsave</span>(<span class="st">&quot;./images/hist_skew_out_logx.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
 <pre><code>## Saving 7 x 5 in image</code></pre>
 
 </div>
