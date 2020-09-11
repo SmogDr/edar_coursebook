@@ -367,7 +367,7 @@ There are many scale elements that you can add onto a `ggplot2` object using
 
 For the example plots, we will continue to use the `mpg` dataset from the
 `ggplot2` package. We will use functions from the `dplyr` package, too, so both
-need to be loaded. Fortunately, the `ggplot2` package is loaded in addition to regualr `tidyverse` packages when you call `library(tidyverse)`. 
+need to be loaded. Fortunately, the `ggplot2` package is loaded in addition to regular `tidyverse` packages when you call `library(tidyverse)`. 
 
 The first example is actually two similar [scatterplots](#scatt): one using 
 `geom_point()` and one using `geom_jitter()`. These plots will examine the 
