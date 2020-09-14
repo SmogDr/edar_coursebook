@@ -434,7 +434,7 @@ Finally, we clean up the plot by:
 
 ```{r mpg-example1a, message=FALSE, warning=FALSE, fig.cap="Scatterplot (geom_jitter) of highway vs. city fuel economy for model year 2008, colored by vehicle type"}
 # call to ggplot, note that data and aesthetics are called in first geom layer
-ggplt2::ggplot() +
+ggplot2::ggplot() +
   # first geom layer (jitter)
   geom_jitter(data = dplyr::filter(mpg, year == 2008),
              aes(x = hwy, y = cty, color = class),
