@@ -6,7 +6,7 @@ library(scales)
 library(kableExtra)
 ```
 
-## Ch. 4 Objectives
+## Chapter 4 Objectives
 
 This chapter is designed around the following learning objectives for basic
 data visualization in R. Upon completing this chapter, you should be able to:  
@@ -93,8 +93,8 @@ This can be particularly useful if you want to map aesthetics differently for
 different geoms in your plot. We'll see some examples of this use of `aes()`
 more in later sections, when we talk about customizing plots. The `data =`
 argument can be used in specific geom calls to use different dataframes
-(from the one defined when creating the original ggplot object), although this is
-less common. 
+(from the one defined when creating the original `ggplot` object), although this 
+is less common. 
 ```
 
 ## Plot aesthetics
@@ -137,8 +137,7 @@ ggplot(data = mpg, aes(x = class, fill = drv)) +
 What new information can we learn from the Figure \@ref(fig:mpg-fill)?  For 
 starters, we can see that compact and mid-size cars tend to be front-wheel
 drive, whereas pickups and SUVs (who tend to share the same chassis) tend to
-be 4-wheel drive; *this result is not surprising to anyone who studies cars and*
-*trucks, but it's nice to confirm one's knowledge with quantitative data!* 
+be 4-wheel drive. *This result is not surprising to anyone who studies cars and trucks, but it's nice to confirm one's knowledge with quantitative data!* 
 
 ```{block type="rmdnote"}
 `ggplot()` will choose colors and add legends to plots when an aesthetic
@@ -327,13 +326,17 @@ knitr::kable(plot_adds,
              caption = "Common Scale Elements")
 ```
 
-## ggplot2 example 1 
+*Note*: There is also a separate R package called `scales`, which has various
+function options to automatically detect and show breaks and labels for axes
+and legends. These additional functions can be called on a `ggplot` object.
+
+## `ggplot2` example 1
 
 For the example plots, we will continue to use the `mpg` dataset from the
 `ggplot2` package. We will use functions from the `dplyr` package, too, so both
-need to be loaded. Fortunately, the `ggplot2` package is loaded in addition to regualr `tidyverse` packages when you call `library(tidyverse)`. 
+need to be loaded. Fortunately, the `ggplot2` package is loaded in addition to regular `tidyverse` packages when you call `library(tidyverse)`. 
 
-The first example is actually two similar [scatterplots](#scatt): one using 
+The first example is actually of two similar [scatterplots](#scatt): one using 
 `geom_point()` and one using `geom_jitter()`. These plots will examine the 
 agreement (i.e., the [correlation](#corr)) between a vehicle's highway (`hwy`) 
 and city (`cty`) fuel economies for model year 2008.
@@ -348,41 +351,49 @@ could type `unique(mpg$class)` or, if you want to see a quantitative summary,
 you could pipe together the following:
 
 ``` {r mpg-class-count}
+# quantitative summary in pipe
 mpg %>% 
-  filter(year == 2008) %>%
-  group_by(class) %>%
-  tally()
-
-#or another way: mpg %>% filter(year == 2008) %>% count(class)
+  dplyr::filter(year == 2008) %>%
+  dplyr::group_by(class) %>%
+  dplyr::tally() %>% 
+  dplyr::ungroup()
 ```
+
+```{r mpg-class-count-alt, eval=FALSE}
+# alternative
+mpg %>% 
+  dplyr::filter(year == 2008) %>% 
+  dplyr::count(class)
+```
+
 ```{r mpg-example1, message=FALSE, warning=FALSE, fig.cap="Scatterplot (geom_point) of highway vs. city fuel economy for model year 2008, colored by vehicle type"}
 
-# load required R packages - alternatively, use `library(tidyverse)`, 
-# if you will need multiple tidyverse packages
+# load required R packages
 library(dplyr) # for data wrangling and manipulation
 library(ggplot2) # for data visualization
+## alternatively, use `library(tidyverse)`, if you will need multiple packages
 
-ggplot() +
-  geom_point(data = filter(mpg, year == 2008),
-             aes(x = hwy, y = cty, color = class)) 
-
+ggplot2::ggplot() +
+  geom_point(data = dplyr::filter(mpg, year == 2008), # filter data
+             aes(x = hwy, y = cty, color = class)) # assign x, y, and color
 ```
-A few things to note about this plot.  First, there is a clear relationship 
+
+A few things to note about this plot. First, there is a clear relationship 
 between a vehicle's highway and city fuel economy, but the correlation is not
-necessarily one-to-one.  Second, we can see that compact and midsize cars tend
-to have better fuel efficiency that pickups and SUVs (...duh).  Third, in my
+necessarily one-to-one. Second, we can see that compact and midsize cars tend
+to have better fuel efficiency that pickups and SUVs (...duh). Third, in my
 opinion, this plot has a few drawbacks:  
 
 * If you were paying close attention, the sum of the `tally()` function above
   reported over 100 different entries (117 to be precise), but the plot above
-  shows only about 50 data points....Why?  (hint: if you look at the `mpg` 
-  data, the fuel economies are rounded to the nearest mi/gal).  
+  shows only about 50 data points... Why? (Hint: if you look at the `mpg` 
+  data, the fuel economies are rounded to the nearest mile per gallon.) 
   * We will address this issue with `geom_jitter()` below.  
 * The limits of the x- and y-axes are not equal, which distorts the relationship 
 a bit.  
   * We will address this issue with `coord_fixed()` below.  
 * The relationship between `cty` and `hwy` might be easier to distinguish if
-  we drew a "one-to-one" line on the plot (i.e. y = x).  
+  we drew a "one-to-one" line on the plot (i.e., y = x).  
   * We will accomplish this need with `geom_abline` below.  
 * Personally, I don't like the grey background and I think that the x and y 
   axis labels are a little vague.  I prefer my axis labels to be more 
@@ -391,70 +402,73 @@ a bit.
     axis labels with `xlab()` and `ylab()` elements.
 
 Below is the same data from Figure \@ref(fig:mpg-example1) plotted using 
-`geom_jitter()` - this geom is just like `geom_point()` except that it allows 
+`geom_jitter()`. This geom is just like `geom_point()` except that it allows 
 the plotted points to contain some "jitter" (a small amount of wobble as to where
 the point actually shows up in x and y space) so that overlapping data points 
 can be distinguished from one another. The degree of jitter is set using 
 `height =` and/or `width = ` arguments. Note that adding jitter to data is the 
 same as making the plotted data less precise (in a random way) so be careful not 
-to add too much jitter to a plot...aim for just enough jitter so that the points 
+to add too much jitter to a plot---aim for just enough jitter so that the points 
 are visible without impacting the overall conclusion to be drawn from the plot.
 
 We can also add a degree of transparency to the plotted data by
 using `alpha = 0.6` within the `geom_jitter()` layer. The `alpha =` argument is 
-available in most geoms within the `GGplot2` package and allows you to set the
-degree of transparency between 0 (see through) and 1 (completely solid).
+available in most geoms within the `ggplot2` package and allows you to set the
+degree of transparency between 0 (transparent) and 1 (completely solid).
 
-We add a one-to-one line (y = x) that communincates what perfect 
-agreeement between variables would look like.  This is accomplished using 
+We add a one-to-one line (y = x) that communicates what perfect 
+agreement between variables would look like. This is accomplished using 
 `geom_abline()` (*the name comes from drawing a line between points a and b on*
-*a plot*).  A `geom_abline()` call requires us to specify a slope and an 
+*a plot*). A `geom_abline()` call requires us to specify a slope and an 
 intercept, which we will set to 1 and 0, respectively.
 
 Finally, we clean up the plot by:  
 
 * fixing the scale of the x and y axes (i.e., ensuring that 10 units of x 
   distance are equal to 10 units of y distance) by specifying a 
-  *fixed coordinate system* with `coord_fixed()`;  
+  **fixed coordinate system** with `coord_fixed()`;  
 * adding x and y axis labels using strings as arguments to `xlab()` and 
-  `ylab()` elements;  
+  `ylab()` elements; and  
 * setting a **theme** for the plot that removes the grey background using
   `theme_minimal()`.
 
 ```{r mpg-example1a, message=FALSE, warning=FALSE, fig.cap="Scatterplot (geom_jitter) of highway vs. city fuel economy for model year 2008, colored by vehicle type"}
-
-# load required R packages - alternatively, use `library(tidyverse)`, if you will need multiple tidyverse packages
-library(dplyr) # for data wrangling and manipulation
-library(ggplot2) # for data visualization
-
-ggplot() +
-  geom_jitter(data = filter(mpg, year == 2008),
+# call to ggplot, note that data and aesthetics are called in first geom layer
+ggplt2::ggplot() +
+  # first geom layer (jitter)
+  geom_jitter(data = dplyr::filter(mpg, year == 2008),
              aes(x = hwy, y = cty, color = class),
              width = 0.4,
              alpha = 0.6,
              size = 2) +
+  # second geom layer (line)
   geom_abline(intercept = 0,
               slope = 1) +
+  # call fixed coordinate system
   coord_fixed() +
+  # set axis limits
   xlim(c(0,40)) +
   ylim(c(0,40)) +
+  # add axis labels
   xlab("Highway Fuel Economy, mi/gal") +
   ylab("City Fuel Economy, mi/gal") +
+  # adopt theme without grey background
   theme_minimal()
 ```
 
-## ggplot2 example 2
-In Example 2, we will look at highway fuel efficiency for SUVs in 2008,
+## `ggplot2` example 2
+
+In the second example, we will look at highway fuel efficiency for SUVs in 2008,
 ordered by manufacturer and colored by the engine displacement size in liters.
 We create subsets of the `mpg` dataframe in two ways:  
 
 1. We create a summary dataframe (`mpg_subset`) by applying two `filter()`
-calls on the `mpg` object.  We then `group_by()` the manufacturer so that
+calls on the `mpg` object. We then `group_by()` the manufacturer so that
 average values for highway fuel economy (`hwy_mean`) and engine displacement
 (`displ_mean`) can be calculated through a call to `summarize()`.  
 
 2. We subset the `mpg` dataframe again, this time directly within the `data =`
-call for `ggplot()`.   
+call for `ggplot()`.
 
 * The first layer (`geom_jitter()`) is a point plot that adds a slight amount
 of "wobble" or "jitter" to the data points so that they don't overlap on the
@@ -466,7 +480,7 @@ mean values for SUV models within each manufacturer.  The `geom_errorbar()`
 function is often used to show precision (or uncertainty) about data; here we
 are using it to identify a single value (the mean) for each SUV manufacturer.
 
-We also add custom lables and a color scale to investigate whether engine
+We also add custom labels and a color scale to investigate whether engine
 displacement has an effect on fuel efficiency. Note the additional aesthetic
 calls for `color = ` in each layer. The final part of the call in
 `theme_classic()` tells `ggplot()` to remove the gray background and the grid
@@ -482,14 +496,14 @@ mpg_subset <- mpg %>%
 
 # call to ggplot, note that data and aesthetics are called in each geom layer
 ggplot() +
-  # first layer
+  # first layer - note the main dataframe was called
   geom_jitter(data = filter(mpg, class == "suv" & year == 2008),
            aes(x = manufacturer, 
                y = hwy, 
                color = displ),
            width = 0.1,
            size = 2) +
-  # second layer
+  # second layer - note the subset dataframe was called 
   geom_errorbar(data = mpg_subset,
              aes(x = manufacturer,
                  ymin = hwy_mean,
@@ -513,12 +527,13 @@ both the means and the individual data points.
 
 ## Store and save `ggplot2` objects
 
-Sometimes you will want to store a ggplot2 plot as an object in your global
+Sometimes, you will want to store a ggplot2 plot as an object in your global
 environment, so that it can be called or manipulated later. This is done in the
 same way as you would create and assign a name to any other object in R. But 
 remember to **use descriptive plot names** following the naming advice from
-Chapter 3 (i.e., meaningful words; lowercase; underscore as separator). In the 
-following example, `plot1` does not follow this advice!
+Chapter 3 (i.e., meaningful words; lowercase; underscore as separator). 
+
+**In the following example, `plot1` does not follow proper naming conventions!**
 
 ```{r ggplot-save, eval=FALSE, message=FALSE, warning=FALSE}
 # create a ggplot object called "plot1"
@@ -529,7 +544,8 @@ plot1 <- ggplot(data = mpg, aes(x = class)) +
 ```{block type="rmdnote"}
 When you create and store a `ggplot()` object, the plot itself will be created
 and stored but not returned as output.If you want to "see" the plot, just
-enter its name into the console or script.
+enter its name into the console or script, and it will appear in the Viewer
+pane.
 ```
 
 You can also save `ggplot2` plots as image files to a local directory using the
@@ -542,7 +558,7 @@ specify parameters including image resolution (`dpi = 300`), image type
 plot1 <- ggplot(data = mpg, aes(x = class)) +
   geom_bar()
 
-ggsave("images/mpg-bar.png",
+ggplot2::ggsave("images/mpg-bar.png",
        plot = plot1,
        dpi = 150,
        device = png(),
@@ -574,15 +590,26 @@ already exists! Before building your own (which is sometimes necessary and/or
 fun), take a look at this [compilation](https://exts.ggplot2.tidyverse.org/) of
 `ggplot2` extensions.
 
-## Ch-4 Exercises
+## Chapter 4 Homework
 
-Using built-in dataset
+You will continue to work with the ozone measurement data introduced in the 
+previous chapter.
 
-1. Create a `geom_col()`
-2. Create a `geom_jitter()` (mtcars y=mpg, x=cyl)
-3. Vary fill, color, line for whole plot
-4. Create fill, color aesthetics
+On Canvas, download the R Markdown template (.Rmd), which includes a description
+of the data, the homework questions, and the general framework of 
+code-figure-text integration, including the framework for a code appendix. Save
+the data and template files in your local R Project in the `/data` and 
+`/homework` folders, respectively. You should already have the ozone data (.csv)
+saved in your `/data` folder.
 
-## Ch-4 Homework
+Remember to check and set your working directory (e.g., Session > Set Working
+Directory > To Source File Location) to point from the R Markdown
+file and detect the data file in `/data`  and also points to `/figs` as the
+place to save figures and images, which is determined in the R Markdown global
+option chunk I include in the R Markdown template.
 
-- R Markdown template with data import, wrangling, basic plotting
+This homework assignment is due at the start of the class when we begin Chapter
+5. We will look for the R Markdown file and the corresponding knitted PDF or
+HTML document within your `/homework` file. Remember, make regular, memorable
+commits, so you never lose your work. Your work will be considered late if the 
+latest knit occurs after the deadline.
