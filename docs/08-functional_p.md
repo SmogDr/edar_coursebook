@@ -12,7 +12,7 @@ programming in R. Upon completing this chapter, you should be able to:
 - Define functions and their basic attributes
 - Create simple functions using named and optional arguments
 - Define the meaning of *"vectorized operations"* in R
-- Interpret and apply the `purr::map` family of functions
+- Interpret and apply the `purrr::map` family of functions
 
 ## What is ***functional programming***?
 
@@ -306,17 +306,60 @@ be easily adapted to suit other file types and formats.  As you develop your
 coding skills, a good strategy is to keep useful functions in a .R script
 file so that you can call upon them when needed: `source(import.w.name.R)`
 
-## Functional Prog. with `purr::`
-The `purr::` package was designed specifically with functional programming in mind.
-Similar to the discussion of *vectorized operations* above, `purr::` was created
+## The `purrr::` package
+The `purrr::` package was designed specifically with functional programming in mind.
+Similar to the discussion of *vectorized operations* above, `purrr::` was created
 to help you apply functions to vectors in a way that is easy to implement and 
 easy to "read".
 
 ### Function Mapping
-The `map_` family of functions are the core of the `purr` package. These 
-functions are intended to *map* functions onto vectors (and data frames), which
-is a key strength of functional programming. To illustrate how the `map_` 
-functions work, its best to visualize the process.
+The `map_` family of functions are the core of the `purrr` package. These 
+functions are intended to *map* functions (i.e., to apply them) to individual elements in a vector (or data frames); the `map_` functions are similar to functions like `lapply()` and `vapply()` from base R (but more powerful and versatile). *"Mapping"* a function onto a vector is a common theme of functional programming. To illustrate how the `map_` functions work, its best to visualize the process first.
+
+
+```r
+knitr::include_graphics("./images/map_anno1.png")
+```
+
+<div class="figure" style="text-align: center">
+<img src="./images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input." width="632" />
+<p class="caption">(\#fig:map-anno1)The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input.</p>
+</div>
+
+As shown above in Figure \@ref(fig:map-anno1), the generic form of `map()`  always returns a `list` object as the output. Working with lists is one of the mental hurdles to overcome when learning `map()`. However, there are variants in the `map_` family of functions that return various object types.  
+
+
+```r
+purrr_variants <- tibble(
+  name = c("map_lgl()", 
+           "map_int()", 
+           "map_dbl()", 
+           "map_chr()", 
+           "map_dfr()", 
+           "map_dfc()"),
+  returns = c("logical",
+              "integer",
+              "numeric",
+              "character",
+              "data frame, by rows",
+              "data frame, by columns")
+)
+
+knitr::kable(purrr_variants, col.names = c("`Purrr::` Function", "Object Returned"))
+```
+
+
+
+|`Purrr::` Function |Object Returned        |
+|:------------------|:----------------------|
+|map_lgl()          |logical                |
+|map_int()          |integer                |
+|map_dbl()          |numeric                |
+|map_chr()          |character              |
+|map_dfr()          |data frame, by rows    |
+|map_dfc()          |data frame, by columns |
+
+
 
 ```r
 file_list <- list.files('./data/purpleair/', full.names=TRUE)

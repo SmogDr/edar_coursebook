@@ -70,7 +70,7 @@ where:
 The OLS approach is straightforward: select model parameters ($\beta_{0}$, $\beta_{1}$) so that the model produces as little error as possible. With OLS, the model error is calculated as a *sum-of-squares error* (SSE; explained below). Graphically, this is shown in Figure \@ref(fig:OLS-anno), where the solid blue circles represent the actual data ($X_{i}, Y_{i}$). The grey line represents the "best fit" line that gives the smallest SSE possible. The model ***residuals*** (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the "best-fit line". The optimization algorithm is executed with matrix algebra.
 
 <div class="figure">
-<img src="./images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals"  />
+<img src="./images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals" width="632" />
 <p class="caption">(\#fig:OLS-anno)Graphical depiction for an OLS regression fit to minimize the sum of squared residuals</p>
 </div>
 
@@ -162,7 +162,7 @@ Thus, substituting one equation into another, we arrive at the conclusion that m
 $$mass \sim Circumference^{2}$$
 Or, another way to say this is that the square root of mass is linearly related to body circumference.
 $$\sqrt{mass} \sim Circumference$$
-<img src="./images/cylinder_comic.png" style="display: block; margin: auto;" />
+<img src="./images/cylinder_comic.png" width="552" style="display: block; margin: auto;" />
 
 Let's transform $mass \rightarrow \sqrt{mass}$ and then examine the two scatterplots side by side.
 <div class="figure">
@@ -204,7 +204,7 @@ model2 <- lm(sqrt_mass ~ waist, data = data_18)
 Now that we have stored each model as an object (`model1`, `model2`), so we can examine what they contain. The output of `lm()` is a list of class "lm".  If we type `view(model1)` the contents of the list become apparent.
 
 <div class="figure">
-<img src="./images/model1_list.png" alt="The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more."  />
+<img src="./images/model1_list.png" alt="The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more." width="632" />
 <p class="caption">(\#fig:model1-list)The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more.</p>
 </div>
 As you can see, there is a wealth of information contained in the `lm()` object. The first list entry contains the model parameter estimates (`model1$coefficients`) in rank order:  
@@ -425,12 +425,42 @@ The correlation coefficients are both nearly zero, so this last assumption is va
 ***Which model is best?***
 Both models explained ~80% of the variance in our dependent variable. Based on our process knowledge and the fit diagnostics, we can conclude that `model2` is better specified than `model1`.  In examining our process knowledge and the residuals, however, we cannot help but wonder if a better model exists out there to predict body mass based on measurement variables? 
 
+## Calibration {#calibration}
+Calibration is a common technique in science and engineering used to aid 
+measurement. To *calibrate* an instrument means to compare its measurements
+to those of a better one (when measuring the same thing). What qualifies as a better instrument? That depends on on the thing being measured but we usually utilize 
+metrics like **[precision](#precision)** and **[bias](#bias)** to judge whether one instrument is *better* than another.  The following steps are needed to perform a calibration for an instrument that reports continuous readings:  
+
+  1. **Decide on the form of the** ***reference***: to which your instrument is 
+  being compared. The two most common approaches are to use either a 
+  **standard reference measurement** or a **standard reference material**.  
+    - To use a *standard reference measurement* means to use a better (trusted) 
+    instrument to perform your calibration.  The term **standard reference** in
+    science or engineering means "commonly accepted as a best available
+    technique".  Standard reference instruments often come with some sort of 
+    certification of authenticity or performance (i.e., *accurate to within X %*
+    *and precise to within Y %*).  
+    - To use a *standard reference material* means to have known quantities of the
+    thing being measured.  Standard reference materials are nice because, if you 
+    have them, then you don't need a better instrument with which to perform the 
+    calibration. Unfortunately, standard reference materials are not always available
+    (commercially) and, when they are, tend to be expensive.  
+  2. **Decide on the *range* of values to be calibrated**.  The range should span all
+  values of the *thing being measured* that you expect to encouter, and then some.
+  If, for example, you wanted to measure the mass of objects between 50 and 100g, you 
+  might consider calibrating your instrument from 0 to 150g.  
+    - The calibration range should not exceed the *[dynamic range](#dynamic)* 
+    of your instrument, nor should it greatly exceed the range of measurements 
+    you expect to encounter. 
+  3. Decide on the number of measurements needed.  The minimum number of measurements
+  with which to perform a calibration is one.
+
 ## Probability Density Function {#pdf}  
 The histogram is really an attempt to visualize the **probability density function** (pdf) for a distribution of univariate data.  The pdf is a mathematical representation of the likelihood of sampling a given value from the distribution, assuming a random draw.  Unlike the histogram (which bins data into groups), the pdf is a continuous function that can be solved at any datum.  A pdf can be expressed empirically (as a numeric approximation) or as an exact analytic equation (in the case normal, lognormal, and other *known* distributional forms). 
 
 ### Univariate Data Fits
 
-## Calibration
+
 
 ## Ch-11 Exercises
 
