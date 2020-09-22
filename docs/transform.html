@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-09-14" />
+<meta name="date" content="2020-09-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,7 @@
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -306,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.1" data-path="rprog4.html"><a href="rprog4.html#example-function-my_mean"><i class="fa fa-check"></i><b>8.3.1</b> Example Function: my_mean</a></li>
 <li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: “import.w.name”</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#functional-prog.-with-purr"><i class="fa fa-check"></i><b>8.4</b> Functional Prog. with <code>purr::</code></a><ul>
+<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a><ul>
 <li class="chapter" data-level="8.4.1" data-path="rprog4.html"><a href="rprog4.html#function-mapping"><i class="fa fa-check"></i><b>8.4.1</b> Function Mapping</a></li>
 <li class="chapter" data-level="8.4.2" data-path="rprog4.html"><a href="rprog4.html#working-with-lists"><i class="fa fa-check"></i><b>8.4.2</b> Working with Lists</a></li>
 </ul></li>
@@ -343,10 +344,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.6" data-path="measure.html"><a href="measure.html#cluster-sampling"><i class="fa fa-check"></i><b>10.2.6</b> Cluster Sampling</a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#limit-of-detection-quantification"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
-<li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic-range"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
-<li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#measurement-precision"><i class="fa fa-check"></i><b>10.3.3</b> Measurement Precision</a></li>
-<li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#measurement-bias-accuracy"><i class="fa fa-check"></i><b>10.3.4</b> Measurement Bias (accuracy)</a></li>
+<li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#LOD"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
+<li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
+<li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>10.3.3</b> Measurement Precision</a></li>
+<li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>10.3.4</b> Measurement Bias (accuracy)</a></li>
 <li class="chapter" data-level="10.3.5" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.3.5</b> Measurement Uncertainty</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#ch-10-exercises"><i class="fa fa-check"></i><b>10.4</b> Ch-10 Exercises</a></li>
@@ -365,12 +366,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5.1" data-path="model.html"><a href="model.html#the-lm-function"><i class="fa fa-check"></i><b>11.5.1</b> The <code>lm()</code> function</a></li>
 <li class="chapter" data-level="11.5.2" data-path="model.html"><a href="model.html#ols-diagnostics"><i class="fa fa-check"></i><b>11.5.2</b> OLS Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#pdf"><i class="fa fa-check"></i><b>11.6</b> Probability Density Function</a><ul>
-<li class="chapter" data-level="11.6.1" data-path="model.html"><a href="model.html#univariate-data-fits"><i class="fa fa-check"></i><b>11.6.1</b> Univariate Data Fits</a></li>
+<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="model.html"><a href="model.html#example-calibration"><i class="fa fa-check"></i><b>11.6.1</b> Example Calibration</a></li>
 </ul></li>
-<li class="chapter" data-level="11.7" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.7</b> Calibration</a></li>
-<li class="chapter" data-level="11.8" data-path="model.html"><a href="model.html#ch-11-exercises"><i class="fa fa-check"></i><b>11.8</b> Ch-11 Exercises</a></li>
-<li class="chapter" data-level="11.9" data-path="model.html"><a href="model.html#ch-11-homework"><i class="fa fa-check"></i><b>11.9</b> Ch-11 Homework</a></li>
+<li class="chapter" data-level="11.7" data-path="model.html"><a href="model.html#ch-11-exercises"><i class="fa fa-check"></i><b>11.7</b> Ch-11 Exercises</a></li>
+<li class="chapter" data-level="11.8" data-path="model.html"><a href="model.html#ch-11-homework"><i class="fa fa-check"></i><b>11.8</b> Ch-11 Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="simulate.html"><a href="simulate.html"><i class="fa fa-check"></i><b>12</b> Simulation</a><ul>
 <li class="chapter" data-level="12.1" data-path="simulate.html"><a href="simulate.html#ch.-12-objectives"><i class="fa fa-check"></i><b>12.1</b> Ch. 12 Objectives</a></li>
@@ -387,6 +387,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2.1" data-path="dist.html"><a href="dist.html#normal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>13.2.1</b> Normal Distribution: Characteristic Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="13.3" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>13.3</b> Log-normal Distribution</a></li>
+<li class="chapter" data-level="13.4" data-path="dist.html"><a href="dist.html#data-import"><i class="fa fa-check"></i><b>13.4</b> Data Import</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -439,7 +440,7 @@ There are two key facets to data transformation: <strong>justification</strong> 
 <p>Centering means <strong><em>to subtract a constant from all values</em></strong> in a vector. The <strong>constant</strong> to be subtracted could be an estimate of the data’s central tendency, like the mean or median (hence the term <em>center</em>-ing), or it could be some residual value that you want to remove from all observations. If you subtract the mean from every value of a vector, then the new vector will have a mean of 0; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location. Centering <strong><em>changes the location</em></strong> of a variable but <strong><em>spread stays the same</em></strong>.</p>
 <p>In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to “background subtract” or “zero” a set of univariate observations. If you have ever used a digital scale to measure the weight of an object, you’ve probably noticed that when you turn it on, the scale does not always read zero. Most of the time the instrument has a way to “re-zero” itself prior to use, but this is not always the case. If your scale shows a mass of 298 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 298 from all subsequent weights that you perform with this scale. That subtraction is an example of a “centering” transformation.</p>
 <div class="figure" style="text-align: center"><span id="fig:centering-anno"></span>
-<img src="images/centering_anno.png" alt="Data are sometimes centered to remove spurious values"  />
+<img src="images/centering_anno.png" alt="Data are sometimes centered to remove spurious values" width="640" />
 <p class="caption">
 Figure 9.1: Data are sometimes centered to remove spurious values
 </p>
@@ -484,7 +485,7 @@ Like <em>“transformation”</em>, the word “<em>normalization</em>” is def
 <h3><span class="header-section-number">9.3.3</span> Reducing Skewness</h3>
 <p>Sometimes your data are <em>not normally distributed</em>, even though you want them to be. In that case you still have options. Some transformations, like the log, square root, or inverse, will make the spread of the data symmetric and approximately Gaussian. These transformations are commonly used to meet the needs (read: underlying assumptions) of many statistical models. We discuss model assumptions (and their evaluation) in the <a href="model.html#model">modeling chapter</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:reduce-skew2"></span>
-<img src="images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable."  />
+<img src="images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable." width="640" />
 <p class="caption">
 Figure 9.2: The log(x) transform is often used to reduce skewness in a variable.
 </p>
@@ -534,14 +535,14 @@ An <strong>outlier</strong> is an observation that lies an abnormal distance fro
 <li><code>asthma.rate</code>: the percentage of kids with asthma in a given school district</li>
 <li><code>black.carbon</code>: the concentration of airborne black carbon (a type of air pollutant generated by incomplete combustion, similar to what you see exhausted from a diesel truck) measured outside of a school at the center of each district.</li>
 </ul>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="transform.html#cb280-1"></a>asthma.data &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb280-2"><a href="transform.html#cb280-2"></a>  <span class="dt">asthma.rate =</span> <span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">9</span>, </span>
-<span id="cb280-3"><a href="transform.html#cb280-3"></a>                  <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">10</span>,</span>
-<span id="cb280-4"><a href="transform.html#cb280-4"></a>                  <span class="dv">16</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">9</span>),</span>
-<span id="cb280-5"><a href="transform.html#cb280-5"></a>  <span class="dt">black.carbon =</span> <span class="kw">c</span>(<span class="fl">3.2</span>, <span class="fl">2.5</span>, <span class="fl">4.6</span>, <span class="fl">6.1</span>, <span class="fl">3.3</span>, </span>
-<span id="cb280-6"><a href="transform.html#cb280-6"></a>                   <span class="fl">3.1</span>, <span class="fl">6.1</span>, <span class="fl">5.3</span>, <span class="fl">4.5</span>, <span class="fl">3.3</span>, </span>
-<span id="cb280-7"><a href="transform.html#cb280-7"></a>                   <span class="fl">6.4</span>, <span class="fl">3.7</span>, <span class="fl">5.1</span>, <span class="fl">6.8</span>, <span class="dv">12</span>)</span>
-<span id="cb280-8"><a href="transform.html#cb280-8"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="transform.html#cb282-1"></a>asthma.data &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb282-2"><a href="transform.html#cb282-2"></a>  <span class="dt">asthma.rate =</span> <span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">9</span>, </span>
+<span id="cb282-3"><a href="transform.html#cb282-3"></a>                  <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">10</span>,</span>
+<span id="cb282-4"><a href="transform.html#cb282-4"></a>                  <span class="dv">16</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">9</span>),</span>
+<span id="cb282-5"><a href="transform.html#cb282-5"></a>  <span class="dt">black.carbon =</span> <span class="kw">c</span>(<span class="fl">3.2</span>, <span class="fl">2.5</span>, <span class="fl">4.6</span>, <span class="fl">6.1</span>, <span class="fl">3.3</span>, </span>
+<span id="cb282-6"><a href="transform.html#cb282-6"></a>                   <span class="fl">3.1</span>, <span class="fl">6.1</span>, <span class="fl">5.3</span>, <span class="fl">4.5</span>, <span class="fl">3.3</span>, </span>
+<span id="cb282-7"><a href="transform.html#cb282-7"></a>                   <span class="fl">6.4</span>, <span class="fl">3.7</span>, <span class="fl">5.1</span>, <span class="fl">6.8</span>, <span class="dv">12</span>)</span>
+<span id="cb282-8"><a href="transform.html#cb282-8"></a>)</span></code></pre></div>
 <p>The plot below shows two boxplots: one depicts <code>asthma.rate</code> for the 15 school districts; the other depicts <code>black.carbon</code>. I’ve circled the apparent outlier. <strong>Outliers are easy to see in boxplots because they fall outside the whiskers.</strong></p>
 <div class="figure" style="text-align: center"><span id="fig:outlier-1"></span>
 <img src="09-transf_files/figure-html/outlier-1-1.png" alt="Boxplots for two sets of data; the one on the right has an outlier." width="500" />
@@ -557,19 +558,19 @@ Figure 9.5: Boxplots for two sets of data; the one on the right has an outlier.
 <li><em>less than</em>: [0.25 quantile value] - 1.5*IQR</li>
 </ul>
 <p>For the <code>black.carbon</code> data, we could calculate these thresholds with the following:</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="transform.html#cb281-1"></a>upper &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon,</span>
-<span id="cb281-2"><a href="transform.html#cb281-2"></a>                  <span class="dt">probs =</span> <span class="fl">0.75</span>,</span>
-<span id="cb281-3"><a href="transform.html#cb281-3"></a>                  <span class="dt">names =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb281-4"><a href="transform.html#cb281-4"></a><span class="st">  </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon)</span>
-<span id="cb281-5"><a href="transform.html#cb281-5"></a></span>
-<span id="cb281-6"><a href="transform.html#cb281-6"></a>lower &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon,</span>
-<span id="cb281-7"><a href="transform.html#cb281-7"></a>                  <span class="dt">probs =</span> <span class="fl">0.25</span>,</span>
-<span id="cb281-8"><a href="transform.html#cb281-8"></a>                  <span class="dt">names =</span> <span class="ot">FALSE</span>) <span class="op">-</span><span class="st"> </span></span>
-<span id="cb281-9"><a href="transform.html#cb281-9"></a><span class="st">  </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon)</span>
-<span id="cb281-10"><a href="transform.html#cb281-10"></a></span>
-<span id="cb281-11"><a href="transform.html#cb281-11"></a>upper</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="transform.html#cb283-1"></a>upper &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon,</span>
+<span id="cb283-2"><a href="transform.html#cb283-2"></a>                  <span class="dt">probs =</span> <span class="fl">0.75</span>,</span>
+<span id="cb283-3"><a href="transform.html#cb283-3"></a>                  <span class="dt">names =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb283-4"><a href="transform.html#cb283-4"></a><span class="st">  </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon)</span>
+<span id="cb283-5"><a href="transform.html#cb283-5"></a></span>
+<span id="cb283-6"><a href="transform.html#cb283-6"></a>lower &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon,</span>
+<span id="cb283-7"><a href="transform.html#cb283-7"></a>                  <span class="dt">probs =</span> <span class="fl">0.25</span>,</span>
+<span id="cb283-8"><a href="transform.html#cb283-8"></a>                  <span class="dt">names =</span> <span class="ot">FALSE</span>) <span class="op">-</span><span class="st"> </span></span>
+<span id="cb283-9"><a href="transform.html#cb283-9"></a><span class="st">  </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon)</span>
+<span id="cb283-10"><a href="transform.html#cb283-10"></a></span>
+<span id="cb283-11"><a href="transform.html#cb283-11"></a>upper</span></code></pre></div>
 <pre><code>## [1] 10.3</code></pre>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="transform.html#cb283-1"></a>lower</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="transform.html#cb285-1"></a>lower</span></code></pre></div>
 <pre><code>## [1] -0.9</code></pre>
 <p>Interestingly, this rule suggests that outliers on the lower end need to be negative. Is that even possible for air pollution concentrations? (hint: NO) Other statistical approaches for detecting outliers include:</p>
 <ul>

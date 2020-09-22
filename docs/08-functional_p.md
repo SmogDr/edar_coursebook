@@ -314,7 +314,7 @@ easy to "read".
 
 ### Function Mapping
 The `map_` family of functions are the core of the `purrr` package. These 
-functions are intended to *map* functions (i.e., to apply them) to individual elements in a vector (or data frames); the `map_` functions are similar to functions like `lapply()` and `vapply()` from base R (but more powerful and versatile). *"Mapping"* a function onto a vector is a common theme of functional programming. To illustrate how the `map_` functions work, its best to visualize the process first.
+functions are intended to *map* functions (i.e., to apply them) to individual elements in a vector (or data frames); the `map_` functions are similar to functions like `lapply()` and `vapply()` from base R (but more versatile). *"Mapping"* a function onto a vector is a common theme of functional programming. To illustrate how the `map_` functions work, its best to visualize the process first.
 
 
 ```r
@@ -331,13 +331,15 @@ As shown above in Figure \@ref(fig:map-anno1), the generic form of `map()`  alwa
 
 ```r
 purrr_variants <- tibble(
-  name = c("map_lgl()", 
+  name = c("map()",
+           "map_lgl()", 
            "map_int()", 
            "map_dbl()", 
            "map_chr()", 
            "map_dfr()", 
            "map_dfc()"),
-  returns = c("logical",
+  returns = c("list",
+              "logical",
               "integer",
               "numeric",
               "character",
@@ -352,6 +354,7 @@ knitr::kable(purrr_variants, col.names = c("`Purrr::` Function", "Object Returne
 
 |`Purrr::` Function |Object Returned        |
 |:------------------|:----------------------|
+|map()              |list                   |
 |map_lgl()          |logical                |
 |map_int()          |integer                |
 |map_dbl()          |numeric                |

@@ -19,26 +19,12 @@ raw_data <- read_csv("./data/ftc_o3.csv")
 ```
 ## Parsed with column specification:
 ## cols(
-##   .default = col_character(),
-##   site_number = col_double(),
-##   parameter_code = col_double(),
-##   poc = col_double(),
 ##   latitude = col_double(),
 ##   longitude = col_double(),
-##   date_local = col_date(format = ""),
-##   time_local = col_time(format = ""),
-##   date_gmt = col_date(format = ""),
-##   time_gmt = col_time(format = ""),
+##   parameter = col_character(),
 ##   sample_measurement = col_double(),
-##   sample_duration_code = col_double(),
-##   detection_limit = col_double(),
-##   uncertainty = col_logical(),
-##   date_of_last_change = col_date(format = ""),
-##   cbsa_code = col_double(),
+##   units_of_measure = col_character(),
+##   sample_duration = col_character(),
 ##   datetime = col_datetime(format = "")
 ## )
-```
-
-```
-## See spec(...) for full column specifications.
 ```

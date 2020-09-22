@@ -388,31 +388,72 @@ Both models explained ~80% of the variance in our dependent variable. Based on o
 Calibration is a common technique in science and engineering used to aid 
 measurement. To *calibrate* an instrument means to compare its measurements
 to those of a better one (when measuring the same thing). What qualifies as a better instrument? That depends on on the thing being measured but we usually utilize 
-metrics like **[precision](#precision)** and **[bias](#bias)** to judge whether one instrument is *better* than another.  The following steps are needed to perform a calibration for an instrument that reports continuous readings:  
+metrics like *[precision](#precision)*, *[bias](#bias)*, *linearity*, and *[dynamic range](#dynamic)* to judge whether one instrument is *better* than another.  In this section, we will outline the approach for calibration using linear modeling as a tool. 
+
+The following steps are needed to calibrate an instrument that reports continuous readings:  
 
   1. **Decide on the form of the** ***reference*** (to which your instrument is 
   being compared). The two most common approaches are to use either a 
-  **standard reference measurement** or a **standard reference material**.  
-    - To use a *standard reference measurement* means to use a better (trusted) 
+  *standard reference measurement* or a *standard reference material*.  
+      - To use a *standard reference measurement* means to use a better (trusted) 
     instrument to perform your calibration.  The term **standard reference** in
     science or engineering means "commonly accepted as a best available
     technique".  Standard reference instruments often come with some sort of 
     certification of authenticity or performance (i.e., *accurate to within X %*
     *and precise to within Y %*).  
-    - To use a *standard reference material* means to have known quantities of the
+      - To use a *standard reference material* means to have known quantities of the
     thing being measured.  Standard reference materials are nice because, if you 
     have them, then you don't need a better instrument with which to perform the 
     calibration. Unfortunately, standard reference materials are not always available
     (commercially) and, when they are, tend to be expensive.  
-  2. **Decide on the *range* of values to be calibrated**.  The range should span all
-  values of the *thing being measured* that you expect to encouter, and then some.
-  If, for example, you wanted to measure the mass of objects between 50 and 100g, you 
-  might consider calibrating your instrument from 0 to 150g.  
-    - The calibration range should not exceed the *[dynamic range](#dynamic)* 
-    of your instrument, nor should it greatly exceed the range of measurements 
-    you expect to encounter. 
-  3. **Decide on the *number of measurements* needed**. The minimum number of 
-  measurements with which to perform a calibration is one
+  2. **Decide on the *range* and *number of measurements* needed for the calibration**.
+  Although a calibration can technically be performed with just a single data 
+  point, we often want to confirm that our measurement device can handle a wide 
+  range of levels. Thus, the range should span all values of the 
+  *thing being measured* that you expect to encounter, and then some. If, for 
+  example, you wanted to measure the mass of objects between 50 and 100g, you 
+  might consider calibrating your instrument from 0 to 150g. The range and number 
+  of measurements needed to perform a calibration is a judgment call; there is 
+  no *"correct"* number of samples needed to perform a calibration.  That said, 
+  I can offer some advice:  
+      - The calibration range should not exceed the *[dynamic range](#dynamic)* 
+    of your instrument (if known), nor should it greatly exceed the range of 
+    measurements you expect to encounter (the latter is a waste of time/effort).
+      - If you wish to check the calibration of a device (that you otherwise tend
+    to trust), then a 6-point calibration is common (a "zero point" plus five
+    measurement points across the selected range).
+      - When performing a calibration, it's a good idea to take *multiple samples*
+    at each level of interest.  These repeated measures can be used to estimate
+    method *[precision](#precision)*. I recommend 3-4 repeats at each level, which 
+    with a 6-point calibration, would give you 20 data points.
+      - If you wish to establish or evaluate figures of merit like 
+    *[dynamic range](#dynamic)* or *linearity* of your measurement method, you 
+    likely need a more comprehensive calibration dataset.  
+  3. **Collect the calibration data.**  This step is relatively straightforward.
+    Set up an experiment so that you can take the required number of 
+    measurements with your instrument.  
+      - Note that a *randomized* sampling strategy is preferred.  
+  4. **Create a calibration curve.**  Fit a linear model between the instrument
+    being calibrated (x-axis) and your reference data (y-axis). Check model 
+    assumptions.  
+  5. **Evaluate method performance.** Decide on whether your instrument is 
+    biased.  
+      - Is the slope of the line equal to 1.0?
+      - Is the intercept of the model fit equal to 0?
+      - Do the residuals show a pattern with changing sample magnitude?
+      - Are the residuals correlated with something (i.e., another variable)?  
+    Calculate instrument precision and linearity.  Decide on whether the dynamic
+    range of the instrument was exceeded by any of calibration levels.
+    
+### Example Calibration
+
+In this example, we will evaluate the calibration of a low-cost instrument 
+designed to measure *aerosol optical depth*, or AOD.  The term aerosol optical 
+depth is a term in atmospheric science that describes whether air pollution 
+contributes to loss of visibility in the atmosphere (it is like a measure of
+haziness of the sky).  We often experience high levels of AOD in Colorado when
+smoke from wildfires shows up (and that happens more often each year).
+  
 
 ## Ch-11 Exercises
 

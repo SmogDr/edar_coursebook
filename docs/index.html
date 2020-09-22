@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-09-14" />
+<meta name="date" content="2020-09-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,7 @@
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -306,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.1" data-path="rprog4.html"><a href="rprog4.html#example-function-my_mean"><i class="fa fa-check"></i><b>8.3.1</b> Example Function: my_mean</a></li>
 <li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: “import.w.name”</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#functional-prog.-with-purr"><i class="fa fa-check"></i><b>8.4</b> Functional Prog. with <code>purr::</code></a><ul>
+<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a><ul>
 <li class="chapter" data-level="8.4.1" data-path="rprog4.html"><a href="rprog4.html#function-mapping"><i class="fa fa-check"></i><b>8.4.1</b> Function Mapping</a></li>
 <li class="chapter" data-level="8.4.2" data-path="rprog4.html"><a href="rprog4.html#working-with-lists"><i class="fa fa-check"></i><b>8.4.2</b> Working with Lists</a></li>
 </ul></li>
@@ -343,10 +344,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.6" data-path="measure.html"><a href="measure.html#cluster-sampling"><i class="fa fa-check"></i><b>10.2.6</b> Cluster Sampling</a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#limit-of-detection-quantification"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
-<li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic-range"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
-<li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#measurement-precision"><i class="fa fa-check"></i><b>10.3.3</b> Measurement Precision</a></li>
-<li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#measurement-bias-accuracy"><i class="fa fa-check"></i><b>10.3.4</b> Measurement Bias (accuracy)</a></li>
+<li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#LOD"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
+<li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
+<li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>10.3.3</b> Measurement Precision</a></li>
+<li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>10.3.4</b> Measurement Bias (accuracy)</a></li>
 <li class="chapter" data-level="10.3.5" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.3.5</b> Measurement Uncertainty</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#ch-10-exercises"><i class="fa fa-check"></i><b>10.4</b> Ch-10 Exercises</a></li>
@@ -365,12 +366,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5.1" data-path="model.html"><a href="model.html#the-lm-function"><i class="fa fa-check"></i><b>11.5.1</b> The <code>lm()</code> function</a></li>
 <li class="chapter" data-level="11.5.2" data-path="model.html"><a href="model.html#ols-diagnostics"><i class="fa fa-check"></i><b>11.5.2</b> OLS Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#pdf"><i class="fa fa-check"></i><b>11.6</b> Probability Density Function</a><ul>
-<li class="chapter" data-level="11.6.1" data-path="model.html"><a href="model.html#univariate-data-fits"><i class="fa fa-check"></i><b>11.6.1</b> Univariate Data Fits</a></li>
+<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="model.html"><a href="model.html#example-calibration"><i class="fa fa-check"></i><b>11.6.1</b> Example Calibration</a></li>
 </ul></li>
-<li class="chapter" data-level="11.7" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.7</b> Calibration</a></li>
-<li class="chapter" data-level="11.8" data-path="model.html"><a href="model.html#ch-11-exercises"><i class="fa fa-check"></i><b>11.8</b> Ch-11 Exercises</a></li>
-<li class="chapter" data-level="11.9" data-path="model.html"><a href="model.html#ch-11-homework"><i class="fa fa-check"></i><b>11.9</b> Ch-11 Homework</a></li>
+<li class="chapter" data-level="11.7" data-path="model.html"><a href="model.html#ch-11-exercises"><i class="fa fa-check"></i><b>11.7</b> Ch-11 Exercises</a></li>
+<li class="chapter" data-level="11.8" data-path="model.html"><a href="model.html#ch-11-homework"><i class="fa fa-check"></i><b>11.8</b> Ch-11 Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="simulate.html"><a href="simulate.html"><i class="fa fa-check"></i><b>12</b> Simulation</a><ul>
 <li class="chapter" data-level="12.1" data-path="simulate.html"><a href="simulate.html#ch.-12-objectives"><i class="fa fa-check"></i><b>12.1</b> Ch. 12 Objectives</a></li>
@@ -387,6 +387,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2.1" data-path="dist.html"><a href="dist.html#normal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>13.2.1</b> Normal Distribution: Characteristic Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="13.3" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>13.3</b> Log-normal Distribution</a></li>
+<li class="chapter" data-level="13.4" data-path="dist.html"><a href="dist.html#data-import"><i class="fa fa-check"></i><b>13.4</b> Data Import</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -411,7 +412,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Engineering Data Analysis in R</h1>
 <p class="author"><em>John Volckens and Kathleen E. Wendt</em></p>
-<p class="date"><em>2020-09-14</em></p>
+<p class="date"><em>2020-09-21</em></p>
 </div>
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>

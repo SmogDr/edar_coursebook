@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-09-14" />
+<meta name="date" content="2020-09-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,7 @@
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -306,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.1" data-path="rprog4.html"><a href="rprog4.html#example-function-my_mean"><i class="fa fa-check"></i><b>8.3.1</b> Example Function: my_mean</a></li>
 <li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: “import.w.name”</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#functional-prog.-with-purr"><i class="fa fa-check"></i><b>8.4</b> Functional Prog. with <code>purr::</code></a><ul>
+<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a><ul>
 <li class="chapter" data-level="8.4.1" data-path="rprog4.html"><a href="rprog4.html#function-mapping"><i class="fa fa-check"></i><b>8.4.1</b> Function Mapping</a></li>
 <li class="chapter" data-level="8.4.2" data-path="rprog4.html"><a href="rprog4.html#working-with-lists"><i class="fa fa-check"></i><b>8.4.2</b> Working with Lists</a></li>
 </ul></li>
@@ -343,10 +344,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.6" data-path="measure.html"><a href="measure.html#cluster-sampling"><i class="fa fa-check"></i><b>10.2.6</b> Cluster Sampling</a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#limit-of-detection-quantification"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
-<li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic-range"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
-<li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#measurement-precision"><i class="fa fa-check"></i><b>10.3.3</b> Measurement Precision</a></li>
-<li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#measurement-bias-accuracy"><i class="fa fa-check"></i><b>10.3.4</b> Measurement Bias (accuracy)</a></li>
+<li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#LOD"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
+<li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
+<li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>10.3.3</b> Measurement Precision</a></li>
+<li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>10.3.4</b> Measurement Bias (accuracy)</a></li>
 <li class="chapter" data-level="10.3.5" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.3.5</b> Measurement Uncertainty</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#ch-10-exercises"><i class="fa fa-check"></i><b>10.4</b> Ch-10 Exercises</a></li>
@@ -365,12 +366,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5.1" data-path="model.html"><a href="model.html#the-lm-function"><i class="fa fa-check"></i><b>11.5.1</b> The <code>lm()</code> function</a></li>
 <li class="chapter" data-level="11.5.2" data-path="model.html"><a href="model.html#ols-diagnostics"><i class="fa fa-check"></i><b>11.5.2</b> OLS Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#pdf"><i class="fa fa-check"></i><b>11.6</b> Probability Density Function</a><ul>
-<li class="chapter" data-level="11.6.1" data-path="model.html"><a href="model.html#univariate-data-fits"><i class="fa fa-check"></i><b>11.6.1</b> Univariate Data Fits</a></li>
+<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="model.html"><a href="model.html#example-calibration"><i class="fa fa-check"></i><b>11.6.1</b> Example Calibration</a></li>
 </ul></li>
-<li class="chapter" data-level="11.7" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.7</b> Calibration</a></li>
-<li class="chapter" data-level="11.8" data-path="model.html"><a href="model.html#ch-11-exercises"><i class="fa fa-check"></i><b>11.8</b> Ch-11 Exercises</a></li>
-<li class="chapter" data-level="11.9" data-path="model.html"><a href="model.html#ch-11-homework"><i class="fa fa-check"></i><b>11.9</b> Ch-11 Homework</a></li>
+<li class="chapter" data-level="11.7" data-path="model.html"><a href="model.html#ch-11-exercises"><i class="fa fa-check"></i><b>11.7</b> Ch-11 Exercises</a></li>
+<li class="chapter" data-level="11.8" data-path="model.html"><a href="model.html#ch-11-homework"><i class="fa fa-check"></i><b>11.8</b> Ch-11 Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="simulate.html"><a href="simulate.html"><i class="fa fa-check"></i><b>12</b> Simulation</a><ul>
 <li class="chapter" data-level="12.1" data-path="simulate.html"><a href="simulate.html#ch.-12-objectives"><i class="fa fa-check"></i><b>12.1</b> Ch. 12 Objectives</a></li>
@@ -387,6 +387,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2.1" data-path="dist.html"><a href="dist.html#normal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>13.2.1</b> Normal Distribution: Characteristic Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="13.3" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>13.3</b> Log-normal Distribution</a></li>
+<li class="chapter" data-level="13.4" data-path="dist.html"><a href="dist.html#data-import"><i class="fa fa-check"></i><b>13.4</b> Data Import</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -527,7 +528,7 @@ The important difference between stratified and cluster sampling is how each des
 <div id="figures-of-merit" class="section level2">
 <h2><span class="header-section-number">10.3</span> Figures of Merit</h2>
 <p>All measurements are estimates of a <em>“true value”</em> that you seek to discover. To ensure that measurements are sound, we often estimate the <strong><em>figures of merit</em></strong> for a measurement system (or an instrument). There are many different figures of merit; we will only examine a few here, namely: limit of detection, dynamic range, precision, and bias. Other figures of merit for measurement systems include things like linearity, sensitivity, and specificity - those topics will be covered in the <em>advanced</em> version of this course (which doesn’t yet exist).</p>
-<div id="limit-of-detection-quantification" class="section level3">
+<div id="LOD" class="section level3">
 <h3><span class="header-section-number">10.3.1</span> Limit of Detection &amp; Quantification</h3>
 <p>Imagine that I asked you to hold out your hand and close your eyes. Could you tell if I added a single grain of flour to your hand? Likely not. The mass of that grain is about 1/50<sup>th</sup> that of an eyelash. What if I added 100 grains? Maybe you could tell. If I added 1000 grains you could likely feel it. This imaginary exercise outlines the concept of <strong><em>“limit of detection”</em></strong>, or “LOD”, which represents the <em>threshold</em> at which an instrument can distinguish between “something” and “nothing” being measured. The concept of LOD applies best to instruments that measure continuous properties like time, distance, energy, force, etc.</p>
 <p>There are several approaches to estimating an instrument’s lower limit of detection. The simplest approach is first to challenge that instrument to measure increasingly more “stuff” and observe it’s response. This is shown graphically below with “instrument response” on the y-axis and “amount of stuff being measured” on the x-axis. We use a logarithmic scale for the x axis because when we measure “stuff” in engineering we usually have the ability to observe several orders of magnitude (the length of a baseball stitch, a baseball, a baseball field, or a baseball stadium). Many instruments respond with an “S” shaped curve where you initially see no (or asymptotic response), followed by a linear response, followed by another asymptotic tail at the upper detection limit.</p>
@@ -544,62 +545,62 @@ To calculate the lower LOD, we often measure a series of “blanks” and then c
 </p>
 </div>
 </div>
-<div id="dynamic-range" class="section level3">
+<div id="dynamic" class="section level3">
 <h3><span class="header-section-number">10.3.2</span> Dynamic Range</h3>
 <p>The LOD/LOQ concept is most often applied to an instrument’s <em>minimum detectable quantity</em>, but it’s important to realize that instruments also have a <em>maximum detectable quantities</em>, too. The <strong><em>dynamic range</em></strong> of an instrument, thus, describes the range of values (min/max) that an instrument can measure. It’s important to know an instrument’s dynamic range so that you don’t misuse it. For example, you wouldn’t use the scale in a doctor’s office to weigh grains of rice just as you wouldn’t ask human beings to report on the loudness of dog whistles. The dynamic range of an instrument represents the measurement range between a lower and upper detection limit.</p>
 </div>
-<div id="measurement-precision" class="section level3">
+<div id="precision" class="section level3">
 <h3><span class="header-section-number">10.3.3</span> Measurement Precision</h3>
 <p>In measurement science the term <em>precision</em> means “repeatability” or “instrument variability”. A precise measurement (made by a single instrument) is one that provides the same (or nearly the same) answer each time you take the measurement. This assumes, of course, that the thing being measured remains unchanged over time. Human vision is something that suffers from imprecision, especially as you get older (your eyesight usually gets worse). Look at the image below quickly and try to decode the letters you see. If I asked you to identify this text quickly (in 10 seconds or less) once per day for a week, you might give me 7 different answers. That’s not a precise measurement.</p>
 <div class="figure" style="text-align: center"><span id="fig:imprecise-1"></span>
-<img src="images/blurry_text.png" alt="Blurry vision is imprecise: repeated measures could lead to different answers"  />
+<img src="images/blurry_text.png" alt="Blurry vision is imprecise: repeated measures could lead to different answers" width="500" />
 <p class="caption">
 Figure 10.3: Blurry vision is imprecise: repeated measures could lead to different answers
 </p>
 </div>
 <p>Different authorities have varying opinions about the <em>best</em> way to quantify precision. A simple, “top-down” approach is to take repeated measures of something (for which that instrument is designed to measure) several times over and then report the <em>spread</em> of those data (often as a <em>standard deviation</em>, but <em>range</em>, <em>IQR</em>, and <em>95% or 99% confidence intervals</em> are also used). Alternatively, a “bottom-up” approach is to propagate the errors associated with each facet of the measurement. As an empiricist (a fancy word for experimental-type), I prefer to gather data, so I often employ the “top-down” approach to precision. There are dangers to this approach however; these dangers are a direct result of the <strong>sampling strategy</strong> used to make repeated measures (see the following section for a more in-depth analysis).</p>
 <p>In the case of a temperature sensor, we might boil a large pot of water and repeatedly measure the temperature with a single probe (here in Fort Collins, Colorado, water boils at ~ 94 °C). Those measurements are shown below:</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="measure.html#cb285-1"></a>temperatures &lt;-<span class="st"> </span><span class="kw">tibble</span>( <span class="dt">data_seq =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>,</span>
-<span id="cb285-2"><a href="measure.html#cb285-2"></a>                                       <span class="dt">to =</span> <span class="dv">25</span>,</span>
-<span id="cb285-3"><a href="measure.html#cb285-3"></a>                                       <span class="dt">by =</span><span class="dv">1</span>),</span>
-<span id="cb285-4"><a href="measure.html#cb285-4"></a>                        <span class="dt">data_temp =</span> <span class="kw">c</span>(<span class="fl">93.4</span>, <span class="fl">93.7</span>, <span class="fl">96.0</span>, <span class="fl">93.1</span>, <span class="fl">93.8</span>,</span>
-<span id="cb285-5"><a href="measure.html#cb285-5"></a>                                      <span class="fl">94.2</span>, <span class="fl">93.1</span>, <span class="fl">94.6</span>, <span class="fl">93.8</span>, <span class="fl">95.1</span>,</span>
-<span id="cb285-6"><a href="measure.html#cb285-6"></a>                                      <span class="fl">93.1</span>, <span class="fl">94.6</span>, <span class="fl">94.7</span>, <span class="fl">93.6</span>, <span class="fl">92.8</span>,</span>
-<span id="cb285-7"><a href="measure.html#cb285-7"></a>                                      <span class="fl">95.7</span>, <span class="fl">94.0</span>, <span class="fl">93.0</span>, <span class="fl">93.7</span>, <span class="fl">94.6</span>,</span>
-<span id="cb285-8"><a href="measure.html#cb285-8"></a>                                      <span class="fl">94.4</span>, <span class="fl">94.1</span>, <span class="fl">94.2</span>, <span class="fl">92.3</span>, <span class="fl">94.4</span>)) </span>
-<span id="cb285-9"><a href="measure.html#cb285-9"></a></span>
-<span id="cb285-10"><a href="measure.html#cb285-10"></a><span class="kw">sd</span>(temperatures<span class="op">$</span>data_temp) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="measure.html#cb287-1"></a>temperatures &lt;-<span class="st"> </span><span class="kw">tibble</span>( <span class="dt">data_seq =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>,</span>
+<span id="cb287-2"><a href="measure.html#cb287-2"></a>                                       <span class="dt">to =</span> <span class="dv">25</span>,</span>
+<span id="cb287-3"><a href="measure.html#cb287-3"></a>                                       <span class="dt">by =</span><span class="dv">1</span>),</span>
+<span id="cb287-4"><a href="measure.html#cb287-4"></a>                        <span class="dt">data_temp =</span> <span class="kw">c</span>(<span class="fl">93.4</span>, <span class="fl">93.7</span>, <span class="fl">96.0</span>, <span class="fl">93.1</span>, <span class="fl">93.8</span>,</span>
+<span id="cb287-5"><a href="measure.html#cb287-5"></a>                                      <span class="fl">94.2</span>, <span class="fl">93.1</span>, <span class="fl">94.6</span>, <span class="fl">93.8</span>, <span class="fl">95.1</span>,</span>
+<span id="cb287-6"><a href="measure.html#cb287-6"></a>                                      <span class="fl">93.1</span>, <span class="fl">94.6</span>, <span class="fl">94.7</span>, <span class="fl">93.6</span>, <span class="fl">92.8</span>,</span>
+<span id="cb287-7"><a href="measure.html#cb287-7"></a>                                      <span class="fl">95.7</span>, <span class="fl">94.0</span>, <span class="fl">93.0</span>, <span class="fl">93.7</span>, <span class="fl">94.6</span>,</span>
+<span id="cb287-8"><a href="measure.html#cb287-8"></a>                                      <span class="fl">94.4</span>, <span class="fl">94.1</span>, <span class="fl">94.2</span>, <span class="fl">92.3</span>, <span class="fl">94.4</span>)) </span>
+<span id="cb287-9"><a href="measure.html#cb287-9"></a></span>
+<span id="cb287-10"><a href="measure.html#cb287-10"></a><span class="kw">sd</span>(temperatures<span class="op">$</span>data_temp) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.88</code></pre>
 <p>Let’s create a 4-plot of those data to visualize basic characteristics.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="measure.html#cb287-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
-<span id="cb287-2"><a href="measure.html#cb287-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_seq, <span class="dt">y=</span>data_temp),</span>
-<span id="cb287-3"><a href="measure.html#cb287-3"></a>            <span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span></span>
-<span id="cb287-4"><a href="measure.html#cb287-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_seq, <span class="dt">y=</span>data_temp),</span>
-<span id="cb287-5"><a href="measure.html#cb287-5"></a>             <span class="dt">size =</span> <span class="dv">2</span>,</span>
-<span id="cb287-6"><a href="measure.html#cb287-6"></a>             <span class="dt">shape =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb287-7"><a href="measure.html#cb287-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Sequence Order&quot;</span>) <span class="op">+</span></span>
-<span id="cb287-8"><a href="measure.html#cb287-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
-<span id="cb287-9"><a href="measure.html#cb287-9"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
-<span id="cb287-10"><a href="measure.html#cb287-10"></a></span>
-<span id="cb287-11"><a href="measure.html#cb287-11"></a>p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
-<span id="cb287-12"><a href="measure.html#cb287-12"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_temp)) <span class="op">+</span></span>
-<span id="cb287-13"><a href="measure.html#cb287-13"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
-<span id="cb287-14"><a href="measure.html#cb287-14"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="op">+</span></span>
-<span id="cb287-15"><a href="measure.html#cb287-15"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
-<span id="cb287-16"><a href="measure.html#cb287-16"></a></span>
-<span id="cb287-17"><a href="measure.html#cb287-17"></a>p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
-<span id="cb287-18"><a href="measure.html#cb287-18"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x =</span> data_temp),</span>
-<span id="cb287-19"><a href="measure.html#cb287-19"></a>                 <span class="dt">bins =</span> <span class="dv">6</span>,</span>
-<span id="cb287-20"><a href="measure.html#cb287-20"></a>                 <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
-<span id="cb287-21"><a href="measure.html#cb287-21"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
-<span id="cb287-22"><a href="measure.html#cb287-22"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="op">+</span></span>
-<span id="cb287-23"><a href="measure.html#cb287-23"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
-<span id="cb287-24"><a href="measure.html#cb287-24"></a></span>
-<span id="cb287-25"><a href="measure.html#cb287-25"></a>p4 &lt;-<span class="st"> </span><span class="kw">ggAcf</span>(<span class="dt">x =</span> temperatures<span class="op">$</span>data_temp) <span class="op">+</span></span>
-<span id="cb287-26"><a href="measure.html#cb287-26"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
-<span id="cb287-27"><a href="measure.html#cb287-27"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="ot">NULL</span>)</span>
-<span id="cb287-28"><a href="measure.html#cb287-28"></a></span>
-<span id="cb287-29"><a href="measure.html#cb287-29"></a><span class="kw">grid.arrange</span>(p1, p2, p3, p4)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="measure.html#cb289-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
+<span id="cb289-2"><a href="measure.html#cb289-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_seq, <span class="dt">y=</span>data_temp),</span>
+<span id="cb289-3"><a href="measure.html#cb289-3"></a>            <span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span></span>
+<span id="cb289-4"><a href="measure.html#cb289-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_seq, <span class="dt">y=</span>data_temp),</span>
+<span id="cb289-5"><a href="measure.html#cb289-5"></a>             <span class="dt">size =</span> <span class="dv">2</span>,</span>
+<span id="cb289-6"><a href="measure.html#cb289-6"></a>             <span class="dt">shape =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb289-7"><a href="measure.html#cb289-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Sequence Order&quot;</span>) <span class="op">+</span></span>
+<span id="cb289-8"><a href="measure.html#cb289-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
+<span id="cb289-9"><a href="measure.html#cb289-9"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb289-10"><a href="measure.html#cb289-10"></a></span>
+<span id="cb289-11"><a href="measure.html#cb289-11"></a>p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
+<span id="cb289-12"><a href="measure.html#cb289-12"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_temp)) <span class="op">+</span></span>
+<span id="cb289-13"><a href="measure.html#cb289-13"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
+<span id="cb289-14"><a href="measure.html#cb289-14"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="op">+</span></span>
+<span id="cb289-15"><a href="measure.html#cb289-15"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb289-16"><a href="measure.html#cb289-16"></a></span>
+<span id="cb289-17"><a href="measure.html#cb289-17"></a>p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
+<span id="cb289-18"><a href="measure.html#cb289-18"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x =</span> data_temp),</span>
+<span id="cb289-19"><a href="measure.html#cb289-19"></a>                 <span class="dt">bins =</span> <span class="dv">6</span>,</span>
+<span id="cb289-20"><a href="measure.html#cb289-20"></a>                 <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
+<span id="cb289-21"><a href="measure.html#cb289-21"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
+<span id="cb289-22"><a href="measure.html#cb289-22"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="op">+</span></span>
+<span id="cb289-23"><a href="measure.html#cb289-23"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb289-24"><a href="measure.html#cb289-24"></a></span>
+<span id="cb289-25"><a href="measure.html#cb289-25"></a>p4 &lt;-<span class="st"> </span><span class="kw">ggAcf</span>(<span class="dt">x =</span> temperatures<span class="op">$</span>data_temp) <span class="op">+</span></span>
+<span id="cb289-26"><a href="measure.html#cb289-26"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb289-27"><a href="measure.html#cb289-27"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="ot">NULL</span>)</span>
+<span id="cb289-28"><a href="measure.html#cb289-28"></a></span>
+<span id="cb289-29"><a href="measure.html#cb289-29"></a><span class="kw">grid.arrange</span>(p1, p2, p3, p4)</span></code></pre></div>
 <p><img src="10-measure_files/figure-html/plot-temperature-data-1.png" width="672" /></p>
 <p>Examination of the 4-plot reveals:</p>
 <ul>
@@ -621,12 +622,12 @@ If you measure temperature with a k-type thermocouple and report a value of 93.2
 </p>
 </div>
 </div>
-<div id="measurement-bias-accuracy" class="section level3">
+<div id="bias" class="section level3">
 <h3><span class="header-section-number">10.3.4</span> Measurement Bias (accuracy)</h3>
 <p>The word <strong><em>bias</em></strong> has several meanings depending on the field of use (e.g., a biased opinion, a racial or gender bias, or a biased voltage). Here, we define <em>bias</em> as the quantifiable difference between a measurement and a true value. The terms bias and accuracy are closely related, but we prefer to use bias because that word implies a magnitude and direction, whereas accuracy is more qualitative.</p>
 <p>Precision and bias are easy to view graphically. In Figure <a href="measure.html#fig:bias-precision-plot2">10.4</a> I show the performance of four measurement systems. Each image shows a green circle in space that represents a “true value” that we are trying to measure. Each measurement attempt is depicted by an “x”. If a measurement system (i.e., an instrument) is precise and unbiased, then each of the repeated measures would show up in the green circle, because they are close to the “true value” and to each other. This is the case in the lower right panel. The upper-left panel, on the other hand, demonstrate a biased and imprecise instrument - biased because the average of the 20 measurements would not come close to the center and imprecise because the location of each individual measurement tends to vary by a distance larger than the size of the circle. The lower-left is unbiased but imprecise - unbiased because the average of the 20 measurements would land close to the center of the circle but imprecise because the measurements vary widely. The upper-right panel demonstrates a precise (the repeated measures do not vary much) but biased (“off the mark” from center) measurement system.</p>
 <div class="figure" style="text-align: center"><span id="fig:bias-precision-plot2"></span>
-<img src="images/bias_precision.png" alt="Examples of different combinations of bias and precision"  />
+<img src="images/bias_precision.png" alt="Examples of different combinations of bias and precision" width="1050" />
 <p class="caption">
 Figure 10.4: Examples of different combinations of bias and precision
 </p>
