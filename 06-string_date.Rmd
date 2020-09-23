@@ -494,6 +494,114 @@ times to either specify the time zone or convince yourself the default behavior
 works for your application.
 ```
 
+## Tidy Data
+***"Tidy Data"*** is a philosophy for how to arrange your data, like in a data
+frame.  In his 
+[2014 paper](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf), Hadley Wickham states *"Tidy datasets provide a standardized way to link the*
+*structure of a dataset (its physical layout) with its semantics (its meaning)."*  
+The definition of a tidy dataset is straightforward:  
+
+  1. Each variable forms a column.
+  2. Each observation forms a row.
+  3. Each type of observational unit forms a table.
+
+The first two rules, *each variable forms a column* and *each observation forms a row*,
+are relatively easy to implement.  In fact, most of the data frames that we have
+used so far follow this convention.  The trick is to note that some column 
+variables might look *independent* from one another, when in fact, the columns
+represent a single variable broken out by some heirachical (or nesting) structure.
+
+For example, the (untidy) Table below (\@ref(tab:grades-untidy)) shows exam 
+grades for three students.  Table \@ref(tab:grades-untidy) is untidy because
+the variable depicting the exam score shows up in three different columns.  
+Another way to characterize the *untidiness* of this table is that we have three
+different exams (Exam1, Exam2, Exam3) that represent a variable (Exam_# or 
+Exam_type), that is not represented with a column.
+
+``` {r grades-untidy, echo=FALSE}
+set.seed(14)
+grades_untidy <- tibble(
+  Name = c("Harry", "Ron", "Hermione"),
+  Exam1_Score = c(85, 81, 95),
+  Exam2_Score = c(79, 75, 97),
+  Exam3_Score = c(88, 89, 99)
+) 
+
+grades_tab1 <- knitr::kable(grades_untidy,
+                            caption = "An Untidy Table of Exam Scores.") 
+kable_styling(grades_tab1, bootstrap_options = "condensed", 
+             position = "center",
+             full_width = FALSE)
+```
+
+Thus, to tidy Table \@ref(tab:grades-untidy), we need to create a variable called `Exam` 
+and move all the scores into a new column vector named `Scores`.
+
+``` {r grades-tidy, echo=FALSE}
+set.seed(14)
+grades_tidy <- tibble(
+  Name = rep(c("Harry", "Ron", "Hermione"), each = 3),
+  Exam = rep(1:3, 3),
+  Scores = c(85, 81, 95, 79, 75, 97, 88, 89, 99)
+) 
+
+grades_tab2 <- knitr::kable(grades_tidy, caption = "A Tidy Table of Exam Scores") 
+kable_styling(grades_tab2, bootstrap_options = "condensed", 
+             position = "center",
+             full_width = FALSE)
+```
+
+For our work, one of the goals of data cleaning is to create datasets that 
+follow this *tidy* convention.  Fortunately, the `tidyr::` package contains a 
+useful function for re-arranging dataframes from untidy to tidy 
+states: `pivot_longer()` 
+
+`pivot_longer()` is designed to "lengthen" a data frame by 
+  *"increasing the number of rows and decreasing the number of columns"*. This function typically requires four arguments and always creates two new columns
+  as output:  
+  
+- `data =` the dataframe to be lengthened
+- `cols =` a list of the columns that should be combined together (forming a
+    single variable to be represented in a new, single column)
+- `names_to` = this is an output column that 
+    contains the **names** of the old columns that are being combined.
+- `values_to` = this is the other output column that 
+    contains the **values** from within the old columns that are being combined.
+    
+``` {block, type="rmdnote"}
+The `pivot_longer()` function always creates two new columns:  
+
+  - one column contains `names_to =  ` information 
+  - the other column contains the `values_to = ` data.
+```
+
+In the case of Table \@ref(tab:grades-untidy), we are using `cols = ` to combine
+`Exam1_Score`, `Exam2_Score` and `Exam3_Score` into a a column of 
+`names_to = "Exam"` and the data represented in those three columns gets moved 
+into a column of `values_to = "Scores"`.  We also add a call to `dplyr::mutate` and `dplyr::case_when` to convert strings to numbers.
+  
+``` {r pivot-longer}
+
+tidygrades <- pivot_longer(data = grades_untidy,
+                           cols = Exam1_Score:Exam3_Score,
+                           names_to = "Exam",
+                           values_to = "Scores") %>%
+  mutate(Exam = case_when(
+    Exam == "Exam1_Score" ~ 1,
+    Exam == "Exam2_Score" ~ 2,
+    Exam == "Exam3_Score" ~ 3
+  ))
+```
+
+``` {r grades-tab3, echo=FALSE}
+grades_tab3 <- knitr::kable(tidygrades, 
+                            caption = "Pivot longer applied to untidy data") 
+kable_styling(grades_tab3, 
+              bootstrap_options = "condensed",
+              position = "center",
+              full_width = FALSE)
+```
+
 ## Ch-6 Exercises  
   * Provide link to senators data frame.  Search 
 

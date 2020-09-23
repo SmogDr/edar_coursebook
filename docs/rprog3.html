@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-09-21" />
+<meta name="date" content="2020-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -278,8 +278,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4.1" data-path="rprog3.html"><a href="rprog3.html#lubridate-parsing-functions"><i class="fa fa-check"></i><b>6.4.1</b> <code>Lubridate</code> Parsing Functions</a></li>
 <li class="chapter" data-level="6.4.2" data-path="rprog3.html"><a href="rprog3.html#date-time-manipulation-with-lubridate"><i class="fa fa-check"></i><b>6.4.2</b> Date-time manipulation with <code>Lubridate</code></a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#ch-6-exercises"><i class="fa fa-check"></i><b>6.5</b> Ch-6 Exercises</a></li>
-<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#ch-6-homework"><i class="fa fa-check"></i><b>6.6</b> Ch-6 Homework</a></li>
+<li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#tidy-data"><i class="fa fa-check"></i><b>6.5</b> Tidy Data</a></li>
+<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#ch-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Ch-6 Exercises</a></li>
+<li class="chapter" data-level="6.7" data-path="rprog3.html"><a href="rprog3.html#ch-6-homework"><i class="fa fa-check"></i><b>6.7</b> Ch-6 Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a><ul>
 <li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#ch.-7-objectives"><i class="fa fa-check"></i><b>7.1</b> Ch. 7 Objectives</a></li>
@@ -702,17 +703,17 @@ match a or b
 <p>Dates and times in base R all proceed from an <em>“epoch”</em> or <em>time origin</em>. In R, the <em>epoch</em> or “dawn of time” occurred at midnight on January 1<sup>st</sup>, 1970. For the sake of the R programming world, the concept of time started at that precise moment and has moved forward ever since. To note: R can handle date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time” by calling the <code>Sys.time()</code> function.</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="rprog3.html#cb208-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2020-09-21 19:15:15 MDT&quot;</code></pre>
+<pre><code>## [1] &quot;2020-09-23 11:11:38 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and current timezone used by my computer. If you want to see how this time is stored in R internally, you can use <code>unclass()</code>, which returns an object value with its class attributes removed. When we wrap <code>unclass()</code> around <code>Sys.time()</code>, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="rprog3.html#cb210-1"></a><span class="kw">unclass</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1600737316</code></pre>
+<pre><code>## [1] 1600881099</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
-Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span> 365d/yr] ~ 50.7590473 years.<br />
+Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span> 365d/yr] ~ 50.7636066 years.<br />
 This calculation ignores leap years but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats</h3>
-<p>Note that the <code>Sys.time()</code> function provided the date in a <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong> format: 2020-09-21 19:15:15</p>
+<p>Note that the <code>Sys.time()</code> function provided the date in a <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong> format: 2020-09-23 11:11:38</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky. You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
@@ -845,18 +846,18 @@ each column can be thought of as a vector), you can use <code>class()</code>:</p
 <p>Both the <code>POSIXct</code> and <code>POSIXlt</code> class of objects return the same value to the user; the difference is really in how these classes store date-time objects internally. To examine them, you can coerce <code>Sys.time()</code> into each of the two classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and then examine their attributes.</p>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="rprog3.html#cb214-1"></a>time_now_ct &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb214-2"><a href="rprog3.html#cb214-2"></a><span class="kw">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1600737316</code></pre>
+<pre><code>## [1] 1600881099</code></pre>
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="rprog3.html#cb216-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb216-2"><a href="rprog3.html#cb216-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 16
-##  $ min   : int 15
-##  $ hour  : int 19
-##  $ mday  : int 21
+##  $ sec   : num 38.6
+##  $ min   : int 11
+##  $ hour  : int 11
+##  $ mday  : int 23
 ##  $ mon   : int 8
 ##  $ year  : int 120
-##  $ wday  : int 1
-##  $ yday  : int 264
+##  $ wday  : int 3
+##  $ yday  : int 266
 ##  $ isdst : int 1
 ##  $ zone  : chr &quot;MDT&quot;
 ##  $ gmtoff: int -21600
@@ -1152,14 +1153,385 @@ R functions tend to use the timezone of <strong>YOUR</strong> computer’s opera
 </div>
 </div>
 </div>
+<div id="tidy-data" class="section level2">
+<h2><span class="header-section-number">6.5</span> Tidy Data</h2>
+<p><strong><em>“Tidy Data”</em></strong> is a philosophy for how to arrange your data, like in a data
+frame. In his
+<a href="https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf">2014 paper</a>, Hadley Wickham states <em>“Tidy datasets provide a standardized way to link the<em>
+</em>structure of a dataset (its physical layout) with its semantics (its meaning).”</em><br />
+The definition of a tidy dataset is straightforward:</p>
+<ol style="list-style-type: decimal">
+<li>Each variable forms a column.</li>
+<li>Each observation forms a row.</li>
+<li>Each type of observational unit forms a table.</li>
+</ol>
+<p>The first two rules, <em>each variable forms a column</em> and <em>each observation forms a row</em>,
+are relatively easy to implement. In fact, most of the data frames that we have
+used so far follow this convention. The trick is to note that some column
+variables might look <em>independent</em> from one another, when in fact, the columns
+represent a single variable broken out by some heirachical (or nesting) structure.</p>
+<p>For example, the (untidy) Table below (<a href="rprog3.html#tab:grades-untidy">6.4</a>) shows exam
+grades for three students. Table <a href="rprog3.html#tab:grades-untidy">6.4</a> is untidy because
+the variable depicting the exam score shows up in three different columns.<br />
+Another way to characterize the <em>untidiness</em> of this table is that we have three
+different exams (Exam1, Exam2, Exam3) that represent a variable (Exam_# or
+Exam_type), that is not represented with a column.</p>
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:grades-untidy">Table 6.4: </span>An Untidy Table of Exam Scores.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Name
+</th>
+<th style="text-align:right;">
+Exam1_Score
+</th>
+<th style="text-align:right;">
+Exam2_Score
+</th>
+<th style="text-align:right;">
+Exam3_Score
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Harry
+</td>
+<td style="text-align:right;">
+85
+</td>
+<td style="text-align:right;">
+79
+</td>
+<td style="text-align:right;">
+88
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ron
+</td>
+<td style="text-align:right;">
+81
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:right;">
+89
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hermione
+</td>
+<td style="text-align:right;">
+95
+</td>
+<td style="text-align:right;">
+97
+</td>
+<td style="text-align:right;">
+99
+</td>
+</tr>
+</tbody>
+</table>
+<p>Thus, to tidy Table <a href="rprog3.html#tab:grades-untidy">6.4</a>, we need to create a variable called <code>Exam</code>
+and move all the scores into a new column vector named <code>Scores</code>.</p>
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:grades-tidy">Table 6.5: </span>A Tidy Table of Exam Scores
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Name
+</th>
+<th style="text-align:right;">
+Exam
+</th>
+<th style="text-align:right;">
+Scores
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Harry
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Harry
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Harry
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+95
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ron
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+79
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ron
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ron
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+97
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hermione
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+88
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hermione
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+89
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hermione
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+99
+</td>
+</tr>
+</tbody>
+</table>
+<p>For our work, one of the goals of data cleaning is to create datasets that
+follow this <em>tidy</em> convention. Fortunately, the <code>tidyr::</code> package contains a
+useful function for re-arranging dataframes from untidy to tidy
+states: <code>pivot_longer()</code></p>
+<p><code>pivot_longer()</code> is designed to “lengthen” a data frame by
+<em>“increasing the number of rows and decreasing the number of columns”</em>. This function typically requires four arguments and always creates two new columns
+as output:</p>
+<ul>
+<li><code>data =</code> the dataframe to be lengthened</li>
+<li><code>cols =</code> a list of the columns that should be combined together (forming a
+single variable to be represented in a new, single column)</li>
+<li><code>names_to</code> = this is an output column that
+contains the <strong>names</strong> of the old columns that are being combined.</li>
+<li><code>values_to</code> = this is the other output column that
+contains the <strong>values</strong> from within the old columns that are being combined.</li>
+</ul>
+<div class="rmdnote">
+<p>
+The <code>pivot_longer()</code> function always creates two new columns:
+</p>
+<ul>
+<li>
+one column contains <code>names_to =</code> information
+</li>
+<li>
+the other column contains the <code>values_to =</code> data.
+</li>
+</ul>
+</div>
+<p>In the case of Table <a href="rprog3.html#tab:grades-untidy">6.4</a>, we are using <code>cols =</code> to combine
+<code>Exam1_Score</code>, <code>Exam2_Score</code> and <code>Exam3_Score</code> into a a column of
+<code>names_to = "Exam"</code> and the data represented in those three columns gets moved
+into a column of <code>values_to = "Scores"</code>. We also add a call to <code>dplyr::mutate</code> and <code>dplyr::case_when</code> to convert strings to numbers.</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="rprog3.html#cb235-1"></a>tidygrades &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> grades_untidy,</span>
+<span id="cb235-2"><a href="rprog3.html#cb235-2"></a>                           <span class="dt">cols =</span> Exam1_Score<span class="op">:</span>Exam3_Score,</span>
+<span id="cb235-3"><a href="rprog3.html#cb235-3"></a>                           <span class="dt">names_to =</span> <span class="st">&quot;Exam&quot;</span>,</span>
+<span id="cb235-4"><a href="rprog3.html#cb235-4"></a>                           <span class="dt">values_to =</span> <span class="st">&quot;Scores&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb235-5"><a href="rprog3.html#cb235-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Exam =</span> <span class="kw">case_when</span>(</span>
+<span id="cb235-6"><a href="rprog3.html#cb235-6"></a>    Exam <span class="op">==</span><span class="st"> &quot;Exam1_Score&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
+<span id="cb235-7"><a href="rprog3.html#cb235-7"></a>    Exam <span class="op">==</span><span class="st"> &quot;Exam2_Score&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,</span>
+<span id="cb235-8"><a href="rprog3.html#cb235-8"></a>    Exam <span class="op">==</span><span class="st"> &quot;Exam3_Score&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span></span>
+<span id="cb235-9"><a href="rprog3.html#cb235-9"></a>  ))</span></code></pre></div>
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:grades-tab3">Table 6.6: </span>Pivot longer applied to untidy data
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Name
+</th>
+<th style="text-align:right;">
+Exam
+</th>
+<th style="text-align:right;">
+Scores
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Harry
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Harry
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+79
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Harry
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+88
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ron
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ron
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ron
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+89
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hermione
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+95
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hermione
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+97
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hermione
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+99
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="ch-6-exercises" class="section level2">
-<h2><span class="header-section-number">6.5</span> Ch-6 Exercises</h2>
+<h2><span class="header-section-number">6.6</span> Ch-6 Exercises</h2>
 <ul>
 <li>Provide link to senators data frame. Search</li>
 </ul>
 </div>
 <div id="ch-6-homework" class="section level2">
-<h2><span class="header-section-number">6.6</span> Ch-6 Homework</h2>
+<h2><span class="header-section-number">6.7</span> Ch-6 Homework</h2>
 
 </div>
 </div>

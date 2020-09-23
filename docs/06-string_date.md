@@ -297,7 +297,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-09-21 19:15:15 MDT"
+## [1] "2020-09-23 11:11:38 MDT"
 ```
 As you can see, we got back the date, time, and current timezone used by my computer.  If you want to see how this time is stored in R internally, you can use `unclass()`, which returns an object value with its class attributes removed.  When we wrap `unclass()` around `Sys.time()`, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:
 
@@ -307,15 +307,15 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1600737316
+## [1] 1600881099
 ```
 
 That's a lot of seconds.  How many years is that?  
-Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] ~ 50.7590473 years.  
+Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] ~ 50.7636066 years.  
 This calculation ignores leap years but you get the point...
 
 ### Date-time formats
-Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-09-21 19:15:15
+Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-09-23 11:11:38
 
 Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky.  You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:
 
@@ -419,7 +419,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1600737316
+## [1] 1600881099
 ```
 
 
@@ -430,14 +430,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 16
-##  $ min   : int 15
-##  $ hour  : int 19
-##  $ mday  : int 21
+##  $ sec   : num 38.6
+##  $ min   : int 11
+##  $ hour  : int 11
+##  $ mday  : int 23
 ##  $ mon   : int 8
 ##  $ year  : int 120
-##  $ wday  : int 1
-##  $ yday  : int 264
+##  $ wday  : int 3
+##  $ yday  : int 266
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
@@ -718,6 +718,224 @@ mutate(.data = daily_show,
 <div class="rmdwarning">
 <p>R functions tend to use the timezone of <strong>YOUR</strong> computer’s operating system by default, or UTC, or GMT. You need to be careful when working with dates and times to either specify the time zone or convince yourself the default behavior works for your application.</p>
 </div>
+
+## Tidy Data
+***"Tidy Data"*** is a philosophy for how to arrange your data, like in a data
+frame.  In his 
+[2014 paper](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf), Hadley Wickham states *"Tidy datasets provide a standardized way to link the*
+*structure of a dataset (its physical layout) with its semantics (its meaning)."*  
+The definition of a tidy dataset is straightforward:  
+
+  1. Each variable forms a column.
+  2. Each observation forms a row.
+  3. Each type of observational unit forms a table.
+
+The first two rules, *each variable forms a column* and *each observation forms a row*,
+are relatively easy to implement.  In fact, most of the data frames that we have
+used so far follow this convention.  The trick is to note that some column 
+variables might look *independent* from one another, when in fact, the columns
+represent a single variable broken out by some heirachical (or nesting) structure.
+
+For example, the (untidy) Table below (\@ref(tab:grades-untidy)) shows exam 
+grades for three students.  Table \@ref(tab:grades-untidy) is untidy because
+the variable depicting the exam score shows up in three different columns.  
+Another way to characterize the *untidiness* of this table is that we have three
+different exams (Exam1, Exam2, Exam3) that represent a variable (Exam_# or 
+Exam_type), that is not represented with a column.
+
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>(\#tab:grades-untidy)An Untidy Table of Exam Scores.</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Name </th>
+   <th style="text-align:right;"> Exam1_Score </th>
+   <th style="text-align:right;"> Exam2_Score </th>
+   <th style="text-align:right;"> Exam3_Score </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Harry </td>
+   <td style="text-align:right;"> 85 </td>
+   <td style="text-align:right;"> 79 </td>
+   <td style="text-align:right;"> 88 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ron </td>
+   <td style="text-align:right;"> 81 </td>
+   <td style="text-align:right;"> 75 </td>
+   <td style="text-align:right;"> 89 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hermione </td>
+   <td style="text-align:right;"> 95 </td>
+   <td style="text-align:right;"> 97 </td>
+   <td style="text-align:right;"> 99 </td>
+  </tr>
+</tbody>
+</table>
+
+Thus, to tidy Table \@ref(tab:grades-untidy), we need to create a variable called `Exam` 
+and move all the scores into a new column vector named `Scores`.
+
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>(\#tab:grades-tidy)A Tidy Table of Exam Scores</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Name </th>
+   <th style="text-align:right;"> Exam </th>
+   <th style="text-align:right;"> Scores </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Harry </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 85 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Harry </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 81 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Harry </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 95 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ron </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 79 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ron </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 75 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ron </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 97 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hermione </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 88 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hermione </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 89 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hermione </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 99 </td>
+  </tr>
+</tbody>
+</table>
+
+For our work, one of the goals of data cleaning is to create datasets that 
+follow this *tidy* convention.  Fortunately, the `tidyr::` package contains a 
+useful function for re-arranging dataframes from untidy to tidy 
+states: `pivot_longer()` 
+
+`pivot_longer()` is designed to "lengthen" a data frame by 
+  *"increasing the number of rows and decreasing the number of columns"*. This function typically requires four arguments and always creates two new columns
+  as output:  
+  
+- `data =` the dataframe to be lengthened
+- `cols =` a list of the columns that should be combined together (forming a
+    single variable to be represented in a new, single column)
+- `names_to` = this is an output column that 
+    contains the **names** of the old columns that are being combined.
+- `values_to` = this is the other output column that 
+    contains the **values** from within the old columns that are being combined.
+    
+<div class="rmdnote">
+<p>The <code>pivot_longer()</code> function always creates two new columns:</p>
+<ul>
+<li>one column contains <code>names_to =</code> information</li>
+<li>the other column contains the <code>values_to =</code> data.</li>
+</ul>
+</div>
+
+In the case of Table \@ref(tab:grades-untidy), we are using `cols = ` to combine
+`Exam1_Score`, `Exam2_Score` and `Exam3_Score` into a a column of 
+`names_to = "Exam"` and the data represented in those three columns gets moved 
+into a column of `values_to = "Scores"`.  We also add a call to `dplyr::mutate` and `dplyr::case_when` to convert strings to numbers.
+  
+
+```r
+tidygrades <- pivot_longer(data = grades_untidy,
+                           cols = Exam1_Score:Exam3_Score,
+                           names_to = "Exam",
+                           values_to = "Scores") %>%
+  mutate(Exam = case_when(
+    Exam == "Exam1_Score" ~ 1,
+    Exam == "Exam2_Score" ~ 2,
+    Exam == "Exam3_Score" ~ 3
+  ))
+```
+
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>(\#tab:grades-tab3)Pivot longer applied to untidy data</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Name </th>
+   <th style="text-align:right;"> Exam </th>
+   <th style="text-align:right;"> Scores </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Harry </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 85 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Harry </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 79 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Harry </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 88 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ron </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 81 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ron </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 75 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ron </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 89 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hermione </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 95 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hermione </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 97 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hermione </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 99 </td>
+  </tr>
+</tbody>
+</table>
 
 ## Ch-6 Exercises  
   * Provide link to senators data frame.  Search 
