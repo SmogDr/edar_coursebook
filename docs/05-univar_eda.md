@@ -96,7 +96,7 @@ of reference distributions include the uniform distribution, normal
 distribution, and the lognormal distribution. More on different types of
 reference distributions [here](#dist). 
 
-##### Example: Location and Dispersion  
+  ##### Example: Location and Dispersion  
 
 Let's plan a camping trip. Our trip is purely hypothetical, so let's not worry
 about costs, logistics, or other important factors. For this exercise, we only
@@ -123,6 +123,25 @@ define three aesthetics:
 variables can be helpful)
 
 
+
+
+```r
+# plot temperature by location 
+ggplot2::ggplot(data = noaa_temp, 
+                mapping = aes(x = temp_hr_f,
+                              y = location,
+                              color = location)) +
+  geom_jitter(height = 0.15,
+              size = 1.5,
+              shape = 1) +
+  labs(y = "Region",
+       x = "Temperature (°F)") +
+  theme_bw() +
+  theme(legend.position = "none") +
+  ggsave("./images/NOAA_temps.png", dpi = 150)
+```
+
+<img src="05-univar_eda_files/figure-html/noaa-temp-ggplot-1.png" width="672" />
 
 <div class="figure" style="text-align: center">
 <img src="images/NOAA_temps.png" alt="Hourly temperature levels in Colorado and Hawaii for the month of July, 2010." width="700pt" />
@@ -181,20 +200,27 @@ value that bounds the lower 10% of the observed data; the second quantile (0.2
 fraction) represents the 20^th^% value for the observed data, and so on. 
 
 There are two important aspects about quantiles to remember: 
-**(1) each quantile is defined only by its upper-end value**; 
+(1) **each quantile is defined only by its upper-end value**; 
 and (2) **quantiles are defined after**
 **the data have been rank-ordered from lowest to highest value**.
 
 Quantiles are often used to communicate **descriptive statistics** for
-univariate data. 
+univariate data.  
 
 The two most extreme quantiles define the ***range***:  
 
 - Minimum,`min()`: the 0% or lowest value; the zeroth quantile
 
-- Maximum,`max()`: the 100^th^ percentile (or 1.0 in fractional terms); the highest value observed; the n^th^ quantile   
+- Maximum,`max()`: the 100^th^ percentile (or 1.0 in fractional terms); the highest value observed; the n^th^ quantile
 
-If you break a distribution into quarters, you have created *quartiles*.  Let's
+If you break a distribution into quarters, you have created *quartiles*.  We can
+calculate quantiles with the `stats::quantile()` function that comes loaded with 
+base R.  This function takes a numeric vector `x =` as a formal argument and, by
+default, returns quartiles (including min and max) for the data.  If you want to
+extract specific quantile values, you can specify them with the optional 
+`probs =` argument (default: `probs = seq(from = 0, to = 1, by = 0.25)`).
+
+Let's
 generate a sample of random numbers between 0 and 100 and break the resulting
 data into quartiles. A random number generator, using the R function `runif()`,
 will create a [uniform distribution](#unif_dist) across the sample range
@@ -236,14 +262,14 @@ distribution between 0 and 100 fall into predictable chunks of approximately
 ### Descriptive Statistics
 
 Quantiles allow us to calculate several important descriptive statistics for
-univariate data. For example, the quartile output above allows us to report the
+univariate data. For example, quartile calculations for highway fuel 
+effeciencies from the `mpg` dataset allows us to report the
 following descriptive statistics:
 
 
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>(\#tab:quant-desc-table)Quantiles and descriptive statistics for uniform
-               distribution, 0-100 (n=1000)</caption>
+<caption>(\#tab:quant-desc-table)Quantiles and descriptive statistics for `hwy` fuel efficiency from ggplot::mpg$hwy</caption>
  <thead>
   <tr>
    <th style="text-align:center;"> Quantile </th>
@@ -255,32 +281,32 @@ following descriptive statistics:
   <tr>
    <td style="text-align:center;"> 0 </td>
    <td style="text-align:center;"> minimum </td>
-   <td style="text-align:center;"> 0.1 </td>
+   <td style="text-align:center;"> 12 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 1 </td>
    <td style="text-align:center;"> maximum </td>
-   <td style="text-align:center;"> 100.0 </td>
+   <td style="text-align:center;"> 44 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 0.5 </td>
    <td style="text-align:center;"> median </td>
-   <td style="text-align:center;"> 48.3 </td>
+   <td style="text-align:center;"> 24 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 0.25 </td>
    <td style="text-align:center;"> 25^th^% </td>
-   <td style="text-align:center;"> 25.8 </td>
+   <td style="text-align:center;"> 18 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 0.75 </td>
    <td style="text-align:center;"> 75^th^% </td>
-   <td style="text-align:center;"> 74.7 </td>
+   <td style="text-align:center;"> 27 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 0.75 - 0.25 </td>
    <td style="text-align:center;"> IQR </td>
-   <td style="text-align:center;"> 48.9 </td>
+   <td style="text-align:center;"> 9 </td>
   </tr>
 </tbody>
 </table>
@@ -293,11 +319,12 @@ Use of descriptors like mean and standard deviation are very useful when applied
 properly but can be misleading when the distribution is skewed 
 (more on that later). 
 
-On the other hand, quantile descriptors are agnostic to the type of
+Quantile descriptors, on the other hand, are agnostic to the type of
 distribution they describe. For example, the median is ALWAYS at the 0.5
 quantile, or 50^th^ percentile, regardless of the shape of the distribution.
 
-The last descriptor in the list is the *interquartile range*, or IQR for short.
+The last descriptor in Table \@ref(tab:quant-desc-table)  is the 
+*interquartile range*, or IQR for short.
 The IQR describes the spread of the data and communicates the range of values
 needed to go from the 25^th^% to the 75^th^% of the distribution. The IQR spans
 the "middle part" of the distribution. The IQR is similar in concept to a
@@ -490,7 +517,7 @@ ordered_salaries %>%
                aes(x = x, y = y, xend = xend, yend = yend),
                color = "red",
                linetype = "dashed") +
-  theme_bw(base_size = 13)
+  theme_bw()
   ggsave("./images/cdf_me_salaries.png", dpi = 150)
 ```
 
@@ -672,11 +699,32 @@ advantages. For example, let's look at the data from Figure \@ref(fig:noaa-temp-
 <img src="05-univar_eda_files/figure-html/temp-boxplot-1.png" alt="Boxplots of hourly temperatures in CO and HI for July, 2010. Whiskers represent 1.5*IQR." width="500" />
 <p class="caption">(\#fig:temp-boxplot)Boxplots of hourly temperatures in CO and HI for July, 2010. Whiskers represent 1.5*IQR.</p>
 </div>
+Sometimes, it's helpful to combine enumerative and summary plots together. For example, 
+we can add a Boxplot layer to Figure \@ref(fig:noaa-temp-plot) so that we can 
+visualize quartiles in addition to the location, dispersion, and shape of the 
+raw data. The ability to layer geoms is one of the many strengths of the 
+`ggplot2::` package.
 
-Examination of the boxplots in Figure \@ref(fig:temp-boxplot) conveys much the
-same information as what is seen for the raw data originally plotted in Figure
-\@ref(fig:noaa-temp-plot): both distributions have same central tendencies but
-the Colorado distribution has considerably more variation.
+
+```r
+ggplot(data = noaa_temp,
+       mapping = aes(x = temp_hr_f, 
+                     y = location, 
+                     fill = location)) +
+  geom_boxplot() +
+  geom_jitter(height = 0.25,
+              alpha = 0.2,
+              shape = "circle filled",
+              color = "black") +
+  labs(y = "Region",
+       x = "Temperature (°F)") +
+  theme_bw() 
+```
+
+<div class="figure">
+<img src="05-univar_eda_files/figure-html/noaa-box-2-1.png" alt="Boxplots of hourly temperatures in CO and HI for July, 2010" width="672" />
+<p class="caption">(\#fig:noaa-box-2)Boxplots of hourly temperatures in CO and HI for July, 2010</p>
+</div>
 
 ### Time-Series Plot {#time_series}
 
@@ -822,12 +870,20 @@ some periodicity around 12- and 24-hr lags.
 
 The whole point of this chapter comes down to this: when you have new,
 unfamiliar data, the best thing to do is to explore that data graphically. 
-Create a histogram, a cumulative distribution plot, a time-series plot, and an
-autocorrelation plot to start. Together, these plots allow you to see basic
+Create a panel of plots from available candidates: histogram, cumulative distribution, time-series, boxplot, autocorrelation. 
+Together, these plots allow you to see basic
 features and extract important descriptors such as central tendency, spread,
 shape, and quantiles. EDA plots also frequently lead to more questions; the
 answers to which will bring you even closer to understanding what the data are
 trying to tell you. Let your eyes do the listening at first.
+
+For example, here is a "3-plot" for the ME Salary data originally shown in Figure 
+\@ref(fig:cdf-me-salaries):
+
+<div class="figure">
+<img src="05-univar_eda_files/figure-html/3-plot-noaa-1.png" alt="EDA Plots of Annual Salaries among Mech Eng Graduates" width="672" />
+<p class="caption">(\#fig:3-plot-noaa)EDA Plots of Annual Salaries among Mech Eng Graduates</p>
+</div>
 
 ## Ch-5 Exercises
 

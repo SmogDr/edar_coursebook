@@ -6,6 +6,7 @@ library(lubridate)
 library(knitr)
 library(kableExtra)
 library(scales)
+library(gridExtra)
 ```
 
 > <span style="color: blue;"> "Exploratory data analysis is graphical detective work." - John Tukey </span>
@@ -102,7 +103,7 @@ of reference distributions include the uniform distribution, normal
 distribution, and the lognormal distribution. More on different types of
 reference distributions [here](#dist). 
 
-##### Example: Location and Dispersion  
+  ##### Example: Location and Dispersion  
 
 Let's plan a camping trip. Our trip is purely hypothetical, so let's not worry
 about costs, logistics, or other important factors. For this exercise, we only
@@ -128,7 +129,7 @@ define three aesthetics:
 * `color =` location (not necessary for the plot, but the color between
 variables can be helpful)
 
-``` {r noaa-temp-data, include=FALSE, message=FALSE}
+``` {r noaa-temp-import, include=FALSE, message=FALSE}
 # import and wrangle noaa temperature data from CO & HI July 2010
 noaa_temp <- readr::read_csv("data/NOAA_temps2.csv") %>% 
   dplyr::rename(station = STATION,
@@ -139,12 +140,14 @@ noaa_temp <- readr::read_csv("data/NOAA_temps2.csv") %>%
     stringr::str_detect(station, "23066") ~ "Colorado",
     stringr::str_detect(station, "22536") ~ "Hawaii")) %>%
   dplyr::select(station, location, date, temp_hr_f) # year missing from date
+```
 
+``` {r noaa-temp-ggplot, message=FALSE}
 # plot temperature by location 
-noaa_temp %>% 
-  ggplot2::ggplot(mapping = aes(x = temp_hr_f,
-                                y = location,
-                                color = location)) +
+ggplot2::ggplot(data = noaa_temp, 
+                mapping = aes(x = temp_hr_f,
+                              y = location,
+                              color = location)) +
   geom_jitter(height = 0.15,
               size = 1.5,
               shape = 1) +
@@ -216,20 +219,27 @@ value that bounds the lower 10% of the observed data; the second quantile (0.2
 fraction) represents the 20^th^% value for the observed data, and so on. 
 
 There are two important aspects about quantiles to remember: 
-**(1) each quantile is defined only by its upper-end value**; 
+(1) **each quantile is defined only by its upper-end value**; 
 and (2) **quantiles are defined after**
 **the data have been rank-ordered from lowest to highest value**.
 
 Quantiles are often used to communicate **descriptive statistics** for
-univariate data. 
+univariate data.  
 
 The two most extreme quantiles define the ***range***:  
 
 - Minimum,`min()`: the 0% or lowest value; the zeroth quantile
 
-- Maximum,`max()`: the 100^th^ percentile (or 1.0 in fractional terms); the highest value observed; the n^th^ quantile   
+- Maximum,`max()`: the 100^th^ percentile (or 1.0 in fractional terms); the highest value observed; the n^th^ quantile
 
-If you break a distribution into quarters, you have created *quartiles*.  Let's
+If you break a distribution into quarters, you have created *quartiles*.  We can
+calculate quantiles with the `stats::quantile()` function that comes loaded with 
+base R.  This function takes a numeric vector `x =` as a formal argument and, by
+default, returns quartiles (including min and max) for the data.  If you want to
+extract specific quantile values, you can specify them with the optional 
+`probs =` argument (default: `probs = seq(from = 0, to = 1, by = 0.25)`).
+
+Let's
 generate a sample of random numbers between 0 and 100 and break the resulting
 data into quartiles. A random number generator, using the R function `runif()`,
 will create a [uniform distribution](#unif_dist) across the sample range
@@ -269,29 +279,30 @@ distribution between 0 and 100 fall into predictable chunks of approximately
 ### Descriptive Statistics
 
 Quantiles allow us to calculate several important descriptive statistics for
-univariate data. For example, the quartile output above allows us to report the
+univariate data. For example, quartile calculations for highway fuel 
+effeciencies from the `mpg` dataset allows us to report the
 following descriptive statistics:
 
 ``` {r quant-desc-df, echo=FALSE}
-# create df of quantile
-quant_desc <- tibble::tibble(a = c("0", "1", "0.5", "0.25",
-                                   "0.75", "0.75 - 0.25"),
-                             b = c("minimum", "maximum", "median",
-                                   "25^th^%", "75^th^%", "IQR"),
-                             c = c(univar_quart[[1]],
-                                   univar_quart[[5]],
-                                   univar_quart[[3]],
-                                   univar_quart[[2]],
-                                   univar_quart[[4]],
-                                   univar_quart[[4]] - univar_quart[[2]]
-                                   )
-                             )
+# create df of quantiles
+quant_mpg_hwy <- tibble::tibble(
+  a = c("0", "1", "0.5", "0.25",
+        "0.75", "0.75 - 0.25"),
+  b = c("minimum", "maximum", "median",
+        "25^th^%", "75^th^%", "IQR"),
+  c = c(quantile(mpg$hwy, probs = 0),
+        quantile(mpg$hwy, probs = 1),
+        quantile(mpg$hwy, probs = 0.5),
+        quantile(mpg$hwy, probs = 0.25),
+        quantile(mpg$hwy, probs = 0.75),
+        quantile(mpg$hwy, probs = 0.75) - quantile(mpg$hwy, probs = 0.25)
+        )
+  )
 ```
 
 ``` {r quant-desc-table, echo=FALSE}
-quant_desc %>% 
-  knitr::kable(caption = "Quantiles and descriptive statistics for uniform
-               distribution, 0-100 (n=1000)",
+quant_mpg_hwy %>% 
+  knitr::kable(caption = "Quantiles and descriptive statistics for `hwy` fuel efficiency from ggplot::mpg$hwy",
                booktabs = TRUE,
                col.names = c("Quantile", "Descriptor", "Example Values"),
                align = "c") %>%
@@ -306,11 +317,12 @@ Use of descriptors like mean and standard deviation are very useful when applied
 properly but can be misleading when the distribution is skewed 
 (more on that later). 
 
-On the other hand, quantile descriptors are agnostic to the type of
+Quantile descriptors, on the other hand, are agnostic to the type of
 distribution they describe. For example, the median is ALWAYS at the 0.5
 quantile, or 50^th^ percentile, regardless of the shape of the distribution.
 
-The last descriptor in the list is the *interquartile range*, or IQR for short.
+The last descriptor in Table \@ref(tab:quant-desc-table)  is the 
+*interquartile range*, or IQR for short.
 The IQR describes the spread of the data and communicates the range of values
 needed to go from the 25^th^% to the 75^th^% of the distribution. The IQR spans
 the "middle part" of the distribution. The IQR is similar in concept to a
@@ -517,7 +529,7 @@ ordered_salaries %>%
                aes(x = x, y = y, xend = xend, yend = yend),
                color = "red",
                linetype = "dashed") +
-  theme_bw(base_size = 13)
+  theme_bw()
   ggsave("./images/cdf_me_salaries.png", dpi = 150)
 ```
 
@@ -755,11 +767,27 @@ noaa_temp %>%
   theme(text = element_text(size=15),
         legend.position = "none")
 ```
+Sometimes, it's helpful to combine enumerative and summary plots together. For example, 
+we can add a Boxplot layer to Figure \@ref(fig:noaa-temp-plot) so that we can 
+visualize quartiles in addition to the location, dispersion, and shape of the 
+raw data. The ability to layer geoms is one of the many strengths of the 
+`ggplot2::` package.
 
-Examination of the boxplots in Figure \@ref(fig:temp-boxplot) conveys much the
-same information as what is seen for the raw data originally plotted in Figure
-\@ref(fig:noaa-temp-plot): both distributions have same central tendencies but
-the Colorado distribution has considerably more variation.
+``` {r noaa-box-2, fig.cap="Boxplots of hourly temperatures in CO and HI for July, 2010"}
+ggplot(data = noaa_temp,
+       mapping = aes(x = temp_hr_f, 
+                     y = location, 
+                     fill = location)) +
+  geom_boxplot() +
+  geom_jitter(height = 0.25,
+              alpha = 0.2,
+              shape = "circle filled",
+              color = "black") +
+  labs(y = "Region",
+       x = "Temperature (°F)") +
+  theme_bw() 
+
+```
 
 ### Time-Series Plot {#time_series}
 
@@ -928,12 +956,75 @@ some periodicity around 12- and 24-hr lags.
 
 The whole point of this chapter comes down to this: when you have new,
 unfamiliar data, the best thing to do is to explore that data graphically. 
-Create a histogram, a cumulative distribution plot, a time-series plot, and an
-autocorrelation plot to start. Together, these plots allow you to see basic
+Create a panel of plots from available candidates: histogram, cumulative distribution, time-series, boxplot, autocorrelation. 
+Together, these plots allow you to see basic
 features and extract important descriptors such as central tendency, spread,
 shape, and quantiles. EDA plots also frequently lead to more questions; the
 answers to which will bring you even closer to understanding what the data are
 trying to tell you. Let your eyes do the listening at first.
+
+For example, here is a "3-plot" for the ME Salary data originally shown in Figure 
+\@ref(fig:cdf-me-salaries):
+
+``` {r 3-plot-noaa, echo=FALSE, fig.cap="EDA Plots of Annual Salaries among Mech Eng Graduates"}
+plot.1<-ordered_salaries %>% 
+  ggplot2::ggplot(mapping = aes(x = salary)) +
+  geom_step(stat = "ecdf") + # "empirical cumulative distribution function"
+  labs(x = "Salaries of ME Graduates", y = "Cumulative Fraction") +
+  scale_y_continuous(limits = c(-0.05, 1.03), 
+                     expand = c(0,0),
+                     breaks = seq(from = 0, 
+                                  to = 1, 
+                                  by = 0.1)) +
+  scale_x_continuous(labels = scales::label_dollar(scale = 0.001, 
+                                                   prefix = '$', 
+                                                   suffix = 'k'),
+                     minor_breaks = seq(from = 0,
+                                        to = 450000,
+                                        by = 10000))+
+  geom_segment(data = data.frame(x = quantile(ordered_salaries$salary),
+                                 y = rep.int(-.05, 5),
+                                 xend = quantile(ordered_salaries$salary),
+                                 yend = seq(from = 0, to = 1, by = 0.25)),
+               aes(x = x, y = y, xend = xend, yend = yend),
+               color = "red",
+               linetype = "dashed") +
+  theme_bw()
+
+plot.2 <- ggplot(data = ordered_salaries,
+                mapping = aes(x = salary, y = "ME Grads")) +
+  geom_boxplot(alpha = 0.15,
+               fill = "blue") +
+  ylab("") +
+  xlab("") +
+  scale_x_continuous(labels = scales::label_dollar(scale = 0.001, 
+                                                   prefix = '$', 
+                                                   suffix = 'k'),
+                     minor_breaks = seq(from = 0,
+                                        to = 450000,
+                                        by = 10000))+
+  theme_bw() +
+  theme(axis.text.y = element_text(angle = 90, hjust = 0.5))
+
+plot.3 <- ggplot(data = ordered_salaries,
+                mapping = aes(x = salary)) +
+  geom_histogram(alpha = 0.15,
+               fill = "blue",
+               bins = 40,
+               color = "black") +
+  scale_x_continuous(labels = scales::label_dollar(scale = 0.001, 
+                                                   prefix = '$', 
+                                                   suffix = 'k'),
+                     minor_breaks = seq(from = 0,
+                                        to = 450000,
+                                        by = 10000))+
+  ylab("Counts") +
+  xlab("") +
+  theme_bw()
+
+grid.arrange(plot.2, plot.3, plot.1, ncol = 1, respect=TRUE, heights = c(0.4, 0.5, 0.65))
+
+```
 
 ## Ch-5 Exercises
 
