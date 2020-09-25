@@ -103,7 +103,7 @@ of reference distributions include the uniform distribution, normal
 distribution, and the lognormal distribution. More on different types of
 reference distributions [here](#dist). 
 
-  ##### Example: Location and Dispersion  
+##### Example: Location and Dispersion  
 
 Let's plan a camping trip. Our trip is purely hypothetical, so let's not worry
 about costs, logistics, or other important factors. For this exercise, we only
@@ -142,7 +142,7 @@ noaa_temp <- readr::read_csv("data/NOAA_temps2.csv") %>%
   dplyr::select(station, location, date, temp_hr_f) # year missing from date
 ```
 
-``` {r noaa-temp-ggplot, message=FALSE}
+``` {r noaa-temp-ggplot, message=FALSE, include=FALSE}
 # plot temperature by location 
 ggplot2::ggplot(data = noaa_temp, 
                 mapping = aes(x = temp_hr_f,
@@ -767,11 +767,12 @@ noaa_temp %>%
   theme(text = element_text(size=15),
         legend.position = "none")
 ```
-Sometimes, it's helpful to combine enumerative and summary plots together. For example, 
-we can add a Boxplot layer to Figure \@ref(fig:noaa-temp-plot) so that we can 
-visualize quartiles in addition to the location, dispersion, and shape of the 
-raw data. The ability to layer geoms is one of the many strengths of the 
-`ggplot2::` package.
+
+Sometimes, it's helpful to combine enumerative and summary plots together. For 
+example, we can add a Boxplot layer to Figure \@ref(fig:noaa-temp-plot) so that 
+we can visualize quartiles in addition to the location, dispersion, and shape 
+of the raw data. The ability to layer geoms is one of the many strengths of the
+`ggplot2` package.
 
 ``` {r noaa-box-2, fig.cap="Boxplots of hourly temperatures in CO and HI for July, 2010"}
 ggplot(data = noaa_temp,
@@ -786,7 +787,6 @@ ggplot(data = noaa_temp,
   labs(y = "Region",
        x = "Temperature (°F)") +
   theme_bw() 
-
 ```
 
 ### Time-Series Plot {#time_series}
@@ -803,7 +803,8 @@ time-series plot allows you to do several things:
 * Identify the **timing** of events!
 
 Let's plot the same temperature data from Hawaii as shown in Figure
-\@ref(fig:noaa-temp-plot) as a time series. We will use  `geom_point()` to add the data and `geom_line()` to connect the dots for this plot.
+\@ref(fig:noaa-temp-plot) as a time series. We will use  `geom_point()` 
+to add the data and `geom_line()` to connect the dots for this plot.
 
 ```{r noaa-time-series, include=FALSE, message=FALSE}
 # plot temperature (y) vs time (y) for Hawaii data
@@ -963,8 +964,7 @@ shape, and quantiles. EDA plots also frequently lead to more questions; the
 answers to which will bring you even closer to understanding what the data are
 trying to tell you. Let your eyes do the listening at first.
 
-For example, here is a "3-plot" for the ME Salary data originally shown in Figure 
-\@ref(fig:cdf-me-salaries):
+For example, here is a "3-plot" for the ME Salary data originally shown in Figure \@ref(fig:cdf-me-salaries):
 
 ``` {r 3-plot-noaa, echo=FALSE, fig.cap="EDA Plots of Annual Salaries among Mech Eng Graduates"}
 plot.1<-ordered_salaries %>% 
@@ -1023,17 +1023,19 @@ plot.3 <- ggplot(data = ordered_salaries,
   theme_bw()
 
 grid.arrange(plot.2, plot.3, plot.1, ncol = 1, respect=TRUE, heights = c(0.4, 0.5, 0.65))
-
 ```
 
-## Ch-5 Exercises
+## Chapter 5 Homework 
 
-1. List which plot types discussed in this chapter are *enumerative* vs. *summary*.
+You will continue to work with the ozone measurement data introduced in the 
+previous chapters. You will also use data we randomly generated in R.
 
-2. Practice creating histogram, CDF, time-series, and ACF; extract relevant features from each. Use ozone dataset.
+On Canvas, download the R Markdown template (.Rmd). Save the data and template
+files in your local R Project in the `/data` and  `/homework` folders,
+respectively. You should already have the ozone data (.csv) saved in your
+`/data` folder, but you need to download and save the other data.
 
-5. Visualize data from a bi-modal distribution (hist, cum dist). Talk about why `mean` is not a good representation of the central tendency.
-
-4. (hh/extra) Introduce `library(gridExtra)` and create multi-panel EDA plots
-
-## Ch-5 Homework
+This homework assignment is due at the start of the class when we begin Chapter
+6. We will look for the R Markdown file and the corresponding knitted PDF or
+HTML document within your `/homework` file. Your work will be considered late 
+if the latest knit occurs after the deadline.
