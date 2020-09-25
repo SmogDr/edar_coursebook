@@ -96,7 +96,7 @@ of reference distributions include the uniform distribution, normal
 distribution, and the lognormal distribution. More on different types of
 reference distributions [here](#dist). 
 
-  ##### Example: Location and Dispersion  
+##### Example: Location and Dispersion  
 
 Let's plan a camping trip. Our trip is purely hypothetical, so let's not worry
 about costs, logistics, or other important factors. For this exercise, we only
@@ -125,23 +125,6 @@ variables can be helpful)
 
 
 
-```r
-# plot temperature by location 
-ggplot2::ggplot(data = noaa_temp, 
-                mapping = aes(x = temp_hr_f,
-                              y = location,
-                              color = location)) +
-  geom_jitter(height = 0.15,
-              size = 1.5,
-              shape = 1) +
-  labs(y = "Region",
-       x = "Temperature (°F)") +
-  theme_bw() +
-  theme(legend.position = "none") +
-  ggsave("./images/NOAA_temps.png", dpi = 150)
-```
-
-<img src="05-univar_eda_files/figure-html/noaa-temp-ggplot-1.png" width="672" />
 
 <div class="figure" style="text-align: center">
 <img src="images/NOAA_temps.png" alt="Hourly temperature levels in Colorado and Hawaii for the month of July, 2010." width="700pt" />
@@ -699,11 +682,12 @@ advantages. For example, let's look at the data from Figure \@ref(fig:noaa-temp-
 <img src="05-univar_eda_files/figure-html/temp-boxplot-1.png" alt="Boxplots of hourly temperatures in CO and HI for July, 2010. Whiskers represent 1.5*IQR." width="500" />
 <p class="caption">(\#fig:temp-boxplot)Boxplots of hourly temperatures in CO and HI for July, 2010. Whiskers represent 1.5*IQR.</p>
 </div>
-Sometimes, it's helpful to combine enumerative and summary plots together. For example, 
-we can add a Boxplot layer to Figure \@ref(fig:noaa-temp-plot) so that we can 
-visualize quartiles in addition to the location, dispersion, and shape of the 
-raw data. The ability to layer geoms is one of the many strengths of the 
-`ggplot2::` package.
+
+Sometimes, it's helpful to combine enumerative and summary plots together. For 
+example, we can add a Boxplot layer to Figure \@ref(fig:noaa-temp-plot) so that 
+we can visualize quartiles in addition to the location, dispersion, and shape 
+of the raw data. The ability to layer geoms is one of the many strengths of the
+`ggplot2` package.
 
 
 ```r
@@ -740,7 +724,8 @@ time-series plot allows you to do several things:
 * Identify the **timing** of events!
 
 Let's plot the same temperature data from Hawaii as shown in Figure
-\@ref(fig:noaa-temp-plot) as a time series. We will use  `geom_point()` to add the data and `geom_line()` to connect the dots for this plot.
+\@ref(fig:noaa-temp-plot) as a time series. We will use  `geom_point()` 
+to add the data and `geom_line()` to connect the dots for this plot.
 
 
 
@@ -877,22 +862,24 @@ shape, and quantiles. EDA plots also frequently lead to more questions; the
 answers to which will bring you even closer to understanding what the data are
 trying to tell you. Let your eyes do the listening at first.
 
-For example, here is a "3-plot" for the ME Salary data originally shown in Figure 
-\@ref(fig:cdf-me-salaries):
+For example, here is a "3-plot" for the ME Salary data originally shown in Figure \@ref(fig:cdf-me-salaries):
 
 <div class="figure">
 <img src="05-univar_eda_files/figure-html/3-plot-noaa-1.png" alt="EDA Plots of Annual Salaries among Mech Eng Graduates" width="672" />
 <p class="caption">(\#fig:3-plot-noaa)EDA Plots of Annual Salaries among Mech Eng Graduates</p>
 </div>
 
-## Ch-5 Exercises
+## Chapter 5 Homework 
 
-1. List which plot types discussed in this chapter are *enumerative* vs. *summary*.
+You will continue to work with the ozone measurement data introduced in the 
+previous chapters. You will also use data we randomly generated in R.
 
-2. Practice creating histogram, CDF, time-series, and ACF; extract relevant features from each. Use ozone dataset.
+On Canvas, download the R Markdown template (.Rmd). Save the data and template
+files in your local R Project in the `/data` and  `/homework` folders,
+respectively. You should already have the ozone data (.csv) saved in your
+`/data` folder, but you need to download and save the other data.
 
-5. Visualize data from a bi-modal distribution (hist, cum dist). Talk about why `mean` is not a good representation of the central tendency.
-
-4. (hh/extra) Introduce `library(gridExtra)` and create multi-panel EDA plots
-
-## Ch-5 Homework
+This homework assignment is due at the start of the class when we begin Chapter
+6. We will look for the R Markdown file and the corresponding knitted PDF or
+HTML document within your `/homework` file. Your work will be considered late 
+if the latest knit occurs after the deadline.
