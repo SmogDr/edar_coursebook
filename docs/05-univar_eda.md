@@ -27,6 +27,9 @@ completing this Chapter, you should be able to:
 - Calculate quantiles and basic descriptive statistics for univariate data
 - Create a cumulative distribution plot and extract quantile information from it
 - Create and interpret data from a histogram
+- Create and interpret data from a boxplot
+- Describe the differences between and the strengths/weaknesess of 
+summary and enumerative plots
 - Define skewness and its effect on measures of spread and central tendency in qualitative terms
 - Create a time-series plot and identify shifts in location and dispersion
 - Define autocorrelation, quantitatively and qualitatively 
@@ -196,8 +199,8 @@ The two most extreme quantiles define the ***range***:
 
 - Maximum,`max()`: the 100^th^ percentile (or 1.0 in fractional terms); the highest value observed; the n^th^ quantile
 
-If you break a distribution into quarters, you have created *quartiles*.  We can
-calculate quantiles with the `stats::quantile()` function that comes loaded with 
+If you break a distribution into quarters, you have created *quartiles*.  We 
+calculate quantiles using `stats::quantile()`, which comes loaded with 
 base R.  This function takes a numeric vector `x =` as a formal argument and, by
 default, returns quartiles (including min and max) for the data.  If you want to
 extract specific quantile values, you can specify them with the optional 
@@ -205,7 +208,7 @@ extract specific quantile values, you can specify them with the optional
 
 Let's
 generate a sample of random numbers between 0 and 100 and break the resulting
-data into quartiles. A random number generator, using the R function `runif()`,
+data into ***quartiles***. A random number generator, using the R function `runif()`,
 will create a [uniform distribution](#unif_dist) across the sample range
 provided because all values within that range have equal probability of being
 chosen. With that in mind, you can probably guess what the quartiles will look
@@ -221,7 +224,7 @@ univar <- runif(n = 1000,
                 max = 100) 
 # split uniform distribution into quantiles
 univar_quart <- quantile(univar, 
-                         probs = seq(0, 1, 0.25)) %>% 
+                         probs = seq(0, 1, 0.25)) %>%
   round(1) 
 ```
 
@@ -312,7 +315,8 @@ The IQR describes the spread of the data and communicates the range of values
 needed to go from the 25^th^% to the 75^th^% of the distribution. The IQR spans
 the "middle part" of the distribution. The IQR is similar in concept to a
 standard deviation but makes no assumptions about the type or shape of the
-distribution in question.
+distribution in question.  You can calculate an IQR by subtracting the 0.75
+quantile from the 0.25 quantile, or using `stats::IQR()`.
 
 Now let's create quantiles from a [*normal distribution*](#normal_dist) of data
 with a mean of 50 and standard deviation of 15. We'll start by randomly sampling

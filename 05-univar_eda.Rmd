@@ -34,6 +34,9 @@ completing this Chapter, you should be able to:
 - Calculate quantiles and basic descriptive statistics for univariate data
 - Create a cumulative distribution plot and extract quantile information from it
 - Create and interpret data from a histogram
+- Create and interpret data from a boxplot
+- Describe the differences between and the strengths/weaknesess of 
+summary and enumerative plots
 - Define skewness and its effect on measures of spread and central tendency in qualitative terms
 - Create a time-series plot and identify shifts in location and dispersion
 - Define autocorrelation, quantitatively and qualitatively 
@@ -232,8 +235,8 @@ The two most extreme quantiles define the ***range***:
 
 - Maximum,`max()`: the 100^th^ percentile (or 1.0 in fractional terms); the highest value observed; the n^th^ quantile
 
-If you break a distribution into quarters, you have created *quartiles*.  We can
-calculate quantiles with the `stats::quantile()` function that comes loaded with 
+If you break a distribution into quarters, you have created *quartiles*.  We 
+calculate quantiles using `stats::quantile()`, which comes loaded with 
 base R.  This function takes a numeric vector `x =` as a formal argument and, by
 default, returns quartiles (including min and max) for the data.  If you want to
 extract specific quantile values, you can specify them with the optional 
@@ -241,7 +244,7 @@ extract specific quantile values, you can specify them with the optional
 
 Let's
 generate a sample of random numbers between 0 and 100 and break the resulting
-data into quartiles. A random number generator, using the R function `runif()`,
+data into ***quartiles***. A random number generator, using the R function `runif()`,
 will create a [uniform distribution](#unif_dist) across the sample range
 provided because all values within that range have equal probability of being
 chosen. With that in mind, you can probably guess what the quartiles will look
@@ -256,7 +259,7 @@ univar <- runif(n = 1000,
                 max = 100) 
 # split uniform distribution into quantiles
 univar_quart <- quantile(univar, 
-                         probs = seq(0, 1, 0.25)) %>% 
+                         probs = seq(0, 1, 0.25)) %>%
   round(1) 
 ```
 
@@ -327,13 +330,14 @@ The IQR describes the spread of the data and communicates the range of values
 needed to go from the 25^th^% to the 75^th^% of the distribution. The IQR spans
 the "middle part" of the distribution. The IQR is similar in concept to a
 standard deviation but makes no assumptions about the type or shape of the
-distribution in question.
+distribution in question.  You can calculate an IQR by subtracting the 0.75
+quantile from the 0.25 quantile, or by using `stats::IQR()`.
 
 Now let's create quantiles from a [*normal distribution*](#normal_dist) of data
 with a mean of 50 and standard deviation of 15. We'll start by randomly sampling
 1000 values, using `rnorm()`, and then arranging them with the `quanitle()` 
 function. Note that the second half of the code chunk below shows how to 
-calculate quantiles manually.
+calculate quantiles manually.  
 
 ``` {r gen-norm-quantiles}
 # "set seed" to generate the same results each time
@@ -343,21 +347,23 @@ norm_dist <- rnorm(1000, mean = 50, sd = 15)
 # split normal distribution into quantiles and output tabular result
 quantile(norm_dist, probs = seq(0, 1, 0.1)) %>% round(0)
 
-# manual method for calculating quantiles
+# manual method for calculating quantiles; start with norms_dist values
 norm_manual <- tibble::tibble(
-  # start with raw sample data generated from `rnorm()`
-  sample_data = norm_dist, 
-  # sort the data
-  sorted_data = sort(norm_dist),  
+  sample_data = norm_dist) %>%
+  # sort the data using
+  dplyr::arrange(sample_data) %>%  
   # calculate cumulative fraction for each entry
-  cum_frac = seq.int(from = 1 / length(norm_dist), 
+  dplyr::mutate(cum_frac = seq.int(from = 1 / length(norm_dist), 
                      to = 1,
                      by = 1 / length(norm_dist)))
-# create deciles sequence
+
+# create a quantile sequence corresponding to deciles
 deciles <- seq.int(from = 0, to = 1, by = 0.1)
+
 # extract quantiles that match the decile values created above 
 normal_data_deciles <- norm_manual %>% 
-  dplyr::filter(cum_frac %in% deciles)
+  dplyr::filter(cum_frac %in% deciles) 
+# %in% means: return whatever "matches" between these two vectors
 ```
 
 Normal distributions are more complicated than uniform distributions, and it's
