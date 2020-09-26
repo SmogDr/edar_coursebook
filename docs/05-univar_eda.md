@@ -316,13 +316,13 @@ needed to go from the 25^th^% to the 75^th^% of the distribution. The IQR spans
 the "middle part" of the distribution. The IQR is similar in concept to a
 standard deviation but makes no assumptions about the type or shape of the
 distribution in question.  You can calculate an IQR by subtracting the 0.75
-quantile from the 0.25 quantile, or using `stats::IQR()`.
+quantile from the 0.25 quantile, or by using `stats::IQR()`.
 
 Now let's create quantiles from a [*normal distribution*](#normal_dist) of data
 with a mean of 50 and standard deviation of 15. We'll start by randomly sampling
 1000 values, using `rnorm()`, and then arranging them with the `quanitle()` 
 function. Note that the second half of the code chunk below shows how to 
-calculate quantiles manually.
+calculate quantiles manually.  
 
 
 ```r
@@ -340,21 +340,23 @@ quantile(norm_dist, probs = seq(0, 1, 0.1)) %>% round(0)
 ```
 
 ```r
-# manual method for calculating quantiles
+# manual method for calculating quantiles; start with norms_dist values
 norm_manual <- tibble::tibble(
-  # start with raw sample data generated from `rnorm()`
-  sample_data = norm_dist, 
-  # sort the data
-  sorted_data = sort(norm_dist),  
+  sample_data = norm_dist) %>%
+  # sort the data using
+  dplyr::arrange(sample_data) %>%  
   # calculate cumulative fraction for each entry
-  cum_frac = seq.int(from = 1 / length(norm_dist), 
+  dplyr::mutate(cum_frac = seq.int(from = 1 / length(norm_dist), 
                      to = 1,
                      by = 1 / length(norm_dist)))
-# create deciles sequence
+
+# create a quantile sequence corresponding to deciles
 deciles <- seq.int(from = 0, to = 1, by = 0.1)
+
 # extract quantiles that match the decile values created above 
 normal_data_deciles <- norm_manual %>% 
-  dplyr::filter(cum_frac %in% deciles)
+  dplyr::filter(cum_frac %in% deciles) 
+# %in% means: return whatever "matches" between these two vectors
 ```
 
 Normal distributions are more complicated than uniform distributions, and it's

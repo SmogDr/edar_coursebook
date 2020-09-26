@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-09-25" />
+<meta name="date" content="2020-09-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,7 @@
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -792,7 +793,7 @@ structure. At any time, you can figure out which directory R is working in by
 running the command <code>getwd()</code> (short for “get working directory”). For example,
 my R session is currently running in the following directory:</p>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="rprog2.html#cb120-1"></a><span class="kw">getwd</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;/Users/wendtke/Documents/R/edar_coursebook&quot;</code></pre>
+<pre><code>## [1] &quot;/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook&quot;</code></pre>
 <p>This means that, for my current R session, R is working in the
 <code>edar_coursebook</code> subdirectory of my <code>johnvolckens</code> directory (home directory).</p>
 <p>There are a few general rules for which working directory R selects when
@@ -1414,7 +1415,7 @@ markdown format, you need to install the <code>rmarkdown</code> package: <code>i
 <h3><span class="header-section-number">3.7.2</span> Header</h3>
 <p>The R Markdown “header” section is where you specify details about the file being created. A markdown header contains <strong>YAML</strong> metadata, which stands for <a href="https://yaml.org/spec/1.2/spec.html#Introduction"><em>“YAML Ain’t Markup Language”</em></a>. The YAML (pronounced like “camel”) header is essentially a list of directives (referred to as “key:value” pairs) that help application software interpret the file. A YAML header can act simultaneously as a “configuration file”, a “log file”, and “translator file” - allowing one software program to read the output of another program. An example header with YAML metadata is shown below.</p>
 <div class="figure" style="text-align: center"><span id="fig:YAML-1"></span>
-<img src="images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file."  />
+<img src="images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file." width="500" />
 <p class="caption">
 Figure 3.2: Example of a YAML header to render an R Markdown into an html file.
 </p>
@@ -1427,7 +1428,7 @@ The YAML header is optional in an R Markdown and default key:value pairs will be
 </div>
 <p>Sometimes, you will want to provide nested formatting directives in your markdown header. For example, you can specify the addition of a <strong><em>“table of contents”</em></strong> to your html output file that <strong><em>“floats”</em></strong> alongside the text. In that case, your YAML metadata would look like this:</p>
 <div class="figure" style="text-align: center"><span id="fig:YAML-2"></span>
-<img src="images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents."  />
+<img src="images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents." width="497" />
 <p class="caption">
 Figure 3.3: Example R Markdown header with nested YAML directives to render an html file with a floating table of contents.
 </p>

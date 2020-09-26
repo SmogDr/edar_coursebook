@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-09-25" />
+<meta name="date" content="2020-09-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -606,16 +606,16 @@ will create a <a href="dist.html#unif_dist">uniform distribution</a> across the 
 provided because all values within that range have equal probability of being
 chosen. With that in mind, you can probably guess what the quartiles will look
 like, given a sufficiently large sample…</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="eda1.html#cb1-1"></a><span class="co"># &quot;set seed&quot; to generate the same results each time</span></span>
-<span id="cb1-2"><a href="eda1.html#cb1-2"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb1-3"><a href="eda1.html#cb1-3"></a><span class="co"># create uniform distribution</span></span>
-<span id="cb1-4"><a href="eda1.html#cb1-4"></a>univar &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">1000</span>, </span>
-<span id="cb1-5"><a href="eda1.html#cb1-5"></a>                <span class="dt">min =</span> <span class="dv">0</span>, </span>
-<span id="cb1-6"><a href="eda1.html#cb1-6"></a>                <span class="dt">max =</span> <span class="dv">100</span>) </span>
-<span id="cb1-7"><a href="eda1.html#cb1-7"></a><span class="co"># split uniform distribution into quantiles</span></span>
-<span id="cb1-8"><a href="eda1.html#cb1-8"></a>univar_quart &lt;-<span class="st"> </span><span class="kw">quantile</span>(univar, </span>
-<span id="cb1-9"><a href="eda1.html#cb1-9"></a>                         <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb1-10"><a href="eda1.html#cb1-10"></a><span class="st">  </span><span class="kw">round</span>(<span class="dv">1</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="eda1.html#cb183-1"></a><span class="co"># &quot;set seed&quot; to generate the same results each time</span></span>
+<span id="cb183-2"><a href="eda1.html#cb183-2"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb183-3"><a href="eda1.html#cb183-3"></a><span class="co"># create uniform distribution</span></span>
+<span id="cb183-4"><a href="eda1.html#cb183-4"></a>univar &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">1000</span>, </span>
+<span id="cb183-5"><a href="eda1.html#cb183-5"></a>                <span class="dt">min =</span> <span class="dv">0</span>, </span>
+<span id="cb183-6"><a href="eda1.html#cb183-6"></a>                <span class="dt">max =</span> <span class="dv">100</span>) </span>
+<span id="cb183-7"><a href="eda1.html#cb183-7"></a><span class="co"># split uniform distribution into quantiles</span></span>
+<span id="cb183-8"><a href="eda1.html#cb183-8"></a>univar_quart &lt;-<span class="st"> </span><span class="kw">quantile</span>(univar, </span>
+<span id="cb183-9"><a href="eda1.html#cb183-9"></a>                         <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb183-10"><a href="eda1.html#cb183-10"></a><span class="st">  </span><span class="kw">round</span>(<span class="dv">1</span>) </span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unif-quartiles"></span>
 <img src="images/quantile_1.png" alt="Quartiles estimated from n=1000 samples of a uniform distribution between 0 and 100." width="700pt" />
 <p class="caption">
@@ -740,35 +740,37 @@ needed to go from the 25<sup>th</sup>% to the 75<sup>th</sup>% of the distributi
 the “middle part” of the distribution. The IQR is similar in concept to a
 standard deviation but makes no assumptions about the type or shape of the
 distribution in question. You can calculate an IQR by subtracting the 0.75
-quantile from the 0.25 quantile, or using <code>stats::IQR()</code>.</p>
+quantile from the 0.25 quantile, or by using <code>stats::IQR()</code>.</p>
 <p>Now let’s create quantiles from a <a href="dist.html#normal_dist"><em>normal distribution</em></a> of data
 with a mean of 50 and standard deviation of 15. We’ll start by randomly sampling
 1000 values, using <code>rnorm()</code>, and then arranging them with the <code>quanitle()</code>
 function. Note that the second half of the code chunk below shows how to
 calculate quantiles manually.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="eda1.html#cb2-1"></a><span class="co"># &quot;set seed&quot; to generate the same results each time</span></span>
-<span id="cb2-2"><a href="eda1.html#cb2-2"></a><span class="kw">set.seed</span>(<span class="dv">2</span>) </span>
-<span id="cb2-3"><a href="eda1.html#cb2-3"></a><span class="co"># create normal distribution</span></span>
-<span id="cb2-4"><a href="eda1.html#cb2-4"></a>norm_dist &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">15</span>)</span>
-<span id="cb2-5"><a href="eda1.html#cb2-5"></a><span class="co"># split normal distribution into quantiles and output tabular result</span></span>
-<span id="cb2-6"><a href="eda1.html#cb2-6"></a><span class="kw">quantile</span>(norm_dist, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="eda1.html#cb184-1"></a><span class="co"># &quot;set seed&quot; to generate the same results each time</span></span>
+<span id="cb184-2"><a href="eda1.html#cb184-2"></a><span class="kw">set.seed</span>(<span class="dv">2</span>) </span>
+<span id="cb184-3"><a href="eda1.html#cb184-3"></a><span class="co"># create normal distribution</span></span>
+<span id="cb184-4"><a href="eda1.html#cb184-4"></a>norm_dist &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">15</span>)</span>
+<span id="cb184-5"><a href="eda1.html#cb184-5"></a><span class="co"># split normal distribution into quantiles and output tabular result</span></span>
+<span id="cb184-6"><a href="eda1.html#cb184-6"></a><span class="kw">quantile</span>(norm_dist, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">0</span>)</span></code></pre></div>
 <pre><code>##   0%  10%  20%  30%  40%  50%  60%  70%  80%  90% 100% 
 ##    9   32   38   43   46   51   54   59   64   71   95</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="eda1.html#cb4-1"></a><span class="co"># manual method for calculating quantiles</span></span>
-<span id="cb4-2"><a href="eda1.html#cb4-2"></a>norm_manual &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(</span>
-<span id="cb4-3"><a href="eda1.html#cb4-3"></a>  <span class="co"># start with raw sample data generated from `rnorm()`</span></span>
-<span id="cb4-4"><a href="eda1.html#cb4-4"></a>  <span class="dt">sample_data =</span> norm_dist, </span>
-<span id="cb4-5"><a href="eda1.html#cb4-5"></a>  <span class="co"># sort the data</span></span>
-<span id="cb4-6"><a href="eda1.html#cb4-6"></a>  <span class="dt">sorted_data =</span> <span class="kw">sort</span>(norm_dist),  </span>
-<span id="cb4-7"><a href="eda1.html#cb4-7"></a>  <span class="co"># calculate cumulative fraction for each entry</span></span>
-<span id="cb4-8"><a href="eda1.html#cb4-8"></a>  <span class="dt">cum_frac =</span> <span class="kw">seq.int</span>(<span class="dt">from =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(norm_dist), </span>
-<span id="cb4-9"><a href="eda1.html#cb4-9"></a>                     <span class="dt">to =</span> <span class="dv">1</span>,</span>
-<span id="cb4-10"><a href="eda1.html#cb4-10"></a>                     <span class="dt">by =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(norm_dist)))</span>
-<span id="cb4-11"><a href="eda1.html#cb4-11"></a><span class="co"># create deciles sequence</span></span>
-<span id="cb4-12"><a href="eda1.html#cb4-12"></a>deciles &lt;-<span class="st"> </span><span class="kw">seq.int</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)</span>
-<span id="cb4-13"><a href="eda1.html#cb4-13"></a><span class="co"># extract quantiles that match the decile values created above </span></span>
-<span id="cb4-14"><a href="eda1.html#cb4-14"></a>normal_data_deciles &lt;-<span class="st"> </span>norm_manual <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-15"><a href="eda1.html#cb4-15"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(cum_frac <span class="op">%in%</span><span class="st"> </span>deciles)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="eda1.html#cb186-1"></a><span class="co"># manual method for calculating quantiles; start with norms_dist values</span></span>
+<span id="cb186-2"><a href="eda1.html#cb186-2"></a>norm_manual &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(</span>
+<span id="cb186-3"><a href="eda1.html#cb186-3"></a>  <span class="dt">sample_data =</span> norm_dist) <span class="op">%&gt;%</span></span>
+<span id="cb186-4"><a href="eda1.html#cb186-4"></a><span class="st">  </span><span class="co"># sort the data using</span></span>
+<span id="cb186-5"><a href="eda1.html#cb186-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(sample_data) <span class="op">%&gt;%</span><span class="st">  </span></span>
+<span id="cb186-6"><a href="eda1.html#cb186-6"></a><span class="st">  </span><span class="co"># calculate cumulative fraction for each entry</span></span>
+<span id="cb186-7"><a href="eda1.html#cb186-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">cum_frac =</span> <span class="kw">seq.int</span>(<span class="dt">from =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(norm_dist), </span>
+<span id="cb186-8"><a href="eda1.html#cb186-8"></a>                     <span class="dt">to =</span> <span class="dv">1</span>,</span>
+<span id="cb186-9"><a href="eda1.html#cb186-9"></a>                     <span class="dt">by =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(norm_dist)))</span>
+<span id="cb186-10"><a href="eda1.html#cb186-10"></a></span>
+<span id="cb186-11"><a href="eda1.html#cb186-11"></a><span class="co"># create a quantile sequence corresponding to deciles</span></span>
+<span id="cb186-12"><a href="eda1.html#cb186-12"></a>deciles &lt;-<span class="st"> </span><span class="kw">seq.int</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb186-13"><a href="eda1.html#cb186-13"></a></span>
+<span id="cb186-14"><a href="eda1.html#cb186-14"></a><span class="co"># extract quantiles that match the decile values created above </span></span>
+<span id="cb186-15"><a href="eda1.html#cb186-15"></a>normal_data_deciles &lt;-<span class="st"> </span>norm_manual <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb186-16"><a href="eda1.html#cb186-16"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(cum_frac <span class="op">%in%</span><span class="st"> </span>deciles) </span>
+<span id="cb186-17"><a href="eda1.html#cb186-17"></a><span class="co"># %in% means: return whatever &quot;matches&quot; between these two vectors</span></span></code></pre></div>
 <p>Normal distributions are more complicated than uniform distributions, and it’s
 hard to get a lot out of the decile summary when shown in tabular format. This
 brings us to my favorite part of exploratory data analysis: data visualization.</p>
@@ -824,16 +826,16 @@ The cumulative distribution plot shows the rolling fraction (or percent) of data
 <p>An annotated cumulative distribution plot is shown below for a sample of
 temperature data that follow a normal distribution. For this plot, I calculated
 the <code>unit_quantiles</code> manually to show you how this can be done:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="eda1.html#cb5-1"></a><span class="co"># randomly sample two variables from normal distributions with `rnorm()`</span></span>
-<span id="cb5-2"><a href="eda1.html#cb5-2"></a>normal_data &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">15</span>, <span class="dt">sd =</span> <span class="dv">5</span>),</span>
-<span id="cb5-3"><a href="eda1.html#cb5-3"></a>                              <span class="dt">b =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">3</span>))</span>
-<span id="cb5-4"><a href="eda1.html#cb5-4"></a><span class="co"># create unit quantile values for the `normal_data`</span></span>
-<span id="cb5-5"><a href="eda1.html#cb5-5"></a>normal_data_cdf &lt;-<span class="st"> </span>normal_data <span class="op">%&gt;%</span></span>
-<span id="cb5-6"><a href="eda1.html#cb5-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(a) <span class="op">%&gt;%</span></span>
-<span id="cb5-7"><a href="eda1.html#cb5-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(a) <span class="op">%&gt;%</span></span>
-<span id="cb5-8"><a href="eda1.html#cb5-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">unit_quantiles =</span> <span class="kw">seq.int</span>(<span class="dt">from =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(a), </span>
-<span id="cb5-9"><a href="eda1.html#cb5-9"></a>                                         <span class="dt">to =</span> <span class="dv">1</span>,</span>
-<span id="cb5-10"><a href="eda1.html#cb5-10"></a>                                         <span class="dt">by =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(a)))</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="eda1.html#cb187-1"></a><span class="co"># randomly sample two variables from normal distributions with `rnorm()`</span></span>
+<span id="cb187-2"><a href="eda1.html#cb187-2"></a>normal_data &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">15</span>, <span class="dt">sd =</span> <span class="dv">5</span>),</span>
+<span id="cb187-3"><a href="eda1.html#cb187-3"></a>                              <span class="dt">b =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">3</span>))</span>
+<span id="cb187-4"><a href="eda1.html#cb187-4"></a><span class="co"># create unit quantile values for the `normal_data`</span></span>
+<span id="cb187-5"><a href="eda1.html#cb187-5"></a>normal_data_cdf &lt;-<span class="st"> </span>normal_data <span class="op">%&gt;%</span></span>
+<span id="cb187-6"><a href="eda1.html#cb187-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(a) <span class="op">%&gt;%</span></span>
+<span id="cb187-7"><a href="eda1.html#cb187-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(a) <span class="op">%&gt;%</span></span>
+<span id="cb187-8"><a href="eda1.html#cb187-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">unit_quantiles =</span> <span class="kw">seq.int</span>(<span class="dt">from =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(a), </span>
+<span id="cb187-9"><a href="eda1.html#cb187-9"></a>                                         <span class="dt">to =</span> <span class="dv">1</span>,</span>
+<span id="cb187-10"><a href="eda1.html#cb187-10"></a>                                         <span class="dt">by =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(a)))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:norm-cdf-plot"></span>
 <img src="images/normal_cum_dist_anno.png" alt="Annotated Cumulative Distribution Plot for Normally-Distributed Temperature Data" width="700pt" />
 <p class="caption">
@@ -877,39 +879,39 @@ United States. These data come from the
 <a href="https://www.nsf.gov/statistics/srvygrads/">NSF Survey of College Graduates</a>.
 I’ve also taken the liberty of identifying the minimum, maximum, and quartile
 values on the plot.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="eda1.html#cb6-1"></a><span class="co"># create cumulative fractions </span></span>
-<span id="cb6-2"><a href="eda1.html#cb6-2"></a>ordered_salaries &lt;-<span class="st"> </span>raw_salaries <span class="op">%&gt;%</span></span>
-<span id="cb6-3"><a href="eda1.html#cb6-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(salary) <span class="op">%&gt;%</span></span>
-<span id="cb6-4"><a href="eda1.html#cb6-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(salary <span class="op">&lt;</span><span class="st"> </span><span class="dv">500000</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># to remove numeric identifiers </span></span>
-<span id="cb6-5"><a href="eda1.html#cb6-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(salary) <span class="op">%&gt;%</span></span>
-<span id="cb6-6"><a href="eda1.html#cb6-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">cum_pct =</span> <span class="kw">seq.int</span>(<span class="dt">from =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(salary),</span>
-<span id="cb6-7"><a href="eda1.html#cb6-7"></a>                                  <span class="dt">to =</span> <span class="dv">1</span>, </span>
-<span id="cb6-8"><a href="eda1.html#cb6-8"></a>                                  <span class="dt">by =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(salary))) </span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="eda1.html#cb7-1"></a><span class="co"># alternate method if you don&#39;t want to calculate cumulative fractions</span></span>
-<span id="cb7-2"><a href="eda1.html#cb7-2"></a>ordered_salaries <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-3"><a href="eda1.html#cb7-3"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> salary)) <span class="op">+</span></span>
-<span id="cb7-4"><a href="eda1.html#cb7-4"></a><span class="st">  </span><span class="kw">geom_step</span>(<span class="dt">stat =</span> <span class="st">&quot;ecdf&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># &quot;empirical cumulative distribution function&quot;</span></span>
-<span id="cb7-5"><a href="eda1.html#cb7-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Salaries of ME Graduates&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Cumulative Fraction&quot;</span>) <span class="op">+</span></span>
-<span id="cb7-6"><a href="eda1.html#cb7-6"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.05</span>, <span class="fl">1.03</span>), </span>
-<span id="cb7-7"><a href="eda1.html#cb7-7"></a>                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb7-8"><a href="eda1.html#cb7-8"></a>                     <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, </span>
-<span id="cb7-9"><a href="eda1.html#cb7-9"></a>                                  <span class="dt">to =</span> <span class="dv">1</span>, </span>
-<span id="cb7-10"><a href="eda1.html#cb7-10"></a>                                  <span class="dt">by =</span> <span class="fl">0.1</span>)) <span class="op">+</span></span>
-<span id="cb7-11"><a href="eda1.html#cb7-11"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">label_dollar</span>(<span class="dt">scale =</span> <span class="fl">0.001</span>, </span>
-<span id="cb7-12"><a href="eda1.html#cb7-12"></a>                                                   <span class="dt">prefix =</span> <span class="st">&#39;$&#39;</span>, </span>
-<span id="cb7-13"><a href="eda1.html#cb7-13"></a>                                                   <span class="dt">suffix =</span> <span class="st">&#39;k&#39;</span>),</span>
-<span id="cb7-14"><a href="eda1.html#cb7-14"></a>                     <span class="dt">minor_breaks =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>,</span>
-<span id="cb7-15"><a href="eda1.html#cb7-15"></a>                                        <span class="dt">to =</span> <span class="dv">450000</span>,</span>
-<span id="cb7-16"><a href="eda1.html#cb7-16"></a>                                        <span class="dt">by =</span> <span class="dv">10000</span>))<span class="op">+</span></span>
-<span id="cb7-17"><a href="eda1.html#cb7-17"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">quantile</span>(ordered_salaries<span class="op">$</span>salary),</span>
-<span id="cb7-18"><a href="eda1.html#cb7-18"></a>                                 <span class="dt">y =</span> <span class="kw">rep.int</span>(<span class="op">-</span>.<span class="dv">05</span>, <span class="dv">5</span>),</span>
-<span id="cb7-19"><a href="eda1.html#cb7-19"></a>                                 <span class="dt">xend =</span> <span class="kw">quantile</span>(ordered_salaries<span class="op">$</span>salary),</span>
-<span id="cb7-20"><a href="eda1.html#cb7-20"></a>                                 <span class="dt">yend =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.25</span>)),</span>
-<span id="cb7-21"><a href="eda1.html#cb7-21"></a>               <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">xend =</span> xend, <span class="dt">yend =</span> yend),</span>
-<span id="cb7-22"><a href="eda1.html#cb7-22"></a>               <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb7-23"><a href="eda1.html#cb7-23"></a>               <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
-<span id="cb7-24"><a href="eda1.html#cb7-24"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span>
-<span id="cb7-25"><a href="eda1.html#cb7-25"></a>  <span class="kw">ggsave</span>(<span class="st">&quot;./images/cdf_me_salaries.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="eda1.html#cb188-1"></a><span class="co"># create cumulative fractions </span></span>
+<span id="cb188-2"><a href="eda1.html#cb188-2"></a>ordered_salaries &lt;-<span class="st"> </span>raw_salaries <span class="op">%&gt;%</span></span>
+<span id="cb188-3"><a href="eda1.html#cb188-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(salary) <span class="op">%&gt;%</span></span>
+<span id="cb188-4"><a href="eda1.html#cb188-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(salary <span class="op">&lt;</span><span class="st"> </span><span class="dv">500000</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># to remove numeric identifiers </span></span>
+<span id="cb188-5"><a href="eda1.html#cb188-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(salary) <span class="op">%&gt;%</span></span>
+<span id="cb188-6"><a href="eda1.html#cb188-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">cum_pct =</span> <span class="kw">seq.int</span>(<span class="dt">from =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(salary),</span>
+<span id="cb188-7"><a href="eda1.html#cb188-7"></a>                                  <span class="dt">to =</span> <span class="dv">1</span>, </span>
+<span id="cb188-8"><a href="eda1.html#cb188-8"></a>                                  <span class="dt">by =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(salary))) </span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="eda1.html#cb189-1"></a><span class="co"># alternate method if you don&#39;t want to calculate cumulative fractions</span></span>
+<span id="cb189-2"><a href="eda1.html#cb189-2"></a>ordered_salaries <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb189-3"><a href="eda1.html#cb189-3"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> salary)) <span class="op">+</span></span>
+<span id="cb189-4"><a href="eda1.html#cb189-4"></a><span class="st">  </span><span class="kw">geom_step</span>(<span class="dt">stat =</span> <span class="st">&quot;ecdf&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># &quot;empirical cumulative distribution function&quot;</span></span>
+<span id="cb189-5"><a href="eda1.html#cb189-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Salaries of ME Graduates&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Cumulative Fraction&quot;</span>) <span class="op">+</span></span>
+<span id="cb189-6"><a href="eda1.html#cb189-6"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.05</span>, <span class="fl">1.03</span>), </span>
+<span id="cb189-7"><a href="eda1.html#cb189-7"></a>                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb189-8"><a href="eda1.html#cb189-8"></a>                     <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, </span>
+<span id="cb189-9"><a href="eda1.html#cb189-9"></a>                                  <span class="dt">to =</span> <span class="dv">1</span>, </span>
+<span id="cb189-10"><a href="eda1.html#cb189-10"></a>                                  <span class="dt">by =</span> <span class="fl">0.1</span>)) <span class="op">+</span></span>
+<span id="cb189-11"><a href="eda1.html#cb189-11"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">label_dollar</span>(<span class="dt">scale =</span> <span class="fl">0.001</span>, </span>
+<span id="cb189-12"><a href="eda1.html#cb189-12"></a>                                                   <span class="dt">prefix =</span> <span class="st">&#39;$&#39;</span>, </span>
+<span id="cb189-13"><a href="eda1.html#cb189-13"></a>                                                   <span class="dt">suffix =</span> <span class="st">&#39;k&#39;</span>),</span>
+<span id="cb189-14"><a href="eda1.html#cb189-14"></a>                     <span class="dt">minor_breaks =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>,</span>
+<span id="cb189-15"><a href="eda1.html#cb189-15"></a>                                        <span class="dt">to =</span> <span class="dv">450000</span>,</span>
+<span id="cb189-16"><a href="eda1.html#cb189-16"></a>                                        <span class="dt">by =</span> <span class="dv">10000</span>))<span class="op">+</span></span>
+<span id="cb189-17"><a href="eda1.html#cb189-17"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">quantile</span>(ordered_salaries<span class="op">$</span>salary),</span>
+<span id="cb189-18"><a href="eda1.html#cb189-18"></a>                                 <span class="dt">y =</span> <span class="kw">rep.int</span>(<span class="op">-</span>.<span class="dv">05</span>, <span class="dv">5</span>),</span>
+<span id="cb189-19"><a href="eda1.html#cb189-19"></a>                                 <span class="dt">xend =</span> <span class="kw">quantile</span>(ordered_salaries<span class="op">$</span>salary),</span>
+<span id="cb189-20"><a href="eda1.html#cb189-20"></a>                                 <span class="dt">yend =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.25</span>)),</span>
+<span id="cb189-21"><a href="eda1.html#cb189-21"></a>               <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">xend =</span> xend, <span class="dt">yend =</span> yend),</span>
+<span id="cb189-22"><a href="eda1.html#cb189-22"></a>               <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb189-23"><a href="eda1.html#cb189-23"></a>               <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
+<span id="cb189-24"><a href="eda1.html#cb189-24"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span>
+<span id="cb189-25"><a href="eda1.html#cb189-25"></a>  <span class="kw">ggsave</span>(<span class="st">&quot;./images/cdf_me_salaries.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:cdf-me-salaries"></span>
 <img src="images/cdf_me_salaries.png" alt="Annual Salaries (2017) for US Graduates (all ages) with a Mechanical Engineering Degree" width="500" />
 <p class="caption">
@@ -1085,18 +1087,18 @@ example, we can add a Boxplot layer to Figure <a href="eda1.html#fig:noaa-temp-p
 we can visualize quartiles in addition to the location, dispersion, and shape
 of the raw data. The ability to layer geoms is one of the many strengths of the
 <code>ggplot2</code> package.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="eda1.html#cb8-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> noaa_temp,</span>
-<span id="cb8-2"><a href="eda1.html#cb8-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> temp_hr_f, </span>
-<span id="cb8-3"><a href="eda1.html#cb8-3"></a>                     <span class="dt">y =</span> location, </span>
-<span id="cb8-4"><a href="eda1.html#cb8-4"></a>                     <span class="dt">fill =</span> location)) <span class="op">+</span></span>
-<span id="cb8-5"><a href="eda1.html#cb8-5"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
-<span id="cb8-6"><a href="eda1.html#cb8-6"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.25</span>,</span>
-<span id="cb8-7"><a href="eda1.html#cb8-7"></a>              <span class="dt">alpha =</span> <span class="fl">0.2</span>,</span>
-<span id="cb8-8"><a href="eda1.html#cb8-8"></a>              <span class="dt">shape =</span> <span class="st">&quot;circle filled&quot;</span>,</span>
-<span id="cb8-9"><a href="eda1.html#cb8-9"></a>              <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
-<span id="cb8-10"><a href="eda1.html#cb8-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Region&quot;</span>,</span>
-<span id="cb8-11"><a href="eda1.html#cb8-11"></a>       <span class="dt">x =</span> <span class="st">&quot;Temperature (°F)&quot;</span>) <span class="op">+</span></span>
-<span id="cb8-12"><a href="eda1.html#cb8-12"></a><span class="st">  </span><span class="kw">theme_bw</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="eda1.html#cb190-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> noaa_temp,</span>
+<span id="cb190-2"><a href="eda1.html#cb190-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> temp_hr_f, </span>
+<span id="cb190-3"><a href="eda1.html#cb190-3"></a>                     <span class="dt">y =</span> location, </span>
+<span id="cb190-4"><a href="eda1.html#cb190-4"></a>                     <span class="dt">fill =</span> location)) <span class="op">+</span></span>
+<span id="cb190-5"><a href="eda1.html#cb190-5"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb190-6"><a href="eda1.html#cb190-6"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.25</span>,</span>
+<span id="cb190-7"><a href="eda1.html#cb190-7"></a>              <span class="dt">alpha =</span> <span class="fl">0.2</span>,</span>
+<span id="cb190-8"><a href="eda1.html#cb190-8"></a>              <span class="dt">shape =</span> <span class="st">&quot;circle filled&quot;</span>,</span>
+<span id="cb190-9"><a href="eda1.html#cb190-9"></a>              <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
+<span id="cb190-10"><a href="eda1.html#cb190-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Region&quot;</span>,</span>
+<span id="cb190-11"><a href="eda1.html#cb190-11"></a>       <span class="dt">x =</span> <span class="st">&quot;Temperature (°F)&quot;</span>) <span class="op">+</span></span>
+<span id="cb190-12"><a href="eda1.html#cb190-12"></a><span class="st">  </span><span class="kw">theme_bw</span>() </span></code></pre></div>
 <div class="figure"><span id="fig:noaa-box-2"></span>
 <img src="05-univar_eda_files/figure-html/noaa-box-2-1.png" alt="Boxplots of hourly temperatures in CO and HI for July, 2010" width="672" />
 <p class="caption">
@@ -1194,15 +1196,15 @@ plots (<em>sigh</em>), but there are simple alternatives.</p>
 time, wherein each unit of time represents the duration of a single lag. Here,
 the y-axis represents the Pearson correlation coefficient and the x-axis
 represents time lags for the basic unit of time in which the data are arranged.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="eda1.html#cb9-1"></a><span class="co"># subset data to contain only measures from Hawaii</span></span>
-<span id="cb9-2"><a href="eda1.html#cb9-2"></a>noaa_temp_hi &lt;-<span class="st"> </span>noaa_temp <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb9-3"><a href="eda1.html#cb9-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(location <span class="op">==</span><span class="st"> &quot;Hawaii&quot;</span>)</span>
-<span id="cb9-4"><a href="eda1.html#cb9-4"></a></span>
-<span id="cb9-5"><a href="eda1.html#cb9-5"></a><span class="co"># call the autocorrelation plot from base R `stats` package</span></span>
-<span id="cb9-6"><a href="eda1.html#cb9-6"></a>stats<span class="op">::</span><span class="kw">acf</span>(noaa_temp_hi<span class="op">$</span>temp_hr_f,</span>
-<span id="cb9-7"><a href="eda1.html#cb9-7"></a>           <span class="dt">main =</span> <span class="st">&quot; &quot;</span> ,</span>
-<span id="cb9-8"><a href="eda1.html#cb9-8"></a>           <span class="dt">xlab =</span> <span class="st">&quot;Lag (hours)&quot;</span>,</span>
-<span id="cb9-9"><a href="eda1.html#cb9-9"></a>           <span class="dt">ylab =</span> <span class="st">&quot;Correlation coefficient&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="eda1.html#cb191-1"></a><span class="co"># subset data to contain only measures from Hawaii</span></span>
+<span id="cb191-2"><a href="eda1.html#cb191-2"></a>noaa_temp_hi &lt;-<span class="st"> </span>noaa_temp <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb191-3"><a href="eda1.html#cb191-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(location <span class="op">==</span><span class="st"> &quot;Hawaii&quot;</span>)</span>
+<span id="cb191-4"><a href="eda1.html#cb191-4"></a></span>
+<span id="cb191-5"><a href="eda1.html#cb191-5"></a><span class="co"># call the autocorrelation plot from base R `stats` package</span></span>
+<span id="cb191-6"><a href="eda1.html#cb191-6"></a>stats<span class="op">::</span><span class="kw">acf</span>(noaa_temp_hi<span class="op">$</span>temp_hr_f,</span>
+<span id="cb191-7"><a href="eda1.html#cb191-7"></a>           <span class="dt">main =</span> <span class="st">&quot; &quot;</span> ,</span>
+<span id="cb191-8"><a href="eda1.html#cb191-8"></a>           <span class="dt">xlab =</span> <span class="st">&quot;Lag (hours)&quot;</span>,</span>
+<span id="cb191-9"><a href="eda1.html#cb191-9"></a>           <span class="dt">ylab =</span> <span class="st">&quot;Correlation coefficient&quot;</span>) </span></code></pre></div>
 <p><img src="05-univar_eda_files/figure-html/acf-plot-1.png" width="672" /></p>
 <p>The plot suggests a <strong>fairly strong level of autocorrelation</strong> in these
 temperature data. We should not be surprised, especially after seeing the time
@@ -1224,11 +1226,11 @@ at 24-hr lags?</p>
 coefficient (<em>r</em>) between all timepoints (x<sub>i</sub>) and their lags (x<sub>i+n</sub>) after
 accounting for autocorrelation for all previous lags.</p>
 <p>The partial autocorrelation plot can help you decide: <em>how far out in time should I go in order to assume that measurement (x<sub>i</sub>) is independent from (x<sub>i+n</sub>)?</em></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="eda1.html#cb10-1"></a><span class="co"># create partial autocorrelation plot</span></span>
-<span id="cb10-2"><a href="eda1.html#cb10-2"></a>stats<span class="op">::</span><span class="kw">pacf</span>(noaa_temp_hi<span class="op">$</span>temp_hr_f,</span>
-<span id="cb10-3"><a href="eda1.html#cb10-3"></a>            <span class="dt">main =</span> <span class="st">&quot; &quot;</span>,</span>
-<span id="cb10-4"><a href="eda1.html#cb10-4"></a>            <span class="dt">xlab =</span> <span class="st">&quot;Lag (hours)&quot;</span>,</span>
-<span id="cb10-5"><a href="eda1.html#cb10-5"></a>            <span class="dt">ylab =</span> <span class="st">&quot;Partial Correlation Coefficient&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="eda1.html#cb192-1"></a><span class="co"># create partial autocorrelation plot</span></span>
+<span id="cb192-2"><a href="eda1.html#cb192-2"></a>stats<span class="op">::</span><span class="kw">pacf</span>(noaa_temp_hi<span class="op">$</span>temp_hr_f,</span>
+<span id="cb192-3"><a href="eda1.html#cb192-3"></a>            <span class="dt">main =</span> <span class="st">&quot; &quot;</span>,</span>
+<span id="cb192-4"><a href="eda1.html#cb192-4"></a>            <span class="dt">xlab =</span> <span class="st">&quot;Lag (hours)&quot;</span>,</span>
+<span id="cb192-5"><a href="eda1.html#cb192-5"></a>            <span class="dt">ylab =</span> <span class="st">&quot;Partial Correlation Coefficient&quot;</span>) </span></code></pre></div>
 <p><img src="05-univar_eda_files/figure-html/pacf-plot-1.png" width="672" /></p>
 <p>In this case, after a 2-hr lag, the data loses most autocorrelation, except for
 some periodicity around 12- and 24-hr lags.</p>
