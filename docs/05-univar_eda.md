@@ -878,14 +878,6 @@ For example, here is a "3-plot" for the ME Salary data originally shown in Figur
 ## Chapter 5 Homework 
 
 You will continue to work with the ozone measurement data introduced in the 
-previous chapters. You will also use data we randomly generated in R.
-
-On Canvas, download the R Markdown template (.Rmd). Save the data and template
-files in your local R Project in the `/data` and  `/homework` folders,
-respectively. You should already have the ozone data (.csv) saved in your
-`/data` folder, but you need to download and save the other data.
-
-This homework assignment is due at the start of the class when we begin Chapter
-6. We will look for the R Markdown file and the corresponding knitted PDF or
-HTML document within your `/homework` file. Your work will be considered late 
-if the latest knit occurs after the deadline.
+previous chapters. Download the R Markdown template from Canvas. This homework
+assignment is due at the start of the class when we begin Chapter 6. Your work
+will be considered late if the latest knit occurs after the deadline.
