@@ -143,6 +143,8 @@ noaa_temp <- readr::read_csv("data/NOAA_temps2.csv") %>%
     stringr::str_detect(station, "23066") ~ "Colorado",
     stringr::str_detect(station, "22536") ~ "Hawaii")) %>%
   dplyr::select(station, location, date, temp_hr_f) # year missing from date
+
+readr::write_csv("/data/NOAA_temps_cleaned.csv")
 ```
 
 ``` {r noaa-temp-ggplot, message=FALSE, include=FALSE}

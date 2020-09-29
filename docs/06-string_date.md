@@ -11,8 +11,9 @@ This Chapter is designed around the following learning objectives. Upon completi
 - Define the meaning of "strings" and "date time" objects in R
 - Manipulate character strings using the `stringr` and `tidyr` packages of functions
 - Parse strings using regular expressions (regex)
-- Describe how R stores the POSIXct date and time object internally
-- Convert a column to a date format using functions from the `lubridate` package
+- Describe how R stores a POSIXct date and time object internally
+- Convert a character vector to a date format using functions from the
+`lubridate` package
 - Extract information from a date object (e.g., month, year, day of week) using `lubridate` functions
 - Search, organize, and visualize data that are linked to date objects
 - Apply functions from the `dplyr` and `tidyr` packages to make data frames "tidy"
@@ -59,7 +60,7 @@ class(names_respond)
 ## [1] "character"
 ```
     
-The first step in analyzing a string is to parse it. **To parse means to examine the individual components.** For example, when you read this sentence you parse out the words and then assign meaning to those words based on your memory, your understanding of grammar, and the context in which those words occur (i.e., whether you are reading an instruction manual, a text message, a novel, or a warrant for your arrest). Strings can be challenging to analyze because computers are built on logical operations and mathematics; strings are neither of those. Computers have fantastic memory, are OK at grammar, and are comically poor at contextualization. Taken together, this means that strings can be challenging (but not impossible) to analyze using computers. 
+The first step in analyzing a string is to parse it. **To parse means to examine the individual components.** For example, when you read this sentence you parse out the words and then assign meaning to those words based on your memory, your understanding of grammar, and the context in which those words occur. Context is often critical to understanding because the meaning of words can change from one context to the next (i.e., whether you are reading an instruction manual, a text message, a novel, or a warrant for your arrest). Strings can be challenging to analyze because computers are built on logical operations and mathematics; strings are neither of those. Computers have fantastic memory, are OK at grammar, and are comically poor at contextualization. Taken together, this means that strings can be challenging (but not impossible) to analyze using computers. 
 
 <div class="rmdnote">
 <p>Are you active on social media platforms like Instagram or Twitter? You can bet that a computer program has downloaded and parsed all of your posts, each one as a string. You can learn a lot about a person (and their buying habits) from what they post online!</p>
@@ -76,7 +77,8 @@ One of the simplest string operations is to search whether a string contains a p
   
 
 ```r
-str_detect(string = names_respond, pattern = "Josh")
+str_detect(string = names_respond, 
+           pattern = "Josh")
 ```
 
 ```
@@ -129,7 +131,7 @@ str_subset(string = names_respond, pattern = "li")
 ## [1] "William" "Ali"
 ```
   
-To note, there are `{base}` R versions of all these stringr functions.  Most are performed with the `grep` family of functions. The term *"grep"* is an acronym for **<u>G</u>lobal <u>R</u>egular <u>E</u>xpression <u>P</u>attern** (more on *regular expressions* below).  Many of "old-school" coders use this family of functions (meaning: you will encounter them in the wild), so it's worth mentioning them.
+To note, there are `{base}` R versions of all these `stringr::` functions.  Most are performed with the `grep` family of functions. The term *"grep"* is an acronym for **<u>G</u>lobal <u>R</u>egular <u>E</u>xpression <u>P</u>attern** (more on *regular expressions* below).  Many "old-school" coders use this family of functions (meaning: you will encounter them in the wild), so it's worth knowing them.
 
 <table>
  <thead>
@@ -226,7 +228,10 @@ One challenging aspect of string searching in R, however, is that certain "speci
 
 ### String split, replace
   
-  `str_split()` will split a string into two (or more) pieces when a match is detected. The string will always be split at the first match and again at each additional match location, unless you specify that only a finite number of `n` matches should occur.  Note, the string is split on each side of the match, which itself is not included in the output.
+  `str_split()` will split a string into two (or more) pieces when a match is detected. The string will always be split at the first match and again at each additional match location, unless you specify that only a finite number of `n` matches should occur.  A couple points to note:  
+  
+  - `str_split()` splits on each side of the match, which itself is not included in the output.
+  - because both sides of the split string are returned, your output will take the form of a `list`.
   
 
 ```r
@@ -259,7 +264,7 @@ str_split(string = names_respond, pattern = "t")
 ## [1] "John"
 ```
   
-  `str_replace()` searches for a match and then replaces the matched value with a new string of your choosing.  The function takes three arguments: the `string` to be searched, the `pattern` to match, and the `replacement` string to be inserted. Let's replace the first period detected in each of hte `q1_responses` strings with a question marks.  Both `.` and `?` are *special characters* so we need to *"escape"* each of these symbols with two backslashes `\\`.
+  `str_replace()` searches for a match and then replaces the matched value with a new string of your choosing.  The function takes three arguments: the `string` to be searched, the `pattern` to match, and the `replacement` string to be inserted. Let's replace the first period detected in each of the `q1_responses` strings with a question mark.  Both `.` and `?` are *special characters* so we need to *"escape"* each of these symbols with two backslashes `\\`.
   
 
 ```r
@@ -279,15 +284,19 @@ str_replace(string = q1_responses,
 ## [8] "I could ask you the same question?"
 ```
 
-Note that `str_replace()` 
+The `str_replace()` family of functions is useful for cleaning up misspellings (or other unwanted language) in strings. Note, however, that `str_replace()` will normally replace only one instance of a match; use `str_repalce_all()` if you plan to encounter multiple matches that need replacing.
+
+<div class="rmdtip">
+<p>The <code>pattern =</code> argument for matching can be a single string or a vector of strings. In the latter case, you can define a vector of <em>keywords</em> that you might be searching for across sentences. In that case, use <code>pattern = c("pattern_1", "pattern_2", "pattern_3", ...etc)</code>.</p>
+</div>
 
 ## Dates and Date-times
 
-To begin, we discuss how `{base}` R code  handles dates and times, since there is a ton of code out there that utilizes these older functions. We will then quickly transition to the `lubridate` family of functions (part of the Tidyverse) because of their versatility and ease-of-use.  
+Working with dates and times can be challenging.  This section begins with a discussion of how `{base} R` handles dates and times, since there is a ton of code out there that utilizes these older functions. We will then quickly transition to the `lubridate::` family of functions (part of the Tidyverse) because of their versatility and ease-of-use.  
 
 ### Dates and Times in base R
 
-Dates and times in base R all proceed from an *"epoch"* or *time origin*.  In R, the *epoch* or "dawn of time" occurred at midnight on January 1^st^, 1970.  For the sake of the R programming world, the concept of time started at that precise moment and has moved forward ever since.  To note: R can handle date-times before 1/1/1970; it just treats them as negative values!  
+Dates and times in base R all proceed from an *"epoch"* or *time origin*.  In R, the *epoch* or "dawn of time" occurred at midnight on January 1^st^, 1970.  For the sake of the R programming world, the concept of time started at that precise moment and has moved forward ever since. To note: R can handle date-times before 1/1/1970; it just treats them as negative values!  
 
 To see a date-time object, you can tell R to give you the current "System Time" by calling the `Sys.time()` function.
 
@@ -297,9 +306,9 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-09-28 11:05:20 MDT"
+## [1] "2020-09-28 18:17:47 MDT"
 ```
-As you can see, we got back the date, time, and current timezone used by my computer.  If you want to see how this time is stored in R internally, you can use `unclass()`, which returns an object value with its class attributes removed.  When we wrap `unclass()` around `Sys.time()`, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:
+As you can see, we got back the date, time, and timezone used by my computer (*whenever I last ran this code in `bookdown::`*).  If you want to see how this time is stored in R internally, you can use `unclass()`, which returns an object value with its class attributes removed.  When we wrap `unclass()` around `Sys.time()`, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:
 
 
 ```r
@@ -307,15 +316,15 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1601312721
+## [1] 1601338667
 ```
 
 That's a lot of seconds.  How many years is that?  
-Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] ~ 50.7772933 years.  
+Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] => 50.778116 years.  
 This calculation ignores leap years but you get the point...
 
 ### Date-time formats
-Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-09-28 11:05:20
+Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-09-28 18:17:47
 
 Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky.  You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:
 
@@ -326,7 +335,7 @@ Not everyone uses this exact ordering when they record dates and times, which is
    <td style="text-align:left;"> 12/1/99 8:46 PM </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 1-Dec-1999 20: UTC </td>
+   <td style="text-align:left;"> 1-Dec-1999 20:46 UTC </td>
   </tr>
   <tr>
    <td style="text-align:left;"> December 1st, 1999, 20:46:00 </td>
@@ -336,7 +345,8 @@ Not everyone uses this exact ordering when they record dates and times, which is
 
 <div class="rmdnote">
 <p>You will often see time referenced with a <strong>“UTC”</strong>, which stands for <em>“Universal Time, Coordinated”</em>. UTC is preferred by programmers because it doesn’t have a timezone and it doesn’t follow <em>Daylight Savings Time</em> conventions (daylight savings is the bane of many coders).</p>
-<p>In practice, UTC is the same time as GMT (Greenwich Mean Time, pronounced “gren-itch”) but with an important distinction. GMT is one of the many <a href="https://wikipedia.org/wiki/List_of_tz_database_time_zones">time-zones</a> laid out across Earth’s longitude, whereas, <strong>UTC has no time zone</strong>.</p>
+<p>In practice, UTC is the same time as GMT (Greenwich Mean Time, pronounced “gren-itch”) but with an important distinction. GMT is one of the many <a href="https://wikipedia.org/wiki/List_of_tz_database_time_zones">time-zones</a> laid out across Earth’s longitude, whereas, <strong>UTC has no time zone</strong>; UTC is the same time for everyone, everywhere.</p>
+<p>In Colorado, we are UTC-6 hours during <em>daylight savings</em> (March-Nov) and UTC-7 during <em>standard time</em> (Nov-March). This means that most Coloradoan’s eat dinner at 12am UTC (6pm MST).</p>
 </div>
 
 ### Date-time classes in R
@@ -419,7 +429,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1601312721
+## [1] 1601338667
 ```
 
 
@@ -430,9 +440,9 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 20.8
-##  $ min   : int 5
-##  $ hour  : int 11
+##  $ sec   : num 47.1
+##  $ min   : int 17
+##  $ hour  : int 18
 ##  $ mday  : int 28
 ##  $ mon   : int 8
 ##  $ year  : int 120
@@ -456,7 +466,7 @@ Date-time elements can be tricky to work with for a few reasons:
 
 The `{base}` R function to convert between `character` classes and `date-time` classes is the function `strptime()`, which is short for *"**str**ing **p**arse into date-**time**"*. I mention this function not because I encourage you to use it but because I want you to be able to recognize it.  The function has over 39 conversion specifications that it can take as arguments.  That is to say, this function not simple to master.  If you are a glutton for punishment, I invite you to read the R Documentation `?strptime`.
 
-In **summary** here are a few `{base}` R functions on date-time object that are worth knowing:
+Here are a few `{base}` R functions for working with date-time objects that are worth knowing:
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>(\#tab:base-r-times)Basic Date-time functions</caption>
@@ -507,7 +517,7 @@ The `lubridate` package was developed specifically to make life easier when work
 ### `Lubridate` Parsing Functions
 One of best aspects of `lubridate` is its ability to parse date-time objects with simplicity and ease; the `lubridate` parsing functions are designed as "named-to-order". Let me explain:  
 
-> <span style="color: purple;"> **Parse**: ***to break apart and analyze the individual components*** (of something, like a character string) </span>
+> <span style="color: blue;"> **Parse**: ***to break apart and analyze the individual components*** (of something, like a character string). </span>
 
 * If a character vector is written in "**y**ear-**m**onth-**d**ay" format (i.e., `"2020-Dec-18"`), then the `lubridate` function to convert that vector is `ymd()`.
 
