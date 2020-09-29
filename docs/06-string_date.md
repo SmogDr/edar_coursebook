@@ -68,7 +68,7 @@ The first step in analyzing a string is to parse it. **To parse means to examine
 
 In this chapter, we will introduce a few simple string functions from `{base}` R and the `stringr` package. We will also introduce the concept of **regular expressions** as a means to perform more advanced string manipulation.
 
-<img src="./images/parse_comic.png" style="display: block; margin: auto;" />
+<img src="./images/parse_comic.png" width="1000" style="display: block; margin: auto;" />
 
 ### String detect, match, subset
 One of the simplest string operations is to search whether a string contains a pattern of interest. The `stringr` package (part of the [Tidyverse](https://stringr.tidyverse.org/)) was developed to simplify the analysis of strings. Most of the functions in `stringr` begin with `str_` and end with a specific function name. A full list of functions is provided [here](https://stringr.tidyverse.org/reference/index.html). Some examples:  
@@ -306,11 +306,7 @@ Sys.time()
 ```
 
 ```
-<<<<<<< HEAD
-## [1] "2020-09-28 18:17:47 MDT"
-=======
-## [1] "2020-09-28 11:41:39 MDT"
->>>>>>> 094d8d30db53172014233ac90cc5fdf2a105be4f
+## [1] "2020-09-29 09:04:45 MDT"
 ```
 As you can see, we got back the date, time, and timezone used by my computer (*whenever I last ran this code in `bookdown::`*).  If you want to see how this time is stored in R internally, you can use `unclass()`, which returns an object value with its class attributes removed.  When we wrap `unclass()` around `Sys.time()`, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:
 
@@ -320,27 +316,15 @@ unclass(Sys.time())
 ```
 
 ```
-<<<<<<< HEAD
-## [1] 1601338667
+## [1] 1601391885
 ```
 
 That's a lot of seconds.  How many years is that?  
-Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] => 50.778116 years.  
+Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] => 50.7798036 years.  
 This calculation ignores leap years but you get the point...
 
 ### Date-time formats
-Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-09-28 18:17:47
-=======
-## [1] 1601314900
-```
-
-That's a lot of seconds.  How many years is that?  
-Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] ~ 50.7773624 years.  
-This calculation ignores leap years but you get the point...
-
-### Date-time formats
-Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-09-28 11:41:39
->>>>>>> 094d8d30db53172014233ac90cc5fdf2a105be4f
+Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-09-29 09:04:45
 
 Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky.  You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:
 
@@ -445,11 +429,7 @@ unclass(time_now_ct)
 ```
 
 ```
-<<<<<<< HEAD
-## [1] 1601338667
-=======
-## [1] 1601314901
->>>>>>> 094d8d30db53172014233ac90cc5fdf2a105be4f
+## [1] 1601391885
 ```
 
 
@@ -460,20 +440,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-<<<<<<< HEAD
-##  $ sec   : num 47.1
-##  $ min   : int 17
-##  $ hour  : int 18
-=======
-##  $ sec   : num 40.5
-##  $ min   : int 41
-##  $ hour  : int 11
->>>>>>> 094d8d30db53172014233ac90cc5fdf2a105be4f
-##  $ mday  : int 28
+##  $ sec   : num 45.3
+##  $ min   : int 4
+##  $ hour  : int 9
+##  $ mday  : int 29
 ##  $ mon   : int 8
 ##  $ year  : int 120
-##  $ wday  : int 1
-##  $ yday  : int 271
+##  $ wday  : int 2
+##  $ yday  : int 272
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
@@ -594,7 +568,7 @@ ymd(messy_dates)
 ## [6] "2020-12-12" "2020-12-12"
 ```
 
-That's right.  The `ymd()` parsing function figured them all out correctly with almost no effort on your part.  But wait, there's more!  The `lubridate` package contains parsing functions for almost any order you can dream up.  
+Boom.  That's right, the `ymd()` parsing function figured them all out correctly with almost no effort on your part.  But wait, there's more!  The `lubridate` package contains parsing functions for almost any order you can dream up.  
 
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
  <thead>
@@ -693,8 +667,8 @@ dataset covers:
 # report the min and max dates
 range(daily_show$date)
 
-# calculate the duration from first to last date
-diff(x = range(daily_show$date)) 
+# calculate the duration from first to last date using base
+max(daily_show$date) - min(daily_show$date)
 ```
 
 We could have used these to transform the date in `daily_show`, using the following pipe chain: 
