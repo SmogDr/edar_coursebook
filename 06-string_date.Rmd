@@ -141,15 +141,14 @@ Before going much farther, we should spend some time discussing ***regular expre
 A **regular expression** is a sequence of characters that define a search pattern to be implemented on a string. 
 ```
 
-Regex sequences allow for pattern searching with logical and conditional relations, for example, the following text search patterns can be coded as regex:  
+In the R programming language, regular expressions follow the POSIX 1003.2 standard (regex can have different syntax based on the underlying standard). Regex are created by including search syntax (i.e., symbols that communicate search parameters) within your quoted string. For example, square brackets `[]` in a search pattern indicate a search for *any* of the characters within the brackets (conversely, to match *all* the characters you simply include them in quotes). A key strength of regex patterns is that they allow you to use logical and conditional relations. For example, the following text search patterns can be coded as regex:  
 
-  * "any letter followed by the numbers 3, 4, or 5" ...  [:alpha:][345]
-* "strings beginning with the letters 'ID' and followed by four numbers" ... ^ID[:digit:]{4}
+| Desired Search Pattern | Regex in R |
+|:------------------------|:------------|
+| *any letter followed by the numbers 3, 4, or 5* | "[:alpha:][345]" |
+| *strings that start with 'ID' and are followed by 4 numbers* |  "^ID[:digit:]{4}" |
 
-In the R programming language, regular expressions follow the POSIX 1003.2 standard (regex can have different syntax based on the underlying standard). Regex are created by including search syntax (i.e., symbols that communicate search parameters) within your quoted string. For example, square brackets around a string `[]` indicate a search for *any* of the characters within the brackets (conversely, to match *all* the characters you simply include them in quotes). To search for any digit or whitespace, you would add a `\d` or a `\s` to the regex, respectively.
-
-One challenging aspect of string searching in R, however, is that certain "special characters" like the quote `"` and the backslash `\` symbol must be explicitly identified within string in order to be interpreted by R correctly. To identify these *special characters* in a string, you need to ***"escape"*** that character using a backslash `\`. Thus, if you want to search for a quote symbol, you would type in `\"`.  Whenever a regex requires the use of a `\`, you have to identify it within a string as `\\`.   The table below shows some basic regex syntax and how they would be implemented in an R string.
-
+One challenging aspect of string searching in R, however, is that certain "special characters" like the quote `"` and the backslash `\` symbol must be explicitly identified within the string in order to be interpreted by R correctly. To identify these *special characters* in a string, you need to ***"escape"*** that character using a backslash `\`. Thus, if you want to search for a quote symbol, you would type in `\"`.  Whenever a regex requires the use of a `\`, you have to identify it within a string as `\\`.   The table below shows some basic regex syntax and how they would be implemented as a search pattern in R.
 
 ``` {r regex-1, echo=FALSE}
 table_regex <- tibble(
@@ -161,15 +160,15 @@ table_regex <- tibble(
                     "^b",
                     "$b",
                     "a|b"),
-  match_examples = c("Any digit", 
+  match_examples = c("Any numeric digit", 
                      "matches a, b, or c", 
                      "matches every character between a and z",
                      "matches anything except a, b, or c",
                      "creates a \"capture group\" whereby abc must occur together",
-                     "look for \"b\" at the start of a string",
-                     "look for \"b\" at the end of a string",
+                     "starts with: look for \"b\" at the start of a string",
+                     "ends with: look for \"b\" at the end of a string",
                      "match a or b"),
-  example_code = c("\"\\\\\\\\d\"", 
+  example_code = c("\"\\\\\\\\d\" or \"[:digit:]\"", 
                    "\"[abc]\"", 
                    "\"[a-z]\"", 
                    "\"[^abc]\"",
@@ -183,6 +182,7 @@ knitr::kable(table_regex,
              col.names = c("Regex syntax","String to be matched", "Example in R"),
              caption = "Basic Regex Search Syntax and Example Implementation in R")
 ```
+
 **Regex** sequences have seemingly no end of sophistication and nuance; you could spend dozens of hours learning to use them and hundreds more learning to master them.  We will only introduce basic concepts here.  More in-depth introductions to regex syntax and usage can be found on [H. Wickham's R course](http://r4ds.had.co.nz/strings.html), on the `stringr` [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/strings.pdf) developed by RStudio, and through practice with, my personal favorite, a game of [Regex Golf](https://alf.nu/RegexGolf).
 
 ### String split, replace
@@ -618,7 +618,11 @@ kable_styling(grades_tab3,
 ```
 
 ## Ch-6 Exercises  
-  * Provide link to senators data frame.  Search 
+```{r load-senators}
+
+
+
+```
 
 ## Ch-6 Homework
 

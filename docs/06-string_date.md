@@ -162,15 +162,14 @@ Before going much farther, we should spend some time discussing ***regular expre
 <p>A <strong>regular expression</strong> is a sequence of characters that define a search pattern to be implemented on a string.</p>
 </div>
 
-Regex sequences allow for pattern searching with logical and conditional relations, for example, the following text search patterns can be coded as regex:  
+In the R programming language, regular expressions follow the POSIX 1003.2 standard (regex can have different syntax based on the underlying standard). Regex are created by including search syntax (i.e., symbols that communicate search parameters) within your quoted string. For example, square brackets `[]` in a search pattern indicate a search for *any* of the characters within the brackets (conversely, to match *all* the characters you simply include them in quotes). A key strength of regex patterns is that they allow you to use logical and conditional relations. For example, the following text search patterns can be coded as regex:  
 
-  * "any letter followed by the numbers 3, 4, or 5" ...  [:alpha:][345]
-* "strings beginning with the letters 'ID' and followed by four numbers" ... ^ID[:digit:]{4}
+| Desired Search Pattern | Regex in R |
+|:------------------------|:------------|
+| *any letter followed by the numbers 3, 4, or 5* | "[:alpha:][345]" |
+| *strings that start with 'ID' and are followed by 4 numbers* |  "^ID[:digit:]{4}" |
 
-In the R programming language, regular expressions follow the POSIX 1003.2 standard (regex can have different syntax based on the underlying standard). Regex are created by including search syntax (i.e., symbols that communicate search parameters) within your quoted string. For example, square brackets around a string `[]` indicate a search for *any* of the characters within the brackets (conversely, to match *all* the characters you simply include them in quotes). To search for any digit or whitespace, you would add a `\d` or a `\s` to the regex, respectively.
-
-One challenging aspect of string searching in R, however, is that certain "special characters" like the quote `"` and the backslash `\` symbol must be explicitly identified within string in order to be interpreted by R correctly. To identify these *special characters* in a string, you need to ***"escape"*** that character using a backslash `\`. Thus, if you want to search for a quote symbol, you would type in `\"`.  Whenever a regex requires the use of a `\`, you have to identify it within a string as `\\`.   The table below shows some basic regex syntax and how they would be implemented in an R string.
-
+One challenging aspect of string searching in R, however, is that certain "special characters" like the quote `"` and the backslash `\` symbol must be explicitly identified within the string in order to be interpreted by R correctly. To identify these *special characters* in a string, you need to ***"escape"*** that character using a backslash `\`. Thus, if you want to search for a quote symbol, you would type in `\"`.  Whenever a regex requires the use of a `\`, you have to identify it within a string as `\\`.   The table below shows some basic regex syntax and how they would be implemented as a search pattern in R.
 
 <table>
 <caption>(\#tab:regex-1)Basic Regex Search Syntax and Example Implementation in R</caption>
@@ -184,8 +183,8 @@ One challenging aspect of string searching in R, however, is that certain "speci
 <tbody>
   <tr>
    <td style="text-align:center;"> \\d </td>
-   <td style="text-align:center;"> Any digit </td>
-   <td style="text-align:center;"> &quot;\\\\d&quot; </td>
+   <td style="text-align:center;"> Any numeric digit </td>
+   <td style="text-align:center;"> &quot;\\\\d&quot; or &quot;[:digit:]&quot; </td>
   </tr>
   <tr>
    <td style="text-align:center;"> [abc] </td>
@@ -209,12 +208,12 @@ One challenging aspect of string searching in R, however, is that certain "speci
   </tr>
   <tr>
    <td style="text-align:center;"> ^b </td>
-   <td style="text-align:center;"> look for &quot;b&quot; at the start of a string </td>
+   <td style="text-align:center;"> starts with: look for &quot;b&quot; at the start of a string </td>
    <td style="text-align:center;"> &quot;\^b&quot; </td>
   </tr>
   <tr>
    <td style="text-align:center;"> $b </td>
-   <td style="text-align:center;"> look for &quot;b&quot; at the end of a string </td>
+   <td style="text-align:center;"> ends with: look for &quot;b&quot; at the end of a string </td>
    <td style="text-align:center;"> &quot;\$b&quot; </td>
   </tr>
   <tr>
@@ -224,6 +223,7 @@ One challenging aspect of string searching in R, however, is that certain "speci
   </tr>
 </tbody>
 </table>
+
 **Regex** sequences have seemingly no end of sophistication and nuance; you could spend dozens of hours learning to use them and hundreds more learning to master them.  We will only introduce basic concepts here.  More in-depth introductions to regex syntax and usage can be found on [H. Wickham's R course](http://r4ds.had.co.nz/strings.html), on the `stringr` [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/strings.pdf) developed by RStudio, and through practice with, my personal favorite, a game of [Regex Golf](https://alf.nu/RegexGolf).
 
 ### String split, replace
@@ -306,7 +306,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-09-29 09:04:45 MDT"
+## [1] "2020-09-30 17:37:48 MDT"
 ```
 As you can see, we got back the date, time, and timezone used by my computer (*whenever I last ran this code in `bookdown::`*).  If you want to see how this time is stored in R internally, you can use `unclass()`, which returns an object value with its class attributes removed.  When we wrap `unclass()` around `Sys.time()`, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:
 
@@ -316,15 +316,15 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1601391885
+## [1] 1601509069
 ```
 
 That's a lot of seconds.  How many years is that?  
-Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] => 50.7798036 years.  
+Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] => 50.7835194 years.  
 This calculation ignores leap years but you get the point...
 
 ### Date-time formats
-Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-09-29 09:04:45
+Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-09-30 17:37:48
 
 Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky.  You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:
 
@@ -429,7 +429,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1601391885
+## [1] 1601509069
 ```
 
 
@@ -440,14 +440,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 45.3
-##  $ min   : int 4
-##  $ hour  : int 9
-##  $ mday  : int 29
+##  $ sec   : num 48.6
+##  $ min   : int 37
+##  $ hour  : int 17
+##  $ mday  : int 30
 ##  $ mon   : int 8
 ##  $ year  : int 120
-##  $ wday  : int 2
-##  $ yday  : int 272
+##  $ wday  : int 3
+##  $ yday  : int 273
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
@@ -948,7 +948,7 @@ tidygrades <- pivot_longer(data = grades_untidy,
 </table>
 
 ## Ch-6 Exercises  
-  * Provide link to senators data frame.  Search 
+
 
 ## Ch-6 Homework
 
