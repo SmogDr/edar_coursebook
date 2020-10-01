@@ -424,16 +424,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="bivariate" class="section level2">
 <h2><span class="header-section-number">7.2</span> Bivariate Data</h2>
-<p>Whereas univariate data analyses are directed at “getting to know” the observations made for a single variable, bivariate (and multivariate) analyses are designed to examine the <em>relationship</em> that may exist between two (or more) variables. Like the Chapter on Univariate data, we will focus first on <strong><em>data exploration</em></strong> - a key step towards “getting to know” your data and one that should always proceed inferential statistics or “making conclusions about your data”.</p>
+<p>Whereas univariate data analyses are directed at “getting to know” the observations made for a single variable, bivariate (and multivariate) analyses are designed to examine the <em>relationship</em> that may exist between two (or more) variables. Like the Chapter on <a href="%7B#eda1">Univariate data</a>, we will focus first on <strong><em>data exploration</em></strong> - a key step towards “getting to know” your data and one that should always proceed inferential statistics or <em>making conclusions about your data</em>.</p>
 <div class="rmdnote">
 <p>
-Bivariate means <em>two variables</em> where the observations are paired (i.e., each time an observation is made we sample a value for both variables so that they are linked by place/time/observation).
+Bivariate means <em>two variables</em> where the observations are paired (i.e., each observation samples both variables so that they are linked).
 </p>
 </div>
 </div>
 <div id="scatt" class="section level2">
 <h2><span class="header-section-number">7.3</span> Scatterplot</h2>
-<p>Undoubtedly, you have seen scatterplots many times before but we will give them a formal treatment here. The <strong>scatterplot</strong> allows you to assess the strength, direction, and type of relationship between two variables of interest. This can be important for determining factors like:</p>
+<p>Undoubtedly, you have seen scatterplots many times before; we will give them a formal treatment here. The <strong>scatterplot</strong> allows you to assess the strength, direction, and type of relationship between two variables. This can be important for determining factors like:</p>
 <ul>
 <li>Correlation<br />
 </li>
@@ -441,16 +441,16 @@ Bivariate means <em>two variables</em> where the observations are paired (i.e., 
 </li>
 <li>Performance (of a measurement) in terms of precision, bias, and dynamic range</li>
 </ul>
-<p>Traditionally, a scatterplot shows paired observations of two variables with the <strong><em>dependent variable</em></strong> on the y-axis and the <strong><em>independent variable</em></strong> on the x-axis. Creating a plot in this way means that, before you begin, you must make a judgement call about which variable <em>depends</em> on which. The roots of this terminology/protocol lie in the practice of <em>linear regression</em> and the scientific method, the former of which we will discuss in more detail later. For the purposes of exploratory data analysis, however, it actually doesn’t matter which variable goes on which axis. That said, since we don’t wish to break with tradition, let’s agree to follow the dependent/independent variable guidelines so as not to invoke the wrath of the statistics gods.</p>
+<p>Traditionally, a scatterplot shows paired observations of two variables with the <strong><em>dependent variable</em></strong> on the y-axis and the <strong><em>independent variable</em></strong> on the x-axis. Creating a plot in this way means that, before you begin, you must make a judgement call about which variable <em>depends</em> on which. The roots of this terminology/protocol lie in the practice of <em>linear regression</em> and the scientific method, the former of which we will discuss in more detail later. For the purposes of exploratory data analysis, however, it actually doesn’t matter which variable goes on which axis. That said, since we don’t wish to break with tradition, let’s agree to follow the guidelines on dependent/independent variables so as not to invoke the wrath of the gods.</p>
 <p><strong>Statistics:</strong><br />
-- The independent variable (x-axis) is thought to have some influence/control over the dependent variable (y-axis).</p>
+The independent variable (x-axis) is thought to have some influence/control over the dependent variable (y-axis).</p>
 <p><strong>Scientific Method:</strong><br />
 The experimenter manipulates the control variable (independent, x-axis) and observes the changes in the response variable (dependent, y-axis).</p>
 <p><strong>Exploratory Data Analysis:</strong><br />
-- We throw two variables onto a plot to investigate their relationship. We make a guess about which one is the independent variable (x-axis) and which one is the dependent variable (y-axis) and we hope that nobody calls us out if we got it wrong.</p>
+We throw two variables onto a plot to investigate their relationship. We make a guess about which one is the independent variable (x-axis) and which one is the dependent variable (y-axis) and we hope that nobody calls us out if we got it wrong.</p>
 <div id="causality" class="section level3">
 <h3><span class="header-section-number">7.3.1</span> Causality</h3>
-<p>All this talk about <strong>dependent</strong> and <strong>independent</strong> variables is fundamentally rooted in the practice of <strong><em>causal inference</em></strong> reasoning: the ability to say that “action A” caused “outcome B”. Discovering (and proving) that one thing caused another to happen can be an incredibly powerful event. It leads to the awarding of Nobel Prizes, the creation of new laws and regulations, guilt or innocence in court, the changing and convincing of human minds and behaviors, and simply put: more understanding.</p>
+<p>All this talk about <strong>dependent</strong> and <strong>independent</strong> variables is fundamentally rooted in the practice of <strong><em>causal inference</em></strong> reasoning: the ability to say that “action A” caused “outcome B”. Discovering (or proving) that one thing caused another to happen can be an incredibly powerful event. Proving causality leads to the awarding of Nobel Prizes, the creation of new laws and regulations, the judgment of guilt or innocence in court, the changing and convincing of human minds and behaviors, and simply put: more understanding.</p>
 <p>A full treatment of causal inference reasoning is beyond the scope of this course, but we will, from time to time, delve into this topic. The art of data science can be a beautiful and compelling way to demonstrate causality….but most of us need to learn to crawl before we can walk, run, or fly. For now, let’s put aside the pursuit of causation and begin with <strong><em>correlation</em></strong>.</p>
 </div>
 <div id="corr" class="section level3">
@@ -461,7 +461,7 @@ The experimenter manipulates the control variable (independent, x-axis) and obse
 Correlation: a mutual relationship or connection between two or more things; the process of establishing a relationship or connection between two or more measures.
 </p>
 </div>
-Below are four examples of bivariate data with differing degrees of correlation: perfect, strong, moderate, and none. These are qualitative terms, of course, what is “moderate” to one person may be poor and unacceptable to another. Later on, in the modeling section @ref(#model), we will discuss ways to assess the strength of correlation more quantitatively.
+Below are four examples of bivariate data with differing degrees of correlation: perfect, strong, moderate, and none. These are qualitative terms, of course, what is “moderate” to one person may be poor and unacceptable to another. Later on, in the <a href="model.html#model">modeling section</a>, we will discuss ways to assess the strength of correlation more quantitatively.
 <div class="figure" style="text-align: center"><span id="fig:corr-example-1"></span>
 <img src="images/correlation_example_1.png" alt="Scatterplot examples showing bivariate data with varying degrees of correlation." width="700pt" />
 <p class="caption">
@@ -487,15 +487,15 @@ Figure 7.2: Scatterplot examples showing bivariate data with varying types of co
 Causation: the process or condition by which one event, a cause, contributes to the occurence of another event, the effect. In this process the cause is partly or wholly responsible for the effect.
 </p>
 </div>
-<p>Let’s take a closer look at the dangers of mistaking a <em>correlated</em> relationship as <em>causal</em> relationship between two variables. Shown below is a scatterplot that builds off the <code>mpg</code> dataset we first discussed in Chapter <a href="dataviz.html#dataviz">4</a>. Using the <code>mpg</code> dataframe, we will plot the relationship between the number of cylinders in an engine (<code>cyl</code>, the independent variable) and that vehcile’s fuel economy (<code>hwy</code>, the dependent variable).</p>
+<p>Let’s take a closer look at the dangers of mistaking a <em>correlated</em> relationship as <em>causal</em> relationship between two variables. Shown below is a scatterplot that builds off the <code>mpg</code> dataset we first discussed in Chapter <a href="dataviz.html#dataviz">4</a>. Using the <code>mpg</code> data frame, we will plot the relationship between the number of cylinders in an engine (<code>cyl</code>), the independent variable, and that vehicle’s fuel economy (<code>hwy</code>), the dependent variable).</p>
 <div class="figure" style="text-align: center"><span id="fig:corr-example-3"></span>
 <img src="07-multivar_eda_files/figure-html/corr-example-3-1.png" alt="Scatterplot of Engine Displacement vs. Fuel Economy" width="672" />
 <p class="caption">
 Figure 7.3: Scatterplot of Engine Displacement vs. Fuel Economy
 </p>
 </div>
-<p>Looking at this plot, there appears a clear correlation between the number of cylinders in a vehicle and its fuel efficiency A linear fit through these data gives a Pearson correlation coefficient of -0.76: not a perfect relationship but a significant one nonetheless. Does this mean that a <em>causal relationship</em> exists? If so, then we only need to mandate that all future vehicles on the road be built with 4-cylinder engines, if we want more a fuel-efficient fleet! That mandate, of course, would likely produce minimal effect. Just because two variables are correlated doesn’t mean that a change in one will <strong><em>cause</em></strong> a change in the other.</p>
-<p>Those who understand internal combustion know that the number of cylinders is a design parameter more related to engine power than engine efficiency (i.e., the number of cylinders helps determine total displacement volume). Indeed, the causal relationship for fuel efficiency, in terms of miles traveled per gallon, is due more directly to engine efficiency, vehicle drag coefficient, and vehicle mass. If you want more fuel-efficient cars and trucks, you need more efficient engines that weigh less. Did you know that in the 1990s and early 2000s nearly all engine blocks were made from cast iron? Today, nearly all of them are made from aluminum. Can you guess why?</p>
+<p>Looking at this plot, there appears a clear correlation between the number of cylinders in a vehicle and its fuel efficiency. A linear fit through these data gives a Pearson correlation coefficient of -0.76: not a perfect relationship but a significant one nonetheless. Does this mean that a <em>causal relationship</em> exists? If so, then we only need to mandate that all future vehicles on the road be built with 4-cylinder engines, if we want more a fuel-efficient fleet! That mandate, of course, would likely produce minimal effect. Just because two variables are correlated doesn’t mean that a change in one will <strong><em>cause</em></strong> a change in the other.</p>
+<p>Those who understand internal combustion know that the number of cylinders is a design parameter related more to engine power than to engine efficiency (i.e., the number of cylinders helps determine total displacement volume). Indeed, the causal relationship for fuel efficiency, in terms of miles traveled per gallon, is due more directly to engine conversion efficiency, vehicle drag coefficient, and vehicle mass. If you want more fuel-efficient cars and trucks, you need more efficient engines that weigh less. In the 1990s and early 2000s nearly all engine blocks were made from cast iron. Today, nearly all engine blocks are made from aluminum. Can you guess why?</p>
 <blockquote>
 <p>Did you know that being a smoker is correlated with having a lighter in your pocket? Furthermore, it can be shown that keeping a lighter in your pocket is correlated with an increased risk of developing heart disease and lung cancer. Does this mean lighters in your pocket cause lung cancer?</p>
 </blockquote>
@@ -506,7 +506,7 @@ Figure 7.3: Scatterplot of Engine Displacement vs. Fuel Economy
 <p>With <em>multivariate data</em> we often consider more than just 2 variables of interest; however, visualizing more than 2 variables in a single plot can be challenging. There are advanced statistical approaches to exploring such data (e.g., multivariate regression, principal components, machine learning, etc.), but these techniques are beyond the scope of this course. Here, I will introduce a few graphical techniques that are useful for multivariate data exploration.</p>
 <div id="faceting" class="section level3">
 <h3><span class="header-section-number">7.4.1</span> Faceting</h3>
-<p>One easy way to evaluate two or more variables is to create multiple plots (or facets) through the <code>ggplot2::facet</code> function. This function creates a series of plots, as panels, where each panel represents a different value (or level) of a third variable of interest. For example, let’s create a ggplot2 object from the <code>mtcars</code> data set that explores the relationship between a vehicle’s fuel economy and its weight. First, let’s create a simple bivariate scatterplot of these data (<code>mpg</code> vs. <code>wt</code>) and fit a linear model through the data (note: we haven’t yet discussed modeling but more on <a href="model.html#model">that here</a>).</p>
+<p>One easy way to evaluate two or more variables is to create multiple plots (or facets) through the <code>ggplot2::facet</code> function. This function creates a series of plots, as panels, where each panel represents a different value (or level) of a third variable of interest. For example, let’s create a ggplot2 object from the <code>mtcars</code> data set that explores the relationship between a vehicle’s fuel economy and its weight. First, let’s create a simple bivariate scatterplot of these data (<code>mpg</code> vs. <code>wt</code>) and fit a linear model through the data (note: we haven’t yet discussed modeling but more on <a href="model.html#model">that later</a>).</p>
 <div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="eda2.html#cb237-1"></a><span class="co"># fit a linear model</span></span>
 <span id="cb237-2"><a href="eda2.html#cb237-2"></a>g1_model &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>wt, <span class="dt">data=</span>mtcars)</span>
 <span id="cb237-3"><a href="eda2.html#cb237-3"></a></span>
@@ -524,21 +524,28 @@ Figure 7.3: Scatterplot of Engine Displacement vs. Fuel Economy
 Figure 7.4: Scatterplot of fuel economy vs. vehicle weight from the <code>mtcars</code> dataset.
 </p>
 </div>
-<p>However, looking back at Figure <a href="eda2.html#fig:corr-example-3">7.3</a>, we know that the number of cylinders (<code>cyl</code>) is also associated with fuel efficiency. To examine at these three variables together (<code>mpg</code>, <code>wt</code>, and <code>cyl</code>) we can create a scatterplot that is <em>faceted</em> according to the <code>cyl</code> variable. This is relatively easy to do in <code>ggplot2</code> by adding a <code>facet_grid()</code> layer onto our ggplot object. The key arguments to pass into <code>facet_grid()</code> are:</p>
+<p>However, looking back at Figure <a href="eda2.html#fig:corr-example-3">7.3</a>, we know that the number of cylinders (<code>cyl</code>) is also associated with fuel efficiency and many of the vehicles from <code>mpg</code> have different <code>cyl</code> numbers. To examine these three variables together (<code>mpg</code>, <code>wt</code>, and <code>cyl</code>) we can create a scatterplot that is <em>faceted</em> according to the <code>cyl</code> variable. This is relatively easy to do in <code>ggplot2</code> by adding a <code>facet_grid()</code> layer onto our ggplot object. The key details to pass to <code>facet_grid()</code> are:</p>
 <ol style="list-style-type: decimal">
-<li>Whether we want to facet by <strong>rows</strong> or <strong>columns</strong>, and</li>
+<li>Whether we want to see the facets as <strong>rows</strong> or <strong>columns</strong>, and</li>
 <li>The variable being used to create the facets.</li>
 </ol>
-<p>In our case, column facets probably make the most sense so we would add code, <code>facet_grid(cols = vars(cyl)</code>, to the <code>ggplot2</code> object as follows:</p>
+<p>These two specifications can be made as a single argument to <code>facet_grid()</code> in the form:</p>
+<ul>
+<li><code>facet_grid(rows = vars(variable))</code> or</li>
+<li><code>facet_grid(cols = vars(variable))</code><br />
+where <em>variable</em> is the name of the column vector used to define the facets.</li>
+</ul>
+<p>In this case, seeing the plots in columns seems fine, so we would add:<br />
+<code>facet_grid(cols = vars(cyl)</code>, to the <code>ggplot()</code> object as follows:</p>
 <div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="eda2.html#cb238-1"></a>g1 <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(<span class="dt">cols =</span> <span class="kw">vars</span>(cyl),</span>
-<span id="cb238-2"><a href="eda2.html#cb238-2"></a>                <span class="dt">labeller =</span> label_both) <span class="co">#this code adds names &amp; values to the panel label</span></span></code></pre></div>
+<span id="cb238-2"><a href="eda2.html#cb238-2"></a>                <span class="dt">labeller =</span> label_both) <span class="co">#this code adds names &amp; values each panel label</span></span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:facet-2"></span>
 <img src="07-multivar_eda_files/figure-html/facet-2-1.png" alt="Scatterplots of fuel economy vs. vehicle weight by number of cylinders in the engine (data from the `mtcars` dataset)." width="672" />
 <p class="caption">
 Figure 7.5: Scatterplots of fuel economy vs. vehicle weight by number of cylinders in the engine (data from the <code>mtcars</code> dataset).
 </p>
 </div>
-<p>Interestingly, but perhaps not surprising, we can see that the vehicles with different cylinder numbers tend to have different fuel efficiencies, but even within these facets we still see a relationship between efficiency and vehicle weight.</p>
+<p>Interestingly, but perhaps not surprising, we can see that the vehicles with different cylinder numbers tend to have different fuel efficiency, but even within these facets we still see a relationship between efficiency and vehicle weight. Note also, that the faceting call led to the fitting of three different linear models, one for each facet.</p>
 <p>Here are the same data in a plot that is faceted by rows instead of columns.</p>
 <div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="eda2.html#cb239-1"></a>g1 <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(<span class="dt">rows =</span> <span class="kw">vars</span>(cyl),</span>
 <span id="cb239-2"><a href="eda2.html#cb239-2"></a>                <span class="dt">labeller =</span> label_both)</span></code></pre></div>
@@ -551,8 +558,8 @@ Figure 7.6: Scatterplots of fuel economy vs. vehicle weight by number of cylind
 </div>
 <div id="coloring" class="section level3">
 <h3><span class="header-section-number">7.4.2</span> Coloring</h3>
-<p>We can also use color to indicate variation in data; this can be useful for introducing a third variable into scatterplots and time series plots. Note: when introducing a <strong>color variable</strong> into a plot, you must do so through an <em>aesthetic</em>, such as: <code>geom_point(aes(color = cyl))</code></p>
-<p>Let’s recreate Figure <a href="eda2.html#fig:facet-1">7.4</a> and highlight the <code>cyl</code> variable using difference colors. The addition of color provides us with the same level of insight as did the facets above.</p>
+<p>We can also use color to indicate variation in data; this can be useful for introducing a third variable into scatter and time-series plots. Note: when introducing <strong>color as a variable</strong> into a plot, you must do so through an <em>aesthetic</em>, such as: <code>geom_point(aes(color = cyl))</code>.</p>
+<p>Let’s recreate Figure <a href="eda2.html#fig:facet-1">7.4</a> and highlight the <code>cyl</code> variable using different colors. The addition of color provides us with the same level of insight as did the facets above.</p>
 <div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="eda2.html#cb240-1"></a><span class="co"># instruct R to treat the cyl variable as a factor with discrete levels</span></span>
 <span id="cb240-2"><a href="eda2.html#cb240-2"></a><span class="co"># this, in turn, tells ggplot2 to assign discrete colors to each level</span></span>
 <span id="cb240-3"><a href="eda2.html#cb240-3"></a>mtcars<span class="op">$</span>cyl &lt;-<span class="st"> </span><span class="kw">as.factor</span>(mtcars<span class="op">$</span>cyl)</span>
@@ -583,7 +590,7 @@ When using color, be aware that many people are unable to distinguish red from g
 <span id="cb241-5"><a href="eda2.html#cb241-5"></a>                 <span class="dt">y =</span> mpg, </span>
 <span id="cb241-6"><a href="eda2.html#cb241-6"></a>                 <span class="dt">color =</span> cyl, </span>
 <span id="cb241-7"><a href="eda2.html#cb241-7"></a>                 <span class="dt">shape =</span> cyl)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb241-8"><a href="eda2.html#cb241-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb241-8"><a href="eda2.html#cb241-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">2.5</span>) <span class="op">+</span></span>
 <span id="cb241-9"><a href="eda2.html#cb241-9"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Fuel Economy (mi/gal)&quot;</span>) <span class="op">+</span></span>
 <span id="cb241-10"><a href="eda2.html#cb241-10"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Vehicle Weight, (x1000 lb)&quot;</span>) <span class="op">+</span></span>
 <span id="cb241-11"><a href="eda2.html#cb241-11"></a><span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;sandybrown&quot;</span>, </span>
@@ -598,7 +605,7 @@ Figure 7.8: Vehicle fuel economy vs. weight and colored by number of engine cyl
 </div>
 <div class="rmdtip">
 <p>
-Whenever you use color to differentiate variables, use symbols, too.
+Whenever you use <strong>color</strong> to differentiate variables, use symbols, too.
 </p>
 </div>
 </div>
