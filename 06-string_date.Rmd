@@ -124,7 +124,7 @@ the `str_detect()` search, we will get the cumulative number of matches to
 ```{r string-2b}
 stringr::str_detect(string = names_respond, 
            pattern = "Josh") %>%
-  base::sum()
+  sum()
 ```
 
 In other words, logical functions like `str_detect()` allow us to do math on
@@ -134,7 +134,7 @@ entries within our sample:
 ```{r string-2b}
 stringr::str_detect(string = names_respond, 
                     pattern = "Josh") %>%
-  base::sum() / base::length(names_respond)
+  sum() / length(names_respond)
 ```
 
 2. **`str_extract()`** takes the same arguments as `str_detect()` but returns a vector of the matched values (by string index). By "matched values", I mean only the portion of the string for which the search created a match.
