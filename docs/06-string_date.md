@@ -4,28 +4,32 @@
 
 
 
-## Ch. 6 Objectives
+## Chapter 6 Objectives
 
-This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:  
+This Chapter is designed around the following learning objectives. Upon
+completing this Chapter, you should be able to:  
 
 - Define the meaning of "strings" and "date time" objects in R
 - Manipulate character strings using the `stringr` and `tidyr` packages of functions
-- Parse strings using regular expressions (regex)
+- Parse strings using regular expressions ("regex")
 - Describe how R stores a POSIXct date and time object internally
 - Convert a character vector to a date format using functions from the
-`lubridate` package
+`lubridate` R package
 - Extract information from a date object (e.g., month, year, day of week) using `lubridate` functions
 - Search, organize, and visualize data that are linked to date objects
-- Apply functions from the `dplyr` and `tidyr` packages to make data frames "tidy"
+- Apply functions from the `dplyr` and `tidyr` packages to make dataframes "tidy"
 
 ## Strings {#strings}
-A ***string*** is a character variable like "John", or "blue", or "John's sample 8021A turned blue". 
 
-**String variables are defined in R using quotes `" "`** and stored as a `character` class; they often show up in data analysis in one of two ways:  
+A ***string*** is a character variable like "John", or "blue", or "John's
+sample 8021A turned blue". 
 
-  1. As ***metadata***. Metadata means: "data that describe other data".  A *readme.txt* file is metadata; notes and code comments are metadata - all of these types of data usually come in the form of strings and are included **with the data your are analyzing** but not **in the data set** itself.  
+**String variables are defined in R using quotes `" "`** and stored as a
+`character` class; they often show up in data analysis in one of two ways:  
+
+  1. As ***metadata***. Metadata means: "data that describe other data".  A *readme.txt* file is metadata; notes and code comments are metadata. All of these types of data usually come in the form of strings and are included **with the data your are analyzing** but not **in the dataset** itself.  
   
-  2. As ***vectorized data***.  In R programming, *"vectorized"* means: stored as a     column of data.  Examples of vectorized string variables you might find include things like: "participant names", or "survey responses to question 1", or "mode of failure".  The examples below show how string variables are created in R. 
+  2. As ***vectorized data***.  In R programming, *"vectorized"* means: stored as a column of data. Examples of vectorized string variables you might find include things like: "participant names", or "survey responses to question 1", or "mode of failure". The examples below show how string variables are created in R.
     
 
 ```r
@@ -52,7 +56,7 @@ failure_mode <- c("fracture",
                   "fatigue", 
                   "creep")
 
-#proof
+# proof of vector class
 class(names_respond)
 ```
 
@@ -60,48 +64,77 @@ class(names_respond)
 ## [1] "character"
 ```
     
-The first step in analyzing a string is to parse it. **To parse means to examine the individual components.** For example, when you read this sentence you parse out the words and then assign meaning to those words based on your memory, your understanding of grammar, and the context in which those words occur. Context is often critical to understanding because the meaning of words can change from one context to the next (i.e., whether you are reading an instruction manual, a text message, a novel, or a warrant for your arrest). Strings can be challenging to analyze because computers are built on logical operations and mathematics; strings are neither of those. Computers have fantastic memory, are OK at grammar, and are comically poor at contextualization. Taken together, this means that strings can be challenging (but not impossible) to analyze using computers. 
+The first step in analyzing a string is to parse it. 
+**To parse means to examine the individual components.** For example, when you
+read this sentence you parse out the words and then assign meaning to those
+words based on your memory, your understanding of grammar, and the context in
+which those words occur. Context is often critical to understanding because the
+meaning of words can change from one context to the next (i.e., whether you are
+reading an instruction manual, a text message, a novel, or a warrant for your
+arrest). Strings can be challenging to analyze because computers are built on
+logical operations and mathematics; strings are neither of those. Computers
+have fantastic memory, are OK at grammar, and are comically poor at
+contextualization. Taken together, this means that strings can be challenging
+(but not impossible) to analyze using computers. 
 
 <div class="rmdnote">
 <p>Are you active on social media platforms like Instagram or Twitter? You can bet that a computer program has downloaded and parsed all of your posts, each one as a string. You can learn a lot about a person (and their buying habits) from what they post online!</p>
 </div>
 
-In this chapter, we will introduce a few simple string functions from `{base}` R and the `stringr` package. We will also introduce the concept of **regular expressions** as a means to perform more advanced string manipulation.
+In this chapter, we will introduce a few simple string functions from base R
+and the `stringr` package. We will also introduce the concept of 
+**regular expressions** as a means to perform more advanced string
+manipulation.
 
-<img src="./images/parse_comic.png" width="1000" style="display: block; margin: auto;" />
+<img src="./images/parse_comic.png" style="display: block; margin: auto;" />
 
 ### String detect, match, subset
-One of the simplest string operations is to search whether a string contains a pattern of interest. The `stringr` package (part of the [Tidyverse](https://stringr.tidyverse.org/)) was developed to simplify the analysis of strings. Most of the functions in `stringr` begin with `str_` and end with a specific function name. A full list of functions is provided [here](https://stringr.tidyverse.org/reference/index.html). Some examples:  
 
-  **`str_detect()`** returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the `string` to be searched and the `pattern` to search for.  Let's search for the pattern `"Josh"` in the character vector of strings, `names_respond`, that we created above:
+One of the simplest string operations is to search whether a string contains a
+pattern of interest. The `stringr` package (part of the
+[Tidyverse](https://stringr.tidyverse.org/)) was developed to simplify the
+analysis of strings. Most of the functions in `stringr` begin with `str_` and
+end with a specific function name. A full list of functions is provided
+[here](https://stringr.tidyverse.org/reference/index.html). Some examples:  
+
+1. **`str_detect()`** returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the `string` to be searched and the `pattern` for which to search. Let's search for the pattern `"Josh"` in the character vector of strings, `names_respond`, that we created above:
   
 
 ```r
-str_detect(string = names_respond, 
-           pattern = "Josh")
+stringr::str_detect(string = names_respond, 
+                    pattern = "Josh")
 ```
 
 ```
 ## [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
 ```
+
 As expected, only one string in the vector produced a match.  
 
-An added benefit of logical functions like `str_detect()` is that return values of `TRUE` are coded as 1 and `FALSE` as 0.  Thus, if we `sum()` the result of the `str_detect()` search, we will get the cumulative number of matches to `"Josh"` from within our data.
+An added benefit of logical functions like `str_detect()` is that return values
+of `TRUE` are coded as 1 and `FALSE` as 0.  Thus, if we `sum()` the result of
+the `str_detect()` search, we will get the cumulative number of matches to
+`"Josh"` from within our data.
 
 
 ```r
-str_detect(string = names_respond, pattern = "Josh") %>%
+stringr::str_detect(string = names_respond, 
+           pattern = "Josh") %>%
   sum()
 ```
 
 ```
 ## [1] 1
 ```
-In other words, logical functions like `str_detect()` allow us to do math on string data! For example, we can now calculate the proportion of `"Josh"` entries within our sample:
+
+In other words, logical functions like `str_detect()` allow us to do math on
+string data! For example, we can now calculate the proportion of `"Josh"`
+entries within our sample:
 
 
 ```r
-str_detect(string = names_respond, pattern = "Josh") %>%
+stringr::str_detect(string = names_respond, 
+                    pattern = "Josh") %>%
   sum() / length(names_respond)
 ```
 
@@ -109,29 +142,36 @@ str_detect(string = names_respond, pattern = "Josh") %>%
 ## [1] 0.125
 ```
 
-  **`str_extract()`** takes the same arguments as `str_detect()` but returns a vector of the matched values (by string index). By *"matched values"*, I mean only the portion of the string for which the search created a match.
-  
+2. **`str_extract()`** takes the same arguments as `str_detect()` but returns a vector of the matched values (by string index). By "matched values", I mean only the portion of the string for which the search created a match.
+
 
 ```r
-str_extract(string = names_respond, pattern = "Jo")
+stringr::str_extract(string = names_respond, 
+                     pattern = "Jo")
 ```
 
 ```
 ## [1] NA   "Jo" NA   NA   NA   NA   NA   "Jo"
 ```
 
-  **`str_subset()`** returns only the entries that were matched (i.e., if a match was detected, then the entire string that was matched is returned).  If we subset our short list of names to the pattern of letters `"li"`, we get:
-  
+3. **`str_subset()`** returns only the entries that were matched (i.e., if a match was detected, then the entire string that was matched is returned). If we subset our short list of names to the pattern of letters `"li"`, we get:
+
 
 ```r
-str_subset(string = names_respond, pattern = "li")
+stringr::str_subset(string = names_respond, 
+           pattern = "li")
 ```
 
 ```
 ## [1] "William" "Ali"
 ```
   
-To note, there are `{base}` R versions of all these `stringr::` functions.  Most are performed with the `grep` family of functions. The term *"grep"* is an acronym for **<u>G</u>lobal <u>R</u>egular <u>E</u>xpression <u>P</u>attern** (more on *regular expressions* below).  Many "old-school" coders use this family of functions (meaning: you will encounter them in the wild), so it's worth knowing them.
+To note, there are base R versions of all these `stringr` functions.  Most are
+performed with the `grep` family of functions. The term *"grep"* is an acronym
+for **<u>G</u>lobal <u>R</u>egular <u>E</u>xpression <u>P</u>attern** (more on
+*regular expressions* below).  Many "old-school" coders use this family of
+functions, therefore, you will encounter them in the wild, so it's worth
+knowing about them.
 
 <table>
  <thead>
@@ -155,21 +195,45 @@ To note, there are `{base}` R versions of all these `stringr::` functions.  Most
   </tr>
 </tbody>
 </table>
+
 ### Regular Expressions
-Before going much farther, we should spend some time discussing ***regular expressions*** or **regex** for short. When we pass a `pattern` argument to a function like `str_detect()`, the function treats that argument like a "regex". Up until this point, I have only passed simple character strings as `pattern` arguments (i.e., `pattern = "Josh"`).  In reality, we can create much more advanced search criteria using **regex** syntax within our search patterns. 
+
+Before going much farther, we should spend some time discussing 
+***regular expressions*** or **regex** for short. When we pass a `pattern`
+argument to a function like `str_detect()`, the function treats that argument
+like a "regex". Up until this point, I have only passed simple character
+strings as `pattern` arguments (i.e., `pattern = "Josh"`).  In reality, we can
+create much more advanced search criteria using **regex** syntax within our
+search patterns. 
 
 <div class="rmdnote">
 <p>A <strong>regular expression</strong> is a sequence of characters that define a search pattern to be implemented on a string.</p>
 </div>
 
-In the R programming language, regular expressions follow the POSIX 1003.2 standard (regex can have different syntax based on the underlying standard). Regex are created by including search syntax (i.e., symbols that communicate search parameters) within your quoted string. For example, square brackets `[]` in a search pattern indicate a search for *any* of the characters within the brackets (conversely, to match *all* the characters you simply include them in quotes). A key strength of regex patterns is that they allow you to use logical and conditional relations. For example, the following text search patterns can be coded as regex:  
+In the R programming language, regular expressions follow the POSIX 1003.2
+standard; regex can have different syntax based on the underlying standard.
+Regex are created by including search syntax (i.e., symbols that communicate
+search parameters) within your quoted string. For example, square brackets `[]`
+in a search pattern indicate a search for *any* of the characters within the
+brackets; conversely, to match *all* the characters you simply include them in
+quotes. A key strength of regex patterns is that they allow you to use logical
+and conditional relations. For example, the following text search patterns can
+be coded as regex:  
 
 | Desired Search Pattern | Regex in R |
 |:------------------------|:------------|
 | *any letter followed by the numbers 3, 4, or 5* | "[:alpha:][345]" |
 | *strings that start with 'ID' and are followed by 4 numbers* |  "^ID[:digit:]{4}" |
 
-One challenging aspect of string searching in R, however, is that certain "special characters" like the quote `"` and the backslash `\` symbol must be explicitly identified within the string in order to be interpreted by R correctly. To identify these *special characters* in a string, you need to ***"escape"*** that character using a backslash `\`. Thus, if you want to search for a quote symbol, you would type in `\"`.  Whenever a regex requires the use of a `\`, you have to identify it within a string as `\\`.   The table below shows some basic regex syntax and how they would be implemented as a search pattern in R.
+One challenging aspect of string searching in R, however, is that certain
+"special characters" like the quote `"` and the backslash `\` symbol must be
+explicitly identified within the string in order to be interpreted by R
+correctly. To identify these *special characters* in a string, you need to
+***"escape"*** that character using a backslash `\`. Thus, if you want to
+search for a quote symbol, you would type in `\"`.  Whenever a regex requires
+the use of a `\`, you have to identify it within a string as `\\`.   The table
+below shows some basic regex syntax and how they would be implemented as a
+search pattern in R.
 
 <table>
 <caption>(\#tab:regex-1)Basic Regex Search Syntax and Example Implementation in R</caption>
@@ -224,18 +288,28 @@ One challenging aspect of string searching in R, however, is that certain "speci
 </tbody>
 </table>
 
-**Regex** sequences have seemingly no end of sophistication and nuance; you could spend dozens of hours learning to use them and hundreds more learning to master them.  We will only introduce basic concepts here.  More in-depth introductions to regex syntax and usage can be found on [H. Wickham's R course](http://r4ds.had.co.nz/strings.html), on the `stringr` [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/strings.pdf) developed by RStudio, and through practice with, my personal favorite, a game of [Regex Golf](https://alf.nu/RegexGolf).
+**Regex** sequences have seemingly no end of sophistication and nuance; you
+could spend dozens of hours learning to use them and hundreds more learning to
+master them. We will only introduce basic concepts here.  More in-depth
+introductions to regex syntax and usage can be found on [Hadley Wickham's R course](http://r4ds.had.co.nz/strings.html), 
+on the `stringr` [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/strings.pdf) 
+developed by RStudio, and through practice with, my personal favorite, a game
+of [Regex Golf](https://alf.nu/RegexGolf).
 
 ### String split, replace
   
-  `str_split()` will split a string into two (or more) pieces when a match is detected. The string will always be split at the first match and again at each additional match location, unless you specify that only a finite number of `n` matches should occur.  A couple points to note:  
-  
-  - `str_split()` splits on each side of the match, which itself is not included in the output.
-  - because both sides of the split string are returned, your output will take the form of a `list`.
+`str_split()` will split a string into two (or more) pieces when a match is
+detected. The string will always be split at the first match and again at each
+additional match location, unless you specify that only a finite number of `n`
+matches should occur. A couple points to note:
+
+- `str_split()` splits on each side of the match, which itself is not included in the output.
+
+- because both sides of the split string are returned, your output will take the form of a `list`.
   
 
 ```r
-str_split(string = names_respond, pattern = "t")
+stringr::str_split(string = names_respond, pattern = "t")
 ```
 
 ```
@@ -264,13 +338,19 @@ str_split(string = names_respond, pattern = "t")
 ## [1] "John"
 ```
   
-  `str_replace()` searches for a match and then replaces the matched value with a new string of your choosing.  The function takes three arguments: the `string` to be searched, the `pattern` to match, and the `replacement` string to be inserted. Let's replace the first period detected in each of the `q1_responses` strings with a question mark.  Both `.` and `?` are *special characters* so we need to *"escape"* each of these symbols with two backslashes `\\`.
+`str_replace()` searches for a match and then replaces the matched value
+with a new string of your choosing.  The function takes three arguments: the
+`string` to be searched, the `pattern` to match, and the `replacement`
+string to be inserted. Let's replace the first period detected in each of
+the `q1_responses` strings with a question mark.  Both `.` and `?` are
+*special characters* so we need to *"escape"* each of these symbols with two
+back-slashes `\\`.
   
 
 ```r
-str_replace(string = q1_responses, 
-            pattern = "\\.", 
-            replacement = "\\?")
+stringr::str_replace(string = q1_responses,
+                     pattern = "\\.",
+                     replacement = "\\?")
 ```
 
 ```
@@ -284,7 +364,10 @@ str_replace(string = q1_responses,
 ## [8] "I could ask you the same question?"
 ```
 
-The `str_replace()` family of functions is useful for cleaning up misspellings (or other unwanted language) in strings. Note, however, that `str_replace()` will normally replace only one instance of a match; use `str_repalce_all()` if you plan to encounter multiple matches that need replacing.
+The `str_replace()` family of functions is useful for cleaning up misspellings
+(or other unwanted language) in strings. Note, however, that `str_replace()`
+will normally replace only one instance of a match; use `str_replace_all()` if
+you plan to encounter multiple matches that need replacing.
 
 <div class="rmdtip">
 <p>The <code>pattern =</code> argument for matching can be a single string or a vector of strings. In the latter case, you can define a vector of <em>keywords</em> that you might be searching for across sentences. In that case, use <code>pattern = c("pattern_1", "pattern_2", "pattern_3", ...etc)</code>.</p>
@@ -292,13 +375,22 @@ The `str_replace()` family of functions is useful for cleaning up misspellings (
 
 ## Dates and Date-times
 
-Working with dates and times can be challenging.  This section begins with a discussion of how `{base} R` handles dates and times, since there is a ton of code out there that utilizes these older functions. We will then quickly transition to the `lubridate::` family of functions (part of the Tidyverse) because of their versatility and ease-of-use.  
+Working with dates and times can be challenging. This section begins with a
+discussion of how base R handles dates and times, since there is a ton of code
+out there that utilizes these older functions. We will then quickly transition
+to the `lubridate` family of functions (part of the Tidyverse) because of their
+versatility and ease-of-use.  
 
 ### Dates and Times in base R
 
-Dates and times in base R all proceed from an *"epoch"* or *time origin*.  In R, the *epoch* or "dawn of time" occurred at midnight on January 1^st^, 1970.  For the sake of the R programming world, the concept of time started at that precise moment and has moved forward ever since. To note: R can handle date-times before 1/1/1970; it just treats them as negative values!  
+Dates and times in base R all proceed from an *"epoch"* or *time origin*.  In
+R, the *epoch* or "dawn of time" occurred at midnight on January 1^st^, 1970. 
+For the sake of the R programming world, the concept of time started at that
+precise moment and has moved forward ever since. To note: R can handle
+date-times before 1/1/1970; it just treats them as negative values!  
 
-To see a date-time object, you can tell R to give you the current "System Time" by calling the `Sys.time()` function.
+To see a date-time object, you can tell R to give you the current "System Time"
+by calling the `Sys.time()` function.
 
 
 ```r
@@ -306,9 +398,15 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-10-02 11:41:58 MDT"
+## [1] "2020-10-02 16:31:14 MDT"
 ```
-As you can see, we got back the date, time, and timezone used by my computer (*whenever I last ran this code in `bookdown::`*).  If you want to see how this time is stored in R internally, you can use `unclass()`, which returns an object value with its class attributes removed.  When we wrap `unclass()` around `Sys.time()`, we will see the number of seconds that have occurred between the epoch of 1/1/1970 and right now:
+
+As you can see, we got back the date, time, and timezone used by my computer
+(*whenever I last ran this code in `bookdown`*).  If you want to see how this
+time is stored in R internally, you can use `unclass()`, which returns an
+object value with its class attributes removed.  When we wrap `unclass()`
+around `Sys.time()`, we will see the number of seconds that have occurred
+between the epoch of 1/1/1970 and right now:
 
 
 ```r
@@ -316,17 +414,25 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1601660518
+## [1] 1601677874
 ```
 
 That's a lot of seconds.  How many years is that?  
-Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$ 365d/yr] => 50.7883219 years.  
-This calculation ignores leap years but you get the point...
+Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
+365d/yr] => 50.7888722 years.  
+
+This calculation ignores leap years, but you get the point...
 
 ### Date-time formats
-Note that the `Sys.time()` function provided the date in a ***"year-month-day"*** format and the time in an ***"hour-minute-second"*** format: 2020-10-02 11:41:58
 
-Not everyone uses this exact ordering when they record dates and times, which is one of the reasons working with dates and times can be tricky.  You probably have little difficulty recognizing the following date-time objects as equivalent but not-so-much for some computer programs:
+Note that the `Sys.time()` function provided the date in a
+***"year-month-day"*** format and the time in an ***"hour-minute-second"***
+format: 2020-10-02 16:31:14.
+
+Not everyone uses this exact ordering when they record dates and times, which
+is one of the reasons working with dates and times can be tricky. You probably
+have little difficulty recognizing the following date-time objects as
+equivalent but, for some computer programs, not so much:
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>(\#tab:date-times-1)Date-time objects come in different forms</caption>
@@ -344,18 +450,18 @@ Not everyone uses this exact ordering when they record dates and times, which is
 </table>
 
 <div class="rmdnote">
-<p>You will often see time referenced with a <strong>“UTC”</strong>, which stands for <em>“Universal Time, Coordinated”</em>. UTC is preferred by programmers because it doesn’t have a timezone and it doesn’t follow <em>Daylight Savings Time</em> conventions (daylight savings is the bane of many coders).</p>
-<p>In practice, UTC is the same time as GMT (Greenwich Mean Time, pronounced “gren-itch”) but with an important distinction. GMT is one of the many <a href="https://wikipedia.org/wiki/List_of_tz_database_time_zones">time-zones</a> laid out across Earth’s longitude, whereas, <strong>UTC has no time zone</strong>; UTC is the same time for everyone, everywhere.</p>
-<p>In Colorado, we are UTC-6 hours during <em>daylight savings</em> (March-Nov) and UTC-7 during <em>standard time</em> (Nov-March). This means that most Coloradoan’s eat dinner at 12am UTC (6pm MST).</p>
+<p>You will often see time referenced with a <strong>“UTC”</strong>, which stands for <em>“Universal Time, Coordinated”</em>. UTC is preferred by programmers because it doesn’t have a timezone and it doesn’t follow <em>Daylight Savings Time</em> conventions. Daylight savings is the bane of many coders.</p>
+<p>In practice, UTC is the same time as GMT (Greenwich Mean Time, pronounced “gren-itch”) but with an important distinction. GMT is one of the many <a href="https://wikipedia.org/wiki/List_of_tz_database_time_zones">time-zones</a> laid out across Earth’s longitude, whereas, <strong>UTC has no timezone</strong>; UTC is the same time for everyone, everywhere.</p>
+<p>In Colorado, we are UTC-6 hours during <em>daylight savings</em> (March-Nov) and UTC-7 during <em>standard time</em> (Nov-March). This means that most Coloradoans eat dinner at 12am UTC (6pm MST).</p>
 </div>
 
 ### Date-time classes in R
 
-R has several classes of date-time objects, none of which are easy to remember:  
+R has several classes of date-time objects, none of which are easy to remember:
 
 1. **`POSIXct`** - stored as the time, in seconds, between the `epoch` of 1970-01-01 00:00:00 UTC and the date-time object in question.  
     * the 'ct' stands for *"continuous time"* to represent "continuous seconds from origin";
-    * A `POSIXct` object is a single numeric vector (and so provides for efficient computing).
+    * A `POSIXct` object is a single numeric vector, thus useful for efficient computing.
 2. **`POSIXlt`** - stored as a list of date-time objects.  
     * the 'lt' stands for *"list time"*.
     * A `POSIXlt` list contains the following elements:
@@ -367,8 +473,8 @@ R has several classes of date-time objects, none of which are easy to remember:
       * *year* as Years since 1900
       * *wday* as 0–6 day of the week, starting on Sunday
       * *yday* as 0–365 days of the year.
-      * *isdst* as a flag for Daylight savings time.  Positive if in force, zero if not, negative if unknown.
-3. **`POSIXt`** - this is a virtual class.  `POSIXt` (without the "l") is an internal way for R to convert between `POSIXct` and `POSIXlt` date-time objects.  
+      * *isdst* as a flag for Daylight savings time. Positive if in force, zero if not, negative if unknown.
+3. **`POSIXt`** - this is a virtual class. `POSIXt` (without the "l") is an internal way for R to convert between `POSIXct` and `POSIXlt` date-time objects.  
     * Think of the `POSIXt` as a way for R to perform operations/conversions between a `POSIXct` and `POSIXlt` object without throwing an error your way.
 
 As a reminder, here are some of the most common **vector classes** in R:
@@ -408,7 +514,7 @@ As a reminder, here are some of the most common **vector classes** in R:
 </tbody>
 </table>
 
-To discover the class of a vector (including a column in a dataframe -- remember
+To discover the class of a vector (including a column in a dataframe---remember
 each column can be thought of as a vector), you can use `class()`:
 
 
@@ -420,7 +526,11 @@ class(Sys.time())
 ## [1] "POSIXct" "POSIXt"
 ```
 
-Both the `POSIXct` and `POSIXlt` class of objects return the same value to the user; the difference is really in how these classes store date-time objects internally.  To examine them, you can coerce `Sys.time()` into each of the two classes using `as.POSIXct` and `as.POSIXlt` functions and then examine their attributes.
+Both the `POSIXct` and `POSIXlt` class of objects return the same value to the 
+user; the difference is really in how these classes store date-time objects 
+internally. To examine them, you can coerce `Sys.time()` into each of the two 
+classes using `as.POSIXct` and `as.POSIXlt` functions and then examine their 
+attributes.
 
 
 ```r
@@ -429,7 +539,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1601660518
+## [1] 1601677875
 ```
 
 
@@ -440,9 +550,9 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 58.4
-##  $ min   : int 41
-##  $ hour  : int 11
+##  $ sec   : num 14.6
+##  $ min   : int 31
+##  $ hour  : int 16
 ##  $ mday  : int 2
 ##  $ mon   : int 9
 ##  $ year  : int 120
@@ -453,10 +563,22 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 ##  $ gmtoff: int -21600
 ##  - attr(*, "tzone")= chr [1:3] "" "MST" "MDT"
 ```
-It's easy to see why the `POSIXct` object class is more computationally efficient; but it's also nice to see all the date-time information packed into the `POSIXlt`.  This is why R keeps a key to unlock both using `POSIXt`.  As my father used to say: clear as mud?
+
+It's easy to see why the `POSIXct` object class is more computationally 
+efficient, but it's also nice to see all the date-time information packed into 
+the `POSIXlt`. This is why R keeps a key to unlock both using `POSIXt`.  
+As my father used to say: clear as mud?
 
 ### Reading and classifying date-times
-Oftentimes, when data is read into R, there are column elements that contain date and time information.  These dates and times are often interpreted by R as *character* vectors, which means they have lost their relational attributes (i.e., you cannot subtract "Monday 08:00" from "Wednesday 12:00" and get "2 days 4 hours"). If we want to analyze dates and times in a relational way, we need to instruct R to recognize these as date-time objects (i.e., as either the `POSIXct` or `POSIXlt` class). Thus, to convert a character vector into date or date-time object requires a change of that vector's ***class***.
+
+Oftentimes, when data is read into R, there are column elements that contain 
+date and time information. These dates and times are often interpreted by R 
+as *character* vectors, which means they have lost their relational attributes 
+For example, you cannot subtract "Monday 08:00" from "Wednesday 12:00" and get 
+"2 days 4 hours". If we want to analyze dates and times in a relational way, 
+we need to instruct R to recognize these as date-time objects (i.e., as either 
+the `POSIXct` or `POSIXlt` class). Thus, to convert a character vector into 
+date or date-time object requires a change of that vector's class.
 
 Date-time elements can be tricky to work with for a few reasons:  
 
@@ -464,9 +586,16 @@ Date-time elements can be tricky to work with for a few reasons:
 2. The existence of time zones means that date-time values can change with location
 3. Date-time strings can be separated with spaces, colons, commas, slashes, dashes, or a mix of all those together (see Table \@ref(tab:date-times-1))
 
-The `{base}` R function to convert between `character` classes and `date-time` classes is the function `strptime()`, which is short for *"**str**ing **p**arse into date-**time**"*. I mention this function not because I encourage you to use it but because I want you to be able to recognize it.  The function has over 39 conversion specifications that it can take as arguments.  That is to say, this function not simple to master.  If you are a glutton for punishment, I invite you to read the R Documentation `?strptime`.
+The base R function to convert between `character` classes and `date-time` 
+classes is the function `strptime()`, which is short for 
+*"**str**ing **p**arse into date-**time**"*. I mention this function not because
+I encourage you to use it but because I want you to be able to recognize it. The
+function has over 39 conversion specifications that it can take as arguments. 
+That is to say, this function not simple to master. If you are a glutton for 
+punishment, I invite you to read the R Documentation with `?strptime`.
 
-Here are a few `{base}` R functions for working with date-time objects that are worth knowing:
+Here are a few base R functions for working with date-time objects that are 
+worth knowing:
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>(\#tab:base-r-times)Basic Date-time functions</caption>
@@ -511,24 +640,30 @@ Here are a few `{base}` R functions for working with date-time objects that are 
 </tbody>
 </table>
 
-## `Lubridate` {#lubridate}
-The `lubridate` package was developed specifically to make life easier when working with date-time objects. You can find out more information on `lubridate` [here](https://lubridate.tidyverse.org/).
+## `lubridate` {#lubridate}
 
-### `Lubridate` Parsing Functions
-One of best aspects of `lubridate` is its ability to parse date-time objects with simplicity and ease; the `lubridate` parsing functions are designed as "named-to-order". Let me explain:  
+The `lubridate` package was developed specifically to make it easier to work
+with date-time objects. You can find out more information on `lubridate`
+[here](https://lubridate.tidyverse.org/).
 
-> <span style="color: blue;"> **Parse**: ***to break apart and analyze the individual components*** (of something, like a character string). </span>
+### Parsing functions in `lubridate`
 
-* If a character vector is written in "**y**ear-**m**onth-**d**ay" format (i.e., `"2020-Dec-18"`), then the `lubridate` function to convert that vector is `ymd()`.
+One of best aspects of `lubridate` is its ability to parse date-time objects 
+with simplicity and ease; the `lubridate` parsing functions are designed as 
+"named-to-order". Let me explain:  
 
-* If a character vector is written in "**d**ay-**m**onth-**y**ear" format (i.e., `"18-Dec-2020"`), then the `lubridate` function to convert that vector is `dmy()`.  Try it out:
+> <span style="color: blue;"> **Parse**: ***to break apart and analyze the individual components*** of something, like a character string. </span>
+
+* If a character vector is written in "**y**ear-**m**onth-**d**ay" format (e.g., `"2020-Dec-18"`), then the `lubridate` function to convert that vector is `ymd()`.
+
+* If a character vector is written in "**d**ay-**m**onth-**y**ear" format (e.g., `"18-Dec-2020"`), then the `lubridate` function to convert that vector is `dmy()`.  Try it out:
 
 
 ```r
-#create a character vector
+# create a character vector
 date_old <- "2020-Dec-18"
 
-#prove to yourself it's a character class
+# prove it's a character class
 class(date_old)
 ```
 
@@ -537,10 +672,10 @@ class(date_old)
 ```
 
 ```r
-#convert it to a `Date` class with `ymd()`
-date_new <- ymd(date_old)
+# convert it to a `Date` class with `ymd()`
+date_new <- lubridate::ymd(date_old)
 
-#prove to yourself it worked
+# prove it worked
 class(date_new)
 ```
 
@@ -548,7 +683,9 @@ class(date_new)
 ## [1] "Date"
 ```
 
-That little conversion exercise may not have blown you away, but watch what happens when I feed the following set of wacky character vectors into that same `lubridate` parsing function, `ymd()`:
+That little conversion exercise may not have blown you away, but watch what 
+happens when I feed the following set of wacky character vectors into that 
+same `lubridate` parsing function, `ymd()`:
 
 
 ```r
@@ -559,7 +696,6 @@ messy_dates <- c("2020------Dec the 12",
                  "2020x12-12",
                  "2020   ....    12        ......     12",
                  "'20.December-12")
-
 ymd(messy_dates)
 ```
 
@@ -568,7 +704,11 @@ ymd(messy_dates)
 ## [6] "2020-12-12" "2020-12-12"
 ```
 
-Boom.  That's right, the `ymd()` parsing function figured them all out correctly with almost no effort on your part.  But wait, there's more!  The `lubridate` package contains parsing functions for almost any order you can dream up.  
+Boom. That's right, the `ymd()` parsing function figured them all out correctly
+with almost no effort on your part. But wait, there's more! 
+
+The `lubridate` package contains parsing functions for almost any order you can 
+imagine.
 
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
  <thead>
@@ -593,7 +733,10 @@ Boom.  That's right, the `ymd()` parsing function figured them all out correctly
 </tbody>
 </table>
 
-And if you need to parse a time component, simply add a combination of `_hms` to the function call to parse time in "hours-minutes-seconds" format.  Some additional examples of how you would parse time that followed from a `ymd` format:
+And if you need to parse a time component, simply add a combination of `_hms` to
+the function call to parse time in "hours-minutes-seconds" format. Some 
+additional examples of how you would parse time that followed from a `ymd` 
+format:
 
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
  <thead>
@@ -617,18 +760,22 @@ And if you need to parse a time component, simply add a combination of `_hms` to
   </tr>
 </tbody>
 </table>
-The beauty of the `lubridate` parsers is that they do the hard work of cleaning up the character vector, regardless of separators or delimiters within each string, and return either a `Date` or `Date-time` object class.
 
-### Date-time manipulation with `Lubridate`
+The beauty of the `lubridate` parsers is that they do the hard work of cleaning 
+up the character vector, regardless of separators or delimiters within each 
+string, and return either a `Date` or `Date-time` object class.
 
-To convert the `date` column in the `daily_show` data into a Date
-class, then, you can run:
+### Date-time manipulation with `lubridate`
+
+To convert the `date` column in the `daily_show` data into a Date class, you can
+run:
 
 
 ```r
 library(package = "lubridate")
 
-class(x = daily_show$date) # Check the class of the 'date' column before mutating it
+# check the class of the 'date' column before mutating it
+class(x = daily_show$date) 
 ```
 
 ```
@@ -651,7 +798,8 @@ head(x = daily_show, n = 3)
 ```
 
 ```r
-class(x = daily_show$date) # Check the class of the 'date' column after mutating it
+# check the class of the 'date' column after mutating it
+class(x = daily_show$date) 
 ```
 
 ```
@@ -671,19 +819,22 @@ range(daily_show$date)
 max(daily_show$date) - min(daily_show$date)
 ```
 
-We could have used these to transform the date in `daily_show`, using the following pipe chain: 
+We could have used these to transform the date in `daily_show`, using the 
+following pipe chain: 
 
 
 ```r
-daily_show <- read_csv(file = "data/daily_show_guests.csv",
-                       skip = 4) %>%
-  rename(job = GoogleKnowlege_Occupation, 
-         date = Show,
-         category = Group,
-         guest_name = Raw_Guest_List) %>%
-  select(-YEAR) %>%
-  mutate(date = mdy(date)) %>%
-  filter(category == "Science")
+daily_show <- readr::read_csv(file = "data/daily_show_guests.csv",
+                              skip = 4) %>%
+  dplyr::rename(job = GoogleKnowlege_Occupation,
+                date = Show,
+                category = Group,
+                guest_name = Raw_Guest_List) %>%
+  dplyr::select(-YEAR) %>%
+  dplyr::mutate(date = lubridate::mdy(date)) %>%
+  dplyr::filter(category == "Science")
+
+# show first two rows of dataframe
 head(x = daily_show, n = 2)
 ```
 
@@ -695,7 +846,8 @@ head(x = daily_show, n = 2)
 ## 2 scientist    2004-01-13 Science  Catherine Weitz
 ```
 
-The `lubridate` package also includes functions to pull out certain elements of a date, including: 
+The `lubridate` package also includes functions to pull out certain elements of 
+a date, including: 
 
 - `wday()` return the day of the week pertaining to a Date object
 - `mday()` return the day of the month pertaining to a Date object
@@ -704,14 +856,16 @@ The `lubridate` package also includes functions to pull out certain elements of 
 - `quarter()` return the quarter of hte year pertaining to a Date object
 - `year()` return the year pertaining to a date object
 
-For example, we could use `wday()` to create a new column with the weekday of each show: 
+For example, we could use `wday()` to create a new column with the weekday of 
+each show: 
 
 
 ```r
-mutate(.data = daily_show,
-       show_day = wday(x = date, label = TRUE)) %>%
-  select(date, show_day, guest_name) %>%
-  slice(1:5)
+daily_show %>% 
+  dplyr::mutate(show_day = lubridate::wday(x = date,
+                                           label = TRUE)) %>%
+  dplyr::select(date, show_day, guest_name) %>%
+  dplyr::slice(1:5)
 ```
 
 ```
@@ -726,28 +880,31 @@ mutate(.data = daily_show,
 ```
 
 <div class="rmdwarning">
-<p>R functions tend to use the timezone of <strong>YOUR</strong> computer’s operating system by default, or UTC, or GMT. You need to be careful when working with dates and times to either specify the time zone or convince yourself the default behavior works for your application.</p>
+<p>R functions tend to use the timezone of <strong>YOUR</strong> computer’s operating system by default—or UTC, or GMT. You need to be careful when working with dates and times to either specify the time zone or convince yourself the default behavior works for your application.</p>
 </div>
 
 ## Tidy Data
-***"Tidy Data"*** is a philosophy for how to arrange your data, like in a data
-frame.  In his 
-[2014 paper](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf), Hadley Wickham states *"Tidy datasets provide a standardized way to link the*
-*structure of a dataset (its physical layout) with its semantics (its meaning)."*  
+
+***"Tidy Data"*** is a philosophy for how to arrange your data in a intuitive, 
+rectangular fashion, commonly in a `dataframe`. In his 
+[2014 paper](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf), 
+Hadley Wickham states, *"tidy datasets provide a standardized way to link the structure of a dataset (its physical layout) with its semantics (its meaning)."*  
+
 The definition of a tidy dataset is straightforward:  
 
   1. Each variable forms a column.
   2. Each observation forms a row.
   3. Each type of observational unit forms a table.
 
-The first two rules, *each variable forms a column* and *each observation forms a row*,
-are relatively easy to implement.  In fact, most of the data frames that we have
-used so far follow this convention.  The trick is to note that some column 
-variables might look *independent* from one another, when in fact, the columns
-represent a single variable broken out by some heirachical (or nesting) structure.
+The first two rules, *each variable forms a column* and 
+*each observation forms a row*, are relatively easy to implement.
+In fact, most of the dataframes that we have used so far follow this convention.
+The trick is to note that some column variables might look *independent* from 
+one another, when, in fact, the columns represent a single variable broken out 
+by some hierarchical, or nesting, structure.
 
-For example, the (untidy) Table below (\@ref(tab:grades-untidy)) shows exam 
-grades for three students.  Table \@ref(tab:grades-untidy) is untidy because
+For example, the (untidy) table below (\@ref(tab:grades-untidy)) shows exam 
+grades for three students. Table \@ref(tab:grades-untidy) is untidy because
 the variable depicting the exam score shows up in three different columns.  
 Another way to characterize the *untidiness* of this table is that we have three
 different exams (Exam1, Exam2, Exam3) that represent a variable (Exam_# or 
@@ -785,8 +942,9 @@ Exam_type), that is not represented with a column.
 </tbody>
 </table>
 
-Thus, to tidy Table \@ref(tab:grades-untidy), we need to create a variable called `Exam` 
-and move all the scores into a new column vector named `Scores`.
+Thus, to tidy table \@ref(tab:grades-untidy), we need to create a variable 
+called `Exam` and move all the scores into a new column vector named `Scores`.
+This effectively makes the data "long" rather than "wide".
 
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>(\#tab:grades-tidy)A Tidy Table of Exam Scores</caption>
@@ -847,42 +1005,37 @@ and move all the scores into a new column vector named `Scores`.
 </table>
 
 For our work, one of the goals of data cleaning is to create datasets that 
-follow this *tidy* convention.  Fortunately, the `tidyr::` package contains a 
-useful function for re-arranging dataframes from untidy to tidy 
-states: `pivot_longer()` 
+follow this *tidy* convention. Fortunately, the `tidyr` package contains a 
+useful function called `pivot_longer()` for re-arranging dataframes from 
+untidy (typically "wide) to tidy ("long"). 
 
 `pivot_longer()` is designed to "lengthen" a data frame by 
-  *"increasing the number of rows and decreasing the number of columns"*. This function typically requires four arguments and always creates two new columns
-  as output:  
-  
+*"increasing the number of rows and decreasing the number of columns"*. 
+This function creates two new columns as output and requires four arguments:  
+
 - `data =` the dataframe to be lengthened
-- `cols =` a list of the columns that should be combined together (forming a
-    single variable to be represented in a new, single column)
-- `names_to` = this is an output column that 
-    contains the **names** of the old columns that are being combined.
-- `values_to` = this is the other output column that 
-    contains the **values** from within the old columns that are being combined.
+- `cols =` a list of the columns that should be combined together (forming a single variable to be represented in a new, single column)
+- `names_to` = this is an output column that contains the **names** of the old columns that are being combined.
+- `values_to` = this is the other output column that contains the **values** from within the old columns that are being combined.
     
 <div class="rmdnote">
-<p>The <code>pivot_longer()</code> function always creates two new columns:</p>
-<ul>
-<li>one column contains <code>names_to =</code> information</li>
-<li>the other column contains the <code>values_to =</code> data.</li>
-</ul>
+<p>The <code>pivot_longer()</code> function always creates two new columns:<br />
+- one column contains <code>names_to =</code> information. - the other column contains the <code>values_to =</code> data.</p>
 </div>
 
 In the case of Table \@ref(tab:grades-untidy), we are using `cols = ` to combine
 `Exam1_Score`, `Exam2_Score` and `Exam3_Score` into a a column of 
 `names_to = "Exam"` and the data represented in those three columns gets moved 
-into a column of `values_to = "Scores"`.  We also add a call to `dplyr::mutate` and `dplyr::case_when` to convert strings to numbers.
+into a column of `values_to = "Scores"`. We also add a call to `dplyr::mutate()`
+and `dplyr::case_when()` to convert strings to numbers.
   
 
 ```r
-tidygrades <- pivot_longer(data = grades_untidy,
-                           cols = Exam1_Score:Exam3_Score,
-                           names_to = "Exam",
-                           values_to = "Scores") %>%
-  mutate(Exam = case_when(
+tidygrades <- tidyr::pivot_longer(data = grades_untidy,
+                                  cols = Exam1_Score:Exam3_Score,
+                                  names_to = "Exam",
+                                  values_to = "Scores") %>%
+  dplyr::mutate(Exam = dplyr::case_when(
     Exam == "Exam1_Score" ~ 1,
     Exam == "Exam2_Score" ~ 2,
     Exam == "Exam3_Score" ~ 3
@@ -947,9 +1100,9 @@ tidygrades <- pivot_longer(data = grades_untidy,
 </tbody>
 </table>
 
-## Ch-6 Exercises  
-
-
-## Ch-6 Homework
-
-
+Now, these data are tidy, wherein each variable forms a column, each row
+forms an observation, and the table is specific to one observational unit. 
+This may seem obvious, but most data analysis problems occur because of poor 
+data management techniques. Remember: What might seem useful at the time---like 
+a color-coded Excel spreadsheet---is a pain for computers and not reproducible.
+Do yourself a favor and begin with the end in mind: *tidy data*.

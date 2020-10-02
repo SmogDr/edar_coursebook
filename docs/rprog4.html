@@ -52,7 +52,6 @@
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -261,7 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6" data-path="eda1.html"><a href="eda1.html#chapter-5-homework"><i class="fa fa-check"></i><b>5.6</b> Chapter 5 Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a><ul>
-<li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#ch.-6-objectives"><i class="fa fa-check"></i><b>6.1</b> Ch. 6 Objectives</a></li>
+<li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#chapter-6-objectives"><i class="fa fa-check"></i><b>6.1</b> Chapter 6 Objectives</a></li>
 <li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="rprog3.html"><a href="rprog3.html#string-detect-match-subset"><i class="fa fa-check"></i><b>6.2.1</b> String detect, match, subset</a></li>
 <li class="chapter" data-level="6.2.2" data-path="rprog3.html"><a href="rprog3.html#regular-expressions"><i class="fa fa-check"></i><b>6.2.2</b> Regular Expressions</a></li>
@@ -273,13 +272,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.3" data-path="rprog3.html"><a href="rprog3.html#date-time-classes-in-r"><i class="fa fa-check"></i><b>6.3.3</b> Date-time classes in R</a></li>
 <li class="chapter" data-level="6.3.4" data-path="rprog3.html"><a href="rprog3.html#reading-and-classifying-date-times"><i class="fa fa-check"></i><b>6.3.4</b> Reading and classifying date-times</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>Lubridate</code></a><ul>
-<li class="chapter" data-level="6.4.1" data-path="rprog3.html"><a href="rprog3.html#lubridate-parsing-functions"><i class="fa fa-check"></i><b>6.4.1</b> <code>Lubridate</code> Parsing Functions</a></li>
-<li class="chapter" data-level="6.4.2" data-path="rprog3.html"><a href="rprog3.html#date-time-manipulation-with-lubridate"><i class="fa fa-check"></i><b>6.4.2</b> Date-time manipulation with <code>Lubridate</code></a></li>
+<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>lubridate</code></a><ul>
+<li class="chapter" data-level="6.4.1" data-path="rprog3.html"><a href="rprog3.html#parsing-functions-in-lubridate"><i class="fa fa-check"></i><b>6.4.1</b> Parsing functions in <code>lubridate</code></a></li>
+<li class="chapter" data-level="6.4.2" data-path="rprog3.html"><a href="rprog3.html#date-time-manipulation-with-lubridate"><i class="fa fa-check"></i><b>6.4.2</b> Date-time manipulation with <code>lubridate</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#tidy-data"><i class="fa fa-check"></i><b>6.5</b> Tidy Data</a></li>
-<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#ch-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Ch-6 Exercises</a></li>
-<li class="chapter" data-level="6.7" data-path="rprog3.html"><a href="rprog3.html#ch-6-homework"><i class="fa fa-check"></i><b>6.7</b> Ch-6 Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a><ul>
 <li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#ch.-7-objectives"><i class="fa fa-check"></i><b>7.1</b> Ch. 7 Objectives</a></li>
@@ -663,7 +660,7 @@ easy to “read”.</p>
 functions are intended to <em>map</em> functions (i.e., to apply them) to individual elements in a vector (or data frames); the <code>map_</code> functions are similar to functions like <code>lapply()</code> and <code>vapply()</code> from base R (but more versatile). <em>“Mapping”</em> a function onto a vector is a common theme of functional programming. To illustrate how the <code>map_</code> functions work, its best to visualize the process first.</p>
 <div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="rprog4.html#cb286-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;./images/map_anno1.png&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:map-anno1"></span>
-<img src="images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input." width="632" />
+<img src="images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input."  />
 <p class="caption">
 Figure 8.1: The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input.
 </p>
