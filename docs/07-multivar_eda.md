@@ -300,7 +300,7 @@ df_mpg %>%
                 cyl = cylinders, 
                 tran = trany, 
                 v_class = VClass) %>% # easier string to type
-  # keep only data collected after 2000 for the sake of a millennial audience
+  # keep only data collected after 2000 for the sake of simplicity
   dplyr::filter(year >= 2000) -> df_mpg 
 
 rm(vars_needed, vars_factr) # won't be needing these anymore
@@ -426,6 +426,86 @@ effect.
 
 
 ```r
+cdf1 <- ggplot(data = df_mpg) +
+  stat_ecdf(aes(x = comb08,
+            color = "Combined")) +
+  stat_ecdf(aes(x = highway08,
+            color = "Highway")) +
+  stat_ecdf(aes(x = city08,
+            color = "City")) +
+  scale_color_manual(name = "Type",
+                     values = c("Combined" = "navy", 
+                                "Highway" = "darkgreen",
+                                "City" = "purple")) +
+  scale_x_log10(breaks = breaks_log(8)) +
+  theme_bw(base_size = 11) +
+  xlab("Fuel Economy, mi/gal") +
+  ylab("Quantile") +
+  theme(legend.position = "NULL") 
+
+blue50 <- rgb(0, 0, 255, max = 255, alpha = 125, names = "blue50")
+
+
+hist1 <- ggplot(data = df_mpg) +
+  geom_histogram(aes(x = comb08,
+            fill = "Combined"),
+            alpha = 0.75,
+            bins = 50) +
+  geom_histogram(aes(x = highway08,
+            fill = "Highway"),
+            alpha = 0.75,
+            bins = 50) +
+  geom_histogram(aes(x = city08,
+            fill = "City"),
+            alpha = 0.75,
+            bins = 50) +
+  scale_fill_manual(name = "Type",
+                    values = c("Combined" = "blue", 
+                                "Highway" = "darkgreen",
+                                "City" = "purple")) +
+  scale_x_log10(breaks = breaks_log(8)) +
+  theme_bw(base_size = 11) +
+  xlab("Fuel Economy, mi/gal") +
+  ylab("Counts") +
+  theme(legend.position = "NULL") 
+
+box1 <- ggplot(data = df_mpg) +
+  geom_boxplot(aes(x = comb08,
+                   y = "Comb",
+            fill = "Combined"),
+            alpha = 0.75,
+            position = "dodge2") +
+  geom_boxplot(aes(x = highway08,
+                   y = "Hwy",
+            fill = "Highway"),
+            alpha = 0.75,
+            position = "dodge2") +
+  geom_boxplot(aes(x = city08,
+                   y = "City",
+            fill = "City"),
+            alpha = 0.75,
+            position = "dodge2") +
+  scale_fill_manual(name = "Type",
+                    values = c("Combined" = "blue", 
+                                "Highway" = "darkgreen",
+                                "City" = "purple")) +
+  scale_x_log10(breaks = breaks_log(8)) +
+  theme_bw(base_size = 11) +
+  xlab("Fuel Economy, mi/gal") +
+  ylab("") +
+  theme(legend.position = c(1.25, 0.5)) 
+
+grid.arrange(cdf1, hist1, box1,  widths = c(1,1,0.5),
+             layout_matrix = rbind(c(1, NA, NA),
+                                   c(2, NA, NA),
+                                   c(3, NA, NA)))
+```
+
+<img src="07-multivar_eda_files/figure-html/expl-plot1-1.png" width="672" style="display: block; margin: auto;" />
+
+
+
+```r
 e1 <- ggplot(data = df_mpg, aes(x = year, y = comb08)) +
   geom_violin(aes(group = year),
                outlier.shape = NA,
@@ -435,10 +515,25 @@ e1 <- ggplot(data = df_mpg, aes(x = year, y = comb08)) +
                outlier.alpha = 0.2) +
   scale_y_log10(limits = c(10,100)) +
   theme_bw()
+```
+
+```
+## Warning: Ignoring unknown parameters: outlier.shape
+```
+
+```r
 e1
 ```
 
-<img src="07-multivar_eda_files/figure-html/expl-plot1-1.png" width="672" style="display: block; margin: auto;" />
+```
+## Warning: Removed 144 rows containing non-finite values (stat_ydensity).
+```
+
+```
+## Warning: Removed 144 rows containing non-finite values (stat_boxplot).
+```
+
+<img src="07-multivar_eda_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" />
 This [DOE website](https://afdc.energy.gov/data/10562) outlines the EPA *Corporate Average Fuel Economy* (CAFE) standards that require vehicles to meet set fuel economy levels (in terms of miles-per-gallon; mpg) across the 'fleet' of available vehicles. Let's load a .csv file named `cafe` and look at the requirements by year.
 
 

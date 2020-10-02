@@ -5,6 +5,7 @@ In this chapter I discuss a handful of reference distributions that you may enco
 library(tidyverse)
 library(gridExtra)
 library(grid)
+library(broom)
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
@@ -209,4 +210,57 @@ ggplot2::ggplot(data = log_data) +
 #ggsave("./images/hist_skew_out_logx.png", dpi = 150)
 ```
 
+## Statistical Terms
 
+### Pearson Correlation Coefficient {#pearson}
+The Pearson correlation coefficient, ***r***, is a quantitative descriptor of the degree
+of linear correlation between two variables (let's call them `x` and `y`).  
+The Pearson correlation coefficient indicates the proportion of variation in `y` 
+that can be explained by knowing `x`, when the data are paired.  If we have `n` 
+paired samples of `x` and `y`, then ***r*** is:
+
+$$r = \frac{n\sum(x_{i}y_{i})-\sum x_{i} \sum y_{i} } {\sqrt {n\sum(x_{i}^{2})-\sum(x_{i})^{2}} \cdot \sqrt {n\sum(y_{i}^{2})-\sum(y_{i})^{2}}}$$
+
+This equation looks like a lot of work but it's really just a ratio of the 
+*covariance* of `x` and `y` divided by the variance of `x` times the variance of
+`y`.
+
+``` {r corr_plots1, warning=FALSE, echo=FALSE, eval=FALSE}
+
+corr_plots1 <- tibble(x = runif(100, 0, 100),
+                      y1 = x,
+                      y2 = map_dbl(x, ~ (.x*(rnorm(1, mean = 1,  sd = 0.03)) + 
+                                           rnorm(1, mean = 0, sd = 2))),
+                      y3 = map_dbl(x, ~ (.x*(rnorm(1, mean = 0.6,  sd = 0.2)) + 
+                                           rnorm(1, mean = 15, sd = 15))),
+                      y4 = runif(100, 0, 100)) %>%
+  pivot_longer(y1:y4, names_to = "type") %>%
+  mutate(types = as.factor(type))
+
+levels(corr_plots1$types) <- c("Perfect Correlation", "Strong Correlation", "Moderate Correlation", "No Correlation")
+
+cor_results <- corr_plots1 %>%
+  nest(data = c(x, value, types)) %>%
+  mutate(fit = map(data, ~lm(value ~ x, data = .)),
+         m.summary = map(fit, glance)) %>%
+  unnest(m.summary)
+  
+
+p1 <- ggplot(data = corr_plots1,
+                          aes(x = x, y = value)) +
+  geom_point(aes(color = types)) +
+   geom_text(x = 25, y = 80, 
+            data = cor_results, 
+            aes(label = paste(round(r.squared, 2))),
+            size = 2.5) +
+  facet_wrap(facets = vars(types),
+             ncol = 2) +
+  theme_bw() +
+  coord_fixed(ratio=1.0) +
+  labs(x = "Independent Variable (x-axis)",
+       y = "Dependent Variable (y-axis)") +
+  theme(legend.position = "none")
+  
+p1 +   
+ 
+```

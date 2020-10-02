@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-09-30" />
+<meta name="date" content="2020-10-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -387,6 +387,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2.1" data-path="dist.html"><a href="dist.html#normal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>13.2.1</b> Normal Distribution: Characteristic Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="13.3" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>13.3</b> Log-normal Distribution</a></li>
+<li class="chapter" data-level="13.4" data-path="dist.html"><a href="dist.html#statistical-terms"><i class="fa fa-check"></i><b>13.4</b> Statistical Terms</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>13.4.1</b> Pearson Correlation Coefficient</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -695,7 +698,7 @@ vehciles made after the year 2000.</p>
 <span id="cb244-9"><a href="eda2.html#cb244-9"></a>                <span class="dt">cyl =</span> cylinders, </span>
 <span id="cb244-10"><a href="eda2.html#cb244-10"></a>                <span class="dt">tran =</span> trany, </span>
 <span id="cb244-11"><a href="eda2.html#cb244-11"></a>                <span class="dt">v_class =</span> VClass) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># easier string to type</span></span>
-<span id="cb244-12"><a href="eda2.html#cb244-12"></a><span class="st">  </span><span class="co"># keep only data collected after 2000 for the sake of a millennial audience</span></span>
+<span id="cb244-12"><a href="eda2.html#cb244-12"></a><span class="st">  </span><span class="co"># keep only data collected after 2000 for the sake of simplicity</span></span>
 <span id="cb244-13"><a href="eda2.html#cb244-13"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2000</span>) -&gt;<span class="st"> </span>df_mpg </span>
 <span id="cb244-14"><a href="eda2.html#cb244-14"></a></span>
 <span id="cb244-15"><a href="eda2.html#cb244-15"></a><span class="kw">rm</span>(vars_needed, vars_factr) <span class="co"># won&#39;t be needing these anymore</span></span></code></pre></div>
@@ -772,66 +775,143 @@ for all vehicle observations. The fuel economy data will be shown with boxplots
 overlain with violin plots. We will use a log-scale y-axis due to the large
 variation expected and outliers will be made more transparent to soften their
 effect.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="eda2.html#cb257-1"></a>e1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df_mpg, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> comb08)) <span class="op">+</span></span>
-<span id="cb257-2"><a href="eda2.html#cb257-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">group =</span> year),</span>
-<span id="cb257-3"><a href="eda2.html#cb257-3"></a>               <span class="dt">outlier.shape =</span> <span class="ot">NA</span>,</span>
-<span id="cb257-4"><a href="eda2.html#cb257-4"></a>               <span class="dt">fill =</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="op">+</span></span>
-<span id="cb257-5"><a href="eda2.html#cb257-5"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">group =</span> year),</span>
-<span id="cb257-6"><a href="eda2.html#cb257-6"></a>               <span class="dt">fill =</span> <span class="ot">NA</span>,</span>
-<span id="cb257-7"><a href="eda2.html#cb257-7"></a>               <span class="dt">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></span>
-<span id="cb257-8"><a href="eda2.html#cb257-8"></a><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">100</span>)) <span class="op">+</span></span>
-<span id="cb257-9"><a href="eda2.html#cb257-9"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span>
-<span id="cb257-10"><a href="eda2.html#cb257-10"></a>e1</span></code></pre></div>
-<p><img src="07-multivar_eda_files/figure-html/expl-plot1-1.png" width="672" style="display: block; margin: auto;" />
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="eda2.html#cb257-1"></a>cdf1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df_mpg) <span class="op">+</span></span>
+<span id="cb257-2"><a href="eda2.html#cb257-2"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(<span class="dt">x =</span> comb08,</span>
+<span id="cb257-3"><a href="eda2.html#cb257-3"></a>            <span class="dt">color =</span> <span class="st">&quot;Combined&quot;</span>)) <span class="op">+</span></span>
+<span id="cb257-4"><a href="eda2.html#cb257-4"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(<span class="dt">x =</span> highway08,</span>
+<span id="cb257-5"><a href="eda2.html#cb257-5"></a>            <span class="dt">color =</span> <span class="st">&quot;Highway&quot;</span>)) <span class="op">+</span></span>
+<span id="cb257-6"><a href="eda2.html#cb257-6"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(<span class="dt">x =</span> city08,</span>
+<span id="cb257-7"><a href="eda2.html#cb257-7"></a>            <span class="dt">color =</span> <span class="st">&quot;City&quot;</span>)) <span class="op">+</span></span>
+<span id="cb257-8"><a href="eda2.html#cb257-8"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Type&quot;</span>,</span>
+<span id="cb257-9"><a href="eda2.html#cb257-9"></a>                     <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;Combined&quot;</span> =<span class="st"> &quot;navy&quot;</span>, </span>
+<span id="cb257-10"><a href="eda2.html#cb257-10"></a>                                <span class="st">&quot;Highway&quot;</span> =<span class="st"> &quot;darkgreen&quot;</span>,</span>
+<span id="cb257-11"><a href="eda2.html#cb257-11"></a>                                <span class="st">&quot;City&quot;</span> =<span class="st"> &quot;purple&quot;</span>)) <span class="op">+</span></span>
+<span id="cb257-12"><a href="eda2.html#cb257-12"></a><span class="st">  </span><span class="kw">scale_x_log10</span>(<span class="dt">breaks =</span> <span class="kw">breaks_log</span>(<span class="dv">8</span>)) <span class="op">+</span></span>
+<span id="cb257-13"><a href="eda2.html#cb257-13"></a><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">11</span>) <span class="op">+</span></span>
+<span id="cb257-14"><a href="eda2.html#cb257-14"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fuel Economy, mi/gal&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-15"><a href="eda2.html#cb257-15"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-16"><a href="eda2.html#cb257-16"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;NULL&quot;</span>) </span>
+<span id="cb257-17"><a href="eda2.html#cb257-17"></a></span>
+<span id="cb257-18"><a href="eda2.html#cb257-18"></a>blue50 &lt;-<span class="st"> </span><span class="kw">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">255</span>, <span class="dt">max =</span> <span class="dv">255</span>, <span class="dt">alpha =</span> <span class="dv">125</span>, <span class="dt">names =</span> <span class="st">&quot;blue50&quot;</span>)</span>
+<span id="cb257-19"><a href="eda2.html#cb257-19"></a></span>
+<span id="cb257-20"><a href="eda2.html#cb257-20"></a></span>
+<span id="cb257-21"><a href="eda2.html#cb257-21"></a>hist1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df_mpg) <span class="op">+</span></span>
+<span id="cb257-22"><a href="eda2.html#cb257-22"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x =</span> comb08,</span>
+<span id="cb257-23"><a href="eda2.html#cb257-23"></a>            <span class="dt">fill =</span> <span class="st">&quot;Combined&quot;</span>),</span>
+<span id="cb257-24"><a href="eda2.html#cb257-24"></a>            <span class="dt">alpha =</span> <span class="fl">0.75</span>,</span>
+<span id="cb257-25"><a href="eda2.html#cb257-25"></a>            <span class="dt">bins =</span> <span class="dv">50</span>) <span class="op">+</span></span>
+<span id="cb257-26"><a href="eda2.html#cb257-26"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x =</span> highway08,</span>
+<span id="cb257-27"><a href="eda2.html#cb257-27"></a>            <span class="dt">fill =</span> <span class="st">&quot;Highway&quot;</span>),</span>
+<span id="cb257-28"><a href="eda2.html#cb257-28"></a>            <span class="dt">alpha =</span> <span class="fl">0.75</span>,</span>
+<span id="cb257-29"><a href="eda2.html#cb257-29"></a>            <span class="dt">bins =</span> <span class="dv">50</span>) <span class="op">+</span></span>
+<span id="cb257-30"><a href="eda2.html#cb257-30"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x =</span> city08,</span>
+<span id="cb257-31"><a href="eda2.html#cb257-31"></a>            <span class="dt">fill =</span> <span class="st">&quot;City&quot;</span>),</span>
+<span id="cb257-32"><a href="eda2.html#cb257-32"></a>            <span class="dt">alpha =</span> <span class="fl">0.75</span>,</span>
+<span id="cb257-33"><a href="eda2.html#cb257-33"></a>            <span class="dt">bins =</span> <span class="dv">50</span>) <span class="op">+</span></span>
+<span id="cb257-34"><a href="eda2.html#cb257-34"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Type&quot;</span>,</span>
+<span id="cb257-35"><a href="eda2.html#cb257-35"></a>                    <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;Combined&quot;</span> =<span class="st"> &quot;blue&quot;</span>, </span>
+<span id="cb257-36"><a href="eda2.html#cb257-36"></a>                                <span class="st">&quot;Highway&quot;</span> =<span class="st"> &quot;darkgreen&quot;</span>,</span>
+<span id="cb257-37"><a href="eda2.html#cb257-37"></a>                                <span class="st">&quot;City&quot;</span> =<span class="st"> &quot;purple&quot;</span>)) <span class="op">+</span></span>
+<span id="cb257-38"><a href="eda2.html#cb257-38"></a><span class="st">  </span><span class="kw">scale_x_log10</span>(<span class="dt">breaks =</span> <span class="kw">breaks_log</span>(<span class="dv">8</span>)) <span class="op">+</span></span>
+<span id="cb257-39"><a href="eda2.html#cb257-39"></a><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">11</span>) <span class="op">+</span></span>
+<span id="cb257-40"><a href="eda2.html#cb257-40"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fuel Economy, mi/gal&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-41"><a href="eda2.html#cb257-41"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Counts&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-42"><a href="eda2.html#cb257-42"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;NULL&quot;</span>) </span>
+<span id="cb257-43"><a href="eda2.html#cb257-43"></a></span>
+<span id="cb257-44"><a href="eda2.html#cb257-44"></a>box1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df_mpg) <span class="op">+</span></span>
+<span id="cb257-45"><a href="eda2.html#cb257-45"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> comb08,</span>
+<span id="cb257-46"><a href="eda2.html#cb257-46"></a>                   <span class="dt">y =</span> <span class="st">&quot;Comb&quot;</span>,</span>
+<span id="cb257-47"><a href="eda2.html#cb257-47"></a>            <span class="dt">fill =</span> <span class="st">&quot;Combined&quot;</span>),</span>
+<span id="cb257-48"><a href="eda2.html#cb257-48"></a>            <span class="dt">alpha =</span> <span class="fl">0.75</span>,</span>
+<span id="cb257-49"><a href="eda2.html#cb257-49"></a>            <span class="dt">position =</span> <span class="st">&quot;dodge2&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-50"><a href="eda2.html#cb257-50"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> highway08,</span>
+<span id="cb257-51"><a href="eda2.html#cb257-51"></a>                   <span class="dt">y =</span> <span class="st">&quot;Hwy&quot;</span>,</span>
+<span id="cb257-52"><a href="eda2.html#cb257-52"></a>            <span class="dt">fill =</span> <span class="st">&quot;Highway&quot;</span>),</span>
+<span id="cb257-53"><a href="eda2.html#cb257-53"></a>            <span class="dt">alpha =</span> <span class="fl">0.75</span>,</span>
+<span id="cb257-54"><a href="eda2.html#cb257-54"></a>            <span class="dt">position =</span> <span class="st">&quot;dodge2&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-55"><a href="eda2.html#cb257-55"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> city08,</span>
+<span id="cb257-56"><a href="eda2.html#cb257-56"></a>                   <span class="dt">y =</span> <span class="st">&quot;City&quot;</span>,</span>
+<span id="cb257-57"><a href="eda2.html#cb257-57"></a>            <span class="dt">fill =</span> <span class="st">&quot;City&quot;</span>),</span>
+<span id="cb257-58"><a href="eda2.html#cb257-58"></a>            <span class="dt">alpha =</span> <span class="fl">0.75</span>,</span>
+<span id="cb257-59"><a href="eda2.html#cb257-59"></a>            <span class="dt">position =</span> <span class="st">&quot;dodge2&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-60"><a href="eda2.html#cb257-60"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Type&quot;</span>,</span>
+<span id="cb257-61"><a href="eda2.html#cb257-61"></a>                    <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;Combined&quot;</span> =<span class="st"> &quot;blue&quot;</span>, </span>
+<span id="cb257-62"><a href="eda2.html#cb257-62"></a>                                <span class="st">&quot;Highway&quot;</span> =<span class="st"> &quot;darkgreen&quot;</span>,</span>
+<span id="cb257-63"><a href="eda2.html#cb257-63"></a>                                <span class="st">&quot;City&quot;</span> =<span class="st"> &quot;purple&quot;</span>)) <span class="op">+</span></span>
+<span id="cb257-64"><a href="eda2.html#cb257-64"></a><span class="st">  </span><span class="kw">scale_x_log10</span>(<span class="dt">breaks =</span> <span class="kw">breaks_log</span>(<span class="dv">8</span>)) <span class="op">+</span></span>
+<span id="cb257-65"><a href="eda2.html#cb257-65"></a><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">11</span>) <span class="op">+</span></span>
+<span id="cb257-66"><a href="eda2.html#cb257-66"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fuel Economy, mi/gal&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-67"><a href="eda2.html#cb257-67"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
+<span id="cb257-68"><a href="eda2.html#cb257-68"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="fl">1.25</span>, <span class="fl">0.5</span>)) </span>
+<span id="cb257-69"><a href="eda2.html#cb257-69"></a></span>
+<span id="cb257-70"><a href="eda2.html#cb257-70"></a><span class="kw">grid.arrange</span>(cdf1, hist1, box1,  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">0.5</span>),</span>
+<span id="cb257-71"><a href="eda2.html#cb257-71"></a>             <span class="dt">layout_matrix =</span> <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="ot">NA</span>, <span class="ot">NA</span>),</span>
+<span id="cb257-72"><a href="eda2.html#cb257-72"></a>                                   <span class="kw">c</span>(<span class="dv">2</span>, <span class="ot">NA</span>, <span class="ot">NA</span>),</span>
+<span id="cb257-73"><a href="eda2.html#cb257-73"></a>                                   <span class="kw">c</span>(<span class="dv">3</span>, <span class="ot">NA</span>, <span class="ot">NA</span>)))</span></code></pre></div>
+<p><img src="07-multivar_eda_files/figure-html/expl-plot1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="eda2.html#cb258-1"></a>e1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df_mpg, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> comb08)) <span class="op">+</span></span>
+<span id="cb258-2"><a href="eda2.html#cb258-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">group =</span> year),</span>
+<span id="cb258-3"><a href="eda2.html#cb258-3"></a>               <span class="dt">outlier.shape =</span> <span class="ot">NA</span>,</span>
+<span id="cb258-4"><a href="eda2.html#cb258-4"></a>               <span class="dt">fill =</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="op">+</span></span>
+<span id="cb258-5"><a href="eda2.html#cb258-5"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">group =</span> year),</span>
+<span id="cb258-6"><a href="eda2.html#cb258-6"></a>               <span class="dt">fill =</span> <span class="ot">NA</span>,</span>
+<span id="cb258-7"><a href="eda2.html#cb258-7"></a>               <span class="dt">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></span>
+<span id="cb258-8"><a href="eda2.html#cb258-8"></a><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">100</span>)) <span class="op">+</span></span>
+<span id="cb258-9"><a href="eda2.html#cb258-9"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<pre><code>## Warning: Ignoring unknown parameters: outlier.shape</code></pre>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="eda2.html#cb260-1"></a>e1</span></code></pre></div>
+<pre><code>## Warning: Removed 144 rows containing non-finite values (stat_ydensity).</code></pre>
+<pre><code>## Warning: Removed 144 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="07-multivar_eda_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" />
 This <a href="https://afdc.energy.gov/data/10562">DOE website</a> outlines the EPA <em>Corporate Average Fuel Economy</em> (CAFE) standards that require vehicles to meet set fuel economy levels (in terms of miles-per-gallon; mpg) across the ‘fleet’ of available vehicles. Let’s load a .csv file named <code>cafe</code> and look at the requirements by year.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="eda2.html#cb258-1"></a>cafe &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/CAFE_stds.csv&quot;</span>, <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;mpg_avg&quot;</span>), <span class="dt">skip =</span> <span class="dv">1</span>)</span>
-<span id="cb258-2"><a href="eda2.html#cb258-2"></a></span>
-<span id="cb258-3"><a href="eda2.html#cb258-3"></a><span class="kw">ggplot</span>(cafe, <span class="kw">aes</span>(year, mpg_avg)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">fill =</span> <span class="st">&quot;maroon&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb258-4"><a href="eda2.html#cb258-4"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb258-5"><a href="eda2.html#cb258-5"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
-<span id="cb258-6"><a href="eda2.html#cb258-6"></a><span class="st">  </span><span class="kw">labs</span>( <span class="dt">y =</span> <span class="st">&quot;Required Average Fuel Efficiency (mpg)&quot;</span>, </span>
-<span id="cb258-7"><a href="eda2.html#cb258-7"></a>        <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>, </span>
-<span id="cb258-8"><a href="eda2.html#cb258-8"></a>        <span class="dt">title =</span> <span class="st">&quot;Federal Combined Average Fuel Economy (CAFE) Standards&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="eda2.html#cb263-1"></a>cafe &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/CAFE_stds.csv&quot;</span>, <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;mpg_avg&quot;</span>), <span class="dt">skip =</span> <span class="dv">1</span>)</span>
+<span id="cb263-2"><a href="eda2.html#cb263-2"></a></span>
+<span id="cb263-3"><a href="eda2.html#cb263-3"></a><span class="kw">ggplot</span>(cafe, <span class="kw">aes</span>(year, mpg_avg)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">fill =</span> <span class="st">&quot;maroon&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb263-4"><a href="eda2.html#cb263-4"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb263-5"><a href="eda2.html#cb263-5"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb263-6"><a href="eda2.html#cb263-6"></a><span class="st">  </span><span class="kw">labs</span>( <span class="dt">y =</span> <span class="st">&quot;Required Average Fuel Efficiency (mpg)&quot;</span>, </span>
+<span id="cb263-7"><a href="eda2.html#cb263-7"></a>        <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>, </span>
+<span id="cb263-8"><a href="eda2.html#cb263-8"></a>        <span class="dt">title =</span> <span class="st">&quot;Federal Combined Average Fuel Economy (CAFE) Standards&quot;</span>)</span></code></pre></div>
 <p><img src="07-multivar_eda_files/figure-html/CAFE-stds-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>This is a nice <a href="https://www.edmunds.com/fuel-economy/faq-new-corporate-average-fuel-economy-standards.html">explanatory story</a> of why the average fuel economy numbers don’t match well to the published CAFE standards.</p>
 <p>Create a series of geom_density plots showing combined fuel economy <code>comb08</code>
 across all vehicles and years as a function of <code>fuel_type</code>.<br />
 Break out the different <code>fuel_type</code> categories into facets (ncol = 3).</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="eda2.html#cb259-1"></a>g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df_mpg) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb259-2"><a href="eda2.html#cb259-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(comb08, <span class="dt">fill =</span> fuel_type)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb259-3"><a href="eda2.html#cb259-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>fuel_type, <span class="dt">ncol =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb259-4"><a href="eda2.html#cb259-4"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
-<span id="cb259-5"><a href="eda2.html#cb259-5"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb259-6"><a href="eda2.html#cb259-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb259-7"><a href="eda2.html#cb259-7"></a></span>
-<span id="cb259-8"><a href="eda2.html#cb259-8"></a>g1</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="eda2.html#cb264-1"></a>g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df_mpg) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb264-2"><a href="eda2.html#cb264-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(comb08, <span class="dt">fill =</span> fuel_type)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb264-3"><a href="eda2.html#cb264-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>fuel_type, <span class="dt">ncol =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb264-4"><a href="eda2.html#cb264-4"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
+<span id="cb264-5"><a href="eda2.html#cb264-5"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb264-6"><a href="eda2.html#cb264-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb264-7"><a href="eda2.html#cb264-7"></a></span>
+<span id="cb264-8"><a href="eda2.html#cb264-8"></a>g1</span></code></pre></div>
 <p><img src="07-multivar_eda_files/figure-html/EDA%20on%20fuel%20type%201-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Show the same plot without facets.</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="eda2.html#cb260-1"></a>g2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df_mpg, <span class="kw">aes</span>(<span class="dt">x=</span>comb08)) <span class="op">+</span></span>
-<span id="cb260-2"><a href="eda2.html#cb260-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> fuel_type),</span>
-<span id="cb260-3"><a href="eda2.html#cb260-3"></a>                 <span class="dt">position =</span> <span class="st">&quot;identity&quot;</span>,</span>
-<span id="cb260-4"><a href="eda2.html#cb260-4"></a>                 <span class="dt">alpha =</span> <span class="fl">0.6</span>,</span>
-<span id="cb260-5"><a href="eda2.html#cb260-5"></a>               <span class="dt">adjust =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb260-6"><a href="eda2.html#cb260-6"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
-<span id="cb260-7"><a href="eda2.html#cb260-7"></a><span class="st">  </span><span class="kw">theme_bw</span>() </span>
-<span id="cb260-8"><a href="eda2.html#cb260-8"></a></span>
-<span id="cb260-9"><a href="eda2.html#cb260-9"></a>g2</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="eda2.html#cb265-1"></a>g2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df_mpg, <span class="kw">aes</span>(<span class="dt">x=</span>comb08)) <span class="op">+</span></span>
+<span id="cb265-2"><a href="eda2.html#cb265-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> fuel_type),</span>
+<span id="cb265-3"><a href="eda2.html#cb265-3"></a>                 <span class="dt">position =</span> <span class="st">&quot;identity&quot;</span>,</span>
+<span id="cb265-4"><a href="eda2.html#cb265-4"></a>                 <span class="dt">alpha =</span> <span class="fl">0.6</span>,</span>
+<span id="cb265-5"><a href="eda2.html#cb265-5"></a>               <span class="dt">adjust =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb265-6"><a href="eda2.html#cb265-6"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
+<span id="cb265-7"><a href="eda2.html#cb265-7"></a><span class="st">  </span><span class="kw">theme_bw</span>() </span>
+<span id="cb265-8"><a href="eda2.html#cb265-8"></a></span>
+<span id="cb265-9"><a href="eda2.html#cb265-9"></a>g2</span></code></pre></div>
 <p><img src="07-multivar_eda_files/figure-html/EDA%20on%20fuel%20type%202-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Q1: Among <em>4-cylinder</em> vehicles with <em>Front-Wheel Drive</em>, what make/model has the best <em>highway fuel economy</em> in 2018?</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="eda2.html#cb261-1"></a>df_mpg <span class="op">%&gt;%</span></span>
-<span id="cb261-2"><a href="eda2.html#cb261-2"></a><span class="st">  </span><span class="kw">filter</span>(cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>, drive <span class="op">==</span><span class="st"> &quot;Front-Wheel Drive&quot;</span>, year <span class="op">==</span><span class="st"> </span><span class="dv">2018</span>) <span class="op">%&gt;%</span></span>
-<span id="cb261-3"><a href="eda2.html#cb261-3"></a><span class="st">  </span><span class="kw">slice_max</span>(<span class="dt">order_by =</span> highway08, <span class="dt">n=</span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
-<span id="cb261-4"><a href="eda2.html#cb261-4"></a><span class="st">  </span><span class="kw">select</span>(make, model, drive, year, highway08)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="eda2.html#cb266-1"></a>df_mpg <span class="op">%&gt;%</span></span>
+<span id="cb266-2"><a href="eda2.html#cb266-2"></a><span class="st">  </span><span class="kw">filter</span>(cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>, drive <span class="op">==</span><span class="st"> &quot;Front-Wheel Drive&quot;</span>, year <span class="op">==</span><span class="st"> </span><span class="dv">2018</span>) <span class="op">%&gt;%</span></span>
+<span id="cb266-3"><a href="eda2.html#cb266-3"></a><span class="st">  </span><span class="kw">slice_max</span>(<span class="dt">order_by =</span> highway08, <span class="dt">n=</span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb266-4"><a href="eda2.html#cb266-4"></a><span class="st">  </span><span class="kw">select</span>(make, model, drive, year, highway08)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 5
 ##   make    model      drive              year highway08
 ##   &lt;fct&gt;   &lt;chr&gt;      &lt;fct&gt;             &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 Hyundai Ioniq Blue Front-Wheel Drive  2018        59</code></pre>
 <p>Q2: Among <em>8-cylinder</em> vehicles with <em>Rear-wheel Drive</em>, what make/model has the worst <em>city fuel economy</em> in 2019?</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="eda2.html#cb263-1"></a>df_mpg <span class="op">%&gt;%</span></span>
-<span id="cb263-2"><a href="eda2.html#cb263-2"></a><span class="st">  </span><span class="kw">filter</span>(cyl <span class="op">==</span><span class="st"> </span><span class="dv">8</span>, drive <span class="op">==</span><span class="st"> &quot;Rear-Wheel Drive&quot;</span>, year <span class="op">==</span><span class="st"> </span><span class="dv">2019</span>) <span class="op">%&gt;%</span></span>
-<span id="cb263-3"><a href="eda2.html#cb263-3"></a><span class="st">  </span><span class="kw">slice_min</span>(<span class="dt">order_by =</span> city08) <span class="op">%&gt;%</span></span>
-<span id="cb263-4"><a href="eda2.html#cb263-4"></a><span class="st">  </span><span class="co">#top_n(n = -1, wt = city08) %&gt;%</span></span>
-<span id="cb263-5"><a href="eda2.html#cb263-5"></a><span class="st">  </span><span class="kw">select</span>(make, model, drive, year, city08)</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="eda2.html#cb268-1"></a>df_mpg <span class="op">%&gt;%</span></span>
+<span id="cb268-2"><a href="eda2.html#cb268-2"></a><span class="st">  </span><span class="kw">filter</span>(cyl <span class="op">==</span><span class="st"> </span><span class="dv">8</span>, drive <span class="op">==</span><span class="st"> &quot;Rear-Wheel Drive&quot;</span>, year <span class="op">==</span><span class="st"> </span><span class="dv">2019</span>) <span class="op">%&gt;%</span></span>
+<span id="cb268-3"><a href="eda2.html#cb268-3"></a><span class="st">  </span><span class="kw">slice_min</span>(<span class="dt">order_by =</span> city08) <span class="op">%&gt;%</span></span>
+<span id="cb268-4"><a href="eda2.html#cb268-4"></a><span class="st">  </span><span class="co">#top_n(n = -1, wt = city08) %&gt;%</span></span>
+<span id="cb268-5"><a href="eda2.html#cb268-5"></a><span class="st">  </span><span class="kw">select</span>(make, model, drive, year, city08)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 5
 ##   make    model    drive             year city08
 ##   &lt;fct&gt;   &lt;chr&gt;    &lt;fct&gt;            &lt;dbl&gt;  &lt;dbl&gt;

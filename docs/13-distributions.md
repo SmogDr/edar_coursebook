@@ -133,4 +133,19 @@ factors. In other words, all of these observations are controlled by mechanisms
 that suggest $x = a * b * c$ not $x = a\cdot b\cdot c$.
 
 
+## Statistical Terms
+
+### Pearson Correlation Coefficient {#pearson}
+The Pearson correlation coefficient, ***r***, is a quantitative descriptor of the degree
+of linear correlation between two variables (let's call them `x` and `y`).  
+The Pearson correlation coefficient indicates the proportion of variation in `y` 
+that can be explained by knowing `x`, when the data are paired.  If we have `n` 
+paired samples of `x` and `y`, then ***r*** is:
+
+$$r = \frac{n\sum(x_{i}y_{i})-\sum x_{i} \sum y_{i} } {\sqrt {n\sum(x_{i}^{2})-\sum(x_{i})^{2}} \cdot \sqrt {n\sum(y_{i}^{2})-\sum(y_{i})^{2}}}$$
+
+This equation looks like a lot of work but it's really just a ratio of the 
+*covariance* of `x` and `y` divided by the variance of `x` times the variance of
+`y`.
+
 
