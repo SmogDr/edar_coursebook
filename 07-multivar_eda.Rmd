@@ -61,22 +61,25 @@ Correlation: a mutual relationship or connection between two or more things; the
 
 ``` {r corr_plots1, warning=FALSE, echo=FALSE, include=FALSE}
 
+set.seed(7)
 corr_plots1 <- tibble(x = runif(100, 0, 100),
                       y1 = x,
-                      y2 = map_dbl(x, ~ (.x*(rnorm(1, mean = 1,  sd = 0.03)) + rnorm(1, mean = 0, sd = 2))),
-                      y3 = map_dbl(x, ~ (.x*(rnorm(1, mean = 0.6,  sd = 0.2)) + rnorm(1, mean = 15, sd = 15))),
-                      y4 = runif(100, 0, 100)
-) %>%
+                      y2 = map_dbl(x, ~ (.x*(rnorm(1, mean = 1,  sd = 0.06)) + 
+                                           rnorm(1, mean = 0, sd = 5))),
+                      y3 = map_dbl(x, ~ (.x*(rnorm(1, mean = 0.6,  sd = 0.2)) + 
+                                           rnorm(1, mean = 15, sd = 15))),
+                      y4 = runif(100, 0, 105)) %>%
   pivot_longer(y1:y4, names_to = "type") %>%
-  mutate(types = as.factor(type))
+  mutate(type = as.factor(type))
 
-levels(corr_plots1$types) <- c("Perfect Correlation", "Strong Correlation", "Moderate Correlation", "No Correlation")
+levels(corr_plots1$type) <- c("Perfect Correlation", "Strong Correlation", "Moderate Correlation", "No Correlation")
   
 
 p1 <- ggplot(data = corr_plots1,
                           aes(x = x, y = value)) +
-  geom_point(aes(color = types)) +
-  facet_wrap(facets = vars(types),
+  geom_point(aes(color = type),
+             alpha = 0.5) +
+  facet_wrap(facets = vars(type),
              ncol = 2) +
   theme_bw() +
   coord_fixed(ratio=1.0) +
