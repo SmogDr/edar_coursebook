@@ -52,6 +52,7 @@
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -241,10 +242,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a><ul>
 <li class="chapter" data-level="5.1" data-path="eda1.html"><a href="eda1.html#ch.-5-objectives"><i class="fa fa-check"></i><b>5.1</b> Ch. 5 Objectives</a></li>
-<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univariate-data"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a><ul>
+<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univar"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>5.2.1</b> Location, Dispersion, and Shape</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantiles"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a><ul>
+<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantile"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a><ul>
 <li class="chapter" data-level="5.3.1" data-path="eda1.html"><a href="eda1.html#descriptive-statistics"><i class="fa fa-check"></i><b>5.3.1</b> Descriptive Statistics</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a><ul>
@@ -385,7 +386,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13.3" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>13.3</b> Log-normal Distribution</a></li>
 <li class="chapter" data-level="13.4" data-path="dist.html"><a href="dist.html#statistical-terms"><i class="fa fa-check"></i><b>13.4</b> Statistical Terms</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>13.4.1</b> Pearson Correlation Coefficient</a></li>
+<li class="chapter" data-level="13.4.1" data-path="dist.html"><a href="dist.html#measures-of-central-tendency"><i class="fa fa-check"></i><b>13.4.1</b> Measures of Central Tendency</a></li>
+<li class="chapter" data-level="13.4.2" data-path="dist.html"><a href="dist.html#measures-of-dispersion"><i class="fa fa-check"></i><b>13.4.2</b> Measures of Dispersion</a></li>
+<li class="chapter" data-level="13.4.3" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>13.4.3</b> Pearson Correlation Coefficient</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -439,7 +442,7 @@ There are two key facets to data transformation: <strong>justification</strong> 
 <p>Centering means <strong><em>to subtract a constant from all values</em></strong> in a vector. The <strong>constant</strong> to be subtracted could be an estimate of the data’s central tendency, like the mean or median (hence the term <em>center</em>-ing), or it could be some residual value that you want to remove from all observations. If you subtract the mean from every value of a vector, then the new vector will have a mean of 0; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location. Centering <strong><em>changes the location</em></strong> of a variable but <strong><em>spread stays the same</em></strong>.</p>
 <p>In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to “background subtract” or “zero” a set of univariate observations. If you have ever used a digital scale to measure the weight of an object, you’ve probably noticed that when you turn it on, the scale does not always read zero. Most of the time the instrument has a way to “re-zero” itself prior to use, but this is not always the case. If your scale shows a mass of 298 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 298 from all subsequent weights that you perform with this scale. That subtraction is an example of a “centering” transformation.</p>
 <div class="figure" style="text-align: center"><span id="fig:centering-anno"></span>
-<img src="images/centering_anno.png" alt="Data are sometimes centered to remove spurious values"  />
+<img src="images/centering_anno.png" alt="Data are sometimes centered to remove spurious values" width="640" />
 <p class="caption">
 Figure 9.1: Data are sometimes centered to remove spurious values
 </p>
@@ -484,7 +487,7 @@ Like <em>“transformation”</em>, the word “<em>normalization</em>” is def
 <h3><span class="header-section-number">9.3.3</span> Reducing Skewness</h3>
 <p>Sometimes your data are <em>not normally distributed</em>, even though you want them to be. In that case you still have options. Some transformations, like the log, square root, or inverse, will make the spread of the data symmetric and approximately Gaussian. These transformations are commonly used to meet the needs (read: underlying assumptions) of many statistical models. We discuss model assumptions (and their evaluation) in the <a href="model.html#model">modeling chapter</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:reduce-skew2"></span>
-<img src="images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable."  />
+<img src="images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable." width="640" />
 <p class="caption">
 Figure 9.2: The log(x) transform is often used to reduce skewness in a variable.
 </p>

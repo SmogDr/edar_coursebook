@@ -163,9 +163,10 @@ The dispersion of a univariate distribution of data refers to its variability. W
   - **Inter-quartile Range (IQR)**: The IQR describes the variation in $x$ needed to go from the 25^th^% to the 75^th^% of the distribution. The IQR spans
 the "middle part" of the distribution of $x$. Calculated with `IQR()`.
 
-  - **Standard deviation**: The standard deviation is a common measure of dispersion, but one that is easily misused, since the *"standard"* part of this term implies the  data are **normally distributed** (*hint: not all data are normally distributed*). Still, this term is so common that one should know it. The standard deviation of $x$, denoted as $\hat{\sigma_{x}}$, is calculated in r using `sd()` from the following formula:
+  - **Standard deviation**: The standard deviation is a common measure of dispersion, but one that is easily misused, since the *"standard"* part of this term implies the  data are ***normally distributed*** (*hint: not all data are normally distributed*). Still, this term is so common that one should know it. The standard deviation of $x$, denoted as $\hat{\sigma_{x}}$, is calculated in r using `sd()` from the following formula:
   
   $$\hat{\sigma_{x}} = \sqrt {\frac{\sum_{i=1}^{n}(x_{i}-\bar{x})}{n-1}}$$
+  
 Note: the "hat" symbol, $\hat{}$, over the $\sigma$ denotes that we are *estimating* the standard deviation based on a sample of $x_{i}$ values. Statisticians created these hats to remind us that measurements (observations) are only estimates of a true value.  
  
 ### Pearson Correlation Coefficient {#pearson}

@@ -35,7 +35,7 @@ summary and enumerative plots
 - Define autocorrelation, quantitatively and qualitatively 
 - Identify time lags where autocorrelation is significant, using autocorrelation and partial autocorrelation plots
 
-## Univariate Data
+## Univariate Data {#univar}
 
 *Univariate* means that "only one variable" is being considered. Just like medical
 doctors, statisticians enjoy the use fancy words to describe basic things.  
@@ -164,7 +164,7 @@ descriptors in this course.
 <p class="caption">(\#fig:noaa-temp-anno)The temperature data from Hawaii and Colorado have similar locations (central tendencies) but differing dispersion (spread).</p>
 </div>
 
-## Quantiles
+## Quantiles {#quantile}
 
 Let's assume you have a sample of univariate data. A good starting point for
 exploring these data is to break them into *quantiles* and extract some basic
