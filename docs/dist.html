@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-10-02" />
+<meta name="date" content="2020-10-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -334,8 +334,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a><ul>
 <li class="chapter" data-level="10.1" data-path="measure.html"><a href="measure.html#ch.-10-objectives"><i class="fa fa-check"></i><b>10.1</b> Ch. 10 Objectives</a></li>
 <li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#samples-vs.-populations"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
-<li class="chapter" data-level="10.2.2" data-path="measure.html"><a href="measure.html#collecting-a-sample-sample.collect"><i class="fa fa-check"></i><b>10.2.2</b> Collecting a sample (#sample.collect)</a></li>
+<li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#sample"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
+<li class="chapter" data-level="10.2.2" data-path="measure.html"><a href="measure.html#sample.collect"><i class="fa fa-check"></i><b>10.2.2</b> Collecting a sample</a></li>
 <li class="chapter" data-level="10.2.3" data-path="measure.html"><a href="measure.html#simple-random-sampling"><i class="fa fa-check"></i><b>10.2.3</b> Simple Random Sampling</a></li>
 <li class="chapter" data-level="10.2.4" data-path="measure.html"><a href="measure.html#systematic-sampling"><i class="fa fa-check"></i><b>10.2.4</b> Systematic Sampling</a></li>
 <li class="chapter" data-level="10.2.5" data-path="measure.html"><a href="measure.html#stratified-sampling"><i class="fa fa-check"></i><b>10.2.5</b> Stratified Sampling</a></li>
@@ -532,12 +532,12 @@ that suggest <span class="math inline">\(x = a * b * c\)</span> not <span class=
 <div id="measures-of-central-tendency" class="section level3">
 <h3><span class="header-section-number">13.4.1</span> Measures of Central Tendency</h3>
 <p>When we think about a distribution of data (in a <a href="eda1.html#univar">univariate</a> sense), the <strong><em>central tendency</em></strong> represents the center, or <em>location</em>, of the data. The central tendency is the answer to the question: <em>where do the values typically fall</em>? We will use the terms <strong>mean</strong>, <strong>median</strong>, and <strong>mode</strong> to describe a distribution’s central tendency. They are defined as follows.</p>
-<p>Let <span class="math inline">\(x\)</span> be the variable of interest and assume that we have <span class="math inline">\(n\)</span> observations of <em><code>x</code></em> stored in r as a vector. Thus, each individual observation would be <span class="math inline">\(x_{i}\)</span> where <span class="math inline">\(i\)</span> goes from <span class="math inline">\(1\)</span> to <span class="math inline">\(n\)</span>. In an r programming sense, <span class="math inline">\(n =\)</span> <code>length(x)</code>.</p>
+<p>Let <span class="math inline">\(x\)</span> be the variable of interest and assume that we have <span class="math inline">\(n\)</span> observations of <em><code>x</code></em> stored in R as a vector. Thus, each individual observation would be <span class="math inline">\(x_{i}\)</span> where <span class="math inline">\(i\)</span> goes from <span class="math inline">\(1\)</span> to <span class="math inline">\(n\)</span>. In an R programming sense, <span class="math inline">\(n =\)</span> <code>length(x)</code>.</p>
 <ul>
-<li><strong>Mean</strong>: The average value, often termed as <span class="math inline">\(\bar{x}\)</span>. Calculated in <code>{base} r</code>
+<li><strong>Mean</strong>: The average value, often termed as <span class="math inline">\(\bar{x}\)</span>. Calculated in <code>{base} R</code>
 using the <code>mean()</code> function.</li>
 </ul>
-<p><span class="math display">\[\bar{x} = \frac{\sum_{n=1}^{n}x_{i}}{n}\]</span></p>
+<p><span class="math display">\[\bar{x} = \frac{\sum_{i=1}^{n}x_{i}}{n}\]</span></p>
 <ul>
 <li><p><strong>Mode</strong>: The most commonly observed value for <span class="math inline">\(x\)</span> among all the <span class="math inline">\(x_{i}\)</span> values. The mode can be calculated using <code>mode()</code> or often seen via a <a href="eda1.html#hist">histogram</a> of <code>x</code>. Note that with continuous data (and precise measurements), the <code>mode()</code> can be confusing because no two values of <code>x</code> are the same…<em>unless</em> you group the observations into discrete bins (as is done in a histogram).</p></li>
 <li><p><strong>Median</strong>: The 50<sup>th</sup> percentile value of <span class="math inline">\(x\)</span> when ordered from smallest to
@@ -554,11 +554,28 @@ function.</p></li>
 <li><p><strong>Range</strong>: The range is defined by the minimum and maximum value observed for
 the distribution of <span class="math inline">\(x\)</span>. For a large enough sample size, the range would contain nearly ALL possible observations of the data. Lots of functions can be used to calculate the range: <code>range()</code>, <code>max()</code> and <code>min()</code>, or <code>quantile(x, probs = c(0,1))</code>.</p></li>
 <li><p><strong>Inter-quartile Range (IQR)</strong>: The IQR describes the variation in <span class="math inline">\(x\)</span> needed to go from the 25<sup>th</sup>% to the 75<sup>th</sup>% of the distribution. The IQR spans
-the “middle part” of the distribution of <span class="math inline">\(x\)</span>. Calculated with <code>IQR()</code>.</p></li>
-<li><p><strong>Standard deviation</strong>: The standard deviation is a common measure of dispersion, but one that is easily misused, since the <em>“standard”</em> part of this term implies the data are <strong><em>normally distributed</em></strong> (<em>hint: not all data are normally distributed</em>). Still, this term is so common that one should know it. The standard deviation of <span class="math inline">\(x\)</span>, denoted as <span class="math inline">\(\hat{\sigma_{x}}\)</span>, is calculated in r using <code>sd()</code> from the following formula:</p></li>
+the “middle part” of the distribution of <span class="math inline">\(x\)</span> and is calculated with <code>IQR()</code>.</p></li>
+<li><p><strong>Standard deviation</strong>: The standard deviation is a common measure of dispersion, but one that is easily misused, since the <em>“standard”</em> part of this term implies the data are <strong><em>normally distributed</em></strong> (<em>hint: not all data are normally distributed</em>). Still, this term is so common that one should know it. The sample standard deviation of <span class="math inline">\(x\)</span>, denoted as <span class="math inline">\(\hat{\sigma_{x}}\)</span>, is calculated in R using <code>sd()</code> from the following formula:</p></li>
 </ul>
-<p><span class="math display">\[\hat{\sigma_{x}} = \sqrt {\frac{\sum_{i=1}^{n}(x_{i}-\bar{x})}{n-1}}\]</span></p>
-<p>Note: the “hat” symbol, <span class="math inline">\(\hat{}\)</span>, over the <span class="math inline">\(\sigma\)</span> denotes that we are <em>estimating</em> the standard deviation based on a sample of <span class="math inline">\(x_{i}\)</span> values. Statisticians created these hats to remind us that measurements (observations) are only estimates of a true value.</p>
+<p><span class="math display">\[\hat{\sigma_{x}} = \sqrt {\frac{\sum_{i=1}^{n}(x_{i}-\bar{x})^2}{n-1}}\]</span></p>
+<p>The units of <span class="math inline">\(\hat{\sigma_{x}}\)</span> are the same as <span class="math inline">\(x\)</span>, so we can interpret the standard deviation as a measure of <strong>dispersion</strong> about the <strong>mean</strong>. Thus, we often see <span class="math inline">\(\bar{x}\pm\hat{\sigma_{x}}\)</span> reported for a univariate distribution.</p>
+<div class="rmdnote">
+<p>
+Note: the “hat” symbol, <span class="math inline"><span class="math inline">\(\hat{}\)</span></span>, over the <span class="math inline"><span class="math inline">\(\sigma\)</span></span> denotes that we are <em>estimating</em> the standard deviation based on a sample of <span class="math inline"><span class="math inline">\(x_{i}\)</span></span> values. Statisticians created these hats to remind us that measurements (aka: samples, observations) are only estimates of a true population value. More on samples and populations <a href="measure.html#sample">here</a>.
+</p>
+</div>
+<ul>
+<li><strong>Variance</strong>: The variance of <span class="math inline">\(x\)</span> is the <em>average of the squared difference from the mean</em> for all values of <span class="math inline">\(x\)</span>. The sample variance, denoted as <span class="math inline">\(\hat{\sigma}^2\)</span>,
+is also the square of the <em>standard deviation</em>. Variance is calculated in R using the <code>var()</code> function.</li>
+</ul>
+<p><span class="math display">\[\hat{\sigma_{x}}^{2} = \frac{\sum_{i=1}^{n}(x_{i}-\bar{x})^2}{n-1}\]</span>}</p>
+<p><strong><em>Why do we take the square of <span class="math inline">\(x_{i}-\bar{x}\)</span> when calculating these measures of</em></strong>
+<strong><em>dispersion?</em></strong> <em>Answer</em>: Because when we are taking the sum, <span class="math inline">\(\sum_{i=1}^n\)</span>, if we didn’t calculate squares then the positive and negative deviations would cancel each other out and mislead our estimate of dispersion. This is the reasoning behind all <em>root-mean-square</em> calculations.</p>
+<div class="rmdwarning">
+<p>
+The mean and standard deviation are great measures of central tendency and dispersion when you are working with data that (approximately) follow a normal distribution. When data are skewed, the <code>mean()</code> and <code>sd()</code> can lead to unexpected results. See <a href="eda1.html#skew">Figure 5.8</a>, as an example.
+</p>
+</div>
 </div>
 <div id="pearson" class="section level3">
 <h3><span class="header-section-number">13.4.3</span> Pearson Correlation Coefficient</h3>
@@ -573,13 +590,23 @@ Figure 13.7: Pearson correlation for variables with perfect, strong, moderate, a
 </p>
 </div>
 <p>Values of <strong>r</strong> range from -1 (perfect negative correlation) to 0 (no correlation) to 1 (perfect positive correlation). As an engineer, I would say that two variables are <em>moderately correlated</em> when they have a Pearson correlation coefficient (as an absolute value) <span class="math inline">\(|r|\)</span>, between 0.25 and 0.75. Two variables are <em>strongly correlated</em> when <span class="math inline">\(|r|&gt;0.75\)</span>. These are qualitative judgments on my part; someone in a different discipline (like epidemiology or economics) might get super excited by discovering an r = 0.3 between two variables.</p>
+<p>You will often see the square of Pearson correlation coefficient reported, <span class="math inline">\(r^2\)</span>.
+The <span class="math inline">\(r^2\)</span> term is a direct indicator of how the <strong><em>variance</em></strong> in <span class="math inline">\(y\)</span> is explained by
+knowing <span class="math inline">\(x\)</span>. Note that because of the square power, <span class="math inline">\(r^2\)</span> values range from zero to 1.</p>
 <p>There are several ways to calculate <strong>r</strong> - all of these are mathematically equivalent.
 If we have <code>n</code> paired samples of <code>x</code> and <code>y</code>, then <strong><em>r</em></strong> is:</p>
 <p><span class="math display">\[r = \frac{n\sum(x_{i}y_{i})-\sum x_{i} \sum y_{i} } {\sqrt {n\sum(x_{i}^{2})-\sum(x_{i})^{2}} \cdot \sqrt {n\sum(y_{i}^{2})-\sum(y_{i})^{2}}}\]</span></p>
-<p>This equation looks like a lot of work but it’s really just a lot of algebra to divide the <em>covariance</em> of <code>x</code> and <code>y</code> with the product of their standard deviations: <span class="math inline">\(\hat{\sigma}_{x}\)</span> times <span class="math inline">\(\hat{\sigma}_{y}\)</span>.</p>
-<p><span class="math display">\[r = \frac{cov(x,y)} {\hat{\sigma}_{x} \cdot \hat{\sigma}_{y}}\]</span>
-which can be rewritten using means and standard deviations as:
-<span class="math display">\[r = \frac{\sum_{i=1}^{n}(x_{i} - \bar{x})\cdot(y_{i} - \bar{y}) } {\sqrt {\sum_{i=1}^{n}(x_{i}-\bar{x})^{2}} \cdot \sqrt {\sum_{i=1}^{n}(y_{i}-\bar{y})^{2}}}\]</span></p>
+<p>This equation looks like a lot of work but it’s really just a lot of algebra to divide the <em>covariance</em> of <code>x</code> and <code>y</code> with the product of their standard deviations: <span class="math inline">\(\hat{\sigma}_{x}\)</span>, <span class="math inline">\(\hat{\sigma}_{y}\)</span>.</p>
+<span class="math display">\[r = \frac{cov(x,y)} {\hat{\sigma}_{x} \cdot \hat{\sigma}_{y}}\]</span>
+You can rearrange the equation to calculate <strong>r</strong> using the mean and standard deviation as follows (note: the <span class="math inline">\(n-1\)</span> parts get canceled out):
+<span class="math display">\[r = \frac{\sum_{i=1}^{n}(x_{i} - \bar{x})\cdot(y_{i} - \bar{y}) } {\sqrt {\sum_{i=1}^{n}(x_{i}-\bar{x})^{2}} \cdot \sqrt {\sum_{i=1}^{n}(y_{i}-\bar{y})^{2}}}\]</span>
+<div class="figure" style="text-align: center"><span id="fig:pearson-anno"></span>
+<img src="images/pearson_anno.png" alt="The Pearson Correlation Coefficient is not as bad as it loooks in algebraic form." width="632" />
+<p class="caption">
+Figure 13.8: The Pearson Correlation Coefficient is not as bad as it loooks in algebraic form.
+</p>
+</div>
+<p>You can calculate <strong>r</strong> using the <code>cor()</code> function and supplying <code>x</code> and <code>y</code> as arguments.</p>
 
 </div>
 </div>

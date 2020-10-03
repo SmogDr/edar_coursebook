@@ -606,7 +606,7 @@ case, we can always rely on quantile calculations for descriptors such as
 median and IQR because those descriptors do not make assumptions about the
 shape of the distribution.
 
-#### What causes skewed histograms?
+#### What causes skewed histograms? {#skew}
 
 I want to spend some time thinking about mechanisms that cause variability in
 an observation. These mechanisms are often responsible for whether a set of
