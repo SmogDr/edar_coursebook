@@ -485,11 +485,7 @@ Are you active on social media platforms like Instagram or Twitter? You can bet 
 and the <code>stringr</code> package. We will also introduce the concept of
 <strong>regular expressions</strong> as a means to perform more advanced string
 manipulation.</p>
-<<<<<<< HEAD
 <p><img src="images/parse_comic.png" style="display: block; margin: auto;" /></p>
-=======
-<p><img src="images/parse_comic.png" width="1000" style="display: block; margin: auto;" /></p>
->>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
 <div id="string-detect-match-subset" class="section level3">
 <h3><span class="header-section-number">6.2.1</span> String detect, match, subset</h3>
 <p>One of the simplest string operations is to search whether a string contains a
@@ -827,11 +823,7 @@ date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time”
 by calling the <code>Sys.time()</code> function.</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="rprog3.html#cb209-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
-<<<<<<< HEAD
-<pre><code>## [1] &quot;2020-10-02 16:31:14 MDT&quot;</code></pre>
-=======
-<pre><code>## [1] &quot;2020-10-03 15:14:47 MDT&quot;</code></pre>
->>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
+<pre><code>## [1] &quot;2020-10-03 16:31:16 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and timezone used by my computer
 (<em>whenever I last ran this code in <code>bookdown</code></em>). If you want to see how this
 time is stored in R internally, you can use <code>unclass()</code>, which returns an
@@ -839,28 +831,17 @@ object value with its class attributes removed. When we wrap <code>unclass()</co
 around <code>Sys.time()</code>, we will see the number of seconds that have occurred
 between the epoch of 1/1/1970 and right now:</p>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="rprog3.html#cb211-1"></a><span class="kw">unclass</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
-<<<<<<< HEAD
-<pre><code>## [1] 1601677874</code></pre>
+<pre><code>## [1] 1601764277</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
 Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span>
-365d/yr] =&gt; 50.7888722 years.</p>
-=======
-<pre><code>## [1] 1601759687</code></pre>
-<p>That’s a lot of seconds. How many years is that?<br />
-Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span>
-365d/yr] =&gt; 50.7914665 years.</p>
->>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
+365d/yr] =&gt; 50.791612 years.</p>
 <p>This calculation ignores leap years, but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats</h3>
 <p>Note that the <code>Sys.time()</code> function provided the date in a
 <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong>
-<<<<<<< HEAD
-format: 2020-10-02 16:31:14.</p>
-=======
-format: 2020-10-03 15:14:47.</p>
->>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
+format: 2020-10-03 16:31:16.</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
 have little difficulty recognizing the following date-time objects as
@@ -1003,25 +984,14 @@ classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and 
 attributes.</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="rprog3.html#cb215-1"></a>time_now_ct &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb215-2"><a href="rprog3.html#cb215-2"></a><span class="kw">unclass</span>(time_now_ct)</span></code></pre></div>
-<<<<<<< HEAD
-<pre><code>## [1] 1601677875</code></pre>
+<pre><code>## [1] 1601764277</code></pre>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="rprog3.html#cb217-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb217-2"><a href="rprog3.html#cb217-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 14.6
+##  $ sec   : num 16.9
 ##  $ min   : int 31
 ##  $ hour  : int 16
-##  $ mday  : int 2
-=======
-<pre><code>## [1] 1601759687</code></pre>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="rprog3.html#cb217-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
-<span id="cb217-2"><a href="rprog3.html#cb217-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
-<pre><code>## List of 11
-##  $ sec   : num 47.5
-##  $ min   : int 14
-##  $ hour  : int 15
 ##  $ mday  : int 3
->>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
 ##  $ mon   : int 9
 ##  $ year  : int 120
 ##  $ wday  : int 6
@@ -1594,8 +1564,6 @@ The <code>pivot_longer()</code> function always creates two new columns:<br />
 <code>names_to = "Exam"</code> and the data represented in those three columns gets moved
 into a column of <code>values_to = "Scores"</code>. We also add a call to <code>dplyr::mutate()</code>
 and <code>dplyr::case_when()</code> to convert strings to numbers.</p>
-<<<<<<< HEAD
-=======
 <p>The <code>case_when()</code> function allows you introduce multiple “if/else” statements into
 a vectorized operation, such as within this call to <code>dplyr:mutate()</code>. This function
 takes a series of logical arguments as <em>cases</em>, with each case seeking to find a “match”. Once a “match” occurs, an outcome instruction is followed. In the code
@@ -1607,7 +1575,6 @@ instruction. In plain speak, the function reads:</p>
 <p>If the vector contains a string that matches “Exam_1_Score”, then replace that entry with a 1; else, if the vector contains a string that matches “Exam_2_Score”,
 then replace that entry with a 2; else, if the vector contains a string that matches “Exam_3_Score”, then replace that entry with a 3.</p>
 </blockquote>
->>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="rprog3.html#cb236-1"></a>tidygrades &lt;-<span class="st"> </span>tidyr<span class="op">::</span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> grades_untidy,</span>
 <span id="cb236-2"><a href="rprog3.html#cb236-2"></a>                                  <span class="dt">cols =</span> Exam1_Score<span class="op">:</span>Exam3_Score,</span>
 <span id="cb236-3"><a href="rprog3.html#cb236-3"></a>                                  <span class="dt">names_to =</span> <span class="st">&quot;Exam&quot;</span>,</span>
@@ -1736,11 +1703,7 @@ Hermione
 </tr>
 </tbody>
 </table>
-<<<<<<< HEAD
-<p>Now, these data are tidy, wherein each variable forms a column, each row
-=======
 <p>Now these data are tidy, wherein each variable forms a column, each row
->>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
 forms an observation, and the table is specific to one observational unit.
 This may seem obvious, but most data analysis problems occur because of poor
 data management techniques. Remember: What might seem useful at the time—like
