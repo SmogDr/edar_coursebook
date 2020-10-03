@@ -109,7 +109,7 @@ end with a specific function name. A full list of functions is provided
 
 1. **`str_detect()`** returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the `string` to be searched and the `pattern` for which to search. Let's search for the pattern `"Josh"` in the character vector of strings, `names_respond`, that we created above:
   
-```{r string-2a}
+```{r string-2}
 stringr::str_detect(string = names_respond, 
                     pattern = "Josh")
 ```
@@ -121,10 +121,10 @@ of `TRUE` are coded as 1 and `FALSE` as 0.  Thus, if we `sum()` the result of
 the `str_detect()` search, we will get the cumulative number of matches to
 `"Josh"` from within our data.
 
-```{r string-2b}
+```{r string-2a}
 stringr::str_detect(string = names_respond, 
            pattern = "Josh") %>%
-  base::sum()
+  sum()
 ```
 
 In other words, logical functions like `str_detect()` allow us to do math on
@@ -134,7 +134,7 @@ entries within our sample:
 ```{r string-2b}
 stringr::str_detect(string = names_respond, 
                     pattern = "Josh") %>%
-  base::sum() / base::length(names_respond)
+  sum() / length(names_respond)
 ```
 
 2. **`str_extract()`** takes the same arguments as `str_detect()` but returns a vector of the matched values (by string index). By "matched values", I mean only the portion of the string for which the search created a match.
