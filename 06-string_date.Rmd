@@ -748,7 +748,18 @@ In the case of Table \@ref(tab:grades-untidy), we are using `cols = ` to combine
 `names_to = "Exam"` and the data represented in those three columns gets moved 
 into a column of `values_to = "Scores"`. We also add a call to `dplyr::mutate()`
 and `dplyr::case_when()` to convert strings to numbers.
-  
+
+The `case_when()` function allows you introduce multiple "if/else" statements into
+a vectorized operation, such as within this call to `dplyr:mutate()`. This function 
+takes a series of logical arguments as *cases*, with each case seeking to find a "match". Once a "match" occurs, an outcome instruction is followed. In the code
+chunk below, the left-hand-side of each "case" evaluates whether each entry in
+the `Exam` column equates to a particular string (like `"Exam_1_Score"`). On the
+right-hand-side of each case, separated by a *tilde* ~, contains the `mutate()`
+instruction.  In plain speak, the function reads:
+
+> If the vector contains a string that matches "Exam_1_Score", then replace that entry with a 1; else, if the vector contains a string that matches "Exam_2_Score",
+then replace that entry with a 2; else, if the vector contains a string that matches "Exam_3_Score", then replace that entry with a 3.
+
 ```{r pivot-longer}
 tidygrades <- tidyr::pivot_longer(data = grades_untidy,
                                   cols = Exam1_Score:Exam3_Score,
@@ -770,7 +781,7 @@ kableExtra::kable_styling(grades_tab3,
                           full_width = FALSE)
 ```
 
-Now, these data are tidy, wherein each variable forms a column, each row
+Now these data are tidy, wherein each variable forms a column, each row
 forms an observation, and the table is specific to one observational unit. 
 This may seem obvious, but most data analysis problems occur because of poor 
 data management techniques. Remember: What might seem useful at the time---like 

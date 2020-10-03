@@ -398,7 +398,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-10-03 10:50:48 MDT"
+## [1] "2020-10-03 15:14:47 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -414,12 +414,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1601743849
+## [1] 1601759687
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 50.7909643 years.  
+365d/yr] => 50.7914665 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -427,7 +427,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2020-10-03 10:50:48.
+format: 2020-10-03 15:14:47.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -539,7 +539,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1601743849
+## [1] 1601759687
 ```
 
 
@@ -550,9 +550,9 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 48.7
-##  $ min   : int 50
-##  $ hour  : int 10
+##  $ sec   : num 47.5
+##  $ min   : int 14
+##  $ hour  : int 15
 ##  $ mday  : int 3
 ##  $ mon   : int 9
 ##  $ year  : int 120
@@ -1028,7 +1028,18 @@ In the case of Table \@ref(tab:grades-untidy), we are using `cols = ` to combine
 `names_to = "Exam"` and the data represented in those three columns gets moved 
 into a column of `values_to = "Scores"`. We also add a call to `dplyr::mutate()`
 and `dplyr::case_when()` to convert strings to numbers.
-  
+
+The `case_when()` function allows you introduce multiple "if/else" statements into
+a vectorized operation, such as within this call to `dplyr:mutate()`. This function 
+takes a series of logical arguments as *cases*, with each case seeking to find a "match". Once a "match" occurs, an outcome instruction is followed. In the code
+chunk below, the left-hand-side of each "case" evaluates whether each entry in
+the `Exam` column equates to a particular string (like `"Exam_1_Score"`). On the
+right-hand-side of each case, separated by a *tilde* ~, contains the `mutate()`
+instruction.  In plain speak, the function reads:
+
+> If the vector contains a string that matches "Exam_1_Score", then replace that entry with a 1; else, if the vector contains a string that matches "Exam_2_Score",
+then replace that entry with a 2; else, if the vector contains a string that matches "Exam_3_Score", then replace that entry with a 3.
+
 
 ```r
 tidygrades <- tidyr::pivot_longer(data = grades_untidy,
@@ -1100,7 +1111,7 @@ tidygrades <- tidyr::pivot_longer(data = grades_untidy,
 </tbody>
 </table>
 
-Now, these data are tidy, wherein each variable forms a column, each row
+Now these data are tidy, wherein each variable forms a column, each row
 forms an observation, and the table is specific to one observational unit. 
 This may seem obvious, but most data analysis problems occur because of poor 
 data management techniques. Remember: What might seem useful at the time---like 
