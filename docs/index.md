@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens and Kathleen E. Wendt"
-date: "2020-10-02"
+date: "2020-10-03"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
@@ -13,7 +13,11 @@ description: "This is an undergraduate technical elective course for mechanical 
 
 
 ```
+<<<<<<< HEAD
 ## ── Attaching packages ──────────────────────────────── tidyverse 1.3.0 ──
+=======
+## ── Attaching packages ── tidyverse 1.3.0 ──
+>>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
 ```
 
 ```
@@ -24,7 +28,11 @@ description: "This is an undergraduate technical elective course for mechanical 
 ```
 
 ```
+<<<<<<< HEAD
 ## ── Conflicts ─────────────────────────────────── tidyverse_conflicts() ──
+=======
+## ── Conflicts ───── tidyverse_conflicts() ──
+>>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 ```

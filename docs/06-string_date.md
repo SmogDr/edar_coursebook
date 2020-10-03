@@ -398,7 +398,11 @@ Sys.time()
 ```
 
 ```
+<<<<<<< HEAD
 ## [1] "2020-10-02 16:31:14 MDT"
+=======
+## [1] "2020-10-03 15:14:47 MDT"
+>>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -414,12 +418,20 @@ unclass(Sys.time())
 ```
 
 ```
+<<<<<<< HEAD
 ## [1] 1601677874
+=======
+## [1] 1601759687
+>>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
+<<<<<<< HEAD
 365d/yr] => 50.7888722 years.  
+=======
+365d/yr] => 50.7914665 years.  
+>>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
 
 This calculation ignores leap years, but you get the point...
 
@@ -427,7 +439,11 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
+<<<<<<< HEAD
 format: 2020-10-02 16:31:14.
+=======
+format: 2020-10-03 15:14:47.
+>>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -539,7 +555,11 @@ unclass(time_now_ct)
 ```
 
 ```
+<<<<<<< HEAD
 ## [1] 1601677875
+=======
+## [1] 1601759687
+>>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
 ```
 
 
@@ -550,14 +570,21 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
+<<<<<<< HEAD
 ##  $ sec   : num 14.6
 ##  $ min   : int 31
 ##  $ hour  : int 16
 ##  $ mday  : int 2
+=======
+##  $ sec   : num 47.5
+##  $ min   : int 14
+##  $ hour  : int 15
+##  $ mday  : int 3
+>>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
 ##  $ mon   : int 9
 ##  $ year  : int 120
-##  $ wday  : int 5
-##  $ yday  : int 275
+##  $ wday  : int 6
+##  $ yday  : int 276
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
@@ -641,6 +668,7 @@ worth knowing:
 </table>
 
 ## `lubridate` {#lubridate}
+<<<<<<< HEAD
 
 The `lubridate` package was developed specifically to make it easier to work
 with date-time objects. You can find out more information on `lubridate`
@@ -656,6 +684,23 @@ with simplicity and ease; the `lubridate` parsing functions are designed as
 
 * If a character vector is written in "**y**ear-**m**onth-**d**ay" format (e.g., `"2020-Dec-18"`), then the `lubridate` function to convert that vector is `ymd()`.
 
+=======
+
+The `lubridate` package was developed specifically to make it easier to work
+with date-time objects. You can find out more information on `lubridate`
+[here](https://lubridate.tidyverse.org/).
+
+### Parsing functions in `lubridate`
+
+One of best aspects of `lubridate` is its ability to parse date-time objects 
+with simplicity and ease; the `lubridate` parsing functions are designed as 
+"named-to-order". Let me explain:  
+
+> <span style="color: blue;"> **Parse**: ***to break apart and analyze the individual components*** of something, like a character string. </span>
+
+* If a character vector is written in "**y**ear-**m**onth-**d**ay" format (e.g., `"2020-Dec-18"`), then the `lubridate` function to convert that vector is `ymd()`.
+
+>>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
 * If a character vector is written in "**d**ay-**m**onth-**y**ear" format (e.g., `"18-Dec-2020"`), then the `lubridate` function to convert that vector is `dmy()`.  Try it out:
 
 
@@ -764,9 +809,15 @@ format:
 The beauty of the `lubridate` parsers is that they do the hard work of cleaning 
 up the character vector, regardless of separators or delimiters within each 
 string, and return either a `Date` or `Date-time` object class.
+<<<<<<< HEAD
 
 ### Date-time manipulation with `lubridate`
 
+=======
+
+### Date-time manipulation with `lubridate`
+
+>>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
 To convert the `date` column in the `daily_show` data into a Date class, you can
 run:
 
@@ -1028,7 +1079,22 @@ In the case of Table \@ref(tab:grades-untidy), we are using `cols = ` to combine
 `names_to = "Exam"` and the data represented in those three columns gets moved 
 into a column of `values_to = "Scores"`. We also add a call to `dplyr::mutate()`
 and `dplyr::case_when()` to convert strings to numbers.
+<<<<<<< HEAD
   
+=======
+
+The `case_when()` function allows you introduce multiple "if/else" statements into
+a vectorized operation, such as within this call to `dplyr:mutate()`. This function 
+takes a series of logical arguments as *cases*, with each case seeking to find a "match". Once a "match" occurs, an outcome instruction is followed. In the code
+chunk below, the left-hand-side of each "case" evaluates whether each entry in
+the `Exam` column equates to a particular string (like `"Exam_1_Score"`). On the
+right-hand-side of each case, separated by a *tilde* ~, contains the `mutate()`
+instruction.  In plain speak, the function reads:
+
+> If the vector contains a string that matches "Exam_1_Score", then replace that entry with a 1; else, if the vector contains a string that matches "Exam_2_Score",
+then replace that entry with a 2; else, if the vector contains a string that matches "Exam_3_Score", then replace that entry with a 3.
+
+>>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
 
 ```r
 tidygrades <- tidyr::pivot_longer(data = grades_untidy,
@@ -1100,7 +1166,11 @@ tidygrades <- tidyr::pivot_longer(data = grades_untidy,
 </tbody>
 </table>
 
+<<<<<<< HEAD
 Now, these data are tidy, wherein each variable forms a column, each row
+=======
+Now these data are tidy, wherein each variable forms a column, each row
+>>>>>>> 56ab10f2da5a5f2fe2978cd0e9d3262a24882937
 forms an observation, and the table is specific to one observational unit. 
 This may seem obvious, but most data analysis problems occur because of poor 
 data management techniques. Remember: What might seem useful at the time---like 

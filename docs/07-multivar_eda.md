@@ -212,15 +212,14 @@ ggplot(data = mtcars,
 
 ### In-class: fueleconomy.gov
 This in-class exercise is will conduct an exploratory, multivariate data 
-analysis on vehicle fuel economy. We will begin by downloading a .zip file from [fueleconomy.gov](https://www.fueleconomy.gov/feg/ws/). This file contains a 
+analysis on vehicle fuel economy. We will begin by downloading a .zip file from [fueleconomy.gov](https://www.fueleconomy.gov/feg/ws/) - a Federal program that tracks the fuel economy of all vehicles sold in the US. The .zip file contains a 
 .csv with fuel economy information for nearly every vehicle manufactured 
 between 1984 and today. We will use the `readr` and `dplyr` packages to load 
 and clean the data, respectively. A data dictionary (something that defines 
 and explains each variable in the data set) is also available at the website
 above.
 
-The first code chunk will download the fueleconomy.gov data directly from their
-website and into a temp file using `download.file()` from base R.  We will then 
+The first code chunk will download the fueleconomy.gov data directly into a temp file using `download.file()` from base R.  We will then 
 `unzip()` that temp file into a .csv and use `readr` to read that .csv into a 
 data frame named `raw_data`. 
 
@@ -245,9 +244,9 @@ rm(temp, temp2) #remove the two temp objects from local environment
 Looking at the `raw_data` data frame, we see there are 83 variables with over 
 42,000 observations.  That's a LOT of vehicles! In most analyses of large data 
 sets, we don't need to inspect every variable. Let's create a vector of 
-variables (`vars_needed`) that we do want and then pass that vector to `dplyr::select()` to retain only the variables we want. To pass a character 
-vector as an argument to `dplyr::select()`, we use the `all_of()` 
-function - a `<tidy-select>` argument modifier. You can type 
+variables (`vars_needed`) that we want to keep and pass that vector to `dplyr::select()` to retain only the variables we want. To pass a character 
+vector as an argument to `dplyr::select()`, instead of just a single column name, 
+we use the `all_of()` function - a `{tidy-select}` argument modifier. You can type 
 `?tidyr_tidy_select` to learn more.
 
 
@@ -275,7 +274,7 @@ rm(raw_data) #remove large file from memory
 ```
 
 Some of these variables can be coded as **factors** (*categorical* variables 
-that may be enumerated into *discrete levels*). For example, there are a 
+that can be classified into *discrete levels*). For example, there are a 
 finite number of vehicle transmission `trany` or drivetrain `drive` types on 
 the market and by telling R to code these data as **factors**, we can analyze 
 these variables in categorical form.
