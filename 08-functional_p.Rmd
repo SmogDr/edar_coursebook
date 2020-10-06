@@ -121,7 +121,7 @@ accessed by passing the function name as an argument to:
 - `body()`, to see the function's code
   - or type just the function name, without `()`, into the console
   - *but note that many base R functions are coded in C* and can be accessed 
-  [on GitHub](https://github.com/wch/r-source). 
+  [on GitHub](https://github.com/wch/r-source){target="_blank"}. 
 - `environment()`, to see where the function resides.
   - more on *R environments* below
 
@@ -198,9 +198,10 @@ Indeed, objects that are defined within functions are part of the *evaluation*
 *environment* within that function, even if the function returns the value of 
 the object as output (*"what happens inside functions stays inside functions"*). 
 A detailed discussion on R environments is beyond the scope of this book, 
-look [here](https://www.r-bloggers.com/environments-in-r/) for an introduction 
-to environments and 
-[here](https://adv-r.hadley.nz/environments.html) for a more detailed tutorial.
+look [here](https://www.r-bloggers.com/environments-in-r/){target="_blank"}
+for an introduction to environments and 
+[here](https://adv-r.hadley.nz/environments.html){target="_blank"}
+for a more detailed tutorial.
 The take-home point is that a homemade function can exist within the global 
 environment and return values to the global environment, even if the objects 
 created within that function don't.
@@ -219,9 +220,12 @@ lets use `list.files()` to look at the file names and paths. For this exercise
 we show a short list of 8 files (4 each from two sensors) but one could imagine
 this list being hundreds of entries.*To Note: these are real data collected* 
 *with using sensors from*  
-*[this citizen-science network](http://www.purpleair.com/map) and published*
-*by our research group [here](https://doi.org/10.1016/j.atmosenv.2019.117067) in 2019.*
-The "PA" in each filename stands for [Purple Air](www.purpleair.com).
+*[this citizen-science network](http://www.purpleair.com/map){target="_blank"}*
+*and published*
+*by our research group*
+*[here](https://doi.org/10.1016/j.atmosenv.2019.117067){target="_blank"} in 2019.*
+The "PA" in each filename stands for 
+[Purple Air](www.purpleair.com){target="_blank"}.
 
 ``` {r list-PA-files}
 list.files('./data/purpleair/', full.names=TRUE)
