@@ -21,15 +21,15 @@ completing this Chapter, you should be able to:
 
 ## Strings {#strings}
 
-A ***string*** is a character variable like "John", or "blue", or "John's
+***strings*** are a form of character data like "John", or "blue", or "John's
 sample 8021A turned blue". 
 
-**String variables are defined in R using quotes `" "`** and stored as a
-`character` class; they often show up in data analysis in one of two ways:  
+**Strings are defined in R using quotes `" "`** and stored as `character` 
+vectors; they often show up in data analysis in one of two ways:  
 
   1. As ***metadata***. Metadata means: "data that describe other data".  A *readme.txt* file is metadata; notes and code comments are metadata. All of these types of data usually come in the form of strings and are included **with the data your are analyzing** but not **in the dataset** itself.  
   
-  2. As ***vectorized data***.  In R programming, *"vectorized"* means: stored as a column of data. Examples of vectorized string variables you might find include things like: "participant names", or "survey responses to question 1", or "mode of failure". The examples below show how string variables are created in R.
+  2. As ***vectorized data***.  In R programming, *"vectorized"* means: stored as a column of data. Examples of vectorized strings that you might find include things like: "participant names", or "survey responses to question 1", or "mode of failure". The example below creates three different string vectors in R. You can check the type of object you've created using the `class()` or `typeof()` functions.
     
 
 ```r
@@ -56,7 +56,7 @@ failure_mode <- c("fracture",
                   "fatigue", 
                   "creep")
 
-# proof of vector class
+# proof of vector type
 class(names_respond)
 ```
 
@@ -66,7 +66,7 @@ class(names_respond)
     
 The first step in analyzing a string is to parse it. 
 **To parse means to examine the individual components.** For example, when you
-read this sentence you parse out the words and then assign meaning to those
+read this sentence you parse the words and then assign meaning to those
 words based on your memory, your understanding of grammar, and the context in
 which those words occur. Context is often critical to understanding because the
 meaning of words can change from one context to the next (i.e., whether you are
@@ -86,7 +86,7 @@ and the `stringr` package. We will also introduce the concept of
 **regular expressions** as a means to perform more advanced string
 manipulation.
 
-<img src="./images/parse_comic.png" style="display: block; margin: auto;" />
+<img src="./images/parse_comic.png" width="1000" style="display: block; margin: auto;" />
 
 ### String detect, match, subset
 
@@ -95,7 +95,7 @@ pattern of interest. The `stringr` package (part of the
 [Tidyverse](https://stringr.tidyverse.org/)) was developed to simplify the
 analysis of strings. Most of the functions in `stringr` begin with `str_` and
 end with a specific function name. A full list of functions is provided
-[here](https://stringr.tidyverse.org/reference/index.html). Some examples:  
+[here](https://stringr.tidyverse.org/reference/index.html){target="_blank"}. Some examples:  
 
 1. **`str_detect()`** returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the `string` to be searched and the `pattern` for which to search. Let's search for the pattern `"Josh"` in the character vector of strings, `names_respond`, that we created above:
   
@@ -398,7 +398,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-10-05 18:37:57 MDT"
+## [1] "2020-10-06 08:24:02 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -414,12 +414,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1601944677
+## [1] 1601994242
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 50.7973325 years.  
+365d/yr] => 50.7989042 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -427,7 +427,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2020-10-05 18:37:57.
+format: 2020-10-06 08:24:02.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -539,7 +539,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1601944677
+## [1] 1601994242
 ```
 
 
@@ -550,14 +550,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 57.2
-##  $ min   : int 37
-##  $ hour  : int 18
-##  $ mday  : int 5
+##  $ sec   : num 2.32
+##  $ min   : int 24
+##  $ hour  : int 8
+##  $ mday  : int 6
 ##  $ mon   : int 9
 ##  $ year  : int 120
-##  $ wday  : int 1
-##  $ yday  : int 278
+##  $ wday  : int 2
+##  $ yday  : int 279
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600

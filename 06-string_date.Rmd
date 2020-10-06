@@ -34,15 +34,15 @@ completing this Chapter, you should be able to:
 
 ## Strings {#strings}
 
-A ***string*** is a character variable like "John", or "blue", or "John's
+***strings*** are a form of character data like "John", or "blue", or "John's
 sample 8021A turned blue". 
 
-**String variables are defined in R using quotes `" "`** and stored as a
-`character` class; they often show up in data analysis in one of two ways:  
+**Strings are defined in R using quotes `" "`** and stored as `character` 
+vectors; they often show up in data analysis in one of two ways:  
 
   1. As ***metadata***. Metadata means: "data that describe other data".  A *readme.txt* file is metadata; notes and code comments are metadata. All of these types of data usually come in the form of strings and are included **with the data your are analyzing** but not **in the dataset** itself.  
   
-  2. As ***vectorized data***.  In R programming, *"vectorized"* means: stored as a column of data. Examples of vectorized string variables you might find include things like: "participant names", or "survey responses to question 1", or "mode of failure". The examples below show how string variables are created in R.
+  2. As ***vectorized data***.  In R programming, *"vectorized"* means: stored as a column of data. Examples of vectorized strings that you might find include things like: "participant names", or "survey responses to question 1", or "mode of failure". The example below creates three different string vectors in R. You can check the type of object you've created using the `class()` or `typeof()` functions.
     
 ```{r strings-1}
 # examples of vectorized string data
@@ -68,13 +68,13 @@ failure_mode <- c("fracture",
                   "fatigue", 
                   "creep")
 
-# proof of vector class
+# proof of vector type
 class(names_respond)
 ```
     
 The first step in analyzing a string is to parse it. 
 **To parse means to examine the individual components.** For example, when you
-read this sentence you parse out the words and then assign meaning to those
+read this sentence you parse the words and then assign meaning to those
 words based on your memory, your understanding of grammar, and the context in
 which those words occur. Context is often critical to understanding because the
 meaning of words can change from one context to the next (i.e., whether you are
@@ -105,7 +105,7 @@ pattern of interest. The `stringr` package (part of the
 [Tidyverse](https://stringr.tidyverse.org/)) was developed to simplify the
 analysis of strings. Most of the functions in `stringr` begin with `str_` and
 end with a specific function name. A full list of functions is provided
-[here](https://stringr.tidyverse.org/reference/index.html). Some examples:  
+[here](https://stringr.tidyverse.org/reference/index.html){target="_blank"}. Some examples:  
 
 1. **`str_detect()`** returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the `string` to be searched and the `pattern` for which to search. Let's search for the pattern `"Josh"` in the character vector of strings, `names_respond`, that we created above:
   

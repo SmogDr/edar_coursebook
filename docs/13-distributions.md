@@ -177,7 +177,7 @@ The units of $\hat{\sigma_{x}}$ are the same as $x$, so we can interpret the sta
   - **Variance**: The variance of $x$ is the *average of the squared difference from the mean* for all values of $x$.  The sample variance, denoted as $\hat{\sigma}^2$,
  is also the square of the *standard deviation*. Variance is calculated in R using the `var()` function.
   
-  $$\hat{\sigma_{x}}^{2} = \frac{\sum_{i=1}^{n}(x_{i}-\bar{x})^2}{n-1}$$}
+  $$\hat{\sigma_{x}}^{2} = \frac{\sum_{i=1}^{n}(x_{i}-\bar{x})^2}{n-1}$$
   
 ***Why do we take the square of $x_{i}-\bar{x}$ when calculating these measures of***
 ***dispersion?***  *Answer*: Because when we are taking the sum, $\sum_{i=1}^n$, if we didn't calculate squares then the positive and negative deviations would cancel each other out and mislead our estimate of dispersion.  This is the reasoning behind all *root-mean-square* calculations.

@@ -31,7 +31,7 @@ In engineering, the most common reason for centering data is not to subtract the
 
 
 <div class="figure" style="text-align: center">
-<img src="./images/centering_anno.png" alt="Data are sometimes centered to remove spurious values"  />
+<img src="./images/centering_anno.png" alt="Data are sometimes centered to remove spurious values" width="640" />
 <p class="caption">(\#fig:centering-anno)Data are sometimes centered to remove spurious values</p>
 </div>
 
@@ -71,7 +71,7 @@ Sometimes your data are *not normally distributed*, even though you want them to
 
 
 <div class="figure" style="text-align: center">
-<img src="./images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable."  />
+<img src="./images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable." width="640" />
 <p class="caption">(\#fig:reduce-skew2)The log(x) transform is often used to reduce skewness in a variable.</p>
 </div>
 ## Stratification
