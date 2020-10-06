@@ -2,7 +2,7 @@
 
 
 <div class="rmdnote">
-<p>A <a href="https://www.merriam-webster.com/dictionary/model"><strong><em>model</em></strong></a> is a system of postulates, data, and inferences presented as a mathematical description of an entity or state of affairs.</p>
+<p>A <a href="https://www.merriam-webster.com/dictionary/model" target="_blank"><strong><em>model</em></strong></a> is a system of postulates, data, and inferences presented as a mathematical description of an entity or state of affairs.</p>
 </div>
 
 In this chapter we will discuss how models are conceptualized and "fit" to represent the data we have available. Models are useful because they provide a mathematical basis for how we see the world (i.e., an explanation for the observational data we collect). This means that models can help you: 
@@ -28,7 +28,8 @@ completing this chapter, you should be able to:
 - Estimate probability density functions for univariate distributions 
 
 ## Process Modeling
-Figure \@ref(fig:model-1) below provides a general process diagram for modeling ([adapted from the NIST Handbook on Statistics](https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd41.htm)); these are the steps you should follow when developing a model. Even before you begin this process, however, you should ask yourself the following three questions:  
+Figure \@ref(fig:model-1) below provides a general process diagram for modeling ([adapted from the NIST Handbook on Statistics](https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd41.htm)){target="_blank"}
+; these are the steps you should follow when developing a model. Even before you begin this process, however, you should ask yourself the following three questions:  
 
 1. ***Why am I developing this model?***
 2. ***What do I hope to learn from this model?***
@@ -142,7 +143,8 @@ The **error term** (4) has a **mean of zero**, is (5) **normally distributed**, 
       * *Why you care*: Correlation between residuals and independent variables is a strong indicator that your model is not correctly specified. You can do better!
 
 ## Example: OLS Linear Regression
-Let's conduct a simple linear regression with two variables that we know are correlated: a person's waist size and their weight. We will use data collected by the US Centers for Disease Control as part of the [National Health and Nutrition Examination Survey (NHANES)](https://www.cdc.gov/nchs/nhanes/about_nhanes.htm) - a detailed annual survey of ~5,000 people living in the US.
+Let's conduct a simple linear regression with two variables that we know are correlated: a person's waist size and their weight. We will use data collected by the US Centers for Disease Control as part of the [National Health and Nutrition Examination Survey (NHANES)](https://www.cdc.gov/nchs/nhanes/about_nhanes.htm){target="_blank"}
+- a detailed annual survey of ~5,000 people living in the US.
 
 
   

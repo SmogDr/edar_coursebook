@@ -438,7 +438,7 @@ completing this Chapter, you should be able to:</p>
 </div>
 <div id="strings" class="section level2">
 <h2><span class="header-section-number">6.2</span> Strings</h2>
-<p><strong><em>strings</em></strong> are a form of character data like “John”, or “blue”, or “John’s
+<p><strong><em>Strings</em></strong> are a form of character data like “John”, or “blue”, or “John’s
 sample 8021A turned blue”.</p>
 <p><strong>Strings are defined in R using quotes <code>" "</code></strong> and stored as <code>character</code>
 vectors; they often show up in data analysis in one of two ways:</p>
@@ -498,7 +498,8 @@ manipulation.</p>
 <h3><span class="header-section-number">6.2.1</span> String detect, match, subset</h3>
 <p>One of the simplest string operations is to search whether a string contains a
 pattern of interest. The <code>stringr</code> package (part of the
-<a href="https://stringr.tidyverse.org/">Tidyverse</a>) was developed to simplify the
+<a href="https://stringr.tidyverse.org/" target="_blank">Tidyverse</a>) was developed
+to simplify the
 analysis of strings. Most of the functions in <code>stringr</code> begin with <code>str_</code> and
 end with a specific function name. A full list of functions is provided
 <a href="https://stringr.tidyverse.org/reference/index.html" target="_blank">here</a>. Some examples:</p>
@@ -746,10 +747,11 @@ match a or b
 <p><strong>Regex</strong> sequences have seemingly no end of sophistication and nuance; you
 could spend dozens of hours learning to use them and hundreds more learning to
 master them. We will only introduce basic concepts here. More in-depth
-introductions to regex syntax and usage can be found on <a href="http://r4ds.had.co.nz/strings.html">Hadley Wickham’s R course</a>,
-on the <code>stringr</code> <a href="https://github.com/rstudio/cheatsheets/raw/master/strings.pdf">cheatsheet</a>
+introductions to regex syntax and usage can be found on <a href="http://r4ds.had.co.nz/strings.html" target="_blank">Hadley Wickham’s R course</a>,
+on the <code>stringr</code>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/strings.pdf" target="_blank">cheatsheet</a>
 developed by RStudio, and through practice with, my personal favorite, a game
-of <a href="https://alf.nu/RegexGolf">Regex Golf</a>.</p>
+of <a href="https://alf.nu/RegexGolf" target="_blank">Regex Golf</a>.</p>
 </div>
 <div id="string-split-replace" class="section level3">
 <h3><span class="header-section-number">6.2.3</span> String split, replace</h3>
@@ -831,7 +833,7 @@ date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time”
 by calling the <code>Sys.time()</code> function.</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="rprog3.html#cb209-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2020-10-06 08:24:02 MDT&quot;</code></pre>
+<pre><code>## [1] &quot;2020-10-06 13:04:46 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and timezone used by my computer
 (<em>whenever I last ran this code in <code>bookdown</code></em>). If you want to see how this
 time is stored in R internally, you can use <code>unclass()</code>, which returns an
@@ -839,17 +841,17 @@ object value with its class attributes removed. When we wrap <code>unclass()</co
 around <code>Sys.time()</code>, we will see the number of seconds that have occurred
 between the epoch of 1/1/1970 and right now:</p>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="rprog3.html#cb211-1"></a><span class="kw">unclass</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1601994242</code></pre>
+<pre><code>## [1] 1602011086</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
 Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span>
-365d/yr] =&gt; 50.7989042 years.</p>
+365d/yr] =&gt; 50.7994383 years.</p>
 <p>This calculation ignores leap years, but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats</h3>
 <p>Note that the <code>Sys.time()</code> function provided the date in a
 <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong>
-format: 2020-10-06 08:24:02.</p>
+format: 2020-10-06 13:04:46.</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
 have little difficulty recognizing the following date-time objects as
@@ -881,7 +883,7 @@ December 1st, 1999, 20:46:00
 You will often see time referenced with a <strong>“UTC”</strong>, which stands for <em>“Universal Time, Coordinated”</em>. UTC is preferred by programmers because it doesn’t have a timezone and it doesn’t follow <em>Daylight Savings Time</em> conventions. Daylight savings is the bane of many coders.
 </p>
 <p>
-In practice, UTC is the same time as GMT (Greenwich Mean Time, pronounced “gren-itch”) but with an important distinction. GMT is one of the many <a href="https://wikipedia.org/wiki/List_of_tz_database_time_zones">time-zones</a> laid out across Earth’s longitude, whereas, <strong>UTC has no timezone</strong>; UTC is the same time for everyone, everywhere.
+In practice, UTC is the same time as GMT (Greenwich Mean Time, pronounced “gren-itch”) but with an important distinction. GMT is one of the many <a href="https://wikipedia.org/wiki/List_of_tz_database_time_zones" target="_blank">time-zones</a> laid out across Earth’s longitude, whereas, <strong>UTC has no timezone</strong>; UTC is the same time for everyone, everywhere.
 </p>
 <p>
 In Colorado, we are UTC-6 hours during <em>daylight savings</em> (March-Nov) and UTC-7 during <em>standard time</em> (Nov-March). This means that most Coloradoans eat dinner at 12am UTC (6pm MST).
@@ -992,13 +994,13 @@ classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and 
 attributes.</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="rprog3.html#cb215-1"></a>time_now_ct &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb215-2"><a href="rprog3.html#cb215-2"></a><span class="kw">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1601994242</code></pre>
+<pre><code>## [1] 1602011086</code></pre>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="rprog3.html#cb217-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb217-2"><a href="rprog3.html#cb217-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 2.32
-##  $ min   : int 24
-##  $ hour  : int 8
+##  $ sec   : num 46.4
+##  $ min   : int 4
+##  $ hour  : int 13
 ##  $ mday  : int 6
 ##  $ mon   : int 9
 ##  $ year  : int 120
@@ -1341,7 +1343,7 @@ R functions tend to use the timezone of <strong>YOUR</strong> computer’s opera
 <h2><span class="header-section-number">6.5</span> Tidy Data</h2>
 <p><strong><em>“Tidy Data”</em></strong> is a philosophy for how to arrange your data in a intuitive,
 rectangular fashion, commonly in a <code>dataframe</code>. In his
-<a href="https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf">2014 paper</a>,
+<a href="https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf" target="_blank">2014 paper</a>,
 Hadley Wickham states, <em>“tidy datasets provide a standardized way to link the structure of a dataset (its physical layout) with its semantics (its meaning).”</em></p>
 <p>The definition of a tidy dataset is straightforward:</p>
 <ol style="list-style-type: decimal">
@@ -1721,7 +1723,7 @@ Do yourself a favor and begin with the end in mind: <em>tidy data</em>.</p>
 <div id="chapter-6-exercises" class="section level2">
 <h2><span class="header-section-number">6.6</span> Chapter 6 Exercises</h2>
 <p>The following exercises use data on tweets from United Senators, processed by
-<a href="https://github.com/fivethirtyeight/data/tree/master/twitter-ratio">FiveThirtyEight</a>.</p>
+<a href="https://github.com/fivethirtyeight/data/tree/master/twitter-ratio" target="_blank">FiveThirtyEight</a>.</p>
 <div id="set-1-data-import-and-manipulation" class="section level3">
 <h3><span class="header-section-number">6.6.1</span> Set 1: Data import and manipulation</h3>
 <p>Create a pipeline that</p>
@@ -1877,7 +1879,7 @@ similar approach to Question 7, with strings related to CU, such as “Buffs” 
 </div>
 <div id="chapter-6-homework" class="section level2">
 <h2><span class="header-section-number">6.7</span> Chapter 6 Homework</h2>
-<p>You will continue to use the <a href="https://github.com/fivethirtyeight/data/tree/master/twitter-ratio">FiveThirtyEight</a> Twitter data for homework.</p>
+<p>You will continue to use the <a href="https://github.com/fivethirtyeight/data/tree/master/twitter-ratio" target="_blank">FiveThirtyEight</a> Twitter data for homework.</p>
 <p>Download the csv from Canvas containing Colorado senators’ tweets from 2011 to
 2017 (not the full data file used in the above exercises) and the R Markdown
 template. Your knitted submission is due at the start of the first class of the

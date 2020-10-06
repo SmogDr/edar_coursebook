@@ -21,7 +21,7 @@ completing this Chapter, you should be able to:
 
 ## Strings {#strings}
 
-***strings*** are a form of character data like "John", or "blue", or "John's
+***Strings*** are a form of character data like "John", or "blue", or "John's
 sample 8021A turned blue". 
 
 **Strings are defined in R using quotes `" "`** and stored as `character` 
@@ -92,7 +92,8 @@ manipulation.
 
 One of the simplest string operations is to search whether a string contains a
 pattern of interest. The `stringr` package (part of the
-[Tidyverse](https://stringr.tidyverse.org/)) was developed to simplify the
+[Tidyverse](https://stringr.tidyverse.org/){target="_blank"}) was developed 
+to simplify the
 analysis of strings. Most of the functions in `stringr` begin with `str_` and
 end with a specific function name. A full list of functions is provided
 [here](https://stringr.tidyverse.org/reference/index.html){target="_blank"}. Some examples:  
@@ -291,10 +292,11 @@ search pattern in R.
 **Regex** sequences have seemingly no end of sophistication and nuance; you
 could spend dozens of hours learning to use them and hundreds more learning to
 master them. We will only introduce basic concepts here.  More in-depth
-introductions to regex syntax and usage can be found on [Hadley Wickham's R course](http://r4ds.had.co.nz/strings.html), 
-on the `stringr` [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/strings.pdf) 
+introductions to regex syntax and usage can be found on [Hadley Wickham's R course](http://r4ds.had.co.nz/strings.html){target="_blank"}, 
+on the `stringr` 
+[cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/strings.pdf){target="_blank"} 
 developed by RStudio, and through practice with, my personal favorite, a game
-of [Regex Golf](https://alf.nu/RegexGolf).
+of [Regex Golf](https://alf.nu/RegexGolf){target="_blank"}.
 
 ### String split, replace
   
@@ -398,7 +400,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-10-06 08:24:02 MDT"
+## [1] "2020-10-06 13:04:46 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -414,12 +416,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1601994242
+## [1] 1602011086
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 50.7989042 years.  
+365d/yr] => 50.7994383 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -427,7 +429,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2020-10-06 08:24:02.
+format: 2020-10-06 13:04:46.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -451,7 +453,7 @@ equivalent but, for some computer programs, not so much:
 
 <div class="rmdnote">
 <p>You will often see time referenced with a <strong>“UTC”</strong>, which stands for <em>“Universal Time, Coordinated”</em>. UTC is preferred by programmers because it doesn’t have a timezone and it doesn’t follow <em>Daylight Savings Time</em> conventions. Daylight savings is the bane of many coders.</p>
-<p>In practice, UTC is the same time as GMT (Greenwich Mean Time, pronounced “gren-itch”) but with an important distinction. GMT is one of the many <a href="https://wikipedia.org/wiki/List_of_tz_database_time_zones">time-zones</a> laid out across Earth’s longitude, whereas, <strong>UTC has no timezone</strong>; UTC is the same time for everyone, everywhere.</p>
+<p>In practice, UTC is the same time as GMT (Greenwich Mean Time, pronounced “gren-itch”) but with an important distinction. GMT is one of the many <a href="https://wikipedia.org/wiki/List_of_tz_database_time_zones" target="_blank">time-zones</a> laid out across Earth’s longitude, whereas, <strong>UTC has no timezone</strong>; UTC is the same time for everyone, everywhere.</p>
 <p>In Colorado, we are UTC-6 hours during <em>daylight savings</em> (March-Nov) and UTC-7 during <em>standard time</em> (Nov-March). This means that most Coloradoans eat dinner at 12am UTC (6pm MST).</p>
 </div>
 
@@ -539,7 +541,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1601994242
+## [1] 1602011086
 ```
 
 
@@ -550,9 +552,9 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 2.32
-##  $ min   : int 24
-##  $ hour  : int 8
+##  $ sec   : num 46.4
+##  $ min   : int 4
+##  $ hour  : int 13
 ##  $ mday  : int 6
 ##  $ mon   : int 9
 ##  $ year  : int 120
@@ -887,7 +889,7 @@ daily_show %>%
 
 ***"Tidy Data"*** is a philosophy for how to arrange your data in a intuitive, 
 rectangular fashion, commonly in a `dataframe`. In his 
-[2014 paper](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf), 
+[2014 paper](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf){target="_blank"}, 
 Hadley Wickham states, *"tidy datasets provide a standardized way to link the structure of a dataset (its physical layout) with its semantics (its meaning)."*  
 
 The definition of a tidy dataset is straightforward:  
@@ -1121,7 +1123,7 @@ Do yourself a favor and begin with the end in mind: *tidy data*.
 ## Chapter 6 Exercises
 
 The following exercises use data on tweets from United Senators, processed by
-[FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/twitter-ratio).
+[FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/twitter-ratio){target="_blank"}.
 
 ### Set 1: Data import and manipulation
 
@@ -1315,7 +1317,7 @@ tweets_co %>%
 
 ## Chapter 6 Homework
 
-You will continue to use the [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/twitter-ratio) Twitter data for homework.
+You will continue to use the [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/twitter-ratio){target="_blank"} Twitter data for homework.
 
 Download the csv from Canvas containing Colorado senators' tweets from 2011 to
 2017 (not the full data file used in the above exercises) and the R Markdown

@@ -141,16 +141,21 @@ assignment, so it is imperative that you take your time with these steps and
 read carefully. If you have any questions at each stage, ask! 
 
 The following guidance regarding R/RStudio and Git/GitHub draws heavily on
-[Jenny Bryan](https://jennybryan.org/)'s book, [Happy Git with R](https://happygitwithr.com/), and her related
-[paper](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1399928) on
+[Jenny Bryan](https://jennybryan.org/){target="_blank"}'s book, [Happy Git with R](https://happygitwithr.com/){target="_blank"}, and her related
+[paper](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1399928){target="_blank"} on
 version control. I sprinkled in some suggestions from others. If you would like
-to gain more background on basic Git and GitHub, take a look at [these slides](https://uncoast-unconf.github.io/uu-2019-day-zero/01-git-github-cornucopia/git-github-cornucopia.html#1) from [Dr. Amelia McNamara](https://twitter.com/AmeliaMN).  
+to gain more background on basic Git and GitHub, take a look at [these slides](https://uncoast-unconf.github.io/uu-2019-day-zero/01-git-github-cornucopia/git-github-cornucopia.html#1){target="_blank"} from [Dr. Amelia McNamara](https://twitter.com/AmeliaMN){target="_blank"}.  
 
 ### Install R and RStudio
 
-1. Download and install the pre-compiled binary of the most recent version (4.0+) of [R](https://cran.r-project.org) appropriate for your machine's operating system
-2. Download and install the most recent, preview version of [RStudio](https://rstudio.com/products/rstudio/download/#download); then, navigate to RStudio > Preferences to *NOT* "Restore .RData into workspace at setup" and *NEVER* "save workspace to .RData on exit" (it is okay that you might not know what this means yet)
-3. If you've installed R and RStudio in the past, please download the latest versions and update the R packages with the following code:
+1. Download and install the pre-compiled binary of the most recent version (4.0+) of [R](https://cran.r-project.org){target="_blank"} appropriate for your machine's 
+operating system
+2. Download and install the most recent, preview version of [RStudio](https://rstudio.com/products/rstudio/download/#download){target="_blank"};
+then, navigate to RStudio > Preferences to *NOT* "Restore .RData into workspace 
+at setup" and *NEVER* "save workspace to .RData on exit" (it is okay that you 
+might not know what this means yet)
+3. If you've installed R and RStudio in the past, please download the latest 
+versions and update the R packages with the following code:
 
 
 ```r
@@ -158,7 +163,10 @@ to gain more background on basic Git and GitHub, take a look at [these slides](h
 update.packages(ask = FALSE, checkBuilt = TRUE)
 ```
 
-4. If you want to generate PDF output from R Markdown documents, you will also need to install LaTex. I suggest taking the following approach in the RStudio Console, if you have never installed LaTex. More installation guidance can be found [here](https://bookdown.org/yihui/rmarkdown/installation.html). 
+4. If you want to generate PDF output from R Markdown documents, you will also 
+need to install LaTex. I suggest taking the following approach in the RStudio 
+Console, if you have never installed LaTex. More installation guidance can be found 
+[here](https://bookdown.org/yihui/rmarkdown/installation.html){target="_blank"}. 
 
 
 ```r
@@ -170,10 +178,16 @@ tinytex::install_tinytex()
 
 ### Install Git and create a GitHub account
 
-1. Install [Git](https://git-scm.com/downloads). See [here](https://happygitwithr.com/install-git.html) and [here](https://rstats.wtf/set-up-an-r-dev-environment.html) for OS-specific installation instructions. For Mac users, you need to install *parts of* [Xcode for Mac OS](https://thecoatlessprofessor.com/programming/cpp/r-compiler-tools-for-rcpp-on-macos/) and [other things](https://mac.R-project.org/tools/)). For R 4.0+, this process is easier, as R now uses [Apple Xcode 10.1 and GNU Fortran 8.2](https://github.com/fxcoudert/gfortran-for-macOS/releases). 
+1. Install [Git](https://git-scm.com/downloads){target="_blank"}. See [here](https://happygitwithr.com/install-git.html){target="_blank"} and [here](https://rstats.wtf/set-up-an-r-dev-environment.html){target="_blank"}
+for OS-specific installation instructions. For Mac users, you need to install 
+*parts of* 
+[Xcode for Mac OS](https://thecoatlessprofessor.com/programming/cpp/r-compiler-tools-for-rcpp-on-macos/){target="_blank"} and 
+[other things](https://mac.R-project.org/tools/){target="_blank"}). For R 4.0+, 
+this process is easier, as R now uses 
+[Apple Xcode 10.1 and GNU Fortran 8.2](https://github.com/fxcoudert/gfortran-for-macOS/releases){target="_blank"}. 
 
-2. Create a [GitHub](https://github.com) account. Pick a good [user name](https://happygitwithr.com/github-acct.html)! 
-3. [Introduce](https://happygitwithr.com/hello-git.html) yourself to Git in RStudio with the following code in the Console. Provide your given name, not your user name, and the email address you used in creating your GitHub account. These commands return nothing, but you can check that it worked with `git config --global --list` in the [shell](https://happygitwithr.com/shell.html). 
+2. Create a [GitHub](https://github.com){target="_blank"} account. Pick a good [user name](https://happygitwithr.com/github-acct.html){target="_blank"}! 
+3. [Introduce](https://happygitwithr.com/hello-git.html){target="_blank"} yourself to Git in RStudio with the following code in the Console. Provide your given name, not your user name, and the email address you used in creating your GitHub account. These commands return nothing, but you can check that it worked with `git config --global --list` in the [shell](https://happygitwithr.com/shell.html){target="_blank"}. 
 
 
 ```r
@@ -185,22 +199,34 @@ usethis::use_git_config(user.name = "John Doe",
                         user.email = "john.doe@colostate.edu")
 ```
 
-Note: Avoid committing credentials or other sensitive information to GitHub by "[vaccinating](https://github.com/uncoast-unconf/uu-2019-day-zero/blob/master/00-preparation/03-usethis/README.md)" with `usethis::git_vaccinate()`.
+Note: Avoid committing credentials or other sensitive information to GitHub by "[vaccinating](https://github.com/uncoast-unconf/uu-2019-day-zero/blob/master/00-preparation/03-usethis/README.md){target="_blank"}" with `usethis::git_vaccinate()`.
 
-4. Optional but recommended for new users: Consider downloading a [GUI Git Client](https://happygitwithr.com/git-client.html) to make version control easier and to build intuition. [GitHub Desktop](https://desktop.github.com/) is likely sufficient for this course, but the choice is yours.
-5. Optional: Sign up for free student perks via [GitHub Education](https://education.github.com/).
+4. Optional but recommended for new users: Consider downloading a [GUI Git Client](https://happygitwithr.com/git-client.html){target="_blank"} to make 
+version control easier and to build intuition. 
+[GitHub Desktop](https://desktop.github.com/){target="_blank"} is likely 
+sufficient for this course, but the choice is yours.
+5. Optional: Sign up for free student perks via 
+[GitHub Education](https://education.github.com/){target="_blank"}.
 
 ### Connect Git, GitHub, and RStudio
 
-1. Read and follow the [instructions](https://happygitwithr.com/connect-intro.html) in Chapters 9-13 *exactly.* I hope you won't need to look at Chapter 14! Move slowly and carefully, and pay attention to the specific needs for your operating system.
+1. Read and follow the 
+[instructions](https://happygitwithr.com/connect-intro.html){target="_blank"}
+in Chapters 9-13 *exactly.* I hope you won't need to look at Chapter 14! Move 
+slowly and carefully, and pay attention to the specific needs for your operating 
+system.
 
 ### Create new project, GitHub first
 
 0. Keep in mind: You should save the local R Project from this step in a top-level directory. We suggest creating an `R` folder at the top of your `Documents` folder (or OS-specific equivalent) to contain all of your R Projects. For the duration of this course, you should have a directory pathname like `/user/Documents/R/[YourLastName]-MECH481A6`. We will discuss directory structures and pathnames more in the next chapter.
-1. Read and follow these [instructions](https://happygitwithr.com/new-github-first.html) *exactly* with the following additions: 
-- Give your GitHub username to the TA, so you can be added to our [GitHub Organization](https://github.com/MECH481A6)
+1. Read and follow these 
+[instructions](https://happygitwithr.com/new-github-first.html){target="_blank"}
+*exactly* with the following additions: 
+- Give your GitHub username to the TA, so you can be added to our 
+[GitHub Organization](https://github.com/MECH481A6){target="_blank"}
 - Work with the TA to create a *private* repository within the organization, labeled *[YourLastName]-MECH481A6*
-- Confirm connection between your R Project and the GitHub repository, make subfolders (`data`, `code`, `figs`) within your `[YourLastName]-MECH481A6` folder on your local drive, and push them up to GitHub; this supports a [project-oriented workflow](https://uncoast-unconf.github.io/uu-2019-day-zero/02-project-workflows/workflow.html#13)
+- Confirm connection between your R Project and the GitHub repository, make subfolders (`data`, `code`, `figs`) within your `[YourLastName]-MECH481A6` folder on your local drive, and push them up to GitHub; this supports a 
+[project-oriented workflow](https://uncoast-unconf.github.io/uu-2019-day-zero/02-project-workflows/workflow.html#13){target="_blank"}
 
 ### Use RStudio/GitHub system for homework submission
 
@@ -220,11 +246,13 @@ have plenty of opportunities to practice this workflow. For now, "minimally
 functional" is good enough!
 
 Once you have successfully installed and connected R/RStudio and Git/GitHub, 
-**open an issue** on YOUR private repository within the [GitHub Organization](https://github.com/MECH481A6). Mention/assign Kathleen (TA)
-@wendtke to let her know everything is working properly, or to request more
-help.
+**open an issue** on YOUR private repository within the 
+[GitHub Organization](https://github.com/MECH481A6){target="_blank"}. 
+Mention/assign Kathleen (TA) @wendtke to let her know everything is working 
+properly, or to request more help.
 
-Then, in the [public repository](https://github.com/MECH481A6/questions) for
+Then, in the 
+[public repository](https://github.com/MECH481A6/questions){target="_blank"} for
 class-related questions and discussion, **open another issue**. You can ask a
 question, share any course-related concerns, or post a brief comment about what
 you hope to gain from this course. Remember to mention/assign Kathleen
@@ -235,11 +263,12 @@ Kathleen will then close both of your issues, and you will be ready to go!
 ### Asking for help (properly)
 
 All questions regarding technology and code should be directed to the Teaching
-Assistant via GitHub Issues on [this repository](https://github.com/MECH481A6/questions). If the question requires
-you to include full code, please consider using the R package to generate
-reproducible examples: `reprex`. Please watch this
-[tutorial](https://reprex.tidyverse.org/articles/articles/learn-reprex.html) on
-how to use `reprex`. Essentially, you are copy-pasting self-contained code in
+Assistant via GitHub Issues on 
+[this repository](https://github.com/MECH481A6/questions){target="_blank"}. 
+If the question requires you to include full code, please consider using the 
+R package to generate reproducible examples: `reprex`. Please watch this
+[tutorial](https://reprex.tidyverse.org/articles/articles/learn-reprex.html){target="_blank"}
+on how to use `reprex`. Essentially, you are copy-pasting self-contained code in
 the GitHub Issue, so I can recreate your work and help you more effectively.
 You won't do things perfectly as you start, but, hopefully by the end of the 
 semester, you will have an efficient, reproducible workflow and effective
@@ -262,31 +291,35 @@ exercise
 - A list of vocabulary and concepts that should be mastered for each quiz
 
 If you find any typos or bugs, or if you have any suggestions for how the book
-can be improved, feel free to post it on the book's [GitHub Issues](https://github.com/SmogDr/edar_coursebook/issues).
+can be improved, feel free to post it on the book's [GitHub Issues](https://github.com/SmogDr/edar_coursebook/issues){target="_blank"}.
 
-This book was developed using Yihui Xie's [bookdown](https://bookdown.org)
-framework. The book is built using code that combines R code, data, and text to
+This book was developed using Yihui Xie's 
+[bookdown](https://bookdown.org){target="_blank"} framework. The book is built 
+using code that combines R code, data, and text to
 create a book for which R code and examples can be re-executed every time the
 book is re-built, which helps identify bugs and broken code examples quickly.
-The online book is hosted using GitHub's free [GitHub Pages](https://pages.github.com). All material for this book is
-available and can be explored at the book's [GitHub repository](https://github.com/SmogDr/edar_coursebook).
+The online book is hosted using GitHub's free 
+[GitHub Pages](https://pages.github.com){target="_blank"}. All material for 
+this book is available and can be explored at the book's 
+[GitHub repository](https://github.com/SmogDr/edar_coursebook){target="_blank"}.
 
 ### Other helpful books (not required)
 
-The best book to supplement the coursebook and lectures for this course is [R for Data Science](http://r4ds.had.co.nz) by Garrett Grolemund and Hadley
-Wickham. The entire book is freely available online through the same format of
-the coursebook. You can also purchase a paper version of the book published by
-O'Reilly for around $40. This book is an excellent and up-to-date reference by
-some of the best R programmers in the world.
+The best book to supplement the coursebook and lectures for this course is 
+[R for Data Science](http://r4ds.had.co.nz){target="_blank"} by Garrett 
+Grolemund and Hadley Wickham. The entire book is freely available online through 
+the same format of the coursebook. You can also purchase a paper version of the 
+book published by O'Reilly for around $40. This book is an excellent and 
+up-to-date reference by some of the best R programmers in the world.
 
 There are a number of other useful books available on general R programming,
 including:
 
-- [R for Dummies](https://colostate-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=01COLSU_ALMA51267598310003361&context=L&vid=01COLSU&lang=en_US&search_scope=Everything&adaptor=Local%20Search%20Engine&tab=default_tab&query=any,contains,r%20for%20dummies&sortby=rank&offset=0)
-- [R Cookbook](https://colostate-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=01COLSU_ALMA21203304500003361&context=L&vid=01COLSU&lang=en_US&search_scope=Everything&adaptor=Local%20Search%20Engine&tab=default_tab&query=any,contains,r%20cookbook&sortby=rank&offset=0)
-- [R Graphics Cookbook](http://www.amazon.com/R-Graphics-Cookbook-Winston-Chang/dp/1449316956/ref=sr_1_1?ie=UTF8&qid=1440997472&sr=8-1&keywords=r+graphics+cookbook)
-- [Roger Peng's Leanpub books](https://leanpub.com/u/rdpeng)
-- Various books on [bookdown.org](www.bookdown.org)
+- [R for Dummies](https://colostate-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=01COLSU_ALMA51267598310003361&context=L&vid=01COLSU&lang=en_US&search_scope=Everything&adaptor=Local%20Search%20Engine&tab=default_tab&query=any,contains,r%20for%20dummies&sortby=rank&offset=0){target="_blank"}
+- [R Cookbook](https://colostate-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=01COLSU_ALMA21203304500003361&context=L&vid=01COLSU&lang=en_US&search_scope=Everything&adaptor=Local%20Search%20Engine&tab=default_tab&query=any,contains,r%20cookbook&sortby=rank&offset=0){target="_blank"}
+- [R Graphics Cookbook](http://www.amazon.com/R-Graphics-Cookbook-Winston-Chang/dp/1449316956/ref=sr_1_1?ie=UTF8&qid=1440997472&sr=8-1&keywords=r+graphics+cookbook){target="_blank"}
+- [Roger Peng's Leanpub books](https://leanpub.com/u/rdpeng){target="_blank"}
+- Various books on [bookdown.org](www.bookdown.org){target="_blank"}
 
 The R programming language is used extensively within certain fields, including
 statistics and bioinformatics. If you are using R for a specific type of
@@ -296,8 +329,12 @@ online through the CSU library.
 
 ## Acknowledgements
 
-Most of the introductory material for this book was adapted from Dr. Brooke Anderson's course on [R Programming for Research](https://geanders.github.io/RProgrammingForResearch/), to whom I owe
-thanks not only for the materials but for the many helpful discussions. I would
-also like to acknowledge [John Tukey](http://rsbm.royalsocietypublishing.org/content/49/537.full.pdf+html),
-one of the pioneers of exploratory data analysis, and the creators of the [NIST Engineering Statistics Handbook](https://doi.org/10.18434/M32189), from which I
-have drawn many techniques. 
+Most of the introductory material for this book was adapted from Dr. Brooke 
+Anderson's course on 
+[R Programming for Research](https://geanders.github.io/RProgrammingForResearch/){target="_blank"}
+, to whom I owe thanks not only for the materials but for the many helpful 
+discussions. I would also like to acknowledge 
+[John Tukey](http://rsbm.royalsocietypublishing.org/content/49/537.full.pdf+html){target="_blank"},
+one of the pioneers of exploratory data analysis, and the creators of the 
+[NIST Engineering Statistics Handbook](https://doi.org/10.18434/M32189){target="_blank"}, 
+from which I have drawn many techniques. 

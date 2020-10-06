@@ -102,7 +102,7 @@ the dataframe structure and variable classes.
 
 According to `?mpg`:  
 
-> "This dataset contains a subset of the fuel economy data that the EPA makes available on [http://fueleconomy.gov](http://fueleconomy.gov). It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car."
+> "This dataset contains a subset of the fuel economy data that the EPA makes available on [http://fueleconomy.gov](http://fueleconomy.gov){target="_blank"}. It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car."
 
 
 ```r
@@ -638,24 +638,29 @@ ggplot2::ggsave("images/mpg-bar.png",
 
 The `ggplot2` package has become so popular that most of my "how do I do this?"
 questions have already been asked, answered, and archived on sites like
-[Stack Overflow](https://stackoverflow.com/). 
+[Stack Overflow](https://stackoverflow.com/){target="_blank"}. 
 
 Another great source is the
-`ggplot2` reference section on the [tidyverse site](https://ggplot2.tidyverse.org/reference/index.html). This page contains a
+`ggplot2` reference section on the [tidyverse site](https://ggplot2.tidyverse.org/reference/index.html){target="_blank"}. 
+This page contains a
 nice, concise summary of how to call and customize plot objects. I recommend 
 starting there because (1) it is created and maintained by the `ggplot2`
 developers (and, thus, is authoritative) and (2) the reference page contains
 all the function calls in an organized list, for which you can conduct a
-'control/command F' search. You can also print this RStudio `ggplot2` [cheat sheet](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+'control/command F' search. You can also print this RStudio `ggplot2` 
+[cheat sheet](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf){target="_blank"}
 to reference while coding.
 
 If you would like some hands-on training in `ggplot2`, look for tutorials or
-webinars like [this one](https://www.youtube.com/watch?v=umDKP7ofHKk&feature=youtu.be) from Dr. Samantha Tyner, the creator and maintainer
+webinars like 
+[this one](https://www.youtube.com/watch?v=umDKP7ofHKk&feature=youtu.be){target="_blank"}
+from Dr. Samantha Tyner, the creator and maintainer
 of `geomnet`, a `ggplot2` extension. Speaking of which, the R community has
 created a large number of `ggplot2` extensions for different data visualization
 needs. If you are thinking about a custom `ggplot` style, it probably
 already exists! Before building your own (which is sometimes necessary and/or
-fun), take a look at this [compilation](https://exts.ggplot2.tidyverse.org/) of
+fun), take a look at this 
+[compilation](https://exts.ggplot2.tidyverse.org/){target="_blank"} of
 `ggplot2` extensions.
 
 ## Chapter 4 Homework

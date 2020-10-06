@@ -174,7 +174,7 @@ g3
 </div>
 
 <div class="rmdwarning">
-<p>When using color, be aware that many people are unable to distinguish red from green or blue from yellow. Many options exist to avoid issues from color blindness (e.g., the <code>viridis</code> palette) and websites like <a href="https://www.color-blindness.com/coblis-color-blindness-simulator/">color-blindness.com</a> allow you to upload image files as a test against common forms.</p>
+<p>When using color, be aware that many people are unable to distinguish red from green or blue from yellow. Many options exist to avoid issues from color blindness (e.g., the <code>viridis</code> palette) and websites like <a href="https://www.color-blindness.com/coblis-color-blindness-simulator/" target="_blank">color-blindness.com</a> allow you to upload image files as a test against common forms.</p>
 </div>
 
 Here is an updated version of Figure \@ref(fig:colorplot-1) that avoids issues with color blindness and, better yet, differentiates the `cyl` variable with both colors and symbols.
@@ -212,7 +212,7 @@ ggplot(data = mtcars,
 
 ### In-class: fueleconomy.gov
 This in-class exercise is will conduct an exploratory, multivariate data 
-analysis on vehicle fuel economy. We will begin by downloading a .zip file from [fueleconomy.gov](https://www.fueleconomy.gov/feg/ws/) - a Federal program that tracks the fuel economy of all vehicles sold in the US. The .zip file contains a 
+analysis on vehicle fuel economy. We will begin by downloading a .zip file from [fueleconomy.gov](https://www.fueleconomy.gov/feg/ws/){target="_blank"} - a Federal program that tracks the fuel economy of all vehicles sold in the US. The .zip file contains a 
 .csv with fuel economy information for nearly every vehicle manufactured 
 between 1984 and today. We will use the `readr` and `dplyr` packages to load 
 and clean the data, respectively. A data dictionary (something that defines 

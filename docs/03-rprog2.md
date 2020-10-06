@@ -635,7 +635,8 @@ a non-secure webpage (i.e., one that starts with `http`) and for files from a
 secure webpage (i.e., one that starts with `https`), including GitHub and
 Dropbox.
 
-For example, to read in data from this [GitHub repository of Ebola data](https://raw.githubusercontent.com/cmrivers/ebola/master/country_timeseries.csv), you can run:
+For example, to read in data from this 
+[GitHub repository of Ebola data](https://raw.githubusercontent.com/cmrivers/ebola/master/country_timeseries.csv){target="_blank"}, you can run:
 
 
 ```r
@@ -1085,18 +1086,19 @@ markdown format, you need to install the `rmarkdown` package: `install.packages(
 
 **Going forward, all of your homework and coding assignments will be created and submitted in the R Markdown format using either html or pdf outputs.  This may seem uncomfortable at first but you will get accustomed to this format quickly.**
 
-Each R markdown file contains three basic elements: header, text, and code chunks.  I will explain each of these elements below, but I recommend a visit to the [R Markdown  section](https://rmarkdown.rstudio.com/docs/articles/rmarkdown.html) on the RStudio website. A detailed guide on many of the R markdown output styles (beyond just html and pdf files) is provided in [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/).
+Each R markdown file contains three basic elements: header, text, and code chunks.  I will explain each of these elements below, but I recommend a visit to the [R Markdown  section](https://rmarkdown.rstudio.com/docs/articles/rmarkdown.html){target="_blank"} on the RStudio website. A detailed guide on many of the R markdown output styles (beyond just html and pdf files) is provided in [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/){target="_blank"}.
 
 ### Header
 
-The R Markdown "header" section is where you specify details about the file being created.  A markdown header contains **YAML** metadata, which stands for [*"YAML Ain't Markup Language"*](https://yaml.org/spec/1.2/spec.html#Introduction). The YAML (pronounced like “camel") header is essentially a list of directives (referred to as "key:value" pairs) that help application software interpret the file. A YAML header can act simultaneously as a "configuration file", a "log file", and "translator file" - allowing one software program to read the output of another program.  An example header with YAML metadata is shown below.
+The R Markdown "header" section is where you specify details about the file being created.  A markdown header contains **YAML** metadata, which stands for [*"YAML Ain't Markup Language"*](https://yaml.org/spec/1.2/spec.html#Introduction){target="_blank"}. The YAML (pronounced like “camel") header is essentially a list of directives (referred to as "key:value" pairs) that help application software interpret the file. A YAML header can act simultaneously as a "configuration file", a "log file", and "translator file" - allowing one software program to read the output of another program.  An example header with YAML metadata is shown below.
 
 <div class="figure" style="text-align: center">
 <img src="./images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file." width="500" />
 <p class="caption">(\#fig:YAML-1)Example of a YAML header to render an R Markdown into an html file.</p>
 </div>
 
-The header is delineated at the top of the file by a section that begins and ends with three dashes, "---". Within the header are YAML metadata representing key:value pairs. **What are "key:value" pairs?** The **"key:"** is a directive that you want to give to the file and the **"value"** represents the level of detail or information that you want to associate with that directive. Key:value pairs provide instructions on how the file should be read, interpreted, and output. In Figure \@ref(fig:YAML-1), the keys are *"title:"*, *"author:"*, *"date:"*, and *"output:"* and the corresponding values are *"Markdowns"*, *"JV"*, *"7/23/2020"*, and *"html_document"*. You can learn more about key:value pairs in the R Markdown Style Guide for [html](https://bookdown.org/yihui/rmarkdown/html-document.html) and [pdf](https://bookdown.org/yihui/rmarkdown/pdf-document.html).
+The header is delineated at the top of the file by a section that begins and ends with three dashes, "---". Within the header are YAML metadata representing key:value pairs. **What are "key:value" pairs?** The **"key:"** is a directive that you want to give to the file and the **"value"** represents the level of detail or information that you want to associate with that directive. Key:value pairs provide instructions on how the file should be read, interpreted, and output. In Figure \@ref(fig:YAML-1), the keys are *"title:"*, *"author:"*, *"date:"*, and *"output:"* and the corresponding values are *"Markdowns"*, *"JV"*, *"7/23/2020"*, and *"html_document"*. You can learn more about key:value pairs in the R Markdown Style Guide for [html](https://bookdown.org/yihui/rmarkdown/html-document.html){target="_blank"} 
+and [pdf](https://bookdown.org/yihui/rmarkdown/pdf-document.html){target="_blank"}.
 
 <div class="rmdnote">
 <p>The YAML header is optional in an R Markdown and default key:value pairs will be implemented if none are supplied. That said, I would encourage you to specify key directives like “author:”, “date:” and “output:” in your YAML headers.</p>
@@ -1123,12 +1125,12 @@ The default space within an R markdown is a plain text editor, similar to a norm
 
 To start a new paragraph in a markdown text section, end a line with two spaces (followed by a return).  
 
-To see a more complete set of formatting options see the [R Markdown CheatSheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
+To see a more complete set of formatting options see the [R Markdown CheatSheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf){target="_blank"}
 provided by RStudio.
 
 ### Code Chunks
 
-Code chunks are the places where you write and execute R code.  A code chunk is initiated with 3 back ticks ```` ``` ````, followed by a set of *braces* \{ \}, or curly brackets, wihtin which you can name the chunk and specify `chunk options`.  The chunk options tell the `knitr` package (the package that renders an R markdown into an output style) how you want that chunk to run and what to do with the output. A list of chunk options can be found [here](https://yihui.org/knitr/options/).  An example markdown is shown below:
+Code chunks are the places where you write and execute R code.  A code chunk is initiated with 3 back ticks ```` ``` ````, followed by a set of *braces* \{ \}, or curly brackets, wihtin which you can name the chunk and specify `chunk options`.  The chunk options tell the `knitr` package (the package that renders an R markdown into an output style) how you want that chunk to run and what to do with the output. A list of chunk options can be found [here](https://yihui.org/knitr/options/){target="_blank"}.  An example markdown is shown below:
 
 <div class="figure" style="text-align: center">
 <img src="./images/markdown_anno.png" alt="Example R Markdown showing header, text, and code chunks." width="1000" />
@@ -1231,7 +1233,8 @@ I recommend you *literally* sketch our your desired dataframe result. But, in
 this case, don't worry because we did that leg work for you; the ozone
 data file is clean upon import. In the future, keep the handy function
 `janitor::clean_names()` in mind to clean all variable names at once. Also,
-peruse Hadley Wickham's [paper](https://vita.had.co.nz/papers/tidy-data.pdf) on
+peruse Hadley Wickham's 
+[paper](https://vita.had.co.nz/papers/tidy-data.pdf){target="_blank"} on
 "tidy data" to understand what it is and how to make messy data tidy.
 
 0. Open your class R Project locally. Restart session, if R Project is already

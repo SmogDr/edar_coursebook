@@ -114,10 +114,11 @@ packages that let you do all kinds of things in R, like visualizing Tweets,
 cleaning up accelerometer data, analyzing complex surveys, fitting machine
 learning models, and a wealth of other cool things.
 
-> <span style="color: blue;"> "Despite its name, open-source software is less vulnerable to hacking than the secret, black box systems like those being used in polling places now. That’s because anyone can see how open-source systems operate. Bugs can be spotted and remedied, deterring those who would attempt attacks. This makes them much more secure than closed-source models like Microsoft’s, which only Microsoft employees can get into to fix." -- [Woolsey and Fox. *To Protect Voting, Use Open-Source Software.* New York Times. August 3, 2017.](https://www.nytimes.com/2017/08/03/opinion/open-source-software-hacker-voting.html?mcubz=3) </span>
+> <span style="color: blue;"> "Despite its name, open-source software is less vulnerable to hacking than the secret, black box systems like those being used in polling places now. That’s because anyone can see how open-source systems operate. Bugs can be spotted and remedied, deterring those who would attempt attacks. This makes them much more secure than closed-source models like Microsoft’s, which only Microsoft employees can get into to fix." -- [Woolsey and Fox. *To Protect Voting, Use Open-Source Software.* New York Times. August 3, 2017.](https://www.nytimes.com/2017/08/03/opinion/open-source-software-hacker-voting.html?mcubz=3){target="_blank"} </span>
 
 You can download the latest version of R from
-[CRAN](https://cran.r-project.org). Be sure to select the distribution for your
+[CRAN](https://cran.r-project.org){target="_blank"}. Be sure to select the 
+distribution for your
 type of computer system. R is updated occasionally; you should plan to
 re-install R at least once a year to make sure you're working with one of the
 newer versions. Check your current R version (e.g., by running `sessionInfo()`
@@ -130,7 +131,8 @@ have to take my word for that. Actually, you don't. The whole engine is open sou
 
 ### What is RStudio?
 
-To get the R software, you'll [download R](https://www.r-project.org) from the
+To get the R software, you'll 
+[download R](https://www.r-project.org){target="_blank"} from the
 R Project for Statistical Computing. This is enough for you to use R on your
 own computer. But, for a more user-friendly experience, you should also
 download RStudio, an integrated development environment (IDE) for R. It
@@ -140,8 +142,8 @@ book were produced using RStudio.
 
 As Chapter 1 outlined, you should download R first, then the RStudio IDE. 
 
-[RStudio, PBC](https://blog.rstudio.com/2020/01/29/rstudio-pbc/) is a leader in
-the R community. Currently, the company:
+[RStudio, PBC](https://blog.rstudio.com/2020/01/29/rstudio-pbc/){target="_blank"}
+is a leader in the R community. Currently, the company:
 
 - Develops and freely provides the RStudio IDE
 - Provides excellent resources for learning and using R (e.g., cheat sheets, free online books)
@@ -501,7 +503,9 @@ than `=` when coding in R, because as you move to doing more complex things,
 some subtle problems might crop up if you use `=`. You can tell the age of a
 programmer by whether he or she uses the "gets arrow" or `=`, with `=` more
 common among the young and hip. For this course, however, I am asking you to
-code according to [Hadley Wickham's R style guide](http://adv-r.had.co.nz/Style.html), which specifies using the "gets
+code according to 
+[Hadley Wickham's R style guide](http://adv-r.had.co.nz/Style.html){target="_blank"},
+which specifies using the "gets
 arrow" for object assignment.
 
 While the "gets arrow" takes two key strokes, you can somewhat get around this
@@ -529,7 +533,7 @@ message! <- "Hello world"
 In addition to these fixed rules, there are also some guidelines for naming
 objects that you should adopt now, since they will make your life easier as you
 advance to writing more complex code in R. The following three guidelines for
-naming objects are from [Hadley Wickham's R style guide](http://adv-r.had.co.nz/Style.html):
+naming objects are from [Hadley Wickham's R style guide](http://adv-r.had.co.nz/Style.html){target="_blank"}:
 
 - Use lower case for variable names (`message`, not `Message`)
 - Use an underscore as a separator (`message_one`, not `messageOne`)
@@ -747,7 +751,8 @@ of an R package is the new functions it provides.
 
 You can get these "add-on" packages in a number of ways. The main source for
 installing packages for R remains the Comprehensive R Archive Network, or
-[CRAN](https://cran.r-project.org). However, [GitHub](https://github.com) is
+[CRAN](https://cran.r-project.org){target="_blank"}. 
+However, [GitHub](https://github.com){target="_blank"} is
 growing in popularity, especially for packages that are still in active
 development. You can also create and share packages among your collaborators or
 co-workers, without ever posting them publicly. 
@@ -1495,7 +1500,7 @@ There are six vehicles in `mtcars_data` with MPG above 25.
 ## Chapter 2 Homework
 
 During the next few class periods and for homework, you will complete ten
-lessons in [`swirl`](https://swirlstats.com/), an R package for learning R
+lessons in [`swirl`](https://swirlstats.com/){target="_blank"}, an R package for learning R
 **in** R, written by Roger Peng, Brooke Anderson, and Sean Kross. Each lesson
 might take 10-15 minutes.
 
@@ -1504,7 +1509,8 @@ you learned from each. Save this file in your local R Project in the
 appropriate directory (e.g., `/homework`) and commit/push the file with regular
 updates to your private GitHub repository. 
 
-Follow the steps [here](https://swirlstats.com/students.html) to install, load,
+Follow the steps [here](https://swirlstats.com/students.html){target="_blank"}
+to install, load,
 and start `swirl`. When you are prompted to install a course, you can load "R
 Programming," which covers material related to the recent class lectures. If
 you are already familiar with this content, feel free to select a different
