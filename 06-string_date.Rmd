@@ -787,3 +787,130 @@ This may seem obvious, but most data analysis problems occur because of poor
 data management techniques. Remember: What might seem useful at the time---like 
 a color-coded Excel spreadsheet---is a pain for computers and not reproducible.
 Do yourself a favor and begin with the end in mind: *tidy data*.
+
+## Chapter 6 Exercises
+
+The following exercises use data on tweets from United Senators, processed by
+[FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/twitter-ratio).
+
+### Set 1: Data import and manipulation
+
+Create a pipeline that 
+
+- imports the raw data (.csv) containing tweets from all US senators,
+- filters the raw data to only Colorado ("CO") senators,
+- creates **4 new variables** within a call to the appropriate `dplyr` function and four distinct `lubridate` functions based on the format of the date or date-time variable:
+  - `date` from `created_at`
+  - `hour_co` from `date`, also setting "America/Denver" timezone with `lubridate::with_tzone()`
+  - `month` from `date`
+  - `week` from `date`, and
+- retains all variables **except** `url`, `created_at`, and `bioguide_id`
+
+```{r tweet-data, message=FALSE}
+# pipeline to import, filter, manipulate datetime vars, select vars 
+tweets_co <- readr::read_csv("data/senators.csv") %>% 
+  dplyr::filter(state == "CO") %>% # filter to Colorado senators
+  dplyr::mutate(date = lubridate::mdy_hm(created_at), # convert timestamp to datetime object
+         hour_co = lubridate::hour(lubridate::with_tz(date, # convert timestamp to datetime object 
+                                                      tzone = "America/Denver")), # and add timezone label
+         month = lubridate::month(date), # create var of month from timestamp
+         week = lubridate::week(date)) %>% # create var of week from timestamp
+  dplyr::select(-(c(url, created_at, bioguide_id))) # retain all vars except 3
+```
+
+### Set 2: Counting
+
+1. Which Colorado senators are included in the data? 
+
+```{r co-senators}
+# find unique strings within user variable
+# if you convert to factor, you can also find `levels()`
+unique(tweets_co$user) 
+```
+
+2. Which Colorado Senator tweets the most?
+
+```{r tweet-count}
+# compare number of tweets by senator; remember to always ungroup grouped data!
+tweets_co %>% 
+  dplyr::group_by(user) %>% 
+  dplyr::tally() %>% 
+  dplyr::ungroup()
+```
+
+### Set 3: Weekly tweets
+
+Create a time series plot that indicates tweet activity on a weekly basis since
+2011 for the Colorado senators. You will need to first create a new dataframe 
+that contains new time-date variables based on the (a) total time and (b) weeks
+since data collection started. 
+
+```{r time-vars}
+# create new time-based variables
+tweets_co_wk <- tweets_co %>% 
+  dplyr::mutate(time_since = as.duration(date - min(date)), # "time from" var
+         week = round(as.numeric(time_since, "weeks"), 0)) %>% # "weeks from" var
+  dplyr::group_by(user, week) %>% # by week per user
+  dplyr::tally() %>% # tweet count 
+  dplyr::ungroup() # remember to ungroup grouped data
+```
+
+```{r tweet-time-series}
+# plot time series of tweets per week per senator since 2011
+ggplot2::ggplot(data = tweets_co_wk, 
+       mapping = aes(x = week, y = n, color = user)) +
+  geom_line() +
+  theme_minimal() +
+  labs(title = "Number of tweets per week by Colorado senator since 2011",
+       subtitle = "Gardner joined Twitter later but tweets more (and cyclically)")
+```
+
+### Set 4: CSU vs. CU 
+
+1. How many times are strings related to CSU mentioned by each senator by year?
+This might include things like "CSU", "colostate", "Colostate", "Colorado State
+U", "Rams", etc. You will need to use a few `dplyr` functions, one `lubridate`
+function, and one `stringr` function within the pipeline.
+
+```{r tweet-csu}
+# determine number of csu-related tweets by senator per year
+tweets_co %>%
+  dplyr::group_by(user, lubridate::year(date)) %>%
+  dplyr::filter(stringr::str_detect(text, "CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu")) %>%
+  dplyr::tally() %>% 
+  dplyr::ungroup()
+```
+
+2. What is the content of the tweets extracted in the previous question? You
+will need to use another `stringr` function. You can use the same text strings
+as before.
+
+```{r tweet-csu-content}
+# extract csu-related tweet content
+stringr::str_subset(tweets_co$text, 
+                    "CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu")
+```
+
+3. Which Colorado senator tweets the most about University of Colorado? Use a 
+similar approach to Question 7, with strings related to CU, such as "Buffs" or
+"University of Colorado".
+
+```{r tweet-cu}
+# number of cu-related tweets by senator per year
+tweets_co %>%
+  dplyr::group_by(user, lubridate::year(date)) %>%
+  dplyr::filter(year(date) >= 2013) %>%
+  dplyr::filter(stringr::str_detect(text, 
+                                    "CU|Buffs|buffs|University of Colorado")) %>%
+  dplyr::tally() %>% 
+  dplyr::ungroup()
+```
+
+## Chapter 6 Homework
+
+You will continue to use the [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/twitter-ratio) Twitter data for homework.
+
+Download the csv from Canvas containing Colorado senators' tweets from 2011 to
+2017 (not the full data file used in the above exercises) and the R Markdown
+template. Your knitted submission is due at the start of the first class of the
+next chapter. 

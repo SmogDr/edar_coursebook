@@ -398,7 +398,11 @@ Sys.time()
 ```
 
 ```
+<<<<<<< HEAD
+## [1] "2020-10-05 18:20:47 MDT"
+=======
 ## [1] "2020-10-03 16:31:16 MDT"
+>>>>>>> master
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -414,12 +418,20 @@ unclass(Sys.time())
 ```
 
 ```
+<<<<<<< HEAD
+## [1] 1601943647
+=======
 ## [1] 1601764277
+>>>>>>> master
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
+<<<<<<< HEAD
+365d/yr] => 50.7972998 years.  
+=======
 365d/yr] => 50.791612 years.  
+>>>>>>> master
 
 This calculation ignores leap years, but you get the point...
 
@@ -427,7 +439,11 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
+<<<<<<< HEAD
+format: 2020-10-05 18:20:47.
+=======
 format: 2020-10-03 16:31:16.
+>>>>>>> master
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -539,7 +555,11 @@ unclass(time_now_ct)
 ```
 
 ```
+<<<<<<< HEAD
+## [1] 1601943647
+=======
 ## [1] 1601764277
+>>>>>>> master
 ```
 
 
@@ -550,6 +570,16 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
+<<<<<<< HEAD
+##  $ sec   : num 47.3
+##  $ min   : int 20
+##  $ hour  : int 18
+##  $ mday  : int 5
+##  $ mon   : int 9
+##  $ year  : int 120
+##  $ wday  : int 1
+##  $ yday  : int 278
+=======
 ##  $ sec   : num 16.9
 ##  $ min   : int 31
 ##  $ hour  : int 16
@@ -558,6 +588,7 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 ##  $ year  : int 120
 ##  $ wday  : int 6
 ##  $ yday  : int 276
+>>>>>>> master
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
@@ -641,6 +672,7 @@ worth knowing:
 </table>
 
 ## `lubridate` {#lubridate}
+<<<<<<< HEAD
 
 The `lubridate` package was developed specifically to make it easier to work
 with date-time objects. You can find out more information on `lubridate`
@@ -654,6 +686,21 @@ with simplicity and ease; the `lubridate` parsing functions are designed as
 
 > <span style="color: blue;"> **Parse**: ***to break apart and analyze the individual components*** of something, like a character string. </span>
 
+=======
+
+The `lubridate` package was developed specifically to make it easier to work
+with date-time objects. You can find out more information on `lubridate`
+[here](https://lubridate.tidyverse.org/).
+
+### Parsing functions in `lubridate`
+
+One of best aspects of `lubridate` is its ability to parse date-time objects 
+with simplicity and ease; the `lubridate` parsing functions are designed as 
+"named-to-order". Let me explain:  
+
+> <span style="color: blue;"> **Parse**: ***to break apart and analyze the individual components*** of something, like a character string. </span>
+
+>>>>>>> master
 * If a character vector is written in "**y**ear-**m**onth-**d**ay" format (e.g., `"2020-Dec-18"`), then the `lubridate` function to convert that vector is `ymd()`.
 
 * If a character vector is written in "**d**ay-**m**onth-**y**ear" format (e.g., `"18-Dec-2020"`), then the `lubridate` function to convert that vector is `dmy()`.  Try it out:
@@ -764,9 +811,15 @@ format:
 The beauty of the `lubridate` parsers is that they do the hard work of cleaning 
 up the character vector, regardless of separators or delimiters within each 
 string, and return either a `Date` or `Date-time` object class.
+<<<<<<< HEAD
 
 ### Date-time manipulation with `lubridate`
 
+=======
+
+### Date-time manipulation with `lubridate`
+
+>>>>>>> master
 To convert the `date` column in the `daily_show` data into a Date class, you can
 run:
 
@@ -1028,6 +1081,9 @@ In the case of Table \@ref(tab:grades-untidy), we are using `cols = ` to combine
 `names_to = "Exam"` and the data represented in those three columns gets moved 
 into a column of `values_to = "Scores"`. We also add a call to `dplyr::mutate()`
 and `dplyr::case_when()` to convert strings to numbers.
+<<<<<<< HEAD
+  
+=======
 
 The `case_when()` function allows you introduce multiple "if/else" statements into
 a vectorized operation, such as within this call to `dplyr:mutate()`. This function 
@@ -1040,6 +1096,7 @@ instruction.  In plain speak, the function reads:
 > If the vector contains a string that matches "Exam_1_Score", then replace that entry with a 1; else, if the vector contains a string that matches "Exam_2_Score",
 then replace that entry with a 2; else, if the vector contains a string that matches "Exam_3_Score", then replace that entry with a 3.
 
+>>>>>>> master
 
 ```r
 tidygrades <- tidyr::pivot_longer(data = grades_untidy,
@@ -1111,9 +1168,220 @@ tidygrades <- tidyr::pivot_longer(data = grades_untidy,
 </tbody>
 </table>
 
+<<<<<<< HEAD
+Now, these data are tidy, wherein each variable forms a column, each row
+=======
 Now these data are tidy, wherein each variable forms a column, each row
+>>>>>>> master
 forms an observation, and the table is specific to one observational unit. 
 This may seem obvious, but most data analysis problems occur because of poor 
 data management techniques. Remember: What might seem useful at the time---like 
 a color-coded Excel spreadsheet---is a pain for computers and not reproducible.
 Do yourself a favor and begin with the end in mind: *tidy data*.
+<<<<<<< HEAD
+
+## Chapter 6 Exercises
+
+The following exercises use data on tweets from United Senators, processed by
+[FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/twitter-ratio).
+
+### Set 1: Data import and manipulation
+
+Create a pipeline that 
+
+- imports the raw data (.csv) containing tweets from all US senators,
+- filters the raw data to only Colorado ("CO") senators,
+- creates **4 new variables** within a call to the appropriate `dplyr` function and four distinct `lubridate` functions based on the format of the date or date-time variable:
+  - `date` from `created_at`
+  - `hour_co` from `date`, also setting "America/Denver" timezone with `lubridate::with_tzone()`
+  - `month` from `date`
+  - `week` from `date`, and
+- retains all variables **except** `url`, `created_at`, and `bioguide_id`
+
+
+```r
+# pipeline to import, filter, manipulate datetime vars, select vars 
+tweets_co <- readr::read_csv("data/senators.csv") %>% 
+  dplyr::filter(state == "CO") %>% # filter to Colorado senators
+  dplyr::mutate(date = lubridate::mdy_hm(created_at), # convert timestamp to datetime object
+         hour_co = lubridate::hour(lubridate::with_tz(date, # convert timestamp to datetime object 
+                                                      tzone = "America/Denver")), # and add timezone label
+         month = lubridate::month(date), # create var of month from timestamp
+         week = lubridate::week(date)) %>% # create var of week from timestamp
+  dplyr::select(-(c(url, created_at, bioguide_id))) # retain all vars except 3
+```
+
+### Set 2: Counting
+
+1. Which Colorado senators are included in the data? 
+
+
+```r
+# find unique strings within user variable
+# if you convert to factor, you can also find `levels()`
+unique(tweets_co$user) 
+```
+
+```
+## [1] "SenBennetCO"    "SenCoryGardner"
+```
+
+2. Which Colorado Senator tweets the most?
+
+
+```r
+# compare number of tweets by senator; remember to always ungroup grouped data!
+tweets_co %>% 
+  dplyr::group_by(user) %>% 
+  dplyr::tally() %>% 
+  dplyr::ungroup()
+```
+
+```
+## # A tibble: 2 x 2
+##   user               n
+##   <chr>          <int>
+## 1 SenBennetCO     2211
+## 2 SenCoryGardner  3225
+```
+
+### Set 3: Weekly tweets
+
+Create a time series plot that indicates tweet activity on a weekly basis since
+2011 for the Colorado senators. You will need to first create a new dataframe 
+that contains new time-date variables based on the (a) total time and (b) weeks
+since data collection started. 
+
+
+```r
+# create new time-based variables
+tweets_co_wk <- tweets_co %>% 
+  dplyr::mutate(time_since = as.duration(date - min(date)), # "time from" var
+         week = round(as.numeric(time_since, "weeks"), 0)) %>% # "weeks from" var
+  dplyr::group_by(user, week) %>% # by week per user
+  dplyr::tally() %>% # tweet count 
+  dplyr::ungroup() # remember to ungroup grouped data
+```
+
+
+```r
+# plot time series of tweets per week per senator since 2011
+ggplot2::ggplot(data = tweets_co_wk, 
+       mapping = aes(x = week, y = n, color = user)) +
+  geom_line() +
+  theme_minimal() +
+  labs(title = "Number of tweets per week by Colorado senator since 2011",
+       subtitle = "Gardner joined Twitter later but tweets more (and cyclically)")
+```
+
+<img src="06-string_date_files/figure-html/tweet-time-series-1.png" width="672" style="display: block; margin: auto;" />
+
+### Set 4: CSU vs. CU 
+
+1. How many times are strings related to CSU mentioned by each senator by year?
+This might include things like "CSU", "colostate", "Colostate", "Colorado State
+U", "Rams", etc. You will need to use a few `dplyr` functions, one `lubridate`
+function, and one `stringr` function within the pipeline.
+
+
+```r
+# determine number of csu-related tweets by senator per year
+tweets_co %>%
+  dplyr::group_by(user, lubridate::year(date)) %>%
+  dplyr::filter(stringr::str_detect(text, "CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu")) %>%
+  dplyr::tally() %>% 
+  dplyr::ungroup()
+```
+
+```
+## # A tibble: 10 x 3
+##    user           `lubridate::year(date)`     n
+##    <chr>                            <dbl> <int>
+##  1 SenBennetCO                       2011     1
+##  2 SenBennetCO                       2012     1
+##  3 SenBennetCO                       2013     1
+##  4 SenBennetCO                       2014     2
+##  5 SenBennetCO                       2015     2
+##  6 SenBennetCO                       2017     1
+##  7 SenCoryGardner                    2013     4
+##  8 SenCoryGardner                    2015     5
+##  9 SenCoryGardner                    2016     2
+## 10 SenCoryGardner                    2017     2
+```
+
+2. What is the content of the tweets extracted in the previous question? You
+will need to use another `stringr` function. You can use the same text strings
+as before.
+
+
+```r
+# extract csu-related tweet content
+stringr::str_subset(tweets_co$text, 
+                    "CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu")
+```
+
+```
+##  [1] "RT @CSUAgSci: .@SenBennetCO &amp; @SenCoryGardner announce $500K @usda grant to @ColoradoStateU to study Farm to School program https://t.co/kb��_"
+##  [2] "Best of luck to @CSUMensBball in #NIT first round against South Dakota State! #GoRams"                                                             
+##  [3] "CSU-led study shows risks for CO if we don't tackle climate change. Risks worsen the longer we wait. It's time to act http://t.co/Nlz4pmj8D6"      
+##  [4] "Congrats to @CSUPFootball on tonight's #NCAAD2 championship win! Great game and even better season. #BackthePack"                                  
+##  [5] "Just wrapped up day 1 of our #COinnovation tour w/ visit to @CSUenergy engines lab. Day 2 in #GrandJunction tomorrow. http://t.co/2Yt5c09Tn3"      
+##  [6] "Here's my #MarchMadness bracket. How do your picks compare? We'll be rooting for you @CUBuffsMBB and @CSUMensBball! https://t.co/4DCdvryOjb"       
+##  [7] "Good luck to @CSUMensBball against Murray State this morning. #MarchMadness #CSUNCAA"                                                              
+##  [8] "Good luck @cubuffs, @CSUFootball and @UNCOFOOTBALL this season. #gobuffs #Rams #BearNation"                                                        
+##  [9] "RT @NewsCPR: .@SenCoryGardner on @CSUPoliSci's John Straayer: \"thanks for being that life-changing spark\"\r https://t.co/LM3CghawTa #copolit��_" 
+## [10] "I visited the @CSUEnergy Powerhouse Energy Campus w/ @ColoradoStateU President Franks to learn more about CSU's cut��_ https://t.co/uTE7M7v7VN"    
+## [11] "Met with @ColoradoStateU Chancellor Frank &amp; Vice Chancellor Parsons. My staffers who are fellow Rams joined! https://t.co/bF7LArS9Bw"          
+## [12] "Congrats to @CSUWomensBball on capturing another Mountain West title &amp; being ranked #22 in the country. Go Rams! https://t.co/wawv4CNZLs"      
+## [13] "Appreciate Coach Bobo &amp; @CSUFootball backing @CoachToCureMD today. Great cause! #TackleDuchenne!"                                              
+## [14] "Nothing beats #AgDay at @ColoradoStateU! Always great being with fellow ram handlers at a @CSUFootball game. http://t.co/v32OhG1Kej"               
+## [15] "@mitchellbyars @RepJaredPolis There is nothing more stylish than a @ColoradoStateU Rams shirt!"                                                    
+## [16] "Great to be back in Ft Collins at my alma mater @ColoradoStateU. Thanks @CSUTonyFrank for the hospitality, &amp; go Rams http://t.co/zdIcrsgSdL"   
+## [17] "Great day to be at the @NationalWestern on CSU Day! And thanks to @BoydPolhamus for the introduction! #NWSS2015 http://t.co/fc46YhoUXg"            
+## [18] "Go @CSUfootball! #CSURams #BringBackTheBoot Win the #BorderWar"                                                                                    
+## [19] "@RepMarthaRoby I'm proud to be a #CSURam  @CSUFootball"                                                                                            
+## [20] "Go @CSUFootball!!!@UA_Athletics: Happy #RollTide Friday! RT if you're ready for @AlabamaFTBL vs. Colorado State! #CSUvsBAMA"                       
+## [21] "#GoRams! #RMShowdown. @CSUfootball: #BeatTheBuffs. -cg"
+```
+
+3. Which Colorado senator tweets the most about University of Colorado? Use a 
+similar approach to Question 7, with strings related to CU, such as "Buffs" or
+"University of Colorado".
+
+
+```r
+# number of cu-related tweets by senator per year
+tweets_co %>%
+  dplyr::group_by(user, lubridate::year(date)) %>%
+  dplyr::filter(year(date) >= 2013) %>%
+  dplyr::filter(stringr::str_detect(text, 
+                                    "CU|Buffs|buffs|University of Colorado")) %>%
+  dplyr::tally() %>% 
+  dplyr::ungroup()
+```
+
+```
+## # A tibble: 9 x 3
+##   user           `lubridate::year(date)`     n
+##   <chr>                            <dbl> <int>
+## 1 SenBennetCO                       2013     3
+## 2 SenBennetCO                       2014     2
+## 3 SenBennetCO                       2015     3
+## 4 SenBennetCO                       2016     3
+## 5 SenBennetCO                       2017     3
+## 6 SenCoryGardner                    2013     6
+## 7 SenCoryGardner                    2015    11
+## 8 SenCoryGardner                    2016     5
+## 9 SenCoryGardner                    2017     3
+```
+
+## Chapter 6 Homework
+
+You will continue to use the [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/twitter-ratio) Twitter data for homework.
+
+Download the csv from Canvas containing Colorado senators' tweets from 2011 to
+2017 (not the full data file used in the above exercises) and the R Markdown
+template. Your knitted submission is due at the start of the first class of the
+next chapter. 
+=======
+>>>>>>> master
