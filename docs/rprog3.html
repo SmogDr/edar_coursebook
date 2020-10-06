@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-10-02" />
+<meta name="date" content="2020-10-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -277,6 +277,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4.2" data-path="rprog3.html"><a href="rprog3.html#date-time-manipulation-with-lubridate"><i class="fa fa-check"></i><b>6.4.2</b> Date-time manipulation with <code>lubridate</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#tidy-data"><i class="fa fa-check"></i><b>6.5</b> Tidy Data</a></li>
+<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#chapter-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Chapter 6 Exercises</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="rprog3.html"><a href="rprog3.html#set-1-data-import-and-manipulation"><i class="fa fa-check"></i><b>6.6.1</b> Set 1: Data import and manipulation</a></li>
+<li class="chapter" data-level="6.6.2" data-path="rprog3.html"><a href="rprog3.html#set-2-counting"><i class="fa fa-check"></i><b>6.6.2</b> Set 2: Counting</a></li>
+<li class="chapter" data-level="6.6.3" data-path="rprog3.html"><a href="rprog3.html#set-3-weekly-tweets"><i class="fa fa-check"></i><b>6.6.3</b> Set 3: Weekly tweets</a></li>
+<li class="chapter" data-level="6.6.4" data-path="rprog3.html"><a href="rprog3.html#set-4-csu-vs.-cu"><i class="fa fa-check"></i><b>6.6.4</b> Set 4: CSU vs. CU</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="rprog3.html"><a href="rprog3.html#chapter-6-homework"><i class="fa fa-check"></i><b>6.7</b> Chapter 6 Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a><ul>
 <li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#ch.-7-objectives"><i class="fa fa-check"></i><b>7.1</b> Ch. 7 Objectives</a></li>
@@ -821,7 +828,7 @@ date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time”
 by calling the <code>Sys.time()</code> function.</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="rprog3.html#cb209-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2020-10-02 16:31:14 MDT&quot;</code></pre>
+<pre><code>## [1] &quot;2020-10-05 18:20:47 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and timezone used by my computer
 (<em>whenever I last ran this code in <code>bookdown</code></em>). If you want to see how this
 time is stored in R internally, you can use <code>unclass()</code>, which returns an
@@ -829,17 +836,17 @@ object value with its class attributes removed. When we wrap <code>unclass()</co
 around <code>Sys.time()</code>, we will see the number of seconds that have occurred
 between the epoch of 1/1/1970 and right now:</p>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="rprog3.html#cb211-1"></a><span class="kw">unclass</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1601677874</code></pre>
+<pre><code>## [1] 1601943647</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
 Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span>
-365d/yr] =&gt; 50.7888722 years.</p>
+365d/yr] =&gt; 50.7972998 years.</p>
 <p>This calculation ignores leap years, but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats</h3>
 <p>Note that the <code>Sys.time()</code> function provided the date in a
 <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong>
-format: 2020-10-02 16:31:14.</p>
+format: 2020-10-05 18:20:47.</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
 have little difficulty recognizing the following date-time objects as
@@ -982,18 +989,18 @@ classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and 
 attributes.</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="rprog3.html#cb215-1"></a>time_now_ct &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb215-2"><a href="rprog3.html#cb215-2"></a><span class="kw">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1601677875</code></pre>
+<pre><code>## [1] 1601943647</code></pre>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="rprog3.html#cb217-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb217-2"><a href="rprog3.html#cb217-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 14.6
-##  $ min   : int 31
-##  $ hour  : int 16
-##  $ mday  : int 2
+##  $ sec   : num 47.3
+##  $ min   : int 20
+##  $ hour  : int 18
+##  $ mday  : int 5
 ##  $ mon   : int 9
 ##  $ year  : int 120
-##  $ wday  : int 5
-##  $ yday  : int 275
+##  $ wday  : int 1
+##  $ yday  : int 278
 ##  $ isdst : int 1
 ##  $ zone  : chr &quot;MDT&quot;
 ##  $ gmtoff: int -21600
@@ -1696,6 +1703,171 @@ This may seem obvious, but most data analysis problems occur because of poor
 data management techniques. Remember: What might seem useful at the time—like
 a color-coded Excel spreadsheet—is a pain for computers and not reproducible.
 Do yourself a favor and begin with the end in mind: <em>tidy data</em>.</p>
+</div>
+<div id="chapter-6-exercises" class="section level2">
+<h2><span class="header-section-number">6.6</span> Chapter 6 Exercises</h2>
+<p>The following exercises use data on tweets from United Senators, processed by
+<a href="https://github.com/fivethirtyeight/data/tree/master/twitter-ratio">FiveThirtyEight</a>.</p>
+<div id="set-1-data-import-and-manipulation" class="section level3">
+<h3><span class="header-section-number">6.6.1</span> Set 1: Data import and manipulation</h3>
+<p>Create a pipeline that</p>
+<ul>
+<li>imports the raw data (.csv) containing tweets from all US senators,</li>
+<li>filters the raw data to only Colorado (“CO”) senators,</li>
+<li>creates <strong>4 new variables</strong> within a call to the appropriate <code>dplyr</code> function and four distinct <code>lubridate</code> functions based on the format of the date or date-time variable:
+<ul>
+<li><code>date</code> from <code>created_at</code></li>
+<li><code>hour_co</code> from <code>date</code>, also setting “America/Denver” timezone with <code>lubridate::with_tzone()</code></li>
+<li><code>month</code> from <code>date</code></li>
+<li><code>week</code> from <code>date</code>, and</li>
+</ul></li>
+<li>retains all variables <strong>except</strong> <code>url</code>, <code>created_at</code>, and <code>bioguide_id</code></li>
+</ul>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="rprog3.html#cb237-1"></a><span class="co"># pipeline to import, filter, manipulate datetime vars, select vars </span></span>
+<span id="cb237-2"><a href="rprog3.html#cb237-2"></a>tweets_co &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/senators.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb237-3"><a href="rprog3.html#cb237-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(state <span class="op">==</span><span class="st"> &quot;CO&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># filter to Colorado senators</span></span>
+<span id="cb237-4"><a href="rprog3.html#cb237-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">date =</span> lubridate<span class="op">::</span><span class="kw">mdy_hm</span>(created_at), <span class="co"># convert timestamp to datetime object</span></span>
+<span id="cb237-5"><a href="rprog3.html#cb237-5"></a>         <span class="dt">hour_co =</span> lubridate<span class="op">::</span><span class="kw">hour</span>(lubridate<span class="op">::</span><span class="kw">with_tz</span>(date, <span class="co"># convert timestamp to datetime object </span></span>
+<span id="cb237-6"><a href="rprog3.html#cb237-6"></a>                                                      <span class="dt">tzone =</span> <span class="st">&quot;America/Denver&quot;</span>)), <span class="co"># and add timezone label</span></span>
+<span id="cb237-7"><a href="rprog3.html#cb237-7"></a>         <span class="dt">month =</span> lubridate<span class="op">::</span><span class="kw">month</span>(date), <span class="co"># create var of month from timestamp</span></span>
+<span id="cb237-8"><a href="rprog3.html#cb237-8"></a>         <span class="dt">week =</span> lubridate<span class="op">::</span><span class="kw">week</span>(date)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># create var of week from timestamp</span></span>
+<span id="cb237-9"><a href="rprog3.html#cb237-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>(<span class="kw">c</span>(url, created_at, bioguide_id))) <span class="co"># retain all vars except 3</span></span></code></pre></div>
+</div>
+<div id="set-2-counting" class="section level3">
+<h3><span class="header-section-number">6.6.2</span> Set 2: Counting</h3>
+<ol style="list-style-type: decimal">
+<li>Which Colorado senators are included in the data?</li>
+</ol>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="rprog3.html#cb238-1"></a><span class="co"># find unique strings within user variable</span></span>
+<span id="cb238-2"><a href="rprog3.html#cb238-2"></a><span class="co"># if you convert to factor, you can also find `levels()`</span></span>
+<span id="cb238-3"><a href="rprog3.html#cb238-3"></a><span class="kw">unique</span>(tweets_co<span class="op">$</span>user) </span></code></pre></div>
+<pre><code>## [1] &quot;SenBennetCO&quot;    &quot;SenCoryGardner&quot;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Which Colorado Senator tweets the most?</li>
+</ol>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="rprog3.html#cb240-1"></a><span class="co"># compare number of tweets by senator; remember to always ungroup grouped data!</span></span>
+<span id="cb240-2"><a href="rprog3.html#cb240-2"></a>tweets_co <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb240-3"><a href="rprog3.html#cb240-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(user) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb240-4"><a href="rprog3.html#cb240-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb240-5"><a href="rprog3.html#cb240-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   user               n
+##   &lt;chr&gt;          &lt;int&gt;
+## 1 SenBennetCO     2211
+## 2 SenCoryGardner  3225</code></pre>
+</div>
+<div id="set-3-weekly-tweets" class="section level3">
+<h3><span class="header-section-number">6.6.3</span> Set 3: Weekly tweets</h3>
+<p>Create a time series plot that indicates tweet activity on a weekly basis since
+2011 for the Colorado senators. You will need to first create a new dataframe
+that contains new time-date variables based on the (a) total time and (b) weeks
+since data collection started.</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="rprog3.html#cb242-1"></a><span class="co"># create new time-based variables</span></span>
+<span id="cb242-2"><a href="rprog3.html#cb242-2"></a>tweets_co_wk &lt;-<span class="st"> </span>tweets_co <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb242-3"><a href="rprog3.html#cb242-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">time_since =</span> <span class="kw">as.duration</span>(date <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(date)), <span class="co"># &quot;time from&quot; var</span></span>
+<span id="cb242-4"><a href="rprog3.html#cb242-4"></a>         <span class="dt">week =</span> <span class="kw">round</span>(<span class="kw">as.numeric</span>(time_since, <span class="st">&quot;weeks&quot;</span>), <span class="dv">0</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># &quot;weeks from&quot; var</span></span>
+<span id="cb242-5"><a href="rprog3.html#cb242-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(user, week) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># by week per user</span></span>
+<span id="cb242-6"><a href="rprog3.html#cb242-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># tweet count </span></span>
+<span id="cb242-7"><a href="rprog3.html#cb242-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>() <span class="co"># remember to ungroup grouped data</span></span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="rprog3.html#cb243-1"></a><span class="co"># plot time series of tweets per week per senator since 2011</span></span>
+<span id="cb243-2"><a href="rprog3.html#cb243-2"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> tweets_co_wk, </span>
+<span id="cb243-3"><a href="rprog3.html#cb243-3"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> week, <span class="dt">y =</span> n, <span class="dt">color =</span> user)) <span class="op">+</span></span>
+<span id="cb243-4"><a href="rprog3.html#cb243-4"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb243-5"><a href="rprog3.html#cb243-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb243-6"><a href="rprog3.html#cb243-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Number of tweets per week by Colorado senator since 2011&quot;</span>,</span>
+<span id="cb243-7"><a href="rprog3.html#cb243-7"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;Gardner joined Twitter later but tweets more (and cyclically)&quot;</span>)</span></code></pre></div>
+<p><img src="06-string_date_files/figure-html/tweet-time-series-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="set-4-csu-vs.-cu" class="section level3">
+<h3><span class="header-section-number">6.6.4</span> Set 4: CSU vs. CU</h3>
+<ol style="list-style-type: decimal">
+<li>How many times are strings related to CSU mentioned by each senator by year?
+This might include things like “CSU”, “colostate”, “Colostate”, “Colorado State
+U”, “Rams”, etc. You will need to use a few <code>dplyr</code> functions, one <code>lubridate</code>
+function, and one <code>stringr</code> function within the pipeline.</li>
+</ol>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="rprog3.html#cb244-1"></a><span class="co"># determine number of csu-related tweets by senator per year</span></span>
+<span id="cb244-2"><a href="rprog3.html#cb244-2"></a>tweets_co <span class="op">%&gt;%</span></span>
+<span id="cb244-3"><a href="rprog3.html#cb244-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(user, lubridate<span class="op">::</span><span class="kw">year</span>(date)) <span class="op">%&gt;%</span></span>
+<span id="cb244-4"><a href="rprog3.html#cb244-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(stringr<span class="op">::</span><span class="kw">str_detect</span>(text, <span class="st">&quot;CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb244-5"><a href="rprog3.html#cb244-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb244-6"><a href="rprog3.html#cb244-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 10 x 3
+##    user           `lubridate::year(date)`     n
+##    &lt;chr&gt;                            &lt;dbl&gt; &lt;int&gt;
+##  1 SenBennetCO                       2011     1
+##  2 SenBennetCO                       2012     1
+##  3 SenBennetCO                       2013     1
+##  4 SenBennetCO                       2014     2
+##  5 SenBennetCO                       2015     2
+##  6 SenBennetCO                       2017     1
+##  7 SenCoryGardner                    2013     4
+##  8 SenCoryGardner                    2015     5
+##  9 SenCoryGardner                    2016     2
+## 10 SenCoryGardner                    2017     2</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>What is the content of the tweets extracted in the previous question? You
+will need to use another <code>stringr</code> function. You can use the same text strings
+as before.</li>
+</ol>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="rprog3.html#cb246-1"></a><span class="co"># extract csu-related tweet content</span></span>
+<span id="cb246-2"><a href="rprog3.html#cb246-2"></a>stringr<span class="op">::</span><span class="kw">str_subset</span>(tweets_co<span class="op">$</span>text, </span>
+<span id="cb246-3"><a href="rprog3.html#cb246-3"></a>                    <span class="st">&quot;CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu&quot;</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;RT @CSUAgSci: .@SenBennetCO &amp;amp; @SenCoryGardner announce $500K @usda grant to @ColoradoStateU to study Farm to School program https://t.co/kb��_&quot;
+##  [2] &quot;Best of luck to @CSUMensBball in #NIT first round against South Dakota State! #GoRams&quot;                                                             
+##  [3] &quot;CSU-led study shows risks for CO if we don&#39;t tackle climate change. Risks worsen the longer we wait. It&#39;s time to act http://t.co/Nlz4pmj8D6&quot;      
+##  [4] &quot;Congrats to @CSUPFootball on tonight&#39;s #NCAAD2 championship win! Great game and even better season. #BackthePack&quot;                                  
+##  [5] &quot;Just wrapped up day 1 of our #COinnovation tour w/ visit to @CSUenergy engines lab. Day 2 in #GrandJunction tomorrow. http://t.co/2Yt5c09Tn3&quot;      
+##  [6] &quot;Here&#39;s my #MarchMadness bracket. How do your picks compare? We&#39;ll be rooting for you @CUBuffsMBB and @CSUMensBball! https://t.co/4DCdvryOjb&quot;       
+##  [7] &quot;Good luck to @CSUMensBball against Murray State this morning. #MarchMadness #CSUNCAA&quot;                                                              
+##  [8] &quot;Good luck @cubuffs, @CSUFootball and @UNCOFOOTBALL this season. #gobuffs #Rams #BearNation&quot;                                                        
+##  [9] &quot;RT @NewsCPR: .@SenCoryGardner on @CSUPoliSci&#39;s John Straayer: \&quot;thanks for being that life-changing spark\&quot;\r https://t.co/LM3CghawTa #copolit��_&quot; 
+## [10] &quot;I visited the @CSUEnergy Powerhouse Energy Campus w/ @ColoradoStateU President Franks to learn more about CSU&#39;s cut��_ https://t.co/uTE7M7v7VN&quot;    
+## [11] &quot;Met with @ColoradoStateU Chancellor Frank &amp;amp; Vice Chancellor Parsons. My staffers who are fellow Rams joined! https://t.co/bF7LArS9Bw&quot;          
+## [12] &quot;Congrats to @CSUWomensBball on capturing another Mountain West title &amp;amp; being ranked #22 in the country. Go Rams! https://t.co/wawv4CNZLs&quot;      
+## [13] &quot;Appreciate Coach Bobo &amp;amp; @CSUFootball backing @CoachToCureMD today. Great cause! #TackleDuchenne!&quot;                                              
+## [14] &quot;Nothing beats #AgDay at @ColoradoStateU! Always great being with fellow ram handlers at a @CSUFootball game. http://t.co/v32OhG1Kej&quot;               
+## [15] &quot;@mitchellbyars @RepJaredPolis There is nothing more stylish than a @ColoradoStateU Rams shirt!&quot;                                                    
+## [16] &quot;Great to be back in Ft Collins at my alma mater @ColoradoStateU. Thanks @CSUTonyFrank for the hospitality, &amp;amp; go Rams http://t.co/zdIcrsgSdL&quot;   
+## [17] &quot;Great day to be at the @NationalWestern on CSU Day! And thanks to @BoydPolhamus for the introduction! #NWSS2015 http://t.co/fc46YhoUXg&quot;            
+## [18] &quot;Go @CSUfootball! #CSURams #BringBackTheBoot Win the #BorderWar&quot;                                                                                    
+## [19] &quot;@RepMarthaRoby I&#39;m proud to be a #CSURam  @CSUFootball&quot;                                                                                            
+## [20] &quot;Go @CSUFootball!!!@UA_Athletics: Happy #RollTide Friday! RT if you&#39;re ready for @AlabamaFTBL vs. Colorado State! #CSUvsBAMA&quot;                       
+## [21] &quot;#GoRams! #RMShowdown. @CSUfootball: #BeatTheBuffs. -cg&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Which Colorado senator tweets the most about University of Colorado? Use a
+similar approach to Question 7, with strings related to CU, such as “Buffs” or
+“University of Colorado”.</li>
+</ol>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="rprog3.html#cb248-1"></a><span class="co"># number of cu-related tweets by senator per year</span></span>
+<span id="cb248-2"><a href="rprog3.html#cb248-2"></a>tweets_co <span class="op">%&gt;%</span></span>
+<span id="cb248-3"><a href="rprog3.html#cb248-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(user, lubridate<span class="op">::</span><span class="kw">year</span>(date)) <span class="op">%&gt;%</span></span>
+<span id="cb248-4"><a href="rprog3.html#cb248-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="kw">year</span>(date) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2013</span>) <span class="op">%&gt;%</span></span>
+<span id="cb248-5"><a href="rprog3.html#cb248-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(stringr<span class="op">::</span><span class="kw">str_detect</span>(text, </span>
+<span id="cb248-6"><a href="rprog3.html#cb248-6"></a>                                    <span class="st">&quot;CU|Buffs|buffs|University of Colorado&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb248-7"><a href="rprog3.html#cb248-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb248-8"><a href="rprog3.html#cb248-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 9 x 3
+##   user           `lubridate::year(date)`     n
+##   &lt;chr&gt;                            &lt;dbl&gt; &lt;int&gt;
+## 1 SenBennetCO                       2013     3
+## 2 SenBennetCO                       2014     2
+## 3 SenBennetCO                       2015     3
+## 4 SenBennetCO                       2016     3
+## 5 SenBennetCO                       2017     3
+## 6 SenCoryGardner                    2013     6
+## 7 SenCoryGardner                    2015    11
+## 8 SenCoryGardner                    2016     5
+## 9 SenCoryGardner                    2017     3</code></pre>
+</div>
+</div>
+<div id="chapter-6-homework" class="section level2">
+<h2><span class="header-section-number">6.7</span> Chapter 6 Homework</h2>
+<p>You will continue to use the <a href="https://github.com/fivethirtyeight/data/tree/master/twitter-ratio">FiveThirtyEight</a> Twitter data for homework.</p>
+<p>Download the csv from Canvas containing Colorado senators’ tweets from 2011 to
+2017 (not the full data file used in the above exercises) and the R Markdown
+template. Your knitted submission is due at the start of the first class of the
+next chapter.</p>
 
 </div>
 </div>
