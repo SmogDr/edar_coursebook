@@ -187,10 +187,18 @@ The units of $\hat{\sigma_{x}}$ are the same as $x$, so we can interpret the sta
 </div>
  
 ### Pearson Correlation Coefficient {#pearson}
-The Pearson correlation coefficient, ***r***, is a quantitative descriptor of the degree of linear correlation between two variables (let's call them `x` and `y`).  
+The Pearson correlation coefficient, ***r***, is a quantitative descriptor of the degree of **linear correlation** between two variables (let's call them `x` and `y`).  
 
-The Pearson correlation coefficient indicates the proportion of variation in $y$ 
-that can be explained by knowing $x$, when the data are paired.  Below, we show a series of scatter plots with varying levels of correlation between two vectors: 
+The Pearson correlation coefficient indicates the proportion of linear variation 
+in $y$ that can be explained by knowing $x$, when the data are paired.  By "linear" we mean a straight-line fit between the two variables.  The assumptions underlying the
+Pearson correlation coefficient are as follows:  
+  - The variables x, y are continuous. 
+  - Both x and y were from a paired sample
+  - The dataset is free of outliers (outliers tend to skew resutls)
+  - A linear relationship exists between x and y
+
+Below, we show a series of scatter plots with varying levels of linear correlation 
+between two vectors: 
 `x` and `y`. 
 
 
@@ -223,5 +231,33 @@ $$r = \frac{\sum_{i=1}^{n}(x_{i} - \bar{x})\cdot(y_{i} - \bar{y}) } {\sqrt {\sum
 </div>
 
 
-You can calculate **r** using the `cor()` function and supplying `x` and `y` as arguments.
+You can calculate **r** using the `cor()` function and supplying `x` and `y` as arguments.  For example:
+
+
+```r
+set.seed(9)
+x <- 1:100
+y <- x + runif(n = 100, min = -25, max = 25)
+
+cor(x, y)
+```
+
+```
+## [1] 0.8834837
+```
+
+Also note that **r** is **not** an appropriate indicator of **non-linear correlation**. For example, in the example that follows, `y` is perfectly represented as `x^4^`, but the Pearson correlation coefficient between these variables is not 1!
+
+
+```r
+set.seed(10)
+x <- 1:100
+y <- x^4 
+
+cor(x, y)
+```
+
+```
+## [1] 0.8672807
+```
 

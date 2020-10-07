@@ -27,16 +27,13 @@ Undoubtedly, you have seen scatterplots many times before; we will give them a f
 * Linearity  
 * Performance (of a measurement) in terms of precision, bias, and dynamic range   
 
-Traditionally, a scatterplot shows paired observations of two variables with the ***dependent variable*** on the y-axis and the ***independent variable*** on the x-axis.  Creating a plot in this way means that, before you begin, you must make a judgement call about which variable *depends* on which.  The roots of this terminology/protocol lie in the practice of *linear regression* and the scientific method, the former of which we will discuss in more detail later.  For the purposes of exploratory data analysis, however, it actually doesn't matter which variable goes on which axis. That said, since we don't wish to break with tradition, let's agree to follow the guidelines on dependent/independent variables so as not to invoke the wrath of the gods.
+Traditionally, a scatterplot shows paired observations of two variables with the ***dependent variable*** on the y-axis and the ***independent variable*** on the x-axis.  Creating a plot in this way means that, before you begin, you must make a judgement call about which variable *depends* on which.  The roots of this terminology/protocol lie in the practice of *linear regression* and the scientific method, the former of which we will discuss in more detail later.  For the purposes of exploratory data analysis, however, it actually doesn't matter which variable goes on which axis. That said, since we don't wish to break with tradition, let's agree to follow the guidelines on dependent/independent variables so as not to invoke the wrath of the gods.  
 
-**Statistics:**  
-The independent variable (x-axis) is thought to have some influence/control over the dependent variable (y-axis).
+  **Statistics:** The independent variable (x-axis) is thought to have some influence/control over the dependent variable (y-axis).   
 
-**Scientific Method:**  
-The experimenter manipulates the control variable (independent, x-axis) and observes the changes in the response variable (dependent, y-axis). 
+  **Scientific Method:**  The experimenter manipulates the control variable (independent, x-axis) and observes the changes in the response variable (dependent, y-axis).   
 
-**Exploratory Data Analysis:**  
-We throw two variables onto a plot to investigate their relationship.  We make a guess about which one is the independent variable (x-axis) and which one is the dependent variable (y-axis) and we hope that nobody calls us out if we got it wrong.
+  **Exploratory Data Analysis:**  We throw two variables onto a plot to investigate their relationship.  We make a guess about which one is the independent variable (x-axis) and which one is the dependent variable (y-axis) and we hope that nobody calls us out if we got it wrong.  
 
 ### Causality
 All this talk about **dependent** and **independent** variables is fundamentally rooted in the practice of ***causal inference*** reasoning: the ability to say that "action A" caused "outcome B".  Discovering (or proving) that one thing caused another to happen can be an incredibly powerful event.  Proving causality leads to the awarding of Nobel Prizes, the creation of new laws and regulations, the judgment of guilt or innocence in court, the changing and convincing of human minds and behaviors, and simply put: more understanding.
@@ -51,7 +48,10 @@ The scatterplot is a great way to visualize whether (and, to an extent, how) two
 </div>
 
 
-Below are four examples of bivariate data with differing degrees of correlation: perfect, strong, moderate, and none.  These are qualitative terms, of course, what is "moderate" to one person may be poor and unacceptable to another.  Later on, in the [modeling section](#model), we will discuss ways to assess the strength of correlation more quantitatively.
+Below are four examples of bivariate data with differing degrees of correlation: perfect, strong, moderate, and none.  These are qualitative terms, of course, what is "moderate" to one person may be poor and unacceptable to another.  If you want to see how 
+to assess the strength of correlation more quantitatively, you can explore the
+Pearson Correlation Coefficient, ***r***, in the [Appendix](#pearson), which is
+used to quantify the degree of **linear correlation** between two variables.
 <div class="figure" style="text-align: center">
 <img src="./images/correlation_example_1.png" alt="Scatterplot examples showing bivariate data with varying degrees of correlation." width="700pt" />
 <p class="caption">(\#fig:corr-example-1)Scatterplot examples showing bivariate data with varying degrees of correlation.</p>
@@ -263,9 +263,7 @@ vars_needed <- c("id",
                  "fuelType1",
                  "comb08",
                  "highway08",
-                 "city08",
-                 "co2TailpipeGpm"
-                 )
+                 "city08")
 
 df_mpg<-raw_data %>%
   dplyr::select(all_of(vars_needed))  
@@ -280,18 +278,19 @@ the market and by telling R to code these data as **factors**, we can analyze
 these variables in categorical form.
 
 First, we will create a vector of variable names that we want to code as 
-factors, `vars_factr`. The we will apply the `as.factor()` function to those 
+factors, `vars_factr`. Then we will apply the `as.factor()` function to those 
 variables using `dplyr::mutate(across())`. The `across()` function allows one 
-to apply the same transformation to multiple columns in a data frame. We will 
+to apply the same transformation to multiple columns in a data frame (similar 
+to how we used `all_of()` above). We will 
 also take the opportunity to rename a few of these variables (following our 
 naming guidelines discussed earlier) and to filter the data to retain only 
-vehciles made after the year 2000. 
+vehicles made after the year 2000. 
 
 ```r
 # ID the columns that we want as class:factor
 vars_factr <- c("make", "drive", "trany", "VClass", "fuelType1")
 
-df_mpg %>%
+df_mpg <- df_mpg %>%
   # mutate(across(a)) applies the as.factor function only to the vars of interest
   dplyr::mutate(across(all_of(vars_factr), .fns = as.factor)) %>% 
   #create simpler names
@@ -300,7 +299,7 @@ df_mpg %>%
                 tran = trany, 
                 v_class = VClass) %>% # easier string to type
   # keep only data collected after 2000 for the sake of simplicity
-  dplyr::filter(year >= 2000) -> df_mpg 
+  dplyr::filter(year >= 2000) 
 
 rm(vars_needed, vars_factr) # won't be needing these anymore
 ```
@@ -313,7 +312,7 @@ head(df_mpg)
 ```
 
 ```
-## # A tibble: 6 x 14
+## # A tibble: 6 x 13
 ##      id make  model  year   cyl displ drive tran  v_class fuel_type comb08
 ##   <dbl> <fct> <chr> <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
 ## 1 15589 Acura NSX    2000     6   3   Rear… Auto… Two Se… Premium …     18
@@ -322,9 +321,9 @@ head(df_mpg)
 ## 4 15592 BMW   Z3 C…  2000     6   2.8 Rear… Auto… Two Se… Premium …     19
 ## 5 15593 BMW   Z3 C…  2000     6   2.8 Rear… Manu… Two Se… Premium …     19
 ## 6 15594 BMW   Z3 R…  2000     6   2.5 Rear… Auto… Two Se… Premium …     19
-## # … with 3 more variables: highway08 <dbl>, city08 <dbl>, co2TailpipeGpm <dbl>
+## # … with 2 more variables: highway08 <dbl>, city08 <dbl>
 ```
-Next, let's take a look at some of the factor levels.  There are lots of ways to do this in R.
+Next, let's take a look at some of the factor levels.  There are lots of ways to do this in R Studio, but the `levels()` function is the most straightforward.
 
 
 ```r
@@ -376,30 +375,61 @@ levels(df_mpg$v_class)
 ## [33] "Vans, Cargo Type"                   "Vans, Passenger Type"
 ```
 
-Next, let's see whether any variables contain missing data (NAs).  A simple way is to map the combined functions of `sum()` and `is.na()` to each column of the data frame. We do this using the `map_dfc` function (reads: map a function across columns of a dataframe) from the `purr::` package.
+Next, let's see whether this data frame contains missing data (NAs).  
 
 
 ```r
-df_mpg %>% map_dfc(~sum(is.na(.)))
+sum(is.na(df_mpg))
 ```
 
 ```
-## # A tibble: 1 x 14
-##      id  make model  year   cyl displ drive  tran v_class fuel_type comb08
-##   <int> <int> <int> <int> <int> <int> <int> <int>   <int>     <int>  <int>
-## 1     0     0     0     0   231   230     4     9       0         0      0
-## # … with 3 more variables: highway08 <int>, city08 <int>, co2TailpipeGpm <int>
+## [1] 474
 ```
 
-If we filter the `df_mpg` data for entries that contain `NA` we discover that most of them are due to electric vehicles.  This may be a variable level that we choose to exclude from certain analyses later on... 
+With a data frame of this size, we shouldn't be surprised that there are 474 `NA` values present.  The next question is: where do these 
+`NA` values show up? There are several ways to answer this question; here, we
+will use the `complete.cases()` function with a `dplyr::filter()` search. 
+
+The `compelete.cases()` function (from within `stats::`) returns a logical vector indicating
+which rows are *complete* (i.e., that have no missing values).  The opposite of
+this logical function, `!complete.cases()`, should return ONLY those rows that do 
+contain `NA`'s.  Let's create a subset of `df_mpg` that only contains rows with 
+`NA` present.
+
 
 ```r
-missing_data <- df_mpg %>% filter_all(any_vars(is.na(.)))
-head(missing_data, n=10)
+df_mpg.na <- df_mpg %>%
+  filter(!complete.cases(.))
+
+head(df_mpg.na)
 ```
 
 ```
-## # A tibble: 10 x 14
+## # A tibble: 6 x 13
+##      id make  model  year   cyl displ drive tran  v_class fuel_type comb08
+##   <dbl> <fct> <chr> <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
+## 1 16423 Niss… Altr…  2000    NA    NA <NA>  <NA>  Midsiz… Electric…     85
+## 2 16424 Toyo… RAV4…  2000    NA    NA 2-Wh… <NA>  Sport … Electric…     72
+## 3 17328 Toyo… RAV4…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     72
+## 4 17329 Ford  Th!nk  2001    NA    NA <NA>  <NA>  Two Se… Electric…     65
+## 5 17330 Ford  Expl…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     39
+## 6 17331 Niss… Hype…  2001    NA    NA <NA>  <NA>  Two Se… Electric…     75
+## # … with 2 more variables: highway08 <dbl>, city08 <dbl>
+```
+Here, discover that most of the the `NA` values are in the `cyl`, `displ`, and`tran`, columns.  Further, we see that **all** of these vehicles have a `fuel_type` of *electric* (which makes sense as all-electric vehicles do not have internal combustion). 
+This may be a variable level that we choose to exclude from certain analyses later on... 
+
+**Alternate method 1:**
+Another way to perform this is to filter the `df_mpg` data for *any variables* (`any_vars()`) that contain `NA`.  
+
+
+```r
+df_mpg.na.2 <- df_mpg %>% filter_all(any_vars(is.na(.)))
+head(df_mpg.na.2, n=10)
+```
+
+```
+## # A tibble: 10 x 13
 ##       id make  model  year   cyl displ drive tran  v_class fuel_type comb08
 ##    <dbl> <fct> <chr> <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
 ##  1 16423 Niss… Altr…  2000    NA    NA <NA>  <NA>  Midsiz… Electric…     85
@@ -412,7 +442,15 @@ head(missing_data, n=10)
 ##  8 18291 Ford  Expl…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     39
 ##  9 19296 Toyo… RAV4…  2003    NA    NA 2-Wh… <NA>  Sport … Electric…     78
 ## 10 30965 Ford  Rang…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
-## # … with 3 more variables: highway08 <dbl>, city08 <dbl>, co2TailpipeGpm <dbl>
+## # … with 2 more variables: highway08 <dbl>, city08 <dbl>
+```
+**Alternate method 2:**
+Note: In [Chapter 8](#rprog4), you will learn a simpler way to sum `NA`'s by column by *mapping* the combined functions of `sum()` and `is.na()` to each column of the data frame. We do this using the `map_dfc` function (reads: map a function across columns of a data frame) from the `purr::` package.
+
+
+```r
+#this is a preview of code we will learn in Chapter 8
+df_mpg %>% map_dfc(~sum(is.na(.)))
 ```
 
 A nice way to begin EDA with a large, multivariate data set is to understand 

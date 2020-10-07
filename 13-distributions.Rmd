@@ -266,25 +266,38 @@ The mean and standard deviation are great measures of central tendency and dispe
 ```
  
 ### Pearson Correlation Coefficient {#pearson}
-The Pearson correlation coefficient, ***r***, is a quantitative descriptor of the degree of linear correlation between two variables (let's call them `x` and `y`).  
+The Pearson correlation coefficient, ***r***, is a quantitative descriptor of the degree of **linear correlation** between two variables (let's call them `x` and `y`).  
 
-The Pearson correlation coefficient indicates the proportion of variation in $y$ 
-that can be explained by knowing $x$, when the data are paired.  Below, we show a series of scatter plots with varying levels of correlation between two vectors: 
+The Pearson correlation coefficient indicates the proportion of linear variation 
+in $y$ that can be explained by knowing $x$, when the data are paired.  By "linear" we mean a straight-line fit between the two variables.  The assumptions underlying the
+Pearson correlation coefficient are as follows:  
+
+  - The variables x, y are continuous. 
+  - Both x and y were collected as paired samples
+  - The dataset is free of outliers (outliers overly influence results)
+  - A linear relationship exists between x and y
+
+Below, we show a series of scatter plots with varying levels of linear correlation 
+between two vectors: 
 `x` and `y`. 
 
 ``` {r corr_plots1, warning=FALSE, echo=FALSE, message=FALSE}
 set.seed(7)
-corr_plots1 <- tibble(x = seq(1, 100, 1),
-                      y1 = 90-x,
-                      y2 = map_dbl(x, ~ (.x*(rnorm(1, mean = 1,  sd = 0.06)) + 
-                                           rnorm(1, mean = 0, sd = 5))),
-                      y3 = map_dbl(x, ~ (70- .x*(rnorm(1, mean = 0.6,  sd = 0.15)) + 
-                                           rnorm(1, mean = 10, sd = 10))),
-                      y4 = runif(100, 5, 85)) %>%
+corr_plots1 <- tibble(
+  x = 1:100,
+  y1 = 90 - x,
+  y2 = map_dbl(x, ~ (.x*(rnorm(1, mean = 1,  sd = 0.06)) 
+                     + rnorm(1, mean = 0, sd = 5))),
+  y3 = map_dbl(x, ~ (70 - .x*(rnorm(1, mean = 0.6,  sd = 0.15)) 
+                     + rnorm(1, mean = 10, sd = 10))),
+  y4 = runif(100, 5, 85)) %>%
   pivot_longer(y1:y4, names_to = "type") %>%
   mutate(type = as.factor(type))
 
-levels(corr_plots1$type) <- c("Perfect Negative Correlation", "Strong Positive Correlation", "Modest Negative Correlation", "No Correlation")
+levels(corr_plots1$type) <- c("Perfect Negative Correlation", 
+                              "Strong Positive Correlation", 
+                              "Modest Negative Correlation", 
+                              "No Correlation")
 
 cor_results <- corr_plots1 %>%
   group_by(type) %>%
@@ -336,5 +349,25 @@ knitr::include_graphics(path = "./images/pearson_anno.png")
 ```
 
 
-You can calculate **r** using the `cor()` function and supplying `x` and `y` as arguments.
+You can calculate **r** using the `cor()` function and supplying `x` and `y` as arguments.  For example:
 
+``` {r cor-example-1}
+set.seed(9)
+x <- 1:100
+y <- x + runif(n = 100, min = -25, max = 25)
+
+cor(x, y)
+```
+
+Also note that **r** is **not** an appropriate indicator of **non-linear correlation**. For example, in the example that follows, `y` is perfectly represented as `x^4^`, but the Pearson correlation coefficient between these variables is not 1!
+
+``` {r cor-example-non-linear}
+set.seed(10)
+x <- 1:100
+y <- x^4 
+
+cor(x, y)
+```
+
+If you wish to quantify correlation between two variables but fear that your data
+violate the Pearson assumptions listed above.  Try the ***Spearman Correlation Coefficient*** or ***Lin's Concordance Coefficient***. 

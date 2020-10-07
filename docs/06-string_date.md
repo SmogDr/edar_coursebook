@@ -27,9 +27,17 @@ sample 8021A turned blue".
 **Strings are defined in R using quotes `" "`** and stored as `character` 
 vectors; they often show up in data analysis in one of two ways:  
 
-  1. As ***metadata***. Metadata means: "data that describe other data".  A *readme.txt* file is metadata; notes and code comments are metadata. All of these types of data usually come in the form of strings and are included **with the data your are analyzing** but not **in the dataset** itself.  
+  1. As ***metadata***. Metadata means: "data that describe other data".  
+  A *readme.txt* file is metadata; notes and code comments are metadata. All of 
+  these types of data usually come in the form of strings and are included 
+  **with the data your are analyzing** but not **in the dataset** itself.  
   
-  2. As ***vectorized data***.  In R programming, *"vectorized"* means: stored as a column of data. Examples of vectorized strings that you might find include things like: "participant names", or "survey responses to question 1", or "mode of failure". The example below creates three different string vectors in R. You can check the type of object you've created using the `class()` or `typeof()` functions.
+  2. As ***vectorized data***.  In R programming, *"vectorized"* means: stored 
+  as a column of data. Examples of vectorized strings that you might find 
+  include things like: "participant names", or "survey responses to question 1",
+  or "mode of failure". The example below creates three different string vectors 
+  in R. *Note:* You can check the type of object you've created using the 
+  `class()` or `typeof()` functions.
     
 
 ```r
@@ -279,7 +287,7 @@ search pattern in R.
   <tr>
    <td style="text-align:center;"> $b </td>
    <td style="text-align:center;"> ends with: look for &quot;b&quot; at the end of a string </td>
-   <td style="text-align:center;"> &quot;\$b&quot; </td>
+   <td style="text-align:center;"> &quot;b\$&quot; </td>
   </tr>
   <tr>
    <td style="text-align:center;"> a|b </td>
@@ -400,7 +408,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-10-06 13:04:46 MDT"
+## [1] "2020-10-07 11:15:53 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -416,12 +424,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1602011086
+## [1] 1602090953
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 50.7994383 years.  
+365d/yr] => 50.8019709 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -429,7 +437,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2020-10-06 13:04:46.
+format: 2020-10-07 11:15:53.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -541,7 +549,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1602011086
+## [1] 1602090953
 ```
 
 
@@ -552,14 +560,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 46.4
-##  $ min   : int 4
-##  $ hour  : int 13
-##  $ mday  : int 6
+##  $ sec   : num 53.5
+##  $ min   : int 15
+##  $ hour  : int 11
+##  $ mday  : int 7
 ##  $ mon   : int 9
 ##  $ year  : int 120
-##  $ wday  : int 2
-##  $ yday  : int 279
+##  $ wday  : int 3
+##  $ yday  : int 280
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
@@ -646,7 +654,7 @@ worth knowing:
 
 The `lubridate` package was developed specifically to make it easier to work
 with date-time objects. You can find out more information on `lubridate`
-[here](https://lubridate.tidyverse.org/).
+[here](https://lubridate.tidyverse.org/){target="_blank"}.
 
 ### Parsing functions in `lubridate`
 
@@ -890,7 +898,8 @@ daily_show %>%
 ***"Tidy Data"*** is a philosophy for how to arrange your data in a intuitive, 
 rectangular fashion, commonly in a `dataframe`. In his 
 [2014 paper](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf){target="_blank"}, 
-Hadley Wickham states, *"tidy datasets provide a standardized way to link the structure of a dataset (its physical layout) with its semantics (its meaning)."*  
+Hadley Wickham states, 
+*"tidy datasets provide a standardized way to link the structure of a dataset (its physical layout) with its semantics (its meaning)."*  
 
 The definition of a tidy dataset is straightforward:  
 
@@ -1016,13 +1025,19 @@ untidy (typically "wide) to tidy ("long").
 This function creates two new columns as output and requires four arguments:  
 
 - `data =` the dataframe to be lengthened
-- `cols =` a list of the columns that should be combined together (forming a single variable to be represented in a new, single column)
-- `names_to` = this is an output column that contains the **names** of the old columns that are being combined.
-- `values_to` = this is the other output column that contains the **values** from within the old columns that are being combined.
+- `cols =` a list of the columns that should be combined together (forming a 
+single variable to be represented in a new, single column)
+- `names_to` = this is an output column that contains the **names** of the 
+old columns that are being combined.
+- `values_to` = this is the other output column that contains the **values** 
+from within the old columns that are being combined.
     
 <div class="rmdnote">
-<p>The <code>pivot_longer()</code> function always creates two new columns:<br />
-- one column contains <code>names_to =</code> information. - the other column contains the <code>values_to =</code> data.</p>
+<p>The <code>pivot_longer()</code> function always creates two new columns:</p>
+<ul>
+<li>one column contains <code>names_to =</code> information.</li>
+<li>the other column contains the <code>values_to =</code> data.</li>
+</ul>
 </div>
 
 In the case of Table \@ref(tab:grades-untidy), we are using `cols = ` to combine

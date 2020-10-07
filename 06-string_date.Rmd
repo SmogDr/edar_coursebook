@@ -40,9 +40,17 @@ sample 8021A turned blue".
 **Strings are defined in R using quotes `" "`** and stored as `character` 
 vectors; they often show up in data analysis in one of two ways:  
 
-  1. As ***metadata***. Metadata means: "data that describe other data".  A *readme.txt* file is metadata; notes and code comments are metadata. All of these types of data usually come in the form of strings and are included **with the data your are analyzing** but not **in the dataset** itself.  
+  1. As ***metadata***. Metadata means: "data that describe other data".  
+  A *readme.txt* file is metadata; notes and code comments are metadata. All of 
+  these types of data usually come in the form of strings and are included 
+  **with the data your are analyzing** but not **in the dataset** itself.  
   
-  2. As ***vectorized data***.  In R programming, *"vectorized"* means: stored as a column of data. Examples of vectorized strings that you might find include things like: "participant names", or "survey responses to question 1", or "mode of failure". The example below creates three different string vectors in R. You can check the type of object you've created using the `class()` or `typeof()` functions.
+  2. As ***vectorized data***.  In R programming, *"vectorized"* means: stored 
+  as a column of data. Examples of vectorized strings that you might find 
+  include things like: "participant names", or "survey responses to question 1",
+  or "mode of failure". The example below creates three different string vectors 
+  in R. *Note:* You can check the type of object you've created using the 
+  `class()` or `typeof()` functions.
     
 ```{r strings-1}
 # examples of vectorized string data
@@ -235,7 +243,7 @@ table_regex <- tibble::tibble(
                    "\"[^abc]\"",
                    "\"(abc)\"",
                    "\"\\^b\"",
-                   "\"\\$b\"",
+                   "\"b\\$\"",
                    "\"a|b\"")
 )
 knitr::kable(table_regex, 
@@ -260,9 +268,11 @@ detected. The string will always be split at the first match and again at each
 additional match location, unless you specify that only a finite number of `n`
 matches should occur. A couple points to note:
 
-- `str_split()` splits on each side of the match, which itself is not included in the output.
+- `str_split()` splits on each side of the match; the matched part of the string
+is *not* included in the output.
 
-- because both sides of the split string are returned, your output will take the form of a `list`.
+- because both sides of the split string are returned, your output will take 
+the form of a `list`.
   
 ```{r string-5}
 stringr::str_split(string = names_respond, pattern = "t")
@@ -500,7 +510,7 @@ knitr::kable(base_r_times, col.names = c("{base} R Function",
 
 The `lubridate` package was developed specifically to make it easier to work
 with date-time objects. You can find out more information on `lubridate`
-[here](https://lubridate.tidyverse.org/).
+[here](https://lubridate.tidyverse.org/){target="_blank"}.
 
 ### Parsing functions in `lubridate`
 
@@ -668,7 +678,8 @@ works for your application.
 ***"Tidy Data"*** is a philosophy for how to arrange your data in a intuitive, 
 rectangular fashion, commonly in a `dataframe`. In his 
 [2014 paper](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf){target="_blank"}, 
-Hadley Wickham states, *"tidy datasets provide a standardized way to link the structure of a dataset (its physical layout) with its semantics (its meaning)."*  
+Hadley Wickham states, 
+*"tidy datasets provide a standardized way to link the structure of a dataset (its physical layout) with its semantics (its meaning)."*  
 
 The definition of a tidy dataset is straightforward:  
 
@@ -734,12 +745,16 @@ untidy (typically "wide) to tidy ("long").
 This function creates two new columns as output and requires four arguments:  
 
 - `data =` the dataframe to be lengthened
-- `cols =` a list of the columns that should be combined together (forming a single variable to be represented in a new, single column)
-- `names_to` = this is an output column that contains the **names** of the old columns that are being combined.
-- `values_to` = this is the other output column that contains the **values** from within the old columns that are being combined.
+- `cols =` a list of the columns that should be combined together (forming a 
+single variable to be represented in a new, single column)
+- `names_to` = this is an output column that contains the **names** of the 
+old columns that are being combined.
+- `values_to` = this is the other output column that contains the **values** 
+from within the old columns that are being combined.
     
 ```{block, type="rmdnote"}
 The `pivot_longer()` function always creates two new columns:  
+
   - one column contains `names_to =  ` information. 
   - the other column contains the `values_to = ` data.
 ```

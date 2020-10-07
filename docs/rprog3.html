@@ -443,34 +443,42 @@ sample 8021A turned blue”.</p>
 <p><strong>Strings are defined in R using quotes <code>" "</code></strong> and stored as <code>character</code>
 vectors; they often show up in data analysis in one of two ways:</p>
 <ol style="list-style-type: decimal">
-<li><p>As <strong><em>metadata</em></strong>. Metadata means: “data that describe other data”. A <em>readme.txt</em> file is metadata; notes and code comments are metadata. All of these types of data usually come in the form of strings and are included <strong>with the data your are analyzing</strong> but not <strong>in the dataset</strong> itself.</p></li>
-<li><p>As <strong><em>vectorized data</em></strong>. In R programming, <em>“vectorized”</em> means: stored as a column of data. Examples of vectorized strings that you might find include things like: “participant names”, or “survey responses to question 1”, or “mode of failure”. The example below creates three different string vectors in R. You can check the type of object you’ve created using the <code>class()</code> or <code>typeof()</code> functions.</p></li>
+<li><p>As <strong><em>metadata</em></strong>. Metadata means: “data that describe other data”.<br />
+A <em>readme.txt</em> file is metadata; notes and code comments are metadata. All of
+these types of data usually come in the form of strings and are included
+<strong>with the data your are analyzing</strong> but not <strong>in the dataset</strong> itself.</p></li>
+<li><p>As <strong><em>vectorized data</em></strong>. In R programming, <em>“vectorized”</em> means: stored
+as a column of data. Examples of vectorized strings that you might find
+include things like: “participant names”, or “survey responses to question 1”,
+or “mode of failure”. The example below creates three different string vectors
+in R. <em>Note:</em> You can check the type of object you’ve created using the
+<code>class()</code> or <code>typeof()</code> functions.</p></li>
 </ol>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="rprog3.html#cb193-1"></a><span class="co"># examples of vectorized string data</span></span>
-<span id="cb193-2"><a href="rprog3.html#cb193-2"></a>names_respond &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ahmed&quot;</span>, </span>
-<span id="cb193-3"><a href="rprog3.html#cb193-3"></a>                   <span class="st">&quot;Josh&quot;</span>, </span>
-<span id="cb193-4"><a href="rprog3.html#cb193-4"></a>                   <span class="st">&quot;Mateo&quot;</span>, </span>
-<span id="cb193-5"><a href="rprog3.html#cb193-5"></a>                   <span class="st">&quot;William&quot;</span>, </span>
-<span id="cb193-6"><a href="rprog3.html#cb193-6"></a>                   <span class="st">&quot;Ali&quot;</span>, </span>
-<span id="cb193-7"><a href="rprog3.html#cb193-7"></a>                   <span class="st">&quot;Wei&quot;</span>, </span>
-<span id="cb193-8"><a href="rprog3.html#cb193-8"></a>                   <span class="st">&quot;Steve-O&quot;</span>,</span>
-<span id="cb193-9"><a href="rprog3.html#cb193-9"></a>                   <span class="st">&quot;John&quot;</span>)</span>
-<span id="cb193-10"><a href="rprog3.html#cb193-10"></a>q1_responses &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Because you told me to do it.&quot;</span>,</span>
-<span id="cb193-11"><a href="rprog3.html#cb193-11"></a>                  <span class="st">&quot;It seemed like the right thing to do at the time.&quot;</span>,</span>
-<span id="cb193-12"><a href="rprog3.html#cb193-12"></a>                  <span class="st">&quot;Because I had been over-served.&quot;</span>,</span>
-<span id="cb193-13"><a href="rprog3.html#cb193-13"></a>                  <span class="st">&quot;I don&#39;t know. I just did it.&quot;</span>,</span>
-<span id="cb193-14"><a href="rprog3.html#cb193-14"></a>                  <span class="st">&quot;I got caught up in the heat of the moment.&quot;</span>,</span>
-<span id="cb193-15"><a href="rprog3.html#cb193-15"></a>                  <span class="st">&quot;I was given an opportunity. I took my shot.&quot;</span>,</span>
-<span id="cb193-16"><a href="rprog3.html#cb193-16"></a>                  <span class="st">&quot;I plead the 5th.&quot;</span>,</span>
-<span id="cb193-17"><a href="rprog3.html#cb193-17"></a>                  <span class="st">&quot;I could ask you the same question.&quot;</span>)</span>
-<span id="cb193-18"><a href="rprog3.html#cb193-18"></a>failure_mode &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fracture&quot;</span>,</span>
-<span id="cb193-19"><a href="rprog3.html#cb193-19"></a>                  <span class="st">&quot;yielding&quot;</span>, </span>
-<span id="cb193-20"><a href="rprog3.html#cb193-20"></a>                  <span class="st">&quot;deflection&quot;</span>, </span>
-<span id="cb193-21"><a href="rprog3.html#cb193-21"></a>                  <span class="st">&quot;fatigue&quot;</span>, </span>
-<span id="cb193-22"><a href="rprog3.html#cb193-22"></a>                  <span class="st">&quot;creep&quot;</span>)</span>
-<span id="cb193-23"><a href="rprog3.html#cb193-23"></a></span>
-<span id="cb193-24"><a href="rprog3.html#cb193-24"></a><span class="co"># proof of vector type</span></span>
-<span id="cb193-25"><a href="rprog3.html#cb193-25"></a><span class="kw">class</span>(names_respond)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rprog3.html#cb1-1"></a><span class="co"># examples of vectorized string data</span></span>
+<span id="cb1-2"><a href="rprog3.html#cb1-2"></a>names_respond &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ahmed&quot;</span>, </span>
+<span id="cb1-3"><a href="rprog3.html#cb1-3"></a>                   <span class="st">&quot;Josh&quot;</span>, </span>
+<span id="cb1-4"><a href="rprog3.html#cb1-4"></a>                   <span class="st">&quot;Mateo&quot;</span>, </span>
+<span id="cb1-5"><a href="rprog3.html#cb1-5"></a>                   <span class="st">&quot;William&quot;</span>, </span>
+<span id="cb1-6"><a href="rprog3.html#cb1-6"></a>                   <span class="st">&quot;Ali&quot;</span>, </span>
+<span id="cb1-7"><a href="rprog3.html#cb1-7"></a>                   <span class="st">&quot;Wei&quot;</span>, </span>
+<span id="cb1-8"><a href="rprog3.html#cb1-8"></a>                   <span class="st">&quot;Steve-O&quot;</span>,</span>
+<span id="cb1-9"><a href="rprog3.html#cb1-9"></a>                   <span class="st">&quot;John&quot;</span>)</span>
+<span id="cb1-10"><a href="rprog3.html#cb1-10"></a>q1_responses &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Because you told me to do it.&quot;</span>,</span>
+<span id="cb1-11"><a href="rprog3.html#cb1-11"></a>                  <span class="st">&quot;It seemed like the right thing to do at the time.&quot;</span>,</span>
+<span id="cb1-12"><a href="rprog3.html#cb1-12"></a>                  <span class="st">&quot;Because I had been over-served.&quot;</span>,</span>
+<span id="cb1-13"><a href="rprog3.html#cb1-13"></a>                  <span class="st">&quot;I don&#39;t know. I just did it.&quot;</span>,</span>
+<span id="cb1-14"><a href="rprog3.html#cb1-14"></a>                  <span class="st">&quot;I got caught up in the heat of the moment.&quot;</span>,</span>
+<span id="cb1-15"><a href="rprog3.html#cb1-15"></a>                  <span class="st">&quot;I was given an opportunity. I took my shot.&quot;</span>,</span>
+<span id="cb1-16"><a href="rprog3.html#cb1-16"></a>                  <span class="st">&quot;I plead the 5th.&quot;</span>,</span>
+<span id="cb1-17"><a href="rprog3.html#cb1-17"></a>                  <span class="st">&quot;I could ask you the same question.&quot;</span>)</span>
+<span id="cb1-18"><a href="rprog3.html#cb1-18"></a>failure_mode &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fracture&quot;</span>,</span>
+<span id="cb1-19"><a href="rprog3.html#cb1-19"></a>                  <span class="st">&quot;yielding&quot;</span>, </span>
+<span id="cb1-20"><a href="rprog3.html#cb1-20"></a>                  <span class="st">&quot;deflection&quot;</span>, </span>
+<span id="cb1-21"><a href="rprog3.html#cb1-21"></a>                  <span class="st">&quot;fatigue&quot;</span>, </span>
+<span id="cb1-22"><a href="rprog3.html#cb1-22"></a>                  <span class="st">&quot;creep&quot;</span>)</span>
+<span id="cb1-23"><a href="rprog3.html#cb1-23"></a></span>
+<span id="cb1-24"><a href="rprog3.html#cb1-24"></a><span class="co"># proof of vector type</span></span>
+<span id="cb1-25"><a href="rprog3.html#cb1-25"></a><span class="kw">class</span>(names_respond)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>The first step in analyzing a string is to parse it.
 <strong>To parse means to examine the individual components.</strong> For example, when you
@@ -506,36 +514,36 @@ end with a specific function name. A full list of functions is provided
 <ol style="list-style-type: decimal">
 <li><strong><code>str_detect()</code></strong> returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the <code>string</code> to be searched and the <code>pattern</code> for which to search. Let’s search for the pattern <code>"Josh"</code> in the character vector of strings, <code>names_respond</code>, that we created above:</li>
 </ol>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="rprog3.html#cb195-1"></a>stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="dt">string =</span> names_respond, </span>
-<span id="cb195-2"><a href="rprog3.html#cb195-2"></a>                    <span class="dt">pattern =</span> <span class="st">&quot;Josh&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rprog3.html#cb3-1"></a>stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="dt">string =</span> names_respond, </span>
+<span id="cb3-2"><a href="rprog3.html#cb3-2"></a>                    <span class="dt">pattern =</span> <span class="st">&quot;Josh&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
 <p>As expected, only one string in the vector produced a match.</p>
 <p>An added benefit of logical functions like <code>str_detect()</code> is that return values
 of <code>TRUE</code> are coded as 1 and <code>FALSE</code> as 0. Thus, if we <code>sum()</code> the result of
 the <code>str_detect()</code> search, we will get the cumulative number of matches to
 <code>"Josh"</code> from within our data.</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="rprog3.html#cb197-1"></a>stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="dt">string =</span> names_respond, </span>
-<span id="cb197-2"><a href="rprog3.html#cb197-2"></a>           <span class="dt">pattern =</span> <span class="st">&quot;Josh&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb197-3"><a href="rprog3.html#cb197-3"></a><span class="st">  </span><span class="kw">sum</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="rprog3.html#cb5-1"></a>stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="dt">string =</span> names_respond, </span>
+<span id="cb5-2"><a href="rprog3.html#cb5-2"></a>           <span class="dt">pattern =</span> <span class="st">&quot;Josh&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb5-3"><a href="rprog3.html#cb5-3"></a><span class="st">  </span><span class="kw">sum</span>()</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>In other words, logical functions like <code>str_detect()</code> allow us to do math on
 string data! For example, we can now calculate the proportion of <code>"Josh"</code>
 entries within our sample:</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="rprog3.html#cb199-1"></a>stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="dt">string =</span> names_respond, </span>
-<span id="cb199-2"><a href="rprog3.html#cb199-2"></a>                    <span class="dt">pattern =</span> <span class="st">&quot;Josh&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb199-3"><a href="rprog3.html#cb199-3"></a><span class="st">  </span><span class="kw">sum</span>() <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(names_respond)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="rprog3.html#cb7-1"></a>stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="dt">string =</span> names_respond, </span>
+<span id="cb7-2"><a href="rprog3.html#cb7-2"></a>                    <span class="dt">pattern =</span> <span class="st">&quot;Josh&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb7-3"><a href="rprog3.html#cb7-3"></a><span class="st">  </span><span class="kw">sum</span>() <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(names_respond)</span></code></pre></div>
 <pre><code>## [1] 0.125</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><strong><code>str_extract()</code></strong> takes the same arguments as <code>str_detect()</code> but returns a vector of the matched values (by string index). By “matched values”, I mean only the portion of the string for which the search created a match.</li>
 </ol>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="rprog3.html#cb201-1"></a>stringr<span class="op">::</span><span class="kw">str_extract</span>(<span class="dt">string =</span> names_respond, </span>
-<span id="cb201-2"><a href="rprog3.html#cb201-2"></a>                     <span class="dt">pattern =</span> <span class="st">&quot;Jo&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="rprog3.html#cb9-1"></a>stringr<span class="op">::</span><span class="kw">str_extract</span>(<span class="dt">string =</span> names_respond, </span>
+<span id="cb9-2"><a href="rprog3.html#cb9-2"></a>                     <span class="dt">pattern =</span> <span class="st">&quot;Jo&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] NA   &quot;Jo&quot; NA   NA   NA   NA   NA   &quot;Jo&quot;</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li><strong><code>str_subset()</code></strong> returns only the entries that were matched (i.e., if a match was detected, then the entire string that was matched is returned). If we subset our short list of names to the pattern of letters <code>"li"</code>, we get:</li>
 </ol>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="rprog3.html#cb203-1"></a>stringr<span class="op">::</span><span class="kw">str_subset</span>(<span class="dt">string =</span> names_respond, </span>
-<span id="cb203-2"><a href="rprog3.html#cb203-2"></a>           <span class="dt">pattern =</span> <span class="st">&quot;li&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="rprog3.html#cb11-1"></a>stringr<span class="op">::</span><span class="kw">str_subset</span>(<span class="dt">string =</span> names_respond, </span>
+<span id="cb11-2"><a href="rprog3.html#cb11-2"></a>           <span class="dt">pattern =</span> <span class="st">&quot;li&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;William&quot; &quot;Ali&quot;</code></pre>
 <p>To note, there are base R versions of all these <code>stringr</code> functions. Most are
 performed with the <code>grep</code> family of functions. The term <em>“grep”</em> is an acronym
@@ -728,7 +736,7 @@ $b
 ends with: look for “b” at the end of a string
 </td>
 <td style="text-align:center;">
-“$b”
+“b$”
 </td>
 </tr>
 <tr>
@@ -763,7 +771,7 @@ matches should occur. A couple points to note:</p>
 <li><p><code>str_split()</code> splits on each side of the match, which itself is not included in the output.</p></li>
 <li><p>because both sides of the split string are returned, your output will take the form of a <code>list</code>.</p></li>
 </ul>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="rprog3.html#cb205-1"></a>stringr<span class="op">::</span><span class="kw">str_split</span>(<span class="dt">string =</span> names_respond, <span class="dt">pattern =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="rprog3.html#cb13-1"></a>stringr<span class="op">::</span><span class="kw">str_split</span>(<span class="dt">string =</span> names_respond, <span class="dt">pattern =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;Ahmed&quot;
 ## 
@@ -794,9 +802,9 @@ string to be inserted. Let’s replace the first period detected in each of
 the <code>q1_responses</code> strings with a question mark. Both <code>.</code> and <code>?</code> are
 <em>special characters</em> so we need to <em>“escape”</em> each of these symbols with two
 back-slashes <code>\\</code>.</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="rprog3.html#cb207-1"></a>stringr<span class="op">::</span><span class="kw">str_replace</span>(<span class="dt">string =</span> q1_responses,</span>
-<span id="cb207-2"><a href="rprog3.html#cb207-2"></a>                     <span class="dt">pattern =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>,</span>
-<span id="cb207-3"><a href="rprog3.html#cb207-3"></a>                     <span class="dt">replacement =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">?&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="rprog3.html#cb15-1"></a>stringr<span class="op">::</span><span class="kw">str_replace</span>(<span class="dt">string =</span> q1_responses,</span>
+<span id="cb15-2"><a href="rprog3.html#cb15-2"></a>                     <span class="dt">pattern =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>,</span>
+<span id="cb15-3"><a href="rprog3.html#cb15-3"></a>                     <span class="dt">replacement =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">?&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Because you told me to do it?&quot;                    
 ## [2] &quot;It seemed like the right thing to do at the time?&quot;
 ## [3] &quot;Because I had been over-served?&quot;                  
@@ -832,26 +840,26 @@ precise moment and has moved forward ever since. To note: R can handle
 date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time”
 by calling the <code>Sys.time()</code> function.</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="rprog3.html#cb209-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2020-10-06 13:04:46 MDT&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="rprog3.html#cb17-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;2020-10-07 11:15:53 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and timezone used by my computer
 (<em>whenever I last ran this code in <code>bookdown</code></em>). If you want to see how this
 time is stored in R internally, you can use <code>unclass()</code>, which returns an
 object value with its class attributes removed. When we wrap <code>unclass()</code>
 around <code>Sys.time()</code>, we will see the number of seconds that have occurred
 between the epoch of 1/1/1970 and right now:</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="rprog3.html#cb211-1"></a><span class="kw">unclass</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1602011086</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="rprog3.html#cb19-1"></a><span class="kw">unclass</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
+<pre><code>## [1] 1602090953</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
 Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span>
-365d/yr] =&gt; 50.7994383 years.</p>
+365d/yr] =&gt; 50.8019709 years.</p>
 <p>This calculation ignores leap years, but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats</h3>
 <p>Note that the <code>Sys.time()</code> function provided the date in a
 <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong>
-format: 2020-10-06 13:04:46.</p>
+format: 2020-10-07 11:15:53.</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
 have little difficulty recognizing the following date-time objects as
@@ -985,27 +993,27 @@ TRUE, FALSE
 </table>
 <p>To discover the class of a vector (including a column in a dataframe—remember
 each column can be thought of as a vector), you can use <code>class()</code>:</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="rprog3.html#cb213-1"></a><span class="kw">class</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="rprog3.html#cb21-1"></a><span class="kw">class</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <p>Both the <code>POSIXct</code> and <code>POSIXlt</code> class of objects return the same value to the
 user; the difference is really in how these classes store date-time objects
 internally. To examine them, you can coerce <code>Sys.time()</code> into each of the two
 classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and then examine their
 attributes.</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="rprog3.html#cb215-1"></a>time_now_ct &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">Sys.time</span>())</span>
-<span id="cb215-2"><a href="rprog3.html#cb215-2"></a><span class="kw">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1602011086</code></pre>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="rprog3.html#cb217-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
-<span id="cb217-2"><a href="rprog3.html#cb217-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="rprog3.html#cb23-1"></a>time_now_ct &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">Sys.time</span>())</span>
+<span id="cb23-2"><a href="rprog3.html#cb23-2"></a><span class="kw">unclass</span>(time_now_ct)</span></code></pre></div>
+<pre><code>## [1] 1602090953</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="rprog3.html#cb25-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
+<span id="cb25-2"><a href="rprog3.html#cb25-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 46.4
-##  $ min   : int 4
-##  $ hour  : int 13
-##  $ mday  : int 6
+##  $ sec   : num 53.5
+##  $ min   : int 15
+##  $ hour  : int 11
+##  $ mday  : int 7
 ##  $ mon   : int 9
 ##  $ year  : int 120
-##  $ wday  : int 2
-##  $ yday  : int 279
+##  $ wday  : int 3
+##  $ yday  : int 280
 ##  $ isdst : int 1
 ##  $ zone  : chr &quot;MDT&quot;
 ##  $ gmtoff: int -21600
@@ -1133,7 +1141,7 @@ date-time object of class POSIXlt
 <h2><span class="header-section-number">6.4</span> <code>lubridate</code></h2>
 <p>The <code>lubridate</code> package was developed specifically to make it easier to work
 with date-time objects. You can find out more information on <code>lubridate</code>
-<a href="https://lubridate.tidyverse.org/">here</a>.</p>
+<a href="https://lubridate.tidyverse.org/" target="_blank">here</a>.</p>
 <div id="parsing-functions-in-lubridate" class="section level3">
 <h3><span class="header-section-number">6.4.1</span> Parsing functions in <code>lubridate</code></h3>
 <p>One of best aspects of <code>lubridate</code> is its ability to parse date-time objects
@@ -1146,29 +1154,29 @@ with simplicity and ease; the <code>lubridate</code> parsing functions are desig
 <li><p>If a character vector is written in “<strong>y</strong>ear-<strong>m</strong>onth-<strong>d</strong>ay” format (e.g., <code>"2020-Dec-18"</code>), then the <code>lubridate</code> function to convert that vector is <code>ymd()</code>.</p></li>
 <li><p>If a character vector is written in “<strong>d</strong>ay-<strong>m</strong>onth-<strong>y</strong>ear” format (e.g., <code>"18-Dec-2020"</code>), then the <code>lubridate</code> function to convert that vector is <code>dmy()</code>. Try it out:</p></li>
 </ul>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="rprog3.html#cb219-1"></a><span class="co"># create a character vector</span></span>
-<span id="cb219-2"><a href="rprog3.html#cb219-2"></a>date_old &lt;-<span class="st"> &quot;2020-Dec-18&quot;</span></span>
-<span id="cb219-3"><a href="rprog3.html#cb219-3"></a></span>
-<span id="cb219-4"><a href="rprog3.html#cb219-4"></a><span class="co"># prove it&#39;s a character class</span></span>
-<span id="cb219-5"><a href="rprog3.html#cb219-5"></a><span class="kw">class</span>(date_old)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="rprog3.html#cb27-1"></a><span class="co"># create a character vector</span></span>
+<span id="cb27-2"><a href="rprog3.html#cb27-2"></a>date_old &lt;-<span class="st"> &quot;2020-Dec-18&quot;</span></span>
+<span id="cb27-3"><a href="rprog3.html#cb27-3"></a></span>
+<span id="cb27-4"><a href="rprog3.html#cb27-4"></a><span class="co"># prove it&#39;s a character class</span></span>
+<span id="cb27-5"><a href="rprog3.html#cb27-5"></a><span class="kw">class</span>(date_old)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="rprog3.html#cb221-1"></a><span class="co"># convert it to a `Date` class with `ymd()`</span></span>
-<span id="cb221-2"><a href="rprog3.html#cb221-2"></a>date_new &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="kw">ymd</span>(date_old)</span>
-<span id="cb221-3"><a href="rprog3.html#cb221-3"></a></span>
-<span id="cb221-4"><a href="rprog3.html#cb221-4"></a><span class="co"># prove it worked</span></span>
-<span id="cb221-5"><a href="rprog3.html#cb221-5"></a><span class="kw">class</span>(date_new)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="rprog3.html#cb29-1"></a><span class="co"># convert it to a `Date` class with `ymd()`</span></span>
+<span id="cb29-2"><a href="rprog3.html#cb29-2"></a>date_new &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="kw">ymd</span>(date_old)</span>
+<span id="cb29-3"><a href="rprog3.html#cb29-3"></a></span>
+<span id="cb29-4"><a href="rprog3.html#cb29-4"></a><span class="co"># prove it worked</span></span>
+<span id="cb29-5"><a href="rprog3.html#cb29-5"></a><span class="kw">class</span>(date_new)</span></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 <p>That little conversion exercise may not have blown you away, but watch what
 happens when I feed the following set of wacky character vectors into that
 same <code>lubridate</code> parsing function, <code>ymd()</code>:</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="rprog3.html#cb223-1"></a>messy_dates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2020------Dec the 12&quot;</span>,</span>
-<span id="cb223-2"><a href="rprog3.html#cb223-2"></a>                 <span class="st">&quot;20.-.12.-.12&quot;</span>,</span>
-<span id="cb223-3"><a href="rprog3.html#cb223-3"></a>                 <span class="st">&quot;2020aaa12aaa12&quot;</span>,</span>
-<span id="cb223-4"><a href="rprog3.html#cb223-4"></a>                 <span class="st">&quot;20,12,12&quot;</span>,</span>
-<span id="cb223-5"><a href="rprog3.html#cb223-5"></a>                 <span class="st">&quot;2020x12-12&quot;</span>,</span>
-<span id="cb223-6"><a href="rprog3.html#cb223-6"></a>                 <span class="st">&quot;2020   ....    12        ......     12&quot;</span>,</span>
-<span id="cb223-7"><a href="rprog3.html#cb223-7"></a>                 <span class="st">&quot;&#39;20.December-12&quot;</span>)</span>
-<span id="cb223-8"><a href="rprog3.html#cb223-8"></a><span class="kw">ymd</span>(messy_dates)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="rprog3.html#cb31-1"></a>messy_dates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2020------Dec the 12&quot;</span>,</span>
+<span id="cb31-2"><a href="rprog3.html#cb31-2"></a>                 <span class="st">&quot;20.-.12.-.12&quot;</span>,</span>
+<span id="cb31-3"><a href="rprog3.html#cb31-3"></a>                 <span class="st">&quot;2020aaa12aaa12&quot;</span>,</span>
+<span id="cb31-4"><a href="rprog3.html#cb31-4"></a>                 <span class="st">&quot;20,12,12&quot;</span>,</span>
+<span id="cb31-5"><a href="rprog3.html#cb31-5"></a>                 <span class="st">&quot;2020x12-12&quot;</span>,</span>
+<span id="cb31-6"><a href="rprog3.html#cb31-6"></a>                 <span class="st">&quot;2020   ....    12        ......     12&quot;</span>,</span>
+<span id="cb31-7"><a href="rprog3.html#cb31-7"></a>                 <span class="st">&quot;&#39;20.December-12&quot;</span>)</span>
+<span id="cb31-8"><a href="rprog3.html#cb31-8"></a><span class="kw">ymd</span>(messy_dates)</span></code></pre></div>
 <pre><code>## [1] &quot;2020-12-12&quot; &quot;2020-12-12&quot; &quot;2020-12-12&quot; &quot;2020-12-12&quot; &quot;2020-12-12&quot;
 ## [6] &quot;2020-12-12&quot; &quot;2020-12-12&quot;</code></pre>
 <p>Boom. That’s right, the <code>ymd()</code> parsing function figured them all out correctly
@@ -1263,45 +1271,45 @@ string, and return either a <code>Date</code> or <code>Date-time</code> object c
 <h3><span class="header-section-number">6.4.2</span> Date-time manipulation with <code>lubridate</code></h3>
 <p>To convert the <code>date</code> column in the <code>daily_show</code> data into a Date class, you can
 run:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="rprog3.html#cb225-1"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;lubridate&quot;</span>)</span>
-<span id="cb225-2"><a href="rprog3.html#cb225-2"></a></span>
-<span id="cb225-3"><a href="rprog3.html#cb225-3"></a><span class="co"># check the class of the &#39;date&#39; column before mutating it</span></span>
-<span id="cb225-4"><a href="rprog3.html#cb225-4"></a><span class="kw">class</span>(<span class="dt">x =</span> daily_show<span class="op">$</span>date) </span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="rprog3.html#cb33-1"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;lubridate&quot;</span>)</span>
+<span id="cb33-2"><a href="rprog3.html#cb33-2"></a></span>
+<span id="cb33-3"><a href="rprog3.html#cb33-3"></a><span class="co"># check the class of the &#39;date&#39; column before mutating it</span></span>
+<span id="cb33-4"><a href="rprog3.html#cb33-4"></a><span class="kw">class</span>(<span class="dt">x =</span> daily_show<span class="op">$</span>date) </span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="rprog3.html#cb227-1"></a>daily_show &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> daily_show,</span>
-<span id="cb227-2"><a href="rprog3.html#cb227-2"></a>                     <span class="dt">date =</span> <span class="kw">mdy</span>(date))</span>
-<span id="cb227-3"><a href="rprog3.html#cb227-3"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dt">n =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="rprog3.html#cb35-1"></a>daily_show &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> daily_show,</span>
+<span id="cb35-2"><a href="rprog3.html#cb35-2"></a>                     <span class="dt">date =</span> <span class="kw">mdy</span>(date))</span>
+<span id="cb35-3"><a href="rprog3.html#cb35-3"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dt">n =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 5
 ##    year job                date       category guest_name     
 ##   &lt;dbl&gt; &lt;chr&gt;              &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;          
 ## 1  1999 actor              1999-01-11 Acting   Michael J. Fox 
 ## 2  1999 Comedian           1999-01-12 Comedy   Sandra Bernhard
 ## 3  1999 television actress 1999-01-13 Acting   Tracey Ullman</code></pre>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="rprog3.html#cb229-1"></a><span class="co"># check the class of the &#39;date&#39; column after mutating it</span></span>
-<span id="cb229-2"><a href="rprog3.html#cb229-2"></a><span class="kw">class</span>(<span class="dt">x =</span> daily_show<span class="op">$</span>date) </span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="rprog3.html#cb37-1"></a><span class="co"># check the class of the &#39;date&#39; column after mutating it</span></span>
+<span id="cb37-2"><a href="rprog3.html#cb37-2"></a><span class="kw">class</span>(<span class="dt">x =</span> daily_show<span class="op">$</span>date) </span></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 <p>Once you have an object in the <code>Date</code> class, you can do things like plot by
 date, calculate the range of dates, and calculate the total number of days the
 dataset covers:</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="rprog3.html#cb231-1"></a><span class="co"># report the min and max dates</span></span>
-<span id="cb231-2"><a href="rprog3.html#cb231-2"></a><span class="kw">range</span>(daily_show<span class="op">$</span>date)</span>
-<span id="cb231-3"><a href="rprog3.html#cb231-3"></a></span>
-<span id="cb231-4"><a href="rprog3.html#cb231-4"></a><span class="co"># calculate the duration from first to last date using base</span></span>
-<span id="cb231-5"><a href="rprog3.html#cb231-5"></a><span class="kw">max</span>(daily_show<span class="op">$</span>date) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(daily_show<span class="op">$</span>date)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="rprog3.html#cb39-1"></a><span class="co"># report the min and max dates</span></span>
+<span id="cb39-2"><a href="rprog3.html#cb39-2"></a><span class="kw">range</span>(daily_show<span class="op">$</span>date)</span>
+<span id="cb39-3"><a href="rprog3.html#cb39-3"></a></span>
+<span id="cb39-4"><a href="rprog3.html#cb39-4"></a><span class="co"># calculate the duration from first to last date using base</span></span>
+<span id="cb39-5"><a href="rprog3.html#cb39-5"></a><span class="kw">max</span>(daily_show<span class="op">$</span>date) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(daily_show<span class="op">$</span>date)</span></code></pre></div>
 <p>We could have used these to transform the date in <code>daily_show</code>, using the
 following pipe chain:</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="rprog3.html#cb232-1"></a>daily_show &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>,</span>
-<span id="cb232-2"><a href="rprog3.html#cb232-2"></a>                              <span class="dt">skip =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span></span>
-<span id="cb232-3"><a href="rprog3.html#cb232-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">job =</span> GoogleKnowlege_Occupation,</span>
-<span id="cb232-4"><a href="rprog3.html#cb232-4"></a>                <span class="dt">date =</span> Show,</span>
-<span id="cb232-5"><a href="rprog3.html#cb232-5"></a>                <span class="dt">category =</span> Group,</span>
-<span id="cb232-6"><a href="rprog3.html#cb232-6"></a>                <span class="dt">guest_name =</span> Raw_Guest_List) <span class="op">%&gt;%</span></span>
-<span id="cb232-7"><a href="rprog3.html#cb232-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>YEAR) <span class="op">%&gt;%</span></span>
-<span id="cb232-8"><a href="rprog3.html#cb232-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">date =</span> lubridate<span class="op">::</span><span class="kw">mdy</span>(date)) <span class="op">%&gt;%</span></span>
-<span id="cb232-9"><a href="rprog3.html#cb232-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(category <span class="op">==</span><span class="st"> &quot;Science&quot;</span>)</span>
-<span id="cb232-10"><a href="rprog3.html#cb232-10"></a></span>
-<span id="cb232-11"><a href="rprog3.html#cb232-11"></a><span class="co"># show first two rows of dataframe</span></span>
-<span id="cb232-12"><a href="rprog3.html#cb232-12"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dt">n =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="rprog3.html#cb40-1"></a>daily_show &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>,</span>
+<span id="cb40-2"><a href="rprog3.html#cb40-2"></a>                              <span class="dt">skip =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span></span>
+<span id="cb40-3"><a href="rprog3.html#cb40-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">job =</span> GoogleKnowlege_Occupation,</span>
+<span id="cb40-4"><a href="rprog3.html#cb40-4"></a>                <span class="dt">date =</span> Show,</span>
+<span id="cb40-5"><a href="rprog3.html#cb40-5"></a>                <span class="dt">category =</span> Group,</span>
+<span id="cb40-6"><a href="rprog3.html#cb40-6"></a>                <span class="dt">guest_name =</span> Raw_Guest_List) <span class="op">%&gt;%</span></span>
+<span id="cb40-7"><a href="rprog3.html#cb40-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>YEAR) <span class="op">%&gt;%</span></span>
+<span id="cb40-8"><a href="rprog3.html#cb40-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">date =</span> lubridate<span class="op">::</span><span class="kw">mdy</span>(date)) <span class="op">%&gt;%</span></span>
+<span id="cb40-9"><a href="rprog3.html#cb40-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(category <span class="op">==</span><span class="st"> &quot;Science&quot;</span>)</span>
+<span id="cb40-10"><a href="rprog3.html#cb40-10"></a></span>
+<span id="cb40-11"><a href="rprog3.html#cb40-11"></a><span class="co"># show first two rows of dataframe</span></span>
+<span id="cb40-12"><a href="rprog3.html#cb40-12"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dt">n =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##   job          date       category guest_name     
 ##   &lt;chr&gt;        &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;          
@@ -1319,11 +1327,11 @@ a date, including:</p>
 </ul>
 <p>For example, we could use <code>wday()</code> to create a new column with the weekday of
 each show:</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="rprog3.html#cb234-1"></a>daily_show <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb234-2"><a href="rprog3.html#cb234-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">show_day =</span> lubridate<span class="op">::</span><span class="kw">wday</span>(<span class="dt">x =</span> date,</span>
-<span id="cb234-3"><a href="rprog3.html#cb234-3"></a>                                           <span class="dt">label =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb234-4"><a href="rprog3.html#cb234-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(date, show_day, guest_name) <span class="op">%&gt;%</span></span>
-<span id="cb234-5"><a href="rprog3.html#cb234-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="rprog3.html#cb42-1"></a>daily_show <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb42-2"><a href="rprog3.html#cb42-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">show_day =</span> lubridate<span class="op">::</span><span class="kw">wday</span>(<span class="dt">x =</span> date,</span>
+<span id="cb42-3"><a href="rprog3.html#cb42-3"></a>                                           <span class="dt">label =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb42-4"><a href="rprog3.html#cb42-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(date, show_day, guest_name) <span class="op">%&gt;%</span></span>
+<span id="cb42-5"><a href="rprog3.html#cb42-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 3
 ##   date       show_day guest_name            
 ##   &lt;date&gt;     &lt;ord&gt;    &lt;chr&gt;                 
@@ -1344,7 +1352,8 @@ R functions tend to use the timezone of <strong>YOUR</strong> computer’s opera
 <p><strong><em>“Tidy Data”</em></strong> is a philosophy for how to arrange your data in a intuitive,
 rectangular fashion, commonly in a <code>dataframe</code>. In his
 <a href="https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf" target="_blank">2014 paper</a>,
-Hadley Wickham states, <em>“tidy datasets provide a standardized way to link the structure of a dataset (its physical layout) with its semantics (its meaning).”</em></p>
+Hadley Wickham states,
+<em>“tidy datasets provide a standardized way to link the structure of a dataset (its physical layout) with its semantics (its meaning).”</em></p>
 <p>The definition of a tidy dataset is straightforward:</p>
 <ol style="list-style-type: decimal">
 <li>Each variable forms a column.</li>
@@ -1559,15 +1568,25 @@ untidy (typically “wide) to tidy (”long").</p>
 This function creates two new columns as output and requires four arguments:</p>
 <ul>
 <li><code>data =</code> the dataframe to be lengthened</li>
-<li><code>cols =</code> a list of the columns that should be combined together (forming a single variable to be represented in a new, single column)</li>
-<li><code>names_to</code> = this is an output column that contains the <strong>names</strong> of the old columns that are being combined.</li>
-<li><code>values_to</code> = this is the other output column that contains the <strong>values</strong> from within the old columns that are being combined.</li>
+<li><code>cols =</code> a list of the columns that should be combined together (forming a
+single variable to be represented in a new, single column)</li>
+<li><code>names_to</code> = this is an output column that contains the <strong>names</strong> of the
+old columns that are being combined.</li>
+<li><code>values_to</code> = this is the other output column that contains the <strong>values</strong>
+from within the old columns that are being combined.</li>
 </ul>
 <div class="rmdnote">
 <p>
-The <code>pivot_longer()</code> function always creates two new columns:<br />
-- one column contains <code>names_to =</code> information. - the other column contains the <code>values_to =</code> data.
+The <code>pivot_longer()</code> function always creates two new columns:
 </p>
+<ul>
+<li>
+one column contains <code>names_to =</code> information.
+</li>
+<li>
+the other column contains the <code>values_to =</code> data.
+</li>
+</ul>
 </div>
 <p>In the case of Table <a href="rprog3.html#tab:grades-untidy">6.4</a>, we are using <code>cols =</code> to combine
 <code>Exam1_Score</code>, <code>Exam2_Score</code> and <code>Exam3_Score</code> into a a column of
@@ -1585,15 +1604,15 @@ instruction. In plain speak, the function reads:</p>
 <p>If the vector contains a string that matches “Exam_1_Score”, then replace that entry with a 1; else, if the vector contains a string that matches “Exam_2_Score”,
 then replace that entry with a 2; else, if the vector contains a string that matches “Exam_3_Score”, then replace that entry with a 3.</p>
 </blockquote>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="rprog3.html#cb236-1"></a>tidygrades &lt;-<span class="st"> </span>tidyr<span class="op">::</span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> grades_untidy,</span>
-<span id="cb236-2"><a href="rprog3.html#cb236-2"></a>                                  <span class="dt">cols =</span> Exam1_Score<span class="op">:</span>Exam3_Score,</span>
-<span id="cb236-3"><a href="rprog3.html#cb236-3"></a>                                  <span class="dt">names_to =</span> <span class="st">&quot;Exam&quot;</span>,</span>
-<span id="cb236-4"><a href="rprog3.html#cb236-4"></a>                                  <span class="dt">values_to =</span> <span class="st">&quot;Scores&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb236-5"><a href="rprog3.html#cb236-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">Exam =</span> dplyr<span class="op">::</span><span class="kw">case_when</span>(</span>
-<span id="cb236-6"><a href="rprog3.html#cb236-6"></a>    Exam <span class="op">==</span><span class="st"> &quot;Exam1_Score&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
-<span id="cb236-7"><a href="rprog3.html#cb236-7"></a>    Exam <span class="op">==</span><span class="st"> &quot;Exam2_Score&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,</span>
-<span id="cb236-8"><a href="rprog3.html#cb236-8"></a>    Exam <span class="op">==</span><span class="st"> &quot;Exam3_Score&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span></span>
-<span id="cb236-9"><a href="rprog3.html#cb236-9"></a>  ))</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="rprog3.html#cb44-1"></a>tidygrades &lt;-<span class="st"> </span>tidyr<span class="op">::</span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> grades_untidy,</span>
+<span id="cb44-2"><a href="rprog3.html#cb44-2"></a>                                  <span class="dt">cols =</span> Exam1_Score<span class="op">:</span>Exam3_Score,</span>
+<span id="cb44-3"><a href="rprog3.html#cb44-3"></a>                                  <span class="dt">names_to =</span> <span class="st">&quot;Exam&quot;</span>,</span>
+<span id="cb44-4"><a href="rprog3.html#cb44-4"></a>                                  <span class="dt">values_to =</span> <span class="st">&quot;Scores&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb44-5"><a href="rprog3.html#cb44-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">Exam =</span> dplyr<span class="op">::</span><span class="kw">case_when</span>(</span>
+<span id="cb44-6"><a href="rprog3.html#cb44-6"></a>    Exam <span class="op">==</span><span class="st"> &quot;Exam1_Score&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
+<span id="cb44-7"><a href="rprog3.html#cb44-7"></a>    Exam <span class="op">==</span><span class="st"> &quot;Exam2_Score&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,</span>
+<span id="cb44-8"><a href="rprog3.html#cb44-8"></a>    Exam <span class="op">==</span><span class="st"> &quot;Exam3_Score&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span></span>
+<span id="cb44-9"><a href="rprog3.html#cb44-9"></a>  ))</span></code></pre></div>
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:grades-tab3">Table 6.6: </span>Pivot longer applied to untidy data
@@ -1739,33 +1758,33 @@ Do yourself a favor and begin with the end in mind: <em>tidy data</em>.</p>
 </ul></li>
 <li>retains all variables <strong>except</strong> <code>url</code>, <code>created_at</code>, and <code>bioguide_id</code></li>
 </ul>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="rprog3.html#cb237-1"></a><span class="co"># pipeline to import, filter, manipulate datetime vars, select vars </span></span>
-<span id="cb237-2"><a href="rprog3.html#cb237-2"></a>tweets_co &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/senators.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb237-3"><a href="rprog3.html#cb237-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(state <span class="op">==</span><span class="st"> &quot;CO&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># filter to Colorado senators</span></span>
-<span id="cb237-4"><a href="rprog3.html#cb237-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">date =</span> lubridate<span class="op">::</span><span class="kw">mdy_hm</span>(created_at), <span class="co"># convert timestamp to datetime object</span></span>
-<span id="cb237-5"><a href="rprog3.html#cb237-5"></a>         <span class="dt">hour_co =</span> lubridate<span class="op">::</span><span class="kw">hour</span>(lubridate<span class="op">::</span><span class="kw">with_tz</span>(date, <span class="co"># convert timestamp to datetime object </span></span>
-<span id="cb237-6"><a href="rprog3.html#cb237-6"></a>                                                      <span class="dt">tzone =</span> <span class="st">&quot;America/Denver&quot;</span>)), <span class="co"># and add timezone label</span></span>
-<span id="cb237-7"><a href="rprog3.html#cb237-7"></a>         <span class="dt">month =</span> lubridate<span class="op">::</span><span class="kw">month</span>(date), <span class="co"># create var of month from timestamp</span></span>
-<span id="cb237-8"><a href="rprog3.html#cb237-8"></a>         <span class="dt">week =</span> lubridate<span class="op">::</span><span class="kw">week</span>(date)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># create var of week from timestamp</span></span>
-<span id="cb237-9"><a href="rprog3.html#cb237-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>(<span class="kw">c</span>(url, created_at, bioguide_id))) <span class="co"># retain all vars except 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="rprog3.html#cb45-1"></a><span class="co"># pipeline to import, filter, manipulate datetime vars, select vars </span></span>
+<span id="cb45-2"><a href="rprog3.html#cb45-2"></a>tweets_co &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/senators.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb45-3"><a href="rprog3.html#cb45-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(state <span class="op">==</span><span class="st"> &quot;CO&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># filter to Colorado senators</span></span>
+<span id="cb45-4"><a href="rprog3.html#cb45-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">date =</span> lubridate<span class="op">::</span><span class="kw">mdy_hm</span>(created_at), <span class="co"># convert timestamp to datetime object</span></span>
+<span id="cb45-5"><a href="rprog3.html#cb45-5"></a>         <span class="dt">hour_co =</span> lubridate<span class="op">::</span><span class="kw">hour</span>(lubridate<span class="op">::</span><span class="kw">with_tz</span>(date, <span class="co"># convert timestamp to datetime object </span></span>
+<span id="cb45-6"><a href="rprog3.html#cb45-6"></a>                                                      <span class="dt">tzone =</span> <span class="st">&quot;America/Denver&quot;</span>)), <span class="co"># and add timezone label</span></span>
+<span id="cb45-7"><a href="rprog3.html#cb45-7"></a>         <span class="dt">month =</span> lubridate<span class="op">::</span><span class="kw">month</span>(date), <span class="co"># create var of month from timestamp</span></span>
+<span id="cb45-8"><a href="rprog3.html#cb45-8"></a>         <span class="dt">week =</span> lubridate<span class="op">::</span><span class="kw">week</span>(date)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># create var of week from timestamp</span></span>
+<span id="cb45-9"><a href="rprog3.html#cb45-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>(<span class="kw">c</span>(url, created_at, bioguide_id))) <span class="co"># retain all vars except 3</span></span></code></pre></div>
 </div>
 <div id="set-2-counting" class="section level3">
 <h3><span class="header-section-number">6.6.2</span> Set 2: Counting</h3>
 <ol style="list-style-type: decimal">
 <li>Which Colorado senators are included in the data?</li>
 </ol>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="rprog3.html#cb238-1"></a><span class="co"># find unique strings within user variable</span></span>
-<span id="cb238-2"><a href="rprog3.html#cb238-2"></a><span class="co"># if you convert to factor, you can also find `levels()`</span></span>
-<span id="cb238-3"><a href="rprog3.html#cb238-3"></a><span class="kw">unique</span>(tweets_co<span class="op">$</span>user) </span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="rprog3.html#cb46-1"></a><span class="co"># find unique strings within user variable</span></span>
+<span id="cb46-2"><a href="rprog3.html#cb46-2"></a><span class="co"># if you convert to factor, you can also find `levels()`</span></span>
+<span id="cb46-3"><a href="rprog3.html#cb46-3"></a><span class="kw">unique</span>(tweets_co<span class="op">$</span>user) </span></code></pre></div>
 <pre><code>## [1] &quot;SenBennetCO&quot;    &quot;SenCoryGardner&quot;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Which Colorado Senator tweets the most?</li>
 </ol>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="rprog3.html#cb240-1"></a><span class="co"># compare number of tweets by senator; remember to always ungroup grouped data!</span></span>
-<span id="cb240-2"><a href="rprog3.html#cb240-2"></a>tweets_co <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb240-3"><a href="rprog3.html#cb240-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(user) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb240-4"><a href="rprog3.html#cb240-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb240-5"><a href="rprog3.html#cb240-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="rprog3.html#cb48-1"></a><span class="co"># compare number of tweets by senator; remember to always ungroup grouped data!</span></span>
+<span id="cb48-2"><a href="rprog3.html#cb48-2"></a>tweets_co <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb48-3"><a href="rprog3.html#cb48-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(user) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb48-4"><a href="rprog3.html#cb48-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb48-5"><a href="rprog3.html#cb48-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   user               n
 ##   &lt;chr&gt;          &lt;int&gt;
@@ -1778,20 +1797,20 @@ Do yourself a favor and begin with the end in mind: <em>tidy data</em>.</p>
 2011 for the Colorado senators. You will need to first create a new dataframe
 that contains new time-date variables based on the (a) total time and (b) weeks
 since data collection started.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="rprog3.html#cb242-1"></a><span class="co"># create new time-based variables</span></span>
-<span id="cb242-2"><a href="rprog3.html#cb242-2"></a>tweets_co_wk &lt;-<span class="st"> </span>tweets_co <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb242-3"><a href="rprog3.html#cb242-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">time_since =</span> <span class="kw">as.duration</span>(date <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(date)), <span class="co"># &quot;time from&quot; var</span></span>
-<span id="cb242-4"><a href="rprog3.html#cb242-4"></a>         <span class="dt">week =</span> <span class="kw">round</span>(<span class="kw">as.numeric</span>(time_since, <span class="st">&quot;weeks&quot;</span>), <span class="dv">0</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># &quot;weeks from&quot; var</span></span>
-<span id="cb242-5"><a href="rprog3.html#cb242-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(user, week) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># by week per user</span></span>
-<span id="cb242-6"><a href="rprog3.html#cb242-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># tweet count </span></span>
-<span id="cb242-7"><a href="rprog3.html#cb242-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>() <span class="co"># remember to ungroup grouped data</span></span></code></pre></div>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="rprog3.html#cb243-1"></a><span class="co"># plot time series of tweets per week per senator since 2011</span></span>
-<span id="cb243-2"><a href="rprog3.html#cb243-2"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> tweets_co_wk, </span>
-<span id="cb243-3"><a href="rprog3.html#cb243-3"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> week, <span class="dt">y =</span> n, <span class="dt">color =</span> user)) <span class="op">+</span></span>
-<span id="cb243-4"><a href="rprog3.html#cb243-4"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb243-5"><a href="rprog3.html#cb243-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
-<span id="cb243-6"><a href="rprog3.html#cb243-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Number of tweets per week by Colorado senator since 2011&quot;</span>,</span>
-<span id="cb243-7"><a href="rprog3.html#cb243-7"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;Gardner joined Twitter later but tweets more (and cyclically)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="rprog3.html#cb50-1"></a><span class="co"># create new time-based variables</span></span>
+<span id="cb50-2"><a href="rprog3.html#cb50-2"></a>tweets_co_wk &lt;-<span class="st"> </span>tweets_co <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb50-3"><a href="rprog3.html#cb50-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">time_since =</span> <span class="kw">as.duration</span>(date <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(date)), <span class="co"># &quot;time from&quot; var</span></span>
+<span id="cb50-4"><a href="rprog3.html#cb50-4"></a>         <span class="dt">week =</span> <span class="kw">round</span>(<span class="kw">as.numeric</span>(time_since, <span class="st">&quot;weeks&quot;</span>), <span class="dv">0</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># &quot;weeks from&quot; var</span></span>
+<span id="cb50-5"><a href="rprog3.html#cb50-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(user, week) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># by week per user</span></span>
+<span id="cb50-6"><a href="rprog3.html#cb50-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># tweet count </span></span>
+<span id="cb50-7"><a href="rprog3.html#cb50-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>() <span class="co"># remember to ungroup grouped data</span></span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="rprog3.html#cb51-1"></a><span class="co"># plot time series of tweets per week per senator since 2011</span></span>
+<span id="cb51-2"><a href="rprog3.html#cb51-2"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> tweets_co_wk, </span>
+<span id="cb51-3"><a href="rprog3.html#cb51-3"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> week, <span class="dt">y =</span> n, <span class="dt">color =</span> user)) <span class="op">+</span></span>
+<span id="cb51-4"><a href="rprog3.html#cb51-4"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb51-5"><a href="rprog3.html#cb51-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb51-6"><a href="rprog3.html#cb51-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Number of tweets per week by Colorado senator since 2011&quot;</span>,</span>
+<span id="cb51-7"><a href="rprog3.html#cb51-7"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;Gardner joined Twitter later but tweets more (and cyclically)&quot;</span>)</span></code></pre></div>
 <p><img src="06-string_date_files/figure-html/tweet-time-series-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="set-4-csu-vs.-cu" class="section level3">
@@ -1802,12 +1821,12 @@ This might include things like “CSU”, “colostate”, “Colostate”, “C
 U”, “Rams”, etc. You will need to use a few <code>dplyr</code> functions, one <code>lubridate</code>
 function, and one <code>stringr</code> function within the pipeline.</li>
 </ol>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="rprog3.html#cb244-1"></a><span class="co"># determine number of csu-related tweets by senator per year</span></span>
-<span id="cb244-2"><a href="rprog3.html#cb244-2"></a>tweets_co <span class="op">%&gt;%</span></span>
-<span id="cb244-3"><a href="rprog3.html#cb244-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(user, lubridate<span class="op">::</span><span class="kw">year</span>(date)) <span class="op">%&gt;%</span></span>
-<span id="cb244-4"><a href="rprog3.html#cb244-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(stringr<span class="op">::</span><span class="kw">str_detect</span>(text, <span class="st">&quot;CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb244-5"><a href="rprog3.html#cb244-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb244-6"><a href="rprog3.html#cb244-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="rprog3.html#cb52-1"></a><span class="co"># determine number of csu-related tweets by senator per year</span></span>
+<span id="cb52-2"><a href="rprog3.html#cb52-2"></a>tweets_co <span class="op">%&gt;%</span></span>
+<span id="cb52-3"><a href="rprog3.html#cb52-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(user, lubridate<span class="op">::</span><span class="kw">year</span>(date)) <span class="op">%&gt;%</span></span>
+<span id="cb52-4"><a href="rprog3.html#cb52-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(stringr<span class="op">::</span><span class="kw">str_detect</span>(text, <span class="st">&quot;CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb52-5"><a href="rprog3.html#cb52-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb52-6"><a href="rprog3.html#cb52-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 3
 ##    user           `lubridate::year(date)`     n
 ##    &lt;chr&gt;                            &lt;dbl&gt; &lt;int&gt;
@@ -1826,9 +1845,9 @@ function, and one <code>stringr</code> function within the pipeline.</li>
 will need to use another <code>stringr</code> function. You can use the same text strings
 as before.</li>
 </ol>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="rprog3.html#cb246-1"></a><span class="co"># extract csu-related tweet content</span></span>
-<span id="cb246-2"><a href="rprog3.html#cb246-2"></a>stringr<span class="op">::</span><span class="kw">str_subset</span>(tweets_co<span class="op">$</span>text, </span>
-<span id="cb246-3"><a href="rprog3.html#cb246-3"></a>                    <span class="st">&quot;CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="rprog3.html#cb54-1"></a><span class="co"># extract csu-related tweet content</span></span>
+<span id="cb54-2"><a href="rprog3.html#cb54-2"></a>stringr<span class="op">::</span><span class="kw">str_subset</span>(tweets_co<span class="op">$</span>text, </span>
+<span id="cb54-3"><a href="rprog3.html#cb54-3"></a>                    <span class="st">&quot;CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu&quot;</span>)</span></code></pre></div>
 <pre><code>##  [1] &quot;RT @CSUAgSci: .@SenBennetCO &amp;amp; @SenCoryGardner announce $500K @usda grant to @ColoradoStateU to study Farm to School program https://t.co/kb��_&quot;
 ##  [2] &quot;Best of luck to @CSUMensBball in #NIT first round against South Dakota State! #GoRams&quot;                                                             
 ##  [3] &quot;CSU-led study shows risks for CO if we don&#39;t tackle climate change. Risks worsen the longer we wait. It&#39;s time to act http://t.co/Nlz4pmj8D6&quot;      
@@ -1855,14 +1874,14 @@ as before.</li>
 similar approach to Question 7, with strings related to CU, such as “Buffs” or
 “University of Colorado”.</li>
 </ol>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="rprog3.html#cb248-1"></a><span class="co"># number of cu-related tweets by senator per year</span></span>
-<span id="cb248-2"><a href="rprog3.html#cb248-2"></a>tweets_co <span class="op">%&gt;%</span></span>
-<span id="cb248-3"><a href="rprog3.html#cb248-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(user, lubridate<span class="op">::</span><span class="kw">year</span>(date)) <span class="op">%&gt;%</span></span>
-<span id="cb248-4"><a href="rprog3.html#cb248-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="kw">year</span>(date) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2013</span>) <span class="op">%&gt;%</span></span>
-<span id="cb248-5"><a href="rprog3.html#cb248-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(stringr<span class="op">::</span><span class="kw">str_detect</span>(text, </span>
-<span id="cb248-6"><a href="rprog3.html#cb248-6"></a>                                    <span class="st">&quot;CU|Buffs|buffs|University of Colorado&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb248-7"><a href="rprog3.html#cb248-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb248-8"><a href="rprog3.html#cb248-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="rprog3.html#cb56-1"></a><span class="co"># number of cu-related tweets by senator per year</span></span>
+<span id="cb56-2"><a href="rprog3.html#cb56-2"></a>tweets_co <span class="op">%&gt;%</span></span>
+<span id="cb56-3"><a href="rprog3.html#cb56-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(user, lubridate<span class="op">::</span><span class="kw">year</span>(date)) <span class="op">%&gt;%</span></span>
+<span id="cb56-4"><a href="rprog3.html#cb56-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="kw">year</span>(date) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2013</span>) <span class="op">%&gt;%</span></span>
+<span id="cb56-5"><a href="rprog3.html#cb56-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(stringr<span class="op">::</span><span class="kw">str_detect</span>(text, </span>
+<span id="cb56-6"><a href="rprog3.html#cb56-6"></a>                                    <span class="st">&quot;CU|Buffs|buffs|University of Colorado&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb56-7"><a href="rprog3.html#cb56-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb56-8"><a href="rprog3.html#cb56-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 9 x 3
 ##   user           `lubridate::year(date)`     n
 ##   &lt;chr&gt;                            &lt;dbl&gt; &lt;int&gt;
