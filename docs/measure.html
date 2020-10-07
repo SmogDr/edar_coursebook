@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-10-06" />
+<meta name="date" content="2020-10-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -319,7 +319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#exercises"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
 <li class="chapter" data-level="8.6" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.6</b> Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and other Tricks</a><ul>
+<li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a><ul>
 <li class="chapter" data-level="9.1" data-path="transform.html"><a href="transform.html#ch.-9-objectives"><i class="fa fa-check"></i><b>9.1</b> Ch. 9 Objectives</a></li>
 <li class="chapter" data-level="9.2" data-path="transform.html"><a href="transform.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a><ul>
 <li class="chapter" data-level="9.2.1" data-path="transform.html"><a href="transform.html#centering"><i class="fa fa-check"></i><b>9.2.1</b> Centering</a></li>
@@ -569,47 +569,47 @@ Figure 10.3: Blurry vision is imprecise: repeated measures could lead to differe
 </div>
 <p>Different authorities have varying opinions about the <em>best</em> way to quantify precision. A simple, “top-down” approach is to take repeated measures of something (for which that instrument is designed to measure) several times over and then report the <em>spread</em> of those data (often as a <em>standard deviation</em>, but <em>range</em>, <em>IQR</em>, and <em>95% or 99% confidence intervals</em> are also used). Alternatively, a “bottom-up” approach is to propagate the errors associated with each facet of the measurement. As an empiricist (a fancy word for experimental-type), I prefer to gather data, so I often employ the “top-down” approach to precision. There are dangers to this approach however; these dangers are a direct result of the <strong>sampling strategy</strong> used to make repeated measures (see the following section for a more in-depth analysis).</p>
 <p>In the case of a temperature sensor, we might boil a large pot of water and repeatedly measure the temperature with a single probe (here in Fort Collins, Colorado, water boils at ~ 94 °C). Those measurements are shown below:</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="measure.html#cb307-1"></a>temperatures &lt;-<span class="st"> </span><span class="kw">tibble</span>( <span class="dt">data_seq =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>,</span>
-<span id="cb307-2"><a href="measure.html#cb307-2"></a>                                       <span class="dt">to =</span> <span class="dv">25</span>,</span>
-<span id="cb307-3"><a href="measure.html#cb307-3"></a>                                       <span class="dt">by =</span><span class="dv">1</span>),</span>
-<span id="cb307-4"><a href="measure.html#cb307-4"></a>                        <span class="dt">data_temp =</span> <span class="kw">c</span>(<span class="fl">93.4</span>, <span class="fl">93.7</span>, <span class="fl">96.0</span>, <span class="fl">93.1</span>, <span class="fl">93.8</span>,</span>
-<span id="cb307-5"><a href="measure.html#cb307-5"></a>                                      <span class="fl">94.2</span>, <span class="fl">93.1</span>, <span class="fl">94.6</span>, <span class="fl">93.8</span>, <span class="fl">95.1</span>,</span>
-<span id="cb307-6"><a href="measure.html#cb307-6"></a>                                      <span class="fl">93.1</span>, <span class="fl">94.6</span>, <span class="fl">94.7</span>, <span class="fl">93.6</span>, <span class="fl">92.8</span>,</span>
-<span id="cb307-7"><a href="measure.html#cb307-7"></a>                                      <span class="fl">95.7</span>, <span class="fl">94.0</span>, <span class="fl">93.0</span>, <span class="fl">93.7</span>, <span class="fl">94.6</span>,</span>
-<span id="cb307-8"><a href="measure.html#cb307-8"></a>                                      <span class="fl">94.4</span>, <span class="fl">94.1</span>, <span class="fl">94.2</span>, <span class="fl">92.3</span>, <span class="fl">94.4</span>)) </span>
-<span id="cb307-9"><a href="measure.html#cb307-9"></a></span>
-<span id="cb307-10"><a href="measure.html#cb307-10"></a><span class="kw">sd</span>(temperatures<span class="op">$</span>data_temp) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="measure.html#cb310-1"></a>temperatures &lt;-<span class="st"> </span><span class="kw">tibble</span>( <span class="dt">data_seq =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>,</span>
+<span id="cb310-2"><a href="measure.html#cb310-2"></a>                                       <span class="dt">to =</span> <span class="dv">25</span>,</span>
+<span id="cb310-3"><a href="measure.html#cb310-3"></a>                                       <span class="dt">by =</span><span class="dv">1</span>),</span>
+<span id="cb310-4"><a href="measure.html#cb310-4"></a>                        <span class="dt">data_temp =</span> <span class="kw">c</span>(<span class="fl">93.4</span>, <span class="fl">93.7</span>, <span class="fl">96.0</span>, <span class="fl">93.1</span>, <span class="fl">93.8</span>,</span>
+<span id="cb310-5"><a href="measure.html#cb310-5"></a>                                      <span class="fl">94.2</span>, <span class="fl">93.1</span>, <span class="fl">94.6</span>, <span class="fl">93.8</span>, <span class="fl">95.1</span>,</span>
+<span id="cb310-6"><a href="measure.html#cb310-6"></a>                                      <span class="fl">93.1</span>, <span class="fl">94.6</span>, <span class="fl">94.7</span>, <span class="fl">93.6</span>, <span class="fl">92.8</span>,</span>
+<span id="cb310-7"><a href="measure.html#cb310-7"></a>                                      <span class="fl">95.7</span>, <span class="fl">94.0</span>, <span class="fl">93.0</span>, <span class="fl">93.7</span>, <span class="fl">94.6</span>,</span>
+<span id="cb310-8"><a href="measure.html#cb310-8"></a>                                      <span class="fl">94.4</span>, <span class="fl">94.1</span>, <span class="fl">94.2</span>, <span class="fl">92.3</span>, <span class="fl">94.4</span>)) </span>
+<span id="cb310-9"><a href="measure.html#cb310-9"></a></span>
+<span id="cb310-10"><a href="measure.html#cb310-10"></a><span class="kw">sd</span>(temperatures<span class="op">$</span>data_temp) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.88</code></pre>
 <p>Let’s create a 4-plot of those data to visualize basic characteristics.</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="measure.html#cb309-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
-<span id="cb309-2"><a href="measure.html#cb309-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_seq, <span class="dt">y=</span>data_temp),</span>
-<span id="cb309-3"><a href="measure.html#cb309-3"></a>            <span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span></span>
-<span id="cb309-4"><a href="measure.html#cb309-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_seq, <span class="dt">y=</span>data_temp),</span>
-<span id="cb309-5"><a href="measure.html#cb309-5"></a>             <span class="dt">size =</span> <span class="dv">2</span>,</span>
-<span id="cb309-6"><a href="measure.html#cb309-6"></a>             <span class="dt">shape =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb309-7"><a href="measure.html#cb309-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Sequence Order&quot;</span>) <span class="op">+</span></span>
-<span id="cb309-8"><a href="measure.html#cb309-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
-<span id="cb309-9"><a href="measure.html#cb309-9"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
-<span id="cb309-10"><a href="measure.html#cb309-10"></a></span>
-<span id="cb309-11"><a href="measure.html#cb309-11"></a>p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
-<span id="cb309-12"><a href="measure.html#cb309-12"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_temp)) <span class="op">+</span></span>
-<span id="cb309-13"><a href="measure.html#cb309-13"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
-<span id="cb309-14"><a href="measure.html#cb309-14"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="op">+</span></span>
-<span id="cb309-15"><a href="measure.html#cb309-15"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
-<span id="cb309-16"><a href="measure.html#cb309-16"></a></span>
-<span id="cb309-17"><a href="measure.html#cb309-17"></a>p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
-<span id="cb309-18"><a href="measure.html#cb309-18"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x =</span> data_temp),</span>
-<span id="cb309-19"><a href="measure.html#cb309-19"></a>                 <span class="dt">bins =</span> <span class="dv">6</span>,</span>
-<span id="cb309-20"><a href="measure.html#cb309-20"></a>                 <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
-<span id="cb309-21"><a href="measure.html#cb309-21"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
-<span id="cb309-22"><a href="measure.html#cb309-22"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="op">+</span></span>
-<span id="cb309-23"><a href="measure.html#cb309-23"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
-<span id="cb309-24"><a href="measure.html#cb309-24"></a></span>
-<span id="cb309-25"><a href="measure.html#cb309-25"></a>p4 &lt;-<span class="st"> </span><span class="kw">ggAcf</span>(<span class="dt">x =</span> temperatures<span class="op">$</span>data_temp) <span class="op">+</span></span>
-<span id="cb309-26"><a href="measure.html#cb309-26"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
-<span id="cb309-27"><a href="measure.html#cb309-27"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="ot">NULL</span>)</span>
-<span id="cb309-28"><a href="measure.html#cb309-28"></a></span>
-<span id="cb309-29"><a href="measure.html#cb309-29"></a><span class="kw">grid.arrange</span>(p1, p2, p3, p4)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="measure.html#cb312-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
+<span id="cb312-2"><a href="measure.html#cb312-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_seq, <span class="dt">y=</span>data_temp),</span>
+<span id="cb312-3"><a href="measure.html#cb312-3"></a>            <span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span></span>
+<span id="cb312-4"><a href="measure.html#cb312-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_seq, <span class="dt">y=</span>data_temp),</span>
+<span id="cb312-5"><a href="measure.html#cb312-5"></a>             <span class="dt">size =</span> <span class="dv">2</span>,</span>
+<span id="cb312-6"><a href="measure.html#cb312-6"></a>             <span class="dt">shape =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb312-7"><a href="measure.html#cb312-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Sequence Order&quot;</span>) <span class="op">+</span></span>
+<span id="cb312-8"><a href="measure.html#cb312-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
+<span id="cb312-9"><a href="measure.html#cb312-9"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb312-10"><a href="measure.html#cb312-10"></a></span>
+<span id="cb312-11"><a href="measure.html#cb312-11"></a>p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
+<span id="cb312-12"><a href="measure.html#cb312-12"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_temp)) <span class="op">+</span></span>
+<span id="cb312-13"><a href="measure.html#cb312-13"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
+<span id="cb312-14"><a href="measure.html#cb312-14"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="op">+</span></span>
+<span id="cb312-15"><a href="measure.html#cb312-15"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb312-16"><a href="measure.html#cb312-16"></a></span>
+<span id="cb312-17"><a href="measure.html#cb312-17"></a>p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
+<span id="cb312-18"><a href="measure.html#cb312-18"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x =</span> data_temp),</span>
+<span id="cb312-19"><a href="measure.html#cb312-19"></a>                 <span class="dt">bins =</span> <span class="dv">6</span>,</span>
+<span id="cb312-20"><a href="measure.html#cb312-20"></a>                 <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
+<span id="cb312-21"><a href="measure.html#cb312-21"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
+<span id="cb312-22"><a href="measure.html#cb312-22"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="op">+</span></span>
+<span id="cb312-23"><a href="measure.html#cb312-23"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb312-24"><a href="measure.html#cb312-24"></a></span>
+<span id="cb312-25"><a href="measure.html#cb312-25"></a>p4 &lt;-<span class="st"> </span><span class="kw">ggAcf</span>(<span class="dt">x =</span> temperatures<span class="op">$</span>data_temp) <span class="op">+</span></span>
+<span id="cb312-26"><a href="measure.html#cb312-26"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb312-27"><a href="measure.html#cb312-27"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="ot">NULL</span>)</span>
+<span id="cb312-28"><a href="measure.html#cb312-28"></a></span>
+<span id="cb312-29"><a href="measure.html#cb312-29"></a><span class="kw">grid.arrange</span>(p1, p2, p3, p4)</span></code></pre></div>
 <p><img src="10-measure_files/figure-html/plot-temperature-data-1.png" width="672" /></p>
 <p>Examination of the 4-plot reveals:</p>
 <ul>

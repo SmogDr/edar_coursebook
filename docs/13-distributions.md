@@ -192,9 +192,10 @@ The Pearson correlation coefficient, ***r***, is a quantitative descriptor of th
 The Pearson correlation coefficient indicates the proportion of linear variation 
 in $y$ that can be explained by knowing $x$, when the data are paired.  By "linear" we mean a straight-line fit between the two variables.  The assumptions underlying the
 Pearson correlation coefficient are as follows:  
+
   - The variables x, y are continuous. 
-  - Both x and y were from a paired sample
-  - The dataset is free of outliers (outliers tend to skew resutls)
+  - Both x and y were collected as paired samples
+  - The dataset is free of outliers (outliers overly influence results)
   - A linear relationship exists between x and y
 
 Below, we show a series of scatter plots with varying levels of linear correlation 
@@ -261,3 +262,5 @@ cor(x, y)
 ## [1] 0.8672807
 ```
 
+If you wish to quantify correlation between two variables but fear that your data
+violate the Pearson assumptions listed above.  Try the ***Spearman Correlation Coefficient*** or ***Lin's Concordance Coefficient***. 

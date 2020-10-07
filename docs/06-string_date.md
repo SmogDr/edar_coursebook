@@ -313,9 +313,11 @@ detected. The string will always be split at the first match and again at each
 additional match location, unless you specify that only a finite number of `n`
 matches should occur. A couple points to note:
 
-- `str_split()` splits on each side of the match, which itself is not included in the output.
+- `str_split()` splits on each side of the match; the matched part of the string
+is *not* included in the output.
 
-- because both sides of the split string are returned, your output will take the form of a `list`.
+- because both sides of the split string are returned, your output will take 
+the form of a `list`.
   
 
 ```r
@@ -408,7 +410,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-10-07 11:15:53 MDT"
+## [1] "2020-10-07 11:21:09 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -424,12 +426,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1602090953
+## [1] 1602091270
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 50.8019709 years.  
+365d/yr] => 50.8019809 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -437,7 +439,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2020-10-07 11:15:53.
+format: 2020-10-07 11:21:09.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -549,7 +551,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1602090953
+## [1] 1602091270
 ```
 
 
@@ -560,8 +562,8 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 53.5
-##  $ min   : int 15
+##  $ sec   : num 9.83
+##  $ min   : int 21
 ##  $ hour  : int 11
 ##  $ mday  : int 7
 ##  $ mon   : int 9

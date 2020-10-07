@@ -416,11 +416,14 @@ head(df_mpg.na)
 ## 6 17331 Niss… Hype…  2001    NA    NA <NA>  <NA>  Two Se… Electric…     75
 ## # … with 2 more variables: highway08 <dbl>, city08 <dbl>
 ```
-Here, discover that most of the the `NA` values are in the `cyl`, `displ`, and`tran`, columns.  Further, we see that **all** of these vehicles have a `fuel_type` of *electric* (which makes sense as all-electric vehicles do not have internal combustion). 
-This may be a variable level that we choose to exclude from certain analyses later on... 
+Here, we discover that most of the the `NA` values are in the `cyl`, `displ`, 
+and`tran`, columns.  Further, we see that **all** of these vehicles have a 
+`fuel_type` of *electric* (which makes sense as all-electric vehicles do not have internal combustion). This may be a variable level that we choose to exclude 
+from certain analyses later on... 
 
 **Alternate method 1:**
-Another way to perform this is to filter the `df_mpg` data for *any variables* (`any_vars()`) that contain `NA`.  
+Another way to perform this is to filter the `df_mpg` data for *any variables* (`any_vars()`) that contain `NA`. Like `all_of()` that was used to clean the 
+data frame above, the `any_vars()` function is a [`<tidy-select>`](https://tidyselect.r-lib.org/reference/language.html){target="_blank"} helper function designed for use within Tidyverse packages like `dplyr::` and `tidyr::`.  All of these tidy-select functions help you pass multiple columns of data as an argument to a Tidyverse function.
 
 
 ```r
