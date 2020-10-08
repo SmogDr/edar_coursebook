@@ -285,7 +285,7 @@ search pattern in R.
    <td style="text-align:center;"> &quot;\^b&quot; </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> $b </td>
+   <td style="text-align:center;"> b$ </td>
    <td style="text-align:center;"> ends with: look for &quot;b&quot; at the end of a string </td>
    <td style="text-align:center;"> &quot;b\$&quot; </td>
   </tr>
@@ -410,7 +410,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-10-07 11:21:09 MDT"
+## [1] "2020-10-07 21:28:58 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -426,12 +426,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1602091270
+## [1] 1602127738
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 50.8019809 years.  
+365d/yr] => 50.8031373 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -439,7 +439,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2020-10-07 11:21:09.
+format: 2020-10-07 21:28:58.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -551,7 +551,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1602091270
+## [1] 1602127738
 ```
 
 
@@ -562,9 +562,9 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 9.83
-##  $ min   : int 21
-##  $ hour  : int 11
+##  $ sec   : num 58.3
+##  $ min   : int 28
+##  $ hour  : int 21
 ##  $ mday  : int 7
 ##  $ mon   : int 9
 ##  $ year  : int 120

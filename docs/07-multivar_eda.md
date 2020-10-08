@@ -422,33 +422,33 @@ and`tran`, columns.  Further, we see that **all** of these vehicles have a
 from certain analyses later on... 
 
 **Alternate method 1:**
-Another way to perform this is to filter the `df_mpg` data for *any variables* (`any_vars()`) that contain `NA`. Like `all_of()` that was used to clean the 
-data frame above, the `any_vars()` function is a [`<tidy-select>`](https://tidyselect.r-lib.org/reference/language.html){target="_blank"} helper function designed for use within Tidyverse packages like `dplyr::` and `tidyr::`.  All of these tidy-select functions help you pass multiple columns of data as an argument to a Tidyverse function.
+Filter the `df_mpg` data for *any variables* (`any_vars()`) that contain `NA`. Like `all_of()` that was used to clean the data frame above, the `any_vars()` function is a [`<tidy-select>`](https://tidyselect.r-lib.org/reference/language.html){target="_blank"} helper function designed for use within Tidyverse packages like `dplyr::` and `tidyr::`.  All of these tidy-select functions help you pass multiple columns of data as an argument to a Tidyverse function.
 
 
 ```r
-df_mpg.na.2 <- df_mpg %>% filter_all(any_vars(is.na(.)))
-head(df_mpg.na.2, n=10)
+df_mpg.na.2 <- df_mpg %>% 
+  filter_all(any_vars(is.na(.)))
+
+head(df_mpg.na.2)
 ```
 
 ```
-## # A tibble: 10 x 13
-##       id make  model  year   cyl displ drive tran  v_class fuel_type comb08
-##    <dbl> <fct> <chr> <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
-##  1 16423 Niss… Altr…  2000    NA    NA <NA>  <NA>  Midsiz… Electric…     85
-##  2 16424 Toyo… RAV4…  2000    NA    NA 2-Wh… <NA>  Sport … Electric…     72
-##  3 17328 Toyo… RAV4…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     72
-##  4 17329 Ford  Th!nk  2001    NA    NA <NA>  <NA>  Two Se… Electric…     65
-##  5 17330 Ford  Expl…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     39
-##  6 17331 Niss… Hype…  2001    NA    NA <NA>  <NA>  Two Se… Electric…     75
-##  7 18290 Toyo… RAV4…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     78
-##  8 18291 Ford  Expl…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     39
-##  9 19296 Toyo… RAV4…  2003    NA    NA 2-Wh… <NA>  Sport … Electric…     78
-## 10 30965 Ford  Rang…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
+## # A tibble: 6 x 13
+##      id make  model  year   cyl displ drive tran  v_class fuel_type comb08
+##   <dbl> <fct> <chr> <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
+## 1 16423 Niss… Altr…  2000    NA    NA <NA>  <NA>  Midsiz… Electric…     85
+## 2 16424 Toyo… RAV4…  2000    NA    NA 2-Wh… <NA>  Sport … Electric…     72
+## 3 17328 Toyo… RAV4…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     72
+## 4 17329 Ford  Th!nk  2001    NA    NA <NA>  <NA>  Two Se… Electric…     65
+## 5 17330 Ford  Expl…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     39
+## 6 17331 Niss… Hype…  2001    NA    NA <NA>  <NA>  Two Se… Electric…     75
 ## # … with 2 more variables: highway08 <dbl>, city08 <dbl>
 ```
 **Alternate method 2:**
-Note: In [Chapter 8](#rprog4), you will learn a simpler way to sum `NA`'s by column by *mapping* the combined functions of `sum()` and `is.na()` to each column of the data frame. We do this using the `map_dfc` function (reads: map a function across columns of a data frame) from the `purr::` package.
+Note: In [Chapter 8](#rprog4), you will learn to ***map*** the `sum()` and `is.na()`
+functions to each column of the data frame using `map_dfc` (from the `purr::` 
+package), which is designed to apply one ore more functions across columns of a 
+data frame. 
 
 
 ```r
@@ -456,136 +456,100 @@ Note: In [Chapter 8](#rprog4), you will learn a simpler way to sum `NA`'s by col
 df_mpg %>% map_dfc(~sum(is.na(.)))
 ```
 
-A nice way to begin EDA with a large, multivariate data set is to understand 
-how the different variables are 'spread out' across the data set.  Let's begin 
-with a time series (by year) of all the combined fuel economy values, `comb08`, 
-for all vehicle observations. The fuel economy data will be shown with boxplots
-overlain with violin plots. We will use a log-scale y-axis due to the large
-variation expected and outliers will be made more transparent to soften their
+Our primary variable of interest is fuel economy, so let's begin by visualizing 
+the location, dispersion, and shape of `city08`, `highway08`, and `comb08`, 
+which represent city, highway and combined fuel economy estimates. Note that 
+`df_mpg` is not in a tidy format, since fuel economy data is presented in three
+different columns.  We'll fix that with `pivot_longer()`.
+
+
+```r
+tidy_mpg <- df_mpg %>%
+  dplyr::rename(city = city08,
+                 hwy = highway08,
+                 comb = comb08) %>%
+  tidyr::pivot_longer(cols = c("city", "hwy", "comb"), 
+               names_to = "metric", 
+               values_to = "mpg") %>%
+  dplyr::mutate(metric = as.factor(metric))
+```
+
+With the data properly tidy, we can use our basic EDA plots `stat_ecdf()`, `geom_boxplot()`, and `geom_histogram()` to visualize the fuel economy data.  To show the different variables wihtin the same plot, we use `color = ` or `fill = ` as an extra aesthetic.  All three plots are then laid out using `gridExtra::grid.arrange()`. 
+
+
+```r
+ecdf <- ggplot(data = tidy_mpg, 
+               aes(x = mpg, color = metric)) +
+  stat_ecdf() +
+  theme_bw() +
+  scale_x_log10() +
+  xlab(NULL) +
+  ylab("Quantile") 
+
+box <- ggplot(data = tidy_mpg, 
+               aes(x = mpg, fill = metric, y = metric)) +
+  geom_boxplot(outlier.alpha = 0.05) +
+  theme_bw() +
+  scale_x_log10() +
+  xlab(NULL) +
+  ylab("Metric") 
+
+hist <- ggplot(data = tidy_mpg, 
+               aes(x = mpg, fill = metric)) +
+  geom_histogram(bins = 35,
+                 alpha = 0.75,
+                 position = "stack") +
+  theme_bw() +
+  scale_x_log10() +
+  xlab("Fuel Economy, mi/gal") +
+  ylab("Counts")
+
+grid.arrange(ecdf, box, hist, widths = c(0.4,1,0.4),
+             layout_matrix = rbind(c(NA, 1, NA),
+                                   c(NA, 2, NA),
+                                   c(NA, 3, NA)))
+```
+
+<div class="figure" style="text-align: center">
+<img src="07-multivar_eda_files/figure-html/tidy-mpg-plot-1.png" alt="Cumulative Distribution, Histogram, and Boxplots of 21st Centurty Vehicles." width="672" />
+<p class="caption">(\#fig:tidy-mpg-plot)Cumulative Distribution, Histogram, and Boxplots of 21st Centurty Vehicles.</p>
+</div>
+
+Next, let's look at a rough time series (by year) of all the combined fuel economy values, `comb08`, 
+for all vehicle observations. The fuel economy data will be shown with boxplots and we will use `group = year` as an aesthetic to show the overall time series. We will use a log-scale y-axis due to the large variation expected and outliers will be made more transparent to soften their
 effect.
 
 
 ```r
-cdf1 <- ggplot(data = df_mpg) +
-  stat_ecdf(aes(x = comb08,
-            color = "Combined")) +
-  stat_ecdf(aes(x = highway08,
-            color = "Highway")) +
-  stat_ecdf(aes(x = city08,
-            color = "City")) +
-  scale_color_manual(name = "Type",
-                     values = c("Combined" = "navy", 
-                                "Highway" = "darkgreen",
-                                "City" = "purple")) +
-  scale_x_log10(breaks = breaks_log(8)) +
-  theme_bw(base_size = 11) +
-  xlab("Fuel Economy, mi/gal") +
-  ylab("Quantile") +
-  theme(legend.position = "NULL") 
-
-blue50 <- rgb(0, 0, 255, max = 255, alpha = 125, names = "blue50")
-
-
-hist1 <- ggplot(data = df_mpg) +
-  geom_histogram(aes(x = comb08,
-            fill = "Combined"),
-            alpha = 0.75,
-            bins = 50) +
-  geom_histogram(aes(x = highway08,
-            fill = "Highway"),
-            alpha = 0.75,
-            bins = 50) +
-  geom_histogram(aes(x = city08,
-            fill = "City"),
-            alpha = 0.75,
-            bins = 50) +
-  scale_fill_manual(name = "Type",
-                    values = c("Combined" = "blue", 
-                                "Highway" = "darkgreen",
-                                "City" = "purple")) +
-  scale_x_log10(breaks = breaks_log(8)) +
-  theme_bw(base_size = 11) +
-  xlab("Fuel Economy, mi/gal") +
-  ylab("Counts") +
-  theme(legend.position = "NULL") 
-
-box1 <- ggplot(data = df_mpg) +
-  geom_boxplot(aes(x = comb08,
-                   y = "Comb",
-            fill = "Combined"),
-            alpha = 0.75,
-            position = "dodge2") +
-  geom_boxplot(aes(x = highway08,
-                   y = "Hwy",
-            fill = "Highway"),
-            alpha = 0.75,
-            position = "dodge2") +
-  geom_boxplot(aes(x = city08,
-                   y = "City",
-            fill = "City"),
-            alpha = 0.75,
-            position = "dodge2") +
-  scale_fill_manual(name = "Type",
-                    values = c("Combined" = "blue", 
-                                "Highway" = "darkgreen",
-                                "City" = "purple")) +
-  scale_x_log10(breaks = breaks_log(8)) +
-  theme_bw(base_size = 11) +
-  xlab("Fuel Economy, mi/gal") +
-  ylab("") +
-  theme(legend.position = c(1.25, 0.5)) 
-
-grid.arrange(cdf1, hist1, box1,  widths = c(1,1,0.5),
-             layout_matrix = rbind(c(1, NA, NA),
-                                   c(2, NA, NA),
-                                   c(3, NA, NA)))
-```
-
-<img src="07-multivar_eda_files/figure-html/expl-plot1-1.png" width="672" style="display: block; margin: auto;" />
-
-
-
-```r
 e1 <- ggplot(data = df_mpg, aes(x = year, y = comb08)) +
-  geom_violin(aes(group = year),
-               outlier.shape = NA,
-               fill = "royalblue2") +
   geom_boxplot(aes(group = year),
-               fill = NA,
-               outlier.alpha = 0.2) +
+               fill = "skyblue",
+               outlier.alpha = 0.1) +
   scale_y_log10(limits = c(10,100)) +
   theme_bw()
-```
-
-```
-## Warning: Ignoring unknown parameters: outlier.shape
-```
-
-```r
 e1
 ```
 
-```
-## Warning: Removed 144 rows containing non-finite values (stat_ydensity).
-```
-
-```
-## Warning: Removed 144 rows containing non-finite values (stat_boxplot).
-```
-
-<img src="07-multivar_eda_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="07-multivar_eda_files/figure-html/fuel-econ-ts-1.png" alt="Boxplots of fleet-wide fuel efficiency by year." width="672" />
+<p class="caption">(\#fig:fuel-econ-ts)Boxplots of fleet-wide fuel efficiency by year.</p>
+</div>
 This [DOE website](https://afdc.energy.gov/data/10562) outlines the EPA *Corporate Average Fuel Economy* (CAFE) standards that require vehicles to meet set fuel economy levels (in terms of miles-per-gallon; mpg) across the 'fleet' of available vehicles. Let's load a .csv file named `cafe` and look at the requirements by year.
 
 
 ```r
 cafe <- read_csv("./data/CAFE_stds.csv", col_names = c("year", "mpg_avg"), skip = 1)
 
-ggplot(cafe, aes(year, mpg_avg)) + geom_col(fill = "maroon") + 
+cafe.plot <- ggplot(data  =cafe, 
+                    mapping = aes(group = year, y = mpg_avg, x = year)) + 
+  geom_col(fill = "maroon") + 
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs( y = "Required Average Fuel Efficiency (mpg)", 
         x = "Year", 
         title = "Federal Combined Average Fuel Economy (CAFE) Standards")
+
+cafe.plot 
 ```
 
 <img src="07-multivar_eda_files/figure-html/CAFE-stds-1.png" width="672" style="display: block; margin: auto;" />
@@ -624,6 +588,31 @@ g2
 ```
 
 <img src="07-multivar_eda_files/figure-html/EDA on fuel type 2-1.png" width="672" style="display: block; margin: auto;" />
+Next, let's examine the effect of vehicle class on combined fuel economy for a single year, 2020.
+
+
+```r
+df_mpg.2020 <- df_mpg %>%
+  dplyr::filter(year == 2020) %>%
+  dplyr::mutate(v_class = forcats::fct_reorder(v_class, highway08, median))
+
+g1 <- ggplot(data = df_mpg.2020) + 
+  geom_boxplot(aes(x = highway08, color = v_class, y = v_class)) + 
+  scale_x_log10() +
+  theme_bw() +
+  ylab("") +
+  xlab("Highway Fuel Economy") +
+  theme(legend.position = "none")
+
+g1
+```
+
+<div class="figure" style="text-align: center">
+<img src="07-multivar_eda_files/figure-html/v-class-1.png" alt="Highway Fuel Economy for 2020 Vehicles by Type" width="672" />
+<p class="caption">(\#fig:v-class)Highway Fuel Economy for 2020 Vehicles by Type</p>
+</div>
+
+Finally, let's ask some simple questions and use some basic data wrangling to get the answers.
 
 Q1: Among *4-cylinder* vehicles with *Front-Wheel Drive*, what make/model has the best *highway fuel economy* in 2018?
 
