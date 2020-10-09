@@ -410,7 +410,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-10-07 21:28:58 MDT"
+## [1] "2020-10-09 11:43:01 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -426,12 +426,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1602127738
+## [1] 1602265381
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 50.8031373 years.  
+365d/yr] => 50.8075019 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -439,7 +439,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2020-10-07 21:28:58.
+format: 2020-10-09 11:43:01.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -462,7 +462,7 @@ equivalent but, for some computer programs, not so much:
 </table>
 
 <div class="rmdnote">
-<p>You will often see time referenced with a <strong>“UTC”</strong>, which stands for <em>“Universal Time, Coordinated”</em>. UTC is preferred by programmers because it doesn’t have a timezone and it doesn’t follow <em>Daylight Savings Time</em> conventions. Daylight savings is the bane of many coders.</p>
+<p>You will often see time followed by <strong>“UTC”</strong>, which stands for <em>“Universal Time, Coordinated”</em>. UTC is preferred by programmers because it doesn’t have a timezone and it doesn’t follow <em>Daylight Savings Time</em> conventions. Daylight savings is the bane of many coders.</p>
 <p>In practice, UTC is the same time as GMT (Greenwich Mean Time, pronounced “gren-itch”) but with an important distinction. GMT is one of the many <a href="https://wikipedia.org/wiki/List_of_tz_database_time_zones" target="_blank">time-zones</a> laid out across Earth’s longitude, whereas, <strong>UTC has no timezone</strong>; UTC is the same time for everyone, everywhere.</p>
 <p>In Colorado, we are UTC-6 hours during <em>daylight savings</em> (March-Nov) and UTC-7 during <em>standard time</em> (Nov-March). This means that most Coloradoans eat dinner at 12am UTC (6pm MST).</p>
 </div>
@@ -489,7 +489,7 @@ R has several classes of date-time objects, none of which are easy to remember:
 3. **`POSIXt`** - this is a virtual class. `POSIXt` (without the "l") is an internal way for R to convert between `POSIXct` and `POSIXlt` date-time objects.  
     * Think of the `POSIXt` as a way for R to perform operations/conversions between a `POSIXct` and `POSIXlt` object without throwing an error your way.
 
-As a reminder, here are some of the most common **vector classes** in R:
+As a reminder, here are some common **object classes** in R:
 
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
  <thead>
@@ -551,7 +551,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1602127738
+## [1] 1602265381
 ```
 
 
@@ -562,14 +562,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 58.3
-##  $ min   : int 28
-##  $ hour  : int 21
-##  $ mday  : int 7
+##  $ sec   : num 1.26
+##  $ min   : int 43
+##  $ hour  : int 11
+##  $ mday  : int 9
 ##  $ mon   : int 9
 ##  $ year  : int 120
-##  $ wday  : int 3
-##  $ yday  : int 280
+##  $ wday  : int 5
+##  $ yday  : int 282
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600

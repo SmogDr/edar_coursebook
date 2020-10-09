@@ -366,7 +366,7 @@ knitr::kable(date_time, col.names = NULL,
 ```
 
 ```{block, type="rmdnote"}
-You will often see time referenced with a **"UTC"**, which stands for
+You will often see time followed by **"UTC"**, which stands for
 *"Universal Time, Coordinated"*. UTC is preferred by programmers because it
 doesn't have a timezone and it doesn't follow *Daylight Savings Time*
 conventions. Daylight savings is the bane of many coders.
@@ -403,7 +403,7 @@ R has several classes of date-time objects, none of which are easy to remember:
 3. **`POSIXt`** - this is a virtual class. `POSIXt` (without the "l") is an internal way for R to convert between `POSIXct` and `POSIXlt` date-time objects.  
     * Think of the `POSIXt` as a way for R to perform operations/conversions between a `POSIXct` and `POSIXlt` object without throwing an error your way.
 
-As a reminder, here are some of the most common **vector classes** in R:
+As a reminder, here are some common **object classes** in R:
 
 ```{r vect-classes, echo=FALSE, warning=FALSE}
 vect_classes <- tibble::tibble(classes = c("`character`",
