@@ -4,14 +4,16 @@
 knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
 library(tidyverse)
 library(knitr)
-library(bookdown)
 library(scales)
 library(kableExtra)
 library(GGally)
 library(gridExtra)
 ```
-## Ch. 7 Objectives
-After this chapter, you should (know / understand / be able to ):
+
+## Chapter 7 Objectives
+
+This Chapter is designed around the following learning objectives. Upon
+completion, you should be able to:
 
 - Define correlation, causation, and their difference
 - Conduct a formal exploratory data analysis on multivariate data using geoms from `ggplot`
@@ -22,289 +24,462 @@ After this chapter, you should (know / understand / be able to ):
 
 
 ## Bivariate Data {#bivariate}
-Whereas univariate data analyses are directed at "getting to know" the observations made for a single variable, bivariate (and multivariate) analyses are designed to examine the *relationship* that may exist between two (or more) variables. Like the Chapter on [Univariate data]({#eda1), we will focus first on ***data exploration*** - a key step towards "getting to know" your data and one that should always proceed inferential statistics or *making conclusions about your data*.
 
-``` {block, type="rmdnote"}
-Bivariate means *two variables* where the observations are paired (i.e., each  observation samples both variables so that they are linked).
+Whereas univariate data analyses are directed at "getting to know" the
+observations made for a single variable, bivariate---and multivariate---
+analyses are designed to examine the *relationship* that may exist between two
+(or more) variables. Like the Chapter on [Univariate EDA]({#eda1), we will
+focus first on ***data exploration***, which is a key step towards "getting to
+know" your data and one that should always proceed inferential statistics, or
+*making conclusions about your data*.
+
+```{block, type="rmdnote"}
+Bivariate means *two variables* where the observations are paired; each 
+observation samples both variables so that they are linked.
 ```
 
 ## Scatterplot {#scatt}
 
-Undoubtedly, you have seen scatterplots many times before; we will give them a formal treatment here. The **scatterplot** allows you to assess the strength, direction, and type of relationship between two variables. This can be important for determining factors like:  
+Undoubtedly, you have seen scatterplots many times before; we will discuss them
+in more detail here. The **scatterplot** allows you to assess the strength,
+direction, and type of relationship between two variables. This can be
+important for determining factors like:  
 
 * Correlation  
 * Linearity  
-* Performance (of a measurement) in terms of precision, bias, and dynamic range   
+* Performance (of a measurement) in terms of precision, bias, and dynamic range
 
-Traditionally, a scatterplot shows paired observations of two variables with the ***dependent variable*** on the y-axis and the ***independent variable*** on the x-axis.  Creating a plot in this way means that, before you begin, you must make a judgement call about which variable *depends* on which.  The roots of this terminology/protocol lie in the practice of *linear regression* and the scientific method, the former of which we will discuss in more detail later.  For the purposes of exploratory data analysis, however, it actually doesn't matter which variable goes on which axis. That said, since we don't wish to break with tradition, let's agree to follow the guidelines on dependent/independent variables so as not to invoke the wrath of the gods.  
+Traditionally, a scatterplot shows paired observations of two variables with
+the ***dependent variable*** on the y-axis and the ***independent variable***
+on the x-axis. Creating a plot in this way means that, before you begin, you
+must make a judgment call about the direction of the relationship (i.e., which
+variable *depends* on which). This relates to the scientific method and 
+*linear regression*; we will discuss the latter in more detail later. For the
+purposes of exploratory data analysis, however, it actually doesn't matter
+which variable goes on which axis. That said, since we don't wish to break with
+tradition, let's agree to follow the guidelines on independent (predictor) and 
+dependent (outcome/response) variables. Although related, the researcher's
+purpose or "mode" affects the intention behind a plot: 
 
-  **Statistics:** The independent variable (x-axis) is thought to have some influence/control over the dependent variable (y-axis).   
+ - **Scientific Method:** The experimenter manipulates the control variable (independent; on x-axis) and observes the changes in the response variable (dependent; y-axis).   
+ 
+ - **Statistics:** The independent variable (x-axis) is thought to have some influence or control over the dependent variable (y-axis).
 
-  **Scientific Method:**  The experimenter manipulates the control variable (independent, x-axis) and observes the changes in the response variable (dependent, y-axis).   
-
-  **Exploratory Data Analysis:**  We throw two variables onto a plot to investigate their relationship.  We make a guess about which one is the independent variable (x-axis) and which one is the dependent variable (y-axis) and we hope that nobody calls us out if we got it wrong.  
+ - **Exploratory Data Analysis:** We throw two variables on a plot to investigate their relationship. We make a guess about which is the independent variable (x-axis) and which is the dependent variable (y-axis), and we hope that nobody calls us out if we got it wrong...  
 
 ### Causality
-All this talk about **dependent** and **independent** variables is fundamentally rooted in the practice of ***causal inference*** reasoning: the ability to say that "action A" caused "outcome B".  Discovering (or proving) that one thing caused another to happen can be an incredibly powerful event.  Proving causality leads to the awarding of Nobel Prizes, the creation of new laws and regulations, the judgment of guilt or innocence in court, the changing and convincing of human minds and behaviors, and simply put: more understanding.
 
-A full treatment of causal inference reasoning is beyond the scope of this course, but we will, from time to time, delve into this topic.  The art of data science can be a beautiful and compelling way to demonstrate causality....but most of us need to learn to crawl before we can walk, run, or fly.  For now, let's put aside the pursuit of causation and begin with ***correlation***.
+All this talk about dependent and independent variables is fundamentally rooted
+in the practice of ***causal inference*** reasoning, which is the ability to 
+say that "action A *caused* outcome B". Discovering---or proving---that one
+thing caused another to happen can be incredibly powerful. Proving causality
+leads to Nobel Prizes, creation of new laws and regulations, judgment of guilt
+or innocence in court, changing human behavior and convincing human minds, and,
+simply put, more understanding.
+
+A full treatment of causal inference reasoning is beyond the scope of this
+course, but we will, from time to time, delve into this topic.  The art of data
+science can be a beautiful and compelling way to demonstrate causality, but we
+need to learn to crawl before we can walk, run, or fly. For now, let's put
+aside the pursuit of causation and begin with ***correlation***.
 
 ### Correlation {#corr}
-The scatterplot is a great way to visualize whether (and, to an extent, how) two variables are correlated.  
 
-``` {block, type="rmdnote"}
-Correlation: a mutual relationship or connection between two or more things; the process of establishing a relationship or connection between two or more measures.
+The ***scatterplot*** is a great way to visualize *whether*, and, to some
+extent, *how*, two variables are related to each other.  
+
+```{block, type="rmdnote"}
+Correlation: A mutual relationship or connection between two or more things;
+the process of establishing a relationship or connection between two or more
+measures. The variables can move up or down together or be inversely related.
 ```
 
-``` {r corr_plots1, warning=FALSE, echo=FALSE, include=FALSE}
-
+```{r corr_plots1, warning=FALSE, echo=FALSE, include=FALSE}
+# set seed to repeat values
 set.seed(7)
-corr_plots1 <- tibble(x = runif(100, 0, 100),
-                      y1 = x,
-                      y2 = map_dbl(x, ~ (.x*(rnorm(1, mean = 1,  sd = 0.06)) + 
-                                           rnorm(1, mean = 0, sd = 5))),
-                      y3 = map_dbl(x, ~ (.x*(rnorm(1, mean = 0.6,  sd = 0.2)) + 
-                                           rnorm(1, mean = 15, sd = 15))),
-                      y4 = runif(100, 0, 105)) %>%
-  pivot_longer(y1:y4, names_to = "type") %>%
-  mutate(type = as.factor(type))
-
-levels(corr_plots1$type) <- c("Perfect Correlation", "Strong Correlation", "Moderate Correlation", "No Correlation")
-  
-
-p1 <- ggplot(data = corr_plots1,
-                          aes(x = x, y = value)) +
+# generate data for corr plots
+corr_plots1 <- tibble::tibble(x = runif(100, 0, 100),
+                              y1 = x,
+                              y2 = purrr::map_dbl(x, 
+                                                  ~ (.x*(rnorm(1, 
+                                                               mean = 1,  
+                                                               sd = 0.06)) +
+                                                       rnorm(1, 
+                                                             mean = 0, 
+                                                             sd = 5))),
+                              y3 = purrr::map_dbl(x,
+                                                  ~ (.x*(rnorm(1, 
+                                                               mean = 0.6,  
+                                                               sd = 0.2)) +
+                                                       rnorm(1, 
+                                                             mean = 15, 
+                                                             sd = 15))),
+                              y4 = runif(100, 0, 105)) %>%
+  tidyr::pivot_longer(y1:y4, names_to = "type") %>%
+  dplyr::mutate(type = as.factor(type))
+# label types of correlation
+levels(corr_plots1$type) <- c("Perfect Correlation", 
+                              "Strong Correlation", 
+                              "Moderate Correlation", 
+                              "No Correlation")
+# create corr plot panel
+p1 <- ggplot2::ggplot(data = corr_plots1,
+                      mapping = aes(x = x,
+                                    y = value)) +
   geom_point(aes(color = type),
              alpha = 0.5) +
   facet_wrap(facets = vars(type),
              ncol = 2) +
   theme_bw() +
-  coord_fixed(ratio=1.0) +
+  coord_fixed(ratio = 1.0) +
   labs(x = "Independent Variable (x-axis)",
        y = "Dependent Variable (y-axis)") +
   theme(legend.position = "none")
- 
+# save plot to embed
 ggsave("./images/correlation_example_1.png", dpi = 150)
 ```
-Below are four examples of bivariate data with differing degrees of correlation: perfect, strong, moderate, and none.  These are qualitative terms, of course, what is "moderate" to one person may be poor and unacceptable to another.  If you want to see how 
-to assess the strength of correlation more quantitatively, you can explore the
-Pearson Correlation Coefficient, ***r***, in the [Appendix](#pearson), which is
-used to quantify the degree of **linear correlation** between two variables.
-``` {r corr-example-1, echo = FALSE,  out.width = "700pt", fig.align = "center", fig.cap = "Scatterplot examples showing bivariate data with varying degrees of correlation."}
+
+Below are four examples of bivariate data with differing degrees of
+correlation: perfect, strong, moderate, and none. These are qualitative terms,
+of course; what is "moderate" to one person may be poor and unacceptable to
+another. The qualitative strength of the correlation also depends on the 
+research context. 
+
+If you want to understand how to assess the strength of correlation 
+quantitatively, you can explore the Pearson Correlation Coefficient (***r***)
+in the [Appendix](#pearson), which is used to quantify the degree of linear
+correlation between two variables.
+
+```{r corr-example-1, echo=FALSE,  out.width="700pt", fig.align="center", fig.cap="Scatterplot examples showing bivariate data with varying degrees of correlation."}
 knitr::include_graphics("./images/correlation_example_1.png")
 ```
-``` {r corr_plots2, warning=FALSE, echo=FALSE, include=FALSE}
 
-corr_plots2 <- tibble(x = runif(100, 0, 100),
-                     y1 = map_dbl(x, ~ (.x*(rnorm(1, mean = .8,  sd = 0.15)) + rnorm(1, mean = 10, sd = 10))),
-                     y2 = map_dbl(x, ~ -(.x*(rnorm(1, mean = 0.6,  sd = 0.06)) - rnorm(1, mean = 70, sd = 5))),
-                     y3 = map_dbl(x, ~ (.x*(rnorm(1, mean = 1,  sd = 0.02))^2 + rnorm(1, mean = 0, sd = 2))),
-                     y4 = map_dbl(x, ~ (100*exp(-.x/20)*(rnorm(1, mean = 1,  sd = 0.03)) + rnorm(1, mean = 4, sd = 2)))
-) %>%
-  pivot_longer(y1:y4, names_to = "type") %>%
-  mutate(types = as.factor(type))
+```{r corr-plots2, warning=FALSE, echo=FALSE, include=FALSE}
+# generate data for corr strength plots
+corr_plots2 <- tibble::tibble(x = runif(100, 0, 100),
+                              y1 = purrr::map_dbl(x, 
+                                                  ~ (.x*(rnorm(1, 
+                                                               mean = .8,  
+                                                               sd = 0.15)) + 
+                                                       rnorm(1, 
+                                                             mean = 10, 
+                                                             sd = 10))),
+                              y2 = purrr::map_dbl(x, 
+                                                  ~ -(.x*(rnorm(1, 
+                                                                mean = 0.6,  
+                                                                sd = 0.06)) -
+                                                        rnorm(1, 
+                                                              mean = 70, 
+                                                              sd = 5))),
+                              y3 = purrr::map_dbl(x, 
+                                                  ~ (.x*(rnorm(1, 
+                                                               mean = 1,  
+                                                               sd = 0.02))^2 +
+                                                       rnorm(1, 
+                                                             mean = 0, 
+                                                             sd = 2))),
+                              y4 = purrr::map_dbl(x, 
+                                                  ~ (100*exp(-.x/20)*
+                                                       (rnorm(1,
+                                                              mean = 1,  
+                                                              sd = 0.03)) +
+                                                       rnorm(1, 
+                                                             mean = 4, 
+                                                             sd = 2)))
 
+                              ) %>%
+  tidyr::pivot_longer(y1:y4, names_to = "type") %>%
+  dplyr::mutate(types = as.factor(type))
+# label types of correlation
 levels(corr_plots2$types) <- c("Positive Correlation", 
                                "Negative Correlation", 
                                "Linear Correlation", 
                                "Non-Linear Correlation")
-  
-
-p2 <- ggplot(data = corr_plots2,
-                          aes(x = x, y = value)) +
+# create corr plot panel
+p2 <- ggplot2::ggplot(data = corr_plots2,
+                      mapping = aes(x = x, 
+                                    y = value)) +
   geom_point(aes(color = types,
                  alpha = 0.5)) +
   facet_wrap(facets = vars(types)) +
   theme_bw() +
-  coord_fixed(ratio=1) +
+  coord_fixed(ratio = 1) +
   theme(legend.position = "none") +
   labs(x = "Independent Variable",
        y = "Dependent Variable")
- 
+# save plot to embed
 ggsave("./images/correlation_example_2.png", dpi = 150)
 ```
-In addition to the strength of the correlation, the sign and form of the correlation can vary, too:  
+
+In addition to the strength of the correlation, the sign and form of the
+correlation can vary, too:  
+
   - **positive correlation**: the dependent variable *trends in the same direction* as the independent variable   
   - **negative correlation**: the dependent variable *decreases* when the independent variable *increases*  
   - **linear correlation**: the relationship between the two variables can be shown with a straight line  
   - **non-linear correlation**: the relationship between the two variables is curvilinear  
 
-``` {r corr-example-2, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Scatterplot examples showing bivariate data with varying types of correlation."}
+```{r corr-example-2, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Scatterplot examples showing bivariate data with varying types of correlation."}
 knitr::include_graphics("./images/correlation_example_2.png")
 ```
 
 ### Correlation $\neq$ causation
-``` {block, type="rmdnote"}
-Causation: the process or condition by which one event, a cause, contributes to the occurence of another event, the effect. In this process the cause is partly or wholly responsible for the effect. 
+
+Did you know that being a smoker is correlated with having a lighter in your
+pocket? Furthermore, it can be shown that keeping a lighter in your pocket is
+correlated with an increased risk of developing heart disease and lung cancer.
+Does this mean lighters in your pocket *cause* lung cancer?
+
+```{block, type="rmdnote"}
+Causation: the process or condition by which one event (cause) contributes to
+the occurrence of another event (effect). In this process, the cause is partly
+or wholly responsible for the effect. 
 ```
 
-Let's take a closer look at the dangers of mistaking a *correlated* relationship as *causal* relationship between two variables.  Shown below is a scatterplot that builds off the `mpg` dataset we first discussed in Chapter \@ref(dataviz). Using the `mpg` data frame, we will plot the relationship between the number of cylinders in an engine (`cyl`), the independent variable, and that vehicle's fuel economy (`hwy`), the dependent variable). 
+Let's take a closer look at the dangers of mistaking a *correlated*
+relationship as *causal* relationship between two variables. Shown below is a
+scatterplot that builds off the `mpg` dataset we first discussed in Chapter
+\@ref(dataviz). Using the `mpg` dataframe, we will plot the relationship
+between the number of cylinders in an engine (`cyl`) (independent variable)
+and that vehicle's fuel economy (`hwy`) (dependent variable).
 
-``` {r corr-example-3, echo = FALSE, message = FALSE, warning = FALSE, fig.cap = "Scatterplot of Engine Displacement vs. Fuel Economy"}
-
-ggplot(data = (mpg), 
-       aes(x = cyl, y = hwy)) +
-  geom_jitter(aes(x = cyl, y = hwy),
+```{r corr-example-3, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Scatterplot of Engine Displacement vs. Fuel Economy"}
+# create scatterplot of engine displacement vs fuel economy
+ggplot2::ggplot(data = (mpg),
+                mapping = aes(x = cyl, 
+                              y = hwy)) +
+  geom_jitter(aes(x = cyl, 
+                  y = hwy),
              shape = 1,
              color = "blue",
              width = 0.1,
              height = 0.05,
              size = 2) +
-  geom_smooth(method='lm', 
+  geom_smooth(method = "lm", 
               se = FALSE,
               size = 0.5,
               color = "blue") +
-  xlab("# of Cylinders") +
+  xlab("Number of Cylinders") +
   ylab("Highway Fuel Economy (mi/gal)") + 
   theme_classic()
-  
-
 ```
-Looking at this plot, there appears a clear correlation between the number of cylinders in a vehicle and its fuel efficiency. A linear fit through these data gives a Pearson correlation coefficient of -0.76: not a perfect relationship but a significant one nonetheless. Does this mean that a *causal relationship* exists?  If so, then we only need to mandate that all future vehicles on the road be built with 4-cylinder engines, if we want more a fuel-efficient fleet!  That mandate, of course, would likely produce minimal effect.  Just because two variables are correlated doesn't mean that a change in one will ***cause*** a change in the other.
 
-Those who understand internal combustion know that the number of cylinders is a design parameter related more to engine power than to engine efficiency (i.e., the number of cylinders helps determine total displacement volume).  Indeed, the causal relationship for fuel efficiency, in terms of miles traveled per gallon, is due more directly to engine conversion efficiency, vehicle drag coefficient, and vehicle mass.  If you want more fuel-efficient cars and trucks, you need more efficient engines that weigh less. In the 1990s and early 2000s nearly all engine blocks were made from cast iron.  Today, nearly all engine blocks are made from aluminum.  Can you guess why? 
+Looking at this plot, there appears a clear correlation between the number of
+cylinders in a vehicle and its fuel efficiency. A linear fit through these data
+gives a Pearson correlation coefficient of -0.76, which is not a perfect
+relationship but a strong one, nonethless. Does this mean that a 
+*causal relationship* exists? If so, then we only need to mandate that all
+future vehicles on the road be built with 4-cylinder engines, if we want more a
+fuel-efficient fleet! That mandate, of course, would likely produce minimal
+effect. Just because two variables are correlated doesn't mean that a change in
+one will ***cause*** a change in the other.
 
-> Did you know that being a smoker is correlated with having a lighter in your pocket?  Furthermore, it can be shown that keeping a lighter in your pocket is correlated with an increased risk of developing heart disease and lung cancer.  Does this mean lighters in your pocket cause lung cancer?
+Those who understand internal combustion know that the number of cylinders is a
+design parameter related more to engine power than to engine efficiency. In
+other words, the number of cylinders helps determine total displacement
+volume. Indeed, the causal relationship for fuel efficiency, in terms of miles
+traveled per gallon, is due more directly to engine conversion efficiency,
+vehicle drag coefficient, and vehicle mass. If you want more fuel-efficient
+cars and trucks, you need more efficient engines that weigh less. In the 1990s
+and early 2000s nearly all engine blocks were made from cast iron. Today,
+nearly all engine blocks are made from aluminum. Can you guess why? 
 
 ## Exploring Multivariate Data
-With *multivariate data* we often consider more than just 2 variables of interest; however, visualizing more than 2 variables in a single plot can be challenging. There are advanced statistical approaches to exploring such data (e.g., multivariate regression, principal components, machine learning, etc.), but these techniques are beyond the scope of this course. Here, I will introduce a few graphical techniques that are useful for multivariate data exploration.  
 
-### Faceting
-One easy way to evaluate two or more variables is to create multiple plots (or facets) through the `ggplot2::facet` function. This function creates a series of plots, as panels, where each panel represents a different value (or level) of a third variable of interest. For example, let's create a ggplot2 object from the `mtcars` data set that explores the relationship between a vehicle's fuel economy and its weight.  First, let's create a simple bivariate scatterplot of these data (`mpg` vs. `wt`) and fit a linear model through the data (note: we haven't yet discussed modeling but more on [that later](#model)).
+With *multivariate data*, we often consider more than just two variables;
+however, visualizing more than two variables in a single plot can be
+challenging. There are advanced statistical approaches to exploring such data,
+including multivariate regression, principal component analysis, and machine
+learning approaches, but these techniques are beyond the scope of this course.
+Here, I will introduce a few graphical techniques that are useful for exploring
+multivariate data.
 
-``` {r facet-1, message=FALSE, warning=FALSE, fig.cap="Scatterplot of fuel economy vs. vehicle weight from the `mtcars` dataset."}
+### Facets
 
+One easy way to evaluate two or more variables is to create multiple plots (or
+facets) with the `ggplot2::facet()` function. This function creates a series of
+plots, as panels, where each panel represents a different value (or level) of a
+third variable of interest. For example, let's create a `ggplot` object from
+the `mtcars` data set that explores the relationship between a vehicle's fuel
+economy and its weight. First, let's create a simple bivariate scatterplot of
+these data (`mpg` vs. `wt`) and fit a linear model through the data. Note: we
+haven't discussed modeling yet but more on that [later](#model)).
+
+```{r facet-1, message=FALSE, warning=FALSE, fig.cap="Scatterplot of fuel economy vs. vehicle weight from the `mtcars` dataset."}
 # fit a linear model
-g1_model <- lm(mpg ~ wt, data=mtcars)
-
-#create a ggplot2 object
-g1 <- ggplot(data = mtcars, 
-             aes(x = wt, y = mpg)) + 
+g1_model <- lm(mpg ~ wt, data = mtcars)
+# create a plot
+g1 <- ggplot2::ggplot(data = mtcars, 
+                      mapping = aes(x = wt, 
+                                    y = mpg)) + 
   geom_point() +
-  geom_smooth(model = g1_model, method = "lm") + 
+  geom_smooth(model = g1_model, 
+              method = "lm") + 
   ylab("Fuel Economy (mi/gal)") +
   xlab("Vehicle Weight (x1000 lb)")
 g1
 ```
-However, looking back at Figure \@ref(fig:corr-example-3), we know that the number of cylinders (`cyl`) is also associated with fuel efficiency and many of the vehicles from `mpg` have different `cyl` numbers. To examine these three variables together (`mpg`, `wt`, and `cyl`) we can create a scatterplot that is *faceted* according to the `cyl` variable.  This is relatively easy to do in `ggplot2` by adding a `facet_grid()` layer onto our ggplot object.  The key details to pass to `facet_grid()` are:  
 
-1. Whether we want to see the facets as **rows** or **columns**, and
-2. The variable being used to create the facets.
+Looking back at Figure \@ref(fig:corr-example-3), we know that the number of
+cylinders (`cyl`) is also associated with fuel efficiency, and many of the
+vehicles from `mpg` have different `cyl` numbers. To examine these three
+variables together (`mpg`, `wt`, and `cyl`), we can create a scatterplot that
+is *faceted* according to the `cyl` variable. This is relatively easy to do in
+`ggplot2` by adding a `facet_grid()` layer onto our ggplot object. The key
+details to pass to `facet_grid()` are:  
 
-These two specifications can be made as a single argument to `facet_grid()` in the form:
+  1. Whether we want to see the facets as **rows** or **columns**, and
+  2. The variable being used to create the facets.
 
-  - `facet_grid(rows = vars(variable))` or
-  - `facet_grid(cols = vars(variable))`  
+These two specifications can be made as a single argument to `facet_grid()` in
+the form:
+
+  - `facet_grid(rows = vars(variable))` *or*
+  - `facet_grid(cols = vars(variable))`,
   where *variable* is the name of the column vector used to define the facets.
 
-  In this case, seeing the plots in columns seems fine, so we would add:  
-  `facet_grid(cols = vars(cyl)`, to the `ggplot()` object as follows:
+In this case, seeing the plots in columns seems fine, so we would add  
+`facet_grid(cols = vars(cyl)` to the `ggplot` object as follows:
 
-``` {r facet-2, message=FALSE, warning=FALSE, fig.cap="Scatterplots of fuel economy vs. vehicle weight by number of cylinders in the engine (data from the `mtcars` dataset)."}
-
+```{r facet-2, message=FALSE, warning=FALSE, fig.cap="Scatterplots of fuel economy vs. vehicle weight by number of cylinders in the engine (data from the `mtcars` dataset)."}
+# facet previous plot by `cyl` columns and retain labels
 g1 + facet_grid(cols = vars(cyl),
-                labeller = label_both) #this code adds names & values each panel label
-
+                labeller = label_both) # add names & values to each panel label
 ```
-Interestingly, but perhaps not surprising, we can see that the vehicles with different cylinder numbers tend to have different fuel efficiency, but even within these facets we still see a relationship between efficiency and vehicle weight.  Note also, that the faceting call led to the fitting of three different linear models, one for each facet. 
+
+Interestingly, but perhaps not surprising, we can see that the vehicles with
+different cylinder numbers tend to have different fuel efficiency, but, even
+within these facets, we still see a relationship between efficiency and vehicle
+weight. Note that the faceting call led to the fitting of three different
+linear models---one for each facet. 
 
 Here are the same data in a plot that is faceted by rows instead of columns.
-``` {r facet-3, message=FALSE, warning=FALSE, fig.cap="Scatterplots of fuel economy vs. vehicle weight by number of cylinders in the engine (data from the `mtcars` dataset)."}
 
+```{r facet-3, message=FALSE, warning=FALSE, fig.cap="Scatterplots of fuel economy vs. vehicle weight by number of cylinders in the engine (data from the `mtcars` dataset)."}
+# facet previous plot by`cyl` in rows and retain labels
 g1 + facet_grid(rows = vars(cyl),
                 labeller = label_both)
 ```
 
-### Coloring
-We can also use color to indicate variation in data; this can be useful for introducing a third variable into scatter and time-series plots. Note: when introducing **color as a variable** into a plot, you must do so through an *aesthetic*, such as: `geom_point(aes(color = cyl))`.
+### Colors
 
-Let's recreate Figure \@ref(fig:facet-1) and highlight the `cyl` variable using different colors. The addition of color provides us with the same level of insight as did the facets above.
+We can also use color to indicate variation in data; this can be useful for
+introducing a third variable into scatter and time-series plots. When
+introducing **color as a variable** into a plot, you must do so through an
+*aesthetic*, such as `geom_point(aes(color = cyl))`.
 
-``` {r colorplot-1, message=FALSE, warning=FALSE, fig.cap="Vehicle fuel economy vs. weight and colored by number of engine cylinders (data from mtcars)"}
-# instruct R to treat the cyl variable as a factor with discrete levels
+Let's recreate Figure \@ref(fig:facet-1) and highlight the `cyl` variable using
+different colors. The addition of color provides us with the same level of
+insight as the facets above.
+
+```{r colorplot-1, message=FALSE, warning=FALSE, fig.cap="Vehicle fuel economy vs. weight and colored by number of engine cylinders (data from mtcars)"}
+# instruct R to treat the `cyl` variable as a factor with discrete levels
 # this, in turn, tells ggplot2 to assign discrete colors to each level
+# `cyl` as a factor with four levels
 mtcars$cyl <- as.factor(mtcars$cyl)
-
-g3 <- ggplot(data = mtcars, 
-             aes(x = wt, y = mpg, color = cyl)) + 
+# recreate previous plot with color option
+g3 <- ggplot2::ggplot(data = mtcars,
+                      mapping = aes(x = wt, 
+                           y = mpg, 
+                           color = cyl)) + 
   geom_point() +
   ylab("Fuel Economy (mi/gal)") +
   xlab("Vehicle Weight, (x1000 lb)")
-
+# call plot
 g3
 ```
 
-``` {block, type="rmdwarning"}
-When using color, be aware that many people are unable to distinguish red from green or blue from yellow. Many options exist to avoid issues from color blindness (e.g., the `viridis` palette) and websites like [color-blindness.com](https://www.color-blindness.com/coblis-color-blindness-simulator/){target="_blank"} allow you to upload image files as a test against common forms.
+```{block, type="rmdwarning"}
+When using color, be aware that many people are unable to distinguish red from
+green or blue from yellow. Many options exist to avoid issues from color
+blindness (e.g., `viridis` palette) and websites like
+[color-blindness.com](https://www.color-blindness.com/coblis-color-blindness-simulator/){target="_blank"} 
+allow you to upload image files as a test against common forms.
 ```
 
-Here is an updated version of Figure \@ref(fig:colorplot-1) that avoids issues with color blindness and, better yet, differentiates the `cyl` variable with both colors and symbols.
+Here is an updated version of Figure \@ref(fig:colorplot-1) that avoids issues
+with color blindness and, better yet, differentiates the `cyl` variable with
+both colors and symbols.
 
-``` {r colorplot-2, message=FALSE, warning=FALSE, fig.cap="Vehicle fuel economy vs. weight and colored by number of engine cylinders (data from mtcars)"}
-
-#"#330099","#CC0066","#FF6633", "#0099CC", "#FF9900","#CC6633", "#33CC99",
-
-ggplot(data = mtcars, 
-             aes(x = wt, 
-                 y = mpg, 
-                 color = cyl, 
-                 shape = cyl)) + 
+```{r colorplot-2, message=FALSE, warning=FALSE, fig.cap="Vehicle fuel economy vs. weight and colored by number of engine cylinders (data from mtcars)"}
+# recreate previous plot with color-blind-friendly colors and shapes
+ggplot2::ggplot(data = mtcars,
+                mapping = aes(x = wt,
+                              y = mpg,
+                              color = cyl, 
+                              shape = cyl)) + # distinguish by shape also!
   geom_point(size = 2.5) +
   ylab("Fuel Economy (mi/gal)") +
   xlab("Vehicle Weight, (x1000 lb)") +
-  scale_colour_manual(values = c("sandybrown", 
+  scale_colour_manual(values = c("sandybrown", # color-blind-friendly colors
                                  "orangered", 
                                  "steelblue2")) +
   theme_classic()
 ```
-``` {block, type="rmdtip"}
+
+```{block, type="rmdtip"}
 Whenever you use **color** to differentiate variables, use symbols, too. 
 ```
-### Contour Plots
 
-### Time-Series Density
+## Chapter 7 Exercises
 
-## Ch-7 Exercises
+### Fuel economy data
 
-### In-class: fueleconomy.gov
 This in-class exercise is will conduct an exploratory, multivariate data 
-analysis on vehicle fuel economy. We will begin by downloading a .zip file from [fueleconomy.gov](https://www.fueleconomy.gov/feg/ws/){target="_blank"} - a Federal program that tracks the fuel economy of all vehicles sold in the US. The .zip file contains a 
-.csv with fuel economy information for nearly every vehicle manufactured 
-between 1984 and today. We will use the `readr` and `dplyr` packages to load 
-and clean the data, respectively. A data dictionary (something that defines 
-and explains each variable in the data set) is also available at the website
-above.
+analysis on vehicle fuel economy. We will begin by downloading a .zip file from
+[fueleconomy.gov](https://www.fueleconomy.gov/feg/ws/){target="_blank"}, which
+is a Federal program that tracks the fuel economy of all vehicles sold in the
+United States. The .zip file contains a .csv with fuel economy information for
+nearly every vehicle manufactured  between 1984 and today. We will use the
+`readr` and `dplyr` packages to load and clean the data, respectively. A data
+dictionary (something that defines and explains each variable in the dataset)
+is also available at the website above.
 
-The first code chunk will download the fueleconomy.gov data directly into a temp file using `download.file()` from base R.  We will then 
-`unzip()` that temp file into a .csv and use `readr` to read that .csv into a 
-data frame named `raw_data`. 
+### Import and wrangle data
 
-``` {r load-data, message=FALSE, cache=TRUE, warning=FALSE}
-#create a temp file to hold the zipped data
-temp <- tempfile()
-#download the file into temp file
-download.file(url = "https://www.fueleconomy.gov/feg/epadata/vehicles.csv.zip",
-              destfile = temp, 
-              mode="wb")
+The first code chunk will download the data directly into a temporary file
+using `download.file()` from base R. We will then `unzip()` (base R) the temp
+file into a .csv and use `readr` to read that .csv into a dataframe named
+`raw_data`. 
 
-temp2 <- unzip(temp, "vehicles.csv", exdir = "./data/") #unzip .csv to /data dir
-
-raw_data <- read_csv(temp2) #read the csv into a data frame
-
-unlink(temp) #delete the temp file
-
-rm(temp, temp2) #remove the two temp objects from local environment
+```{r load-data, message=FALSE, cache=TRUE, warning=FALSE}
+# create an empty temporary object to hold the zipped data
+temp <- base::tempfile()
+# download the file into temp object
+utils::download.file(
+  url = "https://www.fueleconomy.gov/feg/epadata/vehicles.csv.zip",
+  destfile = temp,
+  mode="wb")
+# unzip the folder within temp object to acess csv
+temp2 <- utils::unzip(temp, 
+                      "vehicles.csv", 
+                      exdir = "./data/") # unzip .csv to local directory
+# import csv into df object
+raw_data <- readr::read_csv(temp2) #read the csv into a data frame
+# delete the temp file
+base::unlink(temp) 
+# remove the two temp objects from local environment
+base::rm(temp, temp2) 
 ```
 
-Looking at the `raw_data` data frame, we see there are 83 variables with over 
-42,000 observations.  That's a LOT of vehicles! In most analyses of large data 
-sets, we don't need to inspect every variable. Let's create a vector of 
-variables (`vars_needed`) that we want to keep and pass that vector to `dplyr::select()` to retain only the variables we want. To pass a character 
-vector as an argument to `dplyr::select()`, instead of just a single column name, 
-we use the `all_of()` function - a `{tidy-select}` argument modifier. You can type 
-`?tidyr_tidy_select` to learn more.
+**Public Service Announcement**: Notice the use of `rm()` from base R in the 
+above code. This is an example of a recommended use case of this function;
+do not EVER use this function to "restart" your R session. If you do, [Jenny
+Bryan will find you and throw your computer out the window](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/){target="_blank"}.
+
+Looking at the `raw_data` dataframe, we see there are 83 variables with over 
+42,000 observations.  That's a LOT of vehicles! In most analyses of large
+datasets, we don't need to inspect every variable. Let's create a vector of
+variables (`vars_needed`) that we want to keep and pass that vector to
+`dplyr::select()` to retain only the variables we want. To pass a character 
+vector as an argument to `dplyr::select()`, instead of just a single column
+name, we use the `all_of()` function, which is an argument modifier from the
+`tidyselect` R package. You can type `?tidyselect::all_of` in the R console to
+learn more. Essentially, `tidyselect::all_of()` tells `dplyr::select()` to 
+expect a character vector of column names to retain in the datset.
 
 ```{r fuel-econ-cleaning-1}
+# create a vector of var names to retain 
 vars_needed <- c("id",
                  "make",
                  "model",
@@ -318,155 +493,193 @@ vars_needed <- c("id",
                  "comb08",
                  "highway08",
                  "city08")
-
-df_mpg<-raw_data %>%
-  dplyr::select(all_of(vars_needed))  
-#all_of tells dplyr::select to expect a character vector of column names
-rm(raw_data) #remove large file from memory
+# select necessary variables
+df_mpg <- raw_data %>%
+  dplyr::select(tidyselect::all_of(vars_needed))  
+# remove full dataframe from environment
+rm(raw_data) 
 ```
 
-Some of these variables can be coded as **factors** (*categorical* variables 
-that can be classified into *discrete levels*). For example, there are a 
-finite number of vehicle transmission `trany` or drivetrain `drive` types on 
-the market and by telling R to code these data as **factors**, we can analyze 
-these variables in categorical form.
+As you have seen before, some of these variables can be coded as **factors**,
+which are *categorical* variables that can be classified into discrete levels.
+For example, there are a finite number of vehicle transmission (`trany`) or
+drivetrain (`drive`) types on the market, and, by telling R to code these data
+as factors, we can analyze these variables in categorical form.
 
 First, we will create a vector of variable names that we want to code as 
 factors, `vars_factr`. Then we will apply the `as.factor()` function to those 
-variables using `dplyr::mutate(across())`. The `across()` function allows one 
-to apply the same transformation to multiple columns in a data frame (similar 
-to how we used `all_of()` above). We will 
-also take the opportunity to rename a few of these variables (following our 
-naming guidelines discussed earlier) and to filter the data to retain only 
-vehicles made after the year 2000. 
-``` {r fuel-econ-cleaning-2}
-# ID the columns that we want as class:factor
-vars_factr <- c("make", "drive", "trany", "VClass", "fuelType1")
+variables using `dplyr::mutate(dplyr::across())`. The `across()` function from
+`dplyr` allows one to apply the same transformation to multiple columns in a
+dataframe and is similar to how we used `tidyselect::all_of()` in the previous
+example. We will also take the opportunity to rename a few of these variables,
+following our naming guidelines discussed in earlier chapters, and to filter
+the data to retain only vehicles made after the year 2000.
 
-df_mpg <- df_mpg %>%
-  # mutate(across(a)) applies the as.factor function only to the vars of interest
-  dplyr::mutate(across(all_of(vars_factr), .fns = as.factor)) %>% 
-  #create simpler names
+```{r fuel-econ-cleaning-2}
+# identify the columns that we want to convert to a factor
+vars_factr <- c("make", "drive", "trany", "VClass", "fuelType1")
+# overwrite existing df
+df_mpg <- df_mpg %>% 
+  # convert select vars to factors 
+  dplyr::mutate(dplyr::across(tidyselect::all_of(vars_factr), 
+                              .fns = as.factor)) %>% 
+  # overwrite column names with simpler names
   dplyr::rename(fuel_type = fuelType1, 
                 cyl = cylinders, 
                 tran = trany, 
                 v_class = VClass) %>% # easier string to type
   # keep only data collected after 2000 for the sake of simplicity
   dplyr::filter(year >= 2000) 
-
-rm(vars_needed, vars_factr) # won't be needing these anymore
-
+# remove previous objects from global environment
+rm(vars_needed, vars_factr)
 ```
+
+### Check data
 
 Begin as we always do, by simply looking at some of the data.
 
-``` {r df-mpg-desc-1}
+```{r df-mpg-desc-1}
+# examine first five rows of df
 head(df_mpg)
 ```
-Next, let's take a look at some of the factor levels.  There are lots of ways to do this in R Studio, but the `levels()` function is the most straightforward.
 
-``` {r df-mpg-desc-2}
-#print a character vector of levels for the drive variable in df_mpg
+Next, let's take a look at some of the factor levels. There are lots of ways
+to do this in R, but the `levels()` function is the most straightforward.
+
+```{r df-mpg-desc-2}
+# print a character vector of levels for the drive variable in df_mpg
 levels(df_mpg$drive) 
 ```
 
-``` {r df-mpg-desc-3}
-#print a character vector of levels for the fuel_type variable in df_mpg
+```{r df-mpg-desc-3}
+# print a character vector of levels for the fuel_type variable in df_mpg
 levels(df_mpg$fuel_type) 
 ```
 
-``` {r df-mpg-desc-4}
-#print a character vector of levels for the v_class variable in df_mpg
+```{r df-mpg-desc-4}
+# print a character vector of levels for the v_class variable in df_mpg
 levels(df_mpg$v_class) 
 ```
 
-Next, let's see whether this data frame contains missing data (NAs).  
+### Check for missing data
+
+#### Base-only
+
+Next, let's see whether this dataframe contains missing data (`NA`s).  
 
 ``` {r mpg-na}
+# count instances of missing values within df_mpg
 sum(is.na(df_mpg))
-
 ```
 
-With a data frame of this size, we shouldn't be surprised that there are `r sum(is.na(df_mpg))` `NA` values present.  The next question is: where do these 
-`NA` values show up? There are several ways to answer this question; here, we
-will use the `complete.cases()` function with a `dplyr::filter()` search. 
+With a dataframe of this size, we shouldn't be surprised that there are 
+`r sum(is.na(df_mpg))` `NA` values present. The next question is: where do
+these `NA` values show up? There are several ways to answer this question;
+here, we will use the `stats::complete.cases()` function with a
+`dplyr::filter()` search. 
 
-The `compelete.cases()` function (from within `stats::`) returns a logical vector indicating
-which rows are *complete* (i.e., that have no missing values).  The opposite of
-this logical function, `!complete.cases()`, should return ONLY those rows that do 
-contain `NA`'s.  Let's create a subset of `df_mpg` that only contains rows with 
+The `compelete.cases()` function returns a logical vector indicating
+which rows are *complete* (i.e., no missing values). The opposite of this
+logical function, `!complete.cases()`, should return ONLY those rows that do 
+contain `NA`s. Let's create a subset of `df_mpg` that only contains rows with
 `NA` present.
 
-``` {r complete-cases-NA}
+```{r complete-cases-NA}
+# create df of observations with missing values
 df_mpg.na <- df_mpg %>%
-  filter(!complete.cases(.))
-
+  dplyr::filter(!stats::complete.cases(.))
+# examine df 
 head(df_mpg.na)
-
 ```
+
 Here, we discover that most of the the `NA` values are in the `cyl`, `displ`, 
-and`tran`, columns.  Further, we see that **all** of these vehicles have a 
-`fuel_type` of *electric* (which makes sense as all-electric vehicles do not have internal combustion). This may be a variable level that we choose to exclude 
-from certain analyses later on... 
+and `tran`, columns. Further, we see that **all** of these vehicles have a 
+`fuel_type` of *electric*---which makes sense as all-electric vehicles do not
+have internal combustion. This may be a variable level that we choose to
+exclude from certain analyses later... 
 
-**Alternate method 1:**
-Filter the `df_mpg` data for *any variables* (`any_vars()`) that contain `NA`. Like `all_of()` that was used to clean the data frame above, the `any_vars()` function is a [`<tidy-select>`](https://tidyselect.r-lib.org/reference/language.html){target="_blank"} helper function designed for use within Tidyverse packages like `dplyr::` and `tidyr::`.  All of these tidy-select functions help you pass multiple columns of data as an argument to a Tidyverse function.
+#### Mixed
 
-``` {r df-mpg-desc-6}
+Filter the `df_mpg` data for *any variables* (`dplyr::any_vars()`) that contain
+`NA`. Like `tidyselect::all_of()` that was used to clean the dataframe above,
+the `any_vars()` function is a helper function designed for use within `dplyr`
+and `tidyr` verbs. **This example is for illustration only.** Some of the
+functions have been deprecated or superseded and others should be used instead.
+
+```{r df-mpg-desc-6}
+# base R + tidyverse approach to examining missing data
 df_mpg.na.2 <- df_mpg %>% 
-  filter_all(any_vars(is.na(.)))
-
+  dplyr::filter_all(dplyr::any_vars(is.na(.)))
+# check data
 head(df_mpg.na.2)
 ```
-**Alternate method 2:**
-Note: In [Chapter 8](#rprog4), you will learn to ***map*** the `sum()` and `is.na()`
-functions to each column of the data frame using `map_dfc` (from the `purr::` 
-package), which is designed to apply one ore more functions across columns of a 
-data frame. 
+
+#### Mapping 
+
+Note: In [Chapter 8](#rprog4), you will learn to "map" the `sum()` and `is.na()` functions to each column of the data frame using `map_dfc` from the `purrr` package, which is designed to apply one ore more functions across columns of a data frame. This approach is the recommended way.
 
 ``` {r df-mpg-desc-5, eval=FALSE}
-#this is a preview of code we will learn in Chapter 8
-df_mpg %>% map_dfc(~sum(is.na(.)))
+# preview of code we will learn in Chapter 8
+df_mpg %>% purrr::map_dfc(~sum(is.na(.)))
 ```
 
-Our primary variable of interest is fuel economy, so let's begin by visualizing 
+### Visualize data
+
+#### Tidy data
+
+Our primary variable of interest is fuel economy, so let's begin by visualizing
 the location, dispersion, and shape of `city08`, `highway08`, and `comb08`, 
 which represent city, highway and combined fuel economy estimates. Note that 
-`df_mpg` is not in a tidy format, since fuel economy data is presented in three
-different columns.  We'll fix that with `pivot_longer()`.
+`df_mpg` is not in a tidy format, as fuel economy data is presented in three
+different columns. We'll fix that with `tidyr::pivot_longer()`.
 
 ```{r tidy-mpg}
+# before visualizing the data, convert to tidy format
 tidy_mpg <- df_mpg %>%
+  # choose simple names
   dplyr::rename(city = city08,
-                 hwy = highway08,
-                 comb = comb08) %>%
-  tidyr::pivot_longer(cols = c("city", "hwy", "comb"), 
-               names_to = "metric", 
-               values_to = "mpg") %>%
+                hwy = highway08,
+                comb = comb08) %>%
+  # change data structure from wide to long 
+  tidyr::pivot_longer(cols = c("city", "hwy", "comb"),
+                      names_to = "metric",
+                      values_to = "mpg") %>%
+  # switch var to factor
   dplyr::mutate(metric = as.factor(metric))
 ```
 
-With the data properly tidy, we can use our basic EDA plots `stat_ecdf()`, `geom_boxplot()`, and `geom_histogram()` to visualize the fuel economy data.  To show the different variables wihtin the same plot, we use `color = ` or `fill = ` as an extra aesthetic.  All three plots are then laid out using `gridExtra::grid.arrange()`. 
+#### Multivariate EDA options
 
-```{r tidy-mpg-plot, fig.cap="Cumulative Distribution, Histogram, and Boxplots of 21st Centurty Vehicles.", fig.align = "center", fig.height=7}
-ecdf <- ggplot(data = tidy_mpg, 
-               aes(x = mpg, color = metric)) +
+With the data properly tidy, we can use our basic EDA plots with `stat_ecdf()`,
+`geom_boxplot()`, and `geom_histogram()`, to visualize the fuel economy data.  
+To show the different variables within the same plot, we use `color = ` 
+or `fill = ` as an extra aesthetic. All three plots are then laid out using
+`gridExtra::grid.arrange()`. 
+
+```{r tidy-mpg-plot, fig.cap="Cumulative Distribution, Histogram, and Boxplots of 21st Centurty Vehicles.", fig.align="center", fig.height=7}
+# create cumulative distribution function plot
+ecdf <- ggplot2::ggplot(data = tidy_mpg, 
+                        mapping = aes(x = mpg, 
+                                      color = metric)) +
   stat_ecdf() +
   theme_bw() +
   scale_x_log10() +
   xlab(NULL) +
   ylab("Quantile") 
-
-box <- ggplot(data = tidy_mpg, 
-               aes(x = mpg, fill = metric, y = metric)) +
+# create boxplot
+box <- ggplot2::ggplot(data = tidy_mpg, 
+                       mapping = aes(x = mpg, 
+                                     fill = metric, 
+                                     y = metric)) +
   geom_boxplot(outlier.alpha = 0.05) +
   theme_bw() +
   scale_x_log10() +
   xlab(NULL) +
   ylab("Metric") 
-
-hist <- ggplot(data = tidy_mpg, 
-               aes(x = mpg, fill = metric)) +
+# create histogram
+hist <- ggplot2::ggplot(data = tidy_mpg, 
+                       mapping = aes(x = mpg, 
+                                     fill = metric)) +
   geom_histogram(bins = 35,
                  alpha = 0.75,
                  position = "stack") +
@@ -474,124 +687,163 @@ hist <- ggplot(data = tidy_mpg,
   scale_x_log10() +
   xlab("Fuel Economy, mi/gal") +
   ylab("Counts")
-
-grid.arrange(ecdf, box, hist, widths = c(0.4,1,0.4),
-             layout_matrix = rbind(c(NA, 1, NA),
-                                   c(NA, 2, NA),
-                                   c(NA, 3, NA)))
-
-
+# embed plots into one figure
+gridExtra::grid.arrange(ecdf, box, hist, 
+                        widths = c(0.4,1,0.4),
+                        layout_matrix = rbind(c(NA, 1, NA),
+                                              c(NA, 2, NA),
+                                              c(NA, 3, NA)))
 ```
 
-Next, let's look at a rough time series (by year) of all the combined fuel economy values, `comb08`, 
-for all vehicle observations. The fuel economy data will be shown with boxplots and we will use `group = year` as an aesthetic to show the overall time series. We will use a log-scale y-axis due to the large variation expected and outliers will be made more transparent to soften their
+### Multivariate time series 
+
+Next, let's look at a rough time series (by year) of all the combined fuel 
+economy values, `comb08`, for all vehicle observations. The fuel economy data 
+will be shown with boxplots, and we will use `group = year` as an aesthetic to 
+show the overall time series. We will use a log-scale y-axis due to the large
+variation expected, and outliers will be made more transparent to soften their
 effect.
 
-``` {r fuel-econ-ts, warning=FALSE, fig.cap="Boxplots of fleet-wide fuel efficiency by year.", fig.align="center"}
-
-e1 <- ggplot(data = df_mpg, aes(x = year, y = comb08)) +
+```{r fuel-econ-ts, warning=FALSE, fig.cap="Boxplots of fleet-wide fuel efficiency by year.", fig.align="center"}
+# create time series plot 
+e1 <- ggplot2::ggplot(data = df_mpg, 
+                      mapping = aes(x = year, 
+                                    y = comb08)) +
   geom_boxplot(aes(group = year),
                fill = "skyblue",
                outlier.alpha = 0.1) +
   scale_y_log10(limits = c(10,100)) +
   theme_bw()
+# call plot
 e1
 ```
-This [DOE website](https://afdc.energy.gov/data/10562) outlines the EPA *Corporate Average Fuel Economy* (CAFE) standards that require vehicles to meet set fuel economy levels (in terms of miles-per-gallon; mpg) across the 'fleet' of available vehicles. Let's load a .csv file named `cafe` and look at the requirements by year.
 
-``` {r CAFE-stds, message = FALSE}
+#### Consider context
 
+[This Department of Energy website](https://afdc.energy.gov/data/10562) outlines
+the *Corporate Average Fuel Economy* (CAFE) standards from the Environmental
+Protection Agency that require vehicles to meet set fuel economy levels, in 
+terms of miles per gallon, or "mpg", across the "fleet" of available vehicles.
+Let's load a .csv file named `cafe` and look at the requirements by year.
+
+```{r CAFE-stds, message = FALSE}
+# import data
 cafe <- read_csv("./data/CAFE_stds.csv", col_names = c("year", "mpg_avg"), skip = 1)
-
-cafe.plot <- ggplot(data  =cafe, 
-                    mapping = aes(group = year, y = mpg_avg, x = year)) + 
+# plot cafe data
+cafe.plot <- ggplot2::ggplot(data = cafe, 
+                    mapping = aes(group = year, 
+                                  y = mpg_avg, 
+                                  x = year)) + 
   geom_col(fill = "maroon") + 
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 90, 
+                                   hjust = 1)) +
   labs( y = "Required Average Fuel Efficiency (mpg)", 
         x = "Year", 
         title = "Federal Combined Average Fuel Economy (CAFE) Standards")
-
+# call cafe plot
 cafe.plot 
-
 ```
 
-This is a nice [explanatory story](https://www.edmunds.com/fuel-economy/faq-new-corporate-average-fuel-economy-standards.html) of why the average fuel economy numbers don't match well to the published CAFE standards. 
+This is a nice 
+[explanatory story](https://www.edmunds.com/fuel-economy/faq-new-corporate-average-fuel-economy-standards.html) 
+of why the average fuel economy numbers don't match well to the published CAFE
+standards. 
+
+### Density plots
 
 Create a series of geom_density plots showing combined fuel economy `comb08` 
-across all vehicles and years as a function of `fuel_type`.  
-Break out the different `fuel_type` categories into facets (ncol = 3).
-``` {r EDA on fuel type 1}
-g1 <- ggplot(data = df_mpg) + 
-  geom_density(aes(comb08, fill = fuel_type)) + 
-  facet_wrap(~fuel_type, ncol = 3) +
+across all vehicles and years as a function of `fuel_type`. Break out the 
+different `fuel_type` categories into facets (ncol = 3).
+
+```{r eda-fuel-1}
+# density plot of combined fuel economy by fuel type with facets
+g1 <- ggplot2::ggplot(data = df_mpg) +
+  geom_density(aes(x = comb08, # notice the different location option for x aes
+                   fill = fuel_type)) + 
+  facet_wrap(~ fuel_type,
+             ncol = 3) +
   scale_x_log10() +
   theme_bw() +
   theme(legend.position = "none")
-
+# call plot
 g1
 ```
 
-Show the same plot without facets.
-``` {r EDA on fuel type 2}
+Now show the same plot without facets.
 
-g2 <- ggplot(data = df_mpg, aes(x=comb08)) +
+```{r eda-fuel-2}
+# density plot of combined fuel economy by fuel type without facets
+g2 <- ggplot2::ggplot(data = df_mpg, 
+                      mapping = aes(x = comb08)) + # now x aes is here 
   geom_density(aes(fill = fuel_type),
-                 position = "identity",
-                 alpha = 0.6,
+               position = "identity",
+               alpha = 0.6,
                adjust = 1) +
   scale_x_log10() +
   theme_bw() 
-
+# call plot
 g2
 ```
-Next, let's examine the effect of vehicle class on combined fuel economy for a single year, 2020.
 
-``` {r v-class, fig.cap="Highway Fuel Economy for 2020 Vehicles by Type", fig.align="center"}
+### More multivariate plotting
+
+Next, let's examine the effect of vehicle class on combined fuel economy for a
+single year: 2020.
+
+```{r v-class, fig.cap="Highway Fuel Economy for 2020 Vehicles by Type", fig.align="center"}
+# filter to year 2020 and reorder factor levels 
 df_mpg.2020 <- df_mpg %>%
   dplyr::filter(year == 2020) %>%
   dplyr::mutate(v_class = forcats::fct_reorder(v_class, highway08, median))
-
-g1 <- ggplot(data = df_mpg.2020) + 
-  geom_boxplot(aes(x = highway08, color = v_class, y = v_class)) + 
+# create plot of 2020 combined fuel economy
+g1 <- ggplot2::ggplot(data = df_mpg.2020) + 
+  geom_boxplot(aes(x = highway08, 
+                   color = v_class, 
+                   y = v_class)) + 
   scale_x_log10() +
   theme_bw() +
   ylab("") +
   xlab("Highway Fuel Economy") +
   theme(legend.position = "none")
-
+# call plot
 g1
 ```
 
-Finally, let's ask some simple questions and use some basic data wrangling to get the answers.
+### Practice questions
 
-Q1: Among *4-cylinder* vehicles with *Front-Wheel Drive*, what make/model has the best *highway fuel economy* in 2018?
-``` {r Q1}
+Finally, let's ask some simple questions and use some basic data wrangling to 
+get the answers.
+
+#### Question 1
+
+Among 4-cylinder vehicles with Front-Wheel Drive, what make/model has the best highway fuel economy in 2018?
+
+```{r Q1}
 df_mpg %>%
-  filter(cyl == 4, drive == "Front-Wheel Drive", year == 2018) %>%
-  slice_max(order_by = highway08, n=1) %>%
-  select(make, model, drive, year, highway08)
+  dplyr::filter(cyl == 4, 
+                drive == "Front-Wheel Drive", 
+                year == 2018) %>%
+  dplyr::slice_max(order_by = highway08, 
+                   n = 1) %>%
+  dplyr::select(make, model, drive, year, highway08)
 ```
   
+Q2: Among 8-cylinder vehicles with Rear-Wheel Drive, what make/model has the 
+worst city fuel economy in 2019?
 
-Q2: Among *8-cylinder* vehicles with *Rear-wheel Drive*, what make/model has the worst *city fuel economy* in 2019?
-``` {r Q2}
+```{r Q2}
 df_mpg %>%
-  filter(cyl == 8, drive == "Rear-Wheel Drive", year == 2019) %>%
-  slice_min(order_by = city08) %>%
-  #top_n(n = -1, wt = city08) %>%
-  select(make, model, drive, year, city08)
+  dplyr::filter(cyl == 8,
+                drive == "Rear-Wheel Drive",
+                year == 2019) %>%
+  dplyr::slice_min(order_by = city08) %>%
+  dplyr::select(make, model, drive, year, city08)
 ```
 
-```{r Q2a, echo = FALSE, out.width = "450pt", fig.align = "center", fig.cap = "The Bentley Mulsanne: $330k lets you park it on the sidewalk!"}
+```{r Q2a, echo=FALSE, out.width="450pt", fig.align="center", fig.cap="The Bentley Mulsanne: $330k lets you park it on the sidewalk!"}
 knitr::include_graphics("./images/Bentley_Mulsanne_2019.jpg")
 ```
 
-## Ch-7 Homework
+## Chapter 7 Homework
 
-Create a data fram from `df_mpg` that contains observations only for 
-"Front-Wheel Drive" vehicles (one of the `drive` levels) that run on 
-"Regular Gasoline" (a `fuel_type` level). With these data:  
-
-1. Create a series of boxplots showing combined fuel efficiency on the y-axis 
-and year on the x-axis.
