@@ -94,7 +94,7 @@ and the `stringr` package. We will also introduce the concept of
 **regular expressions** as a means to perform more advanced string
 manipulation.
 
-<img src="./images/parse_comic.png" width="1000" style="display: block; margin: auto;" />
+<img src="./images/parse_comic.png" style="display: block; margin: auto;" />
 
 ### String detect, match, subset
 
@@ -410,7 +410,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-10-09 11:43:01 MDT"
+## [1] "2020-10-09 20:40:49 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -426,12 +426,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1602265381
+## [1] 1602297649
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 50.8075019 years.  
+365d/yr] => 50.8085252 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -439,7 +439,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2020-10-09 11:43:01.
+format: 2020-10-09 20:40:49.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -551,7 +551,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1602265381
+## [1] 1602297649
 ```
 
 
@@ -562,9 +562,9 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 1.26
-##  $ min   : int 43
-##  $ hour  : int 11
+##  $ sec   : num 49.4
+##  $ min   : int 40
+##  $ hour  : int 20
 ##  $ mday  : int 9
 ##  $ mon   : int 9
 ##  $ year  : int 120

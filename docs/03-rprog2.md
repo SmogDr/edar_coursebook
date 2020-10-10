@@ -363,7 +363,7 @@ getwd()
 ```
 
 ```
-## [1] "/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook"
+## [1] "/Users/wendtke/Documents/R/edar_coursebook"
 ```
 
 This means that, for my current R session, R is working in the
@@ -1093,7 +1093,7 @@ Each R markdown file contains three basic elements: header, text, and code chunk
 The R Markdown "header" section is where you specify details about the file being created.  A markdown header contains **YAML** metadata, which stands for [*"YAML Ain't Markup Language"*](https://yaml.org/spec/1.2/spec.html#Introduction){target="_blank"}. The YAML (pronounced like “camel") header is essentially a list of directives (referred to as "key:value" pairs) that help application software interpret the file. A YAML header can act simultaneously as a "configuration file", a "log file", and "translator file" - allowing one software program to read the output of another program.  An example header with YAML metadata is shown below.
 
 <div class="figure" style="text-align: center">
-<img src="./images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file." width="500" />
+<img src="./images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file."  />
 <p class="caption">(\#fig:YAML-1)Example of a YAML header to render an R Markdown into an html file.</p>
 </div>
 
@@ -1107,7 +1107,7 @@ and [pdf](https://bookdown.org/yihui/rmarkdown/pdf-document.html){target="_blank
 Sometimes, you will want to provide nested formatting directives in your markdown header.  For example, you can specify the addition of a ***"table of contents"*** to your html output file that ***"floats"*** alongside the text. In that case, your YAML metadata would look like this: 
 
 <div class="figure" style="text-align: center">
-<img src="./images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents." width="497" />
+<img src="./images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents."  />
 <p class="caption">(\#fig:YAML-2)Example R Markdown header with nested YAML directives to render an html file with a floating table of contents.</p>
 </div>
 

@@ -326,7 +326,7 @@ knitr::include_graphics("./images/map_anno1.png")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="./images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input." width="632" />
+<img src="./images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input."  />
 <p class="caption">(\#fig:map-anno1)The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input.</p>
 </div>
 
