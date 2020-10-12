@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-10-09" />
+<meta name="date" content="2020-10-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -430,12 +430,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This Chapter is designed around the following learning objectives. Upon
 completion, you should be able to:</p>
 <ul>
-<li>Define correlation, causation, and their difference</li>
-<li>Conduct a formal exploratory data analysis on multivariate data using geoms from <code>ggplot</code></li>
+<li>Understand the use and context of bivariate data</li>
+<li>Recognize the motivation behind a scatterplot from different perspectives</li>
+<li>Define correlation, causation, and the difference</li>
 <li>Create and interpret a scatterplot between two variables</li>
-<li>Create and interpret a Q-Q plot</li>
-<li>Create and interpret directional bias in a Tukey mean difference plot</li>
-<li>Create and extract descriptive statistics and qualitative information from Boxplots</li>
+<li>Leverage <code>ggplot2</code> for multivariate exploratory data analysis through facets and colors</li>
 </ul>
 </div>
 <div id="bivariate" class="section level2">
@@ -731,7 +730,7 @@ Whenever you use <strong>color</strong> to differentiate variables, use symbols,
 <h2><span class="header-section-number">7.5</span> Chapter 7 Exercises</h2>
 <div id="fuel-economy-data" class="section level3">
 <h3><span class="header-section-number">7.5.1</span> Fuel economy data</h3>
-<p>This in-class exercise is will conduct an exploratory, multivariate data
+<p>This in-class exercise will conduct an exploratory, multivariate data
 analysis on vehicle fuel economy. We will begin by downloading a .zip file from
 <a href="https://www.fueleconomy.gov/feg/ws/" target="_blank">fueleconomy.gov</a>, which
 is a Federal program that tracks the fuel economy of all vehicles sold in the
@@ -918,8 +917,11 @@ exclude from certain analyses later…</p>
 <p>Filter the <code>df_mpg</code> data for <em>any variables</em> (<code>dplyr::any_vars()</code>) that contain
 <code>NA</code>. Like <code>tidyselect::all_of()</code> that was used to clean the dataframe above,
 the <code>any_vars()</code> function is a helper function designed for use within <code>dplyr</code>
-and <code>tidyr</code> verbs. <strong>This example is for illustration only.</strong> Some of the
-functions have been deprecated or superseded and others should be used instead.</p>
+and <code>tidyr</code> verbs. <em>Word to the wise</em>: <code>dplyr::any_vars()</code> and similar variants
+have been superseded, which means new updates are not being made to them, and
+the developers will eventually encourage users to transition to using
+<code>dplyr::across()</code>. If you are interested, take a look at <a href="https://community.rstudio.com/t/using-filter-with-across-to-keep-all-rows-of-a-data-frame-that-include-a-missing-value-for-any-variable/68442">this discussion thread</a>
+on the topic.</p>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="eda2.html#cb270-1"></a><span class="co"># base R + tidyverse approach to examining missing data</span></span>
 <span id="cb270-2"><a href="eda2.html#cb270-2"></a>df_mpg.na<span class="fl">.2</span> &lt;-<span class="st"> </span>df_mpg <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb270-3"><a href="eda2.html#cb270-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter_all</span>(dplyr<span class="op">::</span><span class="kw">any_vars</span>(<span class="kw">is.na</span>(.)))</span>
