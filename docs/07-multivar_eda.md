@@ -7,13 +7,11 @@
 This Chapter is designed around the following learning objectives. Upon
 completion, you should be able to:
 
-- Define correlation, causation, and their difference
-- Conduct a formal exploratory data analysis on multivariate data using geoms from `ggplot`
-- Create and interpret a scatterplot between two variables 
-- Create and interpret a Q-Q plot
-- Create and interpret directional bias in a Tukey mean difference plot
-- Create and extract descriptive statistics and qualitative information from Boxplots
-
+- Understand the use and context of bivariate data
+- Recognize the motivation behind a scatterplot from different perspectives
+- Define correlation, causation, and the difference
+- Create and interpret a scatterplot between two variables
+- Leverage `ggplot2` for multivariate exploratory data analysis through facets and colors
 
 ## Bivariate Data {#bivariate}
 
@@ -326,7 +324,7 @@ ggplot2::ggplot(data = mtcars,
 
 ### Fuel economy data
 
-This in-class exercise is will conduct an exploratory, multivariate data 
+This in-class exercise will conduct an exploratory, multivariate data 
 analysis on vehicle fuel economy. We will begin by downloading a .zip file from
 [fueleconomy.gov](https://www.fueleconomy.gov/feg/ws/){target="_blank"}, which
 is a Federal program that tracks the fuel economy of all vehicles sold in the
@@ -575,8 +573,11 @@ exclude from certain analyses later...
 Filter the `df_mpg` data for *any variables* (`dplyr::any_vars()`) that contain
 `NA`. Like `tidyselect::all_of()` that was used to clean the dataframe above,
 the `any_vars()` function is a helper function designed for use within `dplyr`
-and `tidyr` verbs. **This example is for illustration only.** Some of the
-functions have been deprecated or superseded and others should be used instead.
+and `tidyr` verbs. *Word to the wise*: `dplyr::any_vars()` and similar variants 
+have been superseded, which means new updates are not being made to them, and
+the developers will eventually encourage users to transition to using
+`dplyr::across()`. If you are interested, take a look at [this discussion thread](https://community.rstudio.com/t/using-filter-with-across-to-keep-all-rows-of-a-data-frame-that-include-a-missing-value-for-any-variable/68442)
+on the topic.
 
 
 ```r
