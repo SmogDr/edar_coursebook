@@ -603,8 +603,11 @@ exclude from certain analyses later...
 Filter the `df_mpg` data for *any variables* (`dplyr::any_vars()`) that contain
 `NA`. Like `tidyselect::all_of()` that was used to clean the dataframe above,
 the `any_vars()` function is a helper function designed for use within `dplyr`
-and `tidyr` verbs. **This example is for illustration only.** Some of the
-functions have been deprecated or superseded and others should be used instead.
+and `tidyr` verbs. *Word to the wise*: `dplyr::any_vars()` and similar variants 
+have been superseded, which means new updates are not being made to them, and
+the developers will eventually encourage users to transition to using
+`dplyr::across()`. If you are interested, take a look at [this discussion thread](https://community.rstudio.com/t/using-filter-with-across-to-keep-all-rows-of-a-data-frame-that-include-a-missing-value-for-any-variable/68442)
+on the topic.
 
 ```{r df-mpg-desc-6}
 # base R + tidyverse approach to examining missing data
