@@ -44,8 +44,7 @@ vector, one after another.  The bottom set uses a for-loop to accomplish the
 same task, albeit in a longer (and harder to follow) version.
 
 The pipe operator `%>%` is an ally in this endeavor because it allows you to 
-pass an object through series of functions onto a vector (or data frame) in 
-serial order. The pipe function is also easier to follow (with your mind) because 
+pass an object (like a vector or data frame) through series of functions in serial order. The pipe function is also easier to follow (with your mind) because 
 it allows you to interpret the code as if you were reading instructions in a 
 "how-to" manual: 
 *"take this object, then do this, then do this, then do that"*. Without the `%>%`
@@ -74,7 +73,7 @@ daily_show_2000 <- daily_show %>%
 ```
 
 In the nested example above, we "see" the `dplyr::select()` function first, yet 
-yet the arguments to this function show up last (ar the end of the nested code).
+yet the arguments to this function show up last (at the end of the nested code).
 This separation between functions and their arguments only gets worse as the 
 degree of nesting increases. The piped code, however, produces the same result
 as the nested code but in a much more "readable" fashion. A similar analogy 
@@ -84,13 +83,13 @@ harder to follow!).
 ## Writng Functions
 
 > <span style="color: blue;"> "If you have to do something more than twice,
-write a function to do it." - Programming Proverb </span>
+use a function to do it." - Programming Proverb </span>
 
 Up to this point, we have relied entirely on functions sourced from base R or
-from packages like `Tidyverse;:`(and for good reason - they are terribly useful).  
-Every programmer, howver, at some point in their journey, discovers that the 
+from packages like `Tidyverse::`(and for good reason - they are very useful).  
+Every programmer, however, at some point in their journey, discovers that the 
 function they are desiring simply doesn't exist - at least not in the way that 
-suits their vision. To that end, its worth learning how to create your own 
+suits their vision. To that end, it's worth learning how to create your own 
 functions.
 
 The syntax for function generation is relatively straight forward:
@@ -113,7 +112,7 @@ accessed by passing the function name as an argument to:
 - `formals()`, to see arguments
 - `body()`, to see the function's code
   - or type just the function name, without `()`, into the console
-  - *but note that many base R functions are coded in C* and can be accessed 
+  - *but note that many base R functions are coded in C++* and can be accessed 
   [on GitHub](https://github.com/wch/r-source){target="_blank"}. 
 - `environment()`, to see where the function resides.
   - more on *R environments* below
@@ -128,7 +127,7 @@ happens within the curly braces `{ }` that follow the function assignment.
 
 ```r
 my_mean <- function(x) {
-     y <- sum(x) / length(x) # calculate mean(x) if true
+     y <- sum(x) / length(x) 
      return(y)
    }
 
@@ -143,11 +142,11 @@ While this function is simple and straightforward, it does have some limitations
 For example, what happens if we pass a character vector to `my_mean` or a numeric
 vector that contains `NA` values?  In the former case, we will get an error
 because our function uses the base R function `sum()`, which requires numeric, 
-logical, or complex vectors as inpout (so our function inherits the properties
+logical, or complex vectors as input (so our function inherits the properties
 of that function).
 
 If any `NA` values are present, however, we are less fortunate: only NA is 
-returned.  This many not seem like a big deal but if your analyss depends on
+returned.  This many not seem like a big deal but if your analysis depends on
 calling `my_mean` in several locations (over and over), you might have a hard 
 time debugging it...
 
@@ -197,8 +196,7 @@ and so they inherit the properties of those functions.
 Second, you may have noticed that while 
 the `body()` code in `my_mean2` assigns the mean of `x` to a new variable, `y`, 
 this function-specific variable does not show up in the **"Global Environment"** 
-pane after the function is executed. This is due to how *environments* are created
-in R: an environment essentially draws walls around objects.  
+pane after the function is executed. This is due to how *environments* are created in R: an *environment* essentially draws walls around objects.  
 
 Indeed, objects that are defined within functions are part of the *evaluation*
 *environment* within that function, even if the function returns the value of 
@@ -219,8 +217,8 @@ the section that follows) will demonstrate how you can streamline that process
 using functional programming. Let's create a function to *"import a file with* 
 *its name appended".*
 
-For this example, assume that your files represent data from network of sensors, 
-where the ID assigned to each sensor is **included in its filename** but 
+For this example, assume that your files represent data from a network of sensors, 
+where the name/ID assigned to each sensor is **included in its file name** but 
 *not in the file itself*. To give you an example of what we are working with,
 lets use `list.files()` to look at the file names and paths. For this exercise
 we show a short list of 8 files (4 each from two sensors) but one could imagine
@@ -230,7 +228,7 @@ this list being hundreds of entries.*To Note: these are real data collected*
 *and published*
 *by our research group*
 *[here](https://doi.org/10.1016/j.atmosenv.2019.117067){target="_blank"} in 2019.*
-The "PA" in each filename stands for 
+The "PA" in each file name stands for 
 [Purple Air](www.purpleair.com){target="_blank"}.
 
 
@@ -250,9 +248,8 @@ list.files('./data/purpleair/', full.names=TRUE)
 ```
 
 Thus, we wish to write a function that not only imports these files into a data
-frame but also extracts the part of the filename (i.e., PA019 and PA020) as one 
-of the data columns (otherwise, when the data were, combined we might not know 
-what data was associated with a given sensor!).  In this function we will also 
+frame but also extracts the part of the file name (i.e., PA019 and PA020) 
+as one of the data columns (otherwise, when the data were combined we might not know what data was associated with a given sensor!).  In this function we will also 
 include a step to clean up the newly created data frame with a call to 
 `dplyr::select()` to retain only a few variables of interest.  Seeing that these
 files are .csv, we can leverage `readr::read_csv`
@@ -267,7 +264,7 @@ import.w.name <- function(pathname) {
   #create a tibble by importing the 'pathname' file
   df <- read_csv(pathname, col_names = TRUE)
   df <- df %>%
-    # use stringr::str_extract & a regex to extract sensor ID from file name
+    # use stringr::str_extract & a regex to get sensor ID from file name
     mutate(sensor_ID = str_extract(pathname, 
                                   "(?<=//)[:alnum:]+(?=_)")) %>%
     # clean up the resultant data frame with dplyr::select
@@ -276,7 +273,8 @@ import.w.name <- function(pathname) {
            current_humidity, 
            pressure,
            pm2_5_atm,
-           sensor_ID)
+           sensor_ID) %>%
+    na.omit() # remove NA values, which happens when sensor goes offline
   return(df)
 }
 ```
@@ -320,74 +318,178 @@ easy to "read".
 The `map_` family of functions are the core of the `purrr` package. These 
 functions are intended to *map* functions (i.e., to apply them) to individual elements in a vector (or data frames); the `map_` functions are similar to functions like `lapply()` and `vapply()` from base R (but more versatile). *"Mapping"* a function onto a vector is a common theme of functional programming. To illustrate how the `map_` functions work, its best to visualize the process first.
 
-
-```r
-knitr::include_graphics("./images/map_anno1.png")
-```
-
 <div class="figure" style="text-align: center">
-<img src="./images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input."  />
+<img src="./images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input." width="632" />
 <p class="caption">(\#fig:map-anno1)The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input.</p>
 </div>
 
-As shown above in Figure \@ref(fig:map-anno1), the generic form of `map()`  always returns a `list` object as the output. Working with lists is one of the mental hurdles to overcome when learning `map()`. However, there are variants in the `map_` family of functions that return various object types.  
+As shown above in Figure \@ref(fig:map-anno1), the generic form of `map()`  always returns a `list` object as the output (thanks to Hadley Wickham for the [graphic](https://adv-r.hadley.nz/functionals.html#map){target="_blank"}). A  `list` is a generic vector that can contain multiple objects (other vectors, data frames, etc.). Indeed, a data frame (and a `tibble`) is a special kind of list: a data frame is a list of vectors (columns) of equal length. A data frame can contain different vector objects but those objects must be placed in separate columns and each column vector must be the same length (when all the columns are equal length that means that data frames are *rectangular* lists). A generic `list` does not need to be rectangular because generic list entries are more distinct. Further, a list can contain another list (like a set of small boxes that are nested within a larger box). Think of a `list` like a drawer organizer - it can contain lots of different objects, all of which might be related to another in some way or, at least, might be used together for some common purpose.   
+
+   - A ***vector*** is a one-dimensional object where all the entries are the same type.  
+   - A ***matrix*** is a two-dimensional (rectangular) object where all entries are the same type, but ordered into *rows* and *column* indices.
+   - A ***data frame*** is a two dimensional (rectangular) object that contains columns of different vectors. The type of vector (e.g., `character`, `numeric`, `logical`, etc.) can differ from one column to the next but all entries within each vector column must be the same.
+   - A ***list*** can contain different vector objects of different types and different lengths. A list can also contain other lists.  A list does not need to be rectangular.
+   
+To illustrate the versatility of lists, let's create one that contains a numeric vector, a matrix, and a data frame.
 
 
 ```r
-purrr_variants <- tibble(
-  name = c("map()",
-           "map_lgl()", 
-           "map_int()", 
-           "map_dbl()", 
-           "map_chr()", 
-           "map_dfr()", 
-           "map_dfc()"),
-  returns = c("list",
-              "logical",
-              "integer",
-              "numeric",
-              "character",
-              "data frame, by rows",
-              "data frame, by columns")
-)
+my.chr.vector <- c("Harry", "Ron", "Hermione", "Draco")
 
-knitr::kable(purrr_variants, col.names = c("`Purrr::` Function", "Object Returned"))
+my.num.matrix <- matrix(data = 1:20, nrow=5)
+
+my.df <- slice_sample(.data = mpg, n=7)
+
+my.list <- list("entry_1" = my.chr.vector, 
+                "entry_2" = my.num.matrix, 
+                "entry_3" = my.df)
+
+glimpse(my.list)
+```
+
+```
+## List of 3
+##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
+##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
+##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
+##   ..$ manufacturer: chr [1:7] "dodge" "dodge" "jeep" "subaru" ...
+##   ..$ model       : chr [1:7] "ram 1500 pickup 4wd" "caravan 2wd" "grand cherokee 4wd" "impreza awd" ...
+##   ..$ displ       : num [1:7] 5.2 3 4.7 2.5 4.7 2 2.2
+##   ..$ year        : int [1:7] 1999 1999 1999 1999 2008 2008 1999
+##   ..$ cyl         : int [1:7] 8 6 8 4 8 4 4
+##   ..$ trans       : chr [1:7] "auto(l4)" "auto(l4)" "auto(l4)" "auto(l4)" ...
+##   ..$ drv         : chr [1:7] "4" "f" "4" "4" ...
+##   ..$ cty         : int [1:7] 11 17 14 19 14 21 19
+##   ..$ hwy         : int [1:7] 15 24 17 26 19 29 26
+##   ..$ fl          : chr [1:7] "r" "r" "r" "r" ...
+##   ..$ class       : chr [1:7] "pickup" "minivan" "suv" "subcompact" ...
+```
+
+Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 
+
+
+```r
+my.list[1]
+```
+
+```
+## $entry_1
+## [1] "Harry"    "Ron"      "Hermione" "Draco"
+```
+
+Note that *"single bracket"* indexing returns a "list element" of class: `list`.
+
+
+```r
+class(my.list[1])
+```
+
+```
+## [1] "list"
+```
+
+If you want access to the vector contents of the list element, you can use the `$` symbol to access the contents of each list entry, or, you can use *"double bracket"* indexing, `[[ ]]`:
+
+
+```r
+my.list$entry_1
+```
+
+```
+## [1] "Harry"    "Ron"      "Hermione" "Draco"
+```
+
+```r
+class(my.list$entry_1)
+```
+
+```
+## [1] "character"
 ```
 
 
+```r
+my.list[[2]]
+```
 
-|`Purrr::` Function |Object Returned        |
-|:------------------|:----------------------|
-|map()              |list                   |
-|map_lgl()          |logical                |
-|map_int()          |integer                |
-|map_dbl()          |numeric                |
-|map_chr()          |character              |
-|map_dfr()          |data frame, by rows    |
-|map_dfc()          |data frame, by columns |
+```
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    6   11   16
+## [2,]    2    7   12   17
+## [3,]    3    8   13   18
+## [4,]    4    9   14   19
+## [5,]    5   10   15   20
+```
 
+```r
+class(my.list[[2]])
+```
+
+```
+## [1] "matrix" "array"
+```
+
+Working with lists is one of the mental hurdles to overcome when learning `map()`. However, there are variants in the `map_` family of functions that return simpler object types; we will work with these simplified functions to begin.  
+
+
+|`Purrr::` Function |Object Type Returned                  |
+|:------------------|:-------------------------------------|
+|map()              |list                                  |
+|map_lgl()          |logical                               |
+|map_int()          |integer                               |
+|map_dbl()          |numeric                               |
+|map_chr()          |character                             |
+|map_dfr()          |data frame (output by row-binding)    |
+|map_dfc()          |data frame (output by column-binding) |
+
+Let's use `map_dfr()` to apply our function, `import.w.name()`, onto the vector of file names and paths (`file_list`). The *"r"* in `map_dfr()` means that the resultant data frame output by `map_` will be created by binding rows together as the function moves down each index in the file list.  This is shown schematically in the figure below.
 
 
 ```r
 file_list <- list.files('./data/purpleair/', full.names=TRUE)
-PA_data_merged <- map_df(file_list, import.w.name)
+PA_data_merged <- map_dfr(file_list, import.w.name) 
+
+glimpse(PA_data_merged)
 ```
 
-### Working with Lists
+```
+## Rows: 6,374
+## Columns: 6
+## $ UTCDateTime      <chr> "2018/10/22T17:52:21z", "2018/10/22T17:53:41z", "201…
+## $ current_temp_f   <dbl> 90, 86, 87, 87, 87, 87, 86, 86, 86, 86, 86, 86, 86, …
+## $ current_humidity <dbl> 12, 13, 13, 13, 13, 13, 12, 13, 13, 13, 13, 13, 13, …
+## $ pressure         <dbl> 851.66, 851.68, 851.56, 851.59, 851.54, 851.57, 851.…
+## $ pm2_5_atm        <dbl> 2.45, 3.43, 2.76, 2.00, 1.82, 1.98, 1.95, 2.48, 2.27…
+## $ sensor_ID        <chr> "PA019", "PA019", "PA019", "PA019", "PA019", "PA019"…
+```
+
+<div class="figure" style="text-align: center">
+<img src="./images/map_dfr_anno.png" alt="Example: using `map_dfr()` to import a file list using a custom function" width="632" />
+<p class="caption">(\#fig:map-dfr-anno)Example: using `map_dfr()` to import a file list using a custom function</p>
+</div>
+
 
 ## Exercises
 
 
 
-## Homework
+## Homework/Exercises
 
-Write a function that takes a vector of numbers as input and outputs that vector
+1. Write a function that takes a vector of numbers as input and outputs that vector
 sorted from smallest to largest value. Do this with only base R code and then 
 with `dplyr::arrange()`. Hint: for the latter case you should look up the 
 `require()` function.
 
-Modify the function `import.w.name` to include two additional steps:  
-  1. Convert the character vector `UTCDateTime` into a DateTime class object.
-  2. Import the "date" part of the filename (in addition to the sensor ID) and 
-  create a new column variable with this information.  Hint: provide regex pattern.
+2. Modify the function `import.w.name` to import the "date" part of the filename (in addition to the sensor ID).  Create a new column variable called "date_created" with this information.  Hint: you will need to apply a regex pattern like this: `"(?<=_)[:alnum:]+(?=\\.)"` 
+
+3. Write a pipeline to:
+  1. Convert the character vector `UTCDateTime` into new column of class `POSIXct` with the name `date`. Note - not all the indices in `UTCDateTime` will parse correctly.  
+  2. Rename all the columns to shorter names.
   
+4. Can you find the 3 indices of `UTCDateTime` in `PA_data_merged` that failed to parse with `lubridate::`?  Hint: use the `which()` function to return the row numbers in question since: normal entries in `UTCDateTime` are all the same number of characters `nchar()` or entries that failed to parse in the new `date` column will have `NA` associated with them.
+
+5. Create EDA plots (cdf, boxplot, histogram, time series) of the pm2_5_atm variable from `PA_data_merged`. Use `color = ` or `fill =` as an aesthetic to differentiate each sensor by `sensor_ID`.  Do the data have a central tendency? Do they appear normally distributed? Do events show up in the time series?
+
+6. Create a scatterplot where x = `pm2_5_atm` from the sensor `PA0019` and y = `pm2_5_atm` from the sensor `PA0020`
+  
+

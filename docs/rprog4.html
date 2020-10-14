@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-10-11" />
+<meta name="date" content="2020-10-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,7 @@
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -319,10 +320,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a><ul>
 <li class="chapter" data-level="8.4.1" data-path="rprog4.html"><a href="rprog4.html#function-mapping"><i class="fa fa-check"></i><b>8.4.1</b> Function Mapping</a></li>
-<li class="chapter" data-level="8.4.2" data-path="rprog4.html"><a href="rprog4.html#working-with-lists"><i class="fa fa-check"></i><b>8.4.2</b> Working with Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#exercises"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
-<li class="chapter" data-level="8.6" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.6</b> Homework</a></li>
+<li class="chapter" data-level="8.6" data-path="rprog4.html"><a href="rprog4.html#homeworkexercises"><i class="fa fa-check"></i><b>8.6</b> Homework/Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a><ul>
 <li class="chapter" data-level="9.1" data-path="transform.html"><a href="transform.html#ch.-9-objectives"><i class="fa fa-check"></i><b>9.1</b> Ch. 9 Objectives</a></li>
@@ -456,8 +456,7 @@ execute this code:</p>
 vector, one after another. The bottom set uses a for-loop to accomplish the
 same task, albeit in a longer (and harder to follow) version.</p>
 <p>The pipe operator <code>%&gt;%</code> is an ally in this endeavor because it allows you to
-pass an object through series of functions onto a vector (or data frame) in
-serial order. The pipe function is also easier to follow (with your mind) because
+pass an object (like a vector or data frame) through series of functions in serial order. The pipe function is also easier to follow (with your mind) because
 it allows you to interpret the code as if you were reading instructions in a
 “how-to” manual:
 <em>“take this object, then do this, then do this, then do that”</em>. Without the <code>%&gt;%</code>
@@ -481,7 +480,7 @@ the code below should make clear which set is easier to comprehend:</p>
 <span id="cb286-15"><a href="rprog4.html#cb286-15"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2000</span>) <span class="op">%&gt;%</span></span>
 <span id="cb286-16"><a href="rprog4.html#cb286-16"></a><span class="st">  </span><span class="kw">select</span>(job, date, name)</span></code></pre></div>
 <p>In the nested example above, we “see” the <code>dplyr::select()</code> function first, yet
-yet the arguments to this function show up last (ar the end of the nested code).
+yet the arguments to this function show up last (at the end of the nested code).
 This separation between functions and their arguments only gets worse as the
 degree of nesting increases. The piped code, however, produces the same result
 as the nested code but in a much more “readable” fashion. A similar analogy
@@ -492,13 +491,13 @@ harder to follow!).</p>
 <h2><span class="header-section-number">8.3</span> Writng Functions</h2>
 <blockquote>
 <p><span style="color: blue;"> “If you have to do something more than twice,
-write a function to do it.” - Programming Proverb </span></p>
+use a function to do it.” - Programming Proverb </span></p>
 </blockquote>
 <p>Up to this point, we have relied entirely on functions sourced from base R or
-from packages like <code>Tidyverse;:</code>(and for good reason - they are terribly useful).<br />
-Every programmer, howver, at some point in their journey, discovers that the
+from packages like <code>Tidyverse::</code>(and for good reason - they are very useful).<br />
+Every programmer, however, at some point in their journey, discovers that the
 function they are desiring simply doesn’t exist - at least not in the way that
-suits their vision. To that end, its worth learning how to create your own
+suits their vision. To that end, it’s worth learning how to create your own
 functions.</p>
 <p>The syntax for function generation is relatively straight forward:</p>
 <div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="rprog4.html#cb287-1"></a><span class="co">#example code; will not run</span></span>
@@ -516,7 +515,7 @@ accessed by passing the function name as an argument to:</p>
 <li><code>body()</code>, to see the function’s code
 <ul>
 <li>or type just the function name, without <code>()</code>, into the console</li>
-<li><em>but note that many base R functions are coded in C</em> and can be accessed
+<li><em>but note that many base R functions are coded in C++</em> and can be accessed
 <a href="https://github.com/wch/r-source" target="_blank">on GitHub</a>.</li>
 </ul></li>
 <li><code>environment()</code>, to see where the function resides.
@@ -532,7 +531,7 @@ which we calculate the mean (<code>sum(x) / length(x)</code>), assign it to a
 value <code>y</code>, and the return <code>y</code> as output. Note that all the <em>“action”</em> for <code>my_mean</code>
 happens within the curly braces <code>{ }</code> that follow the function assignment.</p>
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="rprog4.html#cb288-1"></a>my_mean &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb288-2"><a href="rprog4.html#cb288-2"></a>     y &lt;-<span class="st"> </span><span class="kw">sum</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x) <span class="co"># calculate mean(x) if true</span></span>
+<span id="cb288-2"><a href="rprog4.html#cb288-2"></a>     y &lt;-<span class="st"> </span><span class="kw">sum</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x) </span>
 <span id="cb288-3"><a href="rprog4.html#cb288-3"></a>     <span class="kw">return</span>(y)</span>
 <span id="cb288-4"><a href="rprog4.html#cb288-4"></a>   }</span>
 <span id="cb288-5"><a href="rprog4.html#cb288-5"></a></span>
@@ -542,10 +541,10 @@ happens within the curly braces <code>{ }</code> that follow the function assign
 For example, what happens if we pass a character vector to <code>my_mean</code> or a numeric
 vector that contains <code>NA</code> values? In the former case, we will get an error
 because our function uses the base R function <code>sum()</code>, which requires numeric,
-logical, or complex vectors as inpout (so our function inherits the properties
+logical, or complex vectors as input (so our function inherits the properties
 of that function).</p>
 <p>If any <code>NA</code> values are present, however, we are less fortunate: only NA is
-returned. This many not seem like a big deal but if your analyss depends on
+returned. This many not seem like a big deal but if your analysis depends on
 calling <code>my_mean</code> in several locations (over and over), you might have a hard
 time debugging it…</p>
 <div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="rprog4.html#cb290-1"></a><span class="kw">my_mean</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="ot">NA</span>))</span></code></pre></div>
@@ -575,8 +574,7 @@ and so they inherit the properties of those functions.<br />
 Second, you may have noticed that while
 the <code>body()</code> code in <code>my_mean2</code> assigns the mean of <code>x</code> to a new variable, <code>y</code>,
 this function-specific variable does not show up in the <strong>“Global Environment”</strong>
-pane after the function is executed. This is due to how <em>environments</em> are created
-in R: an environment essentially draws walls around objects.</p>
+pane after the function is executed. This is due to how <em>environments</em> are created in R: an <em>environment</em> essentially draws walls around objects.</p>
 <p>Indeed, objects that are defined within functions are part of the <em>evaluation</em>
 <em>environment</em> within that function, even if the function returns the value of
 the object as output (<em>“what happens inside functions stays inside functions”</em>).
@@ -596,8 +594,8 @@ that you want to import and analyze in a single data frame. This exercise (and
 the section that follows) will demonstrate how you can streamline that process
 using functional programming. Let’s create a function to <em>"import a file with</em>
 <em>its name appended".</em></p>
-<p>For this example, assume that your files represent data from network of sensors,
-where the ID assigned to each sensor is <strong>included in its filename</strong> but
+<p>For this example, assume that your files represent data from a network of sensors,
+where the name/ID assigned to each sensor is <strong>included in its file name</strong> but
 <em>not in the file itself</em>. To give you an example of what we are working with,
 lets use <code>list.files()</code> to look at the file names and paths. For this exercise
 we show a short list of 8 files (4 each from two sensors) but one could imagine
@@ -607,7 +605,7 @@ this list being hundreds of entries.<em>To Note: these are real data collected</
 <em>and published</em>
 <em>by our research group</em>
 <em><a href="https://doi.org/10.1016/j.atmosenv.2019.117067" target="_blank">here</a> in 2019.</em>
-The “PA” in each filename stands for
+The “PA” in each file name stands for
 <a href="www.purpleair.com" target="_blank">Purple Air</a>.</p>
 <div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="rprog4.html#cb295-1"></a><span class="kw">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="dt">full.names=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;./data/purpleair//PA019_20181022.csv&quot;
@@ -619,9 +617,8 @@ The “PA” in each filename stands for
 ## [7] &quot;./data/purpleair//PA020_20181024.csv&quot;
 ## [8] &quot;./data/purpleair//PA020_20181025.csv&quot;</code></pre>
 <p>Thus, we wish to write a function that not only imports these files into a data
-frame but also extracts the part of the filename (i.e., PA019 and PA020) as one
-of the data columns (otherwise, when the data were, combined we might not know
-what data was associated with a given sensor!). In this function we will also
+frame but also extracts the part of the file name (i.e., PA019 and PA020)
+as one of the data columns (otherwise, when the data were combined we might not know what data was associated with a given sensor!). In this function we will also
 include a step to clean up the newly created data frame with a call to
 <code>dplyr::select()</code> to retain only a few variables of interest. Seeing that these
 files are .csv, we can leverage <code>readr::read_csv</code></p>
@@ -633,7 +630,7 @@ files are .csv, we can leverage <code>readr::read_csv</code></p>
 <span id="cb297-6"><a href="rprog4.html#cb297-6"></a>  <span class="co">#create a tibble by importing the &#39;pathname&#39; file</span></span>
 <span id="cb297-7"><a href="rprog4.html#cb297-7"></a>  df &lt;-<span class="st"> </span><span class="kw">read_csv</span>(pathname, <span class="dt">col_names =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb297-8"><a href="rprog4.html#cb297-8"></a>  df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></span>
-<span id="cb297-9"><a href="rprog4.html#cb297-9"></a><span class="st">    </span><span class="co"># use stringr::str_extract &amp; a regex to extract sensor ID from file name</span></span>
+<span id="cb297-9"><a href="rprog4.html#cb297-9"></a><span class="st">    </span><span class="co"># use stringr::str_extract &amp; a regex to get sensor ID from file name</span></span>
 <span id="cb297-10"><a href="rprog4.html#cb297-10"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">sensor_ID =</span> <span class="kw">str_extract</span>(pathname, </span>
 <span id="cb297-11"><a href="rprog4.html#cb297-11"></a>                                  <span class="st">&quot;(?&lt;=//)[:alnum:]+(?=_)&quot;</span>)) <span class="op">%&gt;%</span></span>
 <span id="cb297-12"><a href="rprog4.html#cb297-12"></a><span class="st">    </span><span class="co"># clean up the resultant data frame with dplyr::select</span></span>
@@ -642,9 +639,10 @@ files are .csv, we can leverage <code>readr::read_csv</code></p>
 <span id="cb297-15"><a href="rprog4.html#cb297-15"></a>           current_humidity, </span>
 <span id="cb297-16"><a href="rprog4.html#cb297-16"></a>           pressure,</span>
 <span id="cb297-17"><a href="rprog4.html#cb297-17"></a>           pm2_<span class="dv">5</span>_atm,</span>
-<span id="cb297-18"><a href="rprog4.html#cb297-18"></a>           sensor_ID)</span>
-<span id="cb297-19"><a href="rprog4.html#cb297-19"></a>  <span class="kw">return</span>(df)</span>
-<span id="cb297-20"><a href="rprog4.html#cb297-20"></a>}</span></code></pre></div>
+<span id="cb297-18"><a href="rprog4.html#cb297-18"></a>           sensor_ID) <span class="op">%&gt;%</span></span>
+<span id="cb297-19"><a href="rprog4.html#cb297-19"></a><span class="st">    </span><span class="kw">na.omit</span>() <span class="co"># remove NA values, which happens when sensor goes offline</span></span>
+<span id="cb297-20"><a href="rprog4.html#cb297-20"></a>  <span class="kw">return</span>(df)</span>
+<span id="cb297-21"><a href="rprog4.html#cb297-21"></a>}</span></code></pre></div>
 <p>After sourcing this function, we can test it out on the first entry of our list
 of files. <em>We specify the first entry with a subset to</em> <code>file_list[1]</code>.</p>
 <div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="rprog4.html#cb298-1"></a>PA_data_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">import.w.name</span>(file_list[<span class="dv">1</span>])</span>
@@ -677,37 +675,74 @@ easy to “read”.</p>
 <h3><span class="header-section-number">8.4.1</span> Function Mapping</h3>
 <p>The <code>map_</code> family of functions are the core of the <code>purrr</code> package. These
 functions are intended to <em>map</em> functions (i.e., to apply them) to individual elements in a vector (or data frames); the <code>map_</code> functions are similar to functions like <code>lapply()</code> and <code>vapply()</code> from base R (but more versatile). <em>“Mapping”</em> a function onto a vector is a common theme of functional programming. To illustrate how the <code>map_</code> functions work, its best to visualize the process first.</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="rprog4.html#cb300-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;./images/map_anno1.png&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:map-anno1"></span>
-<img src="images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input."  />
+<img src="images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input." width="632" />
 <p class="caption">
 Figure 8.1: The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input.
 </p>
 </div>
-<p>As shown above in Figure <a href="rprog4.html#fig:map-anno1">8.1</a>, the generic form of <code>map()</code> always returns a <code>list</code> object as the output. Working with lists is one of the mental hurdles to overcome when learning <code>map()</code>. However, there are variants in the <code>map_</code> family of functions that return various object types.</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="rprog4.html#cb301-1"></a>purrr_variants &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb301-2"><a href="rprog4.html#cb301-2"></a>  <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;map()&quot;</span>,</span>
-<span id="cb301-3"><a href="rprog4.html#cb301-3"></a>           <span class="st">&quot;map_lgl()&quot;</span>, </span>
-<span id="cb301-4"><a href="rprog4.html#cb301-4"></a>           <span class="st">&quot;map_int()&quot;</span>, </span>
-<span id="cb301-5"><a href="rprog4.html#cb301-5"></a>           <span class="st">&quot;map_dbl()&quot;</span>, </span>
-<span id="cb301-6"><a href="rprog4.html#cb301-6"></a>           <span class="st">&quot;map_chr()&quot;</span>, </span>
-<span id="cb301-7"><a href="rprog4.html#cb301-7"></a>           <span class="st">&quot;map_dfr()&quot;</span>, </span>
-<span id="cb301-8"><a href="rprog4.html#cb301-8"></a>           <span class="st">&quot;map_dfc()&quot;</span>),</span>
-<span id="cb301-9"><a href="rprog4.html#cb301-9"></a>  <span class="dt">returns =</span> <span class="kw">c</span>(<span class="st">&quot;list&quot;</span>,</span>
-<span id="cb301-10"><a href="rprog4.html#cb301-10"></a>              <span class="st">&quot;logical&quot;</span>,</span>
-<span id="cb301-11"><a href="rprog4.html#cb301-11"></a>              <span class="st">&quot;integer&quot;</span>,</span>
-<span id="cb301-12"><a href="rprog4.html#cb301-12"></a>              <span class="st">&quot;numeric&quot;</span>,</span>
-<span id="cb301-13"><a href="rprog4.html#cb301-13"></a>              <span class="st">&quot;character&quot;</span>,</span>
-<span id="cb301-14"><a href="rprog4.html#cb301-14"></a>              <span class="st">&quot;data frame, by rows&quot;</span>,</span>
-<span id="cb301-15"><a href="rprog4.html#cb301-15"></a>              <span class="st">&quot;data frame, by columns&quot;</span>)</span>
-<span id="cb301-16"><a href="rprog4.html#cb301-16"></a>)</span>
-<span id="cb301-17"><a href="rprog4.html#cb301-17"></a></span>
-<span id="cb301-18"><a href="rprog4.html#cb301-18"></a>knitr<span class="op">::</span><span class="kw">kable</span>(purrr_variants, <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;`Purrr::` Function&quot;</span>, <span class="st">&quot;Object Returned&quot;</span>))</span></code></pre></div>
+<p>As shown above in Figure <a href="rprog4.html#fig:map-anno1">8.1</a>, the generic form of <code>map()</code> always returns a <code>list</code> object as the output (thanks to Hadley Wickham for the <a href="https://adv-r.hadley.nz/functionals.html#map" target="_blank">graphic</a>). A <code>list</code> is a generic vector that can contain multiple objects (other vectors, data frames, etc.). Indeed, a data frame (and a <code>tibble</code>) is a special kind of list: a data frame is a list of vectors (columns) of equal length. A data frame can contain different vector objects but those objects must be placed in separate columns and each column vector must be the same length (when all the columns are equal length that means that data frames are <em>rectangular</em> lists). A generic <code>list</code> does not need to be rectangular because generic list entries are more distinct. Further, a list can contain another list (like a set of small boxes that are nested within a larger box). Think of a <code>list</code> like a drawer organizer - it can contain lots of different objects, all of which might be related to another in some way or, at least, might be used together for some common purpose.</p>
+<ul>
+<li>A <strong><em>vector</em></strong> is a one-dimensional object where all the entries are the same type.<br />
+</li>
+<li>A <strong><em>matrix</em></strong> is a two-dimensional (rectangular) object where all entries are the same type, but ordered into <em>rows</em> and <em>column</em> indices.</li>
+<li>A <strong><em>data frame</em></strong> is a two dimensional (rectangular) object that contains columns of different vectors. The type of vector (e.g., <code>character</code>, <code>numeric</code>, <code>logical</code>, etc.) can differ from one column to the next but all entries within each vector column must be the same.</li>
+<li>A <strong><em>list</em></strong> can contain different vector objects of different types and different lengths. A list can also contain other lists. A list does not need to be rectangular.</li>
+</ul>
+<p>To illustrate the versatility of lists, let’s create one that contains a numeric vector, a matrix, and a data frame.</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="rprog4.html#cb300-1"></a>my.chr.vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Harry&quot;</span>, <span class="st">&quot;Ron&quot;</span>, <span class="st">&quot;Hermione&quot;</span>, <span class="st">&quot;Draco&quot;</span>)</span>
+<span id="cb300-2"><a href="rprog4.html#cb300-2"></a></span>
+<span id="cb300-3"><a href="rprog4.html#cb300-3"></a>my.num.matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">nrow=</span><span class="dv">5</span>)</span>
+<span id="cb300-4"><a href="rprog4.html#cb300-4"></a></span>
+<span id="cb300-5"><a href="rprog4.html#cb300-5"></a>my.df &lt;-<span class="st"> </span><span class="kw">slice_sample</span>(<span class="dt">.data =</span> mpg, <span class="dt">n=</span><span class="dv">7</span>)</span>
+<span id="cb300-6"><a href="rprog4.html#cb300-6"></a></span>
+<span id="cb300-7"><a href="rprog4.html#cb300-7"></a>my.list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;entry_1&quot;</span> =<span class="st"> </span>my.chr.vector, </span>
+<span id="cb300-8"><a href="rprog4.html#cb300-8"></a>                <span class="st">&quot;entry_2&quot;</span> =<span class="st"> </span>my.num.matrix, </span>
+<span id="cb300-9"><a href="rprog4.html#cb300-9"></a>                <span class="st">&quot;entry_3&quot;</span> =<span class="st"> </span>my.df)</span>
+<span id="cb300-10"><a href="rprog4.html#cb300-10"></a></span>
+<span id="cb300-11"><a href="rprog4.html#cb300-11"></a><span class="kw">glimpse</span>(my.list)</span></code></pre></div>
+<pre><code>## List of 3
+##  $ entry_1: chr [1:4] &quot;Harry&quot; &quot;Ron&quot; &quot;Hermione&quot; &quot;Draco&quot;
+##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
+##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
+##   ..$ manufacturer: chr [1:7] &quot;dodge&quot; &quot;dodge&quot; &quot;jeep&quot; &quot;subaru&quot; ...
+##   ..$ model       : chr [1:7] &quot;ram 1500 pickup 4wd&quot; &quot;caravan 2wd&quot; &quot;grand cherokee 4wd&quot; &quot;impreza awd&quot; ...
+##   ..$ displ       : num [1:7] 5.2 3 4.7 2.5 4.7 2 2.2
+##   ..$ year        : int [1:7] 1999 1999 1999 1999 2008 2008 1999
+##   ..$ cyl         : int [1:7] 8 6 8 4 8 4 4
+##   ..$ trans       : chr [1:7] &quot;auto(l4)&quot; &quot;auto(l4)&quot; &quot;auto(l4)&quot; &quot;auto(l4)&quot; ...
+##   ..$ drv         : chr [1:7] &quot;4&quot; &quot;f&quot; &quot;4&quot; &quot;4&quot; ...
+##   ..$ cty         : int [1:7] 11 17 14 19 14 21 19
+##   ..$ hwy         : int [1:7] 15 24 17 26 19 29 26
+##   ..$ fl          : chr [1:7] &quot;r&quot; &quot;r&quot; &quot;r&quot; &quot;r&quot; ...
+##   ..$ class       : chr [1:7] &quot;pickup&quot; &quot;minivan&quot; &quot;suv&quot; &quot;subcompact&quot; ...</code></pre>
+<p>Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, <code>[ ]</code>, a list element is returned.</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="rprog4.html#cb302-1"></a>my.list[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## $entry_1
+## [1] &quot;Harry&quot;    &quot;Ron&quot;      &quot;Hermione&quot; &quot;Draco&quot;</code></pre>
+<p>Note that <em>“single bracket”</em> indexing returns a “list element” of class: <code>list</code>.</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="rprog4.html#cb304-1"></a><span class="kw">class</span>(my.list[<span class="dv">1</span>])</span></code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<p>If you want access to the vector contents of the list element, you can use the <code>$</code> symbol to access the contents of each list entry, or, you can use <em>“double bracket”</em> indexing, <code>[[ ]]</code>:</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="rprog4.html#cb306-1"></a>my.list<span class="op">$</span>entry_<span class="dv">1</span></span></code></pre></div>
+<pre><code>## [1] &quot;Harry&quot;    &quot;Ron&quot;      &quot;Hermione&quot; &quot;Draco&quot;</code></pre>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="rprog4.html#cb308-1"></a><span class="kw">class</span>(my.list<span class="op">$</span>entry_<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="rprog4.html#cb310-1"></a>my.list[[<span class="dv">2</span>]]</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    6   11   16
+## [2,]    2    7   12   17
+## [3,]    3    8   13   18
+## [4,]    4    9   14   19
+## [5,]    5   10   15   20</code></pre>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="rprog4.html#cb312-1"></a><span class="kw">class</span>(my.list[[<span class="dv">2</span>]])</span></code></pre></div>
+<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
+<p>Working with lists is one of the mental hurdles to overcome when learning <code>map()</code>. However, there are variants in the <code>map_</code> family of functions that return simpler object types; we will work with these simplified functions to begin.</p>
 <table>
 <thead>
 <tr class="header">
 <th align="left"><code>Purrr::</code> Function</th>
-<th align="left">Object Returned</th>
+<th align="left">Object Type Returned</th>
 </tr>
 </thead>
 <tbody>
@@ -733,34 +768,54 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 </tr>
 <tr class="even">
 <td align="left">map_dfr()</td>
-<td align="left">data frame, by rows</td>
+<td align="left">data frame (output by row-binding)</td>
 </tr>
 <tr class="odd">
 <td align="left">map_dfc()</td>
-<td align="left">data frame, by columns</td>
+<td align="left">data frame (output by column-binding)</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="rprog4.html#cb302-1"></a>file_list &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="dt">full.names=</span><span class="ot">TRUE</span>)</span>
-<span id="cb302-2"><a href="rprog4.html#cb302-2"></a>PA_data_merged &lt;-<span class="st"> </span><span class="kw">map_df</span>(file_list, import.w.name)</span></code></pre></div>
+<p>Let’s use <code>map_dfr()</code> to apply our function, <code>import.w.name()</code>, onto the vector of file names and paths (<code>file_list</code>). The <em>“r”</em> in <code>map_dfr()</code> means that the resultant data frame output by <code>map_</code> will be created by binding rows together as the function moves down each index in the file list. This is shown schematically in the figure below.</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="rprog4.html#cb314-1"></a>file_list &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="dt">full.names=</span><span class="ot">TRUE</span>)</span>
+<span id="cb314-2"><a href="rprog4.html#cb314-2"></a>PA_data_merged &lt;-<span class="st"> </span><span class="kw">map_dfr</span>(file_list, import.w.name) </span>
+<span id="cb314-3"><a href="rprog4.html#cb314-3"></a></span>
+<span id="cb314-4"><a href="rprog4.html#cb314-4"></a><span class="kw">glimpse</span>(PA_data_merged)</span></code></pre></div>
+<pre><code>## Rows: 6,374
+## Columns: 6
+## $ UTCDateTime      &lt;chr&gt; &quot;2018/10/22T17:52:21z&quot;, &quot;2018/10/22T17:53:41z&quot;, &quot;201…
+## $ current_temp_f   &lt;dbl&gt; 90, 86, 87, 87, 87, 87, 86, 86, 86, 86, 86, 86, 86, …
+## $ current_humidity &lt;dbl&gt; 12, 13, 13, 13, 13, 13, 12, 13, 13, 13, 13, 13, 13, …
+## $ pressure         &lt;dbl&gt; 851.66, 851.68, 851.56, 851.59, 851.54, 851.57, 851.…
+## $ pm2_5_atm        &lt;dbl&gt; 2.45, 3.43, 2.76, 2.00, 1.82, 1.98, 1.95, 2.48, 2.27…
+## $ sensor_ID        &lt;chr&gt; &quot;PA019&quot;, &quot;PA019&quot;, &quot;PA019&quot;, &quot;PA019&quot;, &quot;PA019&quot;, &quot;PA019&quot;…</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:map-dfr-anno"></span>
+<img src="images/map_dfr_anno.png" alt="Example: using `map_dfr()` to import a file list using a custom function" width="632" />
+<p class="caption">
+Figure 8.2: Example: using <code>map_dfr()</code> to import a file list using a custom function
+</p>
 </div>
-<div id="working-with-lists" class="section level3">
-<h3><span class="header-section-number">8.4.2</span> Working with Lists</h3>
 </div>
 </div>
 <div id="exercises" class="section level2">
 <h2><span class="header-section-number">8.5</span> Exercises</h2>
 </div>
-<div id="homework" class="section level2">
-<h2><span class="header-section-number">8.6</span> Homework</h2>
-<p>Write a function that takes a vector of numbers as input and outputs that vector
+<div id="homeworkexercises" class="section level2">
+<h2><span class="header-section-number">8.6</span> Homework/Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p>Write a function that takes a vector of numbers as input and outputs that vector
 sorted from smallest to largest value. Do this with only base R code and then
 with <code>dplyr::arrange()</code>. Hint: for the latter case you should look up the
-<code>require()</code> function.</p>
-<p>Modify the function <code>import.w.name</code> to include two additional steps:<br />
-1. Convert the character vector <code>UTCDateTime</code> into a DateTime class object.
-2. Import the “date” part of the filename (in addition to the sensor ID) and
-create a new column variable with this information. Hint: provide regex pattern.</p>
+<code>require()</code> function.</p></li>
+<li><p>Modify the function <code>import.w.name</code> to import the “date” part of the filename (in addition to the sensor ID). Create a new column variable called “date_created” with this information. Hint: you will need to apply a regex pattern like this: <code>"(?&lt;=_)[:alnum:]+(?=\\.)"</code></p></li>
+<li><p>Write a pipeline to:</p></li>
+<li><p>Convert the character vector <code>UTCDateTime</code> into new column of class <code>POSIXct</code> with the name <code>date</code>. Note - not all the indices in <code>UTCDateTime</code> will parse correctly.<br />
+</p></li>
+<li><p>Rename all the columns to shorter names.</p></li>
+<li><p>Can you find the 3 indices of <code>UTCDateTime</code> in <code>PA_data_merged</code> that failed to parse with <code>lubridate::</code>? Hint: use the <code>which()</code> function to return the row numbers in question since: normal entries in <code>UTCDateTime</code> are all the same number of characters <code>nchar()</code> or entries that failed to parse in the new <code>date</code> column will have <code>NA</code> associated with them.</p></li>
+<li><p>Create EDA plots (cdf, boxplot, histogram, time series) of the pm2_5_atm variable from <code>PA_data_merged</code>. Use <code>color =</code> or <code>fill =</code> as an aesthetic to differentiate each sensor by <code>sensor_ID</code>. Do the data have a central tendency? Do they appear normally distributed? Do events show up in the time series?</p></li>
+<li><p>Create a scatterplot where x = <code>pm2_5_atm</code> from the sensor <code>PA0019</code> and y = <code>pm2_5_atm</code> from the sensor <code>PA0020</code></p></li>
+</ol>
 
 </div>
 </div>
