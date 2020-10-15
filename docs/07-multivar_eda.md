@@ -880,3 +880,9 @@ df_mpg %>%
 
 ## Chapter 7 Homework
 
+You will continue to explore data from the National Science Foundation 2017
+[National Survey of Graduates](https://www.nsf.gov/statistics/srvygrads/){target="_blank"}, which were introduced in an earlier chapter.
+
+From Canvas, download the R Markdown template and the reduced dataset (.csv)
+containing salary, age, and gender information. Your knitted submission is due
+at the start of the class for the exam review.
