@@ -175,14 +175,14 @@ plots, as panels, where each panel represents a different value (or level) of a
 third variable of interest. For example, let's create a `ggplot` object from
 the `mtcars` data set that explores the relationship between a vehicle's fuel
 economy and its weight. First, let's create a simple bivariate scatterplot of
-these data (`mpg` vs. `wt`) and fit a linear model through the data. Note: we
+these data (`mpg` vs. `wt`) and fit a linear model through the data. (Note: we
 haven't discussed modeling yet but more on that [later](#model)).
 
 
 ```r
-# fit a linear model
+# fit a linear model; the ~ means we are modeling mpg as "y" and wt as "x"
 g1_model <- lm(mpg ~ wt, data = mtcars)
-# create a plot
+# create a plot, assign it to an object named `g1`
 g1 <- ggplot2::ggplot(data = mtcars, 
                       mapping = aes(x = wt, 
                                     y = mpg)) + 
@@ -216,15 +216,16 @@ the form:
   - `facet_grid(rows = vars(variable))` *or*
   - `facet_grid(cols = vars(variable))`,
   where *variable* is the name of the column vector used to define the facets.
+  Note: `vars()` is a `ggplot2::` function that allows you to specify a column variable by name (instead of using `data.frame$variable`) to define the facets, similar to how we define variables in the `aes()` function.
 
 In this case, seeing the plots in columns seems fine, so we would add  
-`facet_grid(cols = vars(cyl)` to the `ggplot` object as follows:
+`facet_grid(cols = vars(cyl)` to the `ggplot` object `g1` as follows:
 
 
 ```r
 # facet previous plot by `cyl` columns and retain labels
 g1 + facet_grid(cols = vars(cyl),
-                labeller = label_both) # add names & values to each panel label
+                labeller = label_both) # label each panel w/ variable name & value
 ```
 
 <div class="figure" style="text-align: center">
@@ -238,7 +239,8 @@ within these facets, we still see a relationship between efficiency and vehicle
 weight. Note that the faceting call led to the fitting of three different
 linear models---one for each facet. 
 
-Here are the same data in a plot that is faceted by rows instead of columns.
+Here are the same data in a plot that is faceted by rows instead of columns. Take note how `ggplot2::` allows you add the facet to the original plot object using a
+`+`, as in: `g1 + facet_grid(...)`
 
 
 ```r
@@ -255,7 +257,7 @@ g1 + facet_grid(rows = vars(cyl),
 ### Colors
 
 We can also use color to indicate variation in data; this can be useful for
-introducing a third variable into scatter and time-series plots. When
+introducing a third variable into scatter, jitter, and time-series plots (or when plotting multiple boxplots, histograms, or cumulative distributions). When
 introducing **color as a variable** into a plot, you must do so through an
 *aesthetic*, such as `geom_point(aes(color = cyl))`.
 
@@ -287,7 +289,7 @@ g3
 </div>
 
 <div class="rmdwarning">
-<p>When using color, be aware that many people are unable to distinguish red from green or blue from yellow. Many options exist to avoid issues from color blindness (e.g., <code>viridis</code> palette) and websites like <a href="https://www.color-blindness.com/coblis-color-blindness-simulator/" target="_blank">color-blindness.com</a> allow you to upload image files as a test against common forms.</p>
+<p>When using color, be aware that many people are unable to distinguish red from green or blue from yellow. Many options exist to avoid issues from color blindness (e.g., <code>viridis</code> palette) and websites like <a href="https://www.color-blindness.com/coblis-color-blindness-simulator/" target="_blank">color-blindness.com</a> allow you to upload image files so that you can see what your plot looks like to someone with color blindness.</p>
 </div>
 
 Here is an updated version of Figure \@ref(fig:colorplot-1) that avoids issues

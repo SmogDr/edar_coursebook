@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-10-14" />
+<meta name="date" content="2020-10-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,7 @@
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -357,10 +358,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
 <li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>10.3.3</b> Measurement Precision</a></li>
 <li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>10.3.4</b> Measurement Bias (accuracy)</a></li>
-<li class="chapter" data-level="10.3.5" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.3.5</b> Measurement Uncertainty</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#ch-10-exercises"><i class="fa fa-check"></i><b>10.4</b> Ch-10 Exercises</a></li>
-<li class="chapter" data-level="10.5" data-path="measure.html"><a href="measure.html#ch-10-homework"><i class="fa fa-check"></i><b>10.5</b> CH-10 Homework</a></li>
+<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a></li>
+<li class="chapter" data-level="10.5" data-path="measure.html"><a href="measure.html#ch-10-exercises"><i class="fa fa-check"></i><b>10.5</b> Ch-10 Exercises</a></li>
+<li class="chapter" data-level="10.6" data-path="measure.html"><a href="measure.html#ch-10-homework"><i class="fa fa-check"></i><b>10.6</b> CH-10 Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a><ul>
 <li class="chapter" data-level="11.1" data-path="model.html"><a href="model.html#ch.-11-objectives"><i class="fa fa-check"></i><b>11.1</b> Ch. 11 Objectives</a></li>
@@ -597,11 +598,11 @@ plots, as panels, where each panel represents a different value (or level) of a
 third variable of interest. For example, let’s create a <code>ggplot</code> object from
 the <code>mtcars</code> data set that explores the relationship between a vehicle’s fuel
 economy and its weight. First, let’s create a simple bivariate scatterplot of
-these data (<code>mpg</code> vs. <code>wt</code>) and fit a linear model through the data. Note: we
+these data (<code>mpg</code> vs. <code>wt</code>) and fit a linear model through the data. (Note: we
 haven’t discussed modeling yet but more on that <a href="model.html#model">later</a>).</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="eda2.html#cb250-1"></a><span class="co"># fit a linear model</span></span>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="eda2.html#cb250-1"></a><span class="co"># fit a linear model; the ~ means we are modeling mpg as &quot;y&quot; and wt as &quot;x&quot;</span></span>
 <span id="cb250-2"><a href="eda2.html#cb250-2"></a>g1_model &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>wt, <span class="dt">data =</span> mtcars)</span>
-<span id="cb250-3"><a href="eda2.html#cb250-3"></a><span class="co"># create a plot</span></span>
+<span id="cb250-3"><a href="eda2.html#cb250-3"></a><span class="co"># create a plot, assign it to an object named `g1`</span></span>
 <span id="cb250-4"><a href="eda2.html#cb250-4"></a>g1 &lt;-<span class="st"> </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> mtcars, </span>
 <span id="cb250-5"><a href="eda2.html#cb250-5"></a>                      <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> wt, </span>
 <span id="cb250-6"><a href="eda2.html#cb250-6"></a>                                    <span class="dt">y =</span> mpg)) <span class="op">+</span><span class="st"> </span></span>
@@ -633,13 +634,14 @@ the form:</p>
 <ul>
 <li><code>facet_grid(rows = vars(variable))</code> <em>or</em></li>
 <li><code>facet_grid(cols = vars(variable))</code>,
-where <em>variable</em> is the name of the column vector used to define the facets.</li>
+where <em>variable</em> is the name of the column vector used to define the facets.
+Note: <code>vars()</code> is a <code>ggplot2::</code> function that allows you to specify a column variable by name (instead of using <code>data.frame$variable</code>) to define the facets, similar to how we define variables in the <code>aes()</code> function.</li>
 </ul>
 <p>In this case, seeing the plots in columns seems fine, so we would add<br />
-<code>facet_grid(cols = vars(cyl)</code> to the <code>ggplot</code> object as follows:</p>
+<code>facet_grid(cols = vars(cyl)</code> to the <code>ggplot</code> object <code>g1</code> as follows:</p>
 <div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="eda2.html#cb251-1"></a><span class="co"># facet previous plot by `cyl` columns and retain labels</span></span>
 <span id="cb251-2"><a href="eda2.html#cb251-2"></a>g1 <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(<span class="dt">cols =</span> <span class="kw">vars</span>(cyl),</span>
-<span id="cb251-3"><a href="eda2.html#cb251-3"></a>                <span class="dt">labeller =</span> label_both) <span class="co"># add names &amp; values to each panel label</span></span></code></pre></div>
+<span id="cb251-3"><a href="eda2.html#cb251-3"></a>                <span class="dt">labeller =</span> label_both) <span class="co"># label each panel w/ variable name &amp; value</span></span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:facet-2"></span>
 <img src="07-multivar_eda_files/figure-html/facet-2-1.png" alt="Scatterplots of fuel economy vs. vehicle weight by number of cylinders in the engine (data from the `mtcars` dataset)." width="672" />
 <p class="caption">
@@ -651,7 +653,8 @@ different cylinder numbers tend to have different fuel efficiency, but, even
 within these facets, we still see a relationship between efficiency and vehicle
 weight. Note that the faceting call led to the fitting of three different
 linear models—one for each facet.</p>
-<p>Here are the same data in a plot that is faceted by rows instead of columns.</p>
+<p>Here are the same data in a plot that is faceted by rows instead of columns. Take note how <code>ggplot2::</code> allows you add the facet to the original plot object using a
+<code>+</code>, as in: <code>g1 + facet_grid(...)</code></p>
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="eda2.html#cb252-1"></a><span class="co"># facet previous plot by`cyl` in rows and retain labels</span></span>
 <span id="cb252-2"><a href="eda2.html#cb252-2"></a>g1 <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(<span class="dt">rows =</span> <span class="kw">vars</span>(cyl),</span>
 <span id="cb252-3"><a href="eda2.html#cb252-3"></a>                <span class="dt">labeller =</span> label_both)</span></code></pre></div>
@@ -665,7 +668,7 @@ Figure 7.6: Scatterplots of fuel economy vs. vehicle weight by number of cylind
 <div id="colors" class="section level3">
 <h3><span class="header-section-number">7.4.2</span> Colors</h3>
 <p>We can also use color to indicate variation in data; this can be useful for
-introducing a third variable into scatter and time-series plots. When
+introducing a third variable into scatter, jitter, and time-series plots (or when plotting multiple boxplots, histograms, or cumulative distributions). When
 introducing <strong>color as a variable</strong> into a plot, you must do so through an
 <em>aesthetic</em>, such as <code>geom_point(aes(color = cyl))</code>.</p>
 <p>Let’s recreate Figure <a href="eda2.html#fig:facet-1">7.4</a> and highlight the <code>cyl</code> variable using
@@ -693,7 +696,7 @@ Figure 7.7: Vehicle fuel economy vs. weight and colored by number of engine cyl
 </div>
 <div class="rmdwarning">
 <p>
-When using color, be aware that many people are unable to distinguish red from green or blue from yellow. Many options exist to avoid issues from color blindness (e.g., <code>viridis</code> palette) and websites like <a href="https://www.color-blindness.com/coblis-color-blindness-simulator/" target="_blank">color-blindness.com</a> allow you to upload image files as a test against common forms.
+When using color, be aware that many people are unable to distinguish red from green or blue from yellow. Many options exist to avoid issues from color blindness (e.g., <code>viridis</code> palette) and websites like <a href="https://www.color-blindness.com/coblis-color-blindness-simulator/" target="_blank">color-blindness.com</a> allow you to upload image files so that you can see what your plot looks like to someone with color blindness.
 </p>
 </div>
 <p>Here is an updated version of Figure <a href="eda2.html#fig:colorplot-1">7.7</a> that avoids issues

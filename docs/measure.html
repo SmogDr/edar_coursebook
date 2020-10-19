@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-10-14" />
+<meta name="date" content="2020-10-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,7 @@
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -357,10 +358,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
 <li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>10.3.3</b> Measurement Precision</a></li>
 <li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>10.3.4</b> Measurement Bias (accuracy)</a></li>
-<li class="chapter" data-level="10.3.5" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.3.5</b> Measurement Uncertainty</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#ch-10-exercises"><i class="fa fa-check"></i><b>10.4</b> Ch-10 Exercises</a></li>
-<li class="chapter" data-level="10.5" data-path="measure.html"><a href="measure.html#ch-10-homework"><i class="fa fa-check"></i><b>10.5</b> CH-10 Homework</a></li>
+<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a></li>
+<li class="chapter" data-level="10.5" data-path="measure.html"><a href="measure.html#ch-10-exercises"><i class="fa fa-check"></i><b>10.5</b> Ch-10 Exercises</a></li>
+<li class="chapter" data-level="10.6" data-path="measure.html"><a href="measure.html#ch-10-homework"><i class="fa fa-check"></i><b>10.6</b> CH-10 Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a><ul>
 <li class="chapter" data-level="11.1" data-path="model.html"><a href="model.html#ch.-11-objectives"><i class="fa fa-check"></i><b>11.1</b> Ch. 11 Objectives</a></li>
@@ -566,7 +567,7 @@ To calculate the lower LOD, we often measure a series of “blanks” and then c
 <h3><span class="header-section-number">10.3.3</span> Measurement Precision</h3>
 <p>In measurement science the term <em>precision</em> means “repeatability” or “instrument variability”. A precise measurement (made by a single instrument) is one that provides the same (or nearly the same) answer each time you take the measurement. This assumes, of course, that the thing being measured remains unchanged over time. Human vision is something that suffers from imprecision, especially as you get older (your eyesight usually gets worse). Look at the image below quickly and try to decode the letters you see. If I asked you to identify this text quickly (in 10 seconds or less) once per day for a week, you might give me 7 different answers. That’s not a precise measurement.</p>
 <div class="figure" style="text-align: center"><span id="fig:imprecise-1"></span>
-<img src="images/blurry_text.png" alt="Blurry vision is imprecise: repeated measures could lead to different answers"  />
+<img src="images/blurry_text.png" alt="Blurry vision is imprecise: repeated measures could lead to different answers" width="500" />
 <p class="caption">
 Figure 10.3: Blurry vision is imprecise: repeated measures could lead to different answers
 </p>
@@ -640,23 +641,23 @@ If you measure temperature with a k-type thermocouple and report a value of 93.2
 <p>The word <strong><em>bias</em></strong> has several meanings depending on the field of use (e.g., a biased opinion, a racial or gender bias, or a biased voltage). Here, we define <em>bias</em> as the quantifiable difference between a measurement and a true value. The terms bias and accuracy are closely related, but we prefer to use bias because that word implies a magnitude and direction, whereas accuracy is more qualitative.</p>
 <p>Precision and bias are easy to view graphically. In Figure <a href="measure.html#fig:bias-precision-plot2">10.4</a> I show the performance of four measurement systems. Each image shows a green circle in space that represents a “true value” that we are trying to measure. Each measurement attempt is depicted by an “x”. If a measurement system (i.e., an instrument) is precise and unbiased, then each of the repeated measures would show up in the green circle, because they are close to the “true value” and to each other. This is the case in the lower right panel. The upper-left panel, on the other hand, demonstrate a biased and imprecise instrument - biased because the average of the 20 measurements would not come close to the center and imprecise because the location of each individual measurement tends to vary by a distance larger than the size of the circle. The lower-left is unbiased but imprecise - unbiased because the average of the 20 measurements would land close to the center of the circle but imprecise because the measurements vary widely. The upper-right panel demonstrates a precise (the repeated measures do not vary much) but biased (“off the mark” from center) measurement system.</p>
 <div class="figure" style="text-align: center"><span id="fig:bias-precision-plot2"></span>
-<img src="images/bias_precision.png" alt="Examples of different combinations of bias and precision"  />
+<img src="images/bias_precision.png" alt="Examples of different combinations of bias and precision" width="1050" />
 <p class="caption">
 Figure 10.4: Examples of different combinations of bias and precision
 </p>
 </div>
 <p>Like precision,</p>
 </div>
-<div id="measurement-uncertainty" class="section level3">
-<h3><span class="header-section-number">10.3.5</span> Measurement Uncertainty</h3>
+</div>
+<div id="measurement-uncertainty" class="section level2">
+<h2><span class="header-section-number">10.4</span> Measurement Uncertainty</h2>
 <p>Bias and precision, together, make up <em>uncertainty</em>. A good way to estimate the uncertainty around a measurement is through <strong>error propagation</strong>.</p>
 </div>
-</div>
 <div id="ch-10-exercises" class="section level2">
-<h2><span class="header-section-number">10.4</span> Ch-10 Exercises</h2>
+<h2><span class="header-section-number">10.5</span> Ch-10 Exercises</h2>
 </div>
 <div id="ch-10-homework" class="section level2">
-<h2><span class="header-section-number">10.5</span> CH-10 Homework</h2>
+<h2><span class="header-section-number">10.6</span> CH-10 Homework</h2>
 
 </div>
 </div>
