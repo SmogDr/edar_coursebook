@@ -1,34 +1,32 @@
 # Functional Programming {#rprog4}
 
-
 ```{r rprog3-1, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
 library(tidyverse)
-library(lubridate)    # for working with date-times
-library(knitr)
-library(bookdown)
+library(lubridate)
 library(scales)
 ```
 
-## Ch. 8 Objectives
+## Chapter 8 Objectives
 
-This chapter is designed around the following learning objectives for functional
-programming in R. Upon completing this chapter, you should be able to:  
+This chapter is designed around the following learning objectives for
+functional programming in R. Upon completing this chapter, you should be able
+to:  
 
 - Describe the basic tenets of functional programming
 - Define functions and their basic attributes
 - Create simple functions using named and optional arguments
-- Define the meaning of *"vectorized operations"* in R
-- Interpret and apply the `purrr::map` family of functions
+- Define "vectorized operations" in R
+- Interpret and apply the `purrr::map()` family of functions
 
-## What is ***functional programming***?
+## What is "functional programming"?
 
 *Functional programming* means just that: programming with functions. A basic 
-philosophy of functional programming in R is to replace "for-loops" with functions.
-While there isn't anything inherently wrong with for-loops, they can be difficult
-to follow, especially when they are nested within one to another.
+philosophy of functional programming in R is to replace "for-loops" with
+functions. While there isn't anything inherently wrong with for-loops, they can
+be difficult to follow, especially when they are nested within one another.
 R is well-poised to support the elimination of "for-loops" because R is a 
-*vectorized language*. To be vectorized means that you don't need a for-loop to 
+*vectorized language*. To be vectorized means that you don't need a for-loop to
 execute this code:
 
 ``` {r vectorized-code, eval=FALSE}
@@ -39,28 +37,28 @@ evens_squared <- evens^2
 with code like this:
 
 ```{r for-loop-code, eval=FALSE}
-evens_squared <- for( i in length(evens)){  
+evens_squared <- for( i in length(evens)) {
   evens_squared <- evens[i] * evens[i] 
-}
-
+  }
 ```
 
 The top code performs the `squared` operator across each entry in the 
-vector, one after another.  The bottom set uses a for-loop to accomplish the
+vector, one after another. The bottom set uses a for-loop to accomplish the
 same task, albeit in a longer (and harder to follow) version.
 
 The pipe operator `%>%` is an ally in this endeavor because it allows you to 
-pass an object (like a vector or data frame) through series of functions in serial order. The pipe function is also easier to follow (with your mind) because 
-it allows you to interpret the code as if you were reading instructions in a 
-"how-to" manual: 
-*"take this object, then do this, then do this, then do that"*. Without the `%>%`
-operator, we are forced to nest functions together or write long and verbose
-code that steps through treatments slowly (and somewhat painfully).  Looking at
-the code below should make clear which set is easier to comprehend:
+pass an object, like a vector or dataframe, through series of functions in
+serial order. The pipe function is also easier to follow (with your mind)
+because it allows you to interpret the code as if you were reading instructions
+in a  "how-to" manual: 
+*"take this object, then do this, then do this, then do that"*. 
+Without the `%>%` operator, we are forced to nest functions together or write
+long and verbose code that steps through treatments slowly (and somewhat
+painfully). Looking at the code below should make clear which set is easier to
+comprehend:
 
 ``` {r nested-or-piped, eval=FALSE}
-
-#nested code
+# nested code
 daily_show_2000 <- select(filter(rename(daily_show, 
                                           year = YEAR, 
                                           job = GoogleKnowlege_Occupation, 
@@ -68,7 +66,7 @@ daily_show_2000 <- select(filter(rename(daily_show,
                                           name = Raw_Guest_List), 
                                    year == 2000), 
                             job, date, name)
-#piped code
+# piped code
 daily_show_2000 <- daily_show %>%
   rename(year = YEAR, 
          job = GoogleKnowlege_Occupation, 
@@ -76,44 +74,42 @@ daily_show_2000 <- daily_show %>%
          name = Raw_Guest_List) %>%
   filter(year == 2000) %>%
   select(job, date, name)
-  
-  
 ```
 
-In the nested example above, we "see" the `dplyr::select()` function first, yet 
-yet the arguments to this function show up last (at the end of the nested code).
+In the nested example above, we "see" the `dplyr::select()` function first, yet
+the arguments to this function show up last (at the end of the nested code).
 This separation between functions and their arguments only gets worse as the 
 degree of nesting increases. The piped code, however, produces the same result
-as the nested code but in a much more "readable" fashion. A similar analogy 
-holds for the nesting of "for-loops" (which, when nested, are even 
-harder to follow!).
+as the nested code, but in a much more "readable" fashion. A similar analogy 
+holds for the nesting of "for-loops," which, when nested, are even 
+harder to follow!
 
-## Writng Functions
+## Writing Functions
 
 > <span style="color: blue;"> "If you have to do something more than twice,
 use a function to do it." - Programming Proverb </span>
 
 Up to this point, we have relied entirely on functions sourced from base R or
-from packages like `Tidyverse::`(and for good reason - they are very useful).  
+from packages like `tidyverse`---and for good reason; they are very useful.  
 Every programmer, however, at some point in their journey, discovers that the 
-function they are desiring simply doesn't exist - at least not in the way that 
+function they are desiring simply doesn't exist, at least not in the way that 
 suits their vision. To that end, it's worth learning how to create your own 
 functions.
 
-The syntax for function generation is relatively straight forward:
+The syntax for function generation is relatively straightforward:
 
 ``` {r function-gen, eval=FALSE}
-#example code; will not run
+# example code; will not run
 
 function_name <- function(argument1, argument2, ...) {
    # insert code to manipulate arguments here
    # maybe some code to check validity of input arguments
    # specify a return value, if desired
-}
+  }
 ```
 
-Each function has **arguments** as input, **body code** as the working parts, and
-an **environment** where the function resides. These components can be
+Each function has **arguments** as input, **body code** as the working parts,
+and an **environment** where the function resides. These components can be
 accessed by passing the function name as an argument to:  
 
 - `formals()`, to see arguments
