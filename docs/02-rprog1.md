@@ -284,7 +284,7 @@ getRversion()
 ```
 
 ```
-## [1] '4.0.3'
+## [1] '4.0.2'
 ```
 
 Some functions will accept multiple arguments. For example, the `print()`
