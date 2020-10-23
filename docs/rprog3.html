@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-10-19" />
+<meta name="date" content="2020-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -389,19 +389,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.4" data-path="simulate.html"><a href="simulate.html#ch-12-exercises"><i class="fa fa-check"></i><b>12.4</b> Ch-12 Exercises</a></li>
 <li class="chapter" data-level="12.5" data-path="simulate.html"><a href="simulate.html#ch-12-homework"><i class="fa fa-check"></i><b>12.5</b> Ch-12 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>13</b> Appendix: Reference Distributions</a><ul>
-<li class="chapter" data-level="13.1" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>13.1</b> Uniform Distribution</a><ul>
-<li class="chapter" data-level="13.1.1" data-path="dist.html"><a href="dist.html#characteristic-plots-uniform-distribution"><i class="fa fa-check"></i><b>13.1.1</b> Characteristic Plots: Uniform Distribution</a></li>
+<li class="chapter" data-level="13" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>13</b> Appendix: Stats &amp; Reference Distributions</a><ul>
+<li class="chapter" data-level="13.1" data-path="dist.html"><a href="dist.html#measures-of-central-tendency"><i class="fa fa-check"></i><b>13.1</b> Measures of Central Tendency</a></li>
+<li class="chapter" data-level="13.2" data-path="dist.html"><a href="dist.html#measures-of-dispersion"><i class="fa fa-check"></i><b>13.2</b> Measures of Dispersion</a></li>
+<li class="chapter" data-level="13.3" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>13.3</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="dist.html"><a href="dist.html#characteristic-plots-uniform-distribution"><i class="fa fa-check"></i><b>13.3.1</b> Characteristic Plots: Uniform Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>13.2</b> Normal Distribution</a><ul>
-<li class="chapter" data-level="13.2.1" data-path="dist.html"><a href="dist.html#normal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>13.2.1</b> Normal Distribution: Characteristic Plots</a></li>
+<li class="chapter" data-level="13.4" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>13.4</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="dist.html"><a href="dist.html#normal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>13.4.1</b> Normal Distribution: Characteristic Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>13.3</b> Log-normal Distribution</a></li>
-<li class="chapter" data-level="13.4" data-path="dist.html"><a href="dist.html#statistical-terms"><i class="fa fa-check"></i><b>13.4</b> Statistical Terms</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="dist.html"><a href="dist.html#measures-of-central-tendency"><i class="fa fa-check"></i><b>13.4.1</b> Measures of Central Tendency</a></li>
-<li class="chapter" data-level="13.4.2" data-path="dist.html"><a href="dist.html#measures-of-dispersion"><i class="fa fa-check"></i><b>13.4.2</b> Measures of Dispersion</a></li>
-<li class="chapter" data-level="13.4.3" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>13.4.3</b> Pearson Correlation Coefficient</a></li>
+<li class="chapter" data-level="13.5" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>13.5</b> Log-normal Distribution</a><ul>
+<li class="chapter" data-level="13.5.1" data-path="dist.html"><a href="dist.html#lognormal-distribution-characteristic-plots"><i class="fa fa-check"></i><b>13.5.1</b> Lognormal Distribution: Characteristic Plots</a></li>
 </ul></li>
+<li class="chapter" data-level="13.6" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>13.6</b> Pearson Correlation Coefficient</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -848,7 +848,7 @@ date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time”
 by calling the <code>Sys.time()</code> function.</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="rprog3.html#cb209-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2020-10-19 09:02:10 MDT&quot;</code></pre>
+<pre><code>## [1] &quot;2020-10-22 20:07:28 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and timezone used by my computer
 (<em>whenever I last ran this code in <code>bookdown</code></em>). If you want to see how this
 time is stored in R internally, you can use <code>unclass()</code>, which returns an
@@ -856,17 +856,17 @@ object value with its class attributes removed. When we wrap <code>unclass()</co
 around <code>Sys.time()</code>, we will see the number of seconds that have occurred
 between the epoch of 1/1/1970 and right now:</p>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="rprog3.html#cb211-1"></a><span class="kw">unclass</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1603119730</code></pre>
+<pre><code>## [1] 1603418848</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
 Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span>
-365d/yr] =&gt; 50.8345932 years.</p>
+365d/yr] =&gt; 50.8440781 years.</p>
 <p>This calculation ignores leap years, but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats</h3>
 <p>Note that the <code>Sys.time()</code> function provided the date in a
 <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong>
-format: 2020-10-19 09:02:10.</p>
+format: 2020-10-22 20:07:28.</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
 have little difficulty recognizing the following date-time objects as
@@ -1009,18 +1009,18 @@ classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and 
 attributes.</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="rprog3.html#cb215-1"></a>time_now_ct &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb215-2"><a href="rprog3.html#cb215-2"></a><span class="kw">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1603119730</code></pre>
+<pre><code>## [1] 1603418848</code></pre>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="rprog3.html#cb217-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb217-2"><a href="rprog3.html#cb217-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 10.2
-##  $ min   : int 2
-##  $ hour  : int 9
-##  $ mday  : int 19
+##  $ sec   : num 28.5
+##  $ min   : int 7
+##  $ hour  : int 20
+##  $ mday  : int 22
 ##  $ mon   : int 9
 ##  $ year  : int 120
-##  $ wday  : int 1
-##  $ yday  : int 292
+##  $ wday  : int 4
+##  $ yday  : int 295
 ##  $ isdst : int 1
 ##  $ zone  : chr &quot;MDT&quot;
 ##  $ gmtoff: int -21600
