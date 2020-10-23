@@ -516,8 +516,6 @@ levels(df_mpg$v_class)
 
 ### Check for missing data
 
-#### Base-only
-
 Next, let's see whether this dataframe contains missing data (`NA`s).  
 
 
@@ -530,12 +528,18 @@ sum(is.na(df_mpg))
 ## [1] 478
 ```
 
+```r
+# note this can work as a pipe, too
+# df_mpg %>% is.na() %>% sum()
+```
+
 With a dataframe of this size, we shouldn't be surprised that there are 
 478 `NA` values present. The next question is: where do
 these `NA` values show up? There are several ways to answer this question;
 here, we will use the `stats::complete.cases()` function with a
 `dplyr::filter()` search. 
 
+#### Example 1: Missing Data
 The `compelete.cases()` function returns a logical vector indicating
 which rows are *complete* (i.e., no missing values). The opposite of this
 logical function, `!complete.cases()`, should return ONLY those rows that do 
@@ -544,68 +548,97 @@ contain `NA`s. Let's create a subset of `df_mpg` that only contains rows with
 
 
 ```r
-# create df of observations with missing values
-df_mpg.na <- df_mpg %>%
-  dplyr::filter(!stats::complete.cases(.))
-# examine df 
-head(df_mpg.na)
+# return a df of rows with missing values
+df_mpg %>%
+  filter(!complete.cases(.))
 ```
 
 ```
-## # A tibble: 6 x 13
-##      id make  model  year   cyl displ drive tran  v_class fuel_type comb08
-##   <dbl> <fct> <chr> <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
-## 1 16423 Niss… Altr…  2000    NA    NA <NA>  <NA>  Midsiz… Electric…     85
-## 2 16424 Toyo… RAV4…  2000    NA    NA 2-Wh… <NA>  Sport … Electric…     72
-## 3 17328 Toyo… RAV4…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     72
-## 4 17329 Ford  Th!nk  2001    NA    NA <NA>  <NA>  Two Se… Electric…     65
-## 5 17330 Ford  Expl…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     39
-## 6 17331 Niss… Hype…  2001    NA    NA <NA>  <NA>  Two Se… Electric…     75
-## # … with 2 more variables: highway08 <dbl>, city08 <dbl>
+## # A tibble: 233 x 13
+##       id make  model  year   cyl displ drive tran  v_class fuel_type comb08
+##    <dbl> <fct> <chr> <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
+##  1 16423 Niss… Altr…  2000    NA    NA <NA>  <NA>  Midsiz… Electric…     85
+##  2 16424 Toyo… RAV4…  2000    NA    NA 2-Wh… <NA>  Sport … Electric…     72
+##  3 17328 Toyo… RAV4…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     72
+##  4 17329 Ford  Th!nk  2001    NA    NA <NA>  <NA>  Two Se… Electric…     65
+##  5 17330 Ford  Expl…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     39
+##  6 17331 Niss… Hype…  2001    NA    NA <NA>  <NA>  Two Se… Electric…     75
+##  7 18290 Toyo… RAV4…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     78
+##  8 18291 Ford  Expl…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     39
+##  9 19296 Toyo… RAV4…  2003    NA    NA 2-Wh… <NA>  Sport … Electric…     78
+## 10 30965 Ford  Rang…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
+## # … with 223 more rows, and 2 more variables: highway08 <dbl>, city08 <dbl>
 ```
 
 Here, we discover that most of the the `NA` values are in the `cyl`, `displ`, 
 and `tran`, columns. Further, we see that **all** of these vehicles have a 
-`fuel_type` of *electric*---which makes sense as all-electric vehicles do not
+`fuel_type` of *electric*, which makes sense because electric vehicles (EVs) do not
 have internal combustion. This may be a variable level that we choose to
 exclude from certain analyses later... 
 
-#### Mixed
+**You might have noticed the "dot", `.`, used at the end of the `dplyr::filter` pipe above:**  
+  
+`df_mpg %>% filter(!complete.cases(.))`  
+  
+*Why is there a `.` as an argument to a function?*  
+
+We use `.` as a [*placeholder argument*](https://magrittr.tidyverse.org/reference/pipe.html#arguments) when more than one function is nested within a single section of pipe (`%>%`).  The `complete.cases()` function requires an argument to run, so we must tell it to operate on the same dataframe on which `filter()` operates. The `.` accomplishes this need for an argument.  In other words, these three lines of code are equivalent:  
+
+
+```r
+df_mpg %>% filter(!complete.cases(.))
+
+df_mpg %>% filter(!complete.cases(df_mpg))
+
+filter(df_mpg, !complete.cases(df_mpg))
+```
+
+***Note:*** the `.` only works as a placeholder argument within a `%>%` call. The following code will throw an error because there is no pipe present:
+
+
+```r
+#this code will throw an error
+filter(df_mpg, !complete.cases(.))  
+```
+#### Example 2: Missing Data
 
 Filter the `df_mpg` data for *any variables* (`dplyr::any_vars()`) that contain
 `NA`. Like `tidyselect::all_of()` that was used to clean the dataframe above,
 the `any_vars()` function is a helper function designed for use within `dplyr`
-and `tidyr` verbs. *Word to the wise*: `dplyr::any_vars()` and similar variants 
-have been superseded, which means new updates are not being made to them, and
+and `tidyr` verbs.   
+<br>*A word to the wise*: `dplyr::any_vars()` and similar variants 
+have been **superseded**, which means new updates are not being made to them, and
 the developers will eventually encourage users to transition to using
 `dplyr::across()`. If you are interested, take a look at [this discussion thread](https://community.rstudio.com/t/using-filter-with-across-to-keep-all-rows-of-a-data-frame-that-include-a-missing-value-for-any-variable/68442)
 on the topic.
 
 
 ```r
-# base R + tidyverse approach to examining missing data
-df_mpg.na.2 <- df_mpg %>% 
+# filter the df for rows where any of the observations contain NA
+df_mpg %>% 
   dplyr::filter_all(dplyr::any_vars(is.na(.)))
-# check data
-head(df_mpg.na.2)
 ```
 
 ```
-## # A tibble: 6 x 13
-##      id make  model  year   cyl displ drive tran  v_class fuel_type comb08
-##   <dbl> <fct> <chr> <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
-## 1 16423 Niss… Altr…  2000    NA    NA <NA>  <NA>  Midsiz… Electric…     85
-## 2 16424 Toyo… RAV4…  2000    NA    NA 2-Wh… <NA>  Sport … Electric…     72
-## 3 17328 Toyo… RAV4…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     72
-## 4 17329 Ford  Th!nk  2001    NA    NA <NA>  <NA>  Two Se… Electric…     65
-## 5 17330 Ford  Expl…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     39
-## 6 17331 Niss… Hype…  2001    NA    NA <NA>  <NA>  Two Se… Electric…     75
-## # … with 2 more variables: highway08 <dbl>, city08 <dbl>
+## # A tibble: 233 x 13
+##       id make  model  year   cyl displ drive tran  v_class fuel_type comb08
+##    <dbl> <fct> <chr> <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
+##  1 16423 Niss… Altr…  2000    NA    NA <NA>  <NA>  Midsiz… Electric…     85
+##  2 16424 Toyo… RAV4…  2000    NA    NA 2-Wh… <NA>  Sport … Electric…     72
+##  3 17328 Toyo… RAV4…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     72
+##  4 17329 Ford  Th!nk  2001    NA    NA <NA>  <NA>  Two Se… Electric…     65
+##  5 17330 Ford  Expl…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     39
+##  6 17331 Niss… Hype…  2001    NA    NA <NA>  <NA>  Two Se… Electric…     75
+##  7 18290 Toyo… RAV4…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     78
+##  8 18291 Ford  Expl…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     39
+##  9 19296 Toyo… RAV4…  2003    NA    NA 2-Wh… <NA>  Sport … Electric…     78
+## 10 30965 Ford  Rang…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
+## # … with 223 more rows, and 2 more variables: highway08 <dbl>, city08 <dbl>
 ```
 
-#### Mapping 
+#### Example 3: Missing Data
 
-Note: In [Chapter 8](#rprog4), you will learn to "map" the `sum()` and `is.na()` functions to each column of the data frame using `map_dfc` from the `purrr` package, which is designed to apply one ore more functions across columns of a data frame. This approach is the recommended way.
+Note: In [Chapter 8](#rprog4), you will learn to "map" the `sum()` and `is.na()` functions to each column of the data frame using `map_dfc` from the `purrr` package, which is designed to apply one ore more functions across columns of a data frame. This approach is the recommended way and I show it mainly as a preview of things to come in [Chapter 8](#rprog4).
 
 
 ```r

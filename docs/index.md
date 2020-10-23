@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens and Kathleen E. Wendt"
-date: "2020-10-22"
+date: "2020-10-23"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
