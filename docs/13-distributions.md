@@ -43,15 +43,15 @@ The units of $\hat{\sigma_{x}}$ are the same as $x$, so we can interpret the sta
 
 
   - **Variance**: The variance of $x$ is the *average of the squared difference from the mean* for all values of $x$.  The sample variance, denoted as $\hat{\sigma}^2$,
- is also the square of the *standard deviation*. Variance is calculated in R using the `var()` function.
+ is also the square of the *standard deviation*. Variance is calculated in R using the `var()` function. When we talk about variance we usually care about relative changes (i.e., *"most of the variance is attributed to variable $z$"*) because the units of variance are in terms $x^2$, which is not easily interpreted.
   
   $$\hat{\sigma_{x}}^{2} = \frac{\sum_{i=1}^{n}(x_{i}-\bar{x})^2}{n-1}$$
   
 ***Why do we take the square of $x_{i}-\bar{x}$ when calculating these measures of***
-***dispersion?*** <br> *Answer*: Because when we are taking the sum, $\sum_{i=1}^n$, if we didn't calculate squares then the positive and negative deviations would cancel each other out and mislead our estimate of dispersion.  This is the reasoning behind all *root-mean-square* calculations.
+***dispersion?*** <br> *Answer*: Because when we are taking the sum, $\sum_{i=1}^n$, if we didn't calculate squares then the positive and negative deviations would cancel each other out and mislead our estimate of dispersion.
 
 <div class="rmdwarning">
-<p>The mean and standard deviation are great measures of central tendency and dispersion when you are working with data that (approximately) follow a normal distribution. When data are skewed, the <code>mean()</code> and <code>sd()</code> can lead to unexpected results. See <a href="#skew">Figure 5.8</a>, as an example.</p>
+<p>The mean and standard deviation are fine measures of central tendency and dispersion when you have data that (approximately) follow a normal distribution. When data are skewed, the <code>mean()</code> and <code>sd()</code> can lead to unexpected results. See <a href="#skew">Figure 5.8</a>, as an example.</p>
 </div>
  
 
@@ -79,9 +79,9 @@ ggplot(data = six_sided, aes(x = rolls)) +
   theme_bw(base_size = 12)
 ```
 
-<div class="figure">
-<img src="13-distributions_files/figure-html/unif-dist-1.png" alt="Outcome probability for the first roll of a 6-sided die" width="672" />
-<p class="caption">(\#fig:unif-dist)Outcome probability for the first roll of a 6-sided die</p>
+<div class="figure" style="text-align: center">
+<img src="13-distributions_files/figure-html/unif-dist-1.png" alt="Relative counts for the first roll of a 6-sided die, rolled 100,000 times" width="384" />
+<p class="caption">(\#fig:unif-dist)Relative counts for the first roll of a 6-sided die, rolled 100,000 times</p>
 </div>
   
   
@@ -96,8 +96,8 @@ Below, we show the cumulative distribution plot and probability density function
 The normal distribution arises from phenomena that tend to have *additive* variability. By "additive", I mean that the outcome (or variable of interest) tends to vary in a +/- fashion from one observation to the next. Lots of things have additive variability: the heights of 1^st^ graders, the size of pollen grains from a tree or plant, the variation in blood pressure across the population, or the average temperature in Fort Collins, CO for the month of June.  
 
 Let's examine what *additive variability* looks like using the 6-sided dice mentioned above.  Although a dice roll has a uniform distribution of possible outcomes (rolling a 1,2,3,4,5, or 6), the variability associated with adding up the sum of three or more dice creates a normal distribution of outcomes.  If we were to roll four, 6-sided dice and sum the result (getting a value between 4 and 24 for each roll), and then repeat this experiment 10,000 times, we see the distribution shown below.  The smooth line represents a fit using a normal distribution - a pretty nice fit considering that we are working with a discrete (integer-based) dataset!
-<div class="figure">
-<img src="13-distributions_files/figure-html/normal1-1.png" alt="A Normal Distribution" width="672" />
+<div class="figure" style="text-align: center">
+<img src="13-distributions_files/figure-html/normal1-1.png" alt="A Normal Distribution" width="384" />
 <p class="caption">(\#fig:normal1)A Normal Distribution</p>
 </div>
 
@@ -139,7 +139,7 @@ ggplot2::ggplot(data = normal_data) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="13-distributions_files/figure-html/a-b-histogram-1.png" alt="The Sum of Two Normally Distributed Variables" width="672" />
+<img src="13-distributions_files/figure-html/a-b-histogram-1.png" alt="The Sum of Two Normally Distributed Variables" width="384" />
 <p class="caption">(\#fig:a-b-histogram)The Sum of Two Normally Distributed Variables</p>
 </div>
 
@@ -165,7 +165,7 @@ ggplot2::ggplot(data = log_data) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="13-distributions_files/figure-html/a-b-lognormal-1.png" alt="The Product of Three Normally Distributed Variables Multiplied Together" width="672" />
+<img src="13-distributions_files/figure-html/a-b-lognormal-1.png" alt="The Product of Three Normally Distributed Variables Multiplied Together" width="384" />
 <p class="caption">(\#fig:a-b-lognormal)The Product of Three Normally Distributed Variables Multiplied Together</p>
 </div>
 *Answer: the additive variability becomes **multiplicative variability**, which leads to a skewed (in this case, log-normal) distribution.*

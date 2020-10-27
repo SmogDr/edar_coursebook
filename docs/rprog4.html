@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-10-23" />
+<meta name="date" content="2020-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -321,8 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a><ul>
 <li class="chapter" data-level="8.4.1" data-path="rprog4.html"><a href="rprog4.html#function-mapping"><i class="fa fa-check"></i><b>8.4.1</b> Function Mapping</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#exercises"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
-<li class="chapter" data-level="8.6" data-path="rprog4.html"><a href="rprog4.html#homeworkexercises"><i class="fa fa-check"></i><b>8.6</b> Homework/Exercises</a></li>
+<li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.5</b> Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a><ul>
 <li class="chapter" data-level="9.1" data-path="transform.html"><a href="transform.html#ch.-9-objectives"><i class="fa fa-check"></i><b>9.1</b> Ch. 9 Objectives</a></li>
@@ -705,17 +704,17 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 ##  $ entry_1: chr [1:4] &quot;Harry&quot; &quot;Ron&quot; &quot;Hermione&quot; &quot;Draco&quot;
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] &quot;toyota&quot; &quot;volkswagen&quot; &quot;subaru&quot; &quot;chevrolet&quot; ...
-##   ..$ model       : chr [1:7] &quot;camry&quot; &quot;jetta&quot; &quot;impreza awd&quot; &quot;c1500 suburban 2wd&quot; ...
-##   ..$ displ       : num [1:7] 3 2.5 2.5 5.3 1.6 4 3.1
-##   ..$ year        : int [1:7] 1999 2008 2008 2008 1999 2008 1999
-##   ..$ cyl         : int [1:7] 6 5 4 8 4 6 6
-##   ..$ trans       : chr [1:7] &quot;manual(m5)&quot; &quot;manual(m5)&quot; &quot;manual(m5)&quot; &quot;auto(l4)&quot; ...
-##   ..$ drv         : chr [1:7] &quot;f&quot; &quot;f&quot; &quot;4&quot; &quot;r&quot; ...
-##   ..$ cty         : int [1:7] 18 21 20 14 25 17 18
-##   ..$ hwy         : int [1:7] 26 29 27 20 32 26 26
+##   ..$ manufacturer: chr [1:7] &quot;chevrolet&quot; &quot;chevrolet&quot; &quot;ford&quot; &quot;hyundai&quot; ...
+##   ..$ model       : chr [1:7] &quot;malibu&quot; &quot;malibu&quot; &quot;mustang&quot; &quot;tiburon&quot; ...
+##   ..$ displ       : num [1:7] 3.6 2.4 4.6 2.7 4.7 5 3.3
+##   ..$ year        : int [1:7] 2008 2008 2008 2008 1999 1999 1999
+##   ..$ cyl         : int [1:7] 6 4 8 6 8 8 6
+##   ..$ trans       : chr [1:7] &quot;auto(s6)&quot; &quot;auto(l4)&quot; &quot;manual(m5)&quot; &quot;manual(m5)&quot; ...
+##   ..$ drv         : chr [1:7] &quot;f&quot; &quot;f&quot; &quot;r&quot; &quot;f&quot; ...
+##   ..$ cty         : int [1:7] 17 22 15 17 14 13 16
+##   ..$ hwy         : int [1:7] 26 30 23 24 17 17 22
 ##   ..$ fl          : chr [1:7] &quot;r&quot; &quot;r&quot; &quot;r&quot; &quot;r&quot; ...
-##   ..$ class       : chr [1:7] &quot;midsize&quot; &quot;compact&quot; &quot;compact&quot; &quot;suv&quot; ...</code></pre>
+##   ..$ class       : chr [1:7] &quot;midsize&quot; &quot;midsize&quot; &quot;subcompact&quot; &quot;subcompact&quot; ...</code></pre>
 <p>Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, <code>[ ]</code>, a list element is returned.</p>
 <div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="rprog4.html#cb305-1"></a>my.list[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## $entry_1
@@ -797,25 +796,9 @@ Figure 8.2: Example: using <code>map_dfr()</code> to import a file list using a 
 </div>
 </div>
 </div>
-<div id="exercises" class="section level2">
-<h2><span class="header-section-number">8.5</span> Exercises</h2>
-</div>
-<div id="homeworkexercises" class="section level2">
-<h2><span class="header-section-number">8.6</span> Homework/Exercises</h2>
-<ol style="list-style-type: decimal">
-<li><p>Write a function that takes a vector of numbers as input and outputs that vector
-sorted from smallest to largest value. Do this with only base R code and then
-with <code>dplyr::arrange()</code>. Hint: for the latter case you should look up the
-<code>require()</code> function.</p></li>
-<li><p>Modify the function <code>import.w.name</code> to import the “date” part of the filename (in addition to the sensor ID). Create a new column variable called “date_created” with this information. Hint: you will need to apply a regex pattern like this: <code>"(?&lt;=_)[:alnum:]+(?=\\.)"</code></p></li>
-<li><p>Write a pipeline to:</p></li>
-<li><p>Convert the character vector <code>UTCDateTime</code> into new column of class <code>POSIXct</code> with the name <code>date</code>. Note - not all the indices in <code>UTCDateTime</code> will parse correctly.<br />
-</p></li>
-<li><p>Rename all the columns to shorter names.</p></li>
-<li><p>Can you find the 3 indices of <code>UTCDateTime</code> in <code>PA_data_merged</code> that failed to parse with <code>lubridate::</code>? Hint: use the <code>which()</code> function to return the row numbers in question since: normal entries in <code>UTCDateTime</code> are all the same number of characters <code>nchar()</code> or entries that failed to parse in the new <code>date</code> column will have <code>NA</code> associated with them.</p></li>
-<li><p>Create EDA plots (cdf, boxplot, histogram, time series) of the pm2_5_atm variable from <code>PA_data_merged</code>. Use <code>color =</code> or <code>fill =</code> as an aesthetic to differentiate each sensor by <code>sensor_ID</code>. Do the data have a central tendency? Do they appear normally distributed? Do events show up in the time series?</p></li>
-<li><p>Create a scatterplot where x = <code>pm2_5_atm</code> from the sensor <code>PA0019</code> and y = <code>pm2_5_atm</code> from the sensor <code>PA0020</code></p></li>
-</ol>
+<div id="homework" class="section level2">
+<h2><span class="header-section-number">8.5</span> Homework</h2>
+<p>This homework will give you practice at writing functions, mapping functions, and cleaning/plotting data. To begin, download the PurpleAir data files from Canvas. Note: the data are contained in a .zip file, which you can unzip on your computer or using R!</p>
 
 </div>
 </div>

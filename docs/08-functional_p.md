@@ -352,17 +352,17 @@ glimpse(my.list)
 ##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] "toyota" "volkswagen" "subaru" "chevrolet" ...
-##   ..$ model       : chr [1:7] "camry" "jetta" "impreza awd" "c1500 suburban 2wd" ...
-##   ..$ displ       : num [1:7] 3 2.5 2.5 5.3 1.6 4 3.1
-##   ..$ year        : int [1:7] 1999 2008 2008 2008 1999 2008 1999
-##   ..$ cyl         : int [1:7] 6 5 4 8 4 6 6
-##   ..$ trans       : chr [1:7] "manual(m5)" "manual(m5)" "manual(m5)" "auto(l4)" ...
-##   ..$ drv         : chr [1:7] "f" "f" "4" "r" ...
-##   ..$ cty         : int [1:7] 18 21 20 14 25 17 18
-##   ..$ hwy         : int [1:7] 26 29 27 20 32 26 26
+##   ..$ manufacturer: chr [1:7] "chevrolet" "chevrolet" "ford" "hyundai" ...
+##   ..$ model       : chr [1:7] "malibu" "malibu" "mustang" "tiburon" ...
+##   ..$ displ       : num [1:7] 3.6 2.4 4.6 2.7 4.7 5 3.3
+##   ..$ year        : int [1:7] 2008 2008 2008 2008 1999 1999 1999
+##   ..$ cyl         : int [1:7] 6 4 8 6 8 8 6
+##   ..$ trans       : chr [1:7] "auto(s6)" "auto(l4)" "manual(m5)" "manual(m5)" ...
+##   ..$ drv         : chr [1:7] "f" "f" "r" "f" ...
+##   ..$ cty         : int [1:7] 17 22 15 17 14 13 16
+##   ..$ hwy         : int [1:7] 26 30 23 24 17 17 22
 ##   ..$ fl          : chr [1:7] "r" "r" "r" "r" ...
-##   ..$ class       : chr [1:7] "midsize" "compact" "compact" "suv" ...
+##   ..$ class       : chr [1:7] "midsize" "midsize" "subcompact" "subcompact" ...
 ```
 
 Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 
@@ -469,27 +469,6 @@ glimpse(PA_data_merged)
 </div>
 
 
-## Exercises
-
-
-
-## Homework/Exercises
-
-1. Write a function that takes a vector of numbers as input and outputs that vector
-sorted from smallest to largest value. Do this with only base R code and then 
-with `dplyr::arrange()`. Hint: for the latter case you should look up the 
-`require()` function.
-
-2. Modify the function `import.w.name` to import the "date" part of the filename (in addition to the sensor ID).  Create a new column variable called "date_created" with this information.  Hint: you will need to apply a regex pattern like this: `"(?<=_)[:alnum:]+(?=\\.)"` 
-
-3. Write a pipeline to:
-  1. Convert the character vector `UTCDateTime` into new column of class `POSIXct` with the name `date`. Note - not all the indices in `UTCDateTime` will parse correctly.  
-  2. Rename all the columns to shorter names.
-  
-4. Can you find the 3 indices of `UTCDateTime` in `PA_data_merged` that failed to parse with `lubridate::`?  Hint: use the `which()` function to return the row numbers in question since: normal entries in `UTCDateTime` are all the same number of characters `nchar()` or entries that failed to parse in the new `date` column will have `NA` associated with them.
-
-5. Create EDA plots (cdf, boxplot, histogram, time series) of the pm2_5_atm variable from `PA_data_merged`. Use `color = ` or `fill =` as an aesthetic to differentiate each sensor by `sensor_ID`.  Do the data have a central tendency? Do they appear normally distributed? Do events show up in the time series?
-
-6. Create a scatterplot where x = `pm2_5_atm` from the sensor `PA0019` and y = `pm2_5_atm` from the sensor `PA0020`
-  
+## Homework 
+This homework will give you practice at writing functions, mapping functions, and cleaning/plotting data. To begin, download the PurpleAir data files from Canvas. Note: the data are contained in a .zip file, which you can unzip on your computer or using R!
 
