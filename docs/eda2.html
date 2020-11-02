@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Multivariate Data Exploration | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Multivariate Data Exploration | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-10-28" />
+<meta name="date" content="2020-11-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -522,13 +524,14 @@ Figure 7.1: Scatterplot examples showing bivariate data with varying degrees of 
 <p>In addition to the strength of the correlation, the sign and form of the
 correlation can vary, too:</p>
 <ul>
-<li><strong>positive correlation</strong>: the dependent variable <em>trends in the same direction</em> as the independent variable<br />
-</li>
+<li><strong>positive correlation</strong>: the dependent variable <em>trends in the same direction</em> as the independent variable
+<ul>
 <li><strong>negative correlation</strong>: the dependent variable <em>decreases</em> when the independent variable <em>increases</em><br />
 </li>
 <li><strong>linear correlation</strong>: the relationship between the two variables can be shown with a straight line<br />
 </li>
 <li><strong>non-linear correlation</strong>: the relationship between the two variables is curvilinear</li>
+</ul></li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:corr-example-2"></span>
 <img src="images/correlation_example_2.png" alt="Scatterplot examples showing bivariate data with varying types of correlation." width="700pt" />
@@ -631,10 +634,12 @@ details to pass to <code>facet_grid()</code> are:</p>
 <p>These two specifications can be made as a single argument to <code>facet_grid()</code> in
 the form:</p>
 <ul>
-<li><code>facet_grid(rows = vars(variable))</code> <em>or</em></li>
+<li><code>facet_grid(rows = vars(variable))</code> <em>or</em>
+<ul>
 <li><code>facet_grid(cols = vars(variable))</code>,
 where <em>variable</em> is the name of the column vector used to define the facets.
 Note: <code>vars()</code> is a <code>ggplot2::</code> function that allows you to specify a column variable by name (instead of using <code>data.frame$variable</code>) to define the facets, similar to how we define variables in the <code>aes()</code> function.</li>
+</ul></li>
 </ul>
 <p>In this case, seeing the plots in columns seems fine, so we would add<br />
 <code>facet_grid(cols = vars(cyl)</code> to the <code>ggplot</code> object <code>g1</code> as follows:</p>
@@ -967,7 +972,7 @@ on the topic.</p>
 </div>
 <div id="visualize-data" class="section level3">
 <h3><span class="header-section-number">7.5.5</span> Visualize data</h3>
-<div id="tidy-data" class="section level4">
+<div id="tidy-data-1" class="section level4">
 <h4><span class="header-section-number">7.5.5.1</span> Tidy data</h4>
 <p>Our primary variable of interest is fuel economy, so let’s begin by visualizing
 the location, dispersion, and shape of <code>city08</code>, <code>highway08</code>, and <code>comb08</code>,

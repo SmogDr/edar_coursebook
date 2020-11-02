@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Transformations and Other Tricks | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Transformations and Other Tricks | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-10-28" />
+<meta name="date" content="2020-11-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -438,10 +440,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="transformation" class="section level2">
 <h2><span class="header-section-number">9.2</span> Transformation</h2>
-<p>The phrase <em>“Data Transformation”</em> means different things in different fields so we will define it here, in the statistical sense, as: <strong><em>applying one ore more mathematical operations to a variable</em></strong> (or in our case, all elements of numeric vector). You are undoubtedly familiar with data transformation, even if you haven’t previously recognized it. Some examples include:
-- adding, subtracting, or multiplying a constant to all elements in a vector;
-- taking the log, square root, or reciprocal of a variable;
-- some combination of these approaches.</p>
+<p>The phrase <em>“Data Transformation”</em> means different things in different fields so we will define it here, in the statistical sense, as: <strong><em>applying one or more mathematical operations to a variable</em></strong> (or in our case, all elements of a numeric vector). You are undoubtedly familiar with data transformation, even if you haven’t previously recognized it. Some examples include:</p>
+<ul>
+<li>adding, subtracting, or multiplying a constant to all elements in a vector;</li>
+<li>taking the log, square root, or reciprocal of a variable;</li>
+<li>some combination of these approaches.</li>
+</ul>
 <p>For example, your data are transformed whenever you convert temperature units from °F to °C, length units from inches to millimeters, or render a variable dimensionless (e.g., converting to units of percent, parts per million, or some other unitless value). In addition to these “units transformations”, we also conduct transformations to make the <strong><em>location</em></strong> and <strong><em>spread</em></strong> of data consistent, or to change the <strong><em>shape</em></strong> of a distribution of data (e.g., to reduce skewness or to linearize a variable). These latter approaches are often employed during multivariate analyses to help your variables “play nicely together” within the analytic framework you set forth. More on this to come.</p>
 <div class="rmdnote">
 <p>
@@ -450,12 +454,12 @@ There are two key facets to data transformation: <strong>justification</strong> 
 </div>
 <div id="centering" class="section level3">
 <h3><span class="header-section-number">9.2.1</span> Centering</h3>
-<p>Centering means <strong><em>to subtract a constant from all values</em></strong> in a vector. The <strong>constant</strong> to be subtracted could be an estimate of the data’s central tendency, like the mean or median (hence the term <em>center</em>-ing), or it could be some residual value that you want to remove from all observations. If you subtract the mean from every value of a vector, then the new vector will have a mean of 0; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location. Centering <strong><em>changes the location</em></strong> of a variable but <strong><em>spread stays the same</em></strong>.</p>
-<p>In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to “background subtract” or “zero” a set of univariate observations. If you have ever used a digital scale to measure the weight of an object, you’ve probably noticed that when you turn it on, the scale does not always read zero. Most of the time the instrument has a way to “re-zero” itself prior to use, but this is not always the case. If your scale shows a mass of 298 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 298 from all subsequent weights that you perform with this scale. That subtraction is an example of a “centering” transformation.</p>
+<p>Centering means <strong><em>to subtract (or sometimes add) a constant from all values</em></strong> in a vector. The <strong>constant</strong> to be subtracted could be an estimate of the data’s central tendency, like the mean or median (hence the term <em>center</em>-ing), or it could be some residual value that you want to remove from all observations. If you subtract the mean from every value of a vector, then the new vector will have a mean of 0; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location. Centering <strong><em>changes the location</em></strong> of a variable but <strong><em>spread stays the same</em></strong>.</p>
+<p>In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to “background subtract” or “zero” a set of univariate observations. If you have ever used a digital scale to measure the weight of an object, you’ve probably noticed that when you turn it on, the scale does not always read zero. Most of the time the instrument has a way to “re-zero” itself prior to use, but this is not always the case. If your scale shows a mass of 198 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 298 from all subsequent weights that you perform with this scale. That subtraction is an example of a “centering” transformation.</p>
 <div class="figure" style="text-align: center"><span id="fig:centering-anno"></span>
-<img src="images/centering_anno.png" alt="Data are sometimes centered to remove spurious values" width="640" />
+<img src="images/centering_anno.png" alt="Data are sometimes centered to correct spurious values" width="640" />
 <p class="caption">
-Figure 9.1: Data are sometimes centered to remove spurious values
+Figure 9.1: Data are sometimes centered to correct spurious values
 </p>
 </div>
 </div>
@@ -466,13 +470,14 @@ Figure 9.1: Data are sometimes centered to remove spurious values
 <ul>
 <li>to show variables of different magnitudes together on the same axis of a plot;</li>
 <li>to make the spread of two or more variables similar (e.g., when conducting an analysis of variance or multivariate regression with variables that each have different scales);</li>
+<li>when performing a units conversion (e.g., mm to cm);</li>
 <li>when you want to render a variable dimensionless (e.g., when converting to percentage units).</li>
 </ul>
 </div>
 </div>
 <div id="normalization-and-standardization" class="section level2">
 <h2><span class="header-section-number">9.3</span> Normalization and Standardization</h2>
-In a generic sense, to <strong><em>“normalize”</em></strong> a variable means: <strong>to transform that variable so that it can be compared, evaluated, or comprehended more easily.</strong> Normalization often involves a combination of centering and rescaling operations that not only change the location and spread of the data, but also the <em>meaning</em> of data. Normalization is performed all the time.
+<p>In a generic sense, to <strong><em>“normalize”</em></strong> a variable means: <strong>to transform that variable so that it can be compared, evaluated, or comprehended more easily.</strong> Normalization often involves a combination of centering and rescaling operations that not only change the location and spread of the data, but also the <em>meaning</em> of data. Normalization is performed all the time.</p>
 <div class="rmdwarning">
 <p>
 Like <em>“transformation”</em>, the word “<em>normalization</em>” is defined differently in different fields, so be explicit when using this term in your work. To some, the word normalization means to “make a variable normally distributed”; to others, it means to “normalize a database” so that redundancies are eliminated.
@@ -483,16 +488,17 @@ Like <em>“transformation”</em>, the word “<em>normalization</em>” is def
 <h3><span class="header-section-number">9.3.1</span> Rate normalization</h3>
 <p>To perform a rate normalization is <strong>to divide one variable into another</strong>, often to report something in terms of a rate.</p>
 <ul>
-<li>Two cars can have the same range (how many miles they can travel on one tank of gas) but different rates of fuel efficiency (miles traveled per gallon)<br />
-</li>
+<li>Two cars can have the same range (how many miles they can travel on one tank of gas) but different rates of fuel efficiency (miles traveled per gallon)
+<ul>
 <li>Two countries can have the same GDI (<em>gross domestic income</em>; the sum of all wages earned) but widely different rates of “per capita” income (GDI/total population size).</li>
+</ul></li>
 </ul>
 </div>
 <div id="standardizing" class="section level3">
 <h3><span class="header-section-number">9.3.2</span> Standardizing</h3>
-<p>Standardization is a special case of transformation/normalization where each value in a set of observations (or vector) is subtracted by some level (often the central tendency) and divided by the spread. When working with normally distributed data, the standardization of variable x<sub>i</sub> into z<sub>i</sub> is:</p>
-<p>     <span class="math inline">\(z_{i} = \frac{x_{i}-\overline{x}}{\sigma_{x}}\)</span></p>
-<p>where the mean and standard deviation of x are <span class="math inline">\(\overline{x}\)</span> and <span class="math inline">\(\sigma_{x}\)</span>, respectively. The <em>standardization</em> of a variable renders the mean to 0 and the standard deviation to 1. This type of normalization is useful when you wish to study relationships between multiple variables, each with different scale. Note that standardization doesn’t have to use the mean and standard deviation as the centering and normalizing variables, but those are most common.</p>
+<p>Standardization is a special case of transformation/normalization where each value in a set of observations (or vector) is subtracted by some level (often the central tendency) and divided by the spread. When working with normally distributed data, the standardization of variable <span class="math inline">\(x_i\)</span> into <span class="math inline">\(z_i\)</span> is:</p>
+<p><span class="math display">\[z_{i} = \frac{x_{i}-\overline{x}}{\sigma_{x}}\]</span></p>
+<p>where the mean and standard deviation of <span class="math inline">\(x\)</span> are <span class="math inline">\(\overline{x}\)</span> and <span class="math inline">\(\sigma_{x}\)</span>, respectively. The <em>standardization</em> of a variable renders the mean to 0 and the standard deviation to 1. This type of normalization is useful when you wish to study relationships between multiple variables, each with different scale. Note that standardization doesn’t have to use the mean and standard deviation as the centering and normalizing variables, but those two are common.</p>
 </div>
 <div id="reducing-skewness" class="section level3">
 <h3><span class="header-section-number">9.3.3</span> Reducing Skewness</h3>
@@ -503,20 +509,27 @@ Like <em>“transformation”</em>, the word “<em>normalization</em>” is def
 Figure 9.2: The log(x) transform is often used to reduce skewness in a variable.
 </p>
 </div>
+<p>If you would like to lean more about data transformations (and how to make your data appear normally distributed), look up the <strong><em>Box-Cox method</em></strong> of power transformations. Lots of packages can run this method in R, such as <code>MASS::boxcox</code> and <code>EnvStats::boxcox</code>. And, yes, George Box is the same person that brought you the boxplot!</p>
 </div>
 </div>
 <div id="stratification" class="section level2">
 <h2><span class="header-section-number">9.4</span> Stratification</h2>
 <p><strong>To stratify a sample means: to divide the sample into subsets (aka strata).</strong></p>
 <p>Stratified analyses can be performed many ways; one particularly useful way is graphically, by creating a stratification plot. A stratification plot is like any other visualization that you have created, except that the strata are identified (i.e., called out) through the use of color, lines, symbols, etc. Let’s use the following example to demonstrate:</p>
-<p>A manufacturing operation is investigating the production of an expensive titanium alloy, where a 25% increase in the production yield of the alloy manufacturing process means the difference between profit and loss. The materials group believes that sample purity should have an effect on the yield and for the past month, all three reactors at the plant have been producing alloys from Ti feedstock of varying purity. After one month, you decide to visualize the relationship between <em>process yield</em> and <em>sample purity</em> with a scatterplot, <code>geom_point()</code>.</p>
+<p>A manufacturing operation is investigating the production of an expensive titanium alloy, where a 25% increase in the production yield of the alloy means the difference between profit and loss. The materials group believes that feedstock purity should have an strong effect on the yield. For the past month, all three reactors at the plant have been producing alloys from Ti feedstock of varying purity. After one month, you decide to visualize the relationship between <em>process yield</em> and <em>sample purity</em> with a scatterplot, <code>geom_point()</code>.</p>
 <div class="figure" style="text-align: center"><span id="fig:stratify2"></span>
 <img src="images/unstratified.png" alt="Yield vs. Purity from the plant's three reactors over one month" width="500" />
 <p class="caption">
 Figure 9.3: Yield vs. Purity from the plant’s three reactors over one month
 </p>
 </div>
-<p>Examination of Figure <a href="transform.html#fig:stratify2">9.3</a> reveals that, while there is considerable variation in the data, a clear relationship is not apparent between sample purity and process yield. However, it occurs to you that perhaps there is variation in results between the three different reactors in the plant. Therefore, you decide to repeat this analysis <strong><em>stratifying the data by reactor type</em></strong>. In this case, you repeat the <code>ggplot()</code> call with an extra aesthetic of <code>color = reactor</code> in the scatterplot.</p>
+<p>Examination of Figure <a href="transform.html#fig:stratify2">9.3</a> reveals that, while there is considerable variation in the data, a clear relationship is not apparent between sample purity and process yield. Correlation analyses reveal a Pearson correlation coefficient of <span class="math inline">\(r=\)</span> -0.23, indicating a very low level of correlation between the two variables. However, it occurs to you that perhaps there is variation in results between the three different reactors in the plant. Therefore, you decide to repeat this analysis <strong><em>stratifying the data by reactor type</em></strong>. In this case, you repeat the <code>ggplot()</code> call with an extra aesthetic of <code>color = reactor</code> in the scatterplot.</p>
+<pre><code>## # A tibble: 3 x 2
+##   reactor Pearson
+##   &lt;chr&gt;     &lt;dbl&gt;
+## 1 a        -0.898
+## 2 b        -0.896
+## 3 c        -0.923</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:stratify-png"></span>
 <img src="images/stratified.png" alt="Yield vs. Purity over one month, stratified by reactor type" width="500" />
 <p class="caption">
@@ -525,12 +538,16 @@ Figure 9.4: Yield vs. Purity over one month, stratified by reactor type
 </div>
 <p>Figure <a href="transform.html#fig:stratify-png">9.4</a> tells a very different story! Now we can see that two relationships are clearly evident.</p>
 <ol style="list-style-type: decimal">
-<li>There is a definite inverse relationship between <em>sample purity</em> and the <em>process yield</em> and<br />
+<li>There is a definite inverse relationship between <em>sample purity</em> and the <em>process yield</em> (Pearson correlation coefficients are now ~ 0.9 for each) and<br />
 </li>
 <li>For a given purity level, each reactor has a different output. Clearly, there is something different about each of these reactors that merits further study…</li>
 </ol>
 <p>Figure <a href="transform.html#fig:stratify-png">9.4</a> raises a subtle, but very important, point: <strong>data often have hierarchy</strong> and that hierarchy may be influential. In this case, only when we account for the hierarchy (the reactor that produced each sample), do we see an important relationship arise.</p>
-<p><em>Hierarchical data</em> means data that can be ordered into different ranks (or levels). Students at a university might be ordered by their their college, their major, or the year in which they matriculated. Those ranks may be important when analyzing student data; if so, your analysis should account for that!</p>
+<div class="rmdnote">
+<p>
+<em>Hierarchical data</em> means data that can be ordered into different ranks (or levels). Students at a university might be ordered by their their college, their major, or the year in which they matriculated. Those ranks may be important when analyzing student data; if so, your analysis should account for that!
+</p>
+</div>
 </div>
 <div id="outliers-and-censoring" class="section level2">
 <h2><span class="header-section-number">9.5</span> Outliers and Censoring</h2>
@@ -545,17 +562,19 @@ An <strong>outlier</strong> is an observation that lies an abnormal distance fro
 <h3><span class="header-section-number">9.5.1</span> Detecting Outliers</h3>
 <p>Data visualization (like histograms, density plots, time-series, and boxplots) can be useful for detecting outliers, because such graphs make it clear that one or more observations <em>“don’t seem to belong with the rest”</em>. For example, let’s create an artificial dataframe called <code>asthma.data</code>. Within this dataframe are two variables:</p>
 <ul>
-<li><code>asthma.rate</code>: the percentage of kids with asthma in a given school district</li>
+<li><code>asthma.rate</code>: the percentage of kids with asthma in a given school district
+<ul>
 <li><code>black.carbon</code>: the concentration of airborne black carbon (a type of air pollutant generated by incomplete combustion, similar to what you see exhausted from a diesel truck) measured outside of a school at the center of each district.</li>
+</ul></li>
 </ul>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="transform.html#cb319-1"></a>asthma.data &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb319-2"><a href="transform.html#cb319-2"></a>  <span class="dt">asthma.rate =</span> <span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">9</span>, </span>
-<span id="cb319-3"><a href="transform.html#cb319-3"></a>                  <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">10</span>,</span>
-<span id="cb319-4"><a href="transform.html#cb319-4"></a>                  <span class="dv">16</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">9</span>),</span>
-<span id="cb319-5"><a href="transform.html#cb319-5"></a>  <span class="dt">black.carbon =</span> <span class="kw">c</span>(<span class="fl">3.2</span>, <span class="fl">2.5</span>, <span class="fl">4.6</span>, <span class="fl">6.1</span>, <span class="fl">3.3</span>, </span>
-<span id="cb319-6"><a href="transform.html#cb319-6"></a>                   <span class="fl">3.1</span>, <span class="fl">6.1</span>, <span class="fl">5.3</span>, <span class="fl">4.5</span>, <span class="fl">3.3</span>, </span>
-<span id="cb319-7"><a href="transform.html#cb319-7"></a>                   <span class="fl">6.4</span>, <span class="fl">3.7</span>, <span class="fl">5.1</span>, <span class="fl">6.8</span>, <span class="dv">12</span>)</span>
-<span id="cb319-8"><a href="transform.html#cb319-8"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="transform.html#cb320-1"></a>asthma.data &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb320-2"><a href="transform.html#cb320-2"></a>  <span class="dt">asthma.rate =</span> <span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">9</span>, </span>
+<span id="cb320-3"><a href="transform.html#cb320-3"></a>                  <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">10</span>,</span>
+<span id="cb320-4"><a href="transform.html#cb320-4"></a>                  <span class="dv">16</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">9</span>),</span>
+<span id="cb320-5"><a href="transform.html#cb320-5"></a>  <span class="dt">black.carbon =</span> <span class="kw">c</span>(<span class="fl">3.2</span>, <span class="fl">2.5</span>, <span class="fl">4.6</span>, <span class="fl">6.1</span>, <span class="fl">3.3</span>, </span>
+<span id="cb320-6"><a href="transform.html#cb320-6"></a>                   <span class="fl">3.1</span>, <span class="fl">6.1</span>, <span class="fl">5.3</span>, <span class="fl">4.5</span>, <span class="fl">3.3</span>, </span>
+<span id="cb320-7"><a href="transform.html#cb320-7"></a>                   <span class="fl">6.4</span>, <span class="fl">3.7</span>, <span class="fl">5.1</span>, <span class="fl">6.8</span>, <span class="dv">12</span>)</span>
+<span id="cb320-8"><a href="transform.html#cb320-8"></a>)</span></code></pre></div>
 <p>The plot below shows two boxplots: one depicts <code>asthma.rate</code> for the 15 school districts; the other depicts <code>black.carbon</code>. I’ve circled the apparent outlier. <strong>Outliers are easy to see in boxplots because they fall outside the whiskers.</strong></p>
 <div class="figure" style="text-align: center"><span id="fig:outlier-1"></span>
 <img src="09-transf_files/figure-html/outlier-1-1.png" alt="Boxplots for two sets of data; the one on the right has an outlier." width="500" />
@@ -567,23 +586,25 @@ Figure 9.5: Boxplots for two sets of data; the one on the right has an outlier.
 <p><strong>The “1.5 x IQR” rule</strong> is what was used in the boxplot of Figure <a href="transform.html#fig:outlier-1">9.5</a>.</p>
 <p>This rule states that outliers are <strong>any data points more than 1.5 times the inter-quartile range away from the upper and lower quartiles</strong>. This means data that are:</p>
 <ul>
-<li><em>greater than</em>: [0.75 quantile value] + 1.5*IQR</li>
+<li><em>greater than</em>: [0.75 quantile value] + 1.5*IQR
+<ul>
 <li><em>less than</em>: [0.25 quantile value] - 1.5*IQR</li>
+</ul></li>
 </ul>
 <p>For the <code>black.carbon</code> data, we could calculate these thresholds with the following:</p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="transform.html#cb320-1"></a>upper &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon,</span>
-<span id="cb320-2"><a href="transform.html#cb320-2"></a>                  <span class="dt">probs =</span> <span class="fl">0.75</span>,</span>
-<span id="cb320-3"><a href="transform.html#cb320-3"></a>                  <span class="dt">names =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb320-4"><a href="transform.html#cb320-4"></a><span class="st">  </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon)</span>
-<span id="cb320-5"><a href="transform.html#cb320-5"></a></span>
-<span id="cb320-6"><a href="transform.html#cb320-6"></a>lower &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon,</span>
-<span id="cb320-7"><a href="transform.html#cb320-7"></a>                  <span class="dt">probs =</span> <span class="fl">0.25</span>,</span>
-<span id="cb320-8"><a href="transform.html#cb320-8"></a>                  <span class="dt">names =</span> <span class="ot">FALSE</span>) <span class="op">-</span><span class="st"> </span></span>
-<span id="cb320-9"><a href="transform.html#cb320-9"></a><span class="st">  </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon)</span>
-<span id="cb320-10"><a href="transform.html#cb320-10"></a></span>
-<span id="cb320-11"><a href="transform.html#cb320-11"></a>upper</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="transform.html#cb321-1"></a>upper &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon,</span>
+<span id="cb321-2"><a href="transform.html#cb321-2"></a>                  <span class="dt">probs =</span> <span class="fl">0.75</span>,</span>
+<span id="cb321-3"><a href="transform.html#cb321-3"></a>                  <span class="dt">names =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb321-4"><a href="transform.html#cb321-4"></a><span class="st">  </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon)</span>
+<span id="cb321-5"><a href="transform.html#cb321-5"></a></span>
+<span id="cb321-6"><a href="transform.html#cb321-6"></a>lower &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon,</span>
+<span id="cb321-7"><a href="transform.html#cb321-7"></a>                  <span class="dt">probs =</span> <span class="fl">0.25</span>,</span>
+<span id="cb321-8"><a href="transform.html#cb321-8"></a>                  <span class="dt">names =</span> <span class="ot">FALSE</span>) <span class="op">-</span><span class="st"> </span></span>
+<span id="cb321-9"><a href="transform.html#cb321-9"></a><span class="st">  </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon)</span>
+<span id="cb321-10"><a href="transform.html#cb321-10"></a></span>
+<span id="cb321-11"><a href="transform.html#cb321-11"></a>upper</span></code></pre></div>
 <pre><code>## [1] 10.3</code></pre>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="transform.html#cb322-1"></a>lower</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="transform.html#cb323-1"></a>lower</span></code></pre></div>
 <pre><code>## [1] -0.9</code></pre>
 <p>Interestingly, this rule suggests that outliers on the lower end need to be negative. Is that even possible for air pollution concentrations? (hint: NO) Other statistical approaches for detecting outliers include:</p>
 <ul>
@@ -596,7 +617,7 @@ Figure 9.5: Boxplots for two sets of data; the one on the right has an outlier.
 <div id="censoring-outliers" class="section level3">
 <h3><span class="header-section-number">9.5.2</span> Censoring outliers</h3>
 <p>What should we do with outliers in our data? The answer depends on context (<em>are these life and death data we’re dealing with or just the size of tomatoes from your garden?</em>) and on the questions you are asking. Here’s an example:</p>
-The black carbon boxplot (right side of <a href="transform.html#fig:outlier-1">9.5</a>) has a clear outlier that falls far outside of the rest of the data. This might not seem like a big deal but take a look at what happens when we fit a regression line through the data <span style="color: orange;">with the outlier included</span> and <span style="color: blue;">without the outlier</span>.
+<p>The black carbon boxplot (right side of <a href="transform.html#fig:outlier-1">9.5</a>) has a clear outlier that falls far outside of the rest of the data. This might not seem like a big deal but take a look at what happens when we fit a regression line through the data <span style="color: orange;">with the outlier included</span> and <span style="color: blue;">without the outlier</span>.</p>
 <div class="figure" style="text-align: center"><span id="fig:outlier-2"></span>
 <img src="09-transf_files/figure-html/outlier-2-1.png" alt="Effect of an outlier on a linear model with n=15 data points." width="672" />
 <p class="caption">
