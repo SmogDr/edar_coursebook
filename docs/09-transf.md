@@ -216,14 +216,237 @@ Unfortunately, this sort of conundrum happens more often than we might like in t
 </div>
 
 ## Ch-9 Exercises
+Let's return to the topic of salaries by college major, as collected by the [NSF Survey of College Graduates](https://www.nsf.gov/statistics/srvygrads/).  I've extracted survey results for graduates of political science programs into a file called `salary_ch9.csv`.  You can find this .csv file on Canvas or our GitHub repository. 
+
+### Salary Data for Poly Sci Majors
+Let's read in the file and peek at the contents:
+
+
+```r
+salary_ps <- read_csv("./data/salary_ch9.csv")
+
+head(salary_ps)
+```
+
+```
+## # A tibble: 6 x 3
+##   salary sex   major   
+##    <dbl> <chr> <chr>   
+## 1  80000 M     Poly Sci
+## 2  82000 F     Poly Sci
+## 3  67000 F     Poly Sci
+## 4  83000 F     Poly Sci
+## 5  60000 M     Poly Sci
+## 6 200000 M     Poly Sci
+```
+We can see that we have `salary` information, `sex` (*Male* or *Female* respondent), and `major` (all of which are Poly Sci).  Let's calculate some basic descriptive statistics grouped by respondent sex.
+
+```r
+salary_ps %>%
+  group_by(sex) %>%
+  summarise(median = median(salary),
+          mean = mean(salary),
+          min = min(salary),
+          max = max(salary),
+          IQR = IQR(salary),
+          .groups = "keep") %>%
+  ungroup()
+```
+
+```
+## # A tibble: 2 x 6
+##   sex   median    mean   min     max   IQR
+##   <chr>  <dbl>   <dbl> <dbl>   <dbl> <dbl>
+## 1 F      69003  84432.     0 1027653 57375
+## 2 M      80000 114331.     0 1027653 78000
+```
+These descriptive statistics allow some quick insight into the data:  
+
+  - Poly Sci majors identifying as male make higher median/mean salaries than those identifying as female.  
+  - The max salary is the same for both genders and is 10x higher than the median.  With a `min()` of 0 this implies some level of skewness in these data.  
+
+### Univariate Data Visualization  
+Let's visualize these data with some basic EDA plots:
+
+
+```r
+#create EDA plots
+box1 <- ggplot(data = salary_ps,
+       aes(y = sex,
+           x = salary,
+           fill = sex)) +
+  geom_boxplot(outlier.alpha = 0.2) +
+  scale_x_continuous(labels = scales::label_dollar())+
+  theme_bw() +
+  theme(legend.position = "none")
+
+hist1 <- ggplot(data = salary_ps,
+       aes(x = salary,
+           fill = sex)) +
+  geom_histogram(color = "white",
+                 bins = 50) +
+  scale_x_continuous(labels = scales::label_dollar()) +
+  theme_bw() +
+  theme(legend.position = c(0.75, 0.5))
+
+cdf1 <- ggplot(data = salary_ps,
+       aes(x = salary,
+           color = sex)) +
+  stat_ecdf() +
+  scale_x_continuous(labels = scales::label_dollar()) +
+  theme_bw() +
+  ylab("Quantile") +
+  theme(legend.position = c(0.75, 0.5))
+
+grid.arrange(box1, hist1, cdf1, nrow = 2, ncol = 2)
+```
+
+<div class="figure" style="text-align: center">
+<img src="09-transf_files/figure-html/salary-ps-plots-1.png" alt="Annual Salaries ($1000s) Reported by Poly Sci Majors" width="672" />
+<p class="caption">(\#fig:salary-ps-plots)Annual Salaries ($1000s) Reported by Poly Sci Majors</p>
+</div>
+
+The EDA plots confirm the salary discrepancy between male and female survey respondents and also suggest the **presence of some outliers**! Note how both the boxplot and histogram show a small amount of data way, way off to the right of each plot, where salary is about $1,000,000/yr.  Strangely, there are no respondent data between about $500,000/yr and $1,000,000/yr.  This seems very odd...
+
+Upon further digging into these data, the authors of the survey state that "imputation methods" are employed for missing data.  ***Imputation*** is a process where values are *guessed* based on a statistical inference of the data at hand.  My suspicion is that a number of respondents chose not to report their annual salary (answers are optional) and these extreme outliers were somehow imputed based on other data/factors.  
+
+### Rescale and Censor Data
+
+Let's make the following transformations to the data:  
+
+  - We will *rescale* the salary data to units of thousands of dollars to remove some of the zeros from the plot labels;
+  - We will *censor* salaries above $500k/yr, since the validity of these numbers is dubious (*and because this is an exercise on data censoring*); 
+  - We will *censor* salary levels below $10k/yr, because values below that level do not exceed the minimum wage for someone working full time.
+  
+<div class="rmdnote">
+<p>Each of these censoring actions is questionable and arguments for keeping or removing these outliers are possible. However, for the modeling exercise below (where we try to simulate the bulk of the univariate salary distribution), it is unlikely that these censoring actions have a strong effect on the outcome.</p>
+</div>
+
+
+```r
+#rescale and censor the salary data
+salary_ps2 <- salary_ps %>%
+  dplyr::mutate(salary = salary/1000) %>% #convert to thousands of $
+  dplyr::filter(salary < 500, #censor high outliers
+                salary > 10)  #censor low outliers
+```
+
+Let's recreate the EDA plots from Figure \@ref(fig:salary-ps-plots) using the transformed and censored data.
+
+
+```r
+#recreate EDA plots
+box2 <- ggplot(data = salary_ps2,
+       aes(y = sex,
+           x = salary,
+           fill = sex)) +
+  geom_boxplot(outlier.alpha = 0.2) +
+  scale_x_continuous(labels = scales::label_dollar(suffix = "k"))+
+  theme_bw() +
+  theme(legend.position = "none")
+
+hist2 <- ggplot(data = salary_ps2,
+       aes(x = salary,
+           fill = sex)) +
+  geom_histogram(color = "white",
+                 bins = 50) +
+  scale_x_continuous(labels = scales::label_dollar(suffix = "k")) +
+  theme_bw() +
+  theme(legend.position = c(0.75, 0.5))
+
+cdf2 <- ggplot(data = salary_ps2,
+       aes(x = salary,
+           color = sex)) +
+  stat_ecdf() +
+  scale_x_continuous(labels = scales::label_dollar(suffix = "k")) +
+  theme_bw() +
+  ylab("Quantile") +
+  theme(legend.position = c(0.75, 0.5))
+
+grid.arrange(box2, hist2, cdf2, nrow = 2, ncol = 2)
+```
+
+<div class="figure" style="text-align: center">
+<img src="09-transf_files/figure-html/salary-ps2-plots-1.png" alt="2017 Annual Salaries ($1000s) Reported by Poly Sci Majors" width="672" />
+<p class="caption">(\#fig:salary-ps2-plots)2017 Annual Salaries ($1000s) Reported by Poly Sci Majors</p>
+</div>
+
+Closer examination of these EDA plots suggests that, even after censoring and rescaling, the data are *skewed*: the lack of symmetry about the median (or mode, for the histogram) is evident in each plot. Looking at the shape of these distributions (and those in the [Appendix](#dist)) suggests that these data may be [log-normally](#log_normal_dist) distributed.
+
+### Fit a Log-normal Distribution
+
+Next, let's examine whether our salary data can be approximated with a log-normal distribution. There is a function in the `MASS::` package called `fitdistr()` that uses [*Maximum Likelihood Estimation*](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) theory (MLE), to estimate density function parameters for various reference distributions. The `fitdistr()` function requires a numeric vector of observed values, `x =` the data to be fit, and a "named" reference distribution to be modeled, `densfun = "log-normal"`.
+
+
+```r
+fit.lnorm <- fitdistr(salary_ps2$salary, densfun = "log-normal")
+```
+
+The output of `MASS::fitdistr()` is a `list`, with the first entry containing the fit parameters for the log-normal distribution (`meanlog` and `sdlog`).
+
+
+```r
+fit.lnorm$estimate %>%
+  round(., 2) 
+```
+
+```
+## meanlog   sdlog 
+##    4.32    0.67
+```
+
+These two estimates represent the mean and standard deviation of the log of the salary data:  
+
+  - `meanlog` or $\hat{\mu}=$ `mean(log(salary))` and
+  - `sdlog` or $\hat{\sigma_g}=$`sd(log(salary))`).  
+  
+Recall that  lognormal data appear *normally distributed* when you take the log of each observation. To convert these values back into units of dollars, we must exponentiate them:
+
+<div align="center">**Geometric Mean** = $exp(\hat{\mu})$</div>
+<div align="center">**Geometric Standard Deviation (GSD)** = $exp(\hat{\sigma_g})$</div>
+
+
+Geometric mean salary = 75.37  
+Geometric standard deviation = 1.95
+
+### Plot Fitted vs Actual Data
+We will conclude this exercise by examining graphically whether our fitted distribution tends to match the observed data.  Now that we have "best" fitted parameters for a lognormal distribution that approximates our data, how well does the fit perform?
+
+To answer that question, we can simulate a *new* distribution and compare it to our observed data.  To simulate observations from a lognormal distribution we need to supply the function `stats::rlnorm()` with the following arguments:  
+
+  - `n =` the sample size of observations (we will use n = `length(salary_ps2$salary)`)
+  - `meanlog =` the estimated mean of the logged data ($\hat{\mu}=$4.32)
+  - `sdlog =` the standard devation of the logged data ($\hat{\sigma_g}=$0.67)
+  
+
+```r
+sal_simulate <- tibble(x = rlnorm(n = length(salary_ps2$salary),
+                                 meanlog = fit.lnorm$estimate[[1]],
+                                 sdlog = fit.lnorm$estimate[[2]]))
+
+ggplot() +
+  geom_histogram(data = salary_ps2,
+                 aes(x = salary,
+                     y = ..density..),
+                 color = "white",
+                 fill = "navy",
+                 bins = 35) +
+  geom_density(data = sal_simulate,
+                aes(x = x),
+               color = "darkorange1",
+               size = 1) +
+  ylab("Probability Density") +
+  scale_x_continuous(labels = scales::label_dollar(suffix = "k"),
+                     limits = c(0,500)) +
+  theme_bw()
+```
+
+<div class="figure" style="text-align: center">
+<img src="09-transf_files/figure-html/log-salary-1.png" alt="Salary Data Fitted by a Lognormal Distribution" width="672" />
+<p class="caption">(\#fig:log-salary)Salary Data Fitted by a Lognormal Distribution</p>
+</div>
 
 
 
 ## Ch-9 Homework
-
-
-
-
-
-
 

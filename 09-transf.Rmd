@@ -6,8 +6,8 @@ library(gridExtra)
 library(ggforce)
 library(knitr)
 library(bookdown)
-library(markdown)
 library(knitr)
+library(MASS)
 ```
 This chapter provides an introduction to several common techniques to organize, transform, and/or manipulate univariate data. I use the word *manipulate* here with good reason; many of these techniques can be used inappropriately or lead to inadvertent consequences, so tread carefully!  That warning aside, these techniques are useful and often allow you to gain insight into *"what the data are trying to tell you"*.  
 
@@ -361,65 +361,202 @@ Unfortunately, this sort of conundrum happens more often than we might like in t
 ```
 
 ## Ch-9 Exercises
-```{r ch9-exercise, include=FALSE, echo=FALSE}
-library(fitdistrplus)
-salary_ps <- read_csv("./data/salary_ch9.csv") %>%
-  dplyr::filter(salary < 400000,
-         salary > 10000) %>%
-  dplyr::mutate(log_sal = log(salary))
+Let's return to the topic of salaries by college major, as collected by the [NSF Survey of College Graduates](https://www.nsf.gov/statistics/srvygrads/).  I've extracted survey results for graduates of political science programs into a file called `salary_ch9.csv`.  You can find this .csv file on Canvas or our GitHub repository. 
 
-fit1 <- fitdist(salary_ps$log_sal, distr = "norm")
-fit2 <- fitdist(salary_ps$salary, distr = "lnorm")
+### Salary Data for Poly Sci Majors
+Let's read in the file and peek at the contents:
+
+```{r read-salary-data, message=FALSE}
+salary_ps <- read_csv("./data/salary_ch9.csv")
+
+head(salary_ps)
 
 ```
+We can see that we have `salary` information, `sex` (*Male* or *Female* respondent), and `major` (all of which are Poly Sci).  Let's calculate some basic descriptive statistics grouped by respondent sex.
+```{r poly-sci-desc}
+salary_ps %>%
+  group_by(sex) %>%
+  summarise(median = median(salary),
+          mean = mean(salary),
+          min = min(salary),
+          max = max(salary),
+          IQR = IQR(salary),
+          .groups = "keep") %>%
+  ungroup()
+```
+These descriptive statistics allow some quick insight into the data:  
+
+  - Poly Sci majors identifying as male make higher median/mean salaries than those identifying as female.  
+  - The max salary is the same for both genders and is 10x higher than the median.  With a `min()` of 0 this implies some level of skewness in these data.  
+
+### Univariate Data Visualization  
+Let's visualize these data with some basic EDA plots:
+
+```{r salary-ps-plots, fig.align="center", fig.cap="Annual Salaries ($1000s) Reported by Poly Sci Majors"}
+#create EDA plots
+box1 <- ggplot(data = salary_ps,
+       aes(y = sex,
+           x = salary,
+           fill = sex)) +
+  geom_boxplot(outlier.alpha = 0.2) +
+  scale_x_continuous(labels = scales::label_dollar())+
+  theme_bw() +
+  theme(legend.position = "none")
+
+hist1 <- ggplot(data = salary_ps,
+       aes(x = salary,
+           fill = sex)) +
+  geom_histogram(color = "white",
+                 bins = 50) +
+  scale_x_continuous(labels = scales::label_dollar()) +
+  theme_bw() +
+  theme(legend.position = c(0.75, 0.5))
+
+cdf1 <- ggplot(data = salary_ps,
+       aes(x = salary,
+           color = sex)) +
+  stat_ecdf() +
+  scale_x_continuous(labels = scales::label_dollar()) +
+  theme_bw() +
+  ylab("Quantile") +
+  theme(legend.position = c(0.75, 0.5))
+
+grid.arrange(box1, hist1, cdf1, nrow = 2, ncol = 2)
+```
+
+The EDA plots confirm the salary discrepancy between male and female survey respondents and also suggest the **presence of some outliers**! Note how both the boxplot and histogram show a small amount of data way, way off to the right of each plot, where salary is about $1,000,000/yr.  Strangely, there are no respondent data between about $500,000/yr and $1,000,000/yr.  This seems very odd...
+
+Upon further digging into these data, the authors of the survey state that "imputation methods" are employed for missing data.  ***Imputation*** is a process where values are *guessed* based on a statistical inference of the data at hand.  My suspicion is that a number of respondents chose not to report their annual salary (answers are optional) and these extreme outliers were somehow imputed based on other data/factors.  
+
+### Rescale and Censor Data
+
+Let's make the following transformations to the data:  
+
+  - We will *rescale* the salary data to units of thousands of dollars to remove some of the zeros from the plot labels;
+  - We will *censor* salaries above $500k/yr, since the validity of these numbers is dubious (*and because this is an exercise on data censoring*); 
+  - We will *censor* salary levels below $10k/yr, because values below that level do not exceed the minimum wage for someone working full time.
+  
+```{block, type="rmdnote"}
+Each of these censoring actions is questionable and arguments for keeping or removing these outliers are possible. However, for the modeling exercise below (where we try to simulate the bulk of the univariate salary distribution), it is unlikely that these censoring actions have a strong effect on the outcome.
+```
+
+```{r censor-rescale}
+#rescale and censor the salary data
+salary_ps2 <- salary_ps %>%
+  dplyr::mutate(salary = salary/1000) %>% #convert to thousands of $
+  dplyr::filter(salary < 500, #censor high outliers
+                salary > 10)  #censor low outliers
+
+```
+
+Let's recreate the EDA plots from Figure \@ref(fig:salary-ps-plots) using the transformed and censored data.
+
+```{r salary-ps2-plots, fig.align="center", fig.cap="2017 Annual Salaries ($1000s) Reported by Poly Sci Majors"}
+#recreate EDA plots
+box2 <- ggplot(data = salary_ps2,
+       aes(y = sex,
+           x = salary,
+           fill = sex)) +
+  geom_boxplot(outlier.alpha = 0.2) +
+  scale_x_continuous(labels = scales::label_dollar(suffix = "k"))+
+  theme_bw() +
+  theme(legend.position = "none")
+
+hist2 <- ggplot(data = salary_ps2,
+       aes(x = salary,
+           fill = sex)) +
+  geom_histogram(color = "white",
+                 bins = 50) +
+  scale_x_continuous(labels = scales::label_dollar(suffix = "k")) +
+  theme_bw() +
+  theme(legend.position = c(0.75, 0.5))
+
+cdf2 <- ggplot(data = salary_ps2,
+       aes(x = salary,
+           color = sex)) +
+  stat_ecdf() +
+  scale_x_continuous(labels = scales::label_dollar(suffix = "k")) +
+  theme_bw() +
+  ylab("Quantile") +
+  theme(legend.position = c(0.75, 0.5))
+
+grid.arrange(box2, hist2, cdf2, nrow = 2, ncol = 2)
+```
+
+Closer examination of these EDA plots suggests that, even after censoring and rescaling, the data are *skewed*: the lack of symmetry about the median (or mode, for the histogram) is evident in each plot. Looking at the shape of these distributions (and those in the [Appendix](#dist)) suggests that these data may be [log-normally](#log_normal_dist) distributed.
+
+### Fit a Log-normal Distribution
+
+Next, let's examine whether our salary data can be approximated with a log-normal distribution. There is a function in the `MASS::` package called `fitdistr()` that uses [*Maximum Likelihood Estimation*](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) theory (MLE), to estimate density function parameters for various reference distributions. The `fitdistr()` function requires a numeric vector of observed values, `x =` the data to be fit, and a "named" reference distribution to be modeled, `densfun = "log-normal"`.
+
+```{r fitdist, warning=FALSE}
+
+fit.lnorm <- fitdistr(salary_ps2$salary, densfun = "log-normal")
+
+```
+
+The output of `MASS::fitdistr()` is a `list`, with the first entry containing the fit parameters for the log-normal distribution (`meanlog` and `sdlog`).
+
+```{r lognorm-estimates}
+fit.lnorm$estimate %>%
+  round(., 2) 
+```
+
+These two estimates represent the mean and standard deviation of the log of the salary data:  
+
+  - `meanlog` or $\hat{\mu}=$ `mean(log(salary))` and
+  - `sdlog` or $\hat{\sigma_g}=$`sd(log(salary))`).  
+  
+Recall that  lognormal data appear *normally distributed* when you take the log of each observation. To convert these values back into units of dollars, we must exponentiate them:
+
+<div align="center">**Geometric Mean** = $exp(\hat{\mu})$</div>
+<div align="center">**Geometric Standard Deviation (GSD)** = $exp(\hat{\sigma_g})$</div>
+
+
+Geometric mean salary = `r round(exp(fit.lnorm$estimate[[1]]), 2)`  
+Geometric standard deviation = `r round(exp(fit.lnorm$estimate[[2]]), 2)`
+
+### Plot Fitted vs Actual Data
+We will conclude this exercise by examining graphically whether our fitted distribution tends to match the observed data.  Now that we have "best" fitted parameters for a lognormal distribution that approximates our data, how well does the fit perform?
+
+To answer that question, we can simulate a *new* distribution and compare it to our observed data.  To simulate observations from a lognormal distribution we need to supply the function `stats::rlnorm()` with the following arguments:  
+
+  - `n =` the sample size of observations (we will use n = `length(salary_ps2$salary)`)
+  - `meanlog =` the estimated mean of the logged data ($\hat{\mu}=$`r round(fit.lnorm$estimate[[1]], 2)`)
+  - `sdlog =` the standard devation of the logged data ($\hat{\sigma_g}=$`r round(fit.lnorm$estimate[[2]], 2)`)
+  
+```{r log-salary,  warning=FALSE, fig.cap="Salary Data Fitted by a Lognormal Distribution", fig.align="center"}
+
+sal_simulate <- tibble(x = rlnorm(n = length(salary_ps2$salary),
+                                 meanlog = fit.lnorm$estimate[[1]],
+                                 sdlog = fit.lnorm$estimate[[2]]))
+
+ggplot() +
+  geom_histogram(data = salary_ps2,
+                 aes(x = salary,
+                     y = ..density..),
+                 color = "white",
+                 fill = "navy",
+                 bins = 35) +
+  geom_density(data = sal_simulate,
+                aes(x = x),
+               color = "darkorange1",
+               size = 1) +
+  ylab("Probability Density") +
+  scale_x_continuous(labels = scales::label_dollar(suffix = "k"),
+                     limits = c(0,500)) +
+  theme_bw()
+```
+
 
 
 ## Ch-9 Homework
+```{r ch9-homework, include=FALSE}
 
+#recreate Figure \@ref(fig:log-salary) but show the plot on a log-scale x-axis. Does the histogram appear symmetric when you do this?
 
+#following the code from sal_simulate, Figure \@ref(fig:log-salary) in the form of a cumulative distribution function (instead of a histogram).  Hint: instead of `rlnorm()` you will need to use a different log density function.  Type ?Lognormal into the Console for help.
 
-```{r log-salary, include=FALSE, echo=FALSE}
-
-ggplot(data = salary_ps,
-       aes(x = log_sal)) +
-  geom_histogram(aes(y = ..density..)) +
-  stat_function(data = data.frame(x = c(8,14)),
-                aes(x),
-                fun = dnorm,
-                n = length(salary_ps$log_sal),
-                args = list(mean = fit1$estimate[[1]], 
-                            sd = fit1$estimate[[2]]),
-                color = "magenta")
-
-```
-
-
-```{r log-salary2, include=FALSE, echo=FALSE}
-sal_simulate <- tibble(x = rnorm(n = length(salary_ps$salary),
-                                 mean = fit1$estimate[[1]],
-                                 sd = fit1$estimate[[2]]))
-
-
-ggplot() +
-  geom_histogram(data = salary_ps,
-                 aes(x = log_sal),
-                 color = "white",
-                 bins = 20,
-                 alpha = 0.5) +
-  geom_histogram(data = sal_simulate,
-                 aes(x = x),
-                 bins = 20,
-                 alpha = 0.5,
-                 fill = "blue")
-  
-  
-  #stat_function(data = data.frame(x = c(8,14)),
-  #              aes(x),
-  #              fun = dlnorm,
-  #              n = length(salary_ps$log_sal),
-  #             args = list(mean = fit2$estimate[[1]], 
-  #                          sd = fit2$estimate[[2]]),
-  #              color = "magenta") +
-  theme_bw()
+#mutate the salary_ps2 data to take the log of the salary data.  Then use `fitdistr()` to fit a normal distribution to these data.  What are the resultant parameter estimates for mean and sd?
 
 ```
