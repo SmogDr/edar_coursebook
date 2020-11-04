@@ -116,7 +116,7 @@ Figure \@ref(fig:stratify-png) tells a very different story! Now we can see that
 Figure \@ref(fig:stratify-png) raises a subtle, but very important, point: **data often have hierarchy** and that hierarchy may be influential. In this case, only when we account for the hierarchy (the reactor that produced each sample), do we see an important relationship arise.
 
 <div class="rmdnote">
-<p><em>Hierarchical data</em> means data that can be ordered into different ranks (or levels). Students at a university might be ordered by their their college, their major, or the year in which they matriculated. Those ranks may be important when analyzing student data; if so, your analysis should account for that!</p>
+<p><em>Hierarchical data</em> means data that can be ordered into different ranks (or levels). Students at a university might be ordered by their their college, their major, or the year in which they matriculated. Those ranks may be important when analyzing student data; if so, your analysis should account for that! Note: you can also manufacture strata from within continuous data, for example, you could create strata of student</p>
 </div>
 
 ## Outliers and Censoring
@@ -262,8 +262,9 @@ salary_ps %>%
 ```
 These descriptive statistics allow some quick insight into the data:  
 
-  - Poly Sci majors identifying as male make higher median/mean salaries than those identifying as female.  
-  - The max salary is the same for both genders and is 10x higher than the median.  With a `min()` of 0 this implies some level of skewness in these data.  
+  - Poly Sci majors identifying as male make higher median/mean salaries than those identifying as female;  
+  - The mean salary is higher than the median salary in both cases (note that for perfectly *normal* distributions the mean and mean are equivalent);
+  - The max salary is the same for both genders and is 10x higher than the median.  With a `min()` of 0 for both genders, this implies some level of skewness in these data.  
 
 ### Univariate Data Visualization  
 Let's visualize these data with some basic EDA plots:
@@ -395,7 +396,7 @@ fit.lnorm$estimate %>%
 ##    4.32    0.67
 ```
 
-These two estimates represent the mean and standard deviation of the log of the salary data:  
+These two estimates represent the mean and standard deviation of the data *after* taking the log of each observation:  
 
   - `meanlog` or $\hat{\mu}=$ `mean(log(salary))` and
   - `sdlog` or $\hat{\sigma_g}=$`sd(log(salary))`).  
@@ -415,8 +416,8 @@ We will conclude this exercise by examining graphically whether our fitted distr
 To answer that question, we can simulate a *new* distribution and compare it to our observed data.  To simulate observations from a lognormal distribution we need to supply the function `stats::rlnorm()` with the following arguments:  
 
   - `n =` the sample size of observations (we will use n = `length(salary_ps2$salary)`)
-  - `meanlog =` the estimated mean of the logged data ($\hat{\mu}=$4.32)
-  - `sdlog =` the standard devation of the logged data ($\hat{\sigma_g}=$0.67)
+  - `meanlog =` the estimated mean of the logged data ($\hat{\mu}=$ 4.32)
+  - `sdlog =` the standard devation of the logged data ($\hat{\sigma_g}=$ 0.67)
   
 
 ```r
@@ -446,7 +447,7 @@ ggplot() +
 <p class="caption">(\#fig:log-salary)Salary Data Fitted by a Lognormal Distribution</p>
 </div>
 
-
+The eyeball test of our fit looks pretty good, which suggests that our data is indeed log-normal (or at least is reasonably approximated by a lognormal distribution).
 
 ## Ch-9 Homework
-
+This homework will give you practice at transforming and visualizing data and fitting a distribution to a set of data. Note that much of the code needed to complete this homework can be adapted from the [Chapter 9 Exercises](https://smogdr.github.io/edar_coursebook/transform.html#ch-9-exercises) shown above.
