@@ -410,7 +410,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2020-11-03 22:23:58 MST"
+## [1] "2020-11-06 11:02:33 MST"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -426,12 +426,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1604467439
+## [1] 1604685753
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 50.8773287 years.  
+365d/yr] => 50.8842514 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -439,7 +439,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2020-11-03 22:23:58.
+format: 2020-11-06 11:02:33.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -551,7 +551,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1604467439
+## [1] 1604685753
 ```
 
 
@@ -562,14 +562,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 58.9
-##  $ min   : int 23
-##  $ hour  : int 22
-##  $ mday  : int 3
+##  $ sec   : num 33.4
+##  $ min   : int 2
+##  $ hour  : int 11
+##  $ mday  : int 6
 ##  $ mon   : int 10
 ##  $ year  : int 120
-##  $ wday  : int 2
-##  $ yday  : int 307
+##  $ wday  : int 5
+##  $ yday  : int 310
 ##  $ isdst : int 0
 ##  $ zone  : chr "MST"
 ##  $ gmtoff: int -25200
@@ -1166,6 +1166,17 @@ tweets_co <- readr::read_csv("data/senators.csv") %>%
          month = lubridate::month(date), # create var of month from timestamp
          week = lubridate::week(date)) %>% # create var of week from timestamp
   dplyr::select(-(c(url, created_at, bioguide_id))) # retain all vars except 3
+```
+
+```
+## Warning: Problem with `mutate()` input `hour_co`.
+## ℹ Unrecognized time zone 'America/Denver'
+## ℹ Input `hour_co` is `lubridate::hour(lubridate::with_tz(date, tzone = "America/Denver"))`.
+```
+
+```
+## Warning in lubridate::with_tz(date, tzone = "America/Denver"): Unrecognized time
+## zone 'America/Denver'
 ```
 
 ### Set 2: Counting

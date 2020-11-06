@@ -235,7 +235,7 @@ Figure \@ref(fig:stratify-png) tells a very different story! Now we can see that
 Figure \@ref(fig:stratify-png) raises a subtle, but very important, point: **data often have hierarchy** and that hierarchy may be influential. In this case, only when we account for the hierarchy (the reactor that produced each sample), do we see an important relationship arise.
 
 ``` {block, type="rmdnote"}
-*Hierarchical data* means data that can be ordered into different ranks (or levels). Students at a university might be ordered by their their college, their major, or the year in which they matriculated. Those ranks may be important when analyzing student data; if so, your analysis should account for that! Note: you can also manufacture strata from within continuous data, for example, you could create strata of student 
+*Hierarchical data* means data that can be ordered into different ranks (or levels). Students at a university might be ordered by their their college, their major, or the year in which they matriculated. Those ranks may be important when analyzing student data; if so, your analysis should account for that! Note: you can also manufacture strata from within continuous data, for example, you could define strata according to quantiles of GPA among the study body.
 ```
 
 ## Outliers and Censoring
@@ -427,7 +427,7 @@ grid.arrange(box1, hist1, cdf1, nrow = 2, ncol = 2)
 
 The EDA plots confirm the salary discrepancy between male and female survey respondents and also suggest the **presence of some outliers**! Note how both the boxplot and histogram show a small amount of data way, way off to the right of each plot, where salary is about $1,000,000/yr.  Strangely, there are no respondent data between about $500,000/yr and $1,000,000/yr.  This seems very odd...
 
-Upon further digging into these data, the authors of the survey state that "imputation methods" are employed for missing data.  ***Imputation*** is a process where values are *guessed* based on a statistical inference of the data at hand.  My suspicion is that a number of respondents chose not to report their annual salary (answers are optional) and these extreme outliers were somehow imputed based on other data/factors.  
+Upon further digging into these data, the [authors of the survey state](https://www.nsf.gov/statistics/2020/nsf20300/pdf/nsf20300.pdf) that "imputation methods" are employed for missing data.  ***Imputation*** is a process where values are *guessed* based on a statistical inference of the data at hand.  My suspicion is that a number of respondents chose not to report their annual salary (answers are optional) and that these extreme outliers were imputed based on other data/factors.  
 
 ### Rescale and Censor Data
 
@@ -505,8 +505,8 @@ fit.lnorm$estimate %>%
 
 These two estimates represent the mean and standard deviation of the data *after* taking the log of each observation:  
 
-  - `meanlog` or $\hat{\mu}=$ `mean(log(salary))` and
-  - `sdlog` or $\hat{\sigma_g}=$`sd(log(salary))`).  
+- `meanlog` or $\hat{\mu}=$ `mean(log(salary))` and
+- `sdlog` or $\hat{\sigma_g}=$`sd(log(salary))`).  
   
 Recall that  lognormal data appear *normally distributed* when you take the log of each observation. To convert these values back into units of dollars, we must exponentiate them:
 
@@ -516,6 +516,12 @@ Recall that  lognormal data appear *normally distributed* when you take the log 
 
 Geometric mean salary = `r round(exp(fit.lnorm$estimate[[1]]), 2)`  
 Geometric standard deviation = `r round(exp(fit.lnorm$estimate[[2]]), 2)`
+
+```{block, type="rmdnote"}
+
+The terms *meanlog* and *sdlog* represent log-space values (i.e., the data have been log transformed) - for that reason they are unitless. The term *geometric mean* is presented in the units of the data (read: it's the easiest to comprehend). The  *geometric standard deviation* (GSD) is also unitless but different from *sdlog*. The **GSD is a ratio of quantiles**: it represents the ratio of data values at quantiles that are separated by a standard deviation: GSD = 0.86 / 0.5 quantile values or the 0.5 / 0.16 quantile values, and so on. 
+
+```
 
 ### Plot Fitted vs Actual Data
 We will conclude this exercise by examining graphically whether our fitted distribution tends to match the observed data.  Now that we have "best" fitted parameters for a lognormal distribution that approximates our data, how well does the fit perform?
@@ -549,7 +555,8 @@ ggplot() +
   theme_bw()
 ```
 
-The eyeball test of our fit looks pretty good, which suggests that our data is indeed log-normal (or at least is reasonably approximated by a lognormal distribution).
+The eyeball test of our fit looks pretty good, which suggests that our data is indeed log-normal (or at least is reasonably approximated by a lognormal distribution).  Question to ponder: *when you know that your data are lognormal, does that change your expectation for what might be defined as an outlier?*
+
 
 ## Ch-9 Homework
 This homework will give you practice at transforming and visualizing data and fitting a distribution to a set of data. Note that much of the code needed to complete this homework can be adapted from the [Chapter 9 Exercises](https://smogdr.github.io/edar_coursebook/transform.html#ch-9-exercises) shown above.

@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-11-03" />
+<meta name="date" content="2020-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -446,12 +446,12 @@ to follow, especially when they are nested within one to another.
 R is well-poised to support the elimination of “for-loops” because R is a
 <em>vectorized language</em>. To be vectorized means that you don’t need a for-loop to
 execute this code:</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="rprog4.html#cb287-1"></a>evens &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">2</span>, <span class="dt">to =</span> <span class="dv">20</span>, <span class="dt">by =</span> <span class="dv">2</span>)  </span>
-<span id="cb287-2"><a href="rprog4.html#cb287-2"></a>evens_squared &lt;-<span class="st"> </span>evens<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="rprog4.html#cb289-1"></a>evens &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">2</span>, <span class="dt">to =</span> <span class="dv">20</span>, <span class="dt">by =</span> <span class="dv">2</span>)  </span>
+<span id="cb289-2"><a href="rprog4.html#cb289-2"></a>evens_squared &lt;-<span class="st"> </span>evens<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
 <p>with code like this:</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="rprog4.html#cb288-1"></a>evens_squared &lt;-<span class="st"> </span><span class="cf">for</span>( i <span class="cf">in</span> <span class="kw">length</span>(evens)){  </span>
-<span id="cb288-2"><a href="rprog4.html#cb288-2"></a>  evens_squared &lt;-<span class="st"> </span>evens[i] <span class="op">*</span><span class="st"> </span>evens[i] </span>
-<span id="cb288-3"><a href="rprog4.html#cb288-3"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="rprog4.html#cb290-1"></a>evens_squared &lt;-<span class="st"> </span><span class="cf">for</span>( i <span class="cf">in</span> <span class="kw">length</span>(evens)){  </span>
+<span id="cb290-2"><a href="rprog4.html#cb290-2"></a>  evens_squared &lt;-<span class="st"> </span>evens[i] <span class="op">*</span><span class="st"> </span>evens[i] </span>
+<span id="cb290-3"><a href="rprog4.html#cb290-3"></a>}</span></code></pre></div>
 <p>The top code performs the <code>squared</code> operator across each entry in the
 vector, one after another. The bottom set uses a for-loop to accomplish the
 same task, albeit in a longer (and harder to follow) version.</p>
@@ -463,22 +463,22 @@ it allows you to interpret the code as if you were reading instructions in a
 operator, we are forced to nest functions together or write long and verbose
 code that steps through treatments slowly (and somewhat painfully). Looking at
 the code below should make clear which set is easier to comprehend:</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="rprog4.html#cb289-1"></a><span class="co">#nested code</span></span>
-<span id="cb289-2"><a href="rprog4.html#cb289-2"></a>daily_show_<span class="dv">2000</span> &lt;-<span class="st"> </span><span class="kw">select</span>(<span class="kw">filter</span>(<span class="kw">rename</span>(daily_show, </span>
-<span id="cb289-3"><a href="rprog4.html#cb289-3"></a>                                          <span class="dt">year =</span> YEAR, </span>
-<span id="cb289-4"><a href="rprog4.html#cb289-4"></a>                                          <span class="dt">job =</span> GoogleKnowlege_Occupation, </span>
-<span id="cb289-5"><a href="rprog4.html#cb289-5"></a>                                          <span class="dt">date =</span> Show, </span>
-<span id="cb289-6"><a href="rprog4.html#cb289-6"></a>                                          <span class="dt">name =</span> Raw_Guest_List), </span>
-<span id="cb289-7"><a href="rprog4.html#cb289-7"></a>                                   year <span class="op">==</span><span class="st"> </span><span class="dv">2000</span>), </span>
-<span id="cb289-8"><a href="rprog4.html#cb289-8"></a>                            job, date, name)</span>
-<span id="cb289-9"><a href="rprog4.html#cb289-9"></a><span class="co">#piped code</span></span>
-<span id="cb289-10"><a href="rprog4.html#cb289-10"></a>daily_show_<span class="dv">2000</span> &lt;-<span class="st"> </span>daily_show <span class="op">%&gt;%</span></span>
-<span id="cb289-11"><a href="rprog4.html#cb289-11"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">year =</span> YEAR, </span>
-<span id="cb289-12"><a href="rprog4.html#cb289-12"></a>         <span class="dt">job =</span> GoogleKnowlege_Occupation, </span>
-<span id="cb289-13"><a href="rprog4.html#cb289-13"></a>         <span class="dt">date =</span> Show, </span>
-<span id="cb289-14"><a href="rprog4.html#cb289-14"></a>         <span class="dt">name =</span> Raw_Guest_List) <span class="op">%&gt;%</span></span>
-<span id="cb289-15"><a href="rprog4.html#cb289-15"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2000</span>) <span class="op">%&gt;%</span></span>
-<span id="cb289-16"><a href="rprog4.html#cb289-16"></a><span class="st">  </span><span class="kw">select</span>(job, date, name)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="rprog4.html#cb291-1"></a><span class="co">#nested code</span></span>
+<span id="cb291-2"><a href="rprog4.html#cb291-2"></a>daily_show_<span class="dv">2000</span> &lt;-<span class="st"> </span><span class="kw">select</span>(<span class="kw">filter</span>(<span class="kw">rename</span>(daily_show, </span>
+<span id="cb291-3"><a href="rprog4.html#cb291-3"></a>                                          <span class="dt">year =</span> YEAR, </span>
+<span id="cb291-4"><a href="rprog4.html#cb291-4"></a>                                          <span class="dt">job =</span> GoogleKnowlege_Occupation, </span>
+<span id="cb291-5"><a href="rprog4.html#cb291-5"></a>                                          <span class="dt">date =</span> Show, </span>
+<span id="cb291-6"><a href="rprog4.html#cb291-6"></a>                                          <span class="dt">name =</span> Raw_Guest_List), </span>
+<span id="cb291-7"><a href="rprog4.html#cb291-7"></a>                                   year <span class="op">==</span><span class="st"> </span><span class="dv">2000</span>), </span>
+<span id="cb291-8"><a href="rprog4.html#cb291-8"></a>                            job, date, name)</span>
+<span id="cb291-9"><a href="rprog4.html#cb291-9"></a><span class="co">#piped code</span></span>
+<span id="cb291-10"><a href="rprog4.html#cb291-10"></a>daily_show_<span class="dv">2000</span> &lt;-<span class="st"> </span>daily_show <span class="op">%&gt;%</span></span>
+<span id="cb291-11"><a href="rprog4.html#cb291-11"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">year =</span> YEAR, </span>
+<span id="cb291-12"><a href="rprog4.html#cb291-12"></a>         <span class="dt">job =</span> GoogleKnowlege_Occupation, </span>
+<span id="cb291-13"><a href="rprog4.html#cb291-13"></a>         <span class="dt">date =</span> Show, </span>
+<span id="cb291-14"><a href="rprog4.html#cb291-14"></a>         <span class="dt">name =</span> Raw_Guest_List) <span class="op">%&gt;%</span></span>
+<span id="cb291-15"><a href="rprog4.html#cb291-15"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2000</span>) <span class="op">%&gt;%</span></span>
+<span id="cb291-16"><a href="rprog4.html#cb291-16"></a><span class="st">  </span><span class="kw">select</span>(job, date, name)</span></code></pre></div>
 <p>In the nested example above, we “see” the <code>dplyr::select()</code> function first, yet
 yet the arguments to this function show up last (at the end of the nested code).
 This separation between functions and their arguments only gets worse as the
@@ -500,13 +500,13 @@ function they are desiring simply doesn’t exist - at least not in the way that
 suits their vision. To that end, it’s worth learning how to create your own
 functions.</p>
 <p>The syntax for function generation is relatively straight forward:</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="rprog4.html#cb290-1"></a><span class="co">#example code; will not run</span></span>
-<span id="cb290-2"><a href="rprog4.html#cb290-2"></a></span>
-<span id="cb290-3"><a href="rprog4.html#cb290-3"></a>function_name &lt;-<span class="st"> </span><span class="cf">function</span>(argument1, argument2, ...) {</span>
-<span id="cb290-4"><a href="rprog4.html#cb290-4"></a>   <span class="co"># insert code to manipulate arguments here</span></span>
-<span id="cb290-5"><a href="rprog4.html#cb290-5"></a>   <span class="co"># maybe some code to check validity of input arguments</span></span>
-<span id="cb290-6"><a href="rprog4.html#cb290-6"></a>   <span class="co"># specify a return value, if desired</span></span>
-<span id="cb290-7"><a href="rprog4.html#cb290-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="rprog4.html#cb292-1"></a><span class="co">#example code; will not run</span></span>
+<span id="cb292-2"><a href="rprog4.html#cb292-2"></a></span>
+<span id="cb292-3"><a href="rprog4.html#cb292-3"></a>function_name &lt;-<span class="st"> </span><span class="cf">function</span>(argument1, argument2, ...) {</span>
+<span id="cb292-4"><a href="rprog4.html#cb292-4"></a>   <span class="co"># insert code to manipulate arguments here</span></span>
+<span id="cb292-5"><a href="rprog4.html#cb292-5"></a>   <span class="co"># maybe some code to check validity of input arguments</span></span>
+<span id="cb292-6"><a href="rprog4.html#cb292-6"></a>   <span class="co"># specify a return value, if desired</span></span>
+<span id="cb292-7"><a href="rprog4.html#cb292-7"></a>}</span></code></pre></div>
 <p>Each function has <strong>arguments</strong> as input, <strong>body code</strong> as the working parts, and
 an <strong>environment</strong> where the function resides. These components can be
 accessed by passing the function name as an argument to:</p>
@@ -530,12 +530,12 @@ for a numeric vector. This function takes only one argument, a vector <code>x</c
 which we calculate the mean (<code>sum(x) / length(x)</code>), assign it to a
 value <code>y</code>, and the return <code>y</code> as output. Note that all the <em>“action”</em> for <code>my_mean</code>
 happens within the curly braces <code>{ }</code> that follow the function assignment.</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="rprog4.html#cb291-1"></a>my_mean &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb291-2"><a href="rprog4.html#cb291-2"></a>     y &lt;-<span class="st"> </span><span class="kw">sum</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x) </span>
-<span id="cb291-3"><a href="rprog4.html#cb291-3"></a>     <span class="kw">return</span>(y)</span>
-<span id="cb291-4"><a href="rprog4.html#cb291-4"></a>   }</span>
-<span id="cb291-5"><a href="rprog4.html#cb291-5"></a></span>
-<span id="cb291-6"><a href="rprog4.html#cb291-6"></a><span class="kw">my_mean</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="rprog4.html#cb293-1"></a>my_mean &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb293-2"><a href="rprog4.html#cb293-2"></a>     y &lt;-<span class="st"> </span><span class="kw">sum</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x) </span>
+<span id="cb293-3"><a href="rprog4.html#cb293-3"></a>     <span class="kw">return</span>(y)</span>
+<span id="cb293-4"><a href="rprog4.html#cb293-4"></a>   }</span>
+<span id="cb293-5"><a href="rprog4.html#cb293-5"></a></span>
+<span id="cb293-6"><a href="rprog4.html#cb293-6"></a><span class="kw">my_mean</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>While this function is simple and straightforward, it does have some limitations.
 For example, what happens if we pass a character vector to <code>my_mean</code> or a numeric
@@ -547,26 +547,26 @@ of that function).</p>
 returned. This many not seem like a big deal but if your analysis depends on
 calling <code>my_mean</code> in several locations (over and over), you might have a hard
 time debugging it…</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="rprog4.html#cb293-1"></a><span class="kw">my_mean</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="ot">NA</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="rprog4.html#cb295-1"></a><span class="kw">my_mean</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="ot">NA</span>))</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
 <p>For this reason, functions often contain <em>optional arguments</em> that allow the user
 to specify how to handle such errors. The function <code>my_mean2</code> below contains
 an optional argument, <code>na.rm = TRUE</code>, that defaults to remove <code>NA</code> values when
 present. This function uses <code>if else</code> logic to handle the <code>na.rm = TRUE</code>
 argument, since this argument can only have one of two values.</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="rprog4.html#cb295-1"></a>my_mean2 &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) {</span>
-<span id="cb295-2"><a href="rprog4.html#cb295-2"></a>  <span class="cf">if</span> (na.rm <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>) {</span>
-<span id="cb295-3"><a href="rprog4.html#cb295-3"></a>    y &lt;-<span class="st"> </span><span class="kw">sum</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x)</span>
-<span id="cb295-4"><a href="rprog4.html#cb295-4"></a>    <span class="kw">return</span>(y)</span>
-<span id="cb295-5"><a href="rprog4.html#cb295-5"></a>    }</span>
-<span id="cb295-6"><a href="rprog4.html#cb295-6"></a>  <span class="cf">else</span> {</span>
-<span id="cb295-7"><a href="rprog4.html#cb295-7"></a>    y &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">na.omit</span>(x)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(<span class="kw">na.omit</span>(x))</span>
-<span id="cb295-8"><a href="rprog4.html#cb295-8"></a>    <span class="kw">return</span>(y)</span>
-<span id="cb295-9"><a href="rprog4.html#cb295-9"></a>    }</span>
-<span id="cb295-10"><a href="rprog4.html#cb295-10"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="rprog4.html#cb297-1"></a>my_mean2 &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) {</span>
+<span id="cb297-2"><a href="rprog4.html#cb297-2"></a>  <span class="cf">if</span> (na.rm <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>) {</span>
+<span id="cb297-3"><a href="rprog4.html#cb297-3"></a>    y &lt;-<span class="st"> </span><span class="kw">sum</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x)</span>
+<span id="cb297-4"><a href="rprog4.html#cb297-4"></a>    <span class="kw">return</span>(y)</span>
+<span id="cb297-5"><a href="rprog4.html#cb297-5"></a>    }</span>
+<span id="cb297-6"><a href="rprog4.html#cb297-6"></a>  <span class="cf">else</span> {</span>
+<span id="cb297-7"><a href="rprog4.html#cb297-7"></a>    y &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">na.omit</span>(x)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(<span class="kw">na.omit</span>(x))</span>
+<span id="cb297-8"><a href="rprog4.html#cb297-8"></a>    <span class="kw">return</span>(y)</span>
+<span id="cb297-9"><a href="rprog4.html#cb297-9"></a>    }</span>
+<span id="cb297-10"><a href="rprog4.html#cb297-10"></a>}</span></code></pre></div>
 <p>Now, when we pass a vector containing <code>NAs</code> to <code>my_mean2</code>, we get a numeric
 result.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="rprog4.html#cb296-1"></a><span class="kw">my_mean2</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="rprog4.html#cb298-1"></a><span class="kw">my_mean2</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>A couple points worth noting about the functions above. First, take note that
 most <em>homemade</em> functions rely on other functions called within their body text,
@@ -607,7 +607,7 @@ this list being hundreds of entries.<em>To Note: these are real data collected</
 <em><a href="https://doi.org/10.1016/j.atmosenv.2019.117067" target="_blank">here</a> in 2019.</em>
 The “PA” in each file name stands for
 <a href="www.purpleair.com" target="_blank">Purple Air</a>.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="rprog4.html#cb298-1"></a><span class="kw">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="dt">full.names=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="rprog4.html#cb300-1"></a><span class="kw">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="dt">full.names=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;./data/purpleair//PA019_20181022.csv&quot;
 ## [2] &quot;./data/purpleair//PA019_20181023.csv&quot;
 ## [3] &quot;./data/purpleair//PA019_20181024.csv&quot;
@@ -622,32 +622,32 @@ as one of the data columns (otherwise, when the data were combined we might not 
 include a step to clean up the newly created data frame with a call to
 <code>dplyr::select()</code> to retain only a few variables of interest. Seeing that these
 files are .csv, we can leverage <code>readr::read_csv</code></p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="rprog4.html#cb300-1"></a><span class="co"># create an object that tracks the file names and file paths</span></span>
-<span id="cb300-2"><a href="rprog4.html#cb300-2"></a>file_list &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="dt">full.names=</span><span class="ot">TRUE</span>)</span>
-<span id="cb300-3"><a href="rprog4.html#cb300-3"></a></span>
-<span id="cb300-4"><a href="rprog4.html#cb300-4"></a><span class="co"># function to import a .csv and include part of the filename as a data column</span></span>
-<span id="cb300-5"><a href="rprog4.html#cb300-5"></a>import.w.name &lt;-<span class="st"> </span><span class="cf">function</span>(pathname) {</span>
-<span id="cb300-6"><a href="rprog4.html#cb300-6"></a>  <span class="co">#create a tibble by importing the &#39;pathname&#39; file</span></span>
-<span id="cb300-7"><a href="rprog4.html#cb300-7"></a>  df &lt;-<span class="st"> </span><span class="kw">read_csv</span>(pathname, <span class="dt">col_names =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb300-8"><a href="rprog4.html#cb300-8"></a>  df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></span>
-<span id="cb300-9"><a href="rprog4.html#cb300-9"></a><span class="st">    </span><span class="co"># use stringr::str_extract &amp; a regex to get sensor ID from file name</span></span>
-<span id="cb300-10"><a href="rprog4.html#cb300-10"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">sensor_ID =</span> <span class="kw">str_extract</span>(pathname, </span>
-<span id="cb300-11"><a href="rprog4.html#cb300-11"></a>                                  <span class="st">&quot;(?&lt;=//)[:alnum:]+(?=_)&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb300-12"><a href="rprog4.html#cb300-12"></a><span class="st">    </span><span class="co"># clean up the resultant data frame with dplyr::select</span></span>
-<span id="cb300-13"><a href="rprog4.html#cb300-13"></a><span class="st">    </span><span class="kw">select</span>(UTCDateTime, </span>
-<span id="cb300-14"><a href="rprog4.html#cb300-14"></a>           current_temp_f, </span>
-<span id="cb300-15"><a href="rprog4.html#cb300-15"></a>           current_humidity, </span>
-<span id="cb300-16"><a href="rprog4.html#cb300-16"></a>           pressure,</span>
-<span id="cb300-17"><a href="rprog4.html#cb300-17"></a>           pm2_<span class="dv">5</span>_atm,</span>
-<span id="cb300-18"><a href="rprog4.html#cb300-18"></a>           sensor_ID) <span class="op">%&gt;%</span></span>
-<span id="cb300-19"><a href="rprog4.html#cb300-19"></a><span class="st">    </span><span class="kw">na.omit</span>() <span class="co"># remove NA values, which happens when sensor goes offline</span></span>
-<span id="cb300-20"><a href="rprog4.html#cb300-20"></a>  <span class="kw">return</span>(df)</span>
-<span id="cb300-21"><a href="rprog4.html#cb300-21"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="rprog4.html#cb302-1"></a><span class="co"># create an object that tracks the file names and file paths</span></span>
+<span id="cb302-2"><a href="rprog4.html#cb302-2"></a>file_list &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="dt">full.names=</span><span class="ot">TRUE</span>)</span>
+<span id="cb302-3"><a href="rprog4.html#cb302-3"></a></span>
+<span id="cb302-4"><a href="rprog4.html#cb302-4"></a><span class="co"># function to import a .csv and include part of the filename as a data column</span></span>
+<span id="cb302-5"><a href="rprog4.html#cb302-5"></a>import.w.name &lt;-<span class="st"> </span><span class="cf">function</span>(pathname) {</span>
+<span id="cb302-6"><a href="rprog4.html#cb302-6"></a>  <span class="co">#create a tibble by importing the &#39;pathname&#39; file</span></span>
+<span id="cb302-7"><a href="rprog4.html#cb302-7"></a>  df &lt;-<span class="st"> </span><span class="kw">read_csv</span>(pathname, <span class="dt">col_names =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb302-8"><a href="rprog4.html#cb302-8"></a>  df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></span>
+<span id="cb302-9"><a href="rprog4.html#cb302-9"></a><span class="st">    </span><span class="co"># use stringr::str_extract &amp; a regex to get sensor ID from file name</span></span>
+<span id="cb302-10"><a href="rprog4.html#cb302-10"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">sensor_ID =</span> <span class="kw">str_extract</span>(pathname, </span>
+<span id="cb302-11"><a href="rprog4.html#cb302-11"></a>                                  <span class="st">&quot;(?&lt;=//)[:alnum:]+(?=_)&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb302-12"><a href="rprog4.html#cb302-12"></a><span class="st">    </span><span class="co"># clean up the resultant data frame with dplyr::select</span></span>
+<span id="cb302-13"><a href="rprog4.html#cb302-13"></a><span class="st">    </span><span class="kw">select</span>(UTCDateTime, </span>
+<span id="cb302-14"><a href="rprog4.html#cb302-14"></a>           current_temp_f, </span>
+<span id="cb302-15"><a href="rprog4.html#cb302-15"></a>           current_humidity, </span>
+<span id="cb302-16"><a href="rprog4.html#cb302-16"></a>           pressure,</span>
+<span id="cb302-17"><a href="rprog4.html#cb302-17"></a>           pm2_<span class="dv">5</span>_atm,</span>
+<span id="cb302-18"><a href="rprog4.html#cb302-18"></a>           sensor_ID) <span class="op">%&gt;%</span></span>
+<span id="cb302-19"><a href="rprog4.html#cb302-19"></a><span class="st">    </span><span class="kw">na.omit</span>() <span class="co"># remove NA values, which happens when sensor goes offline</span></span>
+<span id="cb302-20"><a href="rprog4.html#cb302-20"></a>  <span class="kw">return</span>(df)</span>
+<span id="cb302-21"><a href="rprog4.html#cb302-21"></a>}</span></code></pre></div>
 <p>After sourcing this function, we can test it out on the first entry of our list
 of files. <em>We specify the first entry with a subset to</em> <code>file_list[1]</code>.</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="rprog4.html#cb301-1"></a>PA_data_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">import.w.name</span>(file_list[<span class="dv">1</span>])</span>
-<span id="cb301-2"><a href="rprog4.html#cb301-2"></a></span>
-<span id="cb301-3"><a href="rprog4.html#cb301-3"></a><span class="kw">head</span>(PA_data_<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="rprog4.html#cb303-1"></a>PA_data_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">import.w.name</span>(file_list[<span class="dv">1</span>])</span>
+<span id="cb303-2"><a href="rprog4.html#cb303-2"></a></span>
+<span id="cb303-3"><a href="rprog4.html#cb303-3"></a><span class="kw">head</span>(PA_data_<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   UTCDateTime       current_temp_f current_humidity pressure pm2_5_atm sensor_ID
 ##   &lt;chr&gt;                      &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;    
@@ -691,52 +691,52 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 </ul></li>
 </ul>
 <p>To illustrate the versatility of lists, let’s create one that contains a numeric vector, a matrix, and a data frame.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="rprog4.html#cb303-1"></a>my.chr.vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Harry&quot;</span>, <span class="st">&quot;Ron&quot;</span>, <span class="st">&quot;Hermione&quot;</span>, <span class="st">&quot;Draco&quot;</span>)</span>
-<span id="cb303-2"><a href="rprog4.html#cb303-2"></a></span>
-<span id="cb303-3"><a href="rprog4.html#cb303-3"></a>my.num.matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">nrow=</span><span class="dv">5</span>)</span>
-<span id="cb303-4"><a href="rprog4.html#cb303-4"></a></span>
-<span id="cb303-5"><a href="rprog4.html#cb303-5"></a>my.df &lt;-<span class="st"> </span><span class="kw">slice_sample</span>(<span class="dt">.data =</span> mpg, <span class="dt">n=</span><span class="dv">7</span>)</span>
-<span id="cb303-6"><a href="rprog4.html#cb303-6"></a></span>
-<span id="cb303-7"><a href="rprog4.html#cb303-7"></a>my.list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;entry_1&quot;</span> =<span class="st"> </span>my.chr.vector, </span>
-<span id="cb303-8"><a href="rprog4.html#cb303-8"></a>                <span class="st">&quot;entry_2&quot;</span> =<span class="st"> </span>my.num.matrix, </span>
-<span id="cb303-9"><a href="rprog4.html#cb303-9"></a>                <span class="st">&quot;entry_3&quot;</span> =<span class="st"> </span>my.df)</span>
-<span id="cb303-10"><a href="rprog4.html#cb303-10"></a></span>
-<span id="cb303-11"><a href="rprog4.html#cb303-11"></a><span class="kw">glimpse</span>(my.list)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="rprog4.html#cb305-1"></a>my.chr.vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Harry&quot;</span>, <span class="st">&quot;Ron&quot;</span>, <span class="st">&quot;Hermione&quot;</span>, <span class="st">&quot;Draco&quot;</span>)</span>
+<span id="cb305-2"><a href="rprog4.html#cb305-2"></a></span>
+<span id="cb305-3"><a href="rprog4.html#cb305-3"></a>my.num.matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">nrow=</span><span class="dv">5</span>)</span>
+<span id="cb305-4"><a href="rprog4.html#cb305-4"></a></span>
+<span id="cb305-5"><a href="rprog4.html#cb305-5"></a>my.df &lt;-<span class="st"> </span><span class="kw">slice_sample</span>(<span class="dt">.data =</span> mpg, <span class="dt">n=</span><span class="dv">7</span>)</span>
+<span id="cb305-6"><a href="rprog4.html#cb305-6"></a></span>
+<span id="cb305-7"><a href="rprog4.html#cb305-7"></a>my.list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;entry_1&quot;</span> =<span class="st"> </span>my.chr.vector, </span>
+<span id="cb305-8"><a href="rprog4.html#cb305-8"></a>                <span class="st">&quot;entry_2&quot;</span> =<span class="st"> </span>my.num.matrix, </span>
+<span id="cb305-9"><a href="rprog4.html#cb305-9"></a>                <span class="st">&quot;entry_3&quot;</span> =<span class="st"> </span>my.df)</span>
+<span id="cb305-10"><a href="rprog4.html#cb305-10"></a></span>
+<span id="cb305-11"><a href="rprog4.html#cb305-11"></a><span class="kw">glimpse</span>(my.list)</span></code></pre></div>
 <pre><code>## List of 3
 ##  $ entry_1: chr [1:4] &quot;Harry&quot; &quot;Ron&quot; &quot;Hermione&quot; &quot;Draco&quot;
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] &quot;toyota&quot; &quot;chevrolet&quot; &quot;volkswagen&quot; &quot;hyundai&quot; ...
-##   ..$ model       : chr [1:7] &quot;4runner 4wd&quot; &quot;corvette&quot; &quot;jetta&quot; &quot;sonata&quot; ...
-##   ..$ displ       : num [1:7] 3.4 6.2 2 2.5 2.4 1.8 2.5
-##   ..$ year        : int [1:7] 1999 2008 2008 1999 2008 2008 1999
-##   ..$ cyl         : int [1:7] 6 8 4 6 4 4 6
-##   ..$ trans       : chr [1:7] &quot;auto(l4)&quot; &quot;auto(s6)&quot; &quot;auto(s6)&quot; &quot;auto(l4)&quot; ...
-##   ..$ drv         : chr [1:7] &quot;4&quot; &quot;r&quot; &quot;f&quot; &quot;f&quot; ...
-##   ..$ cty         : int [1:7] 15 15 22 18 21 25 18
-##   ..$ hwy         : int [1:7] 19 25 29 26 31 36 26
-##   ..$ fl          : chr [1:7] &quot;r&quot; &quot;p&quot; &quot;p&quot; &quot;r&quot; ...
-##   ..$ class       : chr [1:7] &quot;suv&quot; &quot;2seater&quot; &quot;compact&quot; &quot;midsize&quot; ...</code></pre>
+##   ..$ manufacturer: chr [1:7] &quot;nissan&quot; &quot;honda&quot; &quot;dodge&quot; &quot;volkswagen&quot; ...
+##   ..$ model       : chr [1:7] &quot;maxima&quot; &quot;civic&quot; &quot;caravan 2wd&quot; &quot;new beetle&quot; ...
+##   ..$ displ       : num [1:7] 3 1.6 3 2.5 4.2 3.8 4.7
+##   ..$ year        : int [1:7] 1999 1999 1999 2008 2008 1999 2008
+##   ..$ cyl         : int [1:7] 6 4 6 5 8 6 8
+##   ..$ trans       : chr [1:7] &quot;manual(m5)&quot; &quot;manual(m5)&quot; &quot;auto(l4)&quot; &quot;auto(s6)&quot; ...
+##   ..$ drv         : chr [1:7] &quot;f&quot; &quot;f&quot; &quot;f&quot; &quot;f&quot; ...
+##   ..$ cty         : int [1:7] 19 25 17 20 12 15 13
+##   ..$ hwy         : int [1:7] 25 32 24 29 18 21 17
+##   ..$ fl          : chr [1:7] &quot;r&quot; &quot;r&quot; &quot;r&quot; &quot;r&quot; ...
+##   ..$ class       : chr [1:7] &quot;midsize&quot; &quot;subcompact&quot; &quot;minivan&quot; &quot;subcompact&quot; ...</code></pre>
 <p>Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, <code>[ ]</code>, a list element is returned.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="rprog4.html#cb305-1"></a>my.list[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="rprog4.html#cb307-1"></a>my.list[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## $entry_1
 ## [1] &quot;Harry&quot;    &quot;Ron&quot;      &quot;Hermione&quot; &quot;Draco&quot;</code></pre>
 <p>Note that <em>“single bracket”</em> indexing returns a “list element” of class: <code>list</code>.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="rprog4.html#cb307-1"></a><span class="kw">class</span>(my.list[<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="rprog4.html#cb309-1"></a><span class="kw">class</span>(my.list[<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>## [1] &quot;list&quot;</code></pre>
 <p>If you want access to the vector contents of the list element, you can use the <code>$</code> symbol to access the contents of each list entry, or, you can use <em>“double bracket”</em> indexing, <code>[[ ]]</code>:</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="rprog4.html#cb309-1"></a>my.list<span class="op">$</span>entry_<span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="rprog4.html#cb311-1"></a>my.list<span class="op">$</span>entry_<span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] &quot;Harry&quot;    &quot;Ron&quot;      &quot;Hermione&quot; &quot;Draco&quot;</code></pre>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="rprog4.html#cb311-1"></a><span class="kw">class</span>(my.list<span class="op">$</span>entry_<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="rprog4.html#cb313-1"></a><span class="kw">class</span>(my.list<span class="op">$</span>entry_<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="rprog4.html#cb313-1"></a>my.list[[<span class="dv">2</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="rprog4.html#cb315-1"></a>my.list[[<span class="dv">2</span>]]</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]    1    6   11   16
 ## [2,]    2    7   12   17
 ## [3,]    3    8   13   18
 ## [4,]    4    9   14   19
 ## [5,]    5   10   15   20</code></pre>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="rprog4.html#cb315-1"></a><span class="kw">class</span>(my.list[[<span class="dv">2</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="rprog4.html#cb317-1"></a><span class="kw">class</span>(my.list[[<span class="dv">2</span>]])</span></code></pre></div>
 <pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
 <p>Working with lists is one of the mental hurdles to overcome when learning <code>map()</code>. However, there are variants in the <code>map_</code> family of functions that return simpler object types; we will work with these simplified functions to begin.</p>
 <table>
@@ -778,10 +778,10 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 </tbody>
 </table>
 <p>Let’s use <code>map_dfr()</code> to apply our function, <code>import.w.name()</code>, onto the vector of file names and paths (<code>file_list</code>). The <em>“r”</em> in <code>map_dfr()</code> means that the resultant data frame output by <code>map_</code> will be created by binding rows together as the function moves down each index in the file list. This is shown schematically in the figure below.</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="rprog4.html#cb317-1"></a>file_list &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="dt">full.names=</span><span class="ot">TRUE</span>)</span>
-<span id="cb317-2"><a href="rprog4.html#cb317-2"></a>PA_data_merged &lt;-<span class="st"> </span><span class="kw">map_dfr</span>(file_list, import.w.name) </span>
-<span id="cb317-3"><a href="rprog4.html#cb317-3"></a></span>
-<span id="cb317-4"><a href="rprog4.html#cb317-4"></a><span class="kw">glimpse</span>(PA_data_merged)</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="rprog4.html#cb319-1"></a>file_list &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="dt">full.names=</span><span class="ot">TRUE</span>)</span>
+<span id="cb319-2"><a href="rprog4.html#cb319-2"></a>PA_data_merged &lt;-<span class="st"> </span><span class="kw">map_dfr</span>(file_list, import.w.name) </span>
+<span id="cb319-3"><a href="rprog4.html#cb319-3"></a></span>
+<span id="cb319-4"><a href="rprog4.html#cb319-4"></a><span class="kw">glimpse</span>(PA_data_merged)</span></code></pre></div>
 <pre><code>## Rows: 6,374
 ## Columns: 6
 ## $ UTCDateTime      &lt;chr&gt; &quot;2018/10/22T17:52:21z&quot;, &quot;2018/10/22T17:53:41z&quot;, &quot;201…
