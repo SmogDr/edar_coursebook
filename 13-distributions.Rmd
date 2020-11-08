@@ -371,6 +371,11 @@ grid.arrange(log.pdf2, log.cdf2,
              heights = c(0.5, 0.5))
 ```
 
+```{block, type="rmdnote"}
+
+The terms *meanlog* and *sdlog* represent log-space values (i.e., the data have been log transformed) - these unitless terms are used in R functions like rlnorm() and qlnorm(). The term *geometric mean* is presented in the units of the data (read: it's the easiest to comprehend). The  *geometric standard deviation* (GSD) is also unitless but different from *sdlog*. The **GSD is a ratio of quantiles**: it represents the ratio of data values at quantiles that are separated by a standard deviation: $GSD = \frac{q_{84}}{q_{50}}$ (the 0.84 quantile divided by the 0.5 quantile). GSD can also be calculated in the other direction,  $GSD = \frac{q_{50}}{q_{16}}$, the 0.5 quantile divided by the 0.16 quantile. 
+
+```
 ## Pearson Correlation Coefficient {#pearson}
 The Pearson correlation coefficient, ***r***, is a quantitative descriptor of the degree of **linear correlation** between two variables (let's call them $x$ and $y$).  
 

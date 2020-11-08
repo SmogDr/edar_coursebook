@@ -411,7 +411,7 @@ Geometric mean salary = 75.37
 Geometric standard deviation = 1.95
 
 <div class="rmdnote">
-<p>The terms <em>meanlog</em> and <em>sdlog</em> represent log-space values (i.e., the data have been log transformed) - for that reason they are unitless. The term <em>geometric mean</em> is presented in the units of the data (read: it’s the easiest to comprehend). The <em>geometric standard deviation</em> (GSD) is also unitless but different from <em>sdlog</em>. The <strong>GSD is a ratio of quantiles</strong>: it represents the ratio of data values at quantiles that are separated by a standard deviation: GSD = 0.86 / 0.5 quantile values or the 0.5 / 0.16 quantile values, and so on.</p>
+<p>The terms <em>meanlog</em> and <em>sdlog</em> represent log-space values (i.e., the data have been log transformed) - for that reason they are unitless. The term <em>geometric mean</em> is presented in the units of the data (read: it’s the easiest to comprehend). The <em>geometric standard deviation</em> (GSD) is also unitless but different from <em>sdlog</em>. The <strong>GSD is a ratio of quantiles</strong>: it represents the ratio of data values at quantiles that are separated by a standard deviation: <span class="math inline">\(GSD = \frac{q_{84}}{q_{50}}\)</span> (the 0.84 quantile divided by the 0.5 quantile). GSD can also be calculated in the other direction, <span class="math inline">\(GSD = \frac{q_{50}}{q_{16}}\)</span>, the 0.5 quantile divided by the 0.16 quantile.</p>
 </div>
 
 ### Plot Fitted vs Actual Data

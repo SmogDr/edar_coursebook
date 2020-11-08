@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-11-06" />
+<meta name="date" content="2020-11-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -364,9 +364,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#LOD"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
 <li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
 <li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>10.3.3</b> Measurement Precision</a></li>
-<li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>10.3.4</b> Measurement Bias (accuracy)</a></li>
+<li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#significant-figures"><i class="fa fa-check"></i><b>10.3.4</b> Significant Figures</a></li>
+<li class="chapter" data-level="10.3.5" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>10.3.5</b> Measurement Bias (accuracy)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a></li>
+<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="measure.html"><a href="measure.html#repeated"><i class="fa fa-check"></i><b>10.4.1</b> Repeated Measures</a></li>
+<li class="chapter" data-level="10.4.2" data-path="measure.html"><a href="measure.html#error-propagation"><i class="fa fa-check"></i><b>10.4.2</b> Error Propagation</a></li>
+<li class="chapter" data-level="10.4.3" data-path="measure.html"><a href="measure.html#multiplicative-error"><i class="fa fa-check"></i><b>10.4.3</b> Multiplicative Error</a></li>
+<li class="chapter" data-level="10.4.4" data-path="measure.html"><a href="measure.html#exponential-error"><i class="fa fa-check"></i><b>10.4.4</b> Exponential Error</a></li>
+</ul></li>
 <li class="chapter" data-level="10.5" data-path="measure.html"><a href="measure.html#ch-10-exercises"><i class="fa fa-check"></i><b>10.5</b> Ch-10 Exercises</a></li>
 <li class="chapter" data-level="10.6" data-path="measure.html"><a href="measure.html#ch-10-homework"><i class="fa fa-check"></i><b>10.6</b> CH-10 Homework</a></li>
 </ul></li>
@@ -798,7 +804,7 @@ Figure 9.8: 2017 Annual Salaries ($1000s) Reported by Poly Sci Majors
 Geometric standard deviation = 1.95</p>
 <div class="rmdnote">
 <p>
-The terms <em>meanlog</em> and <em>sdlog</em> represent log-space values (i.e., the data have been log transformed) - for that reason they are unitless. The term <em>geometric mean</em> is presented in the units of the data (read: it’s the easiest to comprehend). The <em>geometric standard deviation</em> (GSD) is also unitless but different from <em>sdlog</em>. The <strong>GSD is a ratio of quantiles</strong>: it represents the ratio of data values at quantiles that are separated by a standard deviation: GSD = 0.86 / 0.5 quantile values or the 0.5 / 0.16 quantile values, and so on.
+The terms <em>meanlog</em> and <em>sdlog</em> represent log-space values (i.e., the data have been log transformed) - for that reason they are unitless. The term <em>geometric mean</em> is presented in the units of the data (read: it’s the easiest to comprehend). The <em>geometric standard deviation</em> (GSD) is also unitless but different from <em>sdlog</em>. The <strong>GSD is a ratio of quantiles</strong>: it represents the ratio of data values at quantiles that are separated by a standard deviation: <span class="math inline"><span class="math inline">\(GSD = \frac{q_{84}}{q_{50}}\)</span></span> (the 0.84 quantile divided by the 0.5 quantile). GSD can also be calculated in the other direction, <span class="math inline"><span class="math inline">\(GSD = \frac{q_{50}}{q_{16}}\)</span></span>, the 0.5 quantile divided by the 0.16 quantile.
 </p>
 </div>
 </div>

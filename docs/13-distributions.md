@@ -205,6 +205,9 @@ A key characteristic of lognormal distributions is that they are *left-skewed*, 
 <p class="caption">(\#fig:log-plot2)Lognormal Distributions look "normal" when plotted on a log scale axis.</p>
 </div>
 
+<div class="rmdnote">
+<p>The terms <em>meanlog</em> and <em>sdlog</em> represent log-space values (i.e., the data have been log transformed) - these unitless terms are used in R functions like rlnorm() and qlnorm(). The term <em>geometric mean</em> is presented in the units of the data (read: it’s the easiest to comprehend). The <em>geometric standard deviation</em> (GSD) is also unitless but different from <em>sdlog</em>. The <strong>GSD is a ratio of quantiles</strong>: it represents the ratio of data values at quantiles that are separated by a standard deviation: <span class="math inline">\(GSD = \frac{q_{84}}{q_{50}}\)</span> (the 0.84 quantile divided by the 0.5 quantile). GSD can also be calculated in the other direction, <span class="math inline">\(GSD = \frac{q_{50}}{q_{16}}\)</span>, the 0.5 quantile divided by the 0.16 quantile.</p>
+</div>
 ## Pearson Correlation Coefficient {#pearson}
 The Pearson correlation coefficient, ***r***, is a quantitative descriptor of the degree of **linear correlation** between two variables (let's call them $x$ and $y$).  
 

@@ -208,8 +208,23 @@ Thus, we report a precision of ± 0.9 °C around a value of 94 °C. Note that we
 
 Precision is often reported in relative terms, too, as a percentage about the location where the measurements were made.  For the example above, we would report $\frac{\widehat{\sigma}}{\widehat{\mu}}\cdot100$, which R calculates as 0.9574468, but which we would report as ±1% at 94 °C.
 
+### Significant Figures
+
+The number of **significant figures** you report should always reflect what you believe to be the precision of your data. The danger here is that R, like most computer programs, will report many significant figures because it has no idea as to the context of the data.  See, for example:
+
+
+```r
+sd(temperatures$data_temp)
+```
+
+```
+## [1] 0.880814
+```
+
+Keep this in mind when reporting tabular or summary data.  The `round()` function is your friend in this endeavor!
+
 <div class="rmdnote">
-<p>If you measure temperature with a k-type thermocouple and report a value of 93.28876 °C, you are admitting to the world your ignorance of precision (and the science of temperature measurement). No thermocouple reading is repeatable to 5 decimal places in °C; the best thermocouples are accurate to one decimal degree. <strong>Always make sure to align your measurement precision with the significant digits you report.</strong></p>
+<p>If you measure temperature with a k-type thermocouple and report a value of 93.28876 °C, you are admitting to the world your ignorance of precision (and the science of temperature measurement). No thermocouple reading is repeatable to 5 decimal places (or seven significant figures) in °C; the best thermocouples are accurate to one decimal degree. <strong>Always make sure to align your measurement precision with the significant digits you report.</strong></p>
 </div>
 
 ### Measurement Bias (accuracy) {#bias}
@@ -226,8 +241,96 @@ Precision and bias are easy to view graphically. In Figure \@ref(fig:bias-precis
 Like precision, 
 
 ## Measurement Uncertainty
-Bias and precision, together, make up *uncertainty*.  A good way to estimate the uncertainty around a measurement is through **error propagation**.
+The *uncertainty* in any measurement represents the doubt about how close to the truth our measurement might be. If a measurement has uncertainty, that implies the possibility of **measurement error**. In a vein similar to bias and precision, we say that measurement error typically comes in one of two forms:  
 
+- **Systematic error** is error that is repeatable in magnitude and direction; this type of error is traceable to some problem associated with how the measurement was made (and so can be corrected by "fixing" or calibrating hte measurement system). Bias is a type of systematic error. 
+- **Random error** is error that appears stochastic in nature (*stochastic is another word for random). These errors are "inherent in the measurement" and cannot be eliminated by calibration. The best way to reduce the influence from random errors is to increase your sample size (see [Repeated Measures](#repeated) below). Random error contributes to imprecision.
+
+Imprecision in a measurement contributes to uncertainty; bias can also contribute to uncertainty, although, if we know that bias exists we often try to correct for that bias through [*calibration*](#calibration), which we will discuss in the next chapter. 
+
+There are several ways that one can estimate uncertainty, we will discuss two common approaches here: repeated measures and propagation of error.
+
+### Repeated Measures {#repeated}
+One of the simplest ways to quantify uncertainty in a single measurement is to repeat the measurement and examine the spread of the data. For example, try measuring the length of your hand to the nearest millimeter using a ruler. Do it 5 times. You probably won't get the same answer each time (but you *should* come close). The variability in those repeated measures represents an estimate of the uncertainty for that measurement. We often assume that random errors associated with repeated measures are normally distributed, so we estimate this imprecision by reporting a measurement as a `mean()` followed by a standard deviation, `sd()`: $\bar{X}\pm \hat{\sigma}_{X}$.
+
+If you care about your measurement, make sure to repeat it so that you can report it with confidence. How many repeats are needed?  That depends on your definition of *acceptable precision*. The *standard error about a mean* is an estimate of the relative uncertainty for a generic measurement of $X$. The standard error (not to be confused with a standard deviation) is an estimate of hte precision of a measurement; it scales with the inverse square root of the sample size, where $n$ is the number of repeated measurements: 
+
+$$SE = \frac{\hat{\sigma}_{X}}{\sqrt{n}}$$
+By this relationship, we see that more repeated measures afford more precision, but with diminishing returns: we need to increase our sample size by a factor of 4  to improve our relative precision by a factor of 2. 
+
+<div class="figure" style="text-align: center">
+<img src="10-measure_files/figure-html/margin-of-error-1.png" alt="Relative gain in Precision when estimating a mean with repeated measures" width="384" />
+<p class="caption">(\#fig:margin-of-error)Relative gain in Precision when estimating a mean with repeated measures</p>
+</div>
+
+### Error Propagation
+To **propagate** means to spread or grow. When our measurements are performed in series, or as part of a larger system of measurements (read: an equation), then we must consider how each part contributes to the overall uncertainty. Thus, when we refer to *propagation of error*, we mean that measurement errors/uncertainties tend to compound each other. 
+
+**Propagation of error** is a method to estimate overall uncertainty by examining the contribution by parts.  We will examine three basic forms: addition, multiplication, and exponential.
+
+#### Addition/Subtraction Error
+When two measurements are added (or subtracted), the uncertainties are propagated by a root sum of squares. Let $U$ represent the uncertainty in a measurement process that we are trying to estimate. If the measurement involves the addition of three variables ($A + B + C$), each with uncertainty $\sigma_{a}$, $\sigma_{b}$, $\sigma_{c}$, then the overall uncertainty is reported as:
+
+$$U_{A+B+C} = \sqrt{\left({\sigma_{a}}\right)^2+\left(\sigma_{b}\right)^2+\left(\sigma_{c}\right)^2}$$
+For example, imagine that you are weighing three components that are intended to comprise an assembled part.  Each component $A, B, C$ has been repeatedly weighed 5 times. Thus, you can report a mean and standard deviation for each.
+
+
+```r
+weights <- tibble(
+  A = c(1200, 1250, 1210, 1180, 1200),
+  B = c(220, 230, 220, 210, 230),
+  C = c(3000, 3020, 3100, 3060, 3120)
+) %>%
+  #these are all weights so let's tidy this data frame
+  pivot_longer(cols = A:C,
+               names_to = "Component",
+               values_to = "Weight")
+```
+
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>(\#tab:weights-table)Example Weights and Precision, grams</caption>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> Component </th>
+   <th style="text-align:center;"> Mean Weight </th>
+   <th style="text-align:center;"> Standard Deviation </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> 1208 </td>
+   <td style="text-align:center;"> 26 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> 222 </td>
+   <td style="text-align:center;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> 3060 </td>
+   <td style="text-align:center;"> 51 </td>
+  </tr>
+</tbody>
+</table>
+
+The uncertainty, $U$, expressed as a percentage is:
+
+$$U_{A+B+C} = \sqrt{{26}^2+{8}^2+{51}^2} = 58 g$$
+You may notice that the overall uncertainty is less than the absolute sum of the individual standard deviations. This is because we expect some random error to be negative and some to be positive, meaning that they can tend to cancel out.
+
+### Multiplicative Error
+
+When variables are multiplied together, the uncertainty is propagated by a fractional root sum of squares. For example, $\frac{A}{B\cdot C}$ has uncertainty of:
+$$U_{\frac{A}{B\cdot C}}, \% = 100\cdot \sqrt{\left(\frac{\sigma_{a}}{A}\right)^2+\left(\frac{\sigma_{b}}{B}\right)^2+\left(\frac{\sigma_{c}}{C}\right)^2}$$
+Note that while additive uncertainty has units of the variable in question, multiplicative uncertainty is reported in relative percent terms.
+
+### Exponential Error
+When values are raised to a power, such as $A^n$, then uncertainty is again relative and takes the form:
+
+$$U_{A^n}, \% = 100\cdot \lvert{n}\rvert \frac{\sigma_a}{\lvert A \rvert}$$
+This calculation does not utilize a root-mean operation, which is why the absolute values are indicated.
 
 ## Ch-10 Exercises
 

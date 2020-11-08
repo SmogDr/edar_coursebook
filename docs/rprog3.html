@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-11-06" />
+<meta name="date" content="2020-11-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -364,9 +364,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#LOD"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
 <li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
 <li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>10.3.3</b> Measurement Precision</a></li>
-<li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>10.3.4</b> Measurement Bias (accuracy)</a></li>
+<li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#significant-figures"><i class="fa fa-check"></i><b>10.3.4</b> Significant Figures</a></li>
+<li class="chapter" data-level="10.3.5" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>10.3.5</b> Measurement Bias (accuracy)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a></li>
+<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="measure.html"><a href="measure.html#repeated"><i class="fa fa-check"></i><b>10.4.1</b> Repeated Measures</a></li>
+<li class="chapter" data-level="10.4.2" data-path="measure.html"><a href="measure.html#error-propagation"><i class="fa fa-check"></i><b>10.4.2</b> Error Propagation</a></li>
+<li class="chapter" data-level="10.4.3" data-path="measure.html"><a href="measure.html#multiplicative-error"><i class="fa fa-check"></i><b>10.4.3</b> Multiplicative Error</a></li>
+<li class="chapter" data-level="10.4.4" data-path="measure.html"><a href="measure.html#exponential-error"><i class="fa fa-check"></i><b>10.4.4</b> Exponential Error</a></li>
+</ul></li>
 <li class="chapter" data-level="10.5" data-path="measure.html"><a href="measure.html#ch-10-exercises"><i class="fa fa-check"></i><b>10.5</b> Ch-10 Exercises</a></li>
 <li class="chapter" data-level="10.6" data-path="measure.html"><a href="measure.html#ch-10-homework"><i class="fa fa-check"></i><b>10.6</b> CH-10 Homework</a></li>
 </ul></li>
@@ -848,7 +854,7 @@ date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time”
 by calling the <code>Sys.time()</code> function.</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="rprog3.html#cb209-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2020-11-06 11:02:33 MST&quot;</code></pre>
+<pre><code>## [1] &quot;2020-11-08 14:29:27 MST&quot;</code></pre>
 <p>As you can see, we got back the date, time, and timezone used by my computer
 (<em>whenever I last ran this code in <code>bookdown</code></em>). If you want to see how this
 time is stored in R internally, you can use <code>unclass()</code>, which returns an
@@ -856,17 +862,17 @@ object value with its class attributes removed. When we wrap <code>unclass()</co
 around <code>Sys.time()</code>, we will see the number of seconds that have occurred
 between the epoch of 1/1/1970 and right now:</p>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="rprog3.html#cb211-1"></a><span class="kw">unclass</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1604685753</code></pre>
+<pre><code>## [1] 1604870967</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
 Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span>
-365d/yr] =&gt; 50.8842514 years.</p>
+365d/yr] =&gt; 50.8901245 years.</p>
 <p>This calculation ignores leap years, but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats</h3>
 <p>Note that the <code>Sys.time()</code> function provided the date in a
 <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong>
-format: 2020-11-06 11:02:33.</p>
+format: 2020-11-08 14:29:27.</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
 have little difficulty recognizing the following date-time objects as
@@ -1009,18 +1015,18 @@ classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and 
 attributes.</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="rprog3.html#cb215-1"></a>time_now_ct &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb215-2"><a href="rprog3.html#cb215-2"></a><span class="kw">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1604685753</code></pre>
+<pre><code>## [1] 1604870967</code></pre>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="rprog3.html#cb217-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
 <span id="cb217-2"><a href="rprog3.html#cb217-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 33.4
-##  $ min   : int 2
-##  $ hour  : int 11
-##  $ mday  : int 6
+##  $ sec   : num 27.5
+##  $ min   : int 29
+##  $ hour  : int 14
+##  $ mday  : int 8
 ##  $ mon   : int 10
 ##  $ year  : int 120
-##  $ wday  : int 5
-##  $ yday  : int 310
+##  $ wday  : int 0
+##  $ yday  : int 312
 ##  $ isdst : int 0
 ##  $ zone  : chr &quot;MST&quot;
 ##  $ gmtoff: int -25200
