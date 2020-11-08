@@ -667,11 +667,11 @@ Figure 10.4: Examples of different combinations of bias and precision
 <h2><span class="header-section-number">10.4</span> Measurement Uncertainty</h2>
 <p>The <em>uncertainty</em> in any measurement represents the doubt about how close to the truth our measurement might be. If a measurement has uncertainty, that implies the possibility of <strong>measurement error</strong>. In a vein similar to bias and precision, we say that measurement error typically comes in one of two forms:</p>
 <ul>
-<li><strong>Systematic error</strong> is error that is repeatable in magnitude and direction; this type of error is traceable to some problem associated with how the measurement was made (and so can be corrected by “fixing” or calibrating hte measurement system). Bias is a type of systematic error.</li>
-<li><strong>Random error</strong> is error that appears stochastic in nature (*stochastic is another word for random). These errors are “inherent in the measurement” and cannot be eliminated by calibration. The best way to reduce the influence from random errors is to increase your sample size (see <a href="measure.html#repeated">Repeated Measures</a> below). Random error contributes to imprecision.</li>
+<li><strong>Systematic error</strong> is error that is repeatable in magnitude and direction; this type of error is traceable to some problem associated with how the measurement was made (and so can be corrected by “fixing” or calibrating hte measurement system). Bias is a type of systematic error. Note that bias can only be detected by measuring a known quantity (i.e., a <em>standard</em>) or by comparing your measurement to one that was made with a <em>reference instrument</em> - a independent measurement system that is considered “bias free”.</li>
+<li><strong>Random error</strong> is error that appears stochastic in nature (*stochastic is another word for random). These errors are “inherent in the measurement” and cannot be eliminated by calibration. The best way to reduce the influence from random errors is to increase your sample size (see <a href="measure.html#repeated">Repeated Measures</a> below). Random error contributes to imprecision - this type of error can be detected simply by taking repeated measurements of the same thing.</li>
 </ul>
-<p>Imprecision in a measurement contributes to uncertainty; bias can also contribute to uncertainty, although, if we know that bias exists we often try to correct for that bias through <a href="model.html#calibration"><em>calibration</em></a>, which we will discuss in the next chapter.</p>
-<p>There are several ways that one can estimate uncertainty, we will discuss two common approaches here: repeated measures and propagation of error.</p>
+<p>Both imprecision and bias can contribute to measurement uncertainty; although, if we know that bias exists we often try to correct for that bias through <a href="model.html#calibration"><em>calibration</em></a>, which we will discuss in the next chapter. We try to correct for imprecision by increasing our sample size.</p>
+<p>There are several ways that one can estimate uncertainty from imprecision, we will discuss two common approaches here: repeated measures and propagation of error.</p>
 <div id="repeated" class="section level3">
 <h3><span class="header-section-number">10.4.1</span> Repeated Measures</h3>
 <p>One of the simplest ways to quantify uncertainty in a single measurement is to repeat the measurement and examine the spread of the data. For example, try measuring the length of your hand to the nearest millimeter using a ruler. Do it 5 times. You probably won’t get the same answer each time (but you <em>should</em> come close). The variability in those repeated measures represents an estimate of the uncertainty for that measurement. We often assume that random errors associated with repeated measures are normally distributed, so we estimate this imprecision by reporting a measurement as a <code>mean()</code> followed by a standard deviation, <code>sd()</code>: <span class="math inline">\(\bar{X}\pm \hat{\sigma}_{X}\)</span>.</p>
@@ -757,7 +757,7 @@ C
 </tbody>
 </table>
 <p>The uncertainty, <span class="math inline">\(U\)</span>, expressed as a percentage is:</p>
-<p><span class="math display">\[U_{A+B+C} = \sqrt{{26}^2+{8}^2+{51}^2} = 58 g\]</span>
+<p><span class="math display">\[U_{A+B+C} = \sqrt{26^2+8^2+51^2} = 58 g\]</span>
 You may notice that the overall uncertainty is less than the absolute sum of the individual standard deviations. This is because we expect some random error to be negative and some to be positive, meaning that they can tend to cancel out.</p>
 </div>
 </div>
