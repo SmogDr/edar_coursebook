@@ -21,8 +21,9 @@ This Chapter is designed around the following learning objectives. Upon completi
 - Explain the difference between a sample and a population; 
 - Define randomization and describe how it can be applied to simple, stratified, and cluster sampling; 
 - Explain the difference between cluster and stratified sampling methods; 
-- Describe how to estimate precision and bias for a measurement system
-- Calculate uncertainty and describe how to propagate it across a measurement process
+- Describe how to estimate precision for a measurement system;
+- Describe the difference between systematic and random measurement error;
+- Estimate uncertainty and propagate it across a measurement process;
 - Define limit of detection and estimate it for a measurement process
 
 ## Sampling
@@ -41,11 +42,11 @@ taken from a single birthday party...
 
 A sample is representative if each measure is drawn in a way that makes it ***independent*** from the next AND if the measurement method itself is ***unbiased*** (i.e., the making of the measurement does not alter the way the sample is counted). We will talk more about ***bias*** later in this Chapter, but suffice it so say that if I made you watch a 10-minute video on catastrophic airplane disasters and then gave you a survey about your fears of flying, I might be introducing some bias into that survey measurement.
 
-Representative sampling is hard to do in practice.  A good sampling strategy employs ***randomization***: allow random chance to decide when and where measurements are made. The problem with this strategy, however, is that we have to place boundaries on the exact *when* and *where* of sampling due to limited resources. In reality, most samples are neither independent, nor randomly drawn; they are instead drawn from a single location, one after the next, for a short period of time. Such a *convenience sample* raises the possibility (1) that the data are non-independent (because any given measure is related [correlated] to the next one taken) and (2) that the sample lacks generalizability to the greater population (due to the focused [unique] nature of how/where the sample was collected. Scientific studies occasionally reach incorrect conclusions not because their statistical models were flawed, but instead because their sample was biased and/or unrepresentative of the true population. I can randomly survey 100 people at a political rally but that doesn't mean the opinions I gather from these individuals are representative of all eligible voters in that part of the country. 
+Representative sampling is hard to do in practice.  A good sampling strategy employs ***randomization***: allow random chance to decide when and where measurements are made. The problem with this strategy, however, is that we have to place boundaries on the exact *when* and *where* of sampling due to limited resources. In reality, most samples are neither independent, nor randomly drawn; they are instead drawn from a single location, one after the next, for a short period of time. Such a *convenience sample* raises the possibility (1) that the data are non-independent (because any given measure is related [correlated] to the next one taken) and (2) that the sample lacks generalizability to the greater population (due to the focused [unique] nature of how/where the sample was collected). Scientific studies occasionally reach incorrect conclusions not because their statistical models were flawed, but instead because their sample was biased and/or unrepresentative of the true population. I can randomly survey 100 people at a political rally, but that doesn't mean the opinions I gather from these individuals are representative of all eligible voters in that part of the country. 
 
 This is a much bigger problem than you might realize, because true random, unbiased sampling is often impossible or impractical in the real world. How would the Tesla Corporation collect a random, independent sample of 1000 [Model 3](https://www.tesla.com/model3){target="_blank"} vehicles after 10 years of real-world driving? Even with a random number generator applied to vehicle ID numbers, Tesla no longer owns those cars. They can't just take them back...   
 
-- They could ask car owers to complete a customer satisfaction survey but then they might only get results from people who want to complain...(*bias*) 
+- They could ask car owners to complete a customer satisfaction survey but then they might only get results from people who want to complain...(*bias*) 
 
 - They could ask dealers to inspect cars but then they would be sampling only from the subset of owners that liked to do business with dealers...(potential for *bias* AND *non-independence*)  
 
@@ -70,8 +71,8 @@ Simple random sampling means that samples are randomly collected from across the
 ```{block type = "rmdnote"}
 To collect a simple random sample, you need to ensure three things:  
 
-  1. that your sampling method gives ***every single member*** of the population an ***equal chance*** of being selected.
-  2. that your population remains relatively unchanged during the sampling window.  
+  1. that your sampling method gives ***every single member*** of the population an ***equal chance*** of being selected;
+  2. that your population remains relatively unchanged during the sampling window;  
   3. that your sample size is sufficient to make inferences (read: conclusions) with confidence.
 ```
 
@@ -99,18 +100,18 @@ These factors all work together to frame sample size considerations.  There are 
 ```
 
 ### Systematic Sampling
-Systematic sampling is often employed when simple random sampling is not feasible.  With systematic sampling, the population is first ordered according to a characteristic of interest (e.g., first to last, front to back, smallest to largest, youngest to oldest, etc.) and then samples are drawn at regular intervals from across the ordered range of values.  For example, if you wanted to know the opinions of marathoners at the finish line of a particular race, you might decide to randomly sample one person passing through the finish line every five minutes starting with the winner's group and ending with the last finisher.  The main disadvantage to systematic sampling is the creation of an ordering scheme, which can introduce bias into the results (whether known or unknown).  For example, in the NBA's annual [3-point shooting contest](https://en.wikipedia.org/wiki/Three-Point_Contest){target="_blank"}, every 5th ball is worth extra points to the shooter; if we conducted systematic sampling of every 5th shot, we would only select the shots worth extra points (i.e., the shots that the shooter cares the most about). 
+Systematic sampling is often employed when simple random sampling is not feasible.  With systematic sampling, the population is first ordered according to a characteristic of interest (e.g., first to last, front to back, smallest to largest, youngest to oldest, etc.) and then samples are drawn at regular intervals from across the ordered range of values.  For example, if you wanted to know the opinions of marathoners at the finish line of a particular race, you might decide to randomly sample one person passing through the finish line every five minutes starting with the winner's group and ending with the last finisher.  The main disadvantage to systematic sampling is that your ordering scheme might introduce bias into the results.  For example, in the NBA's annual [3-point shooting contest](https://en.wikipedia.org/wiki/Three-Point_Contest){target="_blank"}, every 5th ball is worth extra points to the shooter; if we conducted systematic sampling of every 5th shot from start to finish, we would only select the shots worth extra points (i.e., the shots that the shooter cares the most about). 
 
 ### Stratified Sampling
-Stratified sampling is often used when (1) you know "something" (a priori) about the population that you want to sutdy (or at least account for in your sample) and (2) when that "something" can be mapped onto the population to form groups.  With stratified sampling, you break the population into strata (a fancy word for *groups*) and then sample randomly (in equal proportion) from within each strata. This technique is used because the strata are believed to be important relative to the the variables of interest. The strata can be time-based (e.g., the quality of parts produced during the morning, afternoon, and night shift at a factory), place-based (e.g., the quality of parts produced at assembly plant A, B, C), or based on other known characteristics.  For example, when people are the subject of study, strata are often formed about age groups, gender groups, income brackets, and educational attainment, to name a few. Stratified random sampling can be more tedious to conduct and is sometimes biased if not all of the subgroups within a population are identified. For example, a survey of the effects of housing on health (stratified into homeowners vs. renters) would ignore a key subgroup: those who are experiencing homelessness.
+Stratified sampling is often used when (1) you know "something" (a priori) about the population that you want to sutdy (or at least account for in your sample) and (2) when that "something" can be mapped onto the population to form groups.  With stratified sampling, you break the population into strata (a fancy word for *groups*) and then sample randomly (in equal proportion) from within each strata. This technique is used because the strata are believed to be important relative to the the variables of interest. The strata can be time-based (e.g., the quality of parts produced during the morning, afternoon, and night shift at a factory), place-based (e.g., the quality of parts produced at assembly plant A, B, C), or based on other known characteristics.  For example, when people are the subject of study, strata are often formed about age groups, sex, income brackets, and educational attainment, to name a few. Stratified random sampling can be more tedious to conduct and is sometimes biased if not all of the subgroups within a population are identified. For example, a survey of the effects of housing on health (stratified into homeowners vs. renters) would ignore a key subgroup: those who are experiencing homelessness.
 
 ### Cluster Sampling
-Cluster sampling is often used to save on time and effort during a sampling campaign when it's possible to break the population into **similar groups**, or clusters. The population is divided into clusters (based on some grouping characteristic) and then a proportion of those clusters are fully sampled.  For example, if your company had 100  distribution centers across the country, and you wished to study some measure of process efficiency, then you might select 10 centers as clusters, and fully sample each.  
+Cluster sampling is often used to save on time and effort during a sampling campaign when it's possible to break the population into **similar groups**, or clusters. The population is divided into clusters (based on some grouping characteristic) and then a proportion of those clusters are fully sampled.  For example, if your company had 50 distribution centers across the country, and you wished to study some measure of process efficiency, then you might select 10 centers as clusters, and fully sample each.  
 
 Cluster sampling is considered less precise (i.e., more samples needed for a given question) than simple random sampling, but oftentimes its unfeasible or too costly to sample the whole population.  If cluster units are apparent, they can provide considerable cost savings.
 
 ```{block type = "rmdnote"}
-The important difference between stratified and cluster sampling is how each design defines the groups. With *stratified sampling*, the distinction between groups (i.e., how the data varies from one group to the next) is important; with *cluster sampling*, the distinction between groups should be one of convenience (and hopefully not meaningful as it relates to data variability). 
+The important difference between ***stratified*** and ***cluster*** sampling is how each design defines the groups. With *stratified sampling*, the distinction between groups (i.e., how the data varies from one group to the next) is important; with *cluster sampling*, the distinction between groups should be one of convenience (and hopefully not meaningful as it relates to data variability). 
 ```
 
 ## Figures of Merit
@@ -381,13 +382,13 @@ The uncertainty, $U$, expressed as a percentage is:
 $$U_{A+B+C} = \sqrt{26^2+8^2+51^2} = 58 g$$
 You may notice that the overall uncertainty is less than the absolute sum of the individual standard deviations. This is because we expect some random error to be negative and some to be positive, meaning that they can tend to cancel out.
 
-### Multiplicative Error
+#### Multiplicative Error
 
 When variables are multiplied together, the uncertainty is propagated by a fractional root sum of squares. For example, $\frac{A}{B\cdot C}$ has uncertainty of:
 $$U_{\frac{A}{B\cdot C}}, \% = 100\cdot \sqrt{\left(\frac{\sigma_{a}}{A}\right)^2+\left(\frac{\sigma_{b}}{B}\right)^2+\left(\frac{\sigma_{c}}{C}\right)^2}$$
 Note that while additive uncertainty has units of the variable in question, multiplicative uncertainty is reported in relative percent terms.
 
-### Exponential Error
+#### Exponential Error
 When values are raised to a power, such as $A^n$, then uncertainty is again relative and takes the form:
 
 $$U_{A^n}, \% = 100\cdot \lvert{n}\rvert \frac{\sigma_a}{\lvert A \rvert}$$
