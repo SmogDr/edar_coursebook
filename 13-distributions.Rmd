@@ -1,11 +1,14 @@
 # Appendix: Stats & Reference Distributions {#dist}
-In this chapter I discuss a handful of reference distributions that you may encounter while working through this course. I don't go into great detail on any of these distributions (or their mathematical structure) because smarter, better, and more authoritative descriptions can be found elsewhere in reference texts or online. This is the $1 tour.  Before we get to distributions, however, we should begin with measures of *central tendency* and *spread*, since many reference distributions have those properties.
+In this chapter I discuss a handful of basic statistical concepts, including several reference distributions, that you may encounter while working through this course. I don't go into great detail on any of these topics (or their mathematical structure) because smarter, better, and more authoritative descriptions can be found elsewhere in reference texts or online. This is the $1 tour. None of the material that follows is required learning for R programming, but if you haven't previously studied statistics (or need a refresher), it can't hurt. The concepts outlined below, along with the discussion on [quantiles](#quantile) in Chapter \@ref(eda1), form the basis for many, many data analysis techniques.
+
+Before we delve into distributions, however, we should begin with measures of *central tendency* and *spread*, since many reference distributions have those as defining properties.
 
 ```{r dist1, include=FALSE}
 library(tidyverse)
 library(gridExtra)
 library(grid)
 library(broom)
+library(knitr)
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 
 jvPalette <- c("#330099","#CC0066","#FF6633",
@@ -90,8 +93,7 @@ ggplot(data = six_sided, aes(x = rolls)) +
   theme_bw(base_size = 12)
 ```
   
-  
-### Characteristic Plots: Uniform Distribution
+### Uniform Characteristic Plots
 Below, we show the cumulative distribution plot and probability density function for a uniform distribution between 0 and 1.
 ``` {r unif-dist-plots2, echo=FALSE, fig.cap="Characteristic Plots for a Uniform Distribution"}
 unif_dist2<-tibble(data = seq(0,1,0.001), 
@@ -146,9 +148,9 @@ ggplot(data = four_dice) +
 
 ```
 
-### Normal Distribution: Characteristic Plots
+### Normal Characteristic Plots
 
-Unlike the uniform distribution, the normal distribution is not specified by a range (it doesn't have one).  The normal distribution is specified by a *central tendancy* (a most-common value) and a measure of data's *dispersion* or spread (a standard deviation). A normal distribution is symmetric, meaning that the spread of the data is equal on each side of the central tendency.  This symmetry also means that the mode (the most common value), the median (the 50^th^ percentile or 0.5 quantile) and the mean (the average value) are all equal. A series of normal distributions of varying dispersion is shown in the panels below.
+Unlike the uniform distribution, the normal distribution is not specified by a range (it doesn't have one).  The normal distribution is specified by a *central tendency* (a most-common value) and a measure of data's *dispersion* or spread (a standard deviation). A normal distribution is symmetric, meaning that the spread of the data is equal on each side of the central tendency.  This symmetry also means that the mode (the most common value), the median (the 50^th^ percentile or 0.5 quantile) and the mean (the average value) are all equal. A series of normal distributions of varying dispersion is shown in the panels below.
 
 ``` {r normal2, warning=FALSE, echo=FALSE, fig.width=6, fig.height=6, fig.align="center", fig.cap="Characteristic Plots for a Normal Distribution"}
 norm2 <- tibble(a = rnorm(n = 20000, mean = 50, sd = 5),
@@ -216,22 +218,112 @@ grid.arrange(normal_density, normal_ecdf,
 
 ```
 
+### 68-95-99 rule
+
+```{r normal-probs, echo=FALSE}
+#function to create a shaded ribbon plot using dnorm inputs
+#https://gist.github.com/jrnold/6799152
+normal_prob_area_plot <- function(lb, ub, fill.c = "black", mean = 0, sd = 1, limits = c(mean - 3 * sd, mean + 3 * sd)) {
+    x <- seq(limits[1], limits[2], length.out = 100)
+    xmin <- max(lb, limits[1])
+    xmax <- min(ub, limits[2])
+    areax <- seq(xmin, xmax, length.out = 100)
+    area <- data.frame(x = areax, 
+                       ymin = 0, 
+                       ymax = dnorm(areax, 
+                                    mean = mean, 
+                                    sd = sd))
+    (ggplot() +
+        geom_line(data.frame(x = x, 
+                            y = dnorm(x, 
+                                      mean = mean, 
+                                      sd = sd)),
+                 mapping = aes(x = x, 
+                               y = y)) +
+        geom_ribbon(data = area, 
+                   mapping = aes(x = x, 
+                                 ymin = ymin, 
+                                 ymax = ymax), 
+                   alpha = 0.5, 
+                   fill = fill.c)) 
+}
+```
+
+```{r norm-shaded-plot, echo=FALSE, message=FALSE, include=FALSE}
+#list arguments for normal_prob_area_plot()
+low <- list(-1, -2, -3, 1, 2)
+up <- list(1, -1, -2, 2, 3)
+fill.c <- list(jvPalette[1], 
+               jvPalette[2], 
+               jvPalette[3], 
+               jvPalette[2], 
+               jvPalette[3])
+
+#map the list entries as arguments to normal_prob_area_plot()
+plots <- pmap(list(low, up, fill.c), normal_prob_area_plot)
+
+#use the first list entry as a base and add the ribbon layers in succession
+plots[[1]] + 
+  plots[[2]]$layers[2] + 
+  plots[[3]]$layers[2] + 
+  plots[[4]]$layers[2] +
+  plots[[5]]$layers[2] + 
+  xlab("Standard Deviations") +
+  ylab("Probability Density") +
+  scale_x_continuous(breaks = seq(-3,3,1)) +
+  theme_bw()
+
+ggsave(filename = "./images/shaded_prob.png")
+```
+
+A ***standard*** deviation for a normal distribution relates the *spread* of the data about the mean (and *median*, since they are one-in-the-same for normal data). Since we often care about the probability of occurrence for some value, whether it be a more probable value close to the mean or an extreme value close to one of the tails, the standard deviation helps tell us precisely what the odds are for getting that value, given a random sample. We use the `pnorm()` function to estimate these probabilities. The `pnorm()` function returns the probability of returning a value less than the value indicated for a given mean and standard deviation. For example, from plot in Figure \@ref(fig:normal2) where $\mu=50$ and $\sigma=10$, the probability of sampling a value of 70 or less is:
+```{r pnorm-function}
+pnorm(q = 70, mean = 50, sd =10) %>%
+  round(., 3)
+```
+
+The probability of sampling a value of greater than 70 is given when we set the argument `lower.tail = FALSE`. 
+```{r pnorm-function2}
+pnorm(q = 70, mean = 50, sd =10, lower.tail = FALSE) %>%
+  round(., 3)
+```
+
+That second probability is equivalent to `1 - pnorm(q = 70, mean = 50, sd =10)`. Try it out for yourself.
+
+These probabilities are called ***"one-tailed"*** **tests** because they only occur for a single value in one direction away from the mean of the distribution (i.e., they return the probability of being within or outside one of the "tails" of the distribution).
+
+We also define ***"two-tailed"*** **tests**, where we look to see if a value is likely to occur within a range (or interval) about the mean value. A two-tailed test evaluates whether we are likely to find a value within a given number of standard deviations from the mean. 
+
+Common "two-tailed" probability intervals are common knowledge for a *normal* distribution (read: you should be aware of them). These probabilities state that a known fraction of data are encapsulated as we move away from the mean in units of standard deviations ($\sigma$). This phenomenon is known as the **"68-96-99 rule"**:  
+
+- One standard deviation about the mean (the interval from $\mu - 1\sigma$ to $\mu + 1\sigma$) contains 68.3% of the observed data.
+- Two standard deviations about the mean (the interval from $\mu - 2\sigma$ to $\mu + 2\sigma$) contains 95.5% of the observed data.
+- Three standard deviations about the mean ($\mu - 3\sigma$ to $\mu + 3\sigma$) contains 99.7% of the observed data. Figure \@ref(fig:shaded-prob-anno) below depicts this rule graphically. 
+
+```{r shaded-prob-anno, echo=FALSE, fig.align="center", fig.cap="The 68-95-99 Rule for Normal Probability Distributions. Numbers represent the probability of finding a value within 1-3 standard deviations about the mean."}
+
+knitr::include_graphics(path = "./images/shaded_prob_anno.png")
+```
+
+Inspection of Figure \@ref(fig:shaded-prob-anno) indicates that the probability of encountering a value $\pm1\sigma$ from the mean is fairly common, occurring about 32% of the time.  Encountering a value $\pm2\sigma$ from the mean, however, is rare - happening less than 5% of the time. When you hear someone refer to a "two sigma" displacement, this is likely the type of scenario they are depicting (though people rarely indicate whether they mean a one-tailed or two-tailed situation). A $\pm3\sigma$ deviation is extremely rare, happening less than 0.3% of the time. 
+
 ## Log-normal Distribution {#log_normal_dist}
 Multiplicative variation is what gives rise to a "log-normal" distribution: a special type of skewed data.  
 
-Let's create two normal distributions for variables 'a' and 'b':  
+Let's create two normal distributions for variables `a` and `b`:  
 
 ``` {r a-b-normal_dist, warning=FALSE}
 #create two variables that are normally distributed
 normal_data <- tibble(a = rnorm(n=1000, mean = 15, sd = 5),
-                   b = rnorm(n=1000, mean = 10, sd = 3))
+                      b = rnorm(n=1000, mean = 10, sd = 3))
 ```
 
 Individually, we know that these data are normally distributed (because we created them that way), but what does the distribution look like if we add these two variables together?
 
 ``` {r a-b-histogram, warning=FALSE, message=FALSE, fig.cap="The Sum of Two Normally Distributed Variables", fig.width=4, fig.height=4, fig.align="center"}
 #add those variables together and you get a normal distribution
-normal_data %>% mutate(c = a + b) -> normal_data
+normal_data %>% 
+  mutate(c = a + b) -> normal_data
 
 ggplot2::ggplot(data = normal_data) + 
   geom_histogram(aes(c),
@@ -240,11 +332,10 @@ ggplot2::ggplot(data = normal_data) +
                  color = "white") +
   xlab("Sum of a + b") +
   theme_minimal(base_size = 12)
-#ggsave("./images/hist_a_b.png", dpi = 150)
 ```
 *Answer: still normal*.  Since all we did here was add together two normal distributions, we simply created a third (normal) distribution with more additive variability.  
 
-What happens, however, if we multiply together a series of normally distributed variables?  
+What happens, however, if we randomly sample values from one or more normal distributions and multiply them together?  
 ``` {r a-b-lognormal, message=FALSE, fig.cap="The Product of Three Normally Distributed Variables Multiplied Together", , fig.width=4, fig.height=4, fig.align="center"}
 #multiply together three normal variables
 normal_data %>% 
@@ -268,7 +359,7 @@ magnitude of earthquakes measured at a given position on the Earth's surface,
 the size of rocks found in a section of a riverbed, or the size of particles
 found in air. All of these phenomena tend to be governed by multiplicative
 factors. In other words, all of these observations are controlled by mechanisms
-that suggest $x = a\cdot b\cdot c$ not $x = a + b + c$.
+that suggest $x = a\cdot b\cdot c$ not $x = a + b + c$. Note: we provide an example of fitting a log-normal distribution in Section \@ref(logfit).
 
 ``` {r a_b_lognormal_log_axis, eval=FALSE, echo=FALSE}
 #plot the same data on a log scale (x axis)
@@ -284,7 +375,7 @@ ggplot2::ggplot(data = log_data) +
 #ggsave("./images/hist_skew_out_logx.png", dpi = 150)
 ```
 
-### Lognormal Distribution: Characteristic Plots
+### Lognormal Characteristic Plots
 The lognormal distribution is called such because you observe a "normal" distribution only after taking the log of each observation, $log(x_i)$. Similar to its normal counterpart, the lognormal distribution is characterized by a **mean** ($\mu$) and a **standard deviation** ($\sigma$), but in this case, $\mu$ and $\sigma$ are calculated using $log(x_i)$. Thus, to estimate $\mu$ and $\sigma$ we take the log of all our observations of $x$ and then calculate means and standard deviations of those logged values.
 
 $$\hat{\mu} = \frac{\sum_{i=1}^{n}ln(x_{i})}{n}$$
