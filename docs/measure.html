@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2020-11-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -513,8 +513,8 @@ that your sample size is sufficient to make inferences (read: conclusions) with 
 <p>These factors all work together to frame sample size considerations. There are many ways to estimate sample size (too many for this course), so I will use only one here: sample size (n) for a t-test comparing two means:</p>
 <p>      <span class="math inline">\(n = \frac{(Z_{\alpha/2}\cdot+Z_{\beta/2})^2\cdot2\cdot\sigma^2}{d^2}\)</span> where,</p>
 <ul>
-<li><span class="math inline">\(\alpha\)</span> represents the Type-1 error rate (1 - confidence level); 0.05 is typical<br />
-</li>
+<li><span class="math inline">\(\alpha\)</span> represents the Type-1 error rate (1 - confidence level); 0.05 is typical
+<ul>
 <li><span class="math inline">\(\beta\)</span> represents the Type-2 error rate (1 - power); 0.2 is typical<br />
 </li>
 <li><span class="math inline">\(Z_{\alpha/2}\)</span> represents the critical value of the <a href="dist.html#normal_dist">Normal distribution</a> at <span class="math inline">\(\alpha/2\)</span><br />
@@ -523,6 +523,7 @@ that your sample size is sufficient to make inferences (read: conclusions) with 
 </li>
 <li><span class="math inline">\(\sigma^2\)</span> is the population variance (you often need to guess/estimate <span class="math inline">\(\sigma^2\)</span>)</li>
 <li><span class="math inline">\(d\)</span> is the difference (in means) that you are trying to detect</li>
+</ul></li>
 </ul>
 </div>
 <div id="systematic-sampling" class="section level3">
@@ -591,47 +592,47 @@ Figure 10.3: Blurry vision is imprecise: repeated measures could lead to differe
 </div>
 <p>Different authorities have varying opinions about the <em>best</em> way to quantify precision. A simple, “top-down” approach is to take repeated measures of something (for which that instrument is designed to measure) several times over and then report the <em>spread</em> of those data (often as a <em>standard deviation</em>, but <em>range</em>, <em>IQR</em>, and <em>95% or 99% confidence intervals</em> are also used). Alternatively, a “bottom-up” approach is to propagate the errors associated with each facet of the measurement. As an empiricist (a fancy word for experimental-type), I prefer to gather data, so I often employ the “top-down” approach to precision. There are dangers to this approach however; these dangers are a direct result of the <strong>sampling strategy</strong> used to make repeated measures (see the following section for a more in-depth analysis).</p>
 <p>In the case of a temperature sensor, we might boil a large pot of water and repeatedly measure the temperature with a single probe (here in Fort Collins, Colorado, water boils at ~ 94 °C). Those measurements are shown below:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="measure.html#cb1-1"></a>temperatures &lt;-<span class="st"> </span><span class="kw">tibble</span>( <span class="dt">data_seq =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>,</span>
-<span id="cb1-2"><a href="measure.html#cb1-2"></a>                                       <span class="dt">to =</span> <span class="dv">25</span>,</span>
-<span id="cb1-3"><a href="measure.html#cb1-3"></a>                                       <span class="dt">by =</span><span class="dv">1</span>),</span>
-<span id="cb1-4"><a href="measure.html#cb1-4"></a>                        <span class="dt">data_temp =</span> <span class="kw">c</span>(<span class="fl">93.4</span>, <span class="fl">93.7</span>, <span class="fl">96.0</span>, <span class="fl">93.1</span>, <span class="fl">93.8</span>,</span>
-<span id="cb1-5"><a href="measure.html#cb1-5"></a>                                      <span class="fl">94.2</span>, <span class="fl">93.1</span>, <span class="fl">94.6</span>, <span class="fl">93.8</span>, <span class="fl">95.1</span>,</span>
-<span id="cb1-6"><a href="measure.html#cb1-6"></a>                                      <span class="fl">93.1</span>, <span class="fl">94.6</span>, <span class="fl">94.7</span>, <span class="fl">93.6</span>, <span class="fl">92.8</span>,</span>
-<span id="cb1-7"><a href="measure.html#cb1-7"></a>                                      <span class="fl">95.7</span>, <span class="fl">94.0</span>, <span class="fl">93.0</span>, <span class="fl">93.7</span>, <span class="fl">94.6</span>,</span>
-<span id="cb1-8"><a href="measure.html#cb1-8"></a>                                      <span class="fl">94.4</span>, <span class="fl">94.1</span>, <span class="fl">94.2</span>, <span class="fl">92.3</span>, <span class="fl">94.4</span>)) </span>
-<span id="cb1-9"><a href="measure.html#cb1-9"></a></span>
-<span id="cb1-10"><a href="measure.html#cb1-10"></a><span class="kw">sd</span>(temperatures<span class="op">$</span>data_temp) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="measure.html#cb338-1"></a>temperatures &lt;-<span class="st"> </span><span class="kw">tibble</span>( <span class="dt">data_seq =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>,</span>
+<span id="cb338-2"><a href="measure.html#cb338-2"></a>                                       <span class="dt">to =</span> <span class="dv">25</span>,</span>
+<span id="cb338-3"><a href="measure.html#cb338-3"></a>                                       <span class="dt">by =</span><span class="dv">1</span>),</span>
+<span id="cb338-4"><a href="measure.html#cb338-4"></a>                        <span class="dt">data_temp =</span> <span class="kw">c</span>(<span class="fl">93.4</span>, <span class="fl">93.7</span>, <span class="fl">96.0</span>, <span class="fl">93.1</span>, <span class="fl">93.8</span>,</span>
+<span id="cb338-5"><a href="measure.html#cb338-5"></a>                                      <span class="fl">94.2</span>, <span class="fl">93.1</span>, <span class="fl">94.6</span>, <span class="fl">93.8</span>, <span class="fl">95.1</span>,</span>
+<span id="cb338-6"><a href="measure.html#cb338-6"></a>                                      <span class="fl">93.1</span>, <span class="fl">94.6</span>, <span class="fl">94.7</span>, <span class="fl">93.6</span>, <span class="fl">92.8</span>,</span>
+<span id="cb338-7"><a href="measure.html#cb338-7"></a>                                      <span class="fl">95.7</span>, <span class="fl">94.0</span>, <span class="fl">93.0</span>, <span class="fl">93.7</span>, <span class="fl">94.6</span>,</span>
+<span id="cb338-8"><a href="measure.html#cb338-8"></a>                                      <span class="fl">94.4</span>, <span class="fl">94.1</span>, <span class="fl">94.2</span>, <span class="fl">92.3</span>, <span class="fl">94.4</span>)) </span>
+<span id="cb338-9"><a href="measure.html#cb338-9"></a></span>
+<span id="cb338-10"><a href="measure.html#cb338-10"></a><span class="kw">sd</span>(temperatures<span class="op">$</span>data_temp) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.88</code></pre>
 <p>Let’s create a 4-plot of those data to visualize basic characteristics.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="measure.html#cb3-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
-<span id="cb3-2"><a href="measure.html#cb3-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_seq, <span class="dt">y=</span>data_temp),</span>
-<span id="cb3-3"><a href="measure.html#cb3-3"></a>            <span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span></span>
-<span id="cb3-4"><a href="measure.html#cb3-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_seq, <span class="dt">y=</span>data_temp),</span>
-<span id="cb3-5"><a href="measure.html#cb3-5"></a>             <span class="dt">size =</span> <span class="dv">2</span>,</span>
-<span id="cb3-6"><a href="measure.html#cb3-6"></a>             <span class="dt">shape =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb3-7"><a href="measure.html#cb3-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Sequence Order&quot;</span>) <span class="op">+</span></span>
-<span id="cb3-8"><a href="measure.html#cb3-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
-<span id="cb3-9"><a href="measure.html#cb3-9"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
-<span id="cb3-10"><a href="measure.html#cb3-10"></a></span>
-<span id="cb3-11"><a href="measure.html#cb3-11"></a>p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
-<span id="cb3-12"><a href="measure.html#cb3-12"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_temp)) <span class="op">+</span></span>
-<span id="cb3-13"><a href="measure.html#cb3-13"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
-<span id="cb3-14"><a href="measure.html#cb3-14"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="op">+</span></span>
-<span id="cb3-15"><a href="measure.html#cb3-15"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
-<span id="cb3-16"><a href="measure.html#cb3-16"></a></span>
-<span id="cb3-17"><a href="measure.html#cb3-17"></a>p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
-<span id="cb3-18"><a href="measure.html#cb3-18"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x =</span> data_temp),</span>
-<span id="cb3-19"><a href="measure.html#cb3-19"></a>                 <span class="dt">bins =</span> <span class="dv">6</span>,</span>
-<span id="cb3-20"><a href="measure.html#cb3-20"></a>                 <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
-<span id="cb3-21"><a href="measure.html#cb3-21"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
-<span id="cb3-22"><a href="measure.html#cb3-22"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="op">+</span></span>
-<span id="cb3-23"><a href="measure.html#cb3-23"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
-<span id="cb3-24"><a href="measure.html#cb3-24"></a></span>
-<span id="cb3-25"><a href="measure.html#cb3-25"></a>p4 &lt;-<span class="st"> </span><span class="kw">ggAcf</span>(<span class="dt">x =</span> temperatures<span class="op">$</span>data_temp) <span class="op">+</span></span>
-<span id="cb3-26"><a href="measure.html#cb3-26"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
-<span id="cb3-27"><a href="measure.html#cb3-27"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="ot">NULL</span>)</span>
-<span id="cb3-28"><a href="measure.html#cb3-28"></a></span>
-<span id="cb3-29"><a href="measure.html#cb3-29"></a><span class="kw">grid.arrange</span>(p1, p2, p3, p4)</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="measure.html#cb340-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
+<span id="cb340-2"><a href="measure.html#cb340-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_seq, <span class="dt">y=</span>data_temp),</span>
+<span id="cb340-3"><a href="measure.html#cb340-3"></a>            <span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span></span>
+<span id="cb340-4"><a href="measure.html#cb340-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_seq, <span class="dt">y=</span>data_temp),</span>
+<span id="cb340-5"><a href="measure.html#cb340-5"></a>             <span class="dt">size =</span> <span class="dv">2</span>,</span>
+<span id="cb340-6"><a href="measure.html#cb340-6"></a>             <span class="dt">shape =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb340-7"><a href="measure.html#cb340-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Sequence Order&quot;</span>) <span class="op">+</span></span>
+<span id="cb340-8"><a href="measure.html#cb340-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
+<span id="cb340-9"><a href="measure.html#cb340-9"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb340-10"><a href="measure.html#cb340-10"></a></span>
+<span id="cb340-11"><a href="measure.html#cb340-11"></a>p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
+<span id="cb340-12"><a href="measure.html#cb340-12"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data_temp)) <span class="op">+</span></span>
+<span id="cb340-13"><a href="measure.html#cb340-13"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
+<span id="cb340-14"><a href="measure.html#cb340-14"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="op">+</span></span>
+<span id="cb340-15"><a href="measure.html#cb340-15"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb340-16"><a href="measure.html#cb340-16"></a></span>
+<span id="cb340-17"><a href="measure.html#cb340-17"></a>p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> temperatures) <span class="op">+</span></span>
+<span id="cb340-18"><a href="measure.html#cb340-18"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x =</span> data_temp),</span>
+<span id="cb340-19"><a href="measure.html#cb340-19"></a>                 <span class="dt">bins =</span> <span class="dv">6</span>,</span>
+<span id="cb340-20"><a href="measure.html#cb340-20"></a>                 <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
+<span id="cb340-21"><a href="measure.html#cb340-21"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Temperature, °C&quot;</span>) <span class="op">+</span></span>
+<span id="cb340-22"><a href="measure.html#cb340-22"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="op">+</span></span>
+<span id="cb340-23"><a href="measure.html#cb340-23"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
+<span id="cb340-24"><a href="measure.html#cb340-24"></a></span>
+<span id="cb340-25"><a href="measure.html#cb340-25"></a>p4 &lt;-<span class="st"> </span><span class="kw">ggAcf</span>(<span class="dt">x =</span> temperatures<span class="op">$</span>data_temp) <span class="op">+</span></span>
+<span id="cb340-26"><a href="measure.html#cb340-26"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb340-27"><a href="measure.html#cb340-27"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="ot">NULL</span>)</span>
+<span id="cb340-28"><a href="measure.html#cb340-28"></a></span>
+<span id="cb340-29"><a href="measure.html#cb340-29"></a><span class="kw">grid.arrange</span>(p1, p2, p3, p4)</span></code></pre></div>
 <p><img src="10-measure_files/figure-html/plot-temperature-data-1.png" width="672" /></p>
 <p>Examination of the 4-plot reveals:</p>
 <ul>
@@ -650,7 +651,7 @@ Figure 10.3: Blurry vision is imprecise: repeated measures could lead to differe
 <div id="significant-figures" class="section level4">
 <h4><span class="header-section-number">10.3.3.1</span> Significant Figures</h4>
 <p>The number of <strong>significant figures</strong> you report should always reflect what you believe to be the precision of your data. The danger here is that R, like most computer programs, will report many significant figures because it has no idea as to the context of the data. See, for example:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="measure.html#cb4-1"></a><span class="kw">sd</span>(temperatures<span class="op">$</span>data_temp)</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="measure.html#cb341-1"></a><span class="kw">sd</span>(temperatures<span class="op">$</span>data_temp)</span></code></pre></div>
 <pre><code>## [1] 0.880814</code></pre>
 <p>Keep this in mind when reporting tabular or summary data. The <code>round()</code> function is your friend in this endeavor!</p>
 <div class="rmdnote">
@@ -676,15 +677,15 @@ Figure 10.4: Examples of different combinations of bias and precision
 <h2><span class="header-section-number">10.4</span> Measurement Uncertainty</h2>
 <p>The <em>uncertainty</em> in any measurement represents the doubt about how close to the truth our measurement might be. If a measurement has uncertainty, that implies the possibility of <strong>measurement error</strong>. In a vein similar to bias and precision, we say that measurement error typically comes in one of two forms:</p>
 <ul>
-<li><strong>Systematic error</strong> is error that is repeatable in magnitude and direction; this type of error is traceable to some problem associated with how the measurement was made (and so can be corrected by “fixing” or calibrating hte measurement system). Bias is a type of systematic error. Note that bias can only be detected by measuring a known quantity (i.e., a <em>standard</em>) or by comparing your measurement to one that was made with a <em>reference instrument</em> - a independent measurement system that is considered “bias free”.</li>
+<li><strong>Systematic error</strong> is error that is repeatable in magnitude and direction; this type of error is traceable to some problem associated with how the measurement was made (and so can be corrected by “fixing” or calibrating the measurement system). Bias is a type of systematic error. Note that bias can only be detected by measuring a known quantity (i.e., a <strong>standard</strong>) or by comparing your measurement to that made by a <strong>reference instrument</strong>. Reference instruments are called such because they are trusted to be “bias free”.</li>
 <li><strong>Random error</strong> is error that appears stochastic in nature (*stochastic is another word for random). These errors are “inherent in the measurement” and cannot be eliminated by calibration. The best way to reduce the influence from random errors is to increase your sample size (see <a href="measure.html#repeated">Repeated Measures</a> below). Random error contributes to imprecision - this type of error can be detected simply by taking repeated measurements of the same thing.</li>
 </ul>
 <p>Both imprecision and bias can contribute to measurement uncertainty; although, if we know that bias exists we often try to correct for that bias through <a href="model.html#calibration"><em>calibration</em></a>, which we will discuss in the next chapter. We try to correct for imprecision by increasing our sample size.</p>
 <p>There are several ways that one can estimate uncertainty from imprecision, we will discuss two common approaches here: repeated measures and propagation of error.</p>
 <div id="repeated" class="section level3">
 <h3><span class="header-section-number">10.4.1</span> Repeated Measures</h3>
-<p>One of the simplest ways to quantify uncertainty in a single measurement is to repeat the measurement and examine the spread of the data. For example, try measuring the length of your hand to the nearest millimeter using a ruler. Do it 5 times. You probably won’t get the same answer each time (but you <em>should</em> come close). The variability in those repeated measures represents an estimate of the uncertainty for that measurement. We often assume that random errors associated with repeated measures are normally distributed, so we estimate this imprecision by reporting a measurement as a <code>mean()</code> followed by a standard deviation, <code>sd()</code>: <span class="math inline">\(\bar{X}\pm \hat{\sigma}_{X}\)</span>.</p>
-<p>If you care about your measurement, make sure to repeat it so that you can report it with confidence. How many repeats are needed? That depends on your definition of <em>acceptable precision</em>. The <em>standard error about a mean</em> is an estimate of the relative uncertainty for a generic measurement of <span class="math inline">\(X\)</span>. The standard error (not to be confused with a standard deviation) is an estimate of hte precision of a measurement; it scales with the inverse square root of the sample size, where <span class="math inline">\(n\)</span> is the number of repeated measurements:</p>
+<p>One of the simplest ways to quantify uncertainty in a single measurement is to repeat the measurement and examine the spread of the data. For example, wrap a length of string around your finger and measure that circumference to the nearest millimeter using a ruler. Do it 5 times. You probably won’t get the same answer each time (but you <em>should</em> come close). The variability in those repeated measures represents an estimate of the uncertainty for that measurement. We often assume that random errors associated with repeated measures are normally distributed, so we estimate this imprecision by reporting a measurement as a <code>mean()</code> followed by a standard deviation, <code>sd()</code>: <span class="math inline">\(\bar{X}\pm \hat{\sigma}_{X}\)</span>.</p>
+<p>If you care about your measurement, make sure to repeat it so that you can report it with confidence. How many repeats are needed? That depends on your definition of <em>acceptable precision</em>. The <em>standard error about a mean</em> is an estimate of the relative uncertainty for a generic measurement of <span class="math inline">\(X\)</span>. The standard error (not to be confused with a standard deviation) is an estimate of the precision of a measurement; it scales with the inverse square root of the sample size, where <span class="math inline">\(n\)</span> is the number of repeated measurements:</p>
 <p><span class="math display">\[SE = \frac{\hat{\sigma}_{X}}{\sqrt{n}}\]</span>
 By this relationship, we see that more repeated measures afford more precision, but with diminishing returns: we need to increase our sample size by a factor of 4 to improve our relative precision by a factor of 2.</p>
 <div class="figure" style="text-align: center"><span id="fig:margin-of-error"></span>
@@ -703,15 +704,15 @@ Figure 10.5: Relative gain in Precision when estimating a mean with repeated mea
 <p>When two measurements are added (or subtracted), the uncertainties are propagated by a root sum of squares. Let <span class="math inline">\(U\)</span> represent the uncertainty in a measurement process that we are trying to estimate. If the measurement involves the addition of three variables (<span class="math inline">\(A + B + C\)</span>), each with uncertainty <span class="math inline">\(\sigma_{a}\)</span>, <span class="math inline">\(\sigma_{b}\)</span>, <span class="math inline">\(\sigma_{c}\)</span>, then the overall uncertainty is reported as:</p>
 <p><span class="math display">\[U_{A+B+C} = \sqrt{\left({\sigma_{a}}\right)^2+\left(\sigma_{b}\right)^2+\left(\sigma_{c}\right)^2}\]</span>
 For example, imagine that you are weighing three components that are intended to comprise an assembled part. Each component <span class="math inline">\(A, B, C\)</span> has been repeatedly weighed 5 times. Thus, you can report a mean and standard deviation for each.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="measure.html#cb6-1"></a>weights &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb6-2"><a href="measure.html#cb6-2"></a>  <span class="dt">A =</span> <span class="kw">c</span>(<span class="dv">1200</span>, <span class="dv">1250</span>, <span class="dv">1210</span>, <span class="dv">1180</span>, <span class="dv">1200</span>),</span>
-<span id="cb6-3"><a href="measure.html#cb6-3"></a>  <span class="dt">B =</span> <span class="kw">c</span>(<span class="dv">220</span>, <span class="dv">230</span>, <span class="dv">220</span>, <span class="dv">210</span>, <span class="dv">230</span>),</span>
-<span id="cb6-4"><a href="measure.html#cb6-4"></a>  <span class="dt">C =</span> <span class="kw">c</span>(<span class="dv">3000</span>, <span class="dv">3020</span>, <span class="dv">3100</span>, <span class="dv">3060</span>, <span class="dv">3120</span>)</span>
-<span id="cb6-5"><a href="measure.html#cb6-5"></a>) <span class="op">%&gt;%</span></span>
-<span id="cb6-6"><a href="measure.html#cb6-6"></a><span class="st">  </span><span class="co">#these are all weights so let&#39;s tidy this data frame</span></span>
-<span id="cb6-7"><a href="measure.html#cb6-7"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> A<span class="op">:</span>C,</span>
-<span id="cb6-8"><a href="measure.html#cb6-8"></a>               <span class="dt">names_to =</span> <span class="st">&quot;Component&quot;</span>,</span>
-<span id="cb6-9"><a href="measure.html#cb6-9"></a>               <span class="dt">values_to =</span> <span class="st">&quot;Weight&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="measure.html#cb343-1"></a>weights &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb343-2"><a href="measure.html#cb343-2"></a>  <span class="dt">A =</span> <span class="kw">c</span>(<span class="dv">1200</span>, <span class="dv">1250</span>, <span class="dv">1210</span>, <span class="dv">1180</span>, <span class="dv">1200</span>),</span>
+<span id="cb343-3"><a href="measure.html#cb343-3"></a>  <span class="dt">B =</span> <span class="kw">c</span>(<span class="dv">220</span>, <span class="dv">230</span>, <span class="dv">220</span>, <span class="dv">210</span>, <span class="dv">230</span>),</span>
+<span id="cb343-4"><a href="measure.html#cb343-4"></a>  <span class="dt">C =</span> <span class="kw">c</span>(<span class="dv">3000</span>, <span class="dv">3020</span>, <span class="dv">3100</span>, <span class="dv">3060</span>, <span class="dv">3120</span>)</span>
+<span id="cb343-5"><a href="measure.html#cb343-5"></a>) <span class="op">%&gt;%</span></span>
+<span id="cb343-6"><a href="measure.html#cb343-6"></a><span class="st">  </span><span class="co">#these are all weights so let&#39;s tidy this data frame</span></span>
+<span id="cb343-7"><a href="measure.html#cb343-7"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> A<span class="op">:</span>C,</span>
+<span id="cb343-8"><a href="measure.html#cb343-8"></a>               <span class="dt">names_to =</span> <span class="st">&quot;Component&quot;</span>,</span>
+<span id="cb343-9"><a href="measure.html#cb343-9"></a>               <span class="dt">values_to =</span> <span class="st">&quot;Weight&quot;</span>)</span></code></pre></div>
 <table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:weights-table">Table 10.1: </span>Example Weights and Precision, grams
