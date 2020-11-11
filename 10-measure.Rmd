@@ -154,11 +154,27 @@ To calculate the lower LOD, we often measure a series of "blanks" and then calcu
 **What is a blank?**  A *blank* is an attempt to challenge the instrument to measure nothing from something.  Let's say you had a scale to weigh the mass of cherries picked at an orchard. Each load of cherries is weighed in a small paper bag (so that they don't spill everywhere).  Then weighing the empty paper bag would be considered a "blank" for that instrument.
 ```
 
+The LOD is typically defined as:
+
+$$LOD = 3\cdot \sigma_b$$
+where $\sigma_b$ is the standard deviation of repeated measurements of an instrument blank. This calculation assumes that the instrument has a 1:1 response to increasing levels of analyte (i.e., the slope of the line between what's measured and what is actually there is 1). The "3" in the equation above comes from the probability density function for the [normal distribution](#normal_dist) - this equation implies that values above the LOD have a 99:1 chance of being correctly identified as above zero (i.e., three standard deviations away from a normal distribution centered at zero).
+
+Along these lines, the limit of quantification, *LOQ*, is used as a threshold of confidence to indicate that, not only can you detect something (from nothing), but that you can ***quantify how much***.
+
+$$LOQ = 5\cdot \sigma_b$$
+Note that some texts suggest the use of $10\cdot \sigma_b$ for establishing an LOQ threshold; I think that's too conservative...
+
+```{block, type="rmdnote"}
+The **LOD** indicates a threshold above which you can detect something (and below which you do not have confidence that *something is there*). The **LOQ** indicates whether there is enough of that something to be quantified and reported as an actual value. 
+```
+
 ### Dynamic Range {#dynamic}
 The LOD/LOQ concept is most often applied to an instrument's *minimum detectable quantity*, but it's important to realize that instruments also have a *maximum detectable quantities*, too. The ***dynamic range*** of an instrument, thus, describes the range of values (min/max) that an instrument can measure. It's important to know an instrument's dynamic range so that you don't misuse it. For example, you wouldn't use the scale in a doctor's office to weigh grains of rice just as you wouldn't ask human beings to report on the loudness of dog whistles.  The dynamic range of an instrument represents the measurement range between a lower and upper detection limit. 
 
-### Measurement Precision {#precision}
-In measurement science the term *precision* means "repeatability" or "instrument variability".  A precise measurement (made by a single instrument) is one that provides the same (or nearly the same) answer each time you take the measurement. This assumes, of course, that the thing being measured remains unchanged over time. Human vision is something that suffers from imprecision, especially as you get older (your eyesight usually gets worse). Look at the image below quickly and try to decode the letters you see.  If I asked you to identify this text quickly (in 10 seconds or less) once per day for a week, you might give me 7 different answers.  That's not a precise measurement.
+Upper detection limits are typically obtained from instrument manufacturers (as opposed to experiment) because, while it's usually safe to repeatedly measure *blanks* for LOD/LOQ determinations, you run the risk of breaking the instrument if you overload it with signal!
+
+### Precision {#precision}
+In measurement science the term *precision* means "repeatability" or "instrument variability".  A precise measurement (made by a single instrument) is one that provides the same (or nearly the same) answer each time you take the measurement. This assumes, of course, that the thing being measured remains unchanged. Human vision is something that suffers from imprecision, especially as you get older (your eyesight usually gets worse). Look at the image below quickly and try to decode the letters you see.  If I asked you to identify this text quickly (in 10 seconds or less) once per day for a week, you might give me 7 different answers.  That's not a precise measurement.
 
 ``` {r imprecise-1, echo=FALSE, fig.align = "center", fig.cap="Blurry vision is imprecise: repeated measures could lead to different answers"}
 
@@ -242,7 +258,7 @@ Thus, we report a precision of ± `r sd(temperatures$data_temp) %>% round(1)` °
 
 Precision is often reported in relative terms, too, as a percentage about the location where the measurements were made.  For the example above, we would report $\frac{\widehat{\sigma}}{\widehat{\mu}}\cdot100$, which R calculates as `r sd(temperatures$data_temp) %>% round(1) / mean(temperatures$data_temp) %>% round(1) *100`, but which we would report as ±`r rel_precision`% at `r mean(temperatures$data_temp) %>% round()` °C.
 
-### Significant Figures
+#### Significant Figures
 
 The number of **significant figures** you report should always reflect what you believe to be the precision of your data. The danger here is that R, like most computer programs, will report many significant figures because it has no idea as to the context of the data.  See, for example:
 
@@ -256,7 +272,7 @@ Keep this in mind when reporting tabular or summary data.  The `round()` functio
 If you measure temperature with a k-type thermocouple and report a value of 93.28876 °C, you are admitting to the world your ignorance of precision (and the science of temperature measurement).  No thermocouple reading is repeatable to 5 decimal places (or seven significant figures) in °C; the best thermocouples are accurate to one decimal degree. **Always make sure to align your measurement precision with the significant digits you report.** 
 ```
 
-### Measurement Bias (accuracy) {#bias}
+### Bias (accuracy) {#bias}
 The word ***bias*** has several meanings depending on the field of use (e.g., a biased opinion, a racial or gender bias, or a biased voltage).  Here, we define *bias* as the quantifiable difference between a measurement and a true value. The terms bias and accuracy are closely related, but we prefer to use bias because that word implies a magnitude and direction, whereas accuracy is more qualitative. 
 
 ``` {r bias-precision-plot, echo=FALSE, include=FALSE}
@@ -312,7 +328,7 @@ knitr::include_graphics("./images/bias_precision.png")
 ## Measurement Uncertainty
 The *uncertainty* in any measurement represents the doubt about how close to the truth our measurement might be. If a measurement has uncertainty, that implies the possibility of **measurement error**. In a vein similar to bias and precision, we say that measurement error typically comes in one of two forms:  
 
-- **Systematic error** is error that is repeatable in magnitude and direction; this type of error is traceable to some problem associated with how the measurement was made (and so can be corrected by "fixing" or calibrating hte measurement system). Bias is a type of systematic error. Note that bias can only be detected by measuring a known quantity (i.e., a *standard*) or by comparing your measurement to one that was made with a *reference instrument* - a independent measurement system that is considered "bias free". 
+- **Systematic error** is error that is repeatable in magnitude and direction; this type of error is traceable to some problem associated with how the measurement was made (and so can be corrected by "fixing" or calibrating the measurement system). Bias is a type of systematic error. Note that bias can only be detected by measuring a known quantity (i.e., a **standard**) or by comparing your measurement to that made by a **reference instrument**. Reference instruments are called such because they are trusted to be "bias free". 
 - **Random error** is error that appears stochastic in nature (*stochastic is another word for random). These errors are "inherent in the measurement" and cannot be eliminated by calibration. The best way to reduce the influence from random errors is to increase your sample size (see [Repeated Measures](#repeated) below). Random error contributes to imprecision - this type of error can be detected simply by taking repeated measurements of the same thing.
 
 Both imprecision and bias can contribute to measurement uncertainty; although, if we know that bias exists we often try to correct for that bias through [*calibration*](#calibration), which we will discuss in the next chapter. We try to correct for imprecision by increasing our sample size.
@@ -320,9 +336,9 @@ Both imprecision and bias can contribute to measurement uncertainty; although, i
 There are several ways that one can estimate uncertainty from imprecision, we will discuss two common approaches here: repeated measures and propagation of error.
 
 ### Repeated Measures {#repeated}
-One of the simplest ways to quantify uncertainty in a single measurement is to repeat the measurement and examine the spread of the data. For example, try measuring the length of your hand to the nearest millimeter using a ruler. Do it 5 times. You probably won't get the same answer each time (but you *should* come close). The variability in those repeated measures represents an estimate of the uncertainty for that measurement. We often assume that random errors associated with repeated measures are normally distributed, so we estimate this imprecision by reporting a measurement as a `mean()` followed by a standard deviation, `sd()`: $\bar{X}\pm \hat{\sigma}_{X}$.
+One of the simplest ways to quantify uncertainty in a single measurement is to repeat the measurement and examine the spread of the data. For example, wrap a length of string around your finger and measure that circumference to the nearest millimeter using a ruler. Do it 5 times. You probably won't get the same answer each time (but you *should* come close). The variability in those repeated measures represents an estimate of the uncertainty for that measurement. We often assume that random errors associated with repeated measures are normally distributed, so we estimate this imprecision by reporting a measurement as a `mean()` followed by a standard deviation, `sd()`: $\bar{X}\pm \hat{\sigma}_{X}$.
 
-If you care about your measurement, make sure to repeat it so that you can report it with confidence. How many repeats are needed?  That depends on your definition of *acceptable precision*. The *standard error about a mean* is an estimate of the relative uncertainty for a generic measurement of $X$. The standard error (not to be confused with a standard deviation) is an estimate of hte precision of a measurement; it scales with the inverse square root of the sample size, where $n$ is the number of repeated measurements: 
+If you care about your measurement, make sure to repeat it so that you can report it with confidence. How many repeats are needed?  That depends on your definition of *acceptable precision*. The *standard error about a mean* is an estimate of the relative uncertainty for a generic measurement of $X$. The standard error (not to be confused with a standard deviation) is an estimate of the precision of a measurement; it scales with the inverse square root of the sample size, where $n$ is the number of repeated measurements: 
 
 $$SE = \frac{\hat{\sigma}_{X}}{\sqrt{n}}$$
 By this relationship, we see that more repeated measures afford more precision, but with diminishing returns: we need to increase our sample size by a factor of 4  to improve our relative precision by a factor of 2. 

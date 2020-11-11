@@ -122,11 +122,27 @@ To calculate the lower LOD, we often measure a series of "blanks" and then calcu
 <p><strong>What is a blank?</strong> A <em>blank</em> is an attempt to challenge the instrument to measure nothing from something. Let’s say you had a scale to weigh the mass of cherries picked at an orchard. Each load of cherries is weighed in a small paper bag (so that they don’t spill everywhere). Then weighing the empty paper bag would be considered a “blank” for that instrument.</p>
 </div>
 
+The LOD is typically defined as:
+
+$$LOD = 3\cdot \sigma_b$$
+where $\sigma_b$ is the standard deviation of repeated measurements of an instrument blank. This calculation assumes that the instrument has a 1:1 response to increasing levels of analyte (i.e., the slope of the line between what's measured and what is actually there is 1). The "3" in the equation above comes from the probability density function for the [normal distribution](#normal_dist) - this equation implies that values above the LOD have a 99:1 chance of being correctly identified as above zero (i.e., three standard deviations away from a normal distribution centered at zero).
+
+Along these lines, the limit of quantification, *LOQ*, is used as a threshold of confidence to indicate that, not only can you detect something (from nothing), but that you can ***quantify how much***.
+
+$$LOQ = 5\cdot \sigma_b$$
+Note that some texts suggest the use of $10\cdot \sigma_b$ for establishing an LOQ threshold; I think that's too conservative...
+
+<div class="rmdnote">
+<p>The <strong>LOD</strong> indicates a threshold above which you can detect something (and below which you do not have confidence that <em>something is there</em>). The <strong>LOQ</strong> indicates whether there is enough of that something to be quantified and reported as an actual value.</p>
+</div>
+
 ### Dynamic Range {#dynamic}
 The LOD/LOQ concept is most often applied to an instrument's *minimum detectable quantity*, but it's important to realize that instruments also have a *maximum detectable quantities*, too. The ***dynamic range*** of an instrument, thus, describes the range of values (min/max) that an instrument can measure. It's important to know an instrument's dynamic range so that you don't misuse it. For example, you wouldn't use the scale in a doctor's office to weigh grains of rice just as you wouldn't ask human beings to report on the loudness of dog whistles.  The dynamic range of an instrument represents the measurement range between a lower and upper detection limit. 
 
-### Measurement Precision {#precision}
-In measurement science the term *precision* means "repeatability" or "instrument variability".  A precise measurement (made by a single instrument) is one that provides the same (or nearly the same) answer each time you take the measurement. This assumes, of course, that the thing being measured remains unchanged over time. Human vision is something that suffers from imprecision, especially as you get older (your eyesight usually gets worse). Look at the image below quickly and try to decode the letters you see.  If I asked you to identify this text quickly (in 10 seconds or less) once per day for a week, you might give me 7 different answers.  That's not a precise measurement.
+Upper detection limits are typically obtained from instrument manufacturers (as opposed to experiment) because, while it's usually safe to repeatedly measure *blanks* for LOD/LOQ determinations, you run the risk of breaking the instrument if you overload it with signal!
+
+### Precision {#precision}
+In measurement science the term *precision* means "repeatability" or "instrument variability".  A precise measurement (made by a single instrument) is one that provides the same (or nearly the same) answer each time you take the measurement. This assumes, of course, that the thing being measured remains unchanged. Human vision is something that suffers from imprecision, especially as you get older (your eyesight usually gets worse). Look at the image below quickly and try to decode the letters you see.  If I asked you to identify this text quickly (in 10 seconds or less) once per day for a week, you might give me 7 different answers.  That's not a precise measurement.
 
 <div class="figure" style="text-align: center">
 <img src="./images/blurry_text.png" alt="Blurry vision is imprecise: repeated measures could lead to different answers" width="500" />
@@ -209,7 +225,7 @@ Thus, we report a precision of ± 0.9 °C around a value of 94 °C. Note that we
 
 Precision is often reported in relative terms, too, as a percentage about the location where the measurements were made.  For the example above, we would report $\frac{\widehat{\sigma}}{\widehat{\mu}}\cdot100$, which R calculates as 0.9574468, but which we would report as ±1% at 94 °C.
 
-### Significant Figures
+#### Significant Figures
 
 The number of **significant figures** you report should always reflect what you believe to be the precision of your data. The danger here is that R, like most computer programs, will report many significant figures because it has no idea as to the context of the data.  See, for example:
 
@@ -228,7 +244,7 @@ Keep this in mind when reporting tabular or summary data.  The `round()` functio
 <p>If you measure temperature with a k-type thermocouple and report a value of 93.28876 °C, you are admitting to the world your ignorance of precision (and the science of temperature measurement). No thermocouple reading is repeatable to 5 decimal places (or seven significant figures) in °C; the best thermocouples are accurate to one decimal degree. <strong>Always make sure to align your measurement precision with the significant digits you report.</strong></p>
 </div>
 
-### Measurement Bias (accuracy) {#bias}
+### Bias (accuracy) {#bias}
 The word ***bias*** has several meanings depending on the field of use (e.g., a biased opinion, a racial or gender bias, or a biased voltage).  Here, we define *bias* as the quantifiable difference between a measurement and a true value. The terms bias and accuracy are closely related, but we prefer to use bias because that word implies a magnitude and direction, whereas accuracy is more qualitative. 
 
 
