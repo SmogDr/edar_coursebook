@@ -348,6 +348,6 @@ When values are raised to a power, such as $A^n$, then uncertainty is again rela
 $$U_{A^n}, \% = 100\cdot \lvert{n}\rvert \frac{\sigma_a}{\lvert A \rvert}$$
 This calculation does not utilize a root-mean operation, which is why the absolute values are indicated.
 
-## Ch-10 Exercises
-
 ## CH-10 Homework
+
+This homework will give you practice at working with a measurement data set: `airlift_mass_repeatability.csv`. This data set represents repeated measures of "blank" air sampling filters. 
