@@ -28,8 +28,8 @@ completing this chapter, you should be able to:
 - Estimate probability density functions for univariate distributions 
 
 ## Process Modeling
-Figure \@ref(fig:model-1) below provides a general process diagram for modeling ([adapted from the NIST Handbook on Statistics](https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd41.htm)){target="_blank"}
-; these are the steps you should follow when developing a model. Even before you begin this process, however, you should ask yourself the following three questions:  
+Figure \@ref(fig:model-1) below provides a general process diagram for modeling ([adapted from the NIST Handbook on Statistics](https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd41.htm){target="_blank"}); 
+these are the steps you should follow when developing a model. Even before you begin this process, however, you should ask yourself the following three questions:  
 
 1. ***Why am I developing this model?***
 2. ***What do I hope to learn from this model?***
@@ -39,7 +39,7 @@ The answer to these questions will undoubtedly guide your thinking as you move t
 
 <div class="figure" style="text-align: center">
 <p class="caption">(\#fig:model-1)A generic process diagram for model conceptualization, development, and evaluation.</p><img src="./images/model_steps.png" alt="A generic process diagram for model conceptualization, development, and evaluation." width="400" /></div>
-A couple points worth making about the process outline in Figure \@ref(fig:model-1).  First, observing a process and matching your observations to your training and experience is an invaluable tool for model construction.  Second, most models of "real-world things" like Newton's work on gravity or Milliken's model of elctron charge are empircal - that is, they are based on observation (not pure math).  Purely *analytic* models exist (mostly as mathematical "proofs") and such models don't need data to be *"fit"* but do need data to be *validated*. Third, many people choose to validate their model with the same data they used to fit the model (using an approach like blocking or cross-validation).  While I acknowledge that this approach is convenient (and sometimes the means available), I disagree with it.  You should always try to validate your model with an independent sample (better yet, with a sample that you didn't collect). Why? Although we put a lot of emphasis on ["random sampling"](#sample.collect), we rarely succeed at it in the real world. Having someone else validate your model with their (independent) data will go a long way towards convincing others that your model is both **useful** and **generalizable**. 
+A couple points worth making about the process outline in Figure \@ref(fig:model-1).  First, observing a process and matching your observations to your training and experience is an invaluable tool for model construction.  Second, most models of "real-world things" like Newton's work on gravity or Milliken's model of elctron charge are empircal - that is, they are based on observation (not pure math).  Purely *analytic* models exist (mostly as mathematical "proofs") and such models don't need data to be *"fit"* but do need data to be *validated*. Third, many people choose to validate their model with the same data they used to fit the model (using an approach like blocking or cross-validation).  While I acknowledge that this approach is convenient (and sometimes the only means available), I disagree with it.  You should always try to validate your model with an independent sample (better yet, with a sample that you didn't collect). Why? Although we put a lot of emphasis on ["random sampling"](#sample.collect), we rarely succeed at it in the real world. Having someone else validate your model with their (independent) data will go a long way towards convincing others that your model is both **useful** and **generalizable**. 
 
 ### Assumptions
 An ***assumption*** is a fact or condition that is taken for granted. If you think about it, nearly every action you undertake carries assumptions.  If someone throws a baseball to you and you reach out your hand to catch it, you are assuming that you will indeed make that catch.  Otherwise, you would probably duck!  When you walk across a high bridge, you undoubtedly assume that it will hold your weight. Sure, you might have a compelling reason to cross the bridge at any cost, but in that case you have assumed that the reason for crossing the bridge outweighs other risks. Those of us who live in Colorado have, at one point, made the incorrect assumption about our car or truck's braking ability in the snow. 
@@ -54,7 +54,7 @@ In this chapter, I will teach you about the assumptions of linear regression, bu
 
 > <span style="color: blue;"> "The purpose of models is not to fit the data but to sharpen the questions." - Samuel Karlim, mathematician and genomicist </span>
 
-The best models are those that advance your understanding of a phenomenon so well that you soon leave the model behind, because the questions have since changed. We will not aspire to such great heights here, but it's worth understanding how models can be *fit* to data.  Model construction, fitting, and validation could represent an entire semester (or more) of work.  Here, will will discuss only two introductory applications: fitting of a linear model (using ordinary least squares) and basic distribution fits (using LOESS approaches). You have undoubtedly used a computer program to create a linear fit between an X and Y variable.  Microsoft Excel will do this for you with two columns of data and a few simple mouse clicks.  How that fit is achieved (and what assumptions underpin that fit) is what we will discuss here.
+The best models are those that advance your understanding of a phenomenon so well that you soon leave the model behind, because the questions have since changed. We will not aspire to such great heights here, but it's worth understanding how models can be *fit* to data.  Model construction, fitting, and validation could represent an entire semester (or more) of work.  Here, will will discuss one introductory application: fitting of a linear model using ordinary least squares (OLS). You have undoubtedly used a computer program to create a linear fit between an X and Y variable.  Microsoft Excel will do this for you with two columns of data and a few simple mouse clicks.  How that fit is achieved (and what assumptions underpin that fit) is what we will discuss here.
 
 ## OLS Regression
 OLS stands for **"Ordinary Least Squares"**. The OLS technique is one of the most commons ways to fit a linear regression.  To keep things simple, let's discuss fitting a model with a single independent variable ($X$) as a predictor for our (dependent) outcome variable of interest ($Y$). A model with one instance of a single independent variable means we have, at maximum, only two parameter estimates to fit: the *intercept* term when $X = 0$ (which we call $\beta_{0}$) and the slope term for all values of $X$ (which we call $\beta_{1}$). Thus, we are fitting a straight-line equation between two variables with the following notation:
@@ -68,7 +68,7 @@ where:
     $X$ = the independent variable (i.e., the predictor variable)   
     $\epsilon$ = the error term (i.e., what is left over; what the model doesn't explain about $Y$)   
 
-The OLS approach is straightforward: select model parameters ($\beta_{0}$, $\beta_{1}$) so that the model produces as little error as possible. With OLS, the model error is calculated as a *sum-of-squares error* (SSE; explained below). Graphically, this is shown in Figure \@ref(fig:OLS-anno), where the solid blue circles represent the actual data ($X_{i}, Y_{i}$). The grey line represents the "best fit" line that gives the smallest SSE possible. The model ***residuals*** (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the "best-fit line". The optimization algorithm is executed with matrix algebra.
+The OLS approach is straightforward: select model parameters ($\beta_{0}$, $\beta_{1}$) so that the model produces as little error as possible. With OLS, the model error is calculated as a *sum-of-squares error* (SSE; explained below). Graphically, this is shown in Figure \@ref(fig:OLS-anno), where the solid blue circles represent the data ($X_{i}, Y_{i}$). The grey line represents the "best fit" line that gives the smallest SSE possible. The model ***residuals*** (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the "best-fit line". The optimization algorithm is executed with matrix algebra.
 
 <div class="figure">
 <img src="./images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals" width="632" />
@@ -84,16 +84,18 @@ where:
     $Y_{i}$ represents each (i^th^) observation of the dependent variable, $Y$  
     $\hat{Y_{i}}$ represent the *predicted value* of $Y_{i}$ for each data point:  $\hat{Y_{i}} = \beta_{0} + \beta_{1}\cdot X_{i}$  
 
-We use *vertical distance* to define residuals because we are trying to predict the $Y$ values, so we care only about how far away (in $Y$ space) our predictors, $\hat{Y_{i}}$, are relative to "true" $Y_{i}$ data. Another way to say this is that OLS *assumes* that our $X_{i}$'s are perfect observations ($X$ is measured without error).
+We use *vertical distance* to define residuals because we are trying to predict the $Y$ values, so we care only about how far away (in $Y$ space) our predictors, $\hat{Y_{i}}$, are relative to "true" $Y_{i}$ data. Another way to say this is that OLS *assumes* that our $X_{i}$'s are perfect observations ($X$ is assumed to be measured without error).
 
 The sum of squares error (SSE) is then: $$SSE = \sum_{i = 1}^{n} \left(\hat{\epsilon_{i}}\right)^{2}$$ 
-for all $n$ observations in the data set. The SSE is a really useful term; it represents the overall variance in the $Y$-data that was explained by the model. Good models explain variance in your data, because variance means: changes in behavior of your data.
+for all $n$ observations in the data set. The SSE is a really useful term; it represents the overall variance in the $Y$-data that ***wasn't*** explained by the model. Good models explain variance in your data, because variance means: changes in your data.
 
 The overall model fit, $R^{2}$, is closely related to the SSE term.  Once you have SSE, you calculate the *total sum of squares* (TSS) as: 
 $$TSS = \sum_{i = 1}^{n} \left(Y_{i} - \overline{Y} \right)$$ 
-and then $R^{2}$ is calculated from their ratio:
+where $\bar{Y}$ is the mean of the observed $Y$ data.  
+
+The $R^{2}$ (the square of the [Pearson Correlation Coefficeint](#pearson)) is calculated from their ratio:
 $$R^2 = 1- \left(\frac{SSE}{TSS}\right)$$
-The *total sum of squares* represents a measure of all of the variability in the data; the *residual sum of squares* represents a measure of the variability that remains *after the linear model has been applied*. Thus, **the $R^{2}$ term represents the proportion of variability in your data that was explained by the linear model**.
+The *total sum of squares* represents a measure of all of the variability in the data; the *residual sum of squares* represents a measure of the variability that remains *after the linear model has been applied*. Thus, **the $R^{2}$ term represents the proportion of variability (variance) in your data that was explained by the linear model**.
 
 <div class="rmdnote">
 <p>The terms “residual sum of squares” and “error sum of squares” are interchangeable; you will see them both in the wild and they mean the same thing.</p>
