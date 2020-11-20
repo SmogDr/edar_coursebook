@@ -232,19 +232,18 @@ summary(model1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -28.810  -6.721  -0.231   6.354  52.621 
+## -28.813  -6.725  -0.232   6.368  52.618 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) -34.371523   0.816004  -42.12   <2e-16 ***
-## waist         1.164661   0.008029  145.05   <2e-16 ***
+## (Intercept) -34.369905   0.816491  -42.09   <2e-16 ***
+## waist         1.164666   0.008034  144.98   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 9.948 on 5178 degrees of freedom
-##   (353 observations deleted due to missingness)
+## Residual standard error: 9.951 on 5173 degrees of freedom
 ## Multiple R-squared:  0.8025,	Adjusted R-squared:  0.8025 
-## F-statistic: 2.104e+04 on 1 and 5178 DF,  p-value: < 2.2e-16
+## F-statistic: 2.102e+04 on 1 and 5173 DF,  p-value: < 2.2e-16
 ```
 
 and here is the summary for `model2`:
@@ -261,19 +260,18 @@ summary(model2)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -1.73665 -0.35271 -0.00434  0.35029  2.27134 
+## -1.73672 -0.35280 -0.00426  0.35038  2.27127 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) 2.7417507  0.0430251   63.72   <2e-16 ***
-## waist       0.0624005  0.0004233  147.40   <2e-16 ***
+## (Intercept) 2.7418448  0.0430512   63.69   <2e-16 ***
+## waist       0.0624003  0.0004236  147.31   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.5245 on 5178 degrees of freedom
-##   (353 observations deleted due to missingness)
+## Residual standard error: 0.5247 on 5173 degrees of freedom
 ## Multiple R-squared:  0.8075,	Adjusted R-squared:  0.8075 
-## F-statistic: 2.173e+04 on 1 and 5178 DF,  p-value: < 2.2e-16
+## F-statistic: 2.17e+04 on 1 and 5173 DF,  p-value: < 2.2e-16
 ```
 
 Interestingly, both models have nearly equal fits to the data.  The $R^{2}$ for `model1` is 0.8025 and the $R^{2}$ for `model2` is 0.8075 (a negligible difference in my opinion). This brings up an interesting question: *which model is better*?  The answer to that question depends, of course, on (1) what you want to learn from the model, (2) what you plan to do with the model? Sound familiar?
@@ -287,7 +285,7 @@ In this section, we will run through our list of [OLS assumptions](#OLS_assum) f
   This one is easy to answer because both models were set up with only one independent variable and an intercept term: $Y = \beta_{0} + \beta_{1}\cdot X$.  The $\beta$'s are added together so this assumption is valid for both `model1` and `model2`.
   
 **Assumption #2: The model is correctly specified.**  
-  This one is hard to answer (right now) but our process knowledge (the physics of volume~mass relationships) tells us that `model2` is more representative of reality than `model1`.  *Advantage: `model1`.*
+  This one is hard to answer (right now) but our process knowledge (the physics of volume~mass relationships) tells us that `model2` is more representative of reality than `model1`.  *Advantage: `model2`.*
   
 **Assumption #3: No collinearity between predictor variables.**  
   This assumption is automatically valid because we have only one independent predictor variable in each model, ruling out any possibility of collinearity.
@@ -301,7 +299,7 @@ mean(model1$residuals)
 ```
 
 ```
-## [1] -6.665725e-17
+## [1] 1.069649e-16
 ```
 
 ```r
@@ -309,7 +307,7 @@ mean(model2$residuals)
 ```
 
 ```
-## [1] 6.226994e-19
+## [1] 5.099008e-18
 ```
 Those are pretty small numbers.  Check and check.
 
@@ -411,7 +409,7 @@ cor(x = model1$residuals,
 ```
 
 ```
-## [1] -1.420982e-16
+## [1] -6.945472e-17
 ```
 
 ```r
@@ -421,7 +419,7 @@ cor(x = model2$residuals,
 ```
 
 ```
-## [1] -1.012153e-16
+## [1] -7.949226e-17
 ```
 
 The correlation coefficients are both nearly zero, so this last assumption is validated.

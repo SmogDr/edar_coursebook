@@ -179,7 +179,8 @@ data <- left_join(hww, dems, by = "id")
 
 data_18 <- data %>%
   dplyr::filter(age >= 18) %>%
-  dplyr::mutate(sqrt_mass = sqrt(mass))
+  dplyr::mutate(sqrt_mass = sqrt(mass)) %>%
+  na.omit()
 
 attr(data_18$sqrt_mass, "label") <- "square root of mass"
 
@@ -292,7 +293,7 @@ In this section, we will run through our list of [OLS assumptions](#OLS_assum) f
   This one is easy to answer because both models were set up with only one independent variable and an intercept term: $Y = \beta_{0} + \beta_{1}\cdot X$.  The $\beta$'s are added together so this assumption is valid for both `model1` and `model2`.
   
 **Assumption #2: The model is correctly specified.**  
-  This one is hard to answer (right now) but our process knowledge (the physics of volume~mass relationships) tells us that `model2` is more representative of reality than `model1`.  *Advantage: `model1`.*
+  This one is hard to answer (right now) but our process knowledge (the physics of volume~mass relationships) tells us that `model2` is more representative of reality than `model1`.  *Advantage: `model2`.*
   
 **Assumption #3: No collinearity between predictor variables.**  
   This assumption is automatically valid because we have only one independent predictor variable in each model, ruling out any possibility of collinearity.
