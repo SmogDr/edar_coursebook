@@ -181,12 +181,12 @@ p1 <- ggplot(data = temperatures) +
              size = 2,
              shape = 1) +
   xlab("Sequence Order") +
-  ylab("Temperature, °C") +
+  ylab("Temperature, °F") +
   theme_classic()
 
 p2 <- ggplot(data = temperatures) +
   stat_ecdf(aes(x=data_temp)) +
-  xlab("Temperature, °C") +
+  xlab("Temperature, °F") +
   ylab("Quantile") +
   theme_classic()
 
@@ -194,7 +194,7 @@ p3 <- ggplot(data = temperatures) +
   geom_histogram(aes(x = data_temp),
                  bins = 6,
                  color = "white") +
-  xlab("Temperature, °C") +
+  xlab("Temperature, °F") +
   ylab("Frequency") +
   theme_classic()
 
