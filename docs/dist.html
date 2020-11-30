@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-11-21" />
+<meta name="date" content="2020-11-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -482,21 +482,21 @@ The mean and standard deviation are fine measures of central tendency and disper
 <h2><span class="header-section-number">12.3</span> Uniform Distribution</h2>
 <p>The uniform distribution describes a situation where all obervations have an equal probability of occurrence. Examples of uniform distributions include: the outcome of a single roll of a 6-sided die, or the flip of a coin, or the chance of picking a spade, heart, diamond, or club from a well-shuffled deck of cards. In each of these cases, all potential outcomes have an equal chance of occuring. A uniform distribition may be specified simply by setting the range of possible outcomes (i.e., a minimum, maximum, and anything in between). The “in-between” part also lets you specify whether you want to allow outcome values that are continuous (like from a random-number generator), integers (like from a dice roll), or some other format (like a binary 0 or 1; heads or tails).</p>
 <p>Below, we create a <a href="eda1.html#pdf">probability density function</a> for the first roll of a six-sided die; this is a <em>discrete uniform distribition</em> since we only allow integers to occur. A uniform distribution is appropriate here because any of the numbers between 1 and 6 has equal probability of being rolled. Notice the shape of the histogram…flat.</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="dist.html#cb361-1"></a><span class="co">#create a uniform distribition for the first roll of a 6-sided die</span></span>
-<span id="cb361-2"><a href="dist.html#cb361-2"></a>six_sided &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb361-3"><a href="dist.html#cb361-3"></a>  <span class="dt">rolls =</span> <span class="kw">ceiling</span>(<span class="kw">runif</span>(<span class="fl">10e4</span>, <span class="dt">min=</span><span class="dv">1</span>, <span class="dt">max=</span><span class="dv">7</span>))</span>
-<span id="cb361-4"><a href="dist.html#cb361-4"></a>)</span>
-<span id="cb361-5"><a href="dist.html#cb361-5"></a></span>
-<span id="cb361-6"><a href="dist.html#cb361-6"></a><span class="co">#create a histogram of the probability density for a uniform distribution </span></span>
-<span id="cb361-7"><a href="dist.html#cb361-7"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> six_sided, <span class="kw">aes</span>(<span class="dt">x =</span> rolls)) <span class="op">+</span></span>
-<span id="cb361-8"><a href="dist.html#cb361-8"></a><span class="st">  </span><span class="kw">geom_histogram</span>(</span>
-<span id="cb361-9"><a href="dist.html#cb361-9"></a>      <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">7</span>,<span class="dv">1</span>), </span>
-<span id="cb361-10"><a href="dist.html#cb361-10"></a>      <span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>,</span>
-<span id="cb361-11"><a href="dist.html#cb361-11"></a>      <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
-<span id="cb361-12"><a href="dist.html#cb361-12"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Number&quot;</span>) <span class="op">+</span></span>
-<span id="cb361-13"><a href="dist.html#cb361-13"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>, <span class="fl">5.5</span>, <span class="fl">6.5</span>),</span>
-<span id="cb361-14"><a href="dist.html#cb361-14"></a>                     <span class="dt">labels =</span> <span class="kw">as.factor</span>(<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">6</span>,<span class="dv">1</span>))) <span class="op">+</span></span>
-<span id="cb361-15"><a href="dist.html#cb361-15"></a><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="dist.html#cb372-1"></a><span class="co">#create a uniform distribition for the first roll of a 6-sided die</span></span>
+<span id="cb372-2"><a href="dist.html#cb372-2"></a>six_sided &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb372-3"><a href="dist.html#cb372-3"></a>  <span class="dt">rolls =</span> <span class="kw">ceiling</span>(<span class="kw">runif</span>(<span class="fl">10e4</span>, <span class="dt">min=</span><span class="dv">1</span>, <span class="dt">max=</span><span class="dv">7</span>))</span>
+<span id="cb372-4"><a href="dist.html#cb372-4"></a>)</span>
+<span id="cb372-5"><a href="dist.html#cb372-5"></a></span>
+<span id="cb372-6"><a href="dist.html#cb372-6"></a><span class="co">#create a histogram of the probability density for a uniform distribution </span></span>
+<span id="cb372-7"><a href="dist.html#cb372-7"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> six_sided, <span class="kw">aes</span>(<span class="dt">x =</span> rolls)) <span class="op">+</span></span>
+<span id="cb372-8"><a href="dist.html#cb372-8"></a><span class="st">  </span><span class="kw">geom_histogram</span>(</span>
+<span id="cb372-9"><a href="dist.html#cb372-9"></a>      <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">7</span>,<span class="dv">1</span>), </span>
+<span id="cb372-10"><a href="dist.html#cb372-10"></a>      <span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>,</span>
+<span id="cb372-11"><a href="dist.html#cb372-11"></a>      <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
+<span id="cb372-12"><a href="dist.html#cb372-12"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Number&quot;</span>) <span class="op">+</span></span>
+<span id="cb372-13"><a href="dist.html#cb372-13"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>, <span class="fl">5.5</span>, <span class="fl">6.5</span>),</span>
+<span id="cb372-14"><a href="dist.html#cb372-14"></a>                     <span class="dt">labels =</span> <span class="kw">as.factor</span>(<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">6</span>,<span class="dv">1</span>))) <span class="op">+</span></span>
+<span id="cb372-15"><a href="dist.html#cb372-15"></a><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unif-dist"></span>
 <img src="13-distributions_files/figure-html/unif-dist-1.png" alt="Relative counts for the first roll of a 6-sided die, rolled 100,000 times" width="384" />
 <p class="caption">
@@ -537,12 +537,12 @@ Figure 12.4: Characteristic Plots for a Normal Distribution
 <div id="rule" class="section level3">
 <h3><span class="header-section-number">12.4.2</span> 68-95-99 rule</h3>
 <p>A <strong><em>standard</em></strong> deviation for a normal distribution relates the <em>spread</em> of the data about the mean (and <em>median</em>, since they are one-in-the-same for normal data). Since we often care about the probability of occurrence for some value, whether it be a more probable value close to the mean or an extreme value close to one of the tails, the standard deviation helps tell us precisely what the odds are for getting that value, given a random sample. We use the <code>pnorm()</code> function to estimate these probabilities. The <code>pnorm()</code> function returns the probability of returning a value less than the value indicated for a given mean and standard deviation. For example, from plot in Figure <a href="dist.html#fig:normal2">12.4</a> where <span class="math inline">\(\mu=50\)</span> and <span class="math inline">\(\sigma=10\)</span>, the probability of sampling a value of 70 or less is:</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="dist.html#cb362-1"></a><span class="kw">pnorm</span>(<span class="dt">q =</span> <span class="dv">70</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span><span class="dv">10</span>) <span class="op">%&gt;%</span></span>
-<span id="cb362-2"><a href="dist.html#cb362-2"></a><span class="st">  </span><span class="kw">round</span>(., <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="dist.html#cb373-1"></a><span class="kw">pnorm</span>(<span class="dt">q =</span> <span class="dv">70</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span><span class="dv">10</span>) <span class="op">%&gt;%</span></span>
+<span id="cb373-2"><a href="dist.html#cb373-2"></a><span class="st">  </span><span class="kw">round</span>(., <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.977</code></pre>
 <p>The probability of sampling a value of greater than 70 is given when we set the argument <code>lower.tail = FALSE</code>.</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="dist.html#cb364-1"></a><span class="kw">pnorm</span>(<span class="dt">q =</span> <span class="dv">70</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span><span class="dv">10</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb364-2"><a href="dist.html#cb364-2"></a><span class="st">  </span><span class="kw">round</span>(., <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="dist.html#cb375-1"></a><span class="kw">pnorm</span>(<span class="dt">q =</span> <span class="dv">70</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span><span class="dv">10</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb375-2"><a href="dist.html#cb375-2"></a><span class="st">  </span><span class="kw">round</span>(., <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.023</code></pre>
 <p>That second probability is equivalent to <code>1 - pnorm(q = 70, mean = 50, sd =10)</code>. Try it out for yourself.</p>
 <p>These probabilities are called <strong><em>“one-tailed”</em></strong> <strong>tests</strong> because they only occur for a single value in one direction away from the mean of the distribution (i.e., they return the probability of being within or outside one of the “tails” of the distribution).</p>
@@ -566,21 +566,21 @@ Figure 12.5: The 68-95-99 Rule for Normal Probability Distributions. Numbers rep
 <h2><span class="header-section-number">12.5</span> Log-normal Distribution</h2>
 <p>Multiplicative variation is what gives rise to a “log-normal” distribution: a special type of skewed data.</p>
 <p>Let’s create two normal distributions for variables <code>a</code> and <code>b</code>:</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="dist.html#cb366-1"></a><span class="co">#create two variables that are normally distributed</span></span>
-<span id="cb366-2"><a href="dist.html#cb366-2"></a>normal_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">15</span>, <span class="dt">sd =</span> <span class="dv">5</span>),</span>
-<span id="cb366-3"><a href="dist.html#cb366-3"></a>                      <span class="dt">b =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="dist.html#cb377-1"></a><span class="co">#create two variables that are normally distributed</span></span>
+<span id="cb377-2"><a href="dist.html#cb377-2"></a>normal_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">15</span>, <span class="dt">sd =</span> <span class="dv">5</span>),</span>
+<span id="cb377-3"><a href="dist.html#cb377-3"></a>                      <span class="dt">b =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">3</span>))</span></code></pre></div>
 <p>Individually, we know that these data are normally distributed (because we created them that way), but what does the distribution look like if we add these two variables together?</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="dist.html#cb367-1"></a><span class="co">#add those variables together and you get a normal distribution</span></span>
-<span id="cb367-2"><a href="dist.html#cb367-2"></a>normal_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb367-3"><a href="dist.html#cb367-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">c =</span> a <span class="op">+</span><span class="st"> </span>b) -&gt;<span class="st"> </span>normal_data</span>
-<span id="cb367-4"><a href="dist.html#cb367-4"></a></span>
-<span id="cb367-5"><a href="dist.html#cb367-5"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> normal_data) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb367-6"><a href="dist.html#cb367-6"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(c),</span>
-<span id="cb367-7"><a href="dist.html#cb367-7"></a>                 <span class="dt">bins =</span> <span class="dv">30</span>,</span>
-<span id="cb367-8"><a href="dist.html#cb367-8"></a>                 <span class="dt">fill =</span> <span class="st">&quot;navy&quot;</span>,</span>
-<span id="cb367-9"><a href="dist.html#cb367-9"></a>                 <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
-<span id="cb367-10"><a href="dist.html#cb367-10"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Sum of a + b&quot;</span>) <span class="op">+</span></span>
-<span id="cb367-11"><a href="dist.html#cb367-11"></a><span class="st">  </span><span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="dist.html#cb378-1"></a><span class="co">#add those variables together and you get a normal distribution</span></span>
+<span id="cb378-2"><a href="dist.html#cb378-2"></a>normal_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb378-3"><a href="dist.html#cb378-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">c =</span> a <span class="op">+</span><span class="st"> </span>b) -&gt;<span class="st"> </span>normal_data</span>
+<span id="cb378-4"><a href="dist.html#cb378-4"></a></span>
+<span id="cb378-5"><a href="dist.html#cb378-5"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> normal_data) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb378-6"><a href="dist.html#cb378-6"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(c),</span>
+<span id="cb378-7"><a href="dist.html#cb378-7"></a>                 <span class="dt">bins =</span> <span class="dv">30</span>,</span>
+<span id="cb378-8"><a href="dist.html#cb378-8"></a>                 <span class="dt">fill =</span> <span class="st">&quot;navy&quot;</span>,</span>
+<span id="cb378-9"><a href="dist.html#cb378-9"></a>                 <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
+<span id="cb378-10"><a href="dist.html#cb378-10"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Sum of a + b&quot;</span>) <span class="op">+</span></span>
+<span id="cb378-11"><a href="dist.html#cb378-11"></a><span class="st">  </span><span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:a-b-histogram"></span>
 <img src="13-distributions_files/figure-html/a-b-histogram-1.png" alt="The Sum of Two Normally Distributed Variables" width="384" />
 <p class="caption">
@@ -589,17 +589,17 @@ Figure 12.6: The Sum of Two Normally Distributed Variables
 </div>
 <p><em>Answer: still normal</em>. Since all we did here was add together two normal distributions, we simply created a third (normal) distribution with more additive variability.</p>
 <p>What happens, however, if we randomly sample values from one or more normal distributions and multiply them together?</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="dist.html#cb368-1"></a><span class="co">#multiply together three normal variables</span></span>
-<span id="cb368-2"><a href="dist.html#cb368-2"></a>normal_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb368-3"><a href="dist.html#cb368-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">d =</span> <span class="kw">sample</span>(a<span class="op">*</span>b<span class="op">*</span>c, <span class="dv">1000</span>)) -&gt;<span class="st"> </span>log_data</span>
-<span id="cb368-4"><a href="dist.html#cb368-4"></a></span>
-<span id="cb368-5"><a href="dist.html#cb368-5"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> log_data) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb368-6"><a href="dist.html#cb368-6"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(d),</span>
-<span id="cb368-7"><a href="dist.html#cb368-7"></a>                 <span class="dt">bins =</span> <span class="dv">30</span>,</span>
-<span id="cb368-8"><a href="dist.html#cb368-8"></a>                 <span class="dt">fill =</span> <span class="st">&quot;orange&quot;</span>,</span>
-<span id="cb368-9"><a href="dist.html#cb368-9"></a>                 <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
-<span id="cb368-10"><a href="dist.html#cb368-10"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;a * b * c&quot;</span>) <span class="op">+</span></span>
-<span id="cb368-11"><a href="dist.html#cb368-11"></a><span class="st">  </span><span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">12</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="dist.html#cb379-1"></a><span class="co">#multiply together three normal variables</span></span>
+<span id="cb379-2"><a href="dist.html#cb379-2"></a>normal_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb379-3"><a href="dist.html#cb379-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">d =</span> <span class="kw">sample</span>(a<span class="op">*</span>b<span class="op">*</span>c, <span class="dv">1000</span>)) -&gt;<span class="st"> </span>log_data</span>
+<span id="cb379-4"><a href="dist.html#cb379-4"></a></span>
+<span id="cb379-5"><a href="dist.html#cb379-5"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> log_data) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb379-6"><a href="dist.html#cb379-6"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(d),</span>
+<span id="cb379-7"><a href="dist.html#cb379-7"></a>                 <span class="dt">bins =</span> <span class="dv">30</span>,</span>
+<span id="cb379-8"><a href="dist.html#cb379-8"></a>                 <span class="dt">fill =</span> <span class="st">&quot;orange&quot;</span>,</span>
+<span id="cb379-9"><a href="dist.html#cb379-9"></a>                 <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
+<span id="cb379-10"><a href="dist.html#cb379-10"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;a * b * c&quot;</span>) <span class="op">+</span></span>
+<span id="cb379-11"><a href="dist.html#cb379-11"></a><span class="st">  </span><span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">12</span>) </span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:a-b-lognormal"></span>
 <img src="13-distributions_files/figure-html/a-b-lognormal-1.png" alt="The Product of Three Normally Distributed Variables Multiplied Together" width="384" />
 <p class="caption">
@@ -688,18 +688,18 @@ Figure 12.11: The Pearson Correlation Coefficient is not as bad as it loooks in 
 </p>
 </div>
 <p>You can calculate <strong>r</strong> using the <code>cor()</code> function and supplying <code>x</code> and <code>y</code> as arguments. For example:</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="dist.html#cb369-1"></a><span class="kw">set.seed</span>(<span class="dv">9</span>)</span>
-<span id="cb369-2"><a href="dist.html#cb369-2"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></span>
-<span id="cb369-3"><a href="dist.html#cb369-3"></a>y &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">-25</span>, <span class="dt">max =</span> <span class="dv">25</span>)</span>
-<span id="cb369-4"><a href="dist.html#cb369-4"></a></span>
-<span id="cb369-5"><a href="dist.html#cb369-5"></a><span class="kw">cor</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="dist.html#cb380-1"></a><span class="kw">set.seed</span>(<span class="dv">9</span>)</span>
+<span id="cb380-2"><a href="dist.html#cb380-2"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></span>
+<span id="cb380-3"><a href="dist.html#cb380-3"></a>y &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">-25</span>, <span class="dt">max =</span> <span class="dv">25</span>)</span>
+<span id="cb380-4"><a href="dist.html#cb380-4"></a></span>
+<span id="cb380-5"><a href="dist.html#cb380-5"></a><span class="kw">cor</span>(x, y)</span></code></pre></div>
 <pre><code>## [1] 0.8834837</code></pre>
 <p>Also note that <strong>r</strong> is <strong>not</strong> an appropriate indicator of <strong>non-linear correlation</strong>. For example, in the example that follows, <code>y</code> is perfectly represented as <code>x^4</code>, but the Pearson correlation coefficient between these variables is not 1!</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="dist.html#cb371-1"></a><span class="kw">set.seed</span>(<span class="dv">10</span>)</span>
-<span id="cb371-2"><a href="dist.html#cb371-2"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></span>
-<span id="cb371-3"><a href="dist.html#cb371-3"></a>y &lt;-<span class="st"> </span>x<span class="op">^</span><span class="dv">4</span> </span>
-<span id="cb371-4"><a href="dist.html#cb371-4"></a></span>
-<span id="cb371-5"><a href="dist.html#cb371-5"></a><span class="kw">cor</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="dist.html#cb382-1"></a><span class="kw">set.seed</span>(<span class="dv">10</span>)</span>
+<span id="cb382-2"><a href="dist.html#cb382-2"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></span>
+<span id="cb382-3"><a href="dist.html#cb382-3"></a>y &lt;-<span class="st"> </span>x<span class="op">^</span><span class="dv">4</span> </span>
+<span id="cb382-4"><a href="dist.html#cb382-4"></a></span>
+<span id="cb382-5"><a href="dist.html#cb382-5"></a><span class="kw">cor</span>(x, y)</span></code></pre></div>
 <pre><code>## [1] 0.8672807</code></pre>
 <p>If you wish to quantify correlation between two variables but fear that your data
 violate the Pearson assumptions listed above, then try the <strong><em>Spearman Correlation Coefficient</em></strong> or <strong><em>Lin’s Concordance Coefficient</em></strong>.</p>

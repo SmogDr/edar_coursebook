@@ -169,6 +169,28 @@ $$\sqrt{mass} \sim Circumference$$
 <img src="./images/cylinder_comic.png" width="552" style="display: block; margin: auto;" />
 
 Let's transform $mass \rightarrow \sqrt{mass}$ and then examine the two scatterplots side by side.
+
+
+```r
+p1 <- ggplot(data = data_18) +
+  geom_point(aes(x = waist, y = mass),
+             alpha = 0.1,
+             color = "maroon4") +
+  ylab("Mass, kg") +
+  xlab("Waist Circumference, cm") +
+  theme_classic(base_size = 13)
+
+p2 <- ggplot(data = data_18) +
+  geom_point(aes(x = waist, y = sqrt_mass),
+             alpha = 0.1,
+             color = "royalblue2") +
+  ylab(expression(sqrt(mass))) +
+  xlab("Waist Circumference, cm") +
+  theme_classic(base_size = 13)
+
+grid.arrange(p1, p2, ncol = 2)
+```
+
 <div class="figure">
 <img src="11-model_files/figure-html/model-compare-1.png" alt="Side-by-side comparison of two model specifications. Does one look more linear than the other?" width="672" />
 <p class="caption">(\#fig:model-compare)Side-by-side comparison of two model specifications. Does one look more linear than the other?</p>
@@ -277,6 +299,41 @@ summary(model2)
 Interestingly, both models have nearly equal fits to the data.  The $R^{2}$ for `model1` is 0.8025 and the $R^{2}$ for `model2` is 0.8075 (a negligible difference in my opinion). This brings up an interesting question: *which model is better*?  The answer to that question depends, of course, on (1) what you want to learn from the model, (2) what you plan to do with the model? Sound familiar?
 
 Before getting to those questions, let's continue with the modeling process by evaluating our assumptions...
+
+First off, however, it always helps to visualize our model fits prior to evaluating assumptions.  We expect our fits to look *pretty good* given our $R^2$ values are ~0.8.  
+
+We can overlay the model fits onto our scatter plots in many ways: 
+
+- Option 1: One way is to add a `geom_smooth()` layer to the original scatter plot. The `geom_smooth()` function is a generic curve fitting algorithm for $X, Y$ data. If we specify `model = "lm"` and `formula = "y ~ x"` as arguments, R will create identical linear models and plot those fits across the range of our data.  
+- Options 2: Another way would be to call `geom_abline()` and specify as arguments:  
+  - `slope = model1$coefficients[[2]]` and  
+  - `intercept = model1$coefficients[[1]]`  
+
+- Option 3: And yet a third way would be to use `ggplot::stat_function()` where we explicitly specify the model its coefficients as a linear function in R. You can learn more about each of these approaches in the help section or by typing `?stat_function` into the Console.
+
+
+```r
+# note how we can add layers to existing ggplot objects
+p1.2 <- p1 + 
+  geom_smooth(data = data_18,
+              aes(x = waist, y = mass),
+              method = "lm",
+              formula = "y ~ x",
+              color = "black")
+
+p2.2 <- p2 +
+  geom_abline(intercept = model2$coefficients[[1]],
+              slope = model2$coefficients[[2]])
+
+grid.arrange(p1.2, p2.2, ncol = 2)
+```
+
+<div class="figure" style="text-align: center">
+<img src="11-model_files/figure-html/model-fits-1.png" alt="There are many ways in R to overlay a linear fit onto a scatter plot" width="672" />
+<p class="caption">(\#fig:model-fits)There are many ways in R to overlay a linear fit onto a scatter plot</p>
+</div>
+
+Note that `geom_abline()` extends the line to the $X$ and $Y$ axis limits (beyond the reach of the actual data).  This type of extrapolation is sometimes frowned upon because you don't have data out there. In the case of Figure \@ref(fig:model-fits), this isn't such a bid deal because we set our plot limits to closely match our data limits.  We will come back to these plots later on, as we examine our model assumptions.
 
 ### OLS Diagnostics
 In this section, we will run through our list of [OLS assumptions](#OLS_assum) for each of the models to prove that our models are proper and to help us decide which is better.
@@ -496,7 +553,135 @@ depth is a term in atmospheric science that describes whether air pollution
 contributes to loss of visibility in the atmosphere (it is like a measure of
 haziness of the sky).  We often experience high levels of AOD in Colorado when
 smoke from wildfires shows up (and that happens more often each year).
+
+
+```r
+cal_data <- read_csv(file = "./data/cal_aod.csv", col_names = TRUE)
+
+head(cal_data)
+```
+
+```
+## # A tibble: 6 x 4
+##   wave  time_r               amod aeronet
+##   <chr> <dttm>              <dbl>   <dbl>
+## 1 440nm 2020-08-15 20:05:54 0.457   0.445
+## 2 440nm 2020-08-15 20:20:54 0.457   0.440
+## 3 440nm 2020-08-15 20:35:54 0.432   0.394
+## 4 440nm 2020-08-15 20:50:54 0.391   0.381
+## 5 440nm 2020-08-15 21:05:54 0.367   0.376
+## 6 440nm 2020-08-15 21:20:54 0.355   0.346
+```
+
+Closer examination of the data indicates that we have two instruments (`amod` and `aeronet`) that are measuring the same quantity: *aerosol optical depth*.  Thus, we have the same type of observation being reported in two different columns.  This means we need to tidy this data frame!
+
+
+```r
+tidy_cal <- cal_data %>%
+  pivot_longer(cols = c("amod", "aeronet"), 
+               names_to = "instrument", 
+               values_to = "aod")
+
+head(tidy_cal)
+```
+
+```
+## # A tibble: 6 x 4
+##   wave  time_r              instrument   aod
+##   <chr> <dttm>              <chr>      <dbl>
+## 1 440nm 2020-08-15 20:05:54 amod       0.457
+## 2 440nm 2020-08-15 20:05:54 aeronet    0.445
+## 3 440nm 2020-08-15 20:20:54 amod       0.457
+## 4 440nm 2020-08-15 20:20:54 aeronet    0.440
+## 5 440nm 2020-08-15 20:35:54 amod       0.432
+## 6 440nm 2020-08-15 20:35:54 aeronet    0.394
+```
+
+Before we begin our calibration, let's examine the data using EDA techniques. We know that the `amod` column represents the instrument to be calibrated and the `aeronet` instrument represent the standard reference. 
+
+```r
+p7 <- ggplot(data = tidy_cal) +
+  geom_point(aes(x = time_r, y = aod, color = instrument),
+             alpha = 0.2,
+             size = 2)  +
+  scale_color_manual(values = c("navy", "magenta")) +
+  xlab("Date of Measurement") +
+  ylab("AOD Value") +
+  theme_bw(base_size = 12) +
+  theme(legend.position = c(0.2, 0.7))
+
+p8 <- ggplot(data = tidy_cal) +
+  geom_freqpoly(aes(x = aod, color = instrument),
+                 position = "dodge") +
+  scale_color_manual(values = c("navy", "magenta")) + 
+  xlab("AOD Value") +
+  theme_bw(base_size = 12) +
+  theme(legend.position = c(0.45, 0.7))
+
+acf_aeronet <- acf(cal_data$aeronet)
+```
+
+<img src="11-model_files/figure-html/aod_eda-1.png" width="672" />
+
+```r
+p9 <- ggPacf(acf_aeronet$acf) +
+  ggtitle("Aeronet Partial Autocorrelation") +
+  theme_bw()
+
+p10 <- ggplot(data = tidy_cal) +
+  stat_ecdf(aes(x = aod, color = instrument)) +
+  scale_color_manual(values = c("navy", "magenta")) + 
+  xlab("AOD Value") +
+  ylab("Quantile") +
+  theme_bw(base_size = 12) +
+  theme(legend.position = "none")
   
+grid.arrange(p7, p8, p9, p10)
+```
+
+<img src="11-model_files/figure-html/aod_eda-2.png" width="672" />
+
+Let's fit a linear model between `aeronet` AOD as the independent variable and `amod` AOD as the dependent variable.  Note that while we decided to `tidy` the data frame for making our EDA plots, we may not want tidy data for our calibration fit. That's because, with calibration, we are treating the two AOD instruments as separate variables (i.e., `x` and `y`). Thus, we will call upon the non-tidy `cal_data` to specify a `y ~ x` formula in the `lm()` function below. And once we fit the model, we create a `summary()` object to examine fit statistics, coefficients, and confidence intervals.
+
+
+```r
+aod.fit <- lm(amod ~ aeronet, data = cal_data)
+
+aod.summary <- summary(aod.fit)
+
+aod.summary$coefficients
+```
+
+```
+##               Estimate Std. Error   t value     Pr(>|t|)
+## (Intercept) 0.07250816 0.01564998  4.633116 1.440649e-05
+## aeronet     0.92344079 0.01596758 57.832226 3.344508e-65
+```
+
+The fit itself can be visualized using `ggplot::geom_smooth()` with an argument of `method = "lm"`:
+
+
+```r
+ggplot(data = cal_data,
+       aes(x = aeronet, y = amod)) +
+  geom_smooth(formula = y ~ x,
+              method = "lm",
+              size = 0.5) +
+  geom_point(alpha = 0.25,
+             size = 2) +
+  geom_abline(intercept = (aod.summary$coefficients[1,1]+aod.summary$coefficients[1,2]),
+              slope = (aod.summary$coefficients[2,1]+aod.summary$coefficients[2,2]),
+              color = "green",
+              linetype = "dashed") +
+  geom_abline(intercept = (aod.summary$coefficients[1,1]-aod.summary$coefficients[1,2]),
+              slope = (aod.summary$coefficients[2,1]-aod.summary$coefficients[2,2]),
+              color = "green",
+              linetype = "dashed") +
+  coord_fixed() +
+  theme_bw()
+```
+
+<img src="11-model_files/figure-html/aod-scatterplot-1.png" width="672" />
 
 ## Ch-11 Exercises
 
