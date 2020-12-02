@@ -599,47 +599,11 @@ head(tidy_cal)
 
 Before we begin our calibration, let's examine the data using EDA techniques. We know that the `amod` column represents the instrument to be calibrated and the `aeronet` instrument represent the standard reference. 
 
-```r
-p7 <- ggplot(data = tidy_cal) +
-  geom_point(aes(x = time_r, y = aod, color = instrument),
-             alpha = 0.2,
-             size = 2)  +
-  scale_color_manual(values = c("navy", "magenta")) +
-  xlab("Date of Measurement") +
-  ylab("AOD Value") +
-  theme_bw(base_size = 12) +
-  theme(legend.position = c(0.2, 0.7))
 
-p8 <- ggplot(data = tidy_cal) +
-  geom_freqpoly(aes(x = aod, color = instrument),
-                 position = "dodge") +
-  scale_color_manual(values = c("navy", "magenta")) + 
-  xlab("AOD Value") +
-  theme_bw(base_size = 12) +
-  theme(legend.position = c(0.45, 0.7))
-
-acf_aeronet <- acf(cal_data$aeronet)
-```
-
-<img src="11-model_files/figure-html/aod_eda-1.png" width="672" />
-
-```r
-p9 <- ggPacf(acf_aeronet$acf) +
-  ggtitle("Aeronet Partial Autocorrelation") +
-  theme_bw()
-
-p10 <- ggplot(data = tidy_cal) +
-  stat_ecdf(aes(x = aod, color = instrument)) +
-  scale_color_manual(values = c("navy", "magenta")) + 
-  xlab("AOD Value") +
-  ylab("Quantile") +
-  theme_bw(base_size = 12) +
-  theme(legend.position = "none")
-  
-grid.arrange(p7, p8, p9, p10)
-```
-
-<img src="11-model_files/figure-html/aod_eda-2.png" width="672" />
+<div class="figure" style="text-align: center">
+<img src="./images/aod_eda_4plot.png" alt="A 4-plot EDA of our AOD Calibration Data" width="1050" />
+<p class="caption">(\#fig:aod-eda-4plot)A 4-plot EDA of our AOD Calibration Data</p>
+</div>
 
 Let's fit a linear model between `aeronet` AOD as the independent variable and `amod` AOD as the dependent variable.  Note that while we decided to `tidy` the data frame for making our EDA plots, we may not want tidy data for our calibration fit. That's because, with calibration, we are treating the two AOD instruments as separate variables (i.e., `x` and `y`). Thus, we will call upon the non-tidy `cal_data` to specify a `y ~ x` formula in the `lm()` function below. And once we fit the model, we create a `summary()` object to examine fit statistics, coefficients, and confidence intervals.
 
@@ -669,33 +633,15 @@ ggplot(data = cal_data,
               size = 0.5) +
   geom_point(alpha = 0.25,
              size = 2) +
-  geom_abline(intercept = (aod.summary$coefficients[1,1]+aod.summary$coefficients[1,2]),
-              slope = (aod.summary$coefficients[2,1]+aod.summary$coefficients[2,2]),
-              color = "green",
-              linetype = "dashed") +
-  geom_abline(intercept = (aod.summary$coefficients[1,1]-aod.summary$coefficients[1,2]),
-              slope = (aod.summary$coefficients[2,1]-aod.summary$coefficients[2,2]),
-              color = "green",
-              linetype = "dashed") +
+  xlab("Aeronet AOD") +
+  ylab("AMOD AOD") +
   coord_fixed() +
-  theme_bw()
+  theme_bw(base_size = 12)
 ```
 
 <img src="11-model_files/figure-html/aod-scatterplot-1.png" width="672" />
 
-## Ch-11 Exercises
-
-hh1 - fit a two parameter model that suffers from multicollinearity (height ~ weight + waist) and use diagnostics to discover the problem.  Discuss how process knowledge suggests that a negative beta in this case makes absolutely no sense. 
-
-Validate the mass-waist model using NHANES data from a different year
-
-hh2 - fit a model that suffers from heteroscedasticity; transform the dependent variable to normalize the residuals.  Discuss issues with interpreting transformed models.
-
-Create a new variable (volume = waist * height) and see if that variable explains more of the variance in mass from one of the NHANES data frames.
-
-Use the employees.csv data to fit a model (vendor ~ metal).  Discover autocorrelation among the residuals. 
-
-Calculate residuals from a model manually and prove that they are equal to the model$residuals values.
+Note the one outlier present in the scatterplot.  Does this outlier influence the result of the calibration?  How could you evaluate it?
 
 ## Ch-11 Homework
 

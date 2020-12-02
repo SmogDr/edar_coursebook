@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-11-30" />
+<meta name="date" content="2020-12-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -388,8 +388,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a><ul>
 <li class="chapter" data-level="11.6.1" data-path="model.html"><a href="model.html#example-calibration"><i class="fa fa-check"></i><b>11.6.1</b> Example Calibration</a></li>
 </ul></li>
-<li class="chapter" data-level="11.7" data-path="model.html"><a href="model.html#ch-11-exercises"><i class="fa fa-check"></i><b>11.7</b> Ch-11 Exercises</a></li>
-<li class="chapter" data-level="11.8" data-path="model.html"><a href="model.html#ch-11-homework"><i class="fa fa-check"></i><b>11.8</b> Ch-11 Homework</a></li>
+<li class="chapter" data-level="11.7" data-path="model.html"><a href="model.html#ch-11-homework"><i class="fa fa-check"></i><b>11.7</b> Ch-11 Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Stats &amp; Reference Distributions</a><ul>
 <li class="chapter" data-level="12.1" data-path="dist.html"><a href="dist.html#measures-of-central-tendency"><i class="fa fa-check"></i><b>12.1</b> Measures of Central Tendency</a></li>
@@ -983,81 +982,39 @@ smoke from wildfires shows up (and that happens more often each year).</p>
 ## 5 440nm 2020-08-15 20:35:54 amod       0.432
 ## 6 440nm 2020-08-15 20:35:54 aeronet    0.394</code></pre>
 <p>Before we begin our calibration, let’s examine the data using EDA techniques. We know that the <code>amod</code> column represents the instrument to be calibrated and the <code>aeronet</code> instrument represent the standard reference.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="model.html#cb367-1"></a>p7 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> tidy_cal) <span class="op">+</span></span>
-<span id="cb367-2"><a href="model.html#cb367-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> time_r, <span class="dt">y =</span> aod, <span class="dt">color =</span> instrument),</span>
-<span id="cb367-3"><a href="model.html#cb367-3"></a>             <span class="dt">alpha =</span> <span class="fl">0.2</span>,</span>
-<span id="cb367-4"><a href="model.html#cb367-4"></a>             <span class="dt">size =</span> <span class="dv">2</span>)  <span class="op">+</span></span>
-<span id="cb367-5"><a href="model.html#cb367-5"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;navy&quot;</span>, <span class="st">&quot;magenta&quot;</span>)) <span class="op">+</span></span>
-<span id="cb367-6"><a href="model.html#cb367-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Date of Measurement&quot;</span>) <span class="op">+</span></span>
-<span id="cb367-7"><a href="model.html#cb367-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;AOD Value&quot;</span>) <span class="op">+</span></span>
-<span id="cb367-8"><a href="model.html#cb367-8"></a><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">12</span>) <span class="op">+</span></span>
-<span id="cb367-9"><a href="model.html#cb367-9"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="fl">0.2</span>, <span class="fl">0.7</span>))</span>
-<span id="cb367-10"><a href="model.html#cb367-10"></a></span>
-<span id="cb367-11"><a href="model.html#cb367-11"></a>p8 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> tidy_cal) <span class="op">+</span></span>
-<span id="cb367-12"><a href="model.html#cb367-12"></a><span class="st">  </span><span class="kw">geom_freqpoly</span>(<span class="kw">aes</span>(<span class="dt">x =</span> aod, <span class="dt">color =</span> instrument),</span>
-<span id="cb367-13"><a href="model.html#cb367-13"></a>                 <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></span>
-<span id="cb367-14"><a href="model.html#cb367-14"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;navy&quot;</span>, <span class="st">&quot;magenta&quot;</span>)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb367-15"><a href="model.html#cb367-15"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;AOD Value&quot;</span>) <span class="op">+</span></span>
-<span id="cb367-16"><a href="model.html#cb367-16"></a><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">12</span>) <span class="op">+</span></span>
-<span id="cb367-17"><a href="model.html#cb367-17"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="fl">0.45</span>, <span class="fl">0.7</span>))</span>
-<span id="cb367-18"><a href="model.html#cb367-18"></a></span>
-<span id="cb367-19"><a href="model.html#cb367-19"></a>acf_aeronet &lt;-<span class="st"> </span><span class="kw">acf</span>(cal_data<span class="op">$</span>aeronet)</span></code></pre></div>
-<p><img src="11-model_files/figure-html/aod_eda-1.png" width="672" /></p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="model.html#cb368-1"></a>p9 &lt;-<span class="st"> </span><span class="kw">ggPacf</span>(acf_aeronet<span class="op">$</span>acf) <span class="op">+</span></span>
-<span id="cb368-2"><a href="model.html#cb368-2"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Aeronet Partial Autocorrelation&quot;</span>) <span class="op">+</span></span>
-<span id="cb368-3"><a href="model.html#cb368-3"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span>
-<span id="cb368-4"><a href="model.html#cb368-4"></a></span>
-<span id="cb368-5"><a href="model.html#cb368-5"></a>p10 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> tidy_cal) <span class="op">+</span></span>
-<span id="cb368-6"><a href="model.html#cb368-6"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(<span class="dt">x =</span> aod, <span class="dt">color =</span> instrument)) <span class="op">+</span></span>
-<span id="cb368-7"><a href="model.html#cb368-7"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;navy&quot;</span>, <span class="st">&quot;magenta&quot;</span>)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb368-8"><a href="model.html#cb368-8"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;AOD Value&quot;</span>) <span class="op">+</span></span>
-<span id="cb368-9"><a href="model.html#cb368-9"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="op">+</span></span>
-<span id="cb368-10"><a href="model.html#cb368-10"></a><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">12</span>) <span class="op">+</span></span>
-<span id="cb368-11"><a href="model.html#cb368-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb368-12"><a href="model.html#cb368-12"></a>  </span>
-<span id="cb368-13"><a href="model.html#cb368-13"></a><span class="kw">grid.arrange</span>(p7, p8, p9, p10)</span></code></pre></div>
-<p><img src="11-model_files/figure-html/aod_eda-2.png" width="672" /></p>
+<div class="figure" style="text-align: center"><span id="fig:aod-eda-4plot"></span>
+<img src="images/aod_eda_4plot.png" alt="A 4-plot EDA of our AOD Calibration Data" width="1050" />
+<p class="caption">
+Figure 11.11: A 4-plot EDA of our AOD Calibration Data
+</p>
+</div>
 <p>Let’s fit a linear model between <code>aeronet</code> AOD as the independent variable and <code>amod</code> AOD as the dependent variable. Note that while we decided to <code>tidy</code> the data frame for making our EDA plots, we may not want tidy data for our calibration fit. That’s because, with calibration, we are treating the two AOD instruments as separate variables (i.e., <code>x</code> and <code>y</code>). Thus, we will call upon the non-tidy <code>cal_data</code> to specify a <code>y ~ x</code> formula in the <code>lm()</code> function below. And once we fit the model, we create a <code>summary()</code> object to examine fit statistics, coefficients, and confidence intervals.</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="model.html#cb369-1"></a>aod.fit &lt;-<span class="st"> </span><span class="kw">lm</span>(amod <span class="op">~</span><span class="st"> </span>aeronet, <span class="dt">data =</span> cal_data)</span>
-<span id="cb369-2"><a href="model.html#cb369-2"></a></span>
-<span id="cb369-3"><a href="model.html#cb369-3"></a>aod.summary &lt;-<span class="st"> </span><span class="kw">summary</span>(aod.fit)</span>
-<span id="cb369-4"><a href="model.html#cb369-4"></a></span>
-<span id="cb369-5"><a href="model.html#cb369-5"></a>aod.summary<span class="op">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="model.html#cb367-1"></a>aod.fit &lt;-<span class="st"> </span><span class="kw">lm</span>(amod <span class="op">~</span><span class="st"> </span>aeronet, <span class="dt">data =</span> cal_data)</span>
+<span id="cb367-2"><a href="model.html#cb367-2"></a></span>
+<span id="cb367-3"><a href="model.html#cb367-3"></a>aod.summary &lt;-<span class="st"> </span><span class="kw">summary</span>(aod.fit)</span>
+<span id="cb367-4"><a href="model.html#cb367-4"></a></span>
+<span id="cb367-5"><a href="model.html#cb367-5"></a>aod.summary<span class="op">$</span>coefficients</span></code></pre></div>
 <pre><code>##               Estimate Std. Error   t value     Pr(&gt;|t|)
 ## (Intercept) 0.07250816 0.01564998  4.633116 1.440649e-05
 ## aeronet     0.92344079 0.01596758 57.832226 3.344508e-65</code></pre>
 <p>The fit itself can be visualized using <code>ggplot::geom_smooth()</code> with an argument of <code>method = "lm"</code>:</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="model.html#cb371-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> cal_data,</span>
-<span id="cb371-2"><a href="model.html#cb371-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> aeronet, <span class="dt">y =</span> amod)) <span class="op">+</span></span>
-<span id="cb371-3"><a href="model.html#cb371-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x,</span>
-<span id="cb371-4"><a href="model.html#cb371-4"></a>              <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb371-5"><a href="model.html#cb371-5"></a>              <span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
-<span id="cb371-6"><a href="model.html#cb371-6"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>,</span>
-<span id="cb371-7"><a href="model.html#cb371-7"></a>             <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb371-8"><a href="model.html#cb371-8"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> (aod.summary<span class="op">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]<span class="op">+</span>aod.summary<span class="op">$</span>coefficients[<span class="dv">1</span>,<span class="dv">2</span>]),</span>
-<span id="cb371-9"><a href="model.html#cb371-9"></a>              <span class="dt">slope =</span> (aod.summary<span class="op">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]<span class="op">+</span>aod.summary<span class="op">$</span>coefficients[<span class="dv">2</span>,<span class="dv">2</span>]),</span>
-<span id="cb371-10"><a href="model.html#cb371-10"></a>              <span class="dt">color =</span> <span class="st">&quot;green&quot;</span>,</span>
-<span id="cb371-11"><a href="model.html#cb371-11"></a>              <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
-<span id="cb371-12"><a href="model.html#cb371-12"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> (aod.summary<span class="op">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]<span class="op">-</span>aod.summary<span class="op">$</span>coefficients[<span class="dv">1</span>,<span class="dv">2</span>]),</span>
-<span id="cb371-13"><a href="model.html#cb371-13"></a>              <span class="dt">slope =</span> (aod.summary<span class="op">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]<span class="op">-</span>aod.summary<span class="op">$</span>coefficients[<span class="dv">2</span>,<span class="dv">2</span>]),</span>
-<span id="cb371-14"><a href="model.html#cb371-14"></a>              <span class="dt">color =</span> <span class="st">&quot;green&quot;</span>,</span>
-<span id="cb371-15"><a href="model.html#cb371-15"></a>              <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
-<span id="cb371-16"><a href="model.html#cb371-16"></a><span class="st">  </span><span class="kw">coord_fixed</span>() <span class="op">+</span></span>
-<span id="cb371-17"><a href="model.html#cb371-17"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="model.html#cb369-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> cal_data,</span>
+<span id="cb369-2"><a href="model.html#cb369-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> aeronet, <span class="dt">y =</span> amod)) <span class="op">+</span></span>
+<span id="cb369-3"><a href="model.html#cb369-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x,</span>
+<span id="cb369-4"><a href="model.html#cb369-4"></a>              <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb369-5"><a href="model.html#cb369-5"></a>              <span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
+<span id="cb369-6"><a href="model.html#cb369-6"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>,</span>
+<span id="cb369-7"><a href="model.html#cb369-7"></a>             <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb369-8"><a href="model.html#cb369-8"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Aeronet AOD&quot;</span>) <span class="op">+</span></span>
+<span id="cb369-9"><a href="model.html#cb369-9"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;AMOD AOD&quot;</span>) <span class="op">+</span></span>
+<span id="cb369-10"><a href="model.html#cb369-10"></a><span class="st">  </span><span class="kw">coord_fixed</span>() <span class="op">+</span></span>
+<span id="cb369-11"><a href="model.html#cb369-11"></a><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
 <p><img src="11-model_files/figure-html/aod-scatterplot-1.png" width="672" /></p>
+<p>Note the one outlier present in the scatterplot. Does this outlier influence the result of the calibration? How could you evaluate it?</p>
 </div>
-</div>
-<div id="ch-11-exercises" class="section level2">
-<h2><span class="header-section-number">11.7</span> Ch-11 Exercises</h2>
-<p>hh1 - fit a two parameter model that suffers from multicollinearity (height ~ weight + waist) and use diagnostics to discover the problem. Discuss how process knowledge suggests that a negative beta in this case makes absolutely no sense.</p>
-<p>Validate the mass-waist model using NHANES data from a different year</p>
-<p>hh2 - fit a model that suffers from heteroscedasticity; transform the dependent variable to normalize the residuals. Discuss issues with interpreting transformed models.</p>
-<p>Create a new variable (volume = waist * height) and see if that variable explains more of the variance in mass from one of the NHANES data frames.</p>
-<p>Use the employees.csv data to fit a model (vendor ~ metal). Discover autocorrelation among the residuals.</p>
-<p>Calculate residuals from a model manually and prove that they are equal to the model$residuals values.</p>
 </div>
 <div id="ch-11-homework" class="section level2">
-<h2><span class="header-section-number">11.8</span> Ch-11 Homework</h2>
+<h2><span class="header-section-number">11.7</span> Ch-11 Homework</h2>
 
 </div>
 </div>
