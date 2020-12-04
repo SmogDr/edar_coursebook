@@ -366,7 +366,7 @@ grid.arrange(p3, p4, ncol = 2)
 
 Both models reasonable follow the expected quantile plots, although `model1` shows more deviation from normality at the upper tail.  If I hadn't seen `model2`, which looks nearly perfect, I probably would have said that `model1` was adequate.  Advantage: `model2`. 
 
-**Assumption #6: The error term is homoscedatic**  
+**Assumption #6: The error term is homoscedastic**  
 To evaluate this assumption, we create a [scatterplot](#scatt) of residuals vs. the fitted values, $\hat{Y_{i}}$.  Both of these data are contained in the model output lists.
 
 ``` {r residual-plot, fig.cap="Residuals vs. fitted values as a check for homoscedasticity."}
@@ -563,7 +563,7 @@ aod.fit <- lm(amod ~ aeronet, data = cal_data)
 
 aod.summary <- summary(aod.fit)
 
-aod.summary$coefficients
+aod.summary
 
 ```
 
@@ -588,20 +588,7 @@ ggplot(data = cal_data,
 Note the one outlier present in the scatterplot.  Does this outlier influence the result of the calibration?  How could you evaluate it?
 
 ## Ch-11 Homework
-
-```{r ch11-homework, echo=FALSE, include=FALSE}
-#hh1 - fit a two parameter model that suffers from multicollinearity (height ~ weight + waist) and use diagnostics to #discover the problem.  Discuss how process knowledge suggests that a negative beta in this case makes absolutely no sense. 
-
-#Validate the mass-waist model using NHANES data from a different year
-
-#hh2 - fit a model that suffers from heteroscedasticity; transform the dependent variable to normalize the residuals.  #Discuss issues with interpreting transformed models.
-
-#Create a new variable (volume = waist * height) and see if that variable explains more of the variance in mass from one of #the NHANES data frames.
-
-#Use the employees.csv data to fit a model (vendor ~ metal).  Discover autocorrelation among the residuals. 
-
-#Calculate residuals from a model manually and prove that they are equal to the model$residuals values.
-
+This homework will give you experience with fitting OLS linear models and testing model assumptions.  
 
 
 

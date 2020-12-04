@@ -399,7 +399,7 @@ grid.arrange(p3, p4, ncol = 2)
 
 Both models reasonable follow the expected quantile plots, although `model1` shows more deviation from normality at the upper tail.  If I hadn't seen `model2`, which looks nearly perfect, I probably would have said that `model1` was adequate.  Advantage: `model2`. 
 
-**Assumption #6: The error term is homoscedatic**  
+**Assumption #6: The error term is homoscedastic**  
 To evaluate this assumption, we create a [scatterplot](#scatt) of residuals vs. the fitted values, $\hat{Y_{i}}$.  Both of these data are contained in the model output lists.
 
 
@@ -613,13 +613,28 @@ aod.fit <- lm(amod ~ aeronet, data = cal_data)
 
 aod.summary <- summary(aod.fit)
 
-aod.summary$coefficients
+aod.summary
 ```
 
 ```
-##               Estimate Std. Error   t value     Pr(>|t|)
-## (Intercept) 0.07250816 0.01564998  4.633116 1.440649e-05
-## aeronet     0.92344079 0.01596758 57.832226 3.344508e-65
+## 
+## Call:
+## lm(formula = amod ~ aeronet, data = cal_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.07646 -0.02227 -0.01154  0.00454  0.73319 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.07251    0.01565   4.633 1.44e-05 ***
+## aeronet      0.92344    0.01597  57.832  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.08844 on 77 degrees of freedom
+## Multiple R-squared:  0.9775,	Adjusted R-squared:  0.9772 
+## F-statistic:  3345 on 1 and 77 DF,  p-value: < 2.2e-16
 ```
 
 The fit itself can be visualized using `ggplot::geom_smooth()` with an argument of `method = "lm"`:
@@ -644,5 +659,7 @@ ggplot(data = cal_data,
 Note the one outlier present in the scatterplot.  Does this outlier influence the result of the calibration?  How could you evaluate it?
 
 ## Ch-11 Homework
+This homework will give you experience with fitting OLS linear models and testing model assumptions.  
+
 
 

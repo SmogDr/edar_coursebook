@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-12-02" />
+<meta name="date" content="2020-12-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -811,7 +811,7 @@ Figure 11.7: Q-Q plots of residuals for two linear models. Which set of residual
 </p>
 </div>
 <p>Both models reasonable follow the expected quantile plots, although <code>model1</code> shows more deviation from normality at the upper tail. If I hadn’t seen <code>model2</code>, which looks nearly perfect, I probably would have said that <code>model1</code> was adequate. Advantage: <code>model2</code>.</p>
-<p><strong>Assumption #6: The error term is homoscedatic</strong><br />
+<p><strong>Assumption #6: The error term is homoscedastic</strong><br />
 To evaluate this assumption, we create a <a href="eda2.html#scatt">scatterplot</a> of residuals vs. the fitted values, <span class="math inline">\(\hat{Y_{i}}\)</span>. Both of these data are contained in the model output lists.</p>
 <div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="model.html#cb356-1"></a>p5 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> model1<span class="op">$</span>model) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb356-2"><a href="model.html#cb356-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> model1<span class="op">$</span>fitted.values, <span class="dt">y =</span>model1<span class="op">$</span>residuals),</span>
@@ -993,10 +993,25 @@ Figure 11.11: A 4-plot EDA of our AOD Calibration Data
 <span id="cb367-2"><a href="model.html#cb367-2"></a></span>
 <span id="cb367-3"><a href="model.html#cb367-3"></a>aod.summary &lt;-<span class="st"> </span><span class="kw">summary</span>(aod.fit)</span>
 <span id="cb367-4"><a href="model.html#cb367-4"></a></span>
-<span id="cb367-5"><a href="model.html#cb367-5"></a>aod.summary<span class="op">$</span>coefficients</span></code></pre></div>
-<pre><code>##               Estimate Std. Error   t value     Pr(&gt;|t|)
-## (Intercept) 0.07250816 0.01564998  4.633116 1.440649e-05
-## aeronet     0.92344079 0.01596758 57.832226 3.344508e-65</code></pre>
+<span id="cb367-5"><a href="model.html#cb367-5"></a>aod.summary</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = amod ~ aeronet, data = cal_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.07646 -0.02227 -0.01154  0.00454  0.73319 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.07251    0.01565   4.633 1.44e-05 ***
+## aeronet      0.92344    0.01597  57.832  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.08844 on 77 degrees of freedom
+## Multiple R-squared:  0.9775, Adjusted R-squared:  0.9772 
+## F-statistic:  3345 on 1 and 77 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The fit itself can be visualized using <code>ggplot::geom_smooth()</code> with an argument of <code>method = "lm"</code>:</p>
 <div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="model.html#cb369-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> cal_data,</span>
 <span id="cb369-2"><a href="model.html#cb369-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> aeronet, <span class="dt">y =</span> amod)) <span class="op">+</span></span>
@@ -1015,6 +1030,7 @@ Figure 11.11: A 4-plot EDA of our AOD Calibration Data
 </div>
 <div id="ch-11-homework" class="section level2">
 <h2><span class="header-section-number">11.7</span> Ch-11 Homework</h2>
+<p>This homework will give you experience with fitting OLS linear models and testing model assumptions.</p>
 
 </div>
 </div>
