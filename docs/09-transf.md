@@ -95,19 +95,28 @@ A manufacturing operation is investigating the production of an expensive titani
 Examination of Figure \@ref(fig:stratify2) reveals that, while there is considerable variation in the data, a clear relationship is not apparent between sample purity and process yield. Correlation analyses reveal a Pearson correlation coefficient of $r=$ -0.23, indicating a very low level of correlation between the two variables. However, it occurs to you that perhaps there is variation in results between the three different reactors in the plant.  Therefore, you decide to repeat this analysis ***stratifying the data by reactor type***.  In this case, you repeat the `ggplot()` call with an extra aesthetic of `color = reactor` in the scatterplot.
 
 
-```
-## # A tibble: 3 x 2
-##   reactor Pearson
-##   <chr>     <dbl>
-## 1 a        -0.898
-## 2 b        -0.896
-## 3 c        -0.923
-```
 
 <div class="figure" style="text-align: center">
 <img src="./images/stratified.png" alt="Yield vs. Purity over one month, stratified by reactor type" width="500" />
 <p class="caption">(\#fig:stratify-png)Yield vs. Purity over one month, stratified by reactor type</p>
 </div>
+
+```r
+strat.data %>%
+  group_by(reactor) %>%
+  summarise("Pearson's r" = cor(yield2, purity),
+            .groups = "keep") %>%
+  kable(align = "c",
+        digits = 2)
+```
+
+
+
+| reactor | Pearson's r |
+|:-------:|:-----------:|
+|    a    |    -0.90    |
+|    b    |    -0.90    |
+|    c    |    -0.92    |
 Figure \@ref(fig:stratify-png) tells a very different story! Now we can see that two relationships are clearly evident.  
 
   1. There is a definite inverse relationship between *sample purity* and the *process yield* (Pearson correlation coefficients are now ~ 0.9 for each) and  
@@ -212,7 +221,7 @@ Examination of Figure \@ref(fig:outlier-2) suggests that the outlier is having a
 Unfortunately, this sort of conundrum happens more often than we might like in the real world. *My advice would be to collect more data to support/discount the outlier. If that isn't possible (and no other explanation was forthcoming), I would probably show the analysis* ***both ways***.
 
 <div class="rmdwarning">
-<p><strong>Censoring data is dangerous business.</strong> If you are going to censor an outlier, make sure to document <strong>how</strong> you discovered/defined the outlier, <strong>why</strong> you believe it should be censored, and <strong>“whether or not that censoring had an effect on your results/conclusions”</strong>. Then make sure to broadcast your thinking to everyone who comes in contact with your analysis If you try to hide outliers, you are being unethical and setting yourself up for disaster.</p>
+<p><strong>Censoring data is dangerous business.</strong> If you are going to censor an outlier, make sure to document <strong>how</strong> you discovered/defined the outlier, <strong>why</strong> you believe it should be censored, and <strong>“whether or not that censoring had an effect on your results/conclusions”</strong>. Then make sure to broadcast your thinking to everyone who comes in contact with your analysis. If you try to hide outliers, you are being unethical and setting yourself up for disaster.</p>
 </div>
 
 ## Ch-9 Exercises

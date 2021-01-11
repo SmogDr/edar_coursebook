@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2020-12-03" />
+<meta name="date" content="2021-01-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -525,18 +525,40 @@ Figure 9.3: Yield vs. Purity from the plant’s three reactors over one month
 </p>
 </div>
 <p>Examination of Figure <a href="transform.html#fig:stratify2">9.3</a> reveals that, while there is considerable variation in the data, a clear relationship is not apparent between sample purity and process yield. Correlation analyses reveal a Pearson correlation coefficient of <span class="math inline">\(r=\)</span> -0.23, indicating a very low level of correlation between the two variables. However, it occurs to you that perhaps there is variation in results between the three different reactors in the plant. Therefore, you decide to repeat this analysis <strong><em>stratifying the data by reactor type</em></strong>. In this case, you repeat the <code>ggplot()</code> call with an extra aesthetic of <code>color = reactor</code> in the scatterplot.</p>
-<pre><code>## # A tibble: 3 x 2
-##   reactor Pearson
-##   &lt;chr&gt;     &lt;dbl&gt;
-## 1 a        -0.898
-## 2 b        -0.896
-## 3 c        -0.923</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:stratify-png"></span>
 <img src="images/stratified.png" alt="Yield vs. Purity over one month, stratified by reactor type" width="500" />
 <p class="caption">
 Figure 9.4: Yield vs. Purity over one month, stratified by reactor type
 </p>
 </div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="transform.html#cb319-1"></a>strat.data <span class="op">%&gt;%</span></span>
+<span id="cb319-2"><a href="transform.html#cb319-2"></a><span class="st">  </span><span class="kw">group_by</span>(reactor) <span class="op">%&gt;%</span></span>
+<span id="cb319-3"><a href="transform.html#cb319-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="st">&quot;Pearson&#39;s r&quot;</span> =<span class="st"> </span><span class="kw">cor</span>(yield2, purity),</span>
+<span id="cb319-4"><a href="transform.html#cb319-4"></a>            <span class="dt">.groups =</span> <span class="st">&quot;keep&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb319-5"><a href="transform.html#cb319-5"></a><span class="st">  </span><span class="kw">kable</span>(<span class="dt">align =</span> <span class="st">&quot;c&quot;</span>,</span>
+<span id="cb319-6"><a href="transform.html#cb319-6"></a>        <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="center">reactor</th>
+<th align="center">Pearson’s r</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">a</td>
+<td align="center">-0.90</td>
+</tr>
+<tr class="even">
+<td align="center">b</td>
+<td align="center">-0.90</td>
+</tr>
+<tr class="odd">
+<td align="center">c</td>
+<td align="center">-0.92</td>
+</tr>
+</tbody>
+</table>
 <p>Figure <a href="transform.html#fig:stratify-png">9.4</a> tells a very different story! Now we can see that two relationships are clearly evident.</p>
 <ol style="list-style-type: decimal">
 <li>There is a definite inverse relationship between <em>sample purity</em> and the <em>process yield</em> (Pearson correlation coefficients are now ~ 0.9 for each) and<br />
@@ -629,7 +651,7 @@ Figure 9.6: Effect of an outlier on a linear model with n=15 data points.
 <p>Unfortunately, this sort of conundrum happens more often than we might like in the real world. <em>My advice would be to collect more data to support/discount the outlier. If that isn’t possible (and no other explanation was forthcoming), I would probably show the analysis</em> <strong><em>both ways</em></strong>.</p>
 <div class="rmdwarning">
 <p>
-<strong>Censoring data is dangerous business.</strong> If you are going to censor an outlier, make sure to document <strong>how</strong> you discovered/defined the outlier, <strong>why</strong> you believe it should be censored, and <strong>“whether or not that censoring had an effect on your results/conclusions”</strong>. Then make sure to broadcast your thinking to everyone who comes in contact with your analysis If you try to hide outliers, you are being unethical and setting yourself up for disaster.
+<strong>Censoring data is dangerous business.</strong> If you are going to censor an outlier, make sure to document <strong>how</strong> you discovered/defined the outlier, <strong>why</strong> you believe it should be censored, and <strong>“whether or not that censoring had an effect on your results/conclusions”</strong>. Then make sure to broadcast your thinking to everyone who comes in contact with your analysis. If you try to hide outliers, you are being unethical and setting yourself up for disaster.
 </p>
 </div>
 </div>
