@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-11" />
+<meta name="date" content="2021-01-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="rprog2.html"/>
 <link rel="next" href="eda1.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,26 +51,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -89,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -138,14 +136,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Engineering Data Analysis in R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1</b> How to use this book</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a><ul>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
 <li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a><ul>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#install-r-and-rstudio"><i class="fa fa-check"></i><b>1.4.1</b> Install R and RStudio</a></li>
 <li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#install-git-and-create-a-github-account"><i class="fa fa-check"></i><b>1.4.2</b> Install Git and create a GitHub account</a></li>
 <li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#connect-git-github-and-rstudio"><i class="fa fa-check"></i><b>1.4.3</b> Connect Git, GitHub, and RStudio</a></li>
@@ -154,57 +155,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#confirm-successful-set-up"><i class="fa fa-check"></i><b>1.4.6</b> Confirm successful set-up</a></li>
 <li class="chapter" data-level="1.4.7" data-path="index.html"><a href="index.html#asking-for-help-properly"><i class="fa fa-check"></i><b>1.4.7</b> Asking for help (properly)</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a><ul>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#other-helpful-books-not-required"><i class="fa fa-check"></i><b>1.5.1</b> Other helpful books (not required)</a></li>
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a><ul>
+<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="rprog1.html"><a href="rprog1.html#ch.-2-objectives"><i class="fa fa-check"></i><b>2.1</b> Ch. 2 Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="rprog1.html"><a href="rprog1.html#what-is-r"><i class="fa fa-check"></i><b>2.2.1</b> What is R?</a></li>
 <li class="chapter" data-level="2.2.2" data-path="rprog1.html"><a href="rprog1.html#free-and-open-source-software"><i class="fa fa-check"></i><b>2.2.2</b> Free and open-source software</a></li>
 <li class="chapter" data-level="2.2.3" data-path="rprog1.html"><a href="rprog1.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2.3</b> What is RStudio?</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a><ul>
+<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="rprog1.html"><a href="rprog1.html#r-sessions-console-and-command-prompt"><i class="fa fa-check"></i><b>2.3.1</b> R sessions, console, and command prompt</a></li>
 <li class="chapter" data-level="2.3.2" data-path="rprog1.html"><a href="rprog1.html#r-expressions-function-calls-and-objects"><i class="fa fa-check"></i><b>2.3.2</b> R expressions, function calls, and objects</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a><ul>
+<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="rprog1.html"><a href="rprog1.html#commenting-code"><i class="fa fa-check"></i><b>2.4.1</b> Commenting code</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a><ul>
+<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="rprog1.html"><a href="rprog1.html#r-packages"><i class="fa fa-check"></i><b>2.5.1</b> R packages</a></li>
 <li class="chapter" data-level="2.5.2" data-path="rprog1.html"><a href="rprog1.html#installing-from-cran"><i class="fa fa-check"></i><b>2.5.2</b> Installing from CRAN</a></li>
 <li class="chapter" data-level="2.5.3" data-path="rprog1.html"><a href="rprog1.html#loading-an-installed-package"><i class="fa fa-check"></i><b>2.5.3</b> Loading an installed package</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
 <li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#chapter-2-exercises"><i class="fa fa-check"></i><b>2.7</b> Chapter 2 Exercises</a><ul>
+<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#chapter-2-exercises"><i class="fa fa-check"></i><b>2.7</b> Chapter 2 Exercises</a>
+<ul>
 <li class="chapter" data-level="2.7.1" data-path="rprog1.html"><a href="rprog1.html#set-1-session-helpfiles-scripts-and-objects"><i class="fa fa-check"></i><b>2.7.1</b> Set 1: Session, helpfiles, scripts, and objects</a></li>
 <li class="chapter" data-level="2.7.2" data-path="rprog1.html"><a href="rprog1.html#set-2-loading-and-using-packages"><i class="fa fa-check"></i><b>2.7.2</b> Set 2: Loading and using packages</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#chapter-2-homework"><i class="fa fa-check"></i><b>2.8</b> Chapter 2 Homework</a><ul>
+<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#chapter-2-homework"><i class="fa fa-check"></i><b>2.8</b> Chapter 2 Homework</a>
+<ul>
 <li class="chapter" data-level="2.8.1" data-path="rprog1.html"><a href="rprog1.html#special-swirl-commands"><i class="fa fa-check"></i><b>2.8.1</b> Special <code>swirl</code> commands</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a><ul>
+<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="rprog2.html"><a href="rprog2.html#ch.-3-objectives"><i class="fa fa-check"></i><b>3.1</b> Ch. 3 Objectives</a></li>
 <li class="chapter" data-level="3.2" data-path="rprog2.html"><a href="rprog2.html#overview"><i class="fa fa-check"></i><b>3.2</b> Overview</a></li>
-<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a><ul>
+<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="rprog2.html"><a href="rprog2.html#reading-local-flat-files"><i class="fa fa-check"></i><b>3.3.1</b> Reading local flat files</a></li>
 <li class="chapter" data-level="3.3.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-other-file-types"><i class="fa fa-check"></i><b>3.3.2</b> Reading in other file types</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a><ul>
+<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="rprog2.html"><a href="rprog2.html#directory-structure"><i class="fa fa-check"></i><b>3.4.1</b> Directory structure</a></li>
 <li class="chapter" data-level="3.4.2" data-path="rprog2.html"><a href="rprog2.html#working-directory"><i class="fa fa-check"></i><b>3.4.2</b> Working directory</a></li>
 <li class="chapter" data-level="3.4.3" data-path="rprog2.html"><a href="rprog2.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>3.4.3</b> File and directory pathnames</a></li>
 <li class="chapter" data-level="3.4.4" data-path="rprog2.html"><a href="rprog2.html#tangent-paste"><i class="fa fa-check"></i><b>3.4.4</b> Tangent: <code>paste</code></a></li>
 <li class="chapter" data-level="3.4.5" data-path="rprog2.html"><a href="rprog2.html#reading-online-flat-files"><i class="fa fa-check"></i><b>3.4.5</b> Reading online flat files</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a><ul>
+<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="rprog2.html"><a href="rprog2.html#renaming-columns"><i class="fa fa-check"></i><b>3.5.1</b> Renaming columns</a></li>
 <li class="chapter" data-level="3.5.2" data-path="rprog2.html"><a href="rprog2.html#selecting-columns"><i class="fa fa-check"></i><b>3.5.2</b> Selecting columns</a></li>
 <li class="chapter" data-level="3.5.3" data-path="rprog2.html"><a href="rprog2.html#add-or-change-columns"><i class="fa fa-check"></i><b>3.5.3</b> Add or change columns</a></li>
@@ -212,26 +226,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.5" data-path="rprog2.html"><a href="rprog2.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>3.5.5</b> Filtering to certain rows</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="rprog2.html"><a href="rprog2.html#piping"><i class="fa fa-check"></i><b>3.6</b> Piping</a></li>
-<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#markdowns"><i class="fa fa-check"></i><b>3.7</b> Markdowns</a><ul>
+<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#markdowns"><i class="fa fa-check"></i><b>3.7</b> Markdowns</a>
+<ul>
 <li class="chapter" data-level="3.7.1" data-path="rprog2.html"><a href="rprog2.html#r-markdowns"><i class="fa fa-check"></i><b>3.7.1</b> R Markdowns</a></li>
 <li class="chapter" data-level="3.7.2" data-path="rprog2.html"><a href="rprog2.html#header"><i class="fa fa-check"></i><b>3.7.2</b> Header</a></li>
 <li class="chapter" data-level="3.7.3" data-path="rprog2.html"><a href="rprog2.html#text"><i class="fa fa-check"></i><b>3.7.3</b> Text</a></li>
 <li class="chapter" data-level="3.7.4" data-path="rprog2.html"><a href="rprog2.html#code-chunks"><i class="fa fa-check"></i><b>3.7.4</b> Code Chunks</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#chapter-3-exercises"><i class="fa fa-check"></i><b>3.8</b> Chapter 3 Exercises</a><ul>
+<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#chapter-3-exercises"><i class="fa fa-check"></i><b>3.8</b> Chapter 3 Exercises</a>
+<ul>
 <li class="chapter" data-level="3.8.1" data-path="rprog2.html"><a href="rprog2.html#set-1-pathnames-and-data-import"><i class="fa fa-check"></i><b>3.8.1</b> Set 1: Pathnames and data import</a></li>
 <li class="chapter" data-level="3.8.2" data-path="rprog2.html"><a href="rprog2.html#set-2-data-wrangling-and-piping"><i class="fa fa-check"></i><b>3.8.2</b> Set 2: Data wrangling and piping</a></li>
 <li class="chapter" data-level="3.8.3" data-path="rprog2.html"><a href="rprog2.html#set-3-r-markdown"><i class="fa fa-check"></i><b>3.8.3</b> Set 3: R Markdown</a></li>
 </ul></li>
 <li class="chapter" data-level="3.9" data-path="rprog2.html"><a href="rprog2.html#chapter-3-homework"><i class="fa fa-check"></i><b>3.9</b> Chapter 3 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#chapter-4-objectives"><i class="fa fa-check"></i><b>4.1</b> Chapter 4 Objectives</a></li>
 <li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#install-and-load-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Install and load <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#steps-to-create-a-ggplot2-object"><i class="fa fa-check"></i><b>4.3</b> Steps to create a <code>ggplot2</code> object</a></li>
 <li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#initializing-a-ggplot2-object"><i class="fa fa-check"></i><b>4.4</b> Initializing a <code>ggplot2</code> object</a></li>
 <li class="chapter" data-level="4.5" data-path="dataviz.html"><a href="dataviz.html#plot-aesthetics"><i class="fa fa-check"></i><b>4.5</b> Plot aesthetics</a></li>
-<li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.6</b> Adding geoms</a><ul>
+<li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.6</b> Adding geoms</a>
+<ul>
 <li class="chapter" data-level="4.6.1" data-path="dataviz.html"><a href="dataviz.html#aesthetic-override-a-warning"><i class="fa fa-check"></i><b>4.6.1</b> Aesthetic override: a warning</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="dataviz.html"><a href="dataviz.html#shapes-and-colors"><i class="fa fa-check"></i><b>4.7</b> Shapes and colors</a></li>
@@ -242,15 +260,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.12" data-path="dataviz.html"><a href="dataviz.html#getting-help-with-ggplot2"><i class="fa fa-check"></i><b>4.12</b> Getting help with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.13" data-path="dataviz.html"><a href="dataviz.html#chapter-4-homework"><i class="fa fa-check"></i><b>4.13</b> Chapter 4 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a><ul>
+<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="eda1.html"><a href="eda1.html#ch.-5-objectives"><i class="fa fa-check"></i><b>5.1</b> Ch. 5 Objectives</a></li>
-<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univar"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a><ul>
+<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univar"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>5.2.1</b> Location, Dispersion, and Shape</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantile"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a><ul>
+<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantile"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="eda1.html"><a href="eda1.html#descriptive-statistics"><i class="fa fa-check"></i><b>5.3.1</b> Descriptive Statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a><ul>
+<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
 <li class="chapter" data-level="5.4.2" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.4.2</b> Cumulative Distribution Plot</a></li>
 <li class="chapter" data-level="5.4.3" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.4.3</b> Histogram</a></li>
@@ -262,25 +284,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="eda1.html"><a href="eda1.html#exploring-data"><i class="fa fa-check"></i><b>5.5</b> Exploring Data</a></li>
 <li class="chapter" data-level="5.6" data-path="eda1.html"><a href="eda1.html#chapter-5-homework"><i class="fa fa-check"></i><b>5.6</b> Chapter 5 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a><ul>
+<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#chapter-6-objectives"><i class="fa fa-check"></i><b>6.1</b> Chapter 6 Objectives</a></li>
-<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a><ul>
+<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="rprog3.html"><a href="rprog3.html#string-detect-match-subset"><i class="fa fa-check"></i><b>6.2.1</b> String detect, match, subset</a></li>
 <li class="chapter" data-level="6.2.2" data-path="rprog3.html"><a href="rprog3.html#regular-expressions"><i class="fa fa-check"></i><b>6.2.2</b> Regular Expressions</a></li>
 <li class="chapter" data-level="6.2.3" data-path="rprog3.html"><a href="rprog3.html#string-split-replace"><i class="fa fa-check"></i><b>6.2.3</b> String split, replace</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a><ul>
+<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="rprog3.html"><a href="rprog3.html#dates-and-times-in-base-r"><i class="fa fa-check"></i><b>6.3.1</b> Dates and Times in base R</a></li>
 <li class="chapter" data-level="6.3.2" data-path="rprog3.html"><a href="rprog3.html#date-time-formats"><i class="fa fa-check"></i><b>6.3.2</b> Date-time formats</a></li>
 <li class="chapter" data-level="6.3.3" data-path="rprog3.html"><a href="rprog3.html#date-time-classes-in-r"><i class="fa fa-check"></i><b>6.3.3</b> Date-time classes in R</a></li>
 <li class="chapter" data-level="6.3.4" data-path="rprog3.html"><a href="rprog3.html#reading-and-classifying-date-times"><i class="fa fa-check"></i><b>6.3.4</b> Reading and classifying date-times</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>lubridate</code></a><ul>
+<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>lubridate</code></a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="rprog3.html"><a href="rprog3.html#parsing-functions-in-lubridate"><i class="fa fa-check"></i><b>6.4.1</b> Parsing functions in <code>lubridate</code></a></li>
 <li class="chapter" data-level="6.4.2" data-path="rprog3.html"><a href="rprog3.html#date-time-manipulation-with-lubridate"><i class="fa fa-check"></i><b>6.4.2</b> Date-time manipulation with <code>lubridate</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#tidy-data"><i class="fa fa-check"></i><b>6.5</b> Tidy Data</a></li>
-<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#chapter-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Chapter 6 Exercises</a><ul>
+<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#chapter-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Chapter 6 Exercises</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="rprog3.html"><a href="rprog3.html#set-1-data-import-and-manipulation"><i class="fa fa-check"></i><b>6.6.1</b> Set 1: Data import and manipulation</a></li>
 <li class="chapter" data-level="6.6.2" data-path="rprog3.html"><a href="rprog3.html#set-2-counting"><i class="fa fa-check"></i><b>6.6.2</b> Set 2: Counting</a></li>
 <li class="chapter" data-level="6.6.3" data-path="rprog3.html"><a href="rprog3.html#set-3-weekly-tweets"><i class="fa fa-check"></i><b>6.6.3</b> Set 3: Weekly tweets</a></li>
@@ -288,19 +315,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="rprog3.html"><a href="rprog3.html#chapter-6-homework"><i class="fa fa-check"></i><b>6.7</b> Chapter 6 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a><ul>
+<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#chapter-7-objectives"><i class="fa fa-check"></i><b>7.1</b> Chapter 7 Objectives</a></li>
 <li class="chapter" data-level="7.2" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>7.2</b> Bivariate Data</a></li>
-<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a><ul>
+<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="eda2.html"><a href="eda2.html#causality"><i class="fa fa-check"></i><b>7.3.1</b> Causality</a></li>
 <li class="chapter" data-level="7.3.2" data-path="eda2.html"><a href="eda2.html#corr"><i class="fa fa-check"></i><b>7.3.2</b> Correlation</a></li>
 <li class="chapter" data-level="7.3.3" data-path="eda2.html"><a href="eda2.html#correlation-neq-causation"><i class="fa fa-check"></i><b>7.3.3</b> Correlation <span class="math inline">\(\neq\)</span> causation</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.4</b> Exploring Multivariate Data</a><ul>
+<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.4</b> Exploring Multivariate Data</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="eda2.html"><a href="eda2.html#facets"><i class="fa fa-check"></i><b>7.4.1</b> Facets</a></li>
 <li class="chapter" data-level="7.4.2" data-path="eda2.html"><a href="eda2.html#colors"><i class="fa fa-check"></i><b>7.4.2</b> Colors</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#chapter-7-exercises"><i class="fa fa-check"></i><b>7.5</b> Chapter 7 Exercises</a><ul>
+<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#chapter-7-exercises"><i class="fa fa-check"></i><b>7.5</b> Chapter 7 Exercises</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="eda2.html"><a href="eda2.html#fuel-economy-data"><i class="fa fa-check"></i><b>7.5.1</b> Fuel economy data</a></li>
 <li class="chapter" data-level="7.5.2" data-path="eda2.html"><a href="eda2.html#import-and-wrangle-data"><i class="fa fa-check"></i><b>7.5.2</b> Import and wrangle data</a></li>
 <li class="chapter" data-level="7.5.3" data-path="eda2.html"><a href="eda2.html#check-data"><i class="fa fa-check"></i><b>7.5.3</b> Check data</a></li>
@@ -313,35 +344,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="eda2.html"><a href="eda2.html#chapter-7-homework"><i class="fa fa-check"></i><b>7.6</b> Chapter 7 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a><ul>
+<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="rprog4.html"><a href="rprog4.html#ch.-8-objectives"><i class="fa fa-check"></i><b>8.1</b> Ch. 8 Objectives</a></li>
 <li class="chapter" data-level="8.2" data-path="rprog4.html"><a href="rprog4.html#what-is-functional-programming"><i class="fa fa-check"></i><b>8.2</b> What is <strong><em>functional programming</em></strong>?</a></li>
-<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a><ul>
+<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="rprog4.html"><a href="rprog4.html#example-function-my_mean"><i class="fa fa-check"></i><b>8.3.1</b> Example Function: my_mean</a></li>
 <li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: “import.w.name”</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a><ul>
+<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="rprog4.html"><a href="rprog4.html#function-mapping"><i class="fa fa-check"></i><b>8.4.1</b> Function Mapping</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.5</b> Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a><ul>
+<li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="transform.html"><a href="transform.html#ch.-9-objectives"><i class="fa fa-check"></i><b>9.1</b> Ch. 9 Objectives</a></li>
-<li class="chapter" data-level="9.2" data-path="transform.html"><a href="transform.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a><ul>
+<li class="chapter" data-level="9.2" data-path="transform.html"><a href="transform.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="transform.html"><a href="transform.html#centering"><i class="fa fa-check"></i><b>9.2.1</b> Centering</a></li>
 <li class="chapter" data-level="9.2.2" data-path="transform.html"><a href="transform.html#rescaling"><i class="fa fa-check"></i><b>9.2.2</b> Rescaling</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="transform.html"><a href="transform.html#normalization-and-standardization"><i class="fa fa-check"></i><b>9.3</b> Normalization and Standardization</a><ul>
+<li class="chapter" data-level="9.3" data-path="transform.html"><a href="transform.html#normalization-and-standardization"><i class="fa fa-check"></i><b>9.3</b> Normalization and Standardization</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="transform.html"><a href="transform.html#rate-normalization"><i class="fa fa-check"></i><b>9.3.1</b> Rate normalization</a></li>
 <li class="chapter" data-level="9.3.2" data-path="transform.html"><a href="transform.html#standardizing"><i class="fa fa-check"></i><b>9.3.2</b> Standardizing</a></li>
 <li class="chapter" data-level="9.3.3" data-path="transform.html"><a href="transform.html#reducing-skewness"><i class="fa fa-check"></i><b>9.3.3</b> Reducing Skewness</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="transform.html"><a href="transform.html#stratification"><i class="fa fa-check"></i><b>9.4</b> Stratification</a></li>
-<li class="chapter" data-level="9.5" data-path="transform.html"><a href="transform.html#outliers-and-censoring"><i class="fa fa-check"></i><b>9.5</b> Outliers and Censoring</a><ul>
+<li class="chapter" data-level="9.5" data-path="transform.html"><a href="transform.html#outliers-and-censoring"><i class="fa fa-check"></i><b>9.5</b> Outliers and Censoring</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="transform.html"><a href="transform.html#outliers"><i class="fa fa-check"></i><b>9.5.1</b> Detecting Outliers</a></li>
 <li class="chapter" data-level="9.5.2" data-path="transform.html"><a href="transform.html#censoring-outliers"><i class="fa fa-check"></i><b>9.5.2</b> Censoring outliers</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="transform.html"><a href="transform.html#ch-9-exercises"><i class="fa fa-check"></i><b>9.6</b> Ch-9 Exercises</a><ul>
+<li class="chapter" data-level="9.6" data-path="transform.html"><a href="transform.html#ch-9-exercises"><i class="fa fa-check"></i><b>9.6</b> Ch-9 Exercises</a>
+<ul>
 <li class="chapter" data-level="9.6.1" data-path="transform.html"><a href="transform.html#salary-data-for-poly-sci-majors"><i class="fa fa-check"></i><b>9.6.1</b> Salary Data for Poly Sci Majors</a></li>
 <li class="chapter" data-level="9.6.2" data-path="transform.html"><a href="transform.html#univariate-data-visualization-1"><i class="fa fa-check"></i><b>9.6.2</b> Univariate Data Visualization</a></li>
 <li class="chapter" data-level="9.6.3" data-path="transform.html"><a href="transform.html#rescale-and-censor-data"><i class="fa fa-check"></i><b>9.6.3</b> Rescale and Censor Data</a></li>
@@ -350,9 +389,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.7" data-path="transform.html"><a href="transform.html#ch-9-homework"><i class="fa fa-check"></i><b>9.7</b> Ch-9 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a><ul>
+<li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="measure.html"><a href="measure.html#ch.-10-objectives"><i class="fa fa-check"></i><b>10.1</b> Ch. 10 Objectives</a></li>
-<li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a><ul>
+<li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#sample"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
 <li class="chapter" data-level="10.2.2" data-path="measure.html"><a href="measure.html#sample.collect"><i class="fa fa-check"></i><b>10.2.2</b> Collecting a sample</a></li>
 <li class="chapter" data-level="10.2.3" data-path="measure.html"><a href="measure.html#simple-random-sampling"><i class="fa fa-check"></i><b>10.2.3</b> Simple Random Sampling</a></li>
@@ -360,50 +401,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.5" data-path="measure.html"><a href="measure.html#stratified-sampling"><i class="fa fa-check"></i><b>10.2.5</b> Stratified Sampling</a></li>
 <li class="chapter" data-level="10.2.6" data-path="measure.html"><a href="measure.html#cluster-sampling"><i class="fa fa-check"></i><b>10.2.6</b> Cluster Sampling</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a><ul>
+<li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a>
+<ul>
 <li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#LOD"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
 <li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
 <li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>10.3.3</b> Precision</a></li>
 <li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>10.3.4</b> Bias (accuracy)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a><ul>
+<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a>
+<ul>
 <li class="chapter" data-level="10.4.1" data-path="measure.html"><a href="measure.html#repeated"><i class="fa fa-check"></i><b>10.4.1</b> Repeated Measures</a></li>
 <li class="chapter" data-level="10.4.2" data-path="measure.html"><a href="measure.html#error-propagation"><i class="fa fa-check"></i><b>10.4.2</b> Error Propagation</a></li>
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="measure.html"><a href="measure.html#ch-10-homework"><i class="fa fa-check"></i><b>10.5</b> CH-10 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a><ul>
+<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="model.html"><a href="model.html#ch.-11-objectives"><i class="fa fa-check"></i><b>11.1</b> Ch. 11 Objectives</a></li>
-<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#process-modeling"><i class="fa fa-check"></i><b>11.2</b> Process Modeling</a><ul>
+<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#process-modeling"><i class="fa fa-check"></i><b>11.2</b> Process Modeling</a>
+<ul>
 <li class="chapter" data-level="11.2.1" data-path="model.html"><a href="model.html#assumptions"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions</a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="model.html"><a href="model.html#model-fitting"><i class="fa fa-check"></i><b>11.3</b> Model Fitting</a></li>
-<li class="chapter" data-level="11.4" data-path="model.html"><a href="model.html#ols-regression"><i class="fa fa-check"></i><b>11.4</b> OLS Regression</a><ul>
+<li class="chapter" data-level="11.4" data-path="model.html"><a href="model.html#ols-regression"><i class="fa fa-check"></i><b>11.4</b> OLS Regression</a>
+<ul>
 <li class="chapter" data-level="11.4.1" data-path="model.html"><a href="model.html#OLS_assum"><i class="fa fa-check"></i><b>11.4.1</b> OLS Assumptions and Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="model.html"><a href="model.html#example-ols-linear-regression"><i class="fa fa-check"></i><b>11.5</b> Example: OLS Linear Regression</a><ul>
+<li class="chapter" data-level="11.5" data-path="model.html"><a href="model.html#example-ols-linear-regression"><i class="fa fa-check"></i><b>11.5</b> Example: OLS Linear Regression</a>
+<ul>
 <li class="chapter" data-level="11.5.1" data-path="model.html"><a href="model.html#the-lm-function"><i class="fa fa-check"></i><b>11.5.1</b> The <code>lm()</code> function</a></li>
 <li class="chapter" data-level="11.5.2" data-path="model.html"><a href="model.html#ols-diagnostics"><i class="fa fa-check"></i><b>11.5.2</b> OLS Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a><ul>
+<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a>
+<ul>
 <li class="chapter" data-level="11.6.1" data-path="model.html"><a href="model.html#example-calibration"><i class="fa fa-check"></i><b>11.6.1</b> Example Calibration</a></li>
 </ul></li>
 <li class="chapter" data-level="11.7" data-path="model.html"><a href="model.html#ch-11-homework"><i class="fa fa-check"></i><b>11.7</b> Ch-11 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Stats &amp; Reference Distributions</a><ul>
+<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Stats &amp; Reference Distributions</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="dist.html"><a href="dist.html#measures-of-central-tendency"><i class="fa fa-check"></i><b>12.1</b> Measures of Central Tendency</a></li>
 <li class="chapter" data-level="12.2" data-path="dist.html"><a href="dist.html#measures-of-dispersion"><i class="fa fa-check"></i><b>12.2</b> Measures of Dispersion</a></li>
-<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.3</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.3</b> Uniform Distribution</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="dist.html"><a href="dist.html#uniform-characteristic-plots"><i class="fa fa-check"></i><b>12.3.1</b> Uniform Characteristic Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.4</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="12.4" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.4</b> Normal Distribution</a>
+<ul>
 <li class="chapter" data-level="12.4.1" data-path="dist.html"><a href="dist.html#normal-characteristic-plots"><i class="fa fa-check"></i><b>12.4.1</b> Normal Characteristic Plots</a></li>
 <li class="chapter" data-level="12.4.2" data-path="dist.html"><a href="dist.html#rule"><i class="fa fa-check"></i><b>12.4.2</b> 68-95-99 rule</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>12.5</b> Log-normal Distribution</a><ul>
+<li class="chapter" data-level="12.5" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>12.5</b> Log-normal Distribution</a>
+<ul>
 <li class="chapter" data-level="12.5.1" data-path="dist.html"><a href="dist.html#lognormal-characteristic-plots"><i class="fa fa-check"></i><b>12.5.1</b> Lognormal Characteristic Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="12.6" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>12.6</b> Pearson Correlation Coefficient</a></li>
+<li class="chapter" data-level="12.7" data-path="dist.html"><a href="dist.html#OLS"><i class="fa fa-check"></i><b>12.7</b> OLS Regression Coefficients</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -425,9 +478,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dataviz" class="section level1">
+<div id="dataviz" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Data Visualization with <code>ggplot2</code></h1>
-<div id="chapter-4-objectives" class="section level2">
+<div id="chapter-4-objectives" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Chapter 4 Objectives</h2>
 <p>This chapter is designed around the following learning objectives for basic
 data visualization in R. Upon completing this chapter, you should be able to:</p>
@@ -438,7 +491,7 @@ data visualization in R. Upon completing this chapter, you should be able to:</p
 <li>Create, store, and save a <code>ggplot2</code> object in an R script</li>
 </ul>
 </div>
-<div id="install-and-load-ggplot2" class="section level2">
+<div id="install-and-load-ggplot2" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Install and load <code>ggplot2</code></h2>
 <blockquote>
 <p><span style="color: blue;"> “The best design gets out of the way between the viewer’s brain and the content.” - Edward Tufte </span></p>
@@ -453,15 +506,15 @@ how to customize <code>ggplot2</code> objects. Customization often helps to make
 brain, wherein you hope understanding takes root.</p>
 <p>If you don’t already have <code>ggplot2</code> installed, you’ll need to install it. You
 then need to load the package in your current session of R:</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="dataviz.html#cb169-1"></a><span class="co"># install ggplot2 package (done once per R/RStudio installation)</span></span>
-<span id="cb169-2"><a href="dataviz.html#cb169-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)  </span>
-<span id="cb169-3"><a href="dataviz.html#cb169-3"></a><span class="co"># load ggplot2 in current R session</span></span>
-<span id="cb169-4"><a href="dataviz.html#cb169-4"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="dataviz.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install ggplot2 package (done once per R/RStudio installation)</span></span>
+<span id="cb169-2"><a href="dataviz.html#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)  </span>
+<span id="cb169-3"><a href="dataviz.html#cb169-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load ggplot2 in current R session</span></span>
+<span id="cb169-4"><a href="dataviz.html#cb169-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 <p>Alternatively, if you are planning on using other <code>tidyverse</code> R packages in the
 same R session, you can simply install and load the <code>tidyverse</code> “R
 package suite of R packages” with <code>library(tidyverse)</code>.</p>
 </div>
-<div id="steps-to-create-a-ggplot2-object" class="section level2">
+<div id="steps-to-create-a-ggplot2-object" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Steps to create a <code>ggplot2</code> object</h2>
 <p>The process of creating a plot using <code>ggplot2</code> follows conventions that are a
 bit different than most of the code you’ve seen so far in R, although it is
@@ -481,7 +534,7 @@ range from very simple to very customized. We will start by focusing on simple
 geoms and added elements; later on, we will explore more options for
 customization.</p>
 </div>
-<div id="initializing-a-ggplot2-object" class="section level2">
+<div id="initializing-a-ggplot2-object" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Initializing a <code>ggplot2</code> object</h2>
 <p>The first step in creating a plot using <code>ggplot()</code> is to create a ggplot
 object. This object will not, by itself, create a plot with anything in it.
@@ -490,8 +543,8 @@ which aesthetics will be mapped to certain columns of that data frame.
 Aesthetics are explained more in the next subsection.</p>
 <p>Outside of a pipeline, you can use the following conventions to initialize a
 <code>ggplot2</code> object:</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="dataviz.html#cb170-1"></a><span class="co">## generic code; will not run</span></span>
-<span id="cb170-2"><a href="dataviz.html#cb170-2"></a>object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> my_dataframe, <span class="kw">aes</span>(<span class="dt">x =</span> data_column_<span class="dv">1</span>, <span class="dt">y =</span> data_column_<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="dataviz.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="do">## generic code; will not run</span></span>
+<span id="cb170-2"><a href="dataviz.html#cb170-2" aria-hidden="true" tabindex="-1"></a>object <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> my_dataframe, <span class="fu">aes</span>(<span class="at">x =</span> data_column_1, <span class="at">y =</span> data_column_2))</span></code></pre></div>
 <p>The dataframe is the first parameter in a <code>ggplot()</code> function and, if you like,
 you can use the parameter definition with that call (e.g., <code>data = dataframe</code>).
 Aesthetics are defined within an <code>aes()</code> function call that is typically
@@ -502,7 +555,7 @@ While the <code>ggplot()</code> call is the place where you will most often see 
 </p>
 </div>
 </div>
-<div id="plot-aesthetics" class="section level2">
+<div id="plot-aesthetics" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> Plot aesthetics</h2>
 <p><strong>Aesthetics</strong> are properties of the plot that can show certain elements of the
 data. For example, in Figure <a href="dataviz.html#fig:mpg-bar">4.1</a>, we call an x-axis aesthetic
@@ -517,9 +570,9 @@ the dataframe structure and variable classes.</p>
 <blockquote>
 <p>“This dataset contains a subset of the fuel economy data that the EPA makes available on <a href="http://fueleconomy.gov" target="_blank">http://fueleconomy.gov</a>. It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car.”</p>
 </blockquote>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="dataviz.html#cb171-1"></a><span class="co"># use ggplot() to map the data and a single aesthetic (variable = class)</span></span>
-<span id="cb171-2"><a href="dataviz.html#cb171-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb171-3"><a href="dataviz.html#cb171-3"></a><span class="st">  </span><span class="kw">geom_bar</span>() <span class="co"># call to a specific geom to plot the mapped data</span></span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="dataviz.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use ggplot() to map the data and a single aesthetic (variable = class)</span></span>
+<span id="cb171-2"><a href="dataviz.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> class)) <span class="sc">+</span> </span>
+<span id="cb171-3"><a href="dataviz.html#cb171-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="co"># call to a specific geom to plot the mapped data</span></span></code></pre></div>
 <div class="figure"><span id="fig:mpg-bar"></span>
 <img src="04-dataviz_files/figure-html/mpg-bar-1.png" alt="Example of a simple call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe." width="672" />
 <p class="caption">
@@ -532,9 +585,9 @@ vehicle drive type (i.e., 4-wheel, font-wheel, or rear-wheel). The x-position
 will continue to show vehicle class (<code>class</code>), but we will <code>fill</code> each bar
 with colors pertaining to <code>drv</code> (i.e., to show the counts within each vehicle
 class colored colored by <code>drv</code>).</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="dataviz.html#cb172-1"></a><span class="co"># call to ggplot to map the data and a single aesthetic</span></span>
-<span id="cb172-2"><a href="dataviz.html#cb172-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">fill =</span> drv)) <span class="op">+</span></span>
-<span id="cb172-3"><a href="dataviz.html#cb172-3"></a><span class="st">  </span><span class="kw">geom_bar</span>()  <span class="co"># call to a specific geom to plot the mapped data</span></span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="dataviz.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call to ggplot to map the data and a single aesthetic</span></span>
+<span id="cb172-2"><a href="dataviz.html#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">fill =</span> drv)) <span class="sc">+</span></span>
+<span id="cb172-3"><a href="dataviz.html#cb172-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()  <span class="co"># call to a specific geom to plot the mapped data</span></span></code></pre></div>
 <div class="figure"><span id="fig:mpg-fill"></span>
 <img src="04-dataviz_files/figure-html/mpg-fill-1.png" alt="Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)." width="672" />
 <p class="caption">
@@ -637,7 +690,7 @@ Type of line (e.g., solid, dashed)
 </tbody>
 </table>
 </div>
-<div id="adding-geoms" class="section level2">
+<div id="adding-geoms" class="section level2" number="4.6">
 <h2><span class="header-section-number">4.6</span> Adding geoms</h2>
 <p>When creating plots, you’ll often want to add more than one <code>geom</code> to the plot.
 You can add these with <code>+</code> after the <code>ggplot()</code> statement to initialize the
@@ -696,7 +749,7 @@ Line graph (2 numeric variables)
 A common error when writing <code>ggplot2</code> code is to put the <code>+</code> to add a geom or element at the beginning of a line rather than the end of a previous line. In this case, R will try to execute the call too soon. If R gets to the end of a line and there is no indication to continue the call (e.g., <code>%&gt;%</code> for piping or <code>+</code> for <code>ggplot2</code> plots), R interprets that as a message to run the call without reading in further code. Thus, to avoid errors, be sure to end each line in <code>ggplot2</code> calls with <code>+</code>, except for the final line when the call is actually done. Don’t start lines with <code>+</code>.
 </p>
 </div>
-<div id="aesthetic-override-a-warning" class="section level3">
+<div id="aesthetic-override-a-warning" class="section level3" number="4.6.1">
 <h3><span class="header-section-number">4.6.1</span> Aesthetic override: a warning</h3>
 <p>The <code>ggplot2</code> package, like many <code>tidyverse</code> packages, is both flexible and
 forgiving, designed to accommodate the user by “filling in the blanks” when no
@@ -707,21 +760,21 @@ contents of the legend; instead, <code>ggplot2</code> figured those out for us. 
 mappings can be structured. For example, the following four calls all produce
 the same (identical) plot as shown in Figure <a href="dataviz.html#fig:mpg-fill">4.2</a>. Try it for
 yourself.</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="dataviz.html#cb173-1"></a><span class="co"># call to ggplot() with aes() specified in main call</span></span>
-<span id="cb173-2"><a href="dataviz.html#cb173-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">fill =</span> drv)) <span class="op">+</span></span>
-<span id="cb173-3"><a href="dataviz.html#cb173-3"></a><span class="kw">geom_bar</span>()</span>
-<span id="cb173-4"><a href="dataviz.html#cb173-4"></a></span>
-<span id="cb173-5"><a href="dataviz.html#cb173-5"></a><span class="co"># call to ggplot() with aes() specified in geom</span></span>
-<span id="cb173-6"><a href="dataviz.html#cb173-6"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span></span>
-<span id="cb173-7"><a href="dataviz.html#cb173-7"></a><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">fill =</span> drv))</span>
-<span id="cb173-8"><a href="dataviz.html#cb173-8"></a></span>
-<span id="cb173-9"><a href="dataviz.html#cb173-9"></a><span class="co"># call to ggplot() with a mix of aes() mappings </span></span>
-<span id="cb173-10"><a href="dataviz.html#cb173-10"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class)) <span class="op">+</span></span>
-<span id="cb173-11"><a href="dataviz.html#cb173-11"></a><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> drv))</span>
-<span id="cb173-12"><a href="dataviz.html#cb173-12"></a></span>
-<span id="cb173-13"><a href="dataviz.html#cb173-13"></a><span class="co"># call to ggplot() with all mappings in the geom </span></span>
-<span id="cb173-14"><a href="dataviz.html#cb173-14"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb173-15"><a href="dataviz.html#cb173-15"></a><span class="kw">geom_bar</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">fill =</span> drv))</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="dataviz.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call to ggplot() with aes() specified in main call</span></span>
+<span id="cb173-2"><a href="dataviz.html#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">fill =</span> drv)) <span class="sc">+</span></span>
+<span id="cb173-3"><a href="dataviz.html#cb173-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_bar</span>()</span>
+<span id="cb173-4"><a href="dataviz.html#cb173-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-5"><a href="dataviz.html#cb173-5" aria-hidden="true" tabindex="-1"></a><span class="co"># call to ggplot() with aes() specified in geom</span></span>
+<span id="cb173-6"><a href="dataviz.html#cb173-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span></span>
+<span id="cb173-7"><a href="dataviz.html#cb173-7" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">fill =</span> drv))</span>
+<span id="cb173-8"><a href="dataviz.html#cb173-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-9"><a href="dataviz.html#cb173-9" aria-hidden="true" tabindex="-1"></a><span class="co"># call to ggplot() with a mix of aes() mappings </span></span>
+<span id="cb173-10"><a href="dataviz.html#cb173-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> class)) <span class="sc">+</span></span>
+<span id="cb173-11"><a href="dataviz.html#cb173-11" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> drv))</span>
+<span id="cb173-12"><a href="dataviz.html#cb173-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-13"><a href="dataviz.html#cb173-13" aria-hidden="true" tabindex="-1"></a><span class="co"># call to ggplot() with all mappings in the geom </span></span>
+<span id="cb173-14"><a href="dataviz.html#cb173-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb173-15"><a href="dataviz.html#cb173-15" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_bar</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">fill =</span> drv))</span></code></pre></div>
 <p>For most plots that you make, the first example is best, where the aesthetics
 are called out as arguments within the main call to <code>ggplot()</code>, such as:</p>
 <p><code>ggplot(data = mpg, aes(x = class, fill = drv)) +</code><br />
@@ -733,9 +786,9 @@ above in the main <code>ggplot</code> call. Specifying aesthetics in the main ca
 <strong><em>override</em></strong> one mapping with another one later on in the same call. For
 example, see what happens when two different <code>fill</code> mappings are specified at
 different points in the call:</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="dataviz.html#cb174-1"></a><span class="co"># call to ggplot where one `fill` overrides another</span></span>
-<span id="cb174-2"><a href="dataviz.html#cb174-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">fill =</span> drv)) <span class="op">+</span></span>
-<span id="cb174-3"><a href="dataviz.html#cb174-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">fill =</span> <span class="st">&quot;darkgreen&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="dataviz.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call to ggplot where one `fill` overrides another</span></span>
+<span id="cb174-2"><a href="dataviz.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">fill =</span> drv)) <span class="sc">+</span></span>
+<span id="cb174-3"><a href="dataviz.html#cb174-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">&quot;darkgreen&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:mpg-green"></span>
 <img src="04-dataviz_files/figure-html/mpg-green-1.png" alt="Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)." width="672" />
 <p class="caption">
@@ -750,7 +803,7 @@ customized this sort of issue can arise; it comes with the territory of having
 flexible code.</p>
 </div>
 </div>
-<div id="shapes-and-colors" class="section level2">
+<div id="shapes-and-colors" class="section level2" number="4.7">
 <h2><span class="header-section-number">4.7</span> Shapes and colors</h2>
 <p>In R, you can specify the shape of points with a number. Figure <a href="dataviz.html#fig:shape-examples">4.4</a> shows the shapes that correspond to the numbers 1 to
 25 in the <code>shape</code> aesthetic. This figure also provides an example of the
@@ -766,7 +819,7 @@ Figure 4.4: Examples of the shapes corresponding to different numeric choices fo
 <p>If you want to set color to be a constant value, you can do that in R using
 character strings for different colors. Figure <a href="dataviz.html#fig:color-examples">4.5</a> gives
 an example of some of the different blues available in R. To find links to
-listings of different R colors, look up “R colors” and search by “Images”. Note
+listings of different R colors, look up “R colors” and search by “Images.” Note
 that colors are specified as <em>character strings</em> and define using quotes <code>" "</code>.
 See the code chunk for Figure <a href="dataviz.html#fig:mpg-green">4.3</a> where color is defined by
 <code>fill = "darkgreen"</code>.</p>
@@ -777,7 +830,7 @@ Figure 4.5: Example of available shades of blue in R.
 </p>
 </div>
 </div>
-<div id="scales-useful-plot-edits" class="section level2">
+<div id="scales-useful-plot-edits" class="section level2" number="4.8">
 <h2><span class="header-section-number">4.8</span> Scales: useful plot edits</h2>
 <p>The <code>ggplot2</code> package uses <strong><em>scales</em></strong> as a way to make all sorts of tweaks
 and changes to how the plot is presented. According to the <code>ggplot2</code>
@@ -840,7 +893,7 @@ Log scale of x-axis
 function options to automatically detect and show breaks and labels for axes
 and legends. These additional functions can be called on a <code>ggplot</code> object.</p>
 </div>
-<div id="ggplot2-example-1" class="section level2">
+<div id="ggplot2-example-1" class="section level2" number="4.9">
 <h2><span class="header-section-number">4.9</span> <code>ggplot2</code> example 1</h2>
 <p>For the example plots, we will continue to use the <code>mpg</code> dataset from the
 <code>ggplot2</code> package. We will use functions from the <code>dplyr</code> package, too, so both
@@ -856,12 +909,12 @@ data to <code>year == 2008</code>.</p>
 If you are wondering what types of vehicle classes are included with <code>mpg</code>, you
 could type <code>unique(mpg$class)</code> or, if you want to see a quantitative summary,
 you could pipe together the following:</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="dataviz.html#cb175-1"></a><span class="co"># quantitative summary in pipe</span></span>
-<span id="cb175-2"><a href="dataviz.html#cb175-2"></a>mpg <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb175-3"><a href="dataviz.html#cb175-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2008</span>) <span class="op">%&gt;%</span></span>
-<span id="cb175-4"><a href="dataviz.html#cb175-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(class) <span class="op">%&gt;%</span></span>
-<span id="cb175-5"><a href="dataviz.html#cb175-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb175-6"><a href="dataviz.html#cb175-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="dataviz.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># quantitative summary in pipe</span></span>
+<span id="cb175-2"><a href="dataviz.html#cb175-2" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> </span>
+<span id="cb175-3"><a href="dataviz.html#cb175-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb175-4"><a href="dataviz.html#cb175-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(class) <span class="sc">%&gt;%</span></span>
+<span id="cb175-5"><a href="dataviz.html#cb175-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">tally</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb175-6"><a href="dataviz.html#cb175-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 7 x 2
 ##   class          n
 ##   &lt;chr&gt;      &lt;int&gt;
@@ -872,18 +925,18 @@ you could pipe together the following:</p>
 ## 5 pickup        17
 ## 6 subcompact    16
 ## 7 suv           33</code></pre>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="dataviz.html#cb177-1"></a><span class="co"># alternative</span></span>
-<span id="cb177-2"><a href="dataviz.html#cb177-2"></a>mpg <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb177-3"><a href="dataviz.html#cb177-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2008</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb177-4"><a href="dataviz.html#cb177-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>(class)</span></code></pre></div>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="dataviz.html#cb178-1"></a><span class="co"># load required R packages</span></span>
-<span id="cb178-2"><a href="dataviz.html#cb178-2"></a><span class="kw">library</span>(dplyr) <span class="co"># for data wrangling and manipulation</span></span>
-<span id="cb178-3"><a href="dataviz.html#cb178-3"></a><span class="kw">library</span>(ggplot2) <span class="co"># for data visualization</span></span>
-<span id="cb178-4"><a href="dataviz.html#cb178-4"></a><span class="co">## alternatively, use `library(tidyverse)`, if you will need multiple packages</span></span>
-<span id="cb178-5"><a href="dataviz.html#cb178-5"></a></span>
-<span id="cb178-6"><a href="dataviz.html#cb178-6"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb178-7"><a href="dataviz.html#cb178-7"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw">filter</span>(mpg, year <span class="op">==</span><span class="st"> </span><span class="dv">2008</span>), <span class="co"># filter data</span></span>
-<span id="cb178-8"><a href="dataviz.html#cb178-8"></a>             <span class="kw">aes</span>(<span class="dt">x =</span> hwy, <span class="dt">y =</span> cty, <span class="dt">color =</span> class)) <span class="co"># assign x, y, and color</span></span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="dataviz.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative</span></span>
+<span id="cb177-2"><a href="dataviz.html#cb177-2" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> </span>
+<span id="cb177-3"><a href="dataviz.html#cb177-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb177-4"><a href="dataviz.html#cb177-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(class)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="dataviz.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load required R packages</span></span>
+<span id="cb178-2"><a href="dataviz.html#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># for data wrangling and manipulation</span></span>
+<span id="cb178-3"><a href="dataviz.html#cb178-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># for data visualization</span></span>
+<span id="cb178-4"><a href="dataviz.html#cb178-4" aria-hidden="true" tabindex="-1"></a><span class="do">## alternatively, use `library(tidyverse)`, if you will need multiple packages</span></span>
+<span id="cb178-5"><a href="dataviz.html#cb178-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb178-6"><a href="dataviz.html#cb178-6" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb178-7"><a href="dataviz.html#cb178-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(mpg, year <span class="sc">==</span> <span class="dv">2008</span>), <span class="co"># filter data</span></span>
+<span id="cb178-8"><a href="dataviz.html#cb178-8" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> hwy, <span class="at">y =</span> cty, <span class="at">color =</span> class)) <span class="co"># assign x, y, and color</span></span></code></pre></div>
 <div class="figure"><span id="fig:mpg-example1"></span>
 <img src="04-dataviz_files/figure-html/mpg-example1-1.png" alt="Scatterplot (geom_point) of highway vs. city fuel economy for model year 2008, colored by vehicle type" width="672" />
 <p class="caption">
@@ -954,27 +1007,27 @@ distance are equal to 10 units of y distance) by specifying a
 <li>setting a <strong>theme</strong> for the plot that removes the grey background using
 <code>theme_minimal()</code>.</li>
 </ul>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="dataviz.html#cb179-1"></a><span class="co"># call to ggplot, note that data and aesthetics are called in first geom layer</span></span>
-<span id="cb179-2"><a href="dataviz.html#cb179-2"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb179-3"><a href="dataviz.html#cb179-3"></a><span class="st">  </span><span class="co"># first geom layer (jitter)</span></span>
-<span id="cb179-4"><a href="dataviz.html#cb179-4"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw">filter</span>(mpg, year <span class="op">==</span><span class="st"> </span><span class="dv">2008</span>),</span>
-<span id="cb179-5"><a href="dataviz.html#cb179-5"></a>             <span class="kw">aes</span>(<span class="dt">x =</span> hwy, <span class="dt">y =</span> cty, <span class="dt">color =</span> class),</span>
-<span id="cb179-6"><a href="dataviz.html#cb179-6"></a>             <span class="dt">width =</span> <span class="fl">0.4</span>,</span>
-<span id="cb179-7"><a href="dataviz.html#cb179-7"></a>             <span class="dt">alpha =</span> <span class="fl">0.6</span>,</span>
-<span id="cb179-8"><a href="dataviz.html#cb179-8"></a>             <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb179-9"><a href="dataviz.html#cb179-9"></a><span class="st">  </span><span class="co"># second geom layer (line)</span></span>
-<span id="cb179-10"><a href="dataviz.html#cb179-10"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">0</span>,</span>
-<span id="cb179-11"><a href="dataviz.html#cb179-11"></a>              <span class="dt">slope =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb179-12"><a href="dataviz.html#cb179-12"></a><span class="st">  </span><span class="co"># call fixed coordinate system</span></span>
-<span id="cb179-13"><a href="dataviz.html#cb179-13"></a><span class="st">  </span><span class="kw">coord_fixed</span>() <span class="op">+</span></span>
-<span id="cb179-14"><a href="dataviz.html#cb179-14"></a><span class="st">  </span><span class="co"># set axis limits</span></span>
-<span id="cb179-15"><a href="dataviz.html#cb179-15"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">40</span>)) <span class="op">+</span></span>
-<span id="cb179-16"><a href="dataviz.html#cb179-16"></a><span class="st">  </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">40</span>)) <span class="op">+</span></span>
-<span id="cb179-17"><a href="dataviz.html#cb179-17"></a><span class="st">  </span><span class="co"># add axis labels</span></span>
-<span id="cb179-18"><a href="dataviz.html#cb179-18"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Highway Fuel Economy, mi/gal&quot;</span>) <span class="op">+</span></span>
-<span id="cb179-19"><a href="dataviz.html#cb179-19"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;City Fuel Economy, mi/gal&quot;</span>) <span class="op">+</span></span>
-<span id="cb179-20"><a href="dataviz.html#cb179-20"></a><span class="st">  </span><span class="co"># adopt theme without grey background</span></span>
-<span id="cb179-21"><a href="dataviz.html#cb179-21"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="dataviz.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call to ggplot, note that data and aesthetics are called in first geom layer</span></span>
+<span id="cb179-2"><a href="dataviz.html#cb179-2" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb179-3"><a href="dataviz.html#cb179-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># first geom layer (jitter)</span></span>
+<span id="cb179-4"><a href="dataviz.html#cb179-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data =</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(mpg, year <span class="sc">==</span> <span class="dv">2008</span>),</span>
+<span id="cb179-5"><a href="dataviz.html#cb179-5" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> hwy, <span class="at">y =</span> cty, <span class="at">color =</span> class),</span>
+<span id="cb179-6"><a href="dataviz.html#cb179-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">width =</span> <span class="fl">0.4</span>,</span>
+<span id="cb179-7"><a href="dataviz.html#cb179-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.6</span>,</span>
+<span id="cb179-8"><a href="dataviz.html#cb179-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb179-9"><a href="dataviz.html#cb179-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># second geom layer (line)</span></span>
+<span id="cb179-10"><a href="dataviz.html#cb179-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>,</span>
+<span id="cb179-11"><a href="dataviz.html#cb179-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">slope =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb179-12"><a href="dataviz.html#cb179-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># call fixed coordinate system</span></span>
+<span id="cb179-13"><a href="dataviz.html#cb179-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb179-14"><a href="dataviz.html#cb179-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set axis limits</span></span>
+<span id="cb179-15"><a href="dataviz.html#cb179-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>)) <span class="sc">+</span></span>
+<span id="cb179-16"><a href="dataviz.html#cb179-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>)) <span class="sc">+</span></span>
+<span id="cb179-17"><a href="dataviz.html#cb179-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add axis labels</span></span>
+<span id="cb179-18"><a href="dataviz.html#cb179-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Highway Fuel Economy, mi/gal&quot;</span>) <span class="sc">+</span></span>
+<span id="cb179-19"><a href="dataviz.html#cb179-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;City Fuel Economy, mi/gal&quot;</span>) <span class="sc">+</span></span>
+<span id="cb179-20"><a href="dataviz.html#cb179-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># adopt theme without grey background</span></span>
+<span id="cb179-21"><a href="dataviz.html#cb179-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <div class="figure"><span id="fig:mpg-example1a"></span>
 <img src="04-dataviz_files/figure-html/mpg-example1a-1.png" alt="Scatterplot (geom_jitter) of highway vs. city fuel economy for model year 2008, colored by vehicle type" width="672" />
 <p class="caption">
@@ -982,7 +1035,7 @@ Figure 4.7: Scatterplot (geom_jitter) of highway vs. city fuel economy for mode
 </p>
 </div>
 </div>
-<div id="ggplot2-example-2" class="section level2">
+<div id="ggplot2-example-2" class="section level2" number="4.10">
 <h2><span class="header-section-number">4.10</span> <code>ggplot2</code> example 2</h2>
 <p>In the second example, we will look at highway fuel efficiency for SUVs in 2008,
 ordered by manufacturer and colored by the engine displacement size in liters.
@@ -1010,37 +1063,37 @@ displacement has an effect on fuel efficiency. Note the additional aesthetic
 calls for <code>color =</code> in each layer. The final part of the call in
 <code>theme_classic()</code> tells <code>ggplot()</code> to remove the gray background and the grid
 lines, which are neither necessary nor visually appealing.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="dataviz.html#cb180-1"></a><span class="co"># use dplyr to create a summary subset from the `mpg` dataframe</span></span>
-<span id="cb180-2"><a href="dataviz.html#cb180-2"></a>mpg_subset &lt;-<span class="st"> </span>mpg <span class="op">%&gt;%</span></span>
-<span id="cb180-3"><a href="dataviz.html#cb180-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(class <span class="op">==</span><span class="st"> &quot;suv&quot;</span>, year <span class="op">==</span><span class="st"> </span><span class="dv">2008</span>) <span class="op">%&gt;%</span></span>
-<span id="cb180-4"><a href="dataviz.html#cb180-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(manufacturer) <span class="op">%&gt;%</span></span>
-<span id="cb180-5"><a href="dataviz.html#cb180-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(<span class="dt">hwy_mean =</span> <span class="kw">mean</span>(hwy), <span class="dt">displ_mean =</span> <span class="kw">mean</span>(displ))</span>
-<span id="cb180-6"><a href="dataviz.html#cb180-6"></a></span>
-<span id="cb180-7"><a href="dataviz.html#cb180-7"></a><span class="co"># call to ggplot, note that data and aesthetics are called in each geom layer</span></span>
-<span id="cb180-8"><a href="dataviz.html#cb180-8"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb180-9"><a href="dataviz.html#cb180-9"></a><span class="st">  </span><span class="co"># first layer - note the main dataframe was called</span></span>
-<span id="cb180-10"><a href="dataviz.html#cb180-10"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">data =</span> <span class="kw">filter</span>(mpg, class <span class="op">==</span><span class="st"> &quot;suv&quot;</span> <span class="op">&amp;</span><span class="st"> </span>year <span class="op">==</span><span class="st"> </span><span class="dv">2008</span>),</span>
-<span id="cb180-11"><a href="dataviz.html#cb180-11"></a>           <span class="kw">aes</span>(<span class="dt">x =</span> manufacturer, </span>
-<span id="cb180-12"><a href="dataviz.html#cb180-12"></a>               <span class="dt">y =</span> hwy, </span>
-<span id="cb180-13"><a href="dataviz.html#cb180-13"></a>               <span class="dt">color =</span> displ),</span>
-<span id="cb180-14"><a href="dataviz.html#cb180-14"></a>           <span class="dt">width =</span> <span class="fl">0.1</span>,</span>
-<span id="cb180-15"><a href="dataviz.html#cb180-15"></a>           <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb180-16"><a href="dataviz.html#cb180-16"></a><span class="st">  </span><span class="co"># second layer - note the subset dataframe was called </span></span>
-<span id="cb180-17"><a href="dataviz.html#cb180-17"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">data =</span> mpg_subset,</span>
-<span id="cb180-18"><a href="dataviz.html#cb180-18"></a>             <span class="kw">aes</span>(<span class="dt">x =</span> manufacturer,</span>
-<span id="cb180-19"><a href="dataviz.html#cb180-19"></a>                 <span class="dt">ymin =</span> hwy_mean,</span>
-<span id="cb180-20"><a href="dataviz.html#cb180-20"></a>                 <span class="dt">ymax =</span> hwy_mean,</span>
-<span id="cb180-21"><a href="dataviz.html#cb180-21"></a>                 <span class="dt">color =</span> displ_mean),</span>
-<span id="cb180-22"><a href="dataviz.html#cb180-22"></a>             <span class="dt">alpha =</span> <span class="fl">0.5</span>,</span>
-<span id="cb180-23"><a href="dataviz.html#cb180-23"></a>             <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb180-24"><a href="dataviz.html#cb180-24"></a><span class="st">  </span><span class="co"># customize plot labels</span></span>
-<span id="cb180-25"><a href="dataviz.html#cb180-25"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Fuel Economy for 2008 SUVs by Manufacturer and Engine Displacement&quot;</span>,</span>
-<span id="cb180-26"><a href="dataviz.html#cb180-26"></a>       <span class="dt">color =</span> <span class="st">&quot;Disp (L)&quot;</span>) <span class="op">+</span></span>
-<span id="cb180-27"><a href="dataviz.html#cb180-27"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;highway fuel economy (miles/gal)&quot;</span>) <span class="op">+</span></span>
-<span id="cb180-28"><a href="dataviz.html#cb180-28"></a><span class="st">  </span><span class="co"># add a fancy color scale</span></span>
-<span id="cb180-29"><a href="dataviz.html#cb180-29"></a><span class="st">  </span><span class="kw">scale_color_viridis_c</span>(<span class="dt">option =</span> <span class="st">&quot;D&quot;</span>, <span class="dt">direction =</span> <span class="dv">-1</span>) <span class="op">+</span></span>
-<span id="cb180-30"><a href="dataviz.html#cb180-30"></a><span class="st">  </span><span class="co"># adopt a theme without gray background</span></span>
-<span id="cb180-31"><a href="dataviz.html#cb180-31"></a><span class="st">  </span><span class="kw">theme_classic</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="dataviz.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use dplyr to create a summary subset from the `mpg` dataframe</span></span>
+<span id="cb180-2"><a href="dataviz.html#cb180-2" aria-hidden="true" tabindex="-1"></a>mpg_subset <span class="ot">&lt;-</span> mpg <span class="sc">%&gt;%</span></span>
+<span id="cb180-3"><a href="dataviz.html#cb180-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(class <span class="sc">==</span> <span class="st">&quot;suv&quot;</span>, year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb180-4"><a href="dataviz.html#cb180-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(manufacturer) <span class="sc">%&gt;%</span></span>
+<span id="cb180-5"><a href="dataviz.html#cb180-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">hwy_mean =</span> <span class="fu">mean</span>(hwy), <span class="at">displ_mean =</span> <span class="fu">mean</span>(displ))</span>
+<span id="cb180-6"><a href="dataviz.html#cb180-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-7"><a href="dataviz.html#cb180-7" aria-hidden="true" tabindex="-1"></a><span class="co"># call to ggplot, note that data and aesthetics are called in each geom layer</span></span>
+<span id="cb180-8"><a href="dataviz.html#cb180-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb180-9"><a href="dataviz.html#cb180-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># first layer - note the main dataframe was called</span></span>
+<span id="cb180-10"><a href="dataviz.html#cb180-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data =</span> <span class="fu">filter</span>(mpg, class <span class="sc">==</span> <span class="st">&quot;suv&quot;</span> <span class="sc">&amp;</span> year <span class="sc">==</span> <span class="dv">2008</span>),</span>
+<span id="cb180-11"><a href="dataviz.html#cb180-11" aria-hidden="true" tabindex="-1"></a>           <span class="fu">aes</span>(<span class="at">x =</span> manufacturer, </span>
+<span id="cb180-12"><a href="dataviz.html#cb180-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> hwy, </span>
+<span id="cb180-13"><a href="dataviz.html#cb180-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> displ),</span>
+<span id="cb180-14"><a href="dataviz.html#cb180-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">width =</span> <span class="fl">0.1</span>,</span>
+<span id="cb180-15"><a href="dataviz.html#cb180-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb180-16"><a href="dataviz.html#cb180-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># second layer - note the subset dataframe was called </span></span>
+<span id="cb180-17"><a href="dataviz.html#cb180-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">data =</span> mpg_subset,</span>
+<span id="cb180-18"><a href="dataviz.html#cb180-18" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> manufacturer,</span>
+<span id="cb180-19"><a href="dataviz.html#cb180-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ymin =</span> hwy_mean,</span>
+<span id="cb180-20"><a href="dataviz.html#cb180-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ymax =</span> hwy_mean,</span>
+<span id="cb180-21"><a href="dataviz.html#cb180-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> displ_mean),</span>
+<span id="cb180-22"><a href="dataviz.html#cb180-22" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb180-23"><a href="dataviz.html#cb180-23" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb180-24"><a href="dataviz.html#cb180-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># customize plot labels</span></span>
+<span id="cb180-25"><a href="dataviz.html#cb180-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Fuel Economy for 2008 SUVs by Manufacturer and Engine Displacement&quot;</span>,</span>
+<span id="cb180-26"><a href="dataviz.html#cb180-26" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Disp (L)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb180-27"><a href="dataviz.html#cb180-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;highway fuel economy (miles/gal)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb180-28"><a href="dataviz.html#cb180-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add a fancy color scale</span></span>
+<span id="cb180-29"><a href="dataviz.html#cb180-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">&quot;D&quot;</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb180-30"><a href="dataviz.html#cb180-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># adopt a theme without gray background</span></span>
+<span id="cb180-31"><a href="dataviz.html#cb180-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
 <div class="figure"><span id="fig:mpg-example2"></span>
 <img src="04-dataviz_files/figure-html/mpg-example2-1.png" alt="A two-layer (two `geom`) plot with customization" width="672" />
 <p class="caption">
@@ -1051,7 +1104,7 @@ Figure 4.8: A two-layer (two <code>geom</code>) plot with customization
 In general, model year 2008 SUVs did not have great fuel economy, evidenced by
 both the means and the individual data points.</p>
 </div>
-<div id="store-and-save-ggplot2-objects" class="section level2">
+<div id="store-and-save-ggplot2-objects" class="section level2" number="4.11">
 <h2><span class="header-section-number">4.11</span> Store and save <code>ggplot2</code> objects</h2>
 <p>Sometimes, you will want to store a ggplot2 plot as an object in your global
 environment, so that it can be called or manipulated later. This is done in the
@@ -1059,9 +1112,9 @@ same way as you would create and assign a name to any other object in R. But
 remember to <strong>use descriptive plot names</strong> following the naming advice from
 Chapter 3 (i.e., meaningful words; lowercase; underscore as separator).</p>
 <p><strong>In the following example, <code>plot1</code> does not follow proper naming conventions!</strong></p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="dataviz.html#cb181-1"></a><span class="co"># create a ggplot object called &quot;plot1&quot;</span></span>
-<span id="cb181-2"><a href="dataviz.html#cb181-2"></a>plot1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class)) <span class="op">+</span></span>
-<span id="cb181-3"><a href="dataviz.html#cb181-3"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="dataviz.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a ggplot object called &quot;plot1&quot;</span></span>
+<span id="cb181-2"><a href="dataviz.html#cb181-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> class)) <span class="sc">+</span></span>
+<span id="cb181-3"><a href="dataviz.html#cb181-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
 <div class="rmdnote">
 <p>
 When you create and store a <code>ggplot()</code> object, the plot itself will be created and stored but not returned as output.If you want to “see” the plot, just enter its name into the console or script, and it will appear in the Viewer pane.
@@ -1071,18 +1124,18 @@ When you create and store a <code>ggplot()</code> object, the plot itself will b
 <code>ggsave()</code> function. This function requires a file name but also allows you to
 specify parameters including image resolution (<code>dpi = 300</code>), image type
 (<code>device = png()</code>), and image <code>height</code>, <code>width</code> and <code>units</code> of measurement.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="dataviz.html#cb182-1"></a><span class="co"># create a ggplot object called &quot;plot1&quot;</span></span>
-<span id="cb182-2"><a href="dataviz.html#cb182-2"></a>plot1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class)) <span class="op">+</span></span>
-<span id="cb182-3"><a href="dataviz.html#cb182-3"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span>
-<span id="cb182-4"><a href="dataviz.html#cb182-4"></a></span>
-<span id="cb182-5"><a href="dataviz.html#cb182-5"></a>ggplot2<span class="op">::</span><span class="kw">ggsave</span>(<span class="st">&quot;images/mpg-bar.png&quot;</span>,</span>
-<span id="cb182-6"><a href="dataviz.html#cb182-6"></a>       <span class="dt">plot =</span> plot1,</span>
-<span id="cb182-7"><a href="dataviz.html#cb182-7"></a>       <span class="dt">dpi =</span> <span class="dv">150</span>,</span>
-<span id="cb182-8"><a href="dataviz.html#cb182-8"></a>       <span class="dt">device =</span> <span class="kw">png</span>(),</span>
-<span id="cb182-9"><a href="dataviz.html#cb182-9"></a>       <span class="dt">width =</span> <span class="dv">20</span>,</span>
-<span id="cb182-10"><a href="dataviz.html#cb182-10"></a>       <span class="dt">units =</span> <span class="st">&quot;cm&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="dataviz.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a ggplot object called &quot;plot1&quot;</span></span>
+<span id="cb182-2"><a href="dataviz.html#cb182-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> class)) <span class="sc">+</span></span>
+<span id="cb182-3"><a href="dataviz.html#cb182-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
+<span id="cb182-4"><a href="dataviz.html#cb182-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-5"><a href="dataviz.html#cb182-5" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="st">&quot;images/mpg-bar.png&quot;</span>,</span>
+<span id="cb182-6"><a href="dataviz.html#cb182-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot =</span> plot1,</span>
+<span id="cb182-7"><a href="dataviz.html#cb182-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">dpi =</span> <span class="dv">150</span>,</span>
+<span id="cb182-8"><a href="dataviz.html#cb182-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">device =</span> <span class="fu">png</span>(),</span>
+<span id="cb182-9"><a href="dataviz.html#cb182-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">20</span>,</span>
+<span id="cb182-10"><a href="dataviz.html#cb182-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">units =</span> <span class="st">&quot;cm&quot;</span>)</span></code></pre></div>
 </div>
-<div id="getting-help-with-ggplot2" class="section level2">
+<div id="getting-help-with-ggplot2" class="section level2" number="4.12">
 <h2><span class="header-section-number">4.12</span> Getting help with <code>ggplot2</code></h2>
 <p>The <code>ggplot2</code> package has become so popular that most of my “how do I do this?”
 questions have already been asked, answered, and archived on sites like
@@ -1109,7 +1162,7 @@ fun), take a look at this
 <a href="https://exts.ggplot2.tidyverse.org/" target="_blank">compilation</a> of
 <code>ggplot2</code> extensions.</p>
 </div>
-<div id="chapter-4-homework" class="section level2">
+<div id="chapter-4-homework" class="section level2" number="4.13">
 <h2><span class="header-section-number">4.13</span> Chapter 4 Homework</h2>
 <p>You will continue to work with the ozone measurement data introduced in the
 previous chapter.</p>

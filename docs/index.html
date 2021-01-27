@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-11" />
+<meta name="date" content="2021-01-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 
 <link rel="next" href="rprog1.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,26 +51,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -89,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -138,14 +136,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Engineering Data Analysis in R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1</b> How to use this book</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a><ul>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
 <li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a><ul>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#install-r-and-rstudio"><i class="fa fa-check"></i><b>1.4.1</b> Install R and RStudio</a></li>
 <li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#install-git-and-create-a-github-account"><i class="fa fa-check"></i><b>1.4.2</b> Install Git and create a GitHub account</a></li>
 <li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#connect-git-github-and-rstudio"><i class="fa fa-check"></i><b>1.4.3</b> Connect Git, GitHub, and RStudio</a></li>
@@ -154,57 +155,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#confirm-successful-set-up"><i class="fa fa-check"></i><b>1.4.6</b> Confirm successful set-up</a></li>
 <li class="chapter" data-level="1.4.7" data-path="index.html"><a href="index.html#asking-for-help-properly"><i class="fa fa-check"></i><b>1.4.7</b> Asking for help (properly)</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a><ul>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#other-helpful-books-not-required"><i class="fa fa-check"></i><b>1.5.1</b> Other helpful books (not required)</a></li>
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a><ul>
+<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="rprog1.html"><a href="rprog1.html#ch.-2-objectives"><i class="fa fa-check"></i><b>2.1</b> Ch. 2 Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="rprog1.html"><a href="rprog1.html#what-is-r"><i class="fa fa-check"></i><b>2.2.1</b> What is R?</a></li>
 <li class="chapter" data-level="2.2.2" data-path="rprog1.html"><a href="rprog1.html#free-and-open-source-software"><i class="fa fa-check"></i><b>2.2.2</b> Free and open-source software</a></li>
 <li class="chapter" data-level="2.2.3" data-path="rprog1.html"><a href="rprog1.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2.3</b> What is RStudio?</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a><ul>
+<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="rprog1.html"><a href="rprog1.html#r-sessions-console-and-command-prompt"><i class="fa fa-check"></i><b>2.3.1</b> R sessions, console, and command prompt</a></li>
 <li class="chapter" data-level="2.3.2" data-path="rprog1.html"><a href="rprog1.html#r-expressions-function-calls-and-objects"><i class="fa fa-check"></i><b>2.3.2</b> R expressions, function calls, and objects</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a><ul>
+<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="rprog1.html"><a href="rprog1.html#commenting-code"><i class="fa fa-check"></i><b>2.4.1</b> Commenting code</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a><ul>
+<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="rprog1.html"><a href="rprog1.html#r-packages"><i class="fa fa-check"></i><b>2.5.1</b> R packages</a></li>
 <li class="chapter" data-level="2.5.2" data-path="rprog1.html"><a href="rprog1.html#installing-from-cran"><i class="fa fa-check"></i><b>2.5.2</b> Installing from CRAN</a></li>
 <li class="chapter" data-level="2.5.3" data-path="rprog1.html"><a href="rprog1.html#loading-an-installed-package"><i class="fa fa-check"></i><b>2.5.3</b> Loading an installed package</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
 <li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#chapter-2-exercises"><i class="fa fa-check"></i><b>2.7</b> Chapter 2 Exercises</a><ul>
+<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#chapter-2-exercises"><i class="fa fa-check"></i><b>2.7</b> Chapter 2 Exercises</a>
+<ul>
 <li class="chapter" data-level="2.7.1" data-path="rprog1.html"><a href="rprog1.html#set-1-session-helpfiles-scripts-and-objects"><i class="fa fa-check"></i><b>2.7.1</b> Set 1: Session, helpfiles, scripts, and objects</a></li>
 <li class="chapter" data-level="2.7.2" data-path="rprog1.html"><a href="rprog1.html#set-2-loading-and-using-packages"><i class="fa fa-check"></i><b>2.7.2</b> Set 2: Loading and using packages</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#chapter-2-homework"><i class="fa fa-check"></i><b>2.8</b> Chapter 2 Homework</a><ul>
+<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#chapter-2-homework"><i class="fa fa-check"></i><b>2.8</b> Chapter 2 Homework</a>
+<ul>
 <li class="chapter" data-level="2.8.1" data-path="rprog1.html"><a href="rprog1.html#special-swirl-commands"><i class="fa fa-check"></i><b>2.8.1</b> Special <code>swirl</code> commands</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a><ul>
+<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="rprog2.html"><a href="rprog2.html#ch.-3-objectives"><i class="fa fa-check"></i><b>3.1</b> Ch. 3 Objectives</a></li>
 <li class="chapter" data-level="3.2" data-path="rprog2.html"><a href="rprog2.html#overview"><i class="fa fa-check"></i><b>3.2</b> Overview</a></li>
-<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a><ul>
+<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="rprog2.html"><a href="rprog2.html#reading-local-flat-files"><i class="fa fa-check"></i><b>3.3.1</b> Reading local flat files</a></li>
 <li class="chapter" data-level="3.3.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-other-file-types"><i class="fa fa-check"></i><b>3.3.2</b> Reading in other file types</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a><ul>
+<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="rprog2.html"><a href="rprog2.html#directory-structure"><i class="fa fa-check"></i><b>3.4.1</b> Directory structure</a></li>
 <li class="chapter" data-level="3.4.2" data-path="rprog2.html"><a href="rprog2.html#working-directory"><i class="fa fa-check"></i><b>3.4.2</b> Working directory</a></li>
 <li class="chapter" data-level="3.4.3" data-path="rprog2.html"><a href="rprog2.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>3.4.3</b> File and directory pathnames</a></li>
 <li class="chapter" data-level="3.4.4" data-path="rprog2.html"><a href="rprog2.html#tangent-paste"><i class="fa fa-check"></i><b>3.4.4</b> Tangent: <code>paste</code></a></li>
 <li class="chapter" data-level="3.4.5" data-path="rprog2.html"><a href="rprog2.html#reading-online-flat-files"><i class="fa fa-check"></i><b>3.4.5</b> Reading online flat files</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a><ul>
+<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="rprog2.html"><a href="rprog2.html#renaming-columns"><i class="fa fa-check"></i><b>3.5.1</b> Renaming columns</a></li>
 <li class="chapter" data-level="3.5.2" data-path="rprog2.html"><a href="rprog2.html#selecting-columns"><i class="fa fa-check"></i><b>3.5.2</b> Selecting columns</a></li>
 <li class="chapter" data-level="3.5.3" data-path="rprog2.html"><a href="rprog2.html#add-or-change-columns"><i class="fa fa-check"></i><b>3.5.3</b> Add or change columns</a></li>
@@ -212,26 +226,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.5" data-path="rprog2.html"><a href="rprog2.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>3.5.5</b> Filtering to certain rows</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="rprog2.html"><a href="rprog2.html#piping"><i class="fa fa-check"></i><b>3.6</b> Piping</a></li>
-<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#markdowns"><i class="fa fa-check"></i><b>3.7</b> Markdowns</a><ul>
+<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#markdowns"><i class="fa fa-check"></i><b>3.7</b> Markdowns</a>
+<ul>
 <li class="chapter" data-level="3.7.1" data-path="rprog2.html"><a href="rprog2.html#r-markdowns"><i class="fa fa-check"></i><b>3.7.1</b> R Markdowns</a></li>
 <li class="chapter" data-level="3.7.2" data-path="rprog2.html"><a href="rprog2.html#header"><i class="fa fa-check"></i><b>3.7.2</b> Header</a></li>
 <li class="chapter" data-level="3.7.3" data-path="rprog2.html"><a href="rprog2.html#text"><i class="fa fa-check"></i><b>3.7.3</b> Text</a></li>
 <li class="chapter" data-level="3.7.4" data-path="rprog2.html"><a href="rprog2.html#code-chunks"><i class="fa fa-check"></i><b>3.7.4</b> Code Chunks</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#chapter-3-exercises"><i class="fa fa-check"></i><b>3.8</b> Chapter 3 Exercises</a><ul>
+<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#chapter-3-exercises"><i class="fa fa-check"></i><b>3.8</b> Chapter 3 Exercises</a>
+<ul>
 <li class="chapter" data-level="3.8.1" data-path="rprog2.html"><a href="rprog2.html#set-1-pathnames-and-data-import"><i class="fa fa-check"></i><b>3.8.1</b> Set 1: Pathnames and data import</a></li>
 <li class="chapter" data-level="3.8.2" data-path="rprog2.html"><a href="rprog2.html#set-2-data-wrangling-and-piping"><i class="fa fa-check"></i><b>3.8.2</b> Set 2: Data wrangling and piping</a></li>
 <li class="chapter" data-level="3.8.3" data-path="rprog2.html"><a href="rprog2.html#set-3-r-markdown"><i class="fa fa-check"></i><b>3.8.3</b> Set 3: R Markdown</a></li>
 </ul></li>
 <li class="chapter" data-level="3.9" data-path="rprog2.html"><a href="rprog2.html#chapter-3-homework"><i class="fa fa-check"></i><b>3.9</b> Chapter 3 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#chapter-4-objectives"><i class="fa fa-check"></i><b>4.1</b> Chapter 4 Objectives</a></li>
 <li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#install-and-load-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Install and load <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#steps-to-create-a-ggplot2-object"><i class="fa fa-check"></i><b>4.3</b> Steps to create a <code>ggplot2</code> object</a></li>
 <li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#initializing-a-ggplot2-object"><i class="fa fa-check"></i><b>4.4</b> Initializing a <code>ggplot2</code> object</a></li>
 <li class="chapter" data-level="4.5" data-path="dataviz.html"><a href="dataviz.html#plot-aesthetics"><i class="fa fa-check"></i><b>4.5</b> Plot aesthetics</a></li>
-<li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.6</b> Adding geoms</a><ul>
+<li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.6</b> Adding geoms</a>
+<ul>
 <li class="chapter" data-level="4.6.1" data-path="dataviz.html"><a href="dataviz.html#aesthetic-override-a-warning"><i class="fa fa-check"></i><b>4.6.1</b> Aesthetic override: a warning</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="dataviz.html"><a href="dataviz.html#shapes-and-colors"><i class="fa fa-check"></i><b>4.7</b> Shapes and colors</a></li>
@@ -242,15 +260,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.12" data-path="dataviz.html"><a href="dataviz.html#getting-help-with-ggplot2"><i class="fa fa-check"></i><b>4.12</b> Getting help with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.13" data-path="dataviz.html"><a href="dataviz.html#chapter-4-homework"><i class="fa fa-check"></i><b>4.13</b> Chapter 4 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a><ul>
+<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="eda1.html"><a href="eda1.html#ch.-5-objectives"><i class="fa fa-check"></i><b>5.1</b> Ch. 5 Objectives</a></li>
-<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univar"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a><ul>
+<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univar"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>5.2.1</b> Location, Dispersion, and Shape</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantile"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a><ul>
+<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantile"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="eda1.html"><a href="eda1.html#descriptive-statistics"><i class="fa fa-check"></i><b>5.3.1</b> Descriptive Statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a><ul>
+<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
 <li class="chapter" data-level="5.4.2" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.4.2</b> Cumulative Distribution Plot</a></li>
 <li class="chapter" data-level="5.4.3" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.4.3</b> Histogram</a></li>
@@ -262,25 +284,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="eda1.html"><a href="eda1.html#exploring-data"><i class="fa fa-check"></i><b>5.5</b> Exploring Data</a></li>
 <li class="chapter" data-level="5.6" data-path="eda1.html"><a href="eda1.html#chapter-5-homework"><i class="fa fa-check"></i><b>5.6</b> Chapter 5 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a><ul>
+<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#chapter-6-objectives"><i class="fa fa-check"></i><b>6.1</b> Chapter 6 Objectives</a></li>
-<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a><ul>
+<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="rprog3.html"><a href="rprog3.html#string-detect-match-subset"><i class="fa fa-check"></i><b>6.2.1</b> String detect, match, subset</a></li>
 <li class="chapter" data-level="6.2.2" data-path="rprog3.html"><a href="rprog3.html#regular-expressions"><i class="fa fa-check"></i><b>6.2.2</b> Regular Expressions</a></li>
 <li class="chapter" data-level="6.2.3" data-path="rprog3.html"><a href="rprog3.html#string-split-replace"><i class="fa fa-check"></i><b>6.2.3</b> String split, replace</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a><ul>
+<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="rprog3.html"><a href="rprog3.html#dates-and-times-in-base-r"><i class="fa fa-check"></i><b>6.3.1</b> Dates and Times in base R</a></li>
 <li class="chapter" data-level="6.3.2" data-path="rprog3.html"><a href="rprog3.html#date-time-formats"><i class="fa fa-check"></i><b>6.3.2</b> Date-time formats</a></li>
 <li class="chapter" data-level="6.3.3" data-path="rprog3.html"><a href="rprog3.html#date-time-classes-in-r"><i class="fa fa-check"></i><b>6.3.3</b> Date-time classes in R</a></li>
 <li class="chapter" data-level="6.3.4" data-path="rprog3.html"><a href="rprog3.html#reading-and-classifying-date-times"><i class="fa fa-check"></i><b>6.3.4</b> Reading and classifying date-times</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>lubridate</code></a><ul>
+<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>lubridate</code></a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="rprog3.html"><a href="rprog3.html#parsing-functions-in-lubridate"><i class="fa fa-check"></i><b>6.4.1</b> Parsing functions in <code>lubridate</code></a></li>
 <li class="chapter" data-level="6.4.2" data-path="rprog3.html"><a href="rprog3.html#date-time-manipulation-with-lubridate"><i class="fa fa-check"></i><b>6.4.2</b> Date-time manipulation with <code>lubridate</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#tidy-data"><i class="fa fa-check"></i><b>6.5</b> Tidy Data</a></li>
-<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#chapter-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Chapter 6 Exercises</a><ul>
+<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#chapter-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Chapter 6 Exercises</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="rprog3.html"><a href="rprog3.html#set-1-data-import-and-manipulation"><i class="fa fa-check"></i><b>6.6.1</b> Set 1: Data import and manipulation</a></li>
 <li class="chapter" data-level="6.6.2" data-path="rprog3.html"><a href="rprog3.html#set-2-counting"><i class="fa fa-check"></i><b>6.6.2</b> Set 2: Counting</a></li>
 <li class="chapter" data-level="6.6.3" data-path="rprog3.html"><a href="rprog3.html#set-3-weekly-tweets"><i class="fa fa-check"></i><b>6.6.3</b> Set 3: Weekly tweets</a></li>
@@ -288,19 +315,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="rprog3.html"><a href="rprog3.html#chapter-6-homework"><i class="fa fa-check"></i><b>6.7</b> Chapter 6 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a><ul>
+<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#chapter-7-objectives"><i class="fa fa-check"></i><b>7.1</b> Chapter 7 Objectives</a></li>
 <li class="chapter" data-level="7.2" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>7.2</b> Bivariate Data</a></li>
-<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a><ul>
+<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="eda2.html"><a href="eda2.html#causality"><i class="fa fa-check"></i><b>7.3.1</b> Causality</a></li>
 <li class="chapter" data-level="7.3.2" data-path="eda2.html"><a href="eda2.html#corr"><i class="fa fa-check"></i><b>7.3.2</b> Correlation</a></li>
 <li class="chapter" data-level="7.3.3" data-path="eda2.html"><a href="eda2.html#correlation-neq-causation"><i class="fa fa-check"></i><b>7.3.3</b> Correlation <span class="math inline">\(\neq\)</span> causation</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.4</b> Exploring Multivariate Data</a><ul>
+<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.4</b> Exploring Multivariate Data</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="eda2.html"><a href="eda2.html#facets"><i class="fa fa-check"></i><b>7.4.1</b> Facets</a></li>
 <li class="chapter" data-level="7.4.2" data-path="eda2.html"><a href="eda2.html#colors"><i class="fa fa-check"></i><b>7.4.2</b> Colors</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#chapter-7-exercises"><i class="fa fa-check"></i><b>7.5</b> Chapter 7 Exercises</a><ul>
+<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#chapter-7-exercises"><i class="fa fa-check"></i><b>7.5</b> Chapter 7 Exercises</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="eda2.html"><a href="eda2.html#fuel-economy-data"><i class="fa fa-check"></i><b>7.5.1</b> Fuel economy data</a></li>
 <li class="chapter" data-level="7.5.2" data-path="eda2.html"><a href="eda2.html#import-and-wrangle-data"><i class="fa fa-check"></i><b>7.5.2</b> Import and wrangle data</a></li>
 <li class="chapter" data-level="7.5.3" data-path="eda2.html"><a href="eda2.html#check-data"><i class="fa fa-check"></i><b>7.5.3</b> Check data</a></li>
@@ -313,35 +344,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="eda2.html"><a href="eda2.html#chapter-7-homework"><i class="fa fa-check"></i><b>7.6</b> Chapter 7 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a><ul>
+<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="rprog4.html"><a href="rprog4.html#ch.-8-objectives"><i class="fa fa-check"></i><b>8.1</b> Ch. 8 Objectives</a></li>
 <li class="chapter" data-level="8.2" data-path="rprog4.html"><a href="rprog4.html#what-is-functional-programming"><i class="fa fa-check"></i><b>8.2</b> What is <strong><em>functional programming</em></strong>?</a></li>
-<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a><ul>
+<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="rprog4.html"><a href="rprog4.html#example-function-my_mean"><i class="fa fa-check"></i><b>8.3.1</b> Example Function: my_mean</a></li>
 <li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: “import.w.name”</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a><ul>
+<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="rprog4.html"><a href="rprog4.html#function-mapping"><i class="fa fa-check"></i><b>8.4.1</b> Function Mapping</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.5</b> Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a><ul>
+<li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="transform.html"><a href="transform.html#ch.-9-objectives"><i class="fa fa-check"></i><b>9.1</b> Ch. 9 Objectives</a></li>
-<li class="chapter" data-level="9.2" data-path="transform.html"><a href="transform.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a><ul>
+<li class="chapter" data-level="9.2" data-path="transform.html"><a href="transform.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="transform.html"><a href="transform.html#centering"><i class="fa fa-check"></i><b>9.2.1</b> Centering</a></li>
 <li class="chapter" data-level="9.2.2" data-path="transform.html"><a href="transform.html#rescaling"><i class="fa fa-check"></i><b>9.2.2</b> Rescaling</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="transform.html"><a href="transform.html#normalization-and-standardization"><i class="fa fa-check"></i><b>9.3</b> Normalization and Standardization</a><ul>
+<li class="chapter" data-level="9.3" data-path="transform.html"><a href="transform.html#normalization-and-standardization"><i class="fa fa-check"></i><b>9.3</b> Normalization and Standardization</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="transform.html"><a href="transform.html#rate-normalization"><i class="fa fa-check"></i><b>9.3.1</b> Rate normalization</a></li>
 <li class="chapter" data-level="9.3.2" data-path="transform.html"><a href="transform.html#standardizing"><i class="fa fa-check"></i><b>9.3.2</b> Standardizing</a></li>
 <li class="chapter" data-level="9.3.3" data-path="transform.html"><a href="transform.html#reducing-skewness"><i class="fa fa-check"></i><b>9.3.3</b> Reducing Skewness</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="transform.html"><a href="transform.html#stratification"><i class="fa fa-check"></i><b>9.4</b> Stratification</a></li>
-<li class="chapter" data-level="9.5" data-path="transform.html"><a href="transform.html#outliers-and-censoring"><i class="fa fa-check"></i><b>9.5</b> Outliers and Censoring</a><ul>
+<li class="chapter" data-level="9.5" data-path="transform.html"><a href="transform.html#outliers-and-censoring"><i class="fa fa-check"></i><b>9.5</b> Outliers and Censoring</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="transform.html"><a href="transform.html#outliers"><i class="fa fa-check"></i><b>9.5.1</b> Detecting Outliers</a></li>
 <li class="chapter" data-level="9.5.2" data-path="transform.html"><a href="transform.html#censoring-outliers"><i class="fa fa-check"></i><b>9.5.2</b> Censoring outliers</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="transform.html"><a href="transform.html#ch-9-exercises"><i class="fa fa-check"></i><b>9.6</b> Ch-9 Exercises</a><ul>
+<li class="chapter" data-level="9.6" data-path="transform.html"><a href="transform.html#ch-9-exercises"><i class="fa fa-check"></i><b>9.6</b> Ch-9 Exercises</a>
+<ul>
 <li class="chapter" data-level="9.6.1" data-path="transform.html"><a href="transform.html#salary-data-for-poly-sci-majors"><i class="fa fa-check"></i><b>9.6.1</b> Salary Data for Poly Sci Majors</a></li>
 <li class="chapter" data-level="9.6.2" data-path="transform.html"><a href="transform.html#univariate-data-visualization-1"><i class="fa fa-check"></i><b>9.6.2</b> Univariate Data Visualization</a></li>
 <li class="chapter" data-level="9.6.3" data-path="transform.html"><a href="transform.html#rescale-and-censor-data"><i class="fa fa-check"></i><b>9.6.3</b> Rescale and Censor Data</a></li>
@@ -350,9 +389,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.7" data-path="transform.html"><a href="transform.html#ch-9-homework"><i class="fa fa-check"></i><b>9.7</b> Ch-9 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a><ul>
+<li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="measure.html"><a href="measure.html#ch.-10-objectives"><i class="fa fa-check"></i><b>10.1</b> Ch. 10 Objectives</a></li>
-<li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a><ul>
+<li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#sample"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
 <li class="chapter" data-level="10.2.2" data-path="measure.html"><a href="measure.html#sample.collect"><i class="fa fa-check"></i><b>10.2.2</b> Collecting a sample</a></li>
 <li class="chapter" data-level="10.2.3" data-path="measure.html"><a href="measure.html#simple-random-sampling"><i class="fa fa-check"></i><b>10.2.3</b> Simple Random Sampling</a></li>
@@ -360,50 +401,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.5" data-path="measure.html"><a href="measure.html#stratified-sampling"><i class="fa fa-check"></i><b>10.2.5</b> Stratified Sampling</a></li>
 <li class="chapter" data-level="10.2.6" data-path="measure.html"><a href="measure.html#cluster-sampling"><i class="fa fa-check"></i><b>10.2.6</b> Cluster Sampling</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a><ul>
+<li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a>
+<ul>
 <li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#LOD"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
 <li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
 <li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>10.3.3</b> Precision</a></li>
 <li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>10.3.4</b> Bias (accuracy)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a><ul>
+<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a>
+<ul>
 <li class="chapter" data-level="10.4.1" data-path="measure.html"><a href="measure.html#repeated"><i class="fa fa-check"></i><b>10.4.1</b> Repeated Measures</a></li>
 <li class="chapter" data-level="10.4.2" data-path="measure.html"><a href="measure.html#error-propagation"><i class="fa fa-check"></i><b>10.4.2</b> Error Propagation</a></li>
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="measure.html"><a href="measure.html#ch-10-homework"><i class="fa fa-check"></i><b>10.5</b> CH-10 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a><ul>
+<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="model.html"><a href="model.html#ch.-11-objectives"><i class="fa fa-check"></i><b>11.1</b> Ch. 11 Objectives</a></li>
-<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#process-modeling"><i class="fa fa-check"></i><b>11.2</b> Process Modeling</a><ul>
+<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#process-modeling"><i class="fa fa-check"></i><b>11.2</b> Process Modeling</a>
+<ul>
 <li class="chapter" data-level="11.2.1" data-path="model.html"><a href="model.html#assumptions"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions</a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="model.html"><a href="model.html#model-fitting"><i class="fa fa-check"></i><b>11.3</b> Model Fitting</a></li>
-<li class="chapter" data-level="11.4" data-path="model.html"><a href="model.html#ols-regression"><i class="fa fa-check"></i><b>11.4</b> OLS Regression</a><ul>
+<li class="chapter" data-level="11.4" data-path="model.html"><a href="model.html#ols-regression"><i class="fa fa-check"></i><b>11.4</b> OLS Regression</a>
+<ul>
 <li class="chapter" data-level="11.4.1" data-path="model.html"><a href="model.html#OLS_assum"><i class="fa fa-check"></i><b>11.4.1</b> OLS Assumptions and Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="model.html"><a href="model.html#example-ols-linear-regression"><i class="fa fa-check"></i><b>11.5</b> Example: OLS Linear Regression</a><ul>
+<li class="chapter" data-level="11.5" data-path="model.html"><a href="model.html#example-ols-linear-regression"><i class="fa fa-check"></i><b>11.5</b> Example: OLS Linear Regression</a>
+<ul>
 <li class="chapter" data-level="11.5.1" data-path="model.html"><a href="model.html#the-lm-function"><i class="fa fa-check"></i><b>11.5.1</b> The <code>lm()</code> function</a></li>
 <li class="chapter" data-level="11.5.2" data-path="model.html"><a href="model.html#ols-diagnostics"><i class="fa fa-check"></i><b>11.5.2</b> OLS Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a><ul>
+<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a>
+<ul>
 <li class="chapter" data-level="11.6.1" data-path="model.html"><a href="model.html#example-calibration"><i class="fa fa-check"></i><b>11.6.1</b> Example Calibration</a></li>
 </ul></li>
 <li class="chapter" data-level="11.7" data-path="model.html"><a href="model.html#ch-11-homework"><i class="fa fa-check"></i><b>11.7</b> Ch-11 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Stats &amp; Reference Distributions</a><ul>
+<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Stats &amp; Reference Distributions</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="dist.html"><a href="dist.html#measures-of-central-tendency"><i class="fa fa-check"></i><b>12.1</b> Measures of Central Tendency</a></li>
 <li class="chapter" data-level="12.2" data-path="dist.html"><a href="dist.html#measures-of-dispersion"><i class="fa fa-check"></i><b>12.2</b> Measures of Dispersion</a></li>
-<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.3</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.3</b> Uniform Distribution</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="dist.html"><a href="dist.html#uniform-characteristic-plots"><i class="fa fa-check"></i><b>12.3.1</b> Uniform Characteristic Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.4</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="12.4" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.4</b> Normal Distribution</a>
+<ul>
 <li class="chapter" data-level="12.4.1" data-path="dist.html"><a href="dist.html#normal-characteristic-plots"><i class="fa fa-check"></i><b>12.4.1</b> Normal Characteristic Plots</a></li>
 <li class="chapter" data-level="12.4.2" data-path="dist.html"><a href="dist.html#rule"><i class="fa fa-check"></i><b>12.4.2</b> 68-95-99 rule</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>12.5</b> Log-normal Distribution</a><ul>
+<li class="chapter" data-level="12.5" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>12.5</b> Log-normal Distribution</a>
+<ul>
 <li class="chapter" data-level="12.5.1" data-path="dist.html"><a href="dist.html#lognormal-characteristic-plots"><i class="fa fa-check"></i><b>12.5.1</b> Lognormal Characteristic Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="12.6" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>12.6</b> Pearson Correlation Coefficient</a></li>
+<li class="chapter" data-level="12.7" data-path="dist.html"><a href="dist.html#OLS"><i class="fa fa-check"></i><b>12.7</b> OLS Regression Coefficients</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -428,9 +481,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Engineering Data Analysis in R</h1>
 <p class="author"><em>John Volckens and Kathleen E. Wendt</em></p>
-<p class="date"><em>2021-01-11</em></p>
+<p class="date"><em>2021-01-27</em></p>
 </div>
-<div id="intro" class="section level1">
+<div id="intro" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
 <p><font size="5"> Preface </font></p>
 <p>I developed this coursebook to help engineers begin to <em>think</em> about data. Most
@@ -449,7 +502,7 @@ ain’t easy. Once you come to terms with accepting failure as a regular
 occurrence, you put yourself in a position to learn from it. To learn from
 failure requires that you observe and diagnose “what went wrong” and to do
 that, you need to listen to what the data are telling you. Let’s begin.</p>
-<div id="how-to-use-this-book" class="section level2">
+<div id="how-to-use-this-book" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> How to use this book</h2>
 <p>The coursebook is intended to be a sort of <em>self-help</em> guide for students who
 want to learn R programming and the art of engineering data science. The book
@@ -466,14 +519,14 @@ streamline the message. If you ever wonder “How did he do that?” you can
 download any of the R Markdowns on <a href="https://github.com/SmogDr/edar_coursebook/">the GitHub repository</a>, where this coursebook
 is hosted.</p>
 </div>
-<div id="prerequisites" class="section level2">
+<div id="prerequisites" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Prerequisites</h2>
 <p>This course is intended for upper-level undergraduates who have completed MECH
 231 (Experimental Design).</p>
 </div>
-<div id="grading" class="section level2">
+<div id="grading" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> Grading</h2>
-<div id="grading-for-mech-481a6" class="section level3">
+<div id="grading-for-mech-481a6" class="section level3" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> Grading for MECH 481A6</h3>
 <p>Course grades will be determined by the following five components:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -515,7 +568,7 @@ Homework
 </tbody>
 </table>
 </div>
-<div id="homework-submission" class="section level3">
+<div id="homework-submission" class="section level3" number="1.3.2">
 <h3><span class="header-section-number">1.3.2</span> Homework submission</h3>
 <p>There will be a homework assignment per coursebook chapter. Each homework will
 be due at the start of the class period when lecture coverage of the <em>next</em>
@@ -528,10 +581,10 @@ assignment will be graded (or not graded) accordingly. Guidance on installing
 and connecting R/RStudio and Git/GitHub is provided in the next section.</p>
 </div>
 </div>
-<div id="course-set-up" class="section level2">
+<div id="course-set-up" class="section level2" number="1.4">
 <h2><span class="header-section-number">1.4</span> Course set-up</h2>
 <p>This might be painful, but bear with me. There will be a lot of software
-development <a href="https://docs.github.com/en/github/getting-started-with-github/github-glossary">jargon</a> (e.g., “commit”, “push”, “pull”), but the general idea is:
+development <a href="https://docs.github.com/en/github/getting-started-with-github/github-glossary">jargon</a> (e.g., “commit,” “push,” “pull”), but the general idea is:
 We want to set up and learn how to use a collaborative tracking system. Git is
 a version control system (i.e., Word’s “track changes” feature on steroids).
 GitHub is the most common Git-based collaborative cloud (i.e., Dropbox on
@@ -545,7 +598,7 @@ read carefully. If you have any questions at each stage, ask!</p>
 <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1399928" target="_blank">paper</a> on
 version control. I sprinkled in some suggestions from others. If you would like
 to gain more background on basic Git and GitHub, take a look at <a href="https://uncoast-unconf.github.io/uu-2019-day-zero/01-git-github-cornucopia/git-github-cornucopia.html#1" target="_blank">these slides</a> from <a href="https://twitter.com/AmeliaMN" target="_blank">Dr. Amelia McNamara</a>.</p>
-<div id="install-r-and-rstudio" class="section level3">
+<div id="install-r-and-rstudio" class="section level3" number="1.4.1">
 <h3><span class="header-section-number">1.4.1</span> Install R and RStudio</h3>
 <ol style="list-style-type: decimal">
 <li>Download and install the pre-compiled binary of the most recent version (4.0+) of <a href="https://cran.r-project.org" target="_blank">R</a> appropriate for your machine’s
@@ -557,20 +610,20 @@ might not know what this means yet)</li>
 <li>If you’ve installed R and RStudio in the past, please download the latest
 versions and update the R packages with the following code:</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1"></a><span class="co"># if you&#39;ve previously installed R and RStudio, also update your R packages </span></span>
-<span id="cb6-2"><a href="index.html#cb6-2"></a><span class="kw">update.packages</span>(<span class="dt">ask =</span> <span class="ot">FALSE</span>, <span class="dt">checkBuilt =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if you&#39;ve previously installed R and RStudio, also update your R packages </span></span>
+<span id="cb6-2"><a href="index.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>, <span class="at">checkBuilt =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>If you want to generate PDF output from R Markdown documents, you will also
 need to install LaTex. I suggest taking the following approach in the RStudio
 Console, if you have never installed LaTex. More installation guidance can be found
 <a href="https://bookdown.org/yihui/rmarkdown/installation.html" target="_blank">here</a>.</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="index.html#cb7-1"></a><span class="co"># install R package</span></span>
-<span id="cb7-2"><a href="index.html#cb7-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
-<span id="cb7-3"><a href="index.html#cb7-3"></a><span class="co"># install LaTex &quot;ingredients&quot;</span></span>
-<span id="cb7-4"><a href="index.html#cb7-4"></a>tinytex<span class="op">::</span><span class="kw">install_tinytex</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="index.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install R package</span></span>
+<span id="cb7-2"><a href="index.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
+<span id="cb7-3"><a href="index.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install LaTex &quot;ingredients&quot;</span></span>
+<span id="cb7-4"><a href="index.html#cb7-4" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code></pre></div>
 </div>
-<div id="install-git-and-create-a-github-account" class="section level3">
+<div id="install-git-and-create-a-github-account" class="section level3" number="1.4.2">
 <h3><span class="header-section-number">1.4.2</span> Install Git and create a GitHub account</h3>
 <ol style="list-style-type: decimal">
 <li><p>Install <a href="https://git-scm.com/downloads" target="_blank">Git</a>. See <a href="https://happygitwithr.com/install-git.html" target="_blank">here</a> and <a href="https://rstats.wtf/set-up-an-r-dev-environment.html" target="_blank">here</a>
@@ -583,12 +636,12 @@ this process is easier, as R now uses
 <li><p>Create a <a href="https://github.com" target="_blank">GitHub</a> account. Pick a good <a href="https://happygitwithr.com/github-acct.html" target="_blank">user name</a>!</p></li>
 <li><p><a href="https://happygitwithr.com/hello-git.html" target="_blank">Introduce</a> yourself to Git in RStudio with the following code in the Console. Provide your given name, not your user name, and the email address you used in creating your GitHub account. These commands return nothing, but you can check that it worked with <code>git config --global --list</code> in the <a href="https://happygitwithr.com/shell.html" target="_blank">shell</a>.</p></li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="index.html#cb8-1"></a><span class="co"># install `usethis` R package if needed (do this exactly once):</span></span>
-<span id="cb8-2"><a href="index.html#cb8-2"></a><span class="co">## install.packages(&quot;usethis&quot;)</span></span>
-<span id="cb8-3"><a href="index.html#cb8-3"></a></span>
-<span id="cb8-4"><a href="index.html#cb8-4"></a><span class="kw">library</span>(usethis)</span>
-<span id="cb8-5"><a href="index.html#cb8-5"></a>usethis<span class="op">::</span><span class="kw">use_git_config</span>(<span class="dt">user.name =</span> <span class="st">&quot;John Doe&quot;</span>, </span>
-<span id="cb8-6"><a href="index.html#cb8-6"></a>                        <span class="dt">user.email =</span> <span class="st">&quot;john.doe@colostate.edu&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="index.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install `usethis` R package if needed (do this exactly once):</span></span>
+<span id="cb8-2"><a href="index.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages(&quot;usethis&quot;)</span></span>
+<span id="cb8-3"><a href="index.html#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="index.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usethis)</span>
+<span id="cb8-5"><a href="index.html#cb8-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git_config</span>(<span class="at">user.name =</span> <span class="st">&quot;John Doe&quot;</span>, </span>
+<span id="cb8-6"><a href="index.html#cb8-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">user.email =</span> <span class="st">&quot;john.doe@colostate.edu&quot;</span>)</span></code></pre></div>
 <p>Note: Avoid committing credentials or other sensitive information to GitHub by “<a href="https://github.com/uncoast-unconf/uu-2019-day-zero/blob/master/00-preparation/03-usethis/README.md" target="_blank">vaccinating</a>” with <code>usethis::git_vaccinate()</code>.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Optional but recommended for new users: Consider downloading a <a href="https://happygitwithr.com/git-client.html" target="_blank">GUI Git Client</a> to make
@@ -599,7 +652,7 @@ sufficient for this course, but the choice is yours.</li>
 <a href="https://education.github.com/" target="_blank">GitHub Education</a>.</li>
 </ol>
 </div>
-<div id="connect-git-github-and-rstudio" class="section level3">
+<div id="connect-git-github-and-rstudio" class="section level3" number="1.4.3">
 <h3><span class="header-section-number">1.4.3</span> Connect Git, GitHub, and RStudio</h3>
 <ol style="list-style-type: decimal">
 <li>Read and follow the
@@ -609,7 +662,7 @@ slowly and carefully, and pay attention to the specific needs for your operating
 system.</li>
 </ol>
 </div>
-<div id="create-new-project-github-first" class="section level3">
+<div id="create-new-project-github-first" class="section level3" number="1.4.4">
 <h3><span class="header-section-number">1.4.4</span> Create new project, GitHub first</h3>
 <ol start="0" style="list-style-type: decimal">
 <li>Keep in mind: You should save the local R Project from this step in a top-level directory. We suggest creating an <code>R</code> folder at the top of your <code>Documents</code> folder (or OS-specific equivalent) to contain all of your R Projects. For the duration of this course, you should have a directory pathname like <code>/user/Documents/R/[YourLastName]-MECH481A6</code>. We will discuss directory structures and pathnames more in the next chapter.</li>
@@ -625,7 +678,7 @@ system.</li>
 <a href="https://uncoast-unconf.github.io/uu-2019-day-zero/02-project-workflows/workflow.html#13" target="_blank">project-oriented workflow</a></li>
 </ul>
 </div>
-<div id="use-rstudiogithub-system-for-homework-submission" class="section level3">
+<div id="use-rstudiogithub-system-for-homework-submission" class="section level3" number="1.4.5">
 <h3><span class="header-section-number">1.4.5</span> Use RStudio/GitHub system for homework submission</h3>
 <p>For homework submission, you will download the R Markdown templates provided
 to you and save and edit them within your own R Project, which is connected a
@@ -634,7 +687,7 @@ changes and communicate with the Instructor and TA, you will
 regularly <em>commit</em> changes to your R Project files with meaningful <em>commit messages</em>. We will practice commits, pushes, and pulls to the <em>master branch</em>
 (main copy of R Project) during class.</p>
 </div>
-<div id="confirm-successful-set-up" class="section level3">
+<div id="confirm-successful-set-up" class="section level3" number="1.4.6">
 <h3><span class="header-section-number">1.4.6</span> Confirm successful set-up</h3>
 <p>At this point, you should be able to commit, push to, and pull from the master
 branch of your private GitHub repository within the RStudio IDE. In later
@@ -644,17 +697,17 @@ functional” is good enough!</p>
 <p>Once you have successfully installed and connected R/RStudio and Git/GitHub,
 <strong>open an issue</strong> on YOUR private repository within the
 <a href="https://github.com/MECH481A6" target="_blank">GitHub Organization</a>.
-Mention/assign Kathleen (TA) <span class="citation">@wendtke</span> to let her know everything is working
+Mention/assign Kathleen (TA) <span class="citation">(<a href="#ref-wendtke" role="doc-biblioref"><strong>wendtke?</strong></a>)</span> to let her know everything is working
 properly, or to request more help.</p>
 <p>Then, in the
 <a href="https://github.com/MECH481A6/questions" target="_blank">public repository</a> for
 class-related questions and discussion, <strong>open another issue</strong>. You can ask a
 question, share any course-related concerns, or post a brief comment about what
 you hope to gain from this course. Remember to mention/assign Kathleen
-<span class="citation">@wendtke</span>, so she is alerted to your post.</p>
+<span class="citation">(<a href="#ref-wendtke" role="doc-biblioref"><strong>wendtke?</strong></a>)</span>, so she is alerted to your post.</p>
 <p>Kathleen will then close both of your issues, and you will be ready to go!</p>
 </div>
-<div id="asking-for-help-properly" class="section level3">
+<div id="asking-for-help-properly" class="section level3" number="1.4.7">
 <h3><span class="header-section-number">1.4.7</span> Asking for help (properly)</h3>
 <p>All questions regarding technology and code should be directed to the Teaching
 Assistant via GitHub Issues on
@@ -669,7 +722,7 @@ semester, you will have an efficient, reproducible workflow and effective
 solution-seeking toolbox.</p>
 </div>
 </div>
-<div id="coursebook" class="section level2">
+<div id="coursebook" class="section level2" number="1.5">
 <h2><span class="header-section-number">1.5</span> Coursebook</h2>
 <p>This coursebook will serve as the only required textbook for this course. I
 regularly edit and add to this book, so content may change somewhat over the
@@ -695,7 +748,7 @@ The online book is hosted using GitHub’s free
 <a href="https://pages.github.com" target="_blank">GitHub Pages</a>. All material for
 this book is available and can be explored at the book’s
 <a href="https://github.com/SmogDr/edar_coursebook" target="_blank">GitHub repository</a>.</p>
-<div id="other-helpful-books-not-required" class="section level3">
+<div id="other-helpful-books-not-required" class="section level3" number="1.5.1">
 <h3><span class="header-section-number">1.5.1</span> Other helpful books (not required)</h3>
 <p>The best book to supplement the coursebook and lectures for this course is
 <a href="http://r4ds.had.co.nz" target="_blank">R for Data Science</a> by Garrett
@@ -719,7 +772,7 @@ general and specific statistical analysis, including many available in print or
 online through the CSU library.</p>
 </div>
 </div>
-<div id="acknowledgements" class="section level2">
+<div id="acknowledgements" class="section level2" number="1.6">
 <h2><span class="header-section-number">1.6</span> Acknowledgements</h2>
 <p>Most of the introductory material for this book was adapted from Dr. Brooke
 Anderson’s course on

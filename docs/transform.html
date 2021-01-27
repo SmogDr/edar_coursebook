@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-11" />
+<meta name="date" content="2021-01-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="rprog4.html"/>
 <link rel="next" href="measure.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,26 +51,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -89,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -138,14 +136,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Engineering Data Analysis in R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1</b> How to use this book</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a><ul>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
 <li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a><ul>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#install-r-and-rstudio"><i class="fa fa-check"></i><b>1.4.1</b> Install R and RStudio</a></li>
 <li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#install-git-and-create-a-github-account"><i class="fa fa-check"></i><b>1.4.2</b> Install Git and create a GitHub account</a></li>
 <li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#connect-git-github-and-rstudio"><i class="fa fa-check"></i><b>1.4.3</b> Connect Git, GitHub, and RStudio</a></li>
@@ -154,57 +155,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#confirm-successful-set-up"><i class="fa fa-check"></i><b>1.4.6</b> Confirm successful set-up</a></li>
 <li class="chapter" data-level="1.4.7" data-path="index.html"><a href="index.html#asking-for-help-properly"><i class="fa fa-check"></i><b>1.4.7</b> Asking for help (properly)</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a><ul>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#other-helpful-books-not-required"><i class="fa fa-check"></i><b>1.5.1</b> Other helpful books (not required)</a></li>
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a><ul>
+<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="rprog1.html"><a href="rprog1.html#ch.-2-objectives"><i class="fa fa-check"></i><b>2.1</b> Ch. 2 Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="rprog1.html"><a href="rprog1.html#what-is-r"><i class="fa fa-check"></i><b>2.2.1</b> What is R?</a></li>
 <li class="chapter" data-level="2.2.2" data-path="rprog1.html"><a href="rprog1.html#free-and-open-source-software"><i class="fa fa-check"></i><b>2.2.2</b> Free and open-source software</a></li>
 <li class="chapter" data-level="2.2.3" data-path="rprog1.html"><a href="rprog1.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2.3</b> What is RStudio?</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a><ul>
+<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="rprog1.html"><a href="rprog1.html#r-sessions-console-and-command-prompt"><i class="fa fa-check"></i><b>2.3.1</b> R sessions, console, and command prompt</a></li>
 <li class="chapter" data-level="2.3.2" data-path="rprog1.html"><a href="rprog1.html#r-expressions-function-calls-and-objects"><i class="fa fa-check"></i><b>2.3.2</b> R expressions, function calls, and objects</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a><ul>
+<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="rprog1.html"><a href="rprog1.html#commenting-code"><i class="fa fa-check"></i><b>2.4.1</b> Commenting code</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a><ul>
+<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="rprog1.html"><a href="rprog1.html#r-packages"><i class="fa fa-check"></i><b>2.5.1</b> R packages</a></li>
 <li class="chapter" data-level="2.5.2" data-path="rprog1.html"><a href="rprog1.html#installing-from-cran"><i class="fa fa-check"></i><b>2.5.2</b> Installing from CRAN</a></li>
 <li class="chapter" data-level="2.5.3" data-path="rprog1.html"><a href="rprog1.html#loading-an-installed-package"><i class="fa fa-check"></i><b>2.5.3</b> Loading an installed package</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
 <li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#chapter-2-exercises"><i class="fa fa-check"></i><b>2.7</b> Chapter 2 Exercises</a><ul>
+<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#chapter-2-exercises"><i class="fa fa-check"></i><b>2.7</b> Chapter 2 Exercises</a>
+<ul>
 <li class="chapter" data-level="2.7.1" data-path="rprog1.html"><a href="rprog1.html#set-1-session-helpfiles-scripts-and-objects"><i class="fa fa-check"></i><b>2.7.1</b> Set 1: Session, helpfiles, scripts, and objects</a></li>
 <li class="chapter" data-level="2.7.2" data-path="rprog1.html"><a href="rprog1.html#set-2-loading-and-using-packages"><i class="fa fa-check"></i><b>2.7.2</b> Set 2: Loading and using packages</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#chapter-2-homework"><i class="fa fa-check"></i><b>2.8</b> Chapter 2 Homework</a><ul>
+<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#chapter-2-homework"><i class="fa fa-check"></i><b>2.8</b> Chapter 2 Homework</a>
+<ul>
 <li class="chapter" data-level="2.8.1" data-path="rprog1.html"><a href="rprog1.html#special-swirl-commands"><i class="fa fa-check"></i><b>2.8.1</b> Special <code>swirl</code> commands</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a><ul>
+<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="rprog2.html"><a href="rprog2.html#ch.-3-objectives"><i class="fa fa-check"></i><b>3.1</b> Ch. 3 Objectives</a></li>
 <li class="chapter" data-level="3.2" data-path="rprog2.html"><a href="rprog2.html#overview"><i class="fa fa-check"></i><b>3.2</b> Overview</a></li>
-<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a><ul>
+<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="rprog2.html"><a href="rprog2.html#reading-local-flat-files"><i class="fa fa-check"></i><b>3.3.1</b> Reading local flat files</a></li>
 <li class="chapter" data-level="3.3.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-other-file-types"><i class="fa fa-check"></i><b>3.3.2</b> Reading in other file types</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a><ul>
+<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="rprog2.html"><a href="rprog2.html#directory-structure"><i class="fa fa-check"></i><b>3.4.1</b> Directory structure</a></li>
 <li class="chapter" data-level="3.4.2" data-path="rprog2.html"><a href="rprog2.html#working-directory"><i class="fa fa-check"></i><b>3.4.2</b> Working directory</a></li>
 <li class="chapter" data-level="3.4.3" data-path="rprog2.html"><a href="rprog2.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>3.4.3</b> File and directory pathnames</a></li>
 <li class="chapter" data-level="3.4.4" data-path="rprog2.html"><a href="rprog2.html#tangent-paste"><i class="fa fa-check"></i><b>3.4.4</b> Tangent: <code>paste</code></a></li>
 <li class="chapter" data-level="3.4.5" data-path="rprog2.html"><a href="rprog2.html#reading-online-flat-files"><i class="fa fa-check"></i><b>3.4.5</b> Reading online flat files</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a><ul>
+<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="rprog2.html"><a href="rprog2.html#renaming-columns"><i class="fa fa-check"></i><b>3.5.1</b> Renaming columns</a></li>
 <li class="chapter" data-level="3.5.2" data-path="rprog2.html"><a href="rprog2.html#selecting-columns"><i class="fa fa-check"></i><b>3.5.2</b> Selecting columns</a></li>
 <li class="chapter" data-level="3.5.3" data-path="rprog2.html"><a href="rprog2.html#add-or-change-columns"><i class="fa fa-check"></i><b>3.5.3</b> Add or change columns</a></li>
@@ -212,26 +226,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.5" data-path="rprog2.html"><a href="rprog2.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>3.5.5</b> Filtering to certain rows</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="rprog2.html"><a href="rprog2.html#piping"><i class="fa fa-check"></i><b>3.6</b> Piping</a></li>
-<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#markdowns"><i class="fa fa-check"></i><b>3.7</b> Markdowns</a><ul>
+<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#markdowns"><i class="fa fa-check"></i><b>3.7</b> Markdowns</a>
+<ul>
 <li class="chapter" data-level="3.7.1" data-path="rprog2.html"><a href="rprog2.html#r-markdowns"><i class="fa fa-check"></i><b>3.7.1</b> R Markdowns</a></li>
 <li class="chapter" data-level="3.7.2" data-path="rprog2.html"><a href="rprog2.html#header"><i class="fa fa-check"></i><b>3.7.2</b> Header</a></li>
 <li class="chapter" data-level="3.7.3" data-path="rprog2.html"><a href="rprog2.html#text"><i class="fa fa-check"></i><b>3.7.3</b> Text</a></li>
 <li class="chapter" data-level="3.7.4" data-path="rprog2.html"><a href="rprog2.html#code-chunks"><i class="fa fa-check"></i><b>3.7.4</b> Code Chunks</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#chapter-3-exercises"><i class="fa fa-check"></i><b>3.8</b> Chapter 3 Exercises</a><ul>
+<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#chapter-3-exercises"><i class="fa fa-check"></i><b>3.8</b> Chapter 3 Exercises</a>
+<ul>
 <li class="chapter" data-level="3.8.1" data-path="rprog2.html"><a href="rprog2.html#set-1-pathnames-and-data-import"><i class="fa fa-check"></i><b>3.8.1</b> Set 1: Pathnames and data import</a></li>
 <li class="chapter" data-level="3.8.2" data-path="rprog2.html"><a href="rprog2.html#set-2-data-wrangling-and-piping"><i class="fa fa-check"></i><b>3.8.2</b> Set 2: Data wrangling and piping</a></li>
 <li class="chapter" data-level="3.8.3" data-path="rprog2.html"><a href="rprog2.html#set-3-r-markdown"><i class="fa fa-check"></i><b>3.8.3</b> Set 3: R Markdown</a></li>
 </ul></li>
 <li class="chapter" data-level="3.9" data-path="rprog2.html"><a href="rprog2.html#chapter-3-homework"><i class="fa fa-check"></i><b>3.9</b> Chapter 3 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#chapter-4-objectives"><i class="fa fa-check"></i><b>4.1</b> Chapter 4 Objectives</a></li>
 <li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#install-and-load-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Install and load <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#steps-to-create-a-ggplot2-object"><i class="fa fa-check"></i><b>4.3</b> Steps to create a <code>ggplot2</code> object</a></li>
 <li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#initializing-a-ggplot2-object"><i class="fa fa-check"></i><b>4.4</b> Initializing a <code>ggplot2</code> object</a></li>
 <li class="chapter" data-level="4.5" data-path="dataviz.html"><a href="dataviz.html#plot-aesthetics"><i class="fa fa-check"></i><b>4.5</b> Plot aesthetics</a></li>
-<li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.6</b> Adding geoms</a><ul>
+<li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.6</b> Adding geoms</a>
+<ul>
 <li class="chapter" data-level="4.6.1" data-path="dataviz.html"><a href="dataviz.html#aesthetic-override-a-warning"><i class="fa fa-check"></i><b>4.6.1</b> Aesthetic override: a warning</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="dataviz.html"><a href="dataviz.html#shapes-and-colors"><i class="fa fa-check"></i><b>4.7</b> Shapes and colors</a></li>
@@ -242,15 +260,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.12" data-path="dataviz.html"><a href="dataviz.html#getting-help-with-ggplot2"><i class="fa fa-check"></i><b>4.12</b> Getting help with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.13" data-path="dataviz.html"><a href="dataviz.html#chapter-4-homework"><i class="fa fa-check"></i><b>4.13</b> Chapter 4 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a><ul>
+<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="eda1.html"><a href="eda1.html#ch.-5-objectives"><i class="fa fa-check"></i><b>5.1</b> Ch. 5 Objectives</a></li>
-<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univar"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a><ul>
+<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univar"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>5.2.1</b> Location, Dispersion, and Shape</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantile"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a><ul>
+<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantile"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="eda1.html"><a href="eda1.html#descriptive-statistics"><i class="fa fa-check"></i><b>5.3.1</b> Descriptive Statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a><ul>
+<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
 <li class="chapter" data-level="5.4.2" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.4.2</b> Cumulative Distribution Plot</a></li>
 <li class="chapter" data-level="5.4.3" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.4.3</b> Histogram</a></li>
@@ -262,25 +284,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="eda1.html"><a href="eda1.html#exploring-data"><i class="fa fa-check"></i><b>5.5</b> Exploring Data</a></li>
 <li class="chapter" data-level="5.6" data-path="eda1.html"><a href="eda1.html#chapter-5-homework"><i class="fa fa-check"></i><b>5.6</b> Chapter 5 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a><ul>
+<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#chapter-6-objectives"><i class="fa fa-check"></i><b>6.1</b> Chapter 6 Objectives</a></li>
-<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a><ul>
+<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="rprog3.html"><a href="rprog3.html#string-detect-match-subset"><i class="fa fa-check"></i><b>6.2.1</b> String detect, match, subset</a></li>
 <li class="chapter" data-level="6.2.2" data-path="rprog3.html"><a href="rprog3.html#regular-expressions"><i class="fa fa-check"></i><b>6.2.2</b> Regular Expressions</a></li>
 <li class="chapter" data-level="6.2.3" data-path="rprog3.html"><a href="rprog3.html#string-split-replace"><i class="fa fa-check"></i><b>6.2.3</b> String split, replace</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a><ul>
+<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="rprog3.html"><a href="rprog3.html#dates-and-times-in-base-r"><i class="fa fa-check"></i><b>6.3.1</b> Dates and Times in base R</a></li>
 <li class="chapter" data-level="6.3.2" data-path="rprog3.html"><a href="rprog3.html#date-time-formats"><i class="fa fa-check"></i><b>6.3.2</b> Date-time formats</a></li>
 <li class="chapter" data-level="6.3.3" data-path="rprog3.html"><a href="rprog3.html#date-time-classes-in-r"><i class="fa fa-check"></i><b>6.3.3</b> Date-time classes in R</a></li>
 <li class="chapter" data-level="6.3.4" data-path="rprog3.html"><a href="rprog3.html#reading-and-classifying-date-times"><i class="fa fa-check"></i><b>6.3.4</b> Reading and classifying date-times</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>lubridate</code></a><ul>
+<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>lubridate</code></a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="rprog3.html"><a href="rprog3.html#parsing-functions-in-lubridate"><i class="fa fa-check"></i><b>6.4.1</b> Parsing functions in <code>lubridate</code></a></li>
 <li class="chapter" data-level="6.4.2" data-path="rprog3.html"><a href="rprog3.html#date-time-manipulation-with-lubridate"><i class="fa fa-check"></i><b>6.4.2</b> Date-time manipulation with <code>lubridate</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#tidy-data"><i class="fa fa-check"></i><b>6.5</b> Tidy Data</a></li>
-<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#chapter-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Chapter 6 Exercises</a><ul>
+<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#chapter-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Chapter 6 Exercises</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="rprog3.html"><a href="rprog3.html#set-1-data-import-and-manipulation"><i class="fa fa-check"></i><b>6.6.1</b> Set 1: Data import and manipulation</a></li>
 <li class="chapter" data-level="6.6.2" data-path="rprog3.html"><a href="rprog3.html#set-2-counting"><i class="fa fa-check"></i><b>6.6.2</b> Set 2: Counting</a></li>
 <li class="chapter" data-level="6.6.3" data-path="rprog3.html"><a href="rprog3.html#set-3-weekly-tweets"><i class="fa fa-check"></i><b>6.6.3</b> Set 3: Weekly tweets</a></li>
@@ -288,19 +315,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="rprog3.html"><a href="rprog3.html#chapter-6-homework"><i class="fa fa-check"></i><b>6.7</b> Chapter 6 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a><ul>
+<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#chapter-7-objectives"><i class="fa fa-check"></i><b>7.1</b> Chapter 7 Objectives</a></li>
 <li class="chapter" data-level="7.2" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>7.2</b> Bivariate Data</a></li>
-<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a><ul>
+<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="eda2.html"><a href="eda2.html#causality"><i class="fa fa-check"></i><b>7.3.1</b> Causality</a></li>
 <li class="chapter" data-level="7.3.2" data-path="eda2.html"><a href="eda2.html#corr"><i class="fa fa-check"></i><b>7.3.2</b> Correlation</a></li>
 <li class="chapter" data-level="7.3.3" data-path="eda2.html"><a href="eda2.html#correlation-neq-causation"><i class="fa fa-check"></i><b>7.3.3</b> Correlation <span class="math inline">\(\neq\)</span> causation</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.4</b> Exploring Multivariate Data</a><ul>
+<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.4</b> Exploring Multivariate Data</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="eda2.html"><a href="eda2.html#facets"><i class="fa fa-check"></i><b>7.4.1</b> Facets</a></li>
 <li class="chapter" data-level="7.4.2" data-path="eda2.html"><a href="eda2.html#colors"><i class="fa fa-check"></i><b>7.4.2</b> Colors</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#chapter-7-exercises"><i class="fa fa-check"></i><b>7.5</b> Chapter 7 Exercises</a><ul>
+<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#chapter-7-exercises"><i class="fa fa-check"></i><b>7.5</b> Chapter 7 Exercises</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="eda2.html"><a href="eda2.html#fuel-economy-data"><i class="fa fa-check"></i><b>7.5.1</b> Fuel economy data</a></li>
 <li class="chapter" data-level="7.5.2" data-path="eda2.html"><a href="eda2.html#import-and-wrangle-data"><i class="fa fa-check"></i><b>7.5.2</b> Import and wrangle data</a></li>
 <li class="chapter" data-level="7.5.3" data-path="eda2.html"><a href="eda2.html#check-data"><i class="fa fa-check"></i><b>7.5.3</b> Check data</a></li>
@@ -313,35 +344,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="eda2.html"><a href="eda2.html#chapter-7-homework"><i class="fa fa-check"></i><b>7.6</b> Chapter 7 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a><ul>
+<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="rprog4.html"><a href="rprog4.html#ch.-8-objectives"><i class="fa fa-check"></i><b>8.1</b> Ch. 8 Objectives</a></li>
 <li class="chapter" data-level="8.2" data-path="rprog4.html"><a href="rprog4.html#what-is-functional-programming"><i class="fa fa-check"></i><b>8.2</b> What is <strong><em>functional programming</em></strong>?</a></li>
-<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a><ul>
+<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="rprog4.html"><a href="rprog4.html#example-function-my_mean"><i class="fa fa-check"></i><b>8.3.1</b> Example Function: my_mean</a></li>
 <li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: “import.w.name”</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a><ul>
+<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="rprog4.html"><a href="rprog4.html#function-mapping"><i class="fa fa-check"></i><b>8.4.1</b> Function Mapping</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.5</b> Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a><ul>
+<li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="transform.html"><a href="transform.html#ch.-9-objectives"><i class="fa fa-check"></i><b>9.1</b> Ch. 9 Objectives</a></li>
-<li class="chapter" data-level="9.2" data-path="transform.html"><a href="transform.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a><ul>
+<li class="chapter" data-level="9.2" data-path="transform.html"><a href="transform.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="transform.html"><a href="transform.html#centering"><i class="fa fa-check"></i><b>9.2.1</b> Centering</a></li>
 <li class="chapter" data-level="9.2.2" data-path="transform.html"><a href="transform.html#rescaling"><i class="fa fa-check"></i><b>9.2.2</b> Rescaling</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="transform.html"><a href="transform.html#normalization-and-standardization"><i class="fa fa-check"></i><b>9.3</b> Normalization and Standardization</a><ul>
+<li class="chapter" data-level="9.3" data-path="transform.html"><a href="transform.html#normalization-and-standardization"><i class="fa fa-check"></i><b>9.3</b> Normalization and Standardization</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="transform.html"><a href="transform.html#rate-normalization"><i class="fa fa-check"></i><b>9.3.1</b> Rate normalization</a></li>
 <li class="chapter" data-level="9.3.2" data-path="transform.html"><a href="transform.html#standardizing"><i class="fa fa-check"></i><b>9.3.2</b> Standardizing</a></li>
 <li class="chapter" data-level="9.3.3" data-path="transform.html"><a href="transform.html#reducing-skewness"><i class="fa fa-check"></i><b>9.3.3</b> Reducing Skewness</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="transform.html"><a href="transform.html#stratification"><i class="fa fa-check"></i><b>9.4</b> Stratification</a></li>
-<li class="chapter" data-level="9.5" data-path="transform.html"><a href="transform.html#outliers-and-censoring"><i class="fa fa-check"></i><b>9.5</b> Outliers and Censoring</a><ul>
+<li class="chapter" data-level="9.5" data-path="transform.html"><a href="transform.html#outliers-and-censoring"><i class="fa fa-check"></i><b>9.5</b> Outliers and Censoring</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="transform.html"><a href="transform.html#outliers"><i class="fa fa-check"></i><b>9.5.1</b> Detecting Outliers</a></li>
 <li class="chapter" data-level="9.5.2" data-path="transform.html"><a href="transform.html#censoring-outliers"><i class="fa fa-check"></i><b>9.5.2</b> Censoring outliers</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="transform.html"><a href="transform.html#ch-9-exercises"><i class="fa fa-check"></i><b>9.6</b> Ch-9 Exercises</a><ul>
+<li class="chapter" data-level="9.6" data-path="transform.html"><a href="transform.html#ch-9-exercises"><i class="fa fa-check"></i><b>9.6</b> Ch-9 Exercises</a>
+<ul>
 <li class="chapter" data-level="9.6.1" data-path="transform.html"><a href="transform.html#salary-data-for-poly-sci-majors"><i class="fa fa-check"></i><b>9.6.1</b> Salary Data for Poly Sci Majors</a></li>
 <li class="chapter" data-level="9.6.2" data-path="transform.html"><a href="transform.html#univariate-data-visualization-1"><i class="fa fa-check"></i><b>9.6.2</b> Univariate Data Visualization</a></li>
 <li class="chapter" data-level="9.6.3" data-path="transform.html"><a href="transform.html#rescale-and-censor-data"><i class="fa fa-check"></i><b>9.6.3</b> Rescale and Censor Data</a></li>
@@ -350,9 +389,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.7" data-path="transform.html"><a href="transform.html#ch-9-homework"><i class="fa fa-check"></i><b>9.7</b> Ch-9 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a><ul>
+<li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="measure.html"><a href="measure.html#ch.-10-objectives"><i class="fa fa-check"></i><b>10.1</b> Ch. 10 Objectives</a></li>
-<li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a><ul>
+<li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#sample"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
 <li class="chapter" data-level="10.2.2" data-path="measure.html"><a href="measure.html#sample.collect"><i class="fa fa-check"></i><b>10.2.2</b> Collecting a sample</a></li>
 <li class="chapter" data-level="10.2.3" data-path="measure.html"><a href="measure.html#simple-random-sampling"><i class="fa fa-check"></i><b>10.2.3</b> Simple Random Sampling</a></li>
@@ -360,50 +401,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.5" data-path="measure.html"><a href="measure.html#stratified-sampling"><i class="fa fa-check"></i><b>10.2.5</b> Stratified Sampling</a></li>
 <li class="chapter" data-level="10.2.6" data-path="measure.html"><a href="measure.html#cluster-sampling"><i class="fa fa-check"></i><b>10.2.6</b> Cluster Sampling</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a><ul>
+<li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a>
+<ul>
 <li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#LOD"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
 <li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
 <li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>10.3.3</b> Precision</a></li>
 <li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>10.3.4</b> Bias (accuracy)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a><ul>
+<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a>
+<ul>
 <li class="chapter" data-level="10.4.1" data-path="measure.html"><a href="measure.html#repeated"><i class="fa fa-check"></i><b>10.4.1</b> Repeated Measures</a></li>
 <li class="chapter" data-level="10.4.2" data-path="measure.html"><a href="measure.html#error-propagation"><i class="fa fa-check"></i><b>10.4.2</b> Error Propagation</a></li>
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="measure.html"><a href="measure.html#ch-10-homework"><i class="fa fa-check"></i><b>10.5</b> CH-10 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a><ul>
+<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="model.html"><a href="model.html#ch.-11-objectives"><i class="fa fa-check"></i><b>11.1</b> Ch. 11 Objectives</a></li>
-<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#process-modeling"><i class="fa fa-check"></i><b>11.2</b> Process Modeling</a><ul>
+<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#process-modeling"><i class="fa fa-check"></i><b>11.2</b> Process Modeling</a>
+<ul>
 <li class="chapter" data-level="11.2.1" data-path="model.html"><a href="model.html#assumptions"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions</a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="model.html"><a href="model.html#model-fitting"><i class="fa fa-check"></i><b>11.3</b> Model Fitting</a></li>
-<li class="chapter" data-level="11.4" data-path="model.html"><a href="model.html#ols-regression"><i class="fa fa-check"></i><b>11.4</b> OLS Regression</a><ul>
+<li class="chapter" data-level="11.4" data-path="model.html"><a href="model.html#ols-regression"><i class="fa fa-check"></i><b>11.4</b> OLS Regression</a>
+<ul>
 <li class="chapter" data-level="11.4.1" data-path="model.html"><a href="model.html#OLS_assum"><i class="fa fa-check"></i><b>11.4.1</b> OLS Assumptions and Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="model.html"><a href="model.html#example-ols-linear-regression"><i class="fa fa-check"></i><b>11.5</b> Example: OLS Linear Regression</a><ul>
+<li class="chapter" data-level="11.5" data-path="model.html"><a href="model.html#example-ols-linear-regression"><i class="fa fa-check"></i><b>11.5</b> Example: OLS Linear Regression</a>
+<ul>
 <li class="chapter" data-level="11.5.1" data-path="model.html"><a href="model.html#the-lm-function"><i class="fa fa-check"></i><b>11.5.1</b> The <code>lm()</code> function</a></li>
 <li class="chapter" data-level="11.5.2" data-path="model.html"><a href="model.html#ols-diagnostics"><i class="fa fa-check"></i><b>11.5.2</b> OLS Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a><ul>
+<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a>
+<ul>
 <li class="chapter" data-level="11.6.1" data-path="model.html"><a href="model.html#example-calibration"><i class="fa fa-check"></i><b>11.6.1</b> Example Calibration</a></li>
 </ul></li>
 <li class="chapter" data-level="11.7" data-path="model.html"><a href="model.html#ch-11-homework"><i class="fa fa-check"></i><b>11.7</b> Ch-11 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Stats &amp; Reference Distributions</a><ul>
+<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Stats &amp; Reference Distributions</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="dist.html"><a href="dist.html#measures-of-central-tendency"><i class="fa fa-check"></i><b>12.1</b> Measures of Central Tendency</a></li>
 <li class="chapter" data-level="12.2" data-path="dist.html"><a href="dist.html#measures-of-dispersion"><i class="fa fa-check"></i><b>12.2</b> Measures of Dispersion</a></li>
-<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.3</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.3</b> Uniform Distribution</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="dist.html"><a href="dist.html#uniform-characteristic-plots"><i class="fa fa-check"></i><b>12.3.1</b> Uniform Characteristic Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.4</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="12.4" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.4</b> Normal Distribution</a>
+<ul>
 <li class="chapter" data-level="12.4.1" data-path="dist.html"><a href="dist.html#normal-characteristic-plots"><i class="fa fa-check"></i><b>12.4.1</b> Normal Characteristic Plots</a></li>
 <li class="chapter" data-level="12.4.2" data-path="dist.html"><a href="dist.html#rule"><i class="fa fa-check"></i><b>12.4.2</b> 68-95-99 rule</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>12.5</b> Log-normal Distribution</a><ul>
+<li class="chapter" data-level="12.5" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>12.5</b> Log-normal Distribution</a>
+<ul>
 <li class="chapter" data-level="12.5.1" data-path="dist.html"><a href="dist.html#lognormal-characteristic-plots"><i class="fa fa-check"></i><b>12.5.1</b> Lognormal Characteristic Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="12.6" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>12.6</b> Pearson Correlation Coefficient</a></li>
+<li class="chapter" data-level="12.7" data-path="dist.html"><a href="dist.html#OLS"><i class="fa fa-check"></i><b>12.7</b> OLS Regression Coefficients</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -425,10 +478,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="transform" class="section level1">
+<div id="transform" class="section level1" number="9">
 <h1><span class="header-section-number">Chapter 9</span> Transformations and Other Tricks</h1>
 <p>This chapter provides an introduction to several common techniques to organize, transform, and/or manipulate univariate data. I use the word <em>manipulate</em> here with good reason; many of these techniques can be used inappropriately or lead to inadvertent consequences, so tread carefully! That warning aside, these techniques are useful and often allow you to gain insight into <em>“what the data are trying to tell you”</em>.</p>
-<div id="ch.-9-objectives" class="section level2">
+<div id="ch.-9-objectives" class="section level2" number="9.1">
 <h2><span class="header-section-number">9.1</span> Ch. 9 Objectives</h2>
 <p>This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:</p>
 <ul>
@@ -439,7 +492,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Discuss the risks and potential approaches to handling outliers</li>
 </ul>
 </div>
-<div id="transformation" class="section level2">
+<div id="transformation" class="section level2" number="9.2">
 <h2><span class="header-section-number">9.2</span> Transformation</h2>
 <p>The phrase <em>“Data Transformation”</em> means different things in different fields so we will define it here, in the statistical sense, as: <strong><em>applying one or more mathematical operations to a variable</em></strong> (or in our case, all elements of a numeric vector). You are undoubtedly familiar with data transformation, even if you haven’t previously recognized it. Some examples include:</p>
 <ul>
@@ -447,13 +500,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>taking the log, square root, or reciprocal of a variable;</li>
 <li>some combination of these approaches.</li>
 </ul>
-<p>For example, your data are transformed whenever you convert temperature units from °F to °C, length units from inches to millimeters, or render a variable dimensionless (e.g., converting to units of percent, parts per million, or some other unitless value). In addition to these “units transformations”, we also conduct transformations to make the <strong><em>location</em></strong> and <strong><em>spread</em></strong> of data consistent, or to change the <strong><em>shape</em></strong> of a distribution of data (e.g., to reduce skewness or to linearize a variable). These latter approaches are often employed during multivariate analyses to help your variables “play nicely together” within the analytic framework you set forth. More on this to come.</p>
+<p>For example, your data are transformed whenever you convert temperature units from °F to °C, length units from inches to millimeters, or render a variable dimensionless (e.g., converting to units of percent, parts per million, or some other unitless value). In addition to these “units transformations,” we also conduct transformations to make the <strong><em>location</em></strong> and <strong><em>spread</em></strong> of data consistent, or to change the <strong><em>shape</em></strong> of a distribution of data (e.g., to reduce skewness or to linearize a variable). These latter approaches are often employed during multivariate analyses to help your variables “play nicely together” within the analytic framework you set forth. More on this to come.</p>
 <div class="rmdnote">
 <p>
 There are two key facets to data transformation: <strong>justification</strong> and <strong>documentation</strong>. Whenever data are transformed, you must provide a good reason for doing so (hint: there are many good reasons and also a few bad ones). Furthermore, <strong>you must adequately document “how” and “why” the data were transformed</strong>, so that others can understand your work and reproduce your results if needed.
 </p>
 </div>
-<div id="centering" class="section level3">
+<div id="centering" class="section level3" number="9.2.1">
 <h3><span class="header-section-number">9.2.1</span> Centering</h3>
 <p>Centering means <strong><em>to subtract (or sometimes add) a constant from all values</em></strong> in a vector. The <strong>constant</strong> to be subtracted could be an estimate of the data’s central tendency, like the mean or median (hence the term <em>center</em>-ing), or it could be some residual value that you want to remove from all observations. If you subtract the mean from every value of a vector, then the new vector will have a mean of 0; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location. Centering <strong><em>changes the location</em></strong> of a variable but <strong><em>spread stays the same</em></strong>.</p>
 <p>In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to “background subtract” or “zero” a set of univariate observations. If you have ever used a digital scale to measure the weight of an object, you’ve probably noticed that when you turn it on, the scale does not always read zero. Most of the time the instrument has a way to “re-zero” itself prior to use, but this is not always the case. If your scale shows a mass of 198 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 298 from all subsequent weights that you perform with this scale. That subtraction is an example of a “centering” transformation.</p>
@@ -464,7 +517,7 @@ Figure 9.1: Data are sometimes centered to correct spurious values
 </p>
 </div>
 </div>
-<div id="rescaling" class="section level3">
+<div id="rescaling" class="section level3" number="9.2.2">
 <h3><span class="header-section-number">9.2.2</span> Rescaling</h3>
 <p><strong>To rescale a variable means to divide (or multiply) all values by a constant</strong>. Whereas <em>centering</em> is an arithmetic transformation, the process of <em>rescaling</em> data is multiplicative. Rescaling changes both the location and spread of the data.</p>
 <p>Some reasons to rescale data include:</p>
@@ -476,7 +529,7 @@ Figure 9.1: Data are sometimes centered to correct spurious values
 </ul>
 </div>
 </div>
-<div id="normalization-and-standardization" class="section level2">
+<div id="normalization-and-standardization" class="section level2" number="9.3">
 <h2><span class="header-section-number">9.3</span> Normalization and Standardization</h2>
 <p>In a generic sense, to <strong><em>“normalize”</em></strong> a variable means: <strong>to transform that variable so that it can be compared, evaluated, or comprehended more easily.</strong> Normalization often involves a combination of centering and rescaling operations that not only change the location and spread of the data, but also the <em>meaning</em> of data. Normalization is performed all the time.</p>
 <div class="rmdwarning">
@@ -485,23 +538,22 @@ Like <em>“transformation”</em>, the word “<em>normalization</em>” is def
 </p>
 </div>
 <p>There are many types of normalization operations; we will discuss a few examples below.</p>
-<div id="rate-normalization" class="section level3">
+<div id="rate-normalization" class="section level3" number="9.3.1">
 <h3><span class="header-section-number">9.3.1</span> Rate normalization</h3>
 <p>To perform a rate normalization is <strong>to divide one variable into another</strong>, often to report something in terms of a rate.</p>
 <ul>
-<li>Two cars can have the same range (how many miles they can travel on one tank of gas) but different rates of fuel efficiency (miles traveled per gallon)
-<ul>
+<li>Two cars can have the same range (how many miles they can travel on one tank of gas) but different rates of fuel efficiency (miles traveled per gallon)<br />
+</li>
 <li>Two countries can have the same GDI (<em>gross domestic income</em>; the sum of all wages earned) but widely different rates of “per capita” income (GDI/total population size).</li>
-</ul></li>
 </ul>
 </div>
-<div id="standardizing" class="section level3">
+<div id="standardizing" class="section level3" number="9.3.2">
 <h3><span class="header-section-number">9.3.2</span> Standardizing</h3>
 <p>Standardization is a special case of transformation/normalization where each value in a set of observations (or vector) is subtracted by some level (often the central tendency) and divided by the spread. When working with normally distributed data, the standardization of variable <span class="math inline">\(x_i\)</span> into <span class="math inline">\(z_i\)</span> is:</p>
 <p><span class="math display">\[z_{i} = \frac{x_{i}-\overline{x}}{\sigma_{x}}\]</span></p>
 <p>where the mean and standard deviation of <span class="math inline">\(x\)</span> are <span class="math inline">\(\overline{x}\)</span> and <span class="math inline">\(\sigma_{x}\)</span>, respectively. The <em>standardization</em> of a variable renders the mean to 0 and the standard deviation to 1. This type of normalization is useful when you wish to study relationships between multiple variables, each with different scale. Note that standardization doesn’t have to use the mean and standard deviation as the centering and normalizing variables, but those two are common.</p>
 </div>
-<div id="reducing-skewness" class="section level3">
+<div id="reducing-skewness" class="section level3" number="9.3.3">
 <h3><span class="header-section-number">9.3.3</span> Reducing Skewness</h3>
 <p>Sometimes your data are <em>not normally distributed</em>, even though you want them to be. In that case you still have options. Some transformations, like the log, square root, or inverse, will make the spread of the data symmetric and approximately Gaussian. These transformations are commonly used to meet the needs (read: underlying assumptions) of many statistical models. We discuss model assumptions (and their evaluation) in the <a href="model.html#model">modeling chapter</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:reduce-skew2"></span>
@@ -513,7 +565,7 @@ Figure 9.2: The log(x) transform is often used to reduce skewness in a variable.
 <p>If you would like to lean more about data transformations (and how to make your data appear normally distributed), look up the <strong><em>Box-Cox method</em></strong> of power transformations. Lots of packages can run this method in R, such as <code>MASS::boxcox</code> and <code>EnvStats::boxcox</code>. And, yes, George Box is the same person that brought you the boxplot!</p>
 </div>
 </div>
-<div id="stratification" class="section level2">
+<div id="stratification" class="section level2" number="9.4">
 <h2><span class="header-section-number">9.4</span> Stratification</h2>
 <p><strong>To stratify a sample means: to divide the sample into subsets (aka strata).</strong></p>
 <p>Stratified analyses can be performed many ways; one particularly useful way is graphically, by creating a stratification plot. A stratification plot is like any other visualization that you have created, except that the strata are identified (i.e., called out) through the use of color, lines, symbols, etc. Let’s use the following example to demonstrate:</p>
@@ -531,12 +583,12 @@ Figure 9.3: Yield vs. Purity from the plant’s three reactors over one month
 Figure 9.4: Yield vs. Purity over one month, stratified by reactor type
 </p>
 </div>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="transform.html#cb319-1"></a>strat.data <span class="op">%&gt;%</span></span>
-<span id="cb319-2"><a href="transform.html#cb319-2"></a><span class="st">  </span><span class="kw">group_by</span>(reactor) <span class="op">%&gt;%</span></span>
-<span id="cb319-3"><a href="transform.html#cb319-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="st">&quot;Pearson&#39;s r&quot;</span> =<span class="st"> </span><span class="kw">cor</span>(yield2, purity),</span>
-<span id="cb319-4"><a href="transform.html#cb319-4"></a>            <span class="dt">.groups =</span> <span class="st">&quot;keep&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb319-5"><a href="transform.html#cb319-5"></a><span class="st">  </span><span class="kw">kable</span>(<span class="dt">align =</span> <span class="st">&quot;c&quot;</span>,</span>
-<span id="cb319-6"><a href="transform.html#cb319-6"></a>        <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="transform.html#cb319-1" aria-hidden="true" tabindex="-1"></a>strat.data <span class="sc">%&gt;%</span></span>
+<span id="cb319-2"><a href="transform.html#cb319-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(reactor) <span class="sc">%&gt;%</span></span>
+<span id="cb319-3"><a href="transform.html#cb319-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">&quot;Pearson&#39;s r&quot;</span> <span class="ot">=</span> <span class="fu">cor</span>(yield2, purity),</span>
+<span id="cb319-4"><a href="transform.html#cb319-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;keep&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb319-5"><a href="transform.html#cb319-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">align =</span> <span class="st">&quot;c&quot;</span>,</span>
+<span id="cb319-6"><a href="transform.html#cb319-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -572,7 +624,7 @@ Figure 9.4: Yield vs. Purity over one month, stratified by reactor type
 </p>
 </div>
 </div>
-<div id="outliers-and-censoring" class="section level2">
+<div id="outliers-and-censoring" class="section level2" number="9.5">
 <h2><span class="header-section-number">9.5</span> Outliers and Censoring</h2>
 <p>Have you ever heard the phrase <strong><em>“don’t make the exception the rule”</em></strong>?</p>
 <p>I think this phrase means, <em>don’t let your judgment be governed solely by outliers.</em> Whether or not this is good advice probably depends on the situation, but I do think one should have the ability to detect <strong><em>when an outlier has leverage over a situation</em></strong>.</p>
@@ -581,23 +633,21 @@ Figure 9.4: Yield vs. Purity over one month, stratified by reactor type
 An <strong>outlier</strong> is an observation that lies an abnormal distance from other values in a random sample.
 </p>
 </div>
-<div id="outliers" class="section level3">
+<div id="outliers" class="section level3" number="9.5.1">
 <h3><span class="header-section-number">9.5.1</span> Detecting Outliers</h3>
 <p>Data visualization (like histograms, density plots, time-series, and boxplots) can be useful for detecting outliers, because such graphs make it clear that one or more observations <em>“don’t seem to belong with the rest”</em>. For example, let’s create an artificial dataframe called <code>asthma.data</code>. Within this dataframe are two variables:</p>
 <ul>
-<li><code>asthma.rate</code>: the percentage of kids with asthma in a given school district
-<ul>
+<li><code>asthma.rate</code>: the percentage of kids with asthma in a given school district</li>
 <li><code>black.carbon</code>: the concentration of airborne black carbon (a type of air pollutant generated by incomplete combustion, similar to what you see exhausted from a diesel truck) measured outside of a school at the center of each district.</li>
-</ul></li>
 </ul>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="transform.html#cb320-1"></a>asthma.data &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb320-2"><a href="transform.html#cb320-2"></a>  <span class="dt">asthma.rate =</span> <span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">9</span>, </span>
-<span id="cb320-3"><a href="transform.html#cb320-3"></a>                  <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">10</span>,</span>
-<span id="cb320-4"><a href="transform.html#cb320-4"></a>                  <span class="dv">16</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">9</span>),</span>
-<span id="cb320-5"><a href="transform.html#cb320-5"></a>  <span class="dt">black.carbon =</span> <span class="kw">c</span>(<span class="fl">3.2</span>, <span class="fl">2.5</span>, <span class="fl">4.6</span>, <span class="fl">6.1</span>, <span class="fl">3.3</span>, </span>
-<span id="cb320-6"><a href="transform.html#cb320-6"></a>                   <span class="fl">3.1</span>, <span class="fl">6.1</span>, <span class="fl">5.3</span>, <span class="fl">4.5</span>, <span class="fl">3.3</span>, </span>
-<span id="cb320-7"><a href="transform.html#cb320-7"></a>                   <span class="fl">6.4</span>, <span class="fl">3.7</span>, <span class="fl">5.1</span>, <span class="fl">6.8</span>, <span class="dv">12</span>)</span>
-<span id="cb320-8"><a href="transform.html#cb320-8"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="transform.html#cb320-1" aria-hidden="true" tabindex="-1"></a>asthma.data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb320-2"><a href="transform.html#cb320-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">asthma.rate =</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">9</span>, </span>
+<span id="cb320-3"><a href="transform.html#cb320-3" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">10</span>,</span>
+<span id="cb320-4"><a href="transform.html#cb320-4" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">16</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">9</span>),</span>
+<span id="cb320-5"><a href="transform.html#cb320-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">black.carbon =</span> <span class="fu">c</span>(<span class="fl">3.2</span>, <span class="fl">2.5</span>, <span class="fl">4.6</span>, <span class="fl">6.1</span>, <span class="fl">3.3</span>, </span>
+<span id="cb320-6"><a href="transform.html#cb320-6" aria-hidden="true" tabindex="-1"></a>                   <span class="fl">3.1</span>, <span class="fl">6.1</span>, <span class="fl">5.3</span>, <span class="fl">4.5</span>, <span class="fl">3.3</span>, </span>
+<span id="cb320-7"><a href="transform.html#cb320-7" aria-hidden="true" tabindex="-1"></a>                   <span class="fl">6.4</span>, <span class="fl">3.7</span>, <span class="fl">5.1</span>, <span class="fl">6.8</span>, <span class="dv">12</span>)</span>
+<span id="cb320-8"><a href="transform.html#cb320-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>The plot below shows two boxplots: one depicts <code>asthma.rate</code> for the 15 school districts; the other depicts <code>black.carbon</code>. I’ve circled the apparent outlier. <strong>Outliers are easy to see in boxplots because they fall outside the whiskers.</strong></p>
 <div class="figure" style="text-align: center"><span id="fig:outlier-1"></span>
 <img src="09-transf_files/figure-html/outlier-1-1.png" alt="Boxplots for two sets of data; the one on the right has an outlier." width="500" />
@@ -609,25 +659,23 @@ Figure 9.5: Boxplots for two sets of data; the one on the right has an outlier.
 <p><strong>The “1.5 x IQR” rule</strong> is what was used in the boxplot of Figure <a href="transform.html#fig:outlier-1">9.5</a>.</p>
 <p>This rule states that outliers are <strong>any data points more than 1.5 times the inter-quartile range away from the upper and lower quartiles</strong>. This means data that are:</p>
 <ul>
-<li><em>greater than</em>: [0.75 quantile value] + 1.5*IQR
-<ul>
+<li><em>greater than</em>: [0.75 quantile value] + 1.5*IQR</li>
 <li><em>less than</em>: [0.25 quantile value] - 1.5*IQR</li>
-</ul></li>
 </ul>
 <p>For the <code>black.carbon</code> data, we could calculate these thresholds with the following:</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="transform.html#cb321-1"></a>upper &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon,</span>
-<span id="cb321-2"><a href="transform.html#cb321-2"></a>                  <span class="dt">probs =</span> <span class="fl">0.75</span>,</span>
-<span id="cb321-3"><a href="transform.html#cb321-3"></a>                  <span class="dt">names =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb321-4"><a href="transform.html#cb321-4"></a><span class="st">  </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon)</span>
-<span id="cb321-5"><a href="transform.html#cb321-5"></a></span>
-<span id="cb321-6"><a href="transform.html#cb321-6"></a>lower &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon,</span>
-<span id="cb321-7"><a href="transform.html#cb321-7"></a>                  <span class="dt">probs =</span> <span class="fl">0.25</span>,</span>
-<span id="cb321-8"><a href="transform.html#cb321-8"></a>                  <span class="dt">names =</span> <span class="ot">FALSE</span>) <span class="op">-</span><span class="st"> </span></span>
-<span id="cb321-9"><a href="transform.html#cb321-9"></a><span class="st">  </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(<span class="dt">x =</span> asthma.data<span class="op">$</span>black.carbon)</span>
-<span id="cb321-10"><a href="transform.html#cb321-10"></a></span>
-<span id="cb321-11"><a href="transform.html#cb321-11"></a>upper</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="transform.html#cb321-1" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> <span class="fu">quantile</span>(<span class="at">x =</span> asthma.data<span class="sc">$</span>black.carbon,</span>
+<span id="cb321-2"><a href="transform.html#cb321-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">probs =</span> <span class="fl">0.75</span>,</span>
+<span id="cb321-3"><a href="transform.html#cb321-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">names =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb321-4"><a href="transform.html#cb321-4" aria-hidden="true" tabindex="-1"></a>  <span class="fl">1.5</span><span class="sc">*</span><span class="fu">IQR</span>(<span class="at">x =</span> asthma.data<span class="sc">$</span>black.carbon)</span>
+<span id="cb321-5"><a href="transform.html#cb321-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb321-6"><a href="transform.html#cb321-6" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> <span class="fu">quantile</span>(<span class="at">x =</span> asthma.data<span class="sc">$</span>black.carbon,</span>
+<span id="cb321-7"><a href="transform.html#cb321-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">probs =</span> <span class="fl">0.25</span>,</span>
+<span id="cb321-8"><a href="transform.html#cb321-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">names =</span> <span class="cn">FALSE</span>) <span class="sc">-</span> </span>
+<span id="cb321-9"><a href="transform.html#cb321-9" aria-hidden="true" tabindex="-1"></a>  <span class="fl">1.5</span><span class="sc">*</span><span class="fu">IQR</span>(<span class="at">x =</span> asthma.data<span class="sc">$</span>black.carbon)</span>
+<span id="cb321-10"><a href="transform.html#cb321-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb321-11"><a href="transform.html#cb321-11" aria-hidden="true" tabindex="-1"></a>upper</span></code></pre></div>
 <pre><code>## [1] 10.3</code></pre>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="transform.html#cb323-1"></a>lower</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="transform.html#cb323-1" aria-hidden="true" tabindex="-1"></a>lower</span></code></pre></div>
 <pre><code>## [1] -0.9</code></pre>
 <p>Interestingly, this rule suggests that outliers on the lower end need to be negative. Is that even possible for air pollution concentrations? (hint: NO) Other statistical approaches for detecting outliers include:</p>
 <ul>
@@ -637,7 +685,7 @@ Figure 9.5: Boxplots for two sets of data; the one on the right has an outlier.
 </ul>
 <p>In the end, however, common sense and your contextual knowledge of the data are usually more important here.</p>
 </div>
-<div id="censoring-outliers" class="section level3">
+<div id="censoring-outliers" class="section level3" number="9.5.2">
 <h3><span class="header-section-number">9.5.2</span> Censoring outliers</h3>
 <p>What should we do with outliers in our data? The answer depends on context (<em>are these life and death data we’re dealing with or just the size of tomatoes from your garden?</em>) and on the questions you are asking. Here’s an example:</p>
 <p>The black carbon boxplot (right side of <a href="transform.html#fig:outlier-1">9.5</a>) has a clear outlier that falls far outside of the rest of the data. This might not seem like a big deal but take a look at what happens when we fit a regression line through the data <span style="color: orange;">with the outlier included</span> and <span style="color: blue;">without the outlier</span>.</p>
@@ -656,15 +704,15 @@ Figure 9.6: Effect of an outlier on a linear model with n=15 data points.
 </div>
 </div>
 </div>
-<div id="ch-9-exercises" class="section level2">
+<div id="ch-9-exercises" class="section level2" number="9.6">
 <h2><span class="header-section-number">9.6</span> Ch-9 Exercises</h2>
 <p>Let’s return to the topic of salaries by college major, as collected by the <a href="https://www.nsf.gov/statistics/srvygrads/">NSF Survey of College Graduates</a>. I’ve extracted survey results for graduates of political science programs into a file called <code>salary_ch9.csv</code>. You can find this .csv file on Canvas or our GitHub repository.</p>
-<div id="salary-data-for-poly-sci-majors" class="section level3">
+<div id="salary-data-for-poly-sci-majors" class="section level3" number="9.6.1">
 <h3><span class="header-section-number">9.6.1</span> Salary Data for Poly Sci Majors</h3>
 <p>Let’s read in the file and peek at the contents:</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="transform.html#cb325-1"></a>salary_ps &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/salary_ch9.csv&quot;</span>)</span>
-<span id="cb325-2"><a href="transform.html#cb325-2"></a></span>
-<span id="cb325-3"><a href="transform.html#cb325-3"></a><span class="kw">head</span>(salary_ps)</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="transform.html#cb325-1" aria-hidden="true" tabindex="-1"></a>salary_ps <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;./data/salary_ch9.csv&quot;</span>)</span>
+<span id="cb325-2"><a href="transform.html#cb325-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb325-3"><a href="transform.html#cb325-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(salary_ps)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   salary sex   major   
 ##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   
@@ -675,15 +723,15 @@ Figure 9.6: Effect of an outlier on a linear model with n=15 data points.
 ## 5  60000 M     Poly Sci
 ## 6 200000 M     Poly Sci</code></pre>
 <p>We can see that we have <code>salary</code> information, <code>sex</code> (<em>Male</em> or <em>Female</em> respondent), and <code>major</code> (all of which are Poly Sci). Let’s calculate some basic descriptive statistics grouped by respondent sex.</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="transform.html#cb327-1"></a>salary_ps <span class="op">%&gt;%</span></span>
-<span id="cb327-2"><a href="transform.html#cb327-2"></a><span class="st">  </span><span class="kw">group_by</span>(sex) <span class="op">%&gt;%</span></span>
-<span id="cb327-3"><a href="transform.html#cb327-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">median =</span> <span class="kw">median</span>(salary),</span>
-<span id="cb327-4"><a href="transform.html#cb327-4"></a>          <span class="dt">mean =</span> <span class="kw">mean</span>(salary),</span>
-<span id="cb327-5"><a href="transform.html#cb327-5"></a>          <span class="dt">min =</span> <span class="kw">min</span>(salary),</span>
-<span id="cb327-6"><a href="transform.html#cb327-6"></a>          <span class="dt">max =</span> <span class="kw">max</span>(salary),</span>
-<span id="cb327-7"><a href="transform.html#cb327-7"></a>          <span class="dt">IQR =</span> <span class="kw">IQR</span>(salary),</span>
-<span id="cb327-8"><a href="transform.html#cb327-8"></a>          <span class="dt">.groups =</span> <span class="st">&quot;keep&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb327-9"><a href="transform.html#cb327-9"></a><span class="st">  </span><span class="kw">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="transform.html#cb327-1" aria-hidden="true" tabindex="-1"></a>salary_ps <span class="sc">%&gt;%</span></span>
+<span id="cb327-2"><a href="transform.html#cb327-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb327-3"><a href="transform.html#cb327-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">median =</span> <span class="fu">median</span>(salary),</span>
+<span id="cb327-4"><a href="transform.html#cb327-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">mean =</span> <span class="fu">mean</span>(salary),</span>
+<span id="cb327-5"><a href="transform.html#cb327-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">min =</span> <span class="fu">min</span>(salary),</span>
+<span id="cb327-6"><a href="transform.html#cb327-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">max =</span> <span class="fu">max</span>(salary),</span>
+<span id="cb327-7"><a href="transform.html#cb327-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">IQR =</span> <span class="fu">IQR</span>(salary),</span>
+<span id="cb327-8"><a href="transform.html#cb327-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">.groups =</span> <span class="st">&quot;keep&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb327-9"><a href="transform.html#cb327-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 6
 ##   sex   median    mean   min     max   IQR
 ##   &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -691,45 +739,44 @@ Figure 9.6: Effect of an outlier on a linear model with n=15 data points.
 ## 2 M      80000 114331.     0 1027653 78000</code></pre>
 <p>These descriptive statistics allow some quick insight into the data:</p>
 <ul>
-<li>Poly Sci majors identifying as male make higher median/mean salaries than those identifying as female;
-<ul>
+<li>Poly Sci majors identifying as male make higher median/mean salaries than those identifying as female;<br />
+</li>
 <li>The mean salary is higher than the median salary in both cases (note that for perfectly <em>normal</em> distributions the mean and mean are equivalent);</li>
 <li>The max salary is the same for both genders and is 10x higher than the median. With a <code>min()</code> of 0 for both genders, this implies some level of skewness in these data.</li>
-</ul></li>
 </ul>
 </div>
-<div id="univariate-data-visualization-1" class="section level3">
+<div id="univariate-data-visualization-1" class="section level3" number="9.6.2">
 <h3><span class="header-section-number">9.6.2</span> Univariate Data Visualization</h3>
 <p>Let’s visualize these data with some basic EDA plots:</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="transform.html#cb329-1"></a><span class="co">#create EDA plots</span></span>
-<span id="cb329-2"><a href="transform.html#cb329-2"></a>box1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> salary_ps,</span>
-<span id="cb329-3"><a href="transform.html#cb329-3"></a>       <span class="kw">aes</span>(<span class="dt">y =</span> sex,</span>
-<span id="cb329-4"><a href="transform.html#cb329-4"></a>           <span class="dt">x =</span> salary,</span>
-<span id="cb329-5"><a href="transform.html#cb329-5"></a>           <span class="dt">fill =</span> sex)) <span class="op">+</span></span>
-<span id="cb329-6"><a href="transform.html#cb329-6"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></span>
-<span id="cb329-7"><a href="transform.html#cb329-7"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">label_dollar</span>())<span class="op">+</span></span>
-<span id="cb329-8"><a href="transform.html#cb329-8"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb329-9"><a href="transform.html#cb329-9"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb329-10"><a href="transform.html#cb329-10"></a></span>
-<span id="cb329-11"><a href="transform.html#cb329-11"></a>hist1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> salary_ps,</span>
-<span id="cb329-12"><a href="transform.html#cb329-12"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> salary,</span>
-<span id="cb329-13"><a href="transform.html#cb329-13"></a>           <span class="dt">fill =</span> sex)) <span class="op">+</span></span>
-<span id="cb329-14"><a href="transform.html#cb329-14"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb329-15"><a href="transform.html#cb329-15"></a>                 <span class="dt">bins =</span> <span class="dv">50</span>) <span class="op">+</span></span>
-<span id="cb329-16"><a href="transform.html#cb329-16"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">label_dollar</span>()) <span class="op">+</span></span>
-<span id="cb329-17"><a href="transform.html#cb329-17"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb329-18"><a href="transform.html#cb329-18"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
-<span id="cb329-19"><a href="transform.html#cb329-19"></a></span>
-<span id="cb329-20"><a href="transform.html#cb329-20"></a>cdf1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> salary_ps,</span>
-<span id="cb329-21"><a href="transform.html#cb329-21"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> salary,</span>
-<span id="cb329-22"><a href="transform.html#cb329-22"></a>           <span class="dt">color =</span> sex)) <span class="op">+</span></span>
-<span id="cb329-23"><a href="transform.html#cb329-23"></a><span class="st">  </span><span class="kw">stat_ecdf</span>() <span class="op">+</span></span>
-<span id="cb329-24"><a href="transform.html#cb329-24"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">label_dollar</span>()) <span class="op">+</span></span>
-<span id="cb329-25"><a href="transform.html#cb329-25"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb329-26"><a href="transform.html#cb329-26"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="op">+</span></span>
-<span id="cb329-27"><a href="transform.html#cb329-27"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
-<span id="cb329-28"><a href="transform.html#cb329-28"></a></span>
-<span id="cb329-29"><a href="transform.html#cb329-29"></a><span class="kw">grid.arrange</span>(box1, hist1, cdf1, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="transform.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="co">#create EDA plots</span></span>
+<span id="cb329-2"><a href="transform.html#cb329-2" aria-hidden="true" tabindex="-1"></a>box1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps,</span>
+<span id="cb329-3"><a href="transform.html#cb329-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> sex,</span>
+<span id="cb329-4"><a href="transform.html#cb329-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> salary,</span>
+<span id="cb329-5"><a href="transform.html#cb329-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb329-6"><a href="transform.html#cb329-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb329-7"><a href="transform.html#cb329-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>())<span class="sc">+</span></span>
+<span id="cb329-8"><a href="transform.html#cb329-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb329-9"><a href="transform.html#cb329-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb329-10"><a href="transform.html#cb329-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb329-11"><a href="transform.html#cb329-11" aria-hidden="true" tabindex="-1"></a>hist1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps,</span>
+<span id="cb329-12"><a href="transform.html#cb329-12" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
+<span id="cb329-13"><a href="transform.html#cb329-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb329-14"><a href="transform.html#cb329-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb329-15"><a href="transform.html#cb329-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb329-16"><a href="transform.html#cb329-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
+<span id="cb329-17"><a href="transform.html#cb329-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb329-18"><a href="transform.html#cb329-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
+<span id="cb329-19"><a href="transform.html#cb329-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb329-20"><a href="transform.html#cb329-20" aria-hidden="true" tabindex="-1"></a>cdf1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps,</span>
+<span id="cb329-21"><a href="transform.html#cb329-21" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
+<span id="cb329-22"><a href="transform.html#cb329-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> sex)) <span class="sc">+</span></span>
+<span id="cb329-23"><a href="transform.html#cb329-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>() <span class="sc">+</span></span>
+<span id="cb329-24"><a href="transform.html#cb329-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
+<span id="cb329-25"><a href="transform.html#cb329-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb329-26"><a href="transform.html#cb329-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="sc">+</span></span>
+<span id="cb329-27"><a href="transform.html#cb329-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
+<span id="cb329-28"><a href="transform.html#cb329-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb329-29"><a href="transform.html#cb329-29" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(box1, hist1, cdf1, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:salary-ps-plots"></span>
 <img src="09-transf_files/figure-html/salary-ps-plots-1.png" alt="Annual Salaries ($1000s) Reported by Poly Sci Majors" width="672" />
 <p class="caption">
@@ -739,56 +786,54 @@ Figure 9.7: Annual Salaries ($1000s) Reported by Poly Sci Majors
 <p>The EDA plots confirm the salary discrepancy between male and female survey respondents and also suggest the <strong>presence of some outliers</strong>! Note how both the boxplot and histogram show a small amount of data way, way off to the right of each plot, where salary is about $1,000,000/yr. Strangely, there are no respondent data between about $500,000/yr and $1,000,000/yr. This seems very odd…</p>
 <p>Upon further digging into these data, the <a href="https://www.nsf.gov/statistics/2020/nsf20300/pdf/nsf20300.pdf">authors of the survey state</a> that “imputation methods” are employed for missing data. <strong><em>Imputation</em></strong> is a process where values are <em>guessed</em> based on a statistical inference of the data at hand. My suspicion is that a number of respondents chose not to report their annual salary (answers are optional) and that these extreme outliers were imputed based on other data/factors.</p>
 </div>
-<div id="rescale-and-censor-data" class="section level3">
+<div id="rescale-and-censor-data" class="section level3" number="9.6.3">
 <h3><span class="header-section-number">9.6.3</span> Rescale and Censor Data</h3>
 <p>Let’s make the following transformations to the data:</p>
 <ul>
-<li>We will <em>rescale</em> the salary data to units of thousands of dollars to remove some of the zeros from the plot labels;
-<ul>
+<li>We will <em>rescale</em> the salary data to units of thousands of dollars to remove some of the zeros from the plot labels;</li>
 <li>We will <em>censor</em> salaries above $500k/yr, since the validity of these numbers is dubious (<em>and because this is an exercise on data censoring</em>);</li>
 <li>We will <em>censor</em> salary levels below $10k/yr, because values below that level do not exceed the minimum wage for someone working full time.</li>
-</ul></li>
 </ul>
 <div class="rmdnote">
 <p>
 Each of these censoring actions is questionable and arguments for keeping or removing these outliers are possible. However, for the modeling exercise below (where we try to simulate the bulk of the univariate salary distribution), it is unlikely that these censoring actions have a strong effect on the outcome.
 </p>
 </div>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="transform.html#cb330-1"></a><span class="co">#rescale and censor the salary data</span></span>
-<span id="cb330-2"><a href="transform.html#cb330-2"></a>salary_ps2 &lt;-<span class="st"> </span>salary_ps <span class="op">%&gt;%</span></span>
-<span id="cb330-3"><a href="transform.html#cb330-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">salary =</span> salary<span class="op">/</span><span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#convert to thousands of $</span></span>
-<span id="cb330-4"><a href="transform.html#cb330-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(salary <span class="op">&lt;</span><span class="st"> </span><span class="dv">500</span>, <span class="co">#censor high outliers</span></span>
-<span id="cb330-5"><a href="transform.html#cb330-5"></a>                salary <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>)  <span class="co">#censor low outliers</span></span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="transform.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="co">#rescale and censor the salary data</span></span>
+<span id="cb330-2"><a href="transform.html#cb330-2" aria-hidden="true" tabindex="-1"></a>salary_ps2 <span class="ot">&lt;-</span> salary_ps <span class="sc">%&gt;%</span></span>
+<span id="cb330-3"><a href="transform.html#cb330-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">salary =</span> salary<span class="sc">/</span><span class="dv">1000</span>) <span class="sc">%&gt;%</span> <span class="co">#convert to thousands of $</span></span>
+<span id="cb330-4"><a href="transform.html#cb330-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(salary <span class="sc">&lt;</span> <span class="dv">500</span>, <span class="co">#censor high outliers</span></span>
+<span id="cb330-5"><a href="transform.html#cb330-5" aria-hidden="true" tabindex="-1"></a>                salary <span class="sc">&gt;</span> <span class="dv">10</span>)  <span class="co">#censor low outliers</span></span></code></pre></div>
 <p>Let’s recreate the EDA plots from Figure <a href="transform.html#fig:salary-ps-plots">9.7</a> using the transformed and censored data.</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="transform.html#cb331-1"></a><span class="co">#recreate EDA plots</span></span>
-<span id="cb331-2"><a href="transform.html#cb331-2"></a>box2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> salary_ps2,</span>
-<span id="cb331-3"><a href="transform.html#cb331-3"></a>       <span class="kw">aes</span>(<span class="dt">y =</span> sex,</span>
-<span id="cb331-4"><a href="transform.html#cb331-4"></a>           <span class="dt">x =</span> salary,</span>
-<span id="cb331-5"><a href="transform.html#cb331-5"></a>           <span class="dt">fill =</span> sex)) <span class="op">+</span></span>
-<span id="cb331-6"><a href="transform.html#cb331-6"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></span>
-<span id="cb331-7"><a href="transform.html#cb331-7"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">label_dollar</span>(<span class="dt">suffix =</span> <span class="st">&quot;k&quot;</span>))<span class="op">+</span></span>
-<span id="cb331-8"><a href="transform.html#cb331-8"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb331-9"><a href="transform.html#cb331-9"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb331-10"><a href="transform.html#cb331-10"></a></span>
-<span id="cb331-11"><a href="transform.html#cb331-11"></a>hist2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> salary_ps2,</span>
-<span id="cb331-12"><a href="transform.html#cb331-12"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> salary,</span>
-<span id="cb331-13"><a href="transform.html#cb331-13"></a>           <span class="dt">fill =</span> sex)) <span class="op">+</span></span>
-<span id="cb331-14"><a href="transform.html#cb331-14"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb331-15"><a href="transform.html#cb331-15"></a>                 <span class="dt">bins =</span> <span class="dv">50</span>) <span class="op">+</span></span>
-<span id="cb331-16"><a href="transform.html#cb331-16"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">label_dollar</span>(<span class="dt">suffix =</span> <span class="st">&quot;k&quot;</span>)) <span class="op">+</span></span>
-<span id="cb331-17"><a href="transform.html#cb331-17"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb331-18"><a href="transform.html#cb331-18"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
-<span id="cb331-19"><a href="transform.html#cb331-19"></a></span>
-<span id="cb331-20"><a href="transform.html#cb331-20"></a>cdf2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> salary_ps2,</span>
-<span id="cb331-21"><a href="transform.html#cb331-21"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> salary,</span>
-<span id="cb331-22"><a href="transform.html#cb331-22"></a>           <span class="dt">color =</span> sex)) <span class="op">+</span></span>
-<span id="cb331-23"><a href="transform.html#cb331-23"></a><span class="st">  </span><span class="kw">stat_ecdf</span>() <span class="op">+</span></span>
-<span id="cb331-24"><a href="transform.html#cb331-24"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">label_dollar</span>(<span class="dt">suffix =</span> <span class="st">&quot;k&quot;</span>)) <span class="op">+</span></span>
-<span id="cb331-25"><a href="transform.html#cb331-25"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb331-26"><a href="transform.html#cb331-26"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="op">+</span></span>
-<span id="cb331-27"><a href="transform.html#cb331-27"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
-<span id="cb331-28"><a href="transform.html#cb331-28"></a></span>
-<span id="cb331-29"><a href="transform.html#cb331-29"></a><span class="kw">grid.arrange</span>(box2, hist2, cdf2, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="transform.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="co">#recreate EDA plots</span></span>
+<span id="cb331-2"><a href="transform.html#cb331-2" aria-hidden="true" tabindex="-1"></a>box2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps2,</span>
+<span id="cb331-3"><a href="transform.html#cb331-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> sex,</span>
+<span id="cb331-4"><a href="transform.html#cb331-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> salary,</span>
+<span id="cb331-5"><a href="transform.html#cb331-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb331-6"><a href="transform.html#cb331-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb331-7"><a href="transform.html#cb331-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">&quot;k&quot;</span>))<span class="sc">+</span></span>
+<span id="cb331-8"><a href="transform.html#cb331-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb331-9"><a href="transform.html#cb331-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb331-10"><a href="transform.html#cb331-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb331-11"><a href="transform.html#cb331-11" aria-hidden="true" tabindex="-1"></a>hist2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps2,</span>
+<span id="cb331-12"><a href="transform.html#cb331-12" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
+<span id="cb331-13"><a href="transform.html#cb331-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb331-14"><a href="transform.html#cb331-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb331-15"><a href="transform.html#cb331-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb331-16"><a href="transform.html#cb331-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">&quot;k&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb331-17"><a href="transform.html#cb331-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb331-18"><a href="transform.html#cb331-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
+<span id="cb331-19"><a href="transform.html#cb331-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb331-20"><a href="transform.html#cb331-20" aria-hidden="true" tabindex="-1"></a>cdf2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps2,</span>
+<span id="cb331-21"><a href="transform.html#cb331-21" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
+<span id="cb331-22"><a href="transform.html#cb331-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> sex)) <span class="sc">+</span></span>
+<span id="cb331-23"><a href="transform.html#cb331-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>() <span class="sc">+</span></span>
+<span id="cb331-24"><a href="transform.html#cb331-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">&quot;k&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb331-25"><a href="transform.html#cb331-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb331-26"><a href="transform.html#cb331-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="sc">+</span></span>
+<span id="cb331-27"><a href="transform.html#cb331-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
+<span id="cb331-28"><a href="transform.html#cb331-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb331-29"><a href="transform.html#cb331-29" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(box2, hist2, cdf2, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:salary-ps2-plots"></span>
 <img src="09-transf_files/figure-html/salary-ps2-plots-1.png" alt="2017 Annual Salaries ($1000s) Reported by Poly Sci Majors" width="672" />
 <p class="caption">
@@ -797,13 +842,13 @@ Figure 9.8: 2017 Annual Salaries ($1000s) Reported by Poly Sci Majors
 </div>
 <p>Closer examination of these EDA plots suggests that, even after censoring and rescaling, the data are <em>skewed</em>: the lack of symmetry about the median (or mode, for the histogram) is evident in each plot. Looking at the shape of these distributions (and those in the <a href="dist.html#dist">Appendix</a>) suggests that these data may be <a href="dist.html#log_normal_dist">log-normally</a> distributed.</p>
 </div>
-<div id="logfit" class="section level3">
+<div id="logfit" class="section level3" number="9.6.4">
 <h3><span class="header-section-number">9.6.4</span> Fit a Log-normal Distribution</h3>
 <p>Next, let’s examine whether our salary data can be approximated with a log-normal distribution. There is a function in the <code>MASS::</code> package called <code>fitdistr()</code> that uses <a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation"><em>Maximum Likelihood Estimation</em></a> theory (MLE), to estimate density function parameters for various reference distributions. The <code>fitdistr()</code> function requires a numeric vector of observed values, <code>x =</code> the data to be fit, and a “named” reference distribution to be modeled, <code>densfun = "log-normal"</code>.</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="transform.html#cb332-1"></a>fit.lnorm &lt;-<span class="st"> </span><span class="kw">fitdistr</span>(salary_ps2<span class="op">$</span>salary, <span class="dt">densfun =</span> <span class="st">&quot;log-normal&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="transform.html#cb332-1" aria-hidden="true" tabindex="-1"></a>fit.lnorm <span class="ot">&lt;-</span> <span class="fu">fitdistr</span>(salary_ps2<span class="sc">$</span>salary, <span class="at">densfun =</span> <span class="st">&quot;log-normal&quot;</span>)</span></code></pre></div>
 <p>The output of <code>MASS::fitdistr()</code> is a <code>list</code>, with the first entry containing the fit parameters for the log-normal distribution (<code>meanlog</code> and <code>sdlog</code>).</p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="transform.html#cb333-1"></a>fit.lnorm<span class="op">$</span>estimate <span class="op">%&gt;%</span></span>
-<span id="cb333-2"><a href="transform.html#cb333-2"></a><span class="st">  </span><span class="kw">round</span>(., <span class="dv">2</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="transform.html#cb333-1" aria-hidden="true" tabindex="-1"></a>fit.lnorm<span class="sc">$</span>estimate <span class="sc">%&gt;%</span></span>
+<span id="cb333-2"><a href="transform.html#cb333-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(., <span class="dv">2</span>) </span></code></pre></div>
 <pre><code>## meanlog   sdlog 
 ##    4.32    0.67</code></pre>
 <p>These two estimates represent the mean and standard deviation of the data <em>after</em> taking the log of each observation:</p>
@@ -826,36 +871,34 @@ The terms <em>meanlog</em> and <em>sdlog</em> represent log-space values (i.e., 
 </p>
 </div>
 </div>
-<div id="plot-fitted-vs-actual-data" class="section level3">
+<div id="plot-fitted-vs-actual-data" class="section level3" number="9.6.5">
 <h3><span class="header-section-number">9.6.5</span> Plot Fitted vs Actual Data</h3>
 <p>We will conclude this exercise by examining graphically whether our fitted distribution tends to match the observed data. Now that we have “best” fitted parameters for a lognormal distribution that approximates our data, how well does the fit perform?</p>
 <p>To answer that question, we can simulate a <em>new</em> distribution and compare it to our observed data. To simulate observations from a lognormal distribution we need to supply the function <code>stats::rlnorm()</code> with the following arguments:</p>
 <ul>
-<li><code>n =</code> the sample size of observations (we will use n = <code>length(salary_ps2$salary)</code>)
-<ul>
+<li><code>n =</code> the sample size of observations (we will use n = <code>length(salary_ps2$salary)</code>)</li>
 <li><code>meanlog =</code> the estimated mean of the logged data (<span class="math inline">\(\hat{\mu}=\)</span> 4.32)</li>
 <li><code>sdlog =</code> the standard devation of the logged data (<span class="math inline">\(\hat{\sigma_g}=\)</span> 0.67)</li>
-</ul></li>
 </ul>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="transform.html#cb335-1"></a>sal_simulate &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="kw">rlnorm</span>(<span class="dt">n =</span> <span class="kw">length</span>(salary_ps2<span class="op">$</span>salary),</span>
-<span id="cb335-2"><a href="transform.html#cb335-2"></a>                                 <span class="dt">meanlog =</span> fit.lnorm<span class="op">$</span>estimate[[<span class="dv">1</span>]],</span>
-<span id="cb335-3"><a href="transform.html#cb335-3"></a>                                 <span class="dt">sdlog =</span> fit.lnorm<span class="op">$</span>estimate[[<span class="dv">2</span>]]))</span>
-<span id="cb335-4"><a href="transform.html#cb335-4"></a></span>
-<span id="cb335-5"><a href="transform.html#cb335-5"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb335-6"><a href="transform.html#cb335-6"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data =</span> salary_ps2,</span>
-<span id="cb335-7"><a href="transform.html#cb335-7"></a>                 <span class="kw">aes</span>(<span class="dt">x =</span> salary,</span>
-<span id="cb335-8"><a href="transform.html#cb335-8"></a>                     <span class="dt">y =</span> ..density..),</span>
-<span id="cb335-9"><a href="transform.html#cb335-9"></a>                 <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb335-10"><a href="transform.html#cb335-10"></a>                 <span class="dt">fill =</span> <span class="st">&quot;navy&quot;</span>,</span>
-<span id="cb335-11"><a href="transform.html#cb335-11"></a>                 <span class="dt">bins =</span> <span class="dv">35</span>) <span class="op">+</span></span>
-<span id="cb335-12"><a href="transform.html#cb335-12"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">data =</span> sal_simulate,</span>
-<span id="cb335-13"><a href="transform.html#cb335-13"></a>                <span class="kw">aes</span>(<span class="dt">x =</span> x),</span>
-<span id="cb335-14"><a href="transform.html#cb335-14"></a>               <span class="dt">color =</span> <span class="st">&quot;darkorange1&quot;</span>,</span>
-<span id="cb335-15"><a href="transform.html#cb335-15"></a>               <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb335-16"><a href="transform.html#cb335-16"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability Density&quot;</span>) <span class="op">+</span></span>
-<span id="cb335-17"><a href="transform.html#cb335-17"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">label_dollar</span>(<span class="dt">suffix =</span> <span class="st">&quot;k&quot;</span>),</span>
-<span id="cb335-18"><a href="transform.html#cb335-18"></a>                     <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">500</span>)) <span class="op">+</span></span>
-<span id="cb335-19"><a href="transform.html#cb335-19"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="transform.html#cb335-1" aria-hidden="true" tabindex="-1"></a>sal_simulate <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rlnorm</span>(<span class="at">n =</span> <span class="fu">length</span>(salary_ps2<span class="sc">$</span>salary),</span>
+<span id="cb335-2"><a href="transform.html#cb335-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">meanlog =</span> fit.lnorm<span class="sc">$</span>estimate[[<span class="dv">1</span>]],</span>
+<span id="cb335-3"><a href="transform.html#cb335-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">sdlog =</span> fit.lnorm<span class="sc">$</span>estimate[[<span class="dv">2</span>]]))</span>
+<span id="cb335-4"><a href="transform.html#cb335-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb335-5"><a href="transform.html#cb335-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb335-6"><a href="transform.html#cb335-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">data =</span> salary_ps2,</span>
+<span id="cb335-7"><a href="transform.html#cb335-7" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
+<span id="cb335-8"><a href="transform.html#cb335-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> ..density..),</span>
+<span id="cb335-9"><a href="transform.html#cb335-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb335-10"><a href="transform.html#cb335-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;navy&quot;</span>,</span>
+<span id="cb335-11"><a href="transform.html#cb335-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">35</span>) <span class="sc">+</span></span>
+<span id="cb335-12"><a href="transform.html#cb335-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">data =</span> sal_simulate,</span>
+<span id="cb335-13"><a href="transform.html#cb335-13" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> x),</span>
+<span id="cb335-14"><a href="transform.html#cb335-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;darkorange1&quot;</span>,</span>
+<span id="cb335-15"><a href="transform.html#cb335-15" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb335-16"><a href="transform.html#cb335-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability Density&quot;</span>) <span class="sc">+</span></span>
+<span id="cb335-17"><a href="transform.html#cb335-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">&quot;k&quot;</span>),</span>
+<span id="cb335-18"><a href="transform.html#cb335-18" aria-hidden="true" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">500</span>)) <span class="sc">+</span></span>
+<span id="cb335-19"><a href="transform.html#cb335-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:log-salary"></span>
 <img src="09-transf_files/figure-html/log-salary-1.png" alt="Salary Data Fitted by a Lognormal Distribution" width="672" />
 <p class="caption">
@@ -865,7 +908,7 @@ Figure 9.9: Salary Data Fitted by a Lognormal Distribution
 <p>The eyeball test of our fit looks pretty good, which suggests that our data is indeed log-normal (or at least is reasonably approximated by a lognormal distribution). Question to ponder: <em>when you know that your data are lognormal, does that change your expectation for what might be defined as an outlier?</em></p>
 </div>
 </div>
-<div id="ch-9-homework" class="section level2">
+<div id="ch-9-homework" class="section level2" number="9.7">
 <h2><span class="header-section-number">9.7</span> Ch-9 Homework</h2>
 <p>This homework will give you practice at transforming and visualizing data and fitting a distribution to a set of data. Note that much of the code needed to complete this homework can be adapted from the <a href="https://smogdr.github.io/edar_coursebook/transform.html#ch-9-exercises">Chapter 9 Exercises</a> shown above.</p>
 

@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-11" />
+<meta name="date" content="2021-01-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="measure.html"/>
 <link rel="next" href="dist.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,26 +51,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -89,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -138,14 +136,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Engineering Data Analysis in R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1</b> How to use this book</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a><ul>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
 <li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a><ul>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#install-r-and-rstudio"><i class="fa fa-check"></i><b>1.4.1</b> Install R and RStudio</a></li>
 <li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#install-git-and-create-a-github-account"><i class="fa fa-check"></i><b>1.4.2</b> Install Git and create a GitHub account</a></li>
 <li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#connect-git-github-and-rstudio"><i class="fa fa-check"></i><b>1.4.3</b> Connect Git, GitHub, and RStudio</a></li>
@@ -154,57 +155,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#confirm-successful-set-up"><i class="fa fa-check"></i><b>1.4.6</b> Confirm successful set-up</a></li>
 <li class="chapter" data-level="1.4.7" data-path="index.html"><a href="index.html#asking-for-help-properly"><i class="fa fa-check"></i><b>1.4.7</b> Asking for help (properly)</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a><ul>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#other-helpful-books-not-required"><i class="fa fa-check"></i><b>1.5.1</b> Other helpful books (not required)</a></li>
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a><ul>
+<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="rprog1.html"><a href="rprog1.html#ch.-2-objectives"><i class="fa fa-check"></i><b>2.1</b> Ch. 2 Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="rprog1.html"><a href="rprog1.html#what-is-r"><i class="fa fa-check"></i><b>2.2.1</b> What is R?</a></li>
 <li class="chapter" data-level="2.2.2" data-path="rprog1.html"><a href="rprog1.html#free-and-open-source-software"><i class="fa fa-check"></i><b>2.2.2</b> Free and open-source software</a></li>
 <li class="chapter" data-level="2.2.3" data-path="rprog1.html"><a href="rprog1.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2.3</b> What is RStudio?</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a><ul>
+<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="rprog1.html"><a href="rprog1.html#r-sessions-console-and-command-prompt"><i class="fa fa-check"></i><b>2.3.1</b> R sessions, console, and command prompt</a></li>
 <li class="chapter" data-level="2.3.2" data-path="rprog1.html"><a href="rprog1.html#r-expressions-function-calls-and-objects"><i class="fa fa-check"></i><b>2.3.2</b> R expressions, function calls, and objects</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a><ul>
+<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="rprog1.html"><a href="rprog1.html#commenting-code"><i class="fa fa-check"></i><b>2.4.1</b> Commenting code</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a><ul>
+<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="rprog1.html"><a href="rprog1.html#r-packages"><i class="fa fa-check"></i><b>2.5.1</b> R packages</a></li>
 <li class="chapter" data-level="2.5.2" data-path="rprog1.html"><a href="rprog1.html#installing-from-cran"><i class="fa fa-check"></i><b>2.5.2</b> Installing from CRAN</a></li>
 <li class="chapter" data-level="2.5.3" data-path="rprog1.html"><a href="rprog1.html#loading-an-installed-package"><i class="fa fa-check"></i><b>2.5.3</b> Loading an installed package</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
 <li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#chapter-2-exercises"><i class="fa fa-check"></i><b>2.7</b> Chapter 2 Exercises</a><ul>
+<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#chapter-2-exercises"><i class="fa fa-check"></i><b>2.7</b> Chapter 2 Exercises</a>
+<ul>
 <li class="chapter" data-level="2.7.1" data-path="rprog1.html"><a href="rprog1.html#set-1-session-helpfiles-scripts-and-objects"><i class="fa fa-check"></i><b>2.7.1</b> Set 1: Session, helpfiles, scripts, and objects</a></li>
 <li class="chapter" data-level="2.7.2" data-path="rprog1.html"><a href="rprog1.html#set-2-loading-and-using-packages"><i class="fa fa-check"></i><b>2.7.2</b> Set 2: Loading and using packages</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#chapter-2-homework"><i class="fa fa-check"></i><b>2.8</b> Chapter 2 Homework</a><ul>
+<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#chapter-2-homework"><i class="fa fa-check"></i><b>2.8</b> Chapter 2 Homework</a>
+<ul>
 <li class="chapter" data-level="2.8.1" data-path="rprog1.html"><a href="rprog1.html#special-swirl-commands"><i class="fa fa-check"></i><b>2.8.1</b> Special <code>swirl</code> commands</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a><ul>
+<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="rprog2.html"><a href="rprog2.html#ch.-3-objectives"><i class="fa fa-check"></i><b>3.1</b> Ch. 3 Objectives</a></li>
 <li class="chapter" data-level="3.2" data-path="rprog2.html"><a href="rprog2.html#overview"><i class="fa fa-check"></i><b>3.2</b> Overview</a></li>
-<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a><ul>
+<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="rprog2.html"><a href="rprog2.html#reading-local-flat-files"><i class="fa fa-check"></i><b>3.3.1</b> Reading local flat files</a></li>
 <li class="chapter" data-level="3.3.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-other-file-types"><i class="fa fa-check"></i><b>3.3.2</b> Reading in other file types</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a><ul>
+<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="rprog2.html"><a href="rprog2.html#directory-structure"><i class="fa fa-check"></i><b>3.4.1</b> Directory structure</a></li>
 <li class="chapter" data-level="3.4.2" data-path="rprog2.html"><a href="rprog2.html#working-directory"><i class="fa fa-check"></i><b>3.4.2</b> Working directory</a></li>
 <li class="chapter" data-level="3.4.3" data-path="rprog2.html"><a href="rprog2.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>3.4.3</b> File and directory pathnames</a></li>
 <li class="chapter" data-level="3.4.4" data-path="rprog2.html"><a href="rprog2.html#tangent-paste"><i class="fa fa-check"></i><b>3.4.4</b> Tangent: <code>paste</code></a></li>
 <li class="chapter" data-level="3.4.5" data-path="rprog2.html"><a href="rprog2.html#reading-online-flat-files"><i class="fa fa-check"></i><b>3.4.5</b> Reading online flat files</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a><ul>
+<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="rprog2.html"><a href="rprog2.html#renaming-columns"><i class="fa fa-check"></i><b>3.5.1</b> Renaming columns</a></li>
 <li class="chapter" data-level="3.5.2" data-path="rprog2.html"><a href="rprog2.html#selecting-columns"><i class="fa fa-check"></i><b>3.5.2</b> Selecting columns</a></li>
 <li class="chapter" data-level="3.5.3" data-path="rprog2.html"><a href="rprog2.html#add-or-change-columns"><i class="fa fa-check"></i><b>3.5.3</b> Add or change columns</a></li>
@@ -212,26 +226,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.5" data-path="rprog2.html"><a href="rprog2.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>3.5.5</b> Filtering to certain rows</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="rprog2.html"><a href="rprog2.html#piping"><i class="fa fa-check"></i><b>3.6</b> Piping</a></li>
-<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#markdowns"><i class="fa fa-check"></i><b>3.7</b> Markdowns</a><ul>
+<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#markdowns"><i class="fa fa-check"></i><b>3.7</b> Markdowns</a>
+<ul>
 <li class="chapter" data-level="3.7.1" data-path="rprog2.html"><a href="rprog2.html#r-markdowns"><i class="fa fa-check"></i><b>3.7.1</b> R Markdowns</a></li>
 <li class="chapter" data-level="3.7.2" data-path="rprog2.html"><a href="rprog2.html#header"><i class="fa fa-check"></i><b>3.7.2</b> Header</a></li>
 <li class="chapter" data-level="3.7.3" data-path="rprog2.html"><a href="rprog2.html#text"><i class="fa fa-check"></i><b>3.7.3</b> Text</a></li>
 <li class="chapter" data-level="3.7.4" data-path="rprog2.html"><a href="rprog2.html#code-chunks"><i class="fa fa-check"></i><b>3.7.4</b> Code Chunks</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#chapter-3-exercises"><i class="fa fa-check"></i><b>3.8</b> Chapter 3 Exercises</a><ul>
+<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#chapter-3-exercises"><i class="fa fa-check"></i><b>3.8</b> Chapter 3 Exercises</a>
+<ul>
 <li class="chapter" data-level="3.8.1" data-path="rprog2.html"><a href="rprog2.html#set-1-pathnames-and-data-import"><i class="fa fa-check"></i><b>3.8.1</b> Set 1: Pathnames and data import</a></li>
 <li class="chapter" data-level="3.8.2" data-path="rprog2.html"><a href="rprog2.html#set-2-data-wrangling-and-piping"><i class="fa fa-check"></i><b>3.8.2</b> Set 2: Data wrangling and piping</a></li>
 <li class="chapter" data-level="3.8.3" data-path="rprog2.html"><a href="rprog2.html#set-3-r-markdown"><i class="fa fa-check"></i><b>3.8.3</b> Set 3: R Markdown</a></li>
 </ul></li>
 <li class="chapter" data-level="3.9" data-path="rprog2.html"><a href="rprog2.html#chapter-3-homework"><i class="fa fa-check"></i><b>3.9</b> Chapter 3 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#chapter-4-objectives"><i class="fa fa-check"></i><b>4.1</b> Chapter 4 Objectives</a></li>
 <li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#install-and-load-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Install and load <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#steps-to-create-a-ggplot2-object"><i class="fa fa-check"></i><b>4.3</b> Steps to create a <code>ggplot2</code> object</a></li>
 <li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#initializing-a-ggplot2-object"><i class="fa fa-check"></i><b>4.4</b> Initializing a <code>ggplot2</code> object</a></li>
 <li class="chapter" data-level="4.5" data-path="dataviz.html"><a href="dataviz.html#plot-aesthetics"><i class="fa fa-check"></i><b>4.5</b> Plot aesthetics</a></li>
-<li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.6</b> Adding geoms</a><ul>
+<li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.6</b> Adding geoms</a>
+<ul>
 <li class="chapter" data-level="4.6.1" data-path="dataviz.html"><a href="dataviz.html#aesthetic-override-a-warning"><i class="fa fa-check"></i><b>4.6.1</b> Aesthetic override: a warning</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="dataviz.html"><a href="dataviz.html#shapes-and-colors"><i class="fa fa-check"></i><b>4.7</b> Shapes and colors</a></li>
@@ -242,15 +260,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.12" data-path="dataviz.html"><a href="dataviz.html#getting-help-with-ggplot2"><i class="fa fa-check"></i><b>4.12</b> Getting help with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.13" data-path="dataviz.html"><a href="dataviz.html#chapter-4-homework"><i class="fa fa-check"></i><b>4.13</b> Chapter 4 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a><ul>
+<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="eda1.html"><a href="eda1.html#ch.-5-objectives"><i class="fa fa-check"></i><b>5.1</b> Ch. 5 Objectives</a></li>
-<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univar"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a><ul>
+<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univar"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>5.2.1</b> Location, Dispersion, and Shape</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantile"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a><ul>
+<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantile"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="eda1.html"><a href="eda1.html#descriptive-statistics"><i class="fa fa-check"></i><b>5.3.1</b> Descriptive Statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a><ul>
+<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
 <li class="chapter" data-level="5.4.2" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.4.2</b> Cumulative Distribution Plot</a></li>
 <li class="chapter" data-level="5.4.3" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.4.3</b> Histogram</a></li>
@@ -262,25 +284,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="eda1.html"><a href="eda1.html#exploring-data"><i class="fa fa-check"></i><b>5.5</b> Exploring Data</a></li>
 <li class="chapter" data-level="5.6" data-path="eda1.html"><a href="eda1.html#chapter-5-homework"><i class="fa fa-check"></i><b>5.6</b> Chapter 5 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a><ul>
+<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#chapter-6-objectives"><i class="fa fa-check"></i><b>6.1</b> Chapter 6 Objectives</a></li>
-<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a><ul>
+<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="rprog3.html"><a href="rprog3.html#string-detect-match-subset"><i class="fa fa-check"></i><b>6.2.1</b> String detect, match, subset</a></li>
 <li class="chapter" data-level="6.2.2" data-path="rprog3.html"><a href="rprog3.html#regular-expressions"><i class="fa fa-check"></i><b>6.2.2</b> Regular Expressions</a></li>
 <li class="chapter" data-level="6.2.3" data-path="rprog3.html"><a href="rprog3.html#string-split-replace"><i class="fa fa-check"></i><b>6.2.3</b> String split, replace</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a><ul>
+<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="rprog3.html"><a href="rprog3.html#dates-and-times-in-base-r"><i class="fa fa-check"></i><b>6.3.1</b> Dates and Times in base R</a></li>
 <li class="chapter" data-level="6.3.2" data-path="rprog3.html"><a href="rprog3.html#date-time-formats"><i class="fa fa-check"></i><b>6.3.2</b> Date-time formats</a></li>
 <li class="chapter" data-level="6.3.3" data-path="rprog3.html"><a href="rprog3.html#date-time-classes-in-r"><i class="fa fa-check"></i><b>6.3.3</b> Date-time classes in R</a></li>
 <li class="chapter" data-level="6.3.4" data-path="rprog3.html"><a href="rprog3.html#reading-and-classifying-date-times"><i class="fa fa-check"></i><b>6.3.4</b> Reading and classifying date-times</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>lubridate</code></a><ul>
+<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>lubridate</code></a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="rprog3.html"><a href="rprog3.html#parsing-functions-in-lubridate"><i class="fa fa-check"></i><b>6.4.1</b> Parsing functions in <code>lubridate</code></a></li>
 <li class="chapter" data-level="6.4.2" data-path="rprog3.html"><a href="rprog3.html#date-time-manipulation-with-lubridate"><i class="fa fa-check"></i><b>6.4.2</b> Date-time manipulation with <code>lubridate</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#tidy-data"><i class="fa fa-check"></i><b>6.5</b> Tidy Data</a></li>
-<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#chapter-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Chapter 6 Exercises</a><ul>
+<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#chapter-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Chapter 6 Exercises</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="rprog3.html"><a href="rprog3.html#set-1-data-import-and-manipulation"><i class="fa fa-check"></i><b>6.6.1</b> Set 1: Data import and manipulation</a></li>
 <li class="chapter" data-level="6.6.2" data-path="rprog3.html"><a href="rprog3.html#set-2-counting"><i class="fa fa-check"></i><b>6.6.2</b> Set 2: Counting</a></li>
 <li class="chapter" data-level="6.6.3" data-path="rprog3.html"><a href="rprog3.html#set-3-weekly-tweets"><i class="fa fa-check"></i><b>6.6.3</b> Set 3: Weekly tweets</a></li>
@@ -288,19 +315,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="rprog3.html"><a href="rprog3.html#chapter-6-homework"><i class="fa fa-check"></i><b>6.7</b> Chapter 6 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a><ul>
+<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#chapter-7-objectives"><i class="fa fa-check"></i><b>7.1</b> Chapter 7 Objectives</a></li>
 <li class="chapter" data-level="7.2" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>7.2</b> Bivariate Data</a></li>
-<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a><ul>
+<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="eda2.html"><a href="eda2.html#causality"><i class="fa fa-check"></i><b>7.3.1</b> Causality</a></li>
 <li class="chapter" data-level="7.3.2" data-path="eda2.html"><a href="eda2.html#corr"><i class="fa fa-check"></i><b>7.3.2</b> Correlation</a></li>
 <li class="chapter" data-level="7.3.3" data-path="eda2.html"><a href="eda2.html#correlation-neq-causation"><i class="fa fa-check"></i><b>7.3.3</b> Correlation <span class="math inline">\(\neq\)</span> causation</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.4</b> Exploring Multivariate Data</a><ul>
+<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.4</b> Exploring Multivariate Data</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="eda2.html"><a href="eda2.html#facets"><i class="fa fa-check"></i><b>7.4.1</b> Facets</a></li>
 <li class="chapter" data-level="7.4.2" data-path="eda2.html"><a href="eda2.html#colors"><i class="fa fa-check"></i><b>7.4.2</b> Colors</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#chapter-7-exercises"><i class="fa fa-check"></i><b>7.5</b> Chapter 7 Exercises</a><ul>
+<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#chapter-7-exercises"><i class="fa fa-check"></i><b>7.5</b> Chapter 7 Exercises</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="eda2.html"><a href="eda2.html#fuel-economy-data"><i class="fa fa-check"></i><b>7.5.1</b> Fuel economy data</a></li>
 <li class="chapter" data-level="7.5.2" data-path="eda2.html"><a href="eda2.html#import-and-wrangle-data"><i class="fa fa-check"></i><b>7.5.2</b> Import and wrangle data</a></li>
 <li class="chapter" data-level="7.5.3" data-path="eda2.html"><a href="eda2.html#check-data"><i class="fa fa-check"></i><b>7.5.3</b> Check data</a></li>
@@ -313,35 +344,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="eda2.html"><a href="eda2.html#chapter-7-homework"><i class="fa fa-check"></i><b>7.6</b> Chapter 7 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a><ul>
+<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="rprog4.html"><a href="rprog4.html#ch.-8-objectives"><i class="fa fa-check"></i><b>8.1</b> Ch. 8 Objectives</a></li>
 <li class="chapter" data-level="8.2" data-path="rprog4.html"><a href="rprog4.html#what-is-functional-programming"><i class="fa fa-check"></i><b>8.2</b> What is <strong><em>functional programming</em></strong>?</a></li>
-<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a><ul>
+<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="rprog4.html"><a href="rprog4.html#example-function-my_mean"><i class="fa fa-check"></i><b>8.3.1</b> Example Function: my_mean</a></li>
 <li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: “import.w.name”</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a><ul>
+<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="rprog4.html"><a href="rprog4.html#function-mapping"><i class="fa fa-check"></i><b>8.4.1</b> Function Mapping</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.5</b> Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a><ul>
+<li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="transform.html"><a href="transform.html#ch.-9-objectives"><i class="fa fa-check"></i><b>9.1</b> Ch. 9 Objectives</a></li>
-<li class="chapter" data-level="9.2" data-path="transform.html"><a href="transform.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a><ul>
+<li class="chapter" data-level="9.2" data-path="transform.html"><a href="transform.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="transform.html"><a href="transform.html#centering"><i class="fa fa-check"></i><b>9.2.1</b> Centering</a></li>
 <li class="chapter" data-level="9.2.2" data-path="transform.html"><a href="transform.html#rescaling"><i class="fa fa-check"></i><b>9.2.2</b> Rescaling</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="transform.html"><a href="transform.html#normalization-and-standardization"><i class="fa fa-check"></i><b>9.3</b> Normalization and Standardization</a><ul>
+<li class="chapter" data-level="9.3" data-path="transform.html"><a href="transform.html#normalization-and-standardization"><i class="fa fa-check"></i><b>9.3</b> Normalization and Standardization</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="transform.html"><a href="transform.html#rate-normalization"><i class="fa fa-check"></i><b>9.3.1</b> Rate normalization</a></li>
 <li class="chapter" data-level="9.3.2" data-path="transform.html"><a href="transform.html#standardizing"><i class="fa fa-check"></i><b>9.3.2</b> Standardizing</a></li>
 <li class="chapter" data-level="9.3.3" data-path="transform.html"><a href="transform.html#reducing-skewness"><i class="fa fa-check"></i><b>9.3.3</b> Reducing Skewness</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="transform.html"><a href="transform.html#stratification"><i class="fa fa-check"></i><b>9.4</b> Stratification</a></li>
-<li class="chapter" data-level="9.5" data-path="transform.html"><a href="transform.html#outliers-and-censoring"><i class="fa fa-check"></i><b>9.5</b> Outliers and Censoring</a><ul>
+<li class="chapter" data-level="9.5" data-path="transform.html"><a href="transform.html#outliers-and-censoring"><i class="fa fa-check"></i><b>9.5</b> Outliers and Censoring</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="transform.html"><a href="transform.html#outliers"><i class="fa fa-check"></i><b>9.5.1</b> Detecting Outliers</a></li>
 <li class="chapter" data-level="9.5.2" data-path="transform.html"><a href="transform.html#censoring-outliers"><i class="fa fa-check"></i><b>9.5.2</b> Censoring outliers</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="transform.html"><a href="transform.html#ch-9-exercises"><i class="fa fa-check"></i><b>9.6</b> Ch-9 Exercises</a><ul>
+<li class="chapter" data-level="9.6" data-path="transform.html"><a href="transform.html#ch-9-exercises"><i class="fa fa-check"></i><b>9.6</b> Ch-9 Exercises</a>
+<ul>
 <li class="chapter" data-level="9.6.1" data-path="transform.html"><a href="transform.html#salary-data-for-poly-sci-majors"><i class="fa fa-check"></i><b>9.6.1</b> Salary Data for Poly Sci Majors</a></li>
 <li class="chapter" data-level="9.6.2" data-path="transform.html"><a href="transform.html#univariate-data-visualization-1"><i class="fa fa-check"></i><b>9.6.2</b> Univariate Data Visualization</a></li>
 <li class="chapter" data-level="9.6.3" data-path="transform.html"><a href="transform.html#rescale-and-censor-data"><i class="fa fa-check"></i><b>9.6.3</b> Rescale and Censor Data</a></li>
@@ -350,9 +389,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.7" data-path="transform.html"><a href="transform.html#ch-9-homework"><i class="fa fa-check"></i><b>9.7</b> Ch-9 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a><ul>
+<li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="measure.html"><a href="measure.html#ch.-10-objectives"><i class="fa fa-check"></i><b>10.1</b> Ch. 10 Objectives</a></li>
-<li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a><ul>
+<li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#sample"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
 <li class="chapter" data-level="10.2.2" data-path="measure.html"><a href="measure.html#sample.collect"><i class="fa fa-check"></i><b>10.2.2</b> Collecting a sample</a></li>
 <li class="chapter" data-level="10.2.3" data-path="measure.html"><a href="measure.html#simple-random-sampling"><i class="fa fa-check"></i><b>10.2.3</b> Simple Random Sampling</a></li>
@@ -360,50 +401,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.5" data-path="measure.html"><a href="measure.html#stratified-sampling"><i class="fa fa-check"></i><b>10.2.5</b> Stratified Sampling</a></li>
 <li class="chapter" data-level="10.2.6" data-path="measure.html"><a href="measure.html#cluster-sampling"><i class="fa fa-check"></i><b>10.2.6</b> Cluster Sampling</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a><ul>
+<li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a>
+<ul>
 <li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#LOD"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
 <li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
 <li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>10.3.3</b> Precision</a></li>
 <li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>10.3.4</b> Bias (accuracy)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a><ul>
+<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a>
+<ul>
 <li class="chapter" data-level="10.4.1" data-path="measure.html"><a href="measure.html#repeated"><i class="fa fa-check"></i><b>10.4.1</b> Repeated Measures</a></li>
 <li class="chapter" data-level="10.4.2" data-path="measure.html"><a href="measure.html#error-propagation"><i class="fa fa-check"></i><b>10.4.2</b> Error Propagation</a></li>
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="measure.html"><a href="measure.html#ch-10-homework"><i class="fa fa-check"></i><b>10.5</b> CH-10 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a><ul>
+<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="model.html"><a href="model.html#ch.-11-objectives"><i class="fa fa-check"></i><b>11.1</b> Ch. 11 Objectives</a></li>
-<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#process-modeling"><i class="fa fa-check"></i><b>11.2</b> Process Modeling</a><ul>
+<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#process-modeling"><i class="fa fa-check"></i><b>11.2</b> Process Modeling</a>
+<ul>
 <li class="chapter" data-level="11.2.1" data-path="model.html"><a href="model.html#assumptions"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions</a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="model.html"><a href="model.html#model-fitting"><i class="fa fa-check"></i><b>11.3</b> Model Fitting</a></li>
-<li class="chapter" data-level="11.4" data-path="model.html"><a href="model.html#ols-regression"><i class="fa fa-check"></i><b>11.4</b> OLS Regression</a><ul>
+<li class="chapter" data-level="11.4" data-path="model.html"><a href="model.html#ols-regression"><i class="fa fa-check"></i><b>11.4</b> OLS Regression</a>
+<ul>
 <li class="chapter" data-level="11.4.1" data-path="model.html"><a href="model.html#OLS_assum"><i class="fa fa-check"></i><b>11.4.1</b> OLS Assumptions and Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="model.html"><a href="model.html#example-ols-linear-regression"><i class="fa fa-check"></i><b>11.5</b> Example: OLS Linear Regression</a><ul>
+<li class="chapter" data-level="11.5" data-path="model.html"><a href="model.html#example-ols-linear-regression"><i class="fa fa-check"></i><b>11.5</b> Example: OLS Linear Regression</a>
+<ul>
 <li class="chapter" data-level="11.5.1" data-path="model.html"><a href="model.html#the-lm-function"><i class="fa fa-check"></i><b>11.5.1</b> The <code>lm()</code> function</a></li>
 <li class="chapter" data-level="11.5.2" data-path="model.html"><a href="model.html#ols-diagnostics"><i class="fa fa-check"></i><b>11.5.2</b> OLS Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a><ul>
+<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a>
+<ul>
 <li class="chapter" data-level="11.6.1" data-path="model.html"><a href="model.html#example-calibration"><i class="fa fa-check"></i><b>11.6.1</b> Example Calibration</a></li>
 </ul></li>
 <li class="chapter" data-level="11.7" data-path="model.html"><a href="model.html#ch-11-homework"><i class="fa fa-check"></i><b>11.7</b> Ch-11 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Stats &amp; Reference Distributions</a><ul>
+<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Stats &amp; Reference Distributions</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="dist.html"><a href="dist.html#measures-of-central-tendency"><i class="fa fa-check"></i><b>12.1</b> Measures of Central Tendency</a></li>
 <li class="chapter" data-level="12.2" data-path="dist.html"><a href="dist.html#measures-of-dispersion"><i class="fa fa-check"></i><b>12.2</b> Measures of Dispersion</a></li>
-<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.3</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.3</b> Uniform Distribution</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="dist.html"><a href="dist.html#uniform-characteristic-plots"><i class="fa fa-check"></i><b>12.3.1</b> Uniform Characteristic Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.4</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="12.4" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.4</b> Normal Distribution</a>
+<ul>
 <li class="chapter" data-level="12.4.1" data-path="dist.html"><a href="dist.html#normal-characteristic-plots"><i class="fa fa-check"></i><b>12.4.1</b> Normal Characteristic Plots</a></li>
 <li class="chapter" data-level="12.4.2" data-path="dist.html"><a href="dist.html#rule"><i class="fa fa-check"></i><b>12.4.2</b> 68-95-99 rule</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>12.5</b> Log-normal Distribution</a><ul>
+<li class="chapter" data-level="12.5" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>12.5</b> Log-normal Distribution</a>
+<ul>
 <li class="chapter" data-level="12.5.1" data-path="dist.html"><a href="dist.html#lognormal-characteristic-plots"><i class="fa fa-check"></i><b>12.5.1</b> Lognormal Characteristic Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="12.6" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>12.6</b> Pearson Correlation Coefficient</a></li>
+<li class="chapter" data-level="12.7" data-path="dist.html"><a href="dist.html#OLS"><i class="fa fa-check"></i><b>12.7</b> OLS Regression Coefficients</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -425,7 +478,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="model" class="section level1">
+<div id="model" class="section level1" number="11">
 <h1><span class="header-section-number">Chapter 11</span> Modeling</h1>
 <div class="rmdnote">
 <p>
@@ -443,7 +496,7 @@ A <a href="https://www.merriam-webster.com/dictionary/model" target="_blank"><st
 <blockquote>
 <p><span style="color: blue;"> “All models are wrong, but some are useful” - George Cox, pioneering statistician </span></p>
 </blockquote>
-<div id="ch.-11-objectives" class="section level2">
+<div id="ch.-11-objectives" class="section level2" number="11.1">
 <h2><span class="header-section-number">11.1</span> Ch. 11 Objectives</h2>
 <p>This chapter is designed around the following learning objectives. Upon
 completing this chapter, you should be able to:</p>
@@ -456,7 +509,7 @@ completing this chapter, you should be able to:</p>
 <li>Estimate probability density functions for univariate distributions</li>
 </ul>
 </div>
-<div id="process-modeling" class="section level2">
+<div id="process-modeling" class="section level2" number="11.2">
 <h2><span class="header-section-number">11.2</span> Process Modeling</h2>
 <p>Figure <a href="model.html#fig:model-1">11.1</a> below provides a general process diagram for modeling (<a href="https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd41.htm" target="_blank">adapted from the NIST Handbook on Statistics</a>);
 these are the steps you should follow when developing a model. Even before you begin this process, however, you should ask yourself the following three questions:</p>
@@ -473,22 +526,22 @@ Figure 11.1: A generic process diagram for model conceptualization, development,
 <img src="images/model_steps.png" alt="A generic process diagram for model conceptualization, development, and evaluation." width="400" />
 </div>
 <p>A couple points worth making about the process outline in Figure <a href="model.html#fig:model-1">11.1</a>. First, observing a process and matching your observations to your training and experience is an invaluable tool for model construction. Second, most models of “real-world things” like Newton’s work on gravity or Milliken’s model of elctron charge are empircal - that is, they are based on observation (not pure math). Purely <em>analytic</em> models exist (mostly as mathematical “proofs”) and such models don’t need data to be <em>“fit”</em> but do need data to be <em>validated</em>. Third, many people choose to validate their model with the same data they used to fit the model (using an approach like blocking or cross-validation). While I acknowledge that this approach is convenient (and sometimes the only means available), I disagree with it. You should always try to validate your model with an independent sample (better yet, with a sample that you didn’t collect). Why? Although we put a lot of emphasis on <a href="measure.html#sample.collect">“random sampling”</a>, we rarely succeed at it in the real world. Having someone else validate your model with their (independent) data will go a long way towards convincing others that your model is both <strong>useful</strong> and <strong>generalizable</strong>.</p>
-<div id="assumptions" class="section level3">
+<div id="assumptions" class="section level3" number="11.2.1">
 <h3><span class="header-section-number">11.2.1</span> Assumptions</h3>
 <p>An <strong><em>assumption</em></strong> is a fact or condition that is taken for granted. If you think about it, nearly every action you undertake carries assumptions. If someone throws a baseball to you and you reach out your hand to catch it, you are assuming that you will indeed make that catch. Otherwise, you would probably duck! When you walk across a high bridge, you undoubtedly assume that it will hold your weight. Sure, you might have a compelling reason to cross the bridge at any cost, but in that case you have assumed that the reason for crossing the bridge outweighs other risks. Those of us who live in Colorado have, at one point, made the incorrect assumption about our car or truck’s braking ability in the snow.</p>
-<p><strong>All scientific models are based on assumptions; many of those assumptions are necessary (read: critical) for the model or theory to be “correct”.</strong></p>
+<p><strong>All scientific models are based on assumptions; many of those assumptions are necessary (read: critical) for the model or theory to be “correct.”</strong></p>
 <p>Although assumptions can be <em>taken for granted</em> when constructing a model or theory, that doesn’t mean they should be ignored. Indeed, evaluating the assumptions of a model (or theory) is one of the first things that you should do when developing OR evaluating OR applying it. <em>Testing assumptions</em> is the hallmark of a talented researcher, and yet, few researchers test their model assumptions regularly.</p>
 <p>In this chapter, I will teach you about the assumptions of linear regression, but the take-home lesson is this: <strong><em>those who recognize and validate their assumptions will be rewarded for their efforts, prepared for what is to come, and will rarely depend on luck for success.</em></strong></p>
 </div>
 </div>
-<div id="model-fitting" class="section level2">
+<div id="model-fitting" class="section level2" number="11.3">
 <h2><span class="header-section-number">11.3</span> Model Fitting</h2>
 <blockquote>
 <p><span style="color: blue;"> “The purpose of models is not to fit the data but to sharpen the questions.” - Samuel Karlim, mathematician and genomicist </span></p>
 </blockquote>
 <p>The best models are those that advance your understanding of a phenomenon so well that you soon leave the model behind, because the questions have since changed. We will not aspire to such great heights here, but it’s worth understanding how models can be <em>fit</em> to data. Model construction, fitting, and validation could represent an entire semester (or more) of work. Here, will will discuss one introductory application: fitting of a linear model using ordinary least squares (OLS). You have undoubtedly used a computer program to create a linear fit between an X and Y variable. Microsoft Excel will do this for you with two columns of data and a few simple mouse clicks. How that fit is achieved (and what assumptions underpin that fit) is what we will discuss here.</p>
 </div>
-<div id="ols-regression" class="section level2">
+<div id="ols-regression" class="section level2" number="11.4">
 <h2><span class="header-section-number">11.4</span> OLS Regression</h2>
 <p>OLS stands for <strong>“Ordinary Least Squares”</strong>. The OLS technique is one of the most commons ways to fit a linear regression. To keep things simple, let’s discuss fitting a model with a single independent variable (<span class="math inline">\(X\)</span>) as a predictor for our (dependent) outcome variable of interest (<span class="math inline">\(Y\)</span>). A model with one instance of a single independent variable means we have, at maximum, only two parameter estimates to fit: the <em>intercept</em> term when <span class="math inline">\(X = 0\)</span> (which we call <span class="math inline">\(\beta_{0}\)</span>) and the slope term for all values of <span class="math inline">\(X\)</span> (which we call <span class="math inline">\(\beta_{1}\)</span>). Thus, we are fitting a straight-line equation between two variables with the following notation:</p>
 <p><span class="math display">\[Y = \beta_{0} + \beta_{1}\cdot X + \epsilon\]</span>
@@ -498,7 +551,7 @@ where:</p>
     <span class="math inline">\(\beta_{1}\)</span> = the slope parameter (to be <em>fit</em> by the OLS model)<br />
     <span class="math inline">\(X\)</span> = the independent variable (i.e., the predictor variable)<br />
     <span class="math inline">\(\epsilon\)</span> = the error term (i.e., what is left over; what the model doesn’t explain about <span class="math inline">\(Y\)</span>)</p>
-<p>The OLS approach is straightforward: select model parameters (<span class="math inline">\(\beta_{0}\)</span>, <span class="math inline">\(\beta_{1}\)</span>) so that the model produces as little error as possible. With OLS, the model error is calculated as a <em>sum-of-squares error</em> (SSE; explained below). Graphically, this is shown in Figure <a href="model.html#fig:OLS-anno">11.2</a>, where the solid blue circles represent the data (<span class="math inline">\(X_{i}, Y_{i}\)</span>). The grey line represents the “best fit” line that gives the smallest SSE possible. The model <strong><em>residuals</em></strong> (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the “best-fit line”. The optimization algorithm is executed with matrix algebra.</p>
+<p>The OLS approach is straightforward: select model parameters (<span class="math inline">\(\beta_{0}\)</span>, <span class="math inline">\(\beta_{1}\)</span>) so that the model produces as little error as possible. With OLS, the model error is expressed as a <em>sum-of-squares error</em> (SSE; explained below). Graphically, this is shown in Figure <a href="model.html#fig:OLS-anno">11.2</a>, where the solid blue circles represent the data (<span class="math inline">\(X_{i}, Y_{i}\)</span>). The grey line represents the “best fit” line that gives the smallest SSE possible. The model <strong><em>residuals</em></strong> (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the “best-fit line.” The optimization algorithm is executed with matrix algebra, although the paramaters for simple linear regression between two variables, <span class="math inline">\(X,Y,\)</span>, are easily calculated - see <a href="dist.html#OLS">here</a>.</p>
 <div class="figure"><span id="fig:OLS-anno"></span>
 <img src="images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals" width="632" />
 <p class="caption">
@@ -525,10 +578,10 @@ The <em>total sum of squares</em> represents a measure of all of the variability
 The terms “residual sum of squares” and “error sum of squares” are interchangeable; you will see them both in the wild and they mean the same thing.
 </p>
 </div>
-<div id="OLS_assum" class="section level3">
+<div id="OLS_assum" class="section level3" number="11.4.1">
 <h3><span class="header-section-number">11.4.1</span> OLS Assumptions and Diagnostics</h3>
 <p>Now that you have an idea “how” OLS works, let’s talk about the assumptions of OLS linear models. I will break the assumptions of OLS linear regression into two groups: front-end and back-end. The front-end assumptions are ones that apply to the model and the data at the outset. Most of the front-end assumptions can be tested before you fit the model. The back-end assumptions are ones that you test <em>after</em> the model has been built - these assumptions apply to the error term (<span class="math inline">\(\epsilon\)</span>). I will write them out here and provide a brief explanation of how to evaluate each (and why you should care about doing so).</p>
-<div id="front-end-assumptions" class="section level4">
+<div id="front-end-assumptions" class="section level4" number="11.4.1.1">
 <h4><span class="header-section-number">11.4.1.1</span> Front-end assumptions:</h4>
 <ol style="list-style-type: decimal">
 <li><strong>The form of the model is linear in the coefficients.</strong>
@@ -559,7 +612,7 @@ The terms “residual sum of squares” and “error sum of squares” are inter
 </ul></li>
 </ol>
 </div>
-<div id="back-end-assumptions" class="section level4">
+<div id="back-end-assumptions" class="section level4" number="11.4.1.2">
 <h4><span class="header-section-number">11.4.1.2</span> Back-end assumptions:</h4>
 <p>The <strong>error term</strong> (4) has a <strong>mean of zero</strong>, is (5) <strong>normally distributed</strong>, (6) <strong>homoscedastic</strong>, and has (7) <strong>no autocorrelation</strong> or (8) <strong>correlation with predictor (independent) variables</strong>. There’s a lot riding on that little error term, <span class="math inline">\(\epsilon\)</span>!.</p>
 <ol start="4" style="list-style-type: decimal">
@@ -575,7 +628,7 @@ The terms “residual sum of squares” and “error sum of squares” are inter
 </ul></li>
 <li><strong>Residuals are normally distributed.</strong>
 <ul>
-<li>The general opinion among statisticians is that non-normal residuals are not a deal-breaker for your model. Non-normal residuals will affect your ability to generate confidence intervals about your estimates, but the estimates themselves should still be “BLUE”, which stands for <em>“Best Linear Unbiased Estimator”</em>.
+<li>The general opinion among statisticians is that non-normal residuals are not a deal-breaker for your model. Non-normal residuals will affect your ability to generate confidence intervals about your estimates, but the estimates themselves should still be “BLUE,” which stands for <em>“Best Linear Unbiased Estimator”</em>.
 <ul>
 <li><em>How to check</em>: create a <a href="#qq.plot">Q-Q plot</a> about your residuals.<br />
 </li>
@@ -615,7 +668,7 @@ The terms “residual sum of squares” and “error sum of squares” are inter
 </div>
 </div>
 </div>
-<div id="example-ols-linear-regression" class="section level2">
+<div id="example-ols-linear-regression" class="section level2" number="11.5">
 <h2><span class="header-section-number">11.5</span> Example: OLS Linear Regression</h2>
 <p>Let’s conduct a simple linear regression with two variables that we know are correlated: a person’s waist size and their weight. We will use data collected by the US Centers for Disease Control as part of the <a href="https://www.cdc.gov/nchs/nhanes/about_nhanes.htm" target="_blank">National Health and Nutrition Examination Survey (NHANES)</a>
 - a detailed annual survey of ~5,000 people living in the US.</p>
@@ -639,32 +692,32 @@ Or, another way to say this is that the square root of mass is linearly related 
 <span class="math display">\[\sqrt{mass} \sim Circumference\]</span>
 <img src="images/cylinder_comic.png" width="552" style="display: block; margin: auto;" /></p>
 <p>Let’s transform <span class="math inline">\(mass \rightarrow \sqrt{mass}\)</span> and then examine the two scatterplots side by side.</p>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="model.html#cb342-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> data_<span class="dv">18</span>) <span class="op">+</span></span>
-<span id="cb342-2"><a href="model.html#cb342-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> waist, <span class="dt">y =</span> mass),</span>
-<span id="cb342-3"><a href="model.html#cb342-3"></a>             <span class="dt">alpha =</span> <span class="fl">0.1</span>,</span>
-<span id="cb342-4"><a href="model.html#cb342-4"></a>             <span class="dt">color =</span> <span class="st">&quot;maroon4&quot;</span>) <span class="op">+</span></span>
-<span id="cb342-5"><a href="model.html#cb342-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Mass, kg&quot;</span>) <span class="op">+</span></span>
-<span id="cb342-6"><a href="model.html#cb342-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Waist Circumference, cm&quot;</span>) <span class="op">+</span></span>
-<span id="cb342-7"><a href="model.html#cb342-7"></a><span class="st">  </span><span class="kw">theme_classic</span>(<span class="dt">base_size =</span> <span class="dv">13</span>)</span>
-<span id="cb342-8"><a href="model.html#cb342-8"></a></span>
-<span id="cb342-9"><a href="model.html#cb342-9"></a>p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> data_<span class="dv">18</span>) <span class="op">+</span></span>
-<span id="cb342-10"><a href="model.html#cb342-10"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> waist, <span class="dt">y =</span> sqrt_mass),</span>
-<span id="cb342-11"><a href="model.html#cb342-11"></a>             <span class="dt">alpha =</span> <span class="fl">0.1</span>,</span>
-<span id="cb342-12"><a href="model.html#cb342-12"></a>             <span class="dt">color =</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="op">+</span></span>
-<span id="cb342-13"><a href="model.html#cb342-13"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">sqrt</span>(mass))) <span class="op">+</span></span>
-<span id="cb342-14"><a href="model.html#cb342-14"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Waist Circumference, cm&quot;</span>) <span class="op">+</span></span>
-<span id="cb342-15"><a href="model.html#cb342-15"></a><span class="st">  </span><span class="kw">theme_classic</span>(<span class="dt">base_size =</span> <span class="dv">13</span>)</span>
-<span id="cb342-16"><a href="model.html#cb342-16"></a></span>
-<span id="cb342-17"><a href="model.html#cb342-17"></a><span class="kw">grid.arrange</span>(p1, p2, <span class="dt">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="model.html#cb342-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data_18) <span class="sc">+</span></span>
+<span id="cb342-2"><a href="model.html#cb342-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> waist, <span class="at">y =</span> mass),</span>
+<span id="cb342-3"><a href="model.html#cb342-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
+<span id="cb342-4"><a href="model.html#cb342-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;maroon4&quot;</span>) <span class="sc">+</span></span>
+<span id="cb342-5"><a href="model.html#cb342-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Mass, kg&quot;</span>) <span class="sc">+</span></span>
+<span id="cb342-6"><a href="model.html#cb342-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Waist Circumference, cm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb342-7"><a href="model.html#cb342-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
+<span id="cb342-8"><a href="model.html#cb342-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb342-9"><a href="model.html#cb342-9" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data_18) <span class="sc">+</span></span>
+<span id="cb342-10"><a href="model.html#cb342-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> waist, <span class="at">y =</span> sqrt_mass),</span>
+<span id="cb342-11"><a href="model.html#cb342-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
+<span id="cb342-12"><a href="model.html#cb342-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb342-13"><a href="model.html#cb342-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">sqrt</span>(mass))) <span class="sc">+</span></span>
+<span id="cb342-14"><a href="model.html#cb342-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Waist Circumference, cm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb342-15"><a href="model.html#cb342-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
+<span id="cb342-16"><a href="model.html#cb342-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb342-17"><a href="model.html#cb342-17" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:model-compare"></span>
 <img src="11-model_files/figure-html/model-compare-1.png" alt="Side-by-side comparison of two model specifications. Does one look more linear than the other?" width="672" />
 <p class="caption">
 Figure 11.4: Side-by-side comparison of two model specifications. Does one look more linear than the other?
 </p>
 </div>
-<p>Looking at the right plot in Figure <a href="model.html#fig:model-compare">11.4</a>, where <span class="math inline">\(\sqrt(mass)\)</span> is plotted, helps make the slight curvature in the left-side plot more evident. Both plots appear “mostly” linear but the one on the right “looks better”, at least to me! Our process knowledge suggests that the model on the right is better specified. Let’s fit both models and find out!</p>
+<p>Looking at the right plot in Figure <a href="model.html#fig:model-compare">11.4</a>, where <span class="math inline">\(\sqrt(mass)\)</span> is plotted, helps make the slight curvature in the left-side plot more evident. Both plots appear “mostly” linear but the one on the right “looks better,” at least to me! Our process knowledge suggests that the model on the right is better specified. Let’s fit both models and find out!</p>
 <p>The NHANES data we use here is from 2017-2018 (saved as <code>bodysize.csv</code> and read into a data frame labeled: <code>data_18</code>). These data have been filtered to include adults only (<code>filter(age &gt; 18)</code>). The first few lines of data look like this:</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="model.html#cb343-1"></a><span class="kw">head</span>(data_<span class="dv">18</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="model.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_18)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 7
 ##      id  mass waist height gender   age sqrt_mass
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
@@ -674,13 +727,13 @@ Figure 11.4: Side-by-side comparison of two model specifications. Does one look 
 ## 4 93709  88.8 113     151.      2    75      9.42
 ## 5 93711  62.1  86.6   171.      1    56      7.88
 ## 6 93712  58.9  72     173.      1    18      7.67</code></pre>
-<div id="the-lm-function" class="section level3">
+<div id="the-lm-function" class="section level3" number="11.5.1">
 <h3><span class="header-section-number">11.5.1</span> The <code>lm()</code> function</h3>
 <p>The <code>lm()</code> function in R stands for <em>“linear model”</em> and will perform an OLS fit on any linear model you specify. The function requires two arguments: a <code>formula</code> (i.e., the model specification) and the <code>data</code> with which to fit that model. Formulas are specified as <code>y ~ x</code>, so our call to <code>lm()</code> looks like this for each model:</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="model.html#cb345-1"></a>model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(mass <span class="op">~</span><span class="st"> </span>waist, <span class="dt">data =</span> data_<span class="dv">18</span>)</span>
-<span id="cb345-2"><a href="model.html#cb345-2"></a></span>
-<span id="cb345-3"><a href="model.html#cb345-3"></a>model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(sqrt_mass <span class="op">~</span><span class="st"> </span>waist, <span class="dt">data =</span> data_<span class="dv">18</span>)</span></code></pre></div>
-<p>Now that we have stored each model as an object (<code>model1</code>, <code>model2</code>), so we can examine what they contain. The output of <code>lm()</code> is a list of class “lm”. If we type <code>view(model1)</code> the contents of the list become apparent.</p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="model.html#cb345-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mass <span class="sc">~</span> waist, <span class="at">data =</span> data_18)</span>
+<span id="cb345-2"><a href="model.html#cb345-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb345-3"><a href="model.html#cb345-3" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(sqrt_mass <span class="sc">~</span> waist, <span class="at">data =</span> data_18)</span></code></pre></div>
+<p>Now that we have stored each model as an object (<code>model1</code>, <code>model2</code>), so we can examine what they contain. The output of <code>lm()</code> is a list of class “lm.” If we type <code>view(model1)</code> the contents of the list become apparent.</p>
 <div class="figure"><span id="fig:model1-list"></span>
 <img src="images/model1_list.png" alt="The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more." width="632" />
 <p class="caption">
@@ -695,7 +748,7 @@ Figure 11.5: The <code>lm()</code> function provides a self-contained list of th
 </ul>
 <p>These are the primary outputs of the OLS fit; they define the line of “best fit” for which the SSE have been minimized.</p>
 <p>To examine the overall fit of the model, we can call the <code>summary()</code> function with the model object as an argument. Here is the summary for <code>model1</code>:</p>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="model.html#cb346-1"></a><span class="kw">summary</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="model.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mass ~ waist, data = data_18)
@@ -715,7 +768,7 @@ Figure 11.5: The <code>lm()</code> function provides a self-contained list of th
 ## Multiple R-squared:  0.8025, Adjusted R-squared:  0.8025 
 ## F-statistic: 2.102e+04 on 1 and 5173 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>and here is the summary for <code>model2</code>:</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="model.html#cb348-1"></a><span class="kw">summary</span>(model2)</span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="model.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = sqrt_mass ~ waist, data = data_18)
@@ -749,19 +802,19 @@ Figure 11.5: The <code>lm()</code> function provides a self-contained list of th
 </ul></li>
 <li>Option 3: And yet a third way would be to use <code>ggplot::stat_function()</code> where we explicitly specify the model its coefficients as a linear function in R. You can learn more about each of these approaches in the help section or by typing <code>?stat_function</code> into the Console.</li>
 </ul>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="model.html#cb350-1"></a><span class="co"># note how we can add layers to existing ggplot objects</span></span>
-<span id="cb350-2"><a href="model.html#cb350-2"></a>p1<span class="fl">.2</span> &lt;-<span class="st"> </span>p1 <span class="op">+</span><span class="st"> </span></span>
-<span id="cb350-3"><a href="model.html#cb350-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">data =</span> data_<span class="dv">18</span>,</span>
-<span id="cb350-4"><a href="model.html#cb350-4"></a>              <span class="kw">aes</span>(<span class="dt">x =</span> waist, <span class="dt">y =</span> mass),</span>
-<span id="cb350-5"><a href="model.html#cb350-5"></a>              <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb350-6"><a href="model.html#cb350-6"></a>              <span class="dt">formula =</span> <span class="st">&quot;y ~ x&quot;</span>,</span>
-<span id="cb350-7"><a href="model.html#cb350-7"></a>              <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>)</span>
-<span id="cb350-8"><a href="model.html#cb350-8"></a></span>
-<span id="cb350-9"><a href="model.html#cb350-9"></a>p2<span class="fl">.2</span> &lt;-<span class="st"> </span>p2 <span class="op">+</span></span>
-<span id="cb350-10"><a href="model.html#cb350-10"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> model2<span class="op">$</span>coefficients[[<span class="dv">1</span>]],</span>
-<span id="cb350-11"><a href="model.html#cb350-11"></a>              <span class="dt">slope =</span> model2<span class="op">$</span>coefficients[[<span class="dv">2</span>]])</span>
-<span id="cb350-12"><a href="model.html#cb350-12"></a></span>
-<span id="cb350-13"><a href="model.html#cb350-13"></a><span class="kw">grid.arrange</span>(p1<span class="fl">.2</span>, p2<span class="fl">.2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="model.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note how we can add layers to existing ggplot objects</span></span>
+<span id="cb350-2"><a href="model.html#cb350-2" aria-hidden="true" tabindex="-1"></a>p1<span class="fl">.2</span> <span class="ot">&lt;-</span> p1 <span class="sc">+</span> </span>
+<span id="cb350-3"><a href="model.html#cb350-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> data_18,</span>
+<span id="cb350-4"><a href="model.html#cb350-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">x =</span> waist, <span class="at">y =</span> mass),</span>
+<span id="cb350-5"><a href="model.html#cb350-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb350-6"><a href="model.html#cb350-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">formula =</span> <span class="st">&quot;y ~ x&quot;</span>,</span>
+<span id="cb350-7"><a href="model.html#cb350-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb350-8"><a href="model.html#cb350-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb350-9"><a href="model.html#cb350-9" aria-hidden="true" tabindex="-1"></a>p2<span class="fl">.2</span> <span class="ot">&lt;-</span> p2 <span class="sc">+</span></span>
+<span id="cb350-10"><a href="model.html#cb350-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> model2<span class="sc">$</span>coefficients[[<span class="dv">1</span>]],</span>
+<span id="cb350-11"><a href="model.html#cb350-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">slope =</span> model2<span class="sc">$</span>coefficients[[<span class="dv">2</span>]])</span>
+<span id="cb350-12"><a href="model.html#cb350-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb350-13"><a href="model.html#cb350-13" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1<span class="fl">.2</span>, p2<span class="fl">.2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:model-fits"></span>
 <img src="11-model_files/figure-html/model-fits-1.png" alt="There are many ways in R to overlay a linear fit onto a scatter plot" width="672" />
 <p class="caption">
@@ -770,7 +823,7 @@ Figure 11.6: There are many ways in R to overlay a linear fit onto a scatter plo
 </div>
 <p>Note that <code>geom_abline()</code> extends the line to the <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> axis limits (beyond the reach of the actual data). This type of extrapolation is sometimes frowned upon because you don’t have data out there. In the case of Figure <a href="model.html#fig:model-fits">11.6</a>, this isn’t such a bid deal because we set our plot limits to closely match our data limits. We will come back to these plots later on, as we examine our model assumptions.</p>
 </div>
-<div id="ols-diagnostics" class="section level3">
+<div id="ols-diagnostics" class="section level3" number="11.5.2">
 <h3><span class="header-section-number">11.5.2</span> OLS Diagnostics</h3>
 <p>In this section, we will run through our list of <a href="model.html#OLS_assum">OLS assumptions</a> for each of the models to prove that our models are proper and to help us decide which is better.</p>
 <p><strong>Assumption #1: The form of the model is linear in the coefficients.</strong><br />
@@ -781,29 +834,29 @@ This one is hard to answer (right now) but our process knowledge (the physics of
 This assumption is automatically valid because we have only one independent predictor variable in each model, ruling out any possibility of collinearity.</p>
 <p><strong>Assumption #4: The error term has a mean of zero.</strong><br />
 We can calculate this from our two model objects.</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="model.html#cb351-1"></a><span class="kw">mean</span>(model1<span class="op">$</span>residuals)</span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="model.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(model1<span class="sc">$</span>residuals)</span></code></pre></div>
 <pre><code>## [1] 1.069649e-16</code></pre>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="model.html#cb353-1"></a><span class="kw">mean</span>(model2<span class="op">$</span>residuals)</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="model.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(model2<span class="sc">$</span>residuals)</span></code></pre></div>
 <pre><code>## [1] 5.099008e-18</code></pre>
 <p>Those are pretty small numbers. Check and check.</p>
 <p><strong>Assumption #5: The error term is normally distributed</strong><br />
-This assumption can be checked several ways, but my preference is to create a Q-Q plot about the residuals (the Q’s stand for <em>“quantile-quantile”</em>). A Q-Q plot is a scatterplot that relates the quantile values of your data against the quantiles of an “expected distribution” - in this case the <a href="dist.html#normal_dist">normal distribution</a>. If “your data” follow the shape of the “expected data” then both datasets can be said to follow the same distribution. Thus, when you plot residuals on a “normal Q-Q plot”, you are looking for your data to fall along a straight line through the center. The <code>{ggplot}</code> package allow you to create Q-Q plots using <code>geom_qq()</code> function, which creates the plot, and <code>geom_qq_line()</code>, which adds the “expected” line to aid your eye. The <code>{stats}</code> package in base R also allows you to do this with the <code>qqnorm()</code> and the <code>qqline()</code> functions.</p>
+This assumption can be checked several ways, but my preference is to create a Q-Q plot about the residuals (the Q’s stand for <em>“quantile-quantile”</em>). A Q-Q plot is a scatterplot that relates the quantile values of your data against the quantiles of an “expected distribution” - in this case the <a href="dist.html#normal_dist">normal distribution</a>. If “your data” follow the shape of the “expected data” then both datasets can be said to follow the same distribution. Thus, when you plot residuals on a “normal Q-Q plot,” you are looking for your data to fall along a straight line through the center. The <code>{ggplot}</code> package allow you to create Q-Q plots using <code>geom_qq()</code> function, which creates the plot, and <code>geom_qq_line()</code>, which adds the “expected” line to aid your eye. The <code>{stats}</code> package in base R also allows you to do this with the <code>qqnorm()</code> and the <code>qqline()</code> functions.</p>
 <p>Here are the Q-Q plots for <code>model1</code> and <code>model2</code>.</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="model.html#cb355-1"></a>p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data  =</span> model1<span class="op">$</span>model, <span class="kw">aes</span>(<span class="dt">sample =</span> model1<span class="op">$</span>residuals)) <span class="op">+</span></span>
-<span id="cb355-2"><a href="model.html#cb355-2"></a><span class="st">  </span><span class="kw">geom_qq</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>,</span>
-<span id="cb355-3"><a href="model.html#cb355-3"></a>          <span class="dt">color =</span> <span class="st">&quot;maroon4&quot;</span>) <span class="op">+</span></span>
-<span id="cb355-4"><a href="model.html#cb355-4"></a><span class="st">  </span><span class="kw">geom_qq_line</span>(<span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span></span>
-<span id="cb355-5"><a href="model.html#cb355-5"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Model 1: mass ~ waist&quot;</span>) <span class="op">+</span></span>
-<span id="cb355-6"><a href="model.html#cb355-6"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
-<span id="cb355-7"><a href="model.html#cb355-7"></a></span>
-<span id="cb355-8"><a href="model.html#cb355-8"></a>p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data  =</span> model2<span class="op">$</span>model, <span class="kw">aes</span>(<span class="dt">sample =</span> model2<span class="op">$</span>residuals)) <span class="op">+</span></span>
-<span id="cb355-9"><a href="model.html#cb355-9"></a><span class="st">  </span><span class="kw">geom_qq</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>,</span>
-<span id="cb355-10"><a href="model.html#cb355-10"></a>          <span class="dt">color =</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="op">+</span></span>
-<span id="cb355-11"><a href="model.html#cb355-11"></a><span class="st">  </span><span class="kw">geom_qq_line</span>(<span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span></span>
-<span id="cb355-12"><a href="model.html#cb355-12"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Model 2: sqrt(mass) ~ waist&quot;</span>) <span class="op">+</span></span>
-<span id="cb355-13"><a href="model.html#cb355-13"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span>
-<span id="cb355-14"><a href="model.html#cb355-14"></a></span>
-<span id="cb355-15"><a href="model.html#cb355-15"></a><span class="kw">grid.arrange</span>(p3, p4, <span class="dt">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="model.html#cb355-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data  =</span> model1<span class="sc">$</span>model, <span class="fu">aes</span>(<span class="at">sample =</span> model1<span class="sc">$</span>residuals)) <span class="sc">+</span></span>
+<span id="cb355-2"><a href="model.html#cb355-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
+<span id="cb355-3"><a href="model.html#cb355-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;maroon4&quot;</span>) <span class="sc">+</span></span>
+<span id="cb355-4"><a href="model.html#cb355-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb355-5"><a href="model.html#cb355-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Model 1: mass ~ waist&quot;</span>) <span class="sc">+</span></span>
+<span id="cb355-6"><a href="model.html#cb355-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb355-7"><a href="model.html#cb355-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb355-8"><a href="model.html#cb355-8" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data  =</span> model2<span class="sc">$</span>model, <span class="fu">aes</span>(<span class="at">sample =</span> model2<span class="sc">$</span>residuals)) <span class="sc">+</span></span>
+<span id="cb355-9"><a href="model.html#cb355-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
+<span id="cb355-10"><a href="model.html#cb355-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb355-11"><a href="model.html#cb355-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb355-12"><a href="model.html#cb355-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Model 2: sqrt(mass) ~ waist&quot;</span>) <span class="sc">+</span></span>
+<span id="cb355-13"><a href="model.html#cb355-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb355-14"><a href="model.html#cb355-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb355-15"><a href="model.html#cb355-15" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p3, p4, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:qqplot"></span>
 <img src="11-model_files/figure-html/qqplot-1.png" alt="Q-Q plots of residuals for two linear models. Which set of residuals better approximates a normal distribution?" width="672" />
 <p class="caption">
@@ -813,23 +866,23 @@ Figure 11.7: Q-Q plots of residuals for two linear models. Which set of residual
 <p>Both models reasonable follow the expected quantile plots, although <code>model1</code> shows more deviation from normality at the upper tail. If I hadn’t seen <code>model2</code>, which looks nearly perfect, I probably would have said that <code>model1</code> was adequate. Advantage: <code>model2</code>.</p>
 <p><strong>Assumption #6: The error term is homoscedastic</strong><br />
 To evaluate this assumption, we create a <a href="eda2.html#scatt">scatterplot</a> of residuals vs. the fitted values, <span class="math inline">\(\hat{Y_{i}}\)</span>. Both of these data are contained in the model output lists.</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="model.html#cb356-1"></a>p5 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> model1<span class="op">$</span>model) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb356-2"><a href="model.html#cb356-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> model1<span class="op">$</span>fitted.values, <span class="dt">y =</span>model1<span class="op">$</span>residuals),</span>
-<span id="cb356-3"><a href="model.html#cb356-3"></a>             <span class="dt">alpha =</span> <span class="fl">0.25</span>,</span>
-<span id="cb356-4"><a href="model.html#cb356-4"></a>             <span class="dt">color =</span> <span class="st">&quot;maroon3&quot;</span>) <span class="op">+</span></span>
-<span id="cb356-5"><a href="model.html#cb356-5"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb356-6"><a href="model.html#cb356-6"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
-<span id="cb356-7"><a href="model.html#cb356-7"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">aspect.ratio =</span> <span class="fl">0.5</span>)</span>
-<span id="cb356-8"><a href="model.html#cb356-8"></a></span>
-<span id="cb356-9"><a href="model.html#cb356-9"></a>p6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> model2<span class="op">$</span>model)<span class="op">+</span><span class="st"> </span></span>
-<span id="cb356-10"><a href="model.html#cb356-10"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> model2<span class="op">$</span>fitted.values, <span class="dt">y =</span>model2<span class="op">$</span>residuals),</span>
-<span id="cb356-11"><a href="model.html#cb356-11"></a>             <span class="dt">alpha =</span> <span class="fl">0.25</span>,</span>
-<span id="cb356-12"><a href="model.html#cb356-12"></a>             <span class="dt">color=</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="op">+</span></span>
-<span id="cb356-13"><a href="model.html#cb356-13"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb356-14"><a href="model.html#cb356-14"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
-<span id="cb356-15"><a href="model.html#cb356-15"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">aspect.ratio =</span> <span class="fl">0.5</span>)</span>
-<span id="cb356-16"><a href="model.html#cb356-16"></a></span>
-<span id="cb356-17"><a href="model.html#cb356-17"></a><span class="kw">grid.arrange</span>(p5, p6, <span class="dt">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="model.html#cb356-1" aria-hidden="true" tabindex="-1"></a>p5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> model1<span class="sc">$</span>model) <span class="sc">+</span> </span>
+<span id="cb356-2"><a href="model.html#cb356-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> model1<span class="sc">$</span>fitted.values, <span class="at">y =</span>model1<span class="sc">$</span>residuals),</span>
+<span id="cb356-3"><a href="model.html#cb356-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.25</span>,</span>
+<span id="cb356-4"><a href="model.html#cb356-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;maroon3&quot;</span>) <span class="sc">+</span></span>
+<span id="cb356-5"><a href="model.html#cb356-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb356-6"><a href="model.html#cb356-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb356-7"><a href="model.html#cb356-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="fl">0.5</span>)</span>
+<span id="cb356-8"><a href="model.html#cb356-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb356-9"><a href="model.html#cb356-9" aria-hidden="true" tabindex="-1"></a>p6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> model2<span class="sc">$</span>model)<span class="sc">+</span> </span>
+<span id="cb356-10"><a href="model.html#cb356-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> model2<span class="sc">$</span>fitted.values, <span class="at">y =</span>model2<span class="sc">$</span>residuals),</span>
+<span id="cb356-11"><a href="model.html#cb356-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.25</span>,</span>
+<span id="cb356-12"><a href="model.html#cb356-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">color=</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb356-13"><a href="model.html#cb356-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb356-14"><a href="model.html#cb356-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb356-15"><a href="model.html#cb356-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="fl">0.5</span>)</span>
+<span id="cb356-16"><a href="model.html#cb356-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb356-17"><a href="model.html#cb356-17" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p5, p6, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:residual-plot"></span>
 <img src="11-model_files/figure-html/residual-plot-1.png" alt="Residuals vs. fitted values as a check for homoscedasticity." width="672" />
 <p class="caption">
@@ -839,16 +892,16 @@ Figure 11.8: Residuals vs. fitted values as a check for homoscedasticity.
 <p>Looking at these plots, the residuals don’t show major changes across the range of fitted values (for both plots) - this is a good outcome because it implies the residuals are homoscedastic. There are slight differences between the two models, however. For example, <code>model1</code> tends to have positive residuals at low and high values of <span class="math inline">\(\hat{Y_{i}}\)</span>, whereas, <code>model2</code> seems to have more constant error across the range of <span class="math inline">\(\hat{Y_{i}}\)</span>. Boring residuals are what you want. <em>Advantage: <code>model2</code>.</em></p>
 <p><strong>Assumption 7: No autocorrelation among residuals</strong>
 This assumption is evaluated by making a <a href="eda1.html#autocorr">partial autocorrelation plot</a> of your residuals. We will accomplish these plots using <code>pacf()</code> function from the <code>{stats}</code> package.</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="model.html#cb357-1"></a>stats<span class="op">::</span><span class="kw">pacf</span>(model1<span class="op">$</span>residuals, </span>
-<span id="cb357-2"><a href="model.html#cb357-2"></a>            <span class="dt">main =</span> <span class="st">&quot;Model 1 Partial Autocorrelation Plot&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="model.html#cb357-1" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">pacf</span>(model1<span class="sc">$</span>residuals, </span>
+<span id="cb357-2"><a href="model.html#cb357-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">main =</span> <span class="st">&quot;Model 1 Partial Autocorrelation Plot&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:resid-autocorr-1"></span>
 <img src="11-model_files/figure-html/resid-autocorr-1.png" alt="Partial autocorrelation plots of residuals." width="672" />
 <p class="caption">
 Figure 11.9: Partial autocorrelation plots of residuals.
 </p>
 </div>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="model.html#cb358-1"></a>stats<span class="op">::</span><span class="kw">pacf</span>(model2<span class="op">$</span>residuals, </span>
-<span id="cb358-2"><a href="model.html#cb358-2"></a>            <span class="dt">main =</span> <span class="st">&quot;Model 2 Partial Autocorrelation Plot&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="model.html#cb358-1" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">pacf</span>(model2<span class="sc">$</span>residuals, </span>
+<span id="cb358-2"><a href="model.html#cb358-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">main =</span> <span class="st">&quot;Model 2 Partial Autocorrelation Plot&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:resid-autocorr-2"></span>
 <img src="11-model_files/figure-html/resid-autocorr-2.png" alt="Partial autocorrelation plots of residuals." width="672" />
 <p class="caption">
@@ -858,20 +911,20 @@ Figure 11.10: Partial autocorrelation plots of residuals.
 <p>Neither plot shows a <em>strong</em> degree of autocorrelation, though both plots suggest that lag-5 autocorrelation is borderline significant (moreso for <code>model1</code>). Autocorrelation among the residuals suggests that your model is not correctly specified and these results suggest that <code>model2</code> is slightly better specified than <code>model1</code>. Perhaps something is missing from these models?</p>
 <p><strong>Assumption 8: Residuals are not correlated with predictor variables.</strong>
 This assumption can be evaluated through a correlation analysis. The <code>cor()</code> function from the <code>{stats}</code> package allows you to calculate correlation coefficients (e.g., Pearson, Spearman) among variables in a data frame. If you supply a data frame as an argument to <code>cor()</code> it will calculate correlations among all possible variable combinations. Otherwise, you can supply it with two vectors: <code>x =</code> and <code>y =</code>.</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="model.html#cb359-1"></a><span class="kw">cor</span>(<span class="dt">x =</span> model1<span class="op">$</span>residuals, </span>
-<span id="cb359-2"><a href="model.html#cb359-2"></a>    <span class="dt">y =</span> model1<span class="op">$</span>model[,<span class="dv">2</span>],</span>
-<span id="cb359-3"><a href="model.html#cb359-3"></a>    <span class="dt">method =</span> <span class="st">&quot;pearson&quot;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="model.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="at">x =</span> model1<span class="sc">$</span>residuals, </span>
+<span id="cb359-2"><a href="model.html#cb359-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> model1<span class="sc">$</span>model[,<span class="dv">2</span>],</span>
+<span id="cb359-3"><a href="model.html#cb359-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span> )</span></code></pre></div>
 <pre><code>## [1] -6.945472e-17</code></pre>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="model.html#cb361-1"></a><span class="kw">cor</span>(<span class="dt">x =</span> model2<span class="op">$</span>residuals, </span>
-<span id="cb361-2"><a href="model.html#cb361-2"></a>    <span class="dt">y =</span> model1<span class="op">$</span>model[,<span class="dv">2</span>],</span>
-<span id="cb361-3"><a href="model.html#cb361-3"></a>    <span class="dt">method =</span> <span class="st">&quot;pearson&quot;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="model.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="at">x =</span> model2<span class="sc">$</span>residuals, </span>
+<span id="cb361-2"><a href="model.html#cb361-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> model1<span class="sc">$</span>model[,<span class="dv">2</span>],</span>
+<span id="cb361-3"><a href="model.html#cb361-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span> )</span></code></pre></div>
 <pre><code>## [1] -7.949226e-17</code></pre>
 <p>The correlation coefficients are both nearly zero, so this last assumption is validated.</p>
 <p><strong><em>Which model is best?</em></strong>
 Both models explained ~80% of the variance in our dependent variable. Based on our process knowledge and the fit diagnostics, we can conclude that <code>model2</code> is better specified than <code>model1</code>. In examining our process knowledge and the residuals, however, we cannot help but wonder if a better model exists out there to predict body mass based on measurement variables?</p>
 </div>
 </div>
-<div id="calibration" class="section level2">
+<div id="calibration" class="section level2" number="11.6">
 <h2><span class="header-section-number">11.6</span> Calibration</h2>
 <p>Calibration is a common technique in science and engineering used to aid
 measurement. To <em>calibrate</em> an instrument means to compare its measurements
@@ -886,7 +939,7 @@ being compared). The two most common approaches are to use either a
 <li>To use a <em>standard reference measurement</em> means to use a better (trusted)
 instrument to perform your calibration. The term <strong>standard reference</strong> in
 science or engineering means “commonly accepted as a best available
-technique”. Standard reference instruments often come with some sort of
+technique.” Standard reference instruments often come with some sort of
 certification of authenticity or performance (i.e., <em>accurate to within X %</em>
 <em>and precise to within Y %</em>).<br />
 </li>
@@ -945,7 +998,7 @@ Calculate instrument precision and linearity. Decide on whether the dynamic
 range of the instrument was exceeded by any of calibration levels.</li>
 </ul></li>
 </ol>
-<div id="example-calibration" class="section level3">
+<div id="example-calibration" class="section level3" number="11.6.1">
 <h3><span class="header-section-number">11.6.1</span> Example Calibration</h3>
 <p>In this example, we will evaluate the calibration of a low-cost instrument
 designed to measure <em>aerosol optical depth</em>, or AOD. The term aerosol optical
@@ -953,9 +1006,9 @@ depth is a term in atmospheric science that describes whether air pollution
 contributes to loss of visibility in the atmosphere (it is like a measure of
 haziness of the sky). We often experience high levels of AOD in Colorado when
 smoke from wildfires shows up (and that happens more often each year).</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="model.html#cb363-1"></a>cal_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;./data/cal_aod.csv&quot;</span>, <span class="dt">col_names =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb363-2"><a href="model.html#cb363-2"></a></span>
-<span id="cb363-3"><a href="model.html#cb363-3"></a><span class="kw">head</span>(cal_data)</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="model.html#cb363-1" aria-hidden="true" tabindex="-1"></a>cal_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;./data/cal_aod.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb363-2"><a href="model.html#cb363-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb363-3"><a href="model.html#cb363-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cal_data)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   wave  time_r               amod aeronet
 ##   &lt;chr&gt; &lt;dttm&gt;              &lt;dbl&gt;   &lt;dbl&gt;
@@ -966,12 +1019,12 @@ smoke from wildfires shows up (and that happens more often each year).</p>
 ## 5 440nm 2020-08-15 21:05:54 0.367   0.376
 ## 6 440nm 2020-08-15 21:20:54 0.355   0.346</code></pre>
 <p>Closer examination of the data indicates that we have two instruments (<code>amod</code> and <code>aeronet</code>) that are measuring the same quantity: <em>aerosol optical depth</em>. Thus, we have the same type of observation being reported in two different columns. This means we need to tidy this data frame!</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="model.html#cb365-1"></a>tidy_cal &lt;-<span class="st"> </span>cal_data <span class="op">%&gt;%</span></span>
-<span id="cb365-2"><a href="model.html#cb365-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;amod&quot;</span>, <span class="st">&quot;aeronet&quot;</span>), </span>
-<span id="cb365-3"><a href="model.html#cb365-3"></a>               <span class="dt">names_to =</span> <span class="st">&quot;instrument&quot;</span>, </span>
-<span id="cb365-4"><a href="model.html#cb365-4"></a>               <span class="dt">values_to =</span> <span class="st">&quot;aod&quot;</span>)</span>
-<span id="cb365-5"><a href="model.html#cb365-5"></a></span>
-<span id="cb365-6"><a href="model.html#cb365-6"></a><span class="kw">head</span>(tidy_cal)</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="model.html#cb365-1" aria-hidden="true" tabindex="-1"></a>tidy_cal <span class="ot">&lt;-</span> cal_data <span class="sc">%&gt;%</span></span>
+<span id="cb365-2"><a href="model.html#cb365-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;amod&quot;</span>, <span class="st">&quot;aeronet&quot;</span>), </span>
+<span id="cb365-3"><a href="model.html#cb365-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;instrument&quot;</span>, </span>
+<span id="cb365-4"><a href="model.html#cb365-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;aod&quot;</span>)</span>
+<span id="cb365-5"><a href="model.html#cb365-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb365-6"><a href="model.html#cb365-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tidy_cal)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   wave  time_r              instrument   aod
 ##   &lt;chr&gt; &lt;dttm&gt;              &lt;chr&gt;      &lt;dbl&gt;
@@ -989,11 +1042,11 @@ Figure 11.11: A 4-plot EDA of our AOD Calibration Data
 </p>
 </div>
 <p>Let’s fit a linear model between <code>aeronet</code> AOD as the independent variable and <code>amod</code> AOD as the dependent variable. Note that while we decided to <code>tidy</code> the data frame for making our EDA plots, we may not want tidy data for our calibration fit. That’s because, with calibration, we are treating the two AOD instruments as separate variables (i.e., <code>x</code> and <code>y</code>). Thus, we will call upon the non-tidy <code>cal_data</code> to specify a <code>y ~ x</code> formula in the <code>lm()</code> function below. And once we fit the model, we create a <code>summary()</code> object to examine fit statistics, coefficients, and confidence intervals.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="model.html#cb367-1"></a>aod.fit &lt;-<span class="st"> </span><span class="kw">lm</span>(amod <span class="op">~</span><span class="st"> </span>aeronet, <span class="dt">data =</span> cal_data)</span>
-<span id="cb367-2"><a href="model.html#cb367-2"></a></span>
-<span id="cb367-3"><a href="model.html#cb367-3"></a>aod.summary &lt;-<span class="st"> </span><span class="kw">summary</span>(aod.fit)</span>
-<span id="cb367-4"><a href="model.html#cb367-4"></a></span>
-<span id="cb367-5"><a href="model.html#cb367-5"></a>aod.summary</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="model.html#cb367-1" aria-hidden="true" tabindex="-1"></a>aod.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(amod <span class="sc">~</span> aeronet, <span class="at">data =</span> cal_data)</span>
+<span id="cb367-2"><a href="model.html#cb367-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb367-3"><a href="model.html#cb367-3" aria-hidden="true" tabindex="-1"></a>aod.summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(aod.fit)</span>
+<span id="cb367-4"><a href="model.html#cb367-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb367-5"><a href="model.html#cb367-5" aria-hidden="true" tabindex="-1"></a>aod.summary</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = amod ~ aeronet, data = cal_data)
@@ -1013,22 +1066,22 @@ Figure 11.11: A 4-plot EDA of our AOD Calibration Data
 ## Multiple R-squared:  0.9775, Adjusted R-squared:  0.9772 
 ## F-statistic:  3345 on 1 and 77 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The fit itself can be visualized using <code>ggplot::geom_smooth()</code> with an argument of <code>method = "lm"</code>:</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="model.html#cb369-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> cal_data,</span>
-<span id="cb369-2"><a href="model.html#cb369-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> aeronet, <span class="dt">y =</span> amod)) <span class="op">+</span></span>
-<span id="cb369-3"><a href="model.html#cb369-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x,</span>
-<span id="cb369-4"><a href="model.html#cb369-4"></a>              <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb369-5"><a href="model.html#cb369-5"></a>              <span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
-<span id="cb369-6"><a href="model.html#cb369-6"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>,</span>
-<span id="cb369-7"><a href="model.html#cb369-7"></a>             <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb369-8"><a href="model.html#cb369-8"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Aeronet AOD&quot;</span>) <span class="op">+</span></span>
-<span id="cb369-9"><a href="model.html#cb369-9"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;AMOD AOD&quot;</span>) <span class="op">+</span></span>
-<span id="cb369-10"><a href="model.html#cb369-10"></a><span class="st">  </span><span class="kw">coord_fixed</span>() <span class="op">+</span></span>
-<span id="cb369-11"><a href="model.html#cb369-11"></a><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="model.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> cal_data,</span>
+<span id="cb369-2"><a href="model.html#cb369-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> aeronet, <span class="at">y =</span> amod)) <span class="sc">+</span></span>
+<span id="cb369-3"><a href="model.html#cb369-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">formula =</span> y <span class="sc">~</span> x,</span>
+<span id="cb369-4"><a href="model.html#cb369-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb369-5"><a href="model.html#cb369-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb369-6"><a href="model.html#cb369-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>,</span>
+<span id="cb369-7"><a href="model.html#cb369-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb369-8"><a href="model.html#cb369-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Aeronet AOD&quot;</span>) <span class="sc">+</span></span>
+<span id="cb369-9"><a href="model.html#cb369-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;AMOD AOD&quot;</span>) <span class="sc">+</span></span>
+<span id="cb369-10"><a href="model.html#cb369-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb369-11"><a href="model.html#cb369-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
 <p><img src="11-model_files/figure-html/aod-scatterplot-1.png" width="672" /></p>
 <p>Note the one outlier present in the scatterplot. Does this outlier influence the result of the calibration? How could you evaluate it?</p>
 </div>
 </div>
-<div id="ch-11-homework" class="section level2">
+<div id="ch-11-homework" class="section level2" number="11.7">
 <h2><span class="header-section-number">11.7</span> Ch-11 Homework</h2>
 <p>This homework will give you experience with fitting OLS linear models and testing model assumptions.</p>
 

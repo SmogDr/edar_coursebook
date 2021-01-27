@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-11" />
+<meta name="date" content="2021-01-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="eda1.html"/>
 <link rel="next" href="eda2.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,26 +51,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -89,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -138,14 +136,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Engineering Data Analysis in R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1</b> How to use this book</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a><ul>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
 <li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a><ul>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#install-r-and-rstudio"><i class="fa fa-check"></i><b>1.4.1</b> Install R and RStudio</a></li>
 <li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#install-git-and-create-a-github-account"><i class="fa fa-check"></i><b>1.4.2</b> Install Git and create a GitHub account</a></li>
 <li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#connect-git-github-and-rstudio"><i class="fa fa-check"></i><b>1.4.3</b> Connect Git, GitHub, and RStudio</a></li>
@@ -154,57 +155,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#confirm-successful-set-up"><i class="fa fa-check"></i><b>1.4.6</b> Confirm successful set-up</a></li>
 <li class="chapter" data-level="1.4.7" data-path="index.html"><a href="index.html#asking-for-help-properly"><i class="fa fa-check"></i><b>1.4.7</b> Asking for help (properly)</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a><ul>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#other-helpful-books-not-required"><i class="fa fa-check"></i><b>1.5.1</b> Other helpful books (not required)</a></li>
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a><ul>
+<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="rprog1.html"><a href="rprog1.html#ch.-2-objectives"><i class="fa fa-check"></i><b>2.1</b> Ch. 2 Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="rprog1.html"><a href="rprog1.html#what-is-r"><i class="fa fa-check"></i><b>2.2.1</b> What is R?</a></li>
 <li class="chapter" data-level="2.2.2" data-path="rprog1.html"><a href="rprog1.html#free-and-open-source-software"><i class="fa fa-check"></i><b>2.2.2</b> Free and open-source software</a></li>
 <li class="chapter" data-level="2.2.3" data-path="rprog1.html"><a href="rprog1.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2.3</b> What is RStudio?</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a><ul>
+<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="rprog1.html"><a href="rprog1.html#r-sessions-console-and-command-prompt"><i class="fa fa-check"></i><b>2.3.1</b> R sessions, console, and command prompt</a></li>
 <li class="chapter" data-level="2.3.2" data-path="rprog1.html"><a href="rprog1.html#r-expressions-function-calls-and-objects"><i class="fa fa-check"></i><b>2.3.2</b> R expressions, function calls, and objects</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a><ul>
+<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="rprog1.html"><a href="rprog1.html#commenting-code"><i class="fa fa-check"></i><b>2.4.1</b> Commenting code</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a><ul>
+<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="rprog1.html"><a href="rprog1.html#r-packages"><i class="fa fa-check"></i><b>2.5.1</b> R packages</a></li>
 <li class="chapter" data-level="2.5.2" data-path="rprog1.html"><a href="rprog1.html#installing-from-cran"><i class="fa fa-check"></i><b>2.5.2</b> Installing from CRAN</a></li>
 <li class="chapter" data-level="2.5.3" data-path="rprog1.html"><a href="rprog1.html#loading-an-installed-package"><i class="fa fa-check"></i><b>2.5.3</b> Loading an installed package</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
 <li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#chapter-2-exercises"><i class="fa fa-check"></i><b>2.7</b> Chapter 2 Exercises</a><ul>
+<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#chapter-2-exercises"><i class="fa fa-check"></i><b>2.7</b> Chapter 2 Exercises</a>
+<ul>
 <li class="chapter" data-level="2.7.1" data-path="rprog1.html"><a href="rprog1.html#set-1-session-helpfiles-scripts-and-objects"><i class="fa fa-check"></i><b>2.7.1</b> Set 1: Session, helpfiles, scripts, and objects</a></li>
 <li class="chapter" data-level="2.7.2" data-path="rprog1.html"><a href="rprog1.html#set-2-loading-and-using-packages"><i class="fa fa-check"></i><b>2.7.2</b> Set 2: Loading and using packages</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#chapter-2-homework"><i class="fa fa-check"></i><b>2.8</b> Chapter 2 Homework</a><ul>
+<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#chapter-2-homework"><i class="fa fa-check"></i><b>2.8</b> Chapter 2 Homework</a>
+<ul>
 <li class="chapter" data-level="2.8.1" data-path="rprog1.html"><a href="rprog1.html#special-swirl-commands"><i class="fa fa-check"></i><b>2.8.1</b> Special <code>swirl</code> commands</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a><ul>
+<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="rprog2.html"><a href="rprog2.html#ch.-3-objectives"><i class="fa fa-check"></i><b>3.1</b> Ch. 3 Objectives</a></li>
 <li class="chapter" data-level="3.2" data-path="rprog2.html"><a href="rprog2.html#overview"><i class="fa fa-check"></i><b>3.2</b> Overview</a></li>
-<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a><ul>
+<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="rprog2.html"><a href="rprog2.html#reading-local-flat-files"><i class="fa fa-check"></i><b>3.3.1</b> Reading local flat files</a></li>
 <li class="chapter" data-level="3.3.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-other-file-types"><i class="fa fa-check"></i><b>3.3.2</b> Reading in other file types</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a><ul>
+<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="rprog2.html"><a href="rprog2.html#directory-structure"><i class="fa fa-check"></i><b>3.4.1</b> Directory structure</a></li>
 <li class="chapter" data-level="3.4.2" data-path="rprog2.html"><a href="rprog2.html#working-directory"><i class="fa fa-check"></i><b>3.4.2</b> Working directory</a></li>
 <li class="chapter" data-level="3.4.3" data-path="rprog2.html"><a href="rprog2.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>3.4.3</b> File and directory pathnames</a></li>
 <li class="chapter" data-level="3.4.4" data-path="rprog2.html"><a href="rprog2.html#tangent-paste"><i class="fa fa-check"></i><b>3.4.4</b> Tangent: <code>paste</code></a></li>
 <li class="chapter" data-level="3.4.5" data-path="rprog2.html"><a href="rprog2.html#reading-online-flat-files"><i class="fa fa-check"></i><b>3.4.5</b> Reading online flat files</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a><ul>
+<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="rprog2.html"><a href="rprog2.html#renaming-columns"><i class="fa fa-check"></i><b>3.5.1</b> Renaming columns</a></li>
 <li class="chapter" data-level="3.5.2" data-path="rprog2.html"><a href="rprog2.html#selecting-columns"><i class="fa fa-check"></i><b>3.5.2</b> Selecting columns</a></li>
 <li class="chapter" data-level="3.5.3" data-path="rprog2.html"><a href="rprog2.html#add-or-change-columns"><i class="fa fa-check"></i><b>3.5.3</b> Add or change columns</a></li>
@@ -212,26 +226,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.5" data-path="rprog2.html"><a href="rprog2.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>3.5.5</b> Filtering to certain rows</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="rprog2.html"><a href="rprog2.html#piping"><i class="fa fa-check"></i><b>3.6</b> Piping</a></li>
-<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#markdowns"><i class="fa fa-check"></i><b>3.7</b> Markdowns</a><ul>
+<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#markdowns"><i class="fa fa-check"></i><b>3.7</b> Markdowns</a>
+<ul>
 <li class="chapter" data-level="3.7.1" data-path="rprog2.html"><a href="rprog2.html#r-markdowns"><i class="fa fa-check"></i><b>3.7.1</b> R Markdowns</a></li>
 <li class="chapter" data-level="3.7.2" data-path="rprog2.html"><a href="rprog2.html#header"><i class="fa fa-check"></i><b>3.7.2</b> Header</a></li>
 <li class="chapter" data-level="3.7.3" data-path="rprog2.html"><a href="rprog2.html#text"><i class="fa fa-check"></i><b>3.7.3</b> Text</a></li>
 <li class="chapter" data-level="3.7.4" data-path="rprog2.html"><a href="rprog2.html#code-chunks"><i class="fa fa-check"></i><b>3.7.4</b> Code Chunks</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#chapter-3-exercises"><i class="fa fa-check"></i><b>3.8</b> Chapter 3 Exercises</a><ul>
+<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#chapter-3-exercises"><i class="fa fa-check"></i><b>3.8</b> Chapter 3 Exercises</a>
+<ul>
 <li class="chapter" data-level="3.8.1" data-path="rprog2.html"><a href="rprog2.html#set-1-pathnames-and-data-import"><i class="fa fa-check"></i><b>3.8.1</b> Set 1: Pathnames and data import</a></li>
 <li class="chapter" data-level="3.8.2" data-path="rprog2.html"><a href="rprog2.html#set-2-data-wrangling-and-piping"><i class="fa fa-check"></i><b>3.8.2</b> Set 2: Data wrangling and piping</a></li>
 <li class="chapter" data-level="3.8.3" data-path="rprog2.html"><a href="rprog2.html#set-3-r-markdown"><i class="fa fa-check"></i><b>3.8.3</b> Set 3: R Markdown</a></li>
 </ul></li>
 <li class="chapter" data-level="3.9" data-path="rprog2.html"><a href="rprog2.html#chapter-3-homework"><i class="fa fa-check"></i><b>3.9</b> Chapter 3 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#chapter-4-objectives"><i class="fa fa-check"></i><b>4.1</b> Chapter 4 Objectives</a></li>
 <li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#install-and-load-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Install and load <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#steps-to-create-a-ggplot2-object"><i class="fa fa-check"></i><b>4.3</b> Steps to create a <code>ggplot2</code> object</a></li>
 <li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#initializing-a-ggplot2-object"><i class="fa fa-check"></i><b>4.4</b> Initializing a <code>ggplot2</code> object</a></li>
 <li class="chapter" data-level="4.5" data-path="dataviz.html"><a href="dataviz.html#plot-aesthetics"><i class="fa fa-check"></i><b>4.5</b> Plot aesthetics</a></li>
-<li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.6</b> Adding geoms</a><ul>
+<li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.6</b> Adding geoms</a>
+<ul>
 <li class="chapter" data-level="4.6.1" data-path="dataviz.html"><a href="dataviz.html#aesthetic-override-a-warning"><i class="fa fa-check"></i><b>4.6.1</b> Aesthetic override: a warning</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="dataviz.html"><a href="dataviz.html#shapes-and-colors"><i class="fa fa-check"></i><b>4.7</b> Shapes and colors</a></li>
@@ -242,15 +260,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.12" data-path="dataviz.html"><a href="dataviz.html#getting-help-with-ggplot2"><i class="fa fa-check"></i><b>4.12</b> Getting help with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.13" data-path="dataviz.html"><a href="dataviz.html#chapter-4-homework"><i class="fa fa-check"></i><b>4.13</b> Chapter 4 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a><ul>
+<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="eda1.html"><a href="eda1.html#ch.-5-objectives"><i class="fa fa-check"></i><b>5.1</b> Ch. 5 Objectives</a></li>
-<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univar"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a><ul>
+<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univar"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>5.2.1</b> Location, Dispersion, and Shape</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantile"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a><ul>
+<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantile"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="eda1.html"><a href="eda1.html#descriptive-statistics"><i class="fa fa-check"></i><b>5.3.1</b> Descriptive Statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a><ul>
+<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
 <li class="chapter" data-level="5.4.2" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.4.2</b> Cumulative Distribution Plot</a></li>
 <li class="chapter" data-level="5.4.3" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.4.3</b> Histogram</a></li>
@@ -262,25 +284,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="eda1.html"><a href="eda1.html#exploring-data"><i class="fa fa-check"></i><b>5.5</b> Exploring Data</a></li>
 <li class="chapter" data-level="5.6" data-path="eda1.html"><a href="eda1.html#chapter-5-homework"><i class="fa fa-check"></i><b>5.6</b> Chapter 5 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a><ul>
+<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#chapter-6-objectives"><i class="fa fa-check"></i><b>6.1</b> Chapter 6 Objectives</a></li>
-<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a><ul>
+<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="rprog3.html"><a href="rprog3.html#string-detect-match-subset"><i class="fa fa-check"></i><b>6.2.1</b> String detect, match, subset</a></li>
 <li class="chapter" data-level="6.2.2" data-path="rprog3.html"><a href="rprog3.html#regular-expressions"><i class="fa fa-check"></i><b>6.2.2</b> Regular Expressions</a></li>
 <li class="chapter" data-level="6.2.3" data-path="rprog3.html"><a href="rprog3.html#string-split-replace"><i class="fa fa-check"></i><b>6.2.3</b> String split, replace</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a><ul>
+<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="rprog3.html"><a href="rprog3.html#dates-and-times-in-base-r"><i class="fa fa-check"></i><b>6.3.1</b> Dates and Times in base R</a></li>
 <li class="chapter" data-level="6.3.2" data-path="rprog3.html"><a href="rprog3.html#date-time-formats"><i class="fa fa-check"></i><b>6.3.2</b> Date-time formats</a></li>
 <li class="chapter" data-level="6.3.3" data-path="rprog3.html"><a href="rprog3.html#date-time-classes-in-r"><i class="fa fa-check"></i><b>6.3.3</b> Date-time classes in R</a></li>
 <li class="chapter" data-level="6.3.4" data-path="rprog3.html"><a href="rprog3.html#reading-and-classifying-date-times"><i class="fa fa-check"></i><b>6.3.4</b> Reading and classifying date-times</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>lubridate</code></a><ul>
+<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>lubridate</code></a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="rprog3.html"><a href="rprog3.html#parsing-functions-in-lubridate"><i class="fa fa-check"></i><b>6.4.1</b> Parsing functions in <code>lubridate</code></a></li>
 <li class="chapter" data-level="6.4.2" data-path="rprog3.html"><a href="rprog3.html#date-time-manipulation-with-lubridate"><i class="fa fa-check"></i><b>6.4.2</b> Date-time manipulation with <code>lubridate</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#tidy-data"><i class="fa fa-check"></i><b>6.5</b> Tidy Data</a></li>
-<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#chapter-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Chapter 6 Exercises</a><ul>
+<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#chapter-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Chapter 6 Exercises</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="rprog3.html"><a href="rprog3.html#set-1-data-import-and-manipulation"><i class="fa fa-check"></i><b>6.6.1</b> Set 1: Data import and manipulation</a></li>
 <li class="chapter" data-level="6.6.2" data-path="rprog3.html"><a href="rprog3.html#set-2-counting"><i class="fa fa-check"></i><b>6.6.2</b> Set 2: Counting</a></li>
 <li class="chapter" data-level="6.6.3" data-path="rprog3.html"><a href="rprog3.html#set-3-weekly-tweets"><i class="fa fa-check"></i><b>6.6.3</b> Set 3: Weekly tweets</a></li>
@@ -288,19 +315,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="rprog3.html"><a href="rprog3.html#chapter-6-homework"><i class="fa fa-check"></i><b>6.7</b> Chapter 6 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a><ul>
+<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#chapter-7-objectives"><i class="fa fa-check"></i><b>7.1</b> Chapter 7 Objectives</a></li>
 <li class="chapter" data-level="7.2" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>7.2</b> Bivariate Data</a></li>
-<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a><ul>
+<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="eda2.html"><a href="eda2.html#causality"><i class="fa fa-check"></i><b>7.3.1</b> Causality</a></li>
 <li class="chapter" data-level="7.3.2" data-path="eda2.html"><a href="eda2.html#corr"><i class="fa fa-check"></i><b>7.3.2</b> Correlation</a></li>
 <li class="chapter" data-level="7.3.3" data-path="eda2.html"><a href="eda2.html#correlation-neq-causation"><i class="fa fa-check"></i><b>7.3.3</b> Correlation <span class="math inline">\(\neq\)</span> causation</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.4</b> Exploring Multivariate Data</a><ul>
+<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.4</b> Exploring Multivariate Data</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="eda2.html"><a href="eda2.html#facets"><i class="fa fa-check"></i><b>7.4.1</b> Facets</a></li>
 <li class="chapter" data-level="7.4.2" data-path="eda2.html"><a href="eda2.html#colors"><i class="fa fa-check"></i><b>7.4.2</b> Colors</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#chapter-7-exercises"><i class="fa fa-check"></i><b>7.5</b> Chapter 7 Exercises</a><ul>
+<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#chapter-7-exercises"><i class="fa fa-check"></i><b>7.5</b> Chapter 7 Exercises</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="eda2.html"><a href="eda2.html#fuel-economy-data"><i class="fa fa-check"></i><b>7.5.1</b> Fuel economy data</a></li>
 <li class="chapter" data-level="7.5.2" data-path="eda2.html"><a href="eda2.html#import-and-wrangle-data"><i class="fa fa-check"></i><b>7.5.2</b> Import and wrangle data</a></li>
 <li class="chapter" data-level="7.5.3" data-path="eda2.html"><a href="eda2.html#check-data"><i class="fa fa-check"></i><b>7.5.3</b> Check data</a></li>
@@ -313,35 +344,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="eda2.html"><a href="eda2.html#chapter-7-homework"><i class="fa fa-check"></i><b>7.6</b> Chapter 7 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a><ul>
+<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="rprog4.html"><a href="rprog4.html#ch.-8-objectives"><i class="fa fa-check"></i><b>8.1</b> Ch. 8 Objectives</a></li>
 <li class="chapter" data-level="8.2" data-path="rprog4.html"><a href="rprog4.html#what-is-functional-programming"><i class="fa fa-check"></i><b>8.2</b> What is <strong><em>functional programming</em></strong>?</a></li>
-<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a><ul>
+<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="rprog4.html"><a href="rprog4.html#example-function-my_mean"><i class="fa fa-check"></i><b>8.3.1</b> Example Function: my_mean</a></li>
 <li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: “import.w.name”</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a><ul>
+<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="rprog4.html"><a href="rprog4.html#function-mapping"><i class="fa fa-check"></i><b>8.4.1</b> Function Mapping</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.5</b> Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a><ul>
+<li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="transform.html"><a href="transform.html#ch.-9-objectives"><i class="fa fa-check"></i><b>9.1</b> Ch. 9 Objectives</a></li>
-<li class="chapter" data-level="9.2" data-path="transform.html"><a href="transform.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a><ul>
+<li class="chapter" data-level="9.2" data-path="transform.html"><a href="transform.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="transform.html"><a href="transform.html#centering"><i class="fa fa-check"></i><b>9.2.1</b> Centering</a></li>
 <li class="chapter" data-level="9.2.2" data-path="transform.html"><a href="transform.html#rescaling"><i class="fa fa-check"></i><b>9.2.2</b> Rescaling</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="transform.html"><a href="transform.html#normalization-and-standardization"><i class="fa fa-check"></i><b>9.3</b> Normalization and Standardization</a><ul>
+<li class="chapter" data-level="9.3" data-path="transform.html"><a href="transform.html#normalization-and-standardization"><i class="fa fa-check"></i><b>9.3</b> Normalization and Standardization</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="transform.html"><a href="transform.html#rate-normalization"><i class="fa fa-check"></i><b>9.3.1</b> Rate normalization</a></li>
 <li class="chapter" data-level="9.3.2" data-path="transform.html"><a href="transform.html#standardizing"><i class="fa fa-check"></i><b>9.3.2</b> Standardizing</a></li>
 <li class="chapter" data-level="9.3.3" data-path="transform.html"><a href="transform.html#reducing-skewness"><i class="fa fa-check"></i><b>9.3.3</b> Reducing Skewness</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="transform.html"><a href="transform.html#stratification"><i class="fa fa-check"></i><b>9.4</b> Stratification</a></li>
-<li class="chapter" data-level="9.5" data-path="transform.html"><a href="transform.html#outliers-and-censoring"><i class="fa fa-check"></i><b>9.5</b> Outliers and Censoring</a><ul>
+<li class="chapter" data-level="9.5" data-path="transform.html"><a href="transform.html#outliers-and-censoring"><i class="fa fa-check"></i><b>9.5</b> Outliers and Censoring</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="transform.html"><a href="transform.html#outliers"><i class="fa fa-check"></i><b>9.5.1</b> Detecting Outliers</a></li>
 <li class="chapter" data-level="9.5.2" data-path="transform.html"><a href="transform.html#censoring-outliers"><i class="fa fa-check"></i><b>9.5.2</b> Censoring outliers</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="transform.html"><a href="transform.html#ch-9-exercises"><i class="fa fa-check"></i><b>9.6</b> Ch-9 Exercises</a><ul>
+<li class="chapter" data-level="9.6" data-path="transform.html"><a href="transform.html#ch-9-exercises"><i class="fa fa-check"></i><b>9.6</b> Ch-9 Exercises</a>
+<ul>
 <li class="chapter" data-level="9.6.1" data-path="transform.html"><a href="transform.html#salary-data-for-poly-sci-majors"><i class="fa fa-check"></i><b>9.6.1</b> Salary Data for Poly Sci Majors</a></li>
 <li class="chapter" data-level="9.6.2" data-path="transform.html"><a href="transform.html#univariate-data-visualization-1"><i class="fa fa-check"></i><b>9.6.2</b> Univariate Data Visualization</a></li>
 <li class="chapter" data-level="9.6.3" data-path="transform.html"><a href="transform.html#rescale-and-censor-data"><i class="fa fa-check"></i><b>9.6.3</b> Rescale and Censor Data</a></li>
@@ -350,9 +389,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.7" data-path="transform.html"><a href="transform.html#ch-9-homework"><i class="fa fa-check"></i><b>9.7</b> Ch-9 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a><ul>
+<li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="measure.html"><a href="measure.html#ch.-10-objectives"><i class="fa fa-check"></i><b>10.1</b> Ch. 10 Objectives</a></li>
-<li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a><ul>
+<li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#sample"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
 <li class="chapter" data-level="10.2.2" data-path="measure.html"><a href="measure.html#sample.collect"><i class="fa fa-check"></i><b>10.2.2</b> Collecting a sample</a></li>
 <li class="chapter" data-level="10.2.3" data-path="measure.html"><a href="measure.html#simple-random-sampling"><i class="fa fa-check"></i><b>10.2.3</b> Simple Random Sampling</a></li>
@@ -360,50 +401,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.5" data-path="measure.html"><a href="measure.html#stratified-sampling"><i class="fa fa-check"></i><b>10.2.5</b> Stratified Sampling</a></li>
 <li class="chapter" data-level="10.2.6" data-path="measure.html"><a href="measure.html#cluster-sampling"><i class="fa fa-check"></i><b>10.2.6</b> Cluster Sampling</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a><ul>
+<li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a>
+<ul>
 <li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#LOD"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
 <li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
 <li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>10.3.3</b> Precision</a></li>
 <li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>10.3.4</b> Bias (accuracy)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a><ul>
+<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a>
+<ul>
 <li class="chapter" data-level="10.4.1" data-path="measure.html"><a href="measure.html#repeated"><i class="fa fa-check"></i><b>10.4.1</b> Repeated Measures</a></li>
 <li class="chapter" data-level="10.4.2" data-path="measure.html"><a href="measure.html#error-propagation"><i class="fa fa-check"></i><b>10.4.2</b> Error Propagation</a></li>
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="measure.html"><a href="measure.html#ch-10-homework"><i class="fa fa-check"></i><b>10.5</b> CH-10 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a><ul>
+<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="model.html"><a href="model.html#ch.-11-objectives"><i class="fa fa-check"></i><b>11.1</b> Ch. 11 Objectives</a></li>
-<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#process-modeling"><i class="fa fa-check"></i><b>11.2</b> Process Modeling</a><ul>
+<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#process-modeling"><i class="fa fa-check"></i><b>11.2</b> Process Modeling</a>
+<ul>
 <li class="chapter" data-level="11.2.1" data-path="model.html"><a href="model.html#assumptions"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions</a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="model.html"><a href="model.html#model-fitting"><i class="fa fa-check"></i><b>11.3</b> Model Fitting</a></li>
-<li class="chapter" data-level="11.4" data-path="model.html"><a href="model.html#ols-regression"><i class="fa fa-check"></i><b>11.4</b> OLS Regression</a><ul>
+<li class="chapter" data-level="11.4" data-path="model.html"><a href="model.html#ols-regression"><i class="fa fa-check"></i><b>11.4</b> OLS Regression</a>
+<ul>
 <li class="chapter" data-level="11.4.1" data-path="model.html"><a href="model.html#OLS_assum"><i class="fa fa-check"></i><b>11.4.1</b> OLS Assumptions and Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="model.html"><a href="model.html#example-ols-linear-regression"><i class="fa fa-check"></i><b>11.5</b> Example: OLS Linear Regression</a><ul>
+<li class="chapter" data-level="11.5" data-path="model.html"><a href="model.html#example-ols-linear-regression"><i class="fa fa-check"></i><b>11.5</b> Example: OLS Linear Regression</a>
+<ul>
 <li class="chapter" data-level="11.5.1" data-path="model.html"><a href="model.html#the-lm-function"><i class="fa fa-check"></i><b>11.5.1</b> The <code>lm()</code> function</a></li>
 <li class="chapter" data-level="11.5.2" data-path="model.html"><a href="model.html#ols-diagnostics"><i class="fa fa-check"></i><b>11.5.2</b> OLS Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a><ul>
+<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a>
+<ul>
 <li class="chapter" data-level="11.6.1" data-path="model.html"><a href="model.html#example-calibration"><i class="fa fa-check"></i><b>11.6.1</b> Example Calibration</a></li>
 </ul></li>
 <li class="chapter" data-level="11.7" data-path="model.html"><a href="model.html#ch-11-homework"><i class="fa fa-check"></i><b>11.7</b> Ch-11 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Stats &amp; Reference Distributions</a><ul>
+<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Stats &amp; Reference Distributions</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="dist.html"><a href="dist.html#measures-of-central-tendency"><i class="fa fa-check"></i><b>12.1</b> Measures of Central Tendency</a></li>
 <li class="chapter" data-level="12.2" data-path="dist.html"><a href="dist.html#measures-of-dispersion"><i class="fa fa-check"></i><b>12.2</b> Measures of Dispersion</a></li>
-<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.3</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.3</b> Uniform Distribution</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="dist.html"><a href="dist.html#uniform-characteristic-plots"><i class="fa fa-check"></i><b>12.3.1</b> Uniform Characteristic Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.4</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="12.4" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.4</b> Normal Distribution</a>
+<ul>
 <li class="chapter" data-level="12.4.1" data-path="dist.html"><a href="dist.html#normal-characteristic-plots"><i class="fa fa-check"></i><b>12.4.1</b> Normal Characteristic Plots</a></li>
 <li class="chapter" data-level="12.4.2" data-path="dist.html"><a href="dist.html#rule"><i class="fa fa-check"></i><b>12.4.2</b> 68-95-99 rule</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>12.5</b> Log-normal Distribution</a><ul>
+<li class="chapter" data-level="12.5" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>12.5</b> Log-normal Distribution</a>
+<ul>
 <li class="chapter" data-level="12.5.1" data-path="dist.html"><a href="dist.html#lognormal-characteristic-plots"><i class="fa fa-check"></i><b>12.5.1</b> Lognormal Characteristic Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="12.6" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>12.6</b> Pearson Correlation Coefficient</a></li>
+<li class="chapter" data-level="12.7" data-path="dist.html"><a href="dist.html#OLS"><i class="fa fa-check"></i><b>12.7</b> OLS Regression Coefficients</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -425,9 +478,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rprog3" class="section level1">
+<div id="rprog3" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Strings, Dates, and Tidying</h1>
-<div id="chapter-6-objectives" class="section level2">
+<div id="chapter-6-objectives" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Chapter 6 Objectives</h2>
 <p>This Chapter is designed around the following learning objectives. Upon
 completing this Chapter, you should be able to:</p>
@@ -443,49 +496,49 @@ completing this Chapter, you should be able to:</p>
 <li>Apply functions from the <code>dplyr</code> and <code>tidyr</code> packages to make dataframes “tidy”</li>
 </ul>
 </div>
-<div id="strings" class="section level2">
+<div id="strings" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Strings</h2>
-<p><strong><em>Strings</em></strong> are a form of character data like “John”, or “blue”, or “John’s
-sample 8021A turned blue”.</p>
+<p><strong><em>Strings</em></strong> are a form of character data like “John,” or “blue,” or “John’s
+sample 8021A turned blue.”</p>
 <p><strong>Strings are defined in R using quotes <code>" "</code></strong> and stored as <code>character</code>
 vectors; they often show up in data analysis in one of two ways:</p>
 <ol style="list-style-type: decimal">
-<li><p>As <strong><em>metadata</em></strong>. Metadata means: “data that describe other data”.<br />
+<li><p>As <strong><em>metadata</em></strong>. Metadata means: “data that describe other data.”<br />
 A <em>readme.txt</em> file is metadata; notes and code comments are metadata. All of
 these types of data usually come in the form of strings and are included
 <strong>with the data your are analyzing</strong> but not <strong>in the dataset</strong> itself.</p></li>
 <li><p>As <strong><em>vectorized data</em></strong>. In R programming, <em>“vectorized”</em> means: stored
 as a column of data. Examples of vectorized strings that you might find
-include things like: “participant names”, or “survey responses to question 1”,
-or “mode of failure”. The example below creates three different string vectors
+include things like: “participant names,” or “survey responses to question 1,”
+or “mode of failure.” The example below creates three different string vectors
 in R. <em>Note:</em> You can check the type of object you’ve created using the
 <code>class()</code> or <code>typeof()</code> functions.</p></li>
 </ol>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="rprog3.html#cb193-1"></a><span class="co"># examples of vectorized string data</span></span>
-<span id="cb193-2"><a href="rprog3.html#cb193-2"></a>names_respond &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ahmed&quot;</span>, </span>
-<span id="cb193-3"><a href="rprog3.html#cb193-3"></a>                   <span class="st">&quot;Josh&quot;</span>, </span>
-<span id="cb193-4"><a href="rprog3.html#cb193-4"></a>                   <span class="st">&quot;Mateo&quot;</span>, </span>
-<span id="cb193-5"><a href="rprog3.html#cb193-5"></a>                   <span class="st">&quot;William&quot;</span>, </span>
-<span id="cb193-6"><a href="rprog3.html#cb193-6"></a>                   <span class="st">&quot;Ali&quot;</span>, </span>
-<span id="cb193-7"><a href="rprog3.html#cb193-7"></a>                   <span class="st">&quot;Wei&quot;</span>, </span>
-<span id="cb193-8"><a href="rprog3.html#cb193-8"></a>                   <span class="st">&quot;Steve-O&quot;</span>,</span>
-<span id="cb193-9"><a href="rprog3.html#cb193-9"></a>                   <span class="st">&quot;John&quot;</span>)</span>
-<span id="cb193-10"><a href="rprog3.html#cb193-10"></a>q1_responses &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Because you told me to do it.&quot;</span>,</span>
-<span id="cb193-11"><a href="rprog3.html#cb193-11"></a>                  <span class="st">&quot;It seemed like the right thing to do at the time.&quot;</span>,</span>
-<span id="cb193-12"><a href="rprog3.html#cb193-12"></a>                  <span class="st">&quot;Because I had been over-served.&quot;</span>,</span>
-<span id="cb193-13"><a href="rprog3.html#cb193-13"></a>                  <span class="st">&quot;I don&#39;t know. I just did it.&quot;</span>,</span>
-<span id="cb193-14"><a href="rprog3.html#cb193-14"></a>                  <span class="st">&quot;I got caught up in the heat of the moment.&quot;</span>,</span>
-<span id="cb193-15"><a href="rprog3.html#cb193-15"></a>                  <span class="st">&quot;I was given an opportunity. I took my shot.&quot;</span>,</span>
-<span id="cb193-16"><a href="rprog3.html#cb193-16"></a>                  <span class="st">&quot;I plead the 5th.&quot;</span>,</span>
-<span id="cb193-17"><a href="rprog3.html#cb193-17"></a>                  <span class="st">&quot;I could ask you the same question.&quot;</span>)</span>
-<span id="cb193-18"><a href="rprog3.html#cb193-18"></a>failure_mode &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fracture&quot;</span>,</span>
-<span id="cb193-19"><a href="rprog3.html#cb193-19"></a>                  <span class="st">&quot;yielding&quot;</span>, </span>
-<span id="cb193-20"><a href="rprog3.html#cb193-20"></a>                  <span class="st">&quot;deflection&quot;</span>, </span>
-<span id="cb193-21"><a href="rprog3.html#cb193-21"></a>                  <span class="st">&quot;fatigue&quot;</span>, </span>
-<span id="cb193-22"><a href="rprog3.html#cb193-22"></a>                  <span class="st">&quot;creep&quot;</span>)</span>
-<span id="cb193-23"><a href="rprog3.html#cb193-23"></a></span>
-<span id="cb193-24"><a href="rprog3.html#cb193-24"></a><span class="co"># proof of vector type</span></span>
-<span id="cb193-25"><a href="rprog3.html#cb193-25"></a><span class="kw">class</span>(names_respond)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="rprog3.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># examples of vectorized string data</span></span>
+<span id="cb193-2"><a href="rprog3.html#cb193-2" aria-hidden="true" tabindex="-1"></a>names_respond <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Ahmed&quot;</span>, </span>
+<span id="cb193-3"><a href="rprog3.html#cb193-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Josh&quot;</span>, </span>
+<span id="cb193-4"><a href="rprog3.html#cb193-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Mateo&quot;</span>, </span>
+<span id="cb193-5"><a href="rprog3.html#cb193-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;William&quot;</span>, </span>
+<span id="cb193-6"><a href="rprog3.html#cb193-6" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Ali&quot;</span>, </span>
+<span id="cb193-7"><a href="rprog3.html#cb193-7" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Wei&quot;</span>, </span>
+<span id="cb193-8"><a href="rprog3.html#cb193-8" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Steve-O&quot;</span>,</span>
+<span id="cb193-9"><a href="rprog3.html#cb193-9" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;John&quot;</span>)</span>
+<span id="cb193-10"><a href="rprog3.html#cb193-10" aria-hidden="true" tabindex="-1"></a>q1_responses <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Because you told me to do it.&quot;</span>,</span>
+<span id="cb193-11"><a href="rprog3.html#cb193-11" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;It seemed like the right thing to do at the time.&quot;</span>,</span>
+<span id="cb193-12"><a href="rprog3.html#cb193-12" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;Because I had been over-served.&quot;</span>,</span>
+<span id="cb193-13"><a href="rprog3.html#cb193-13" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;I don&#39;t know. I just did it.&quot;</span>,</span>
+<span id="cb193-14"><a href="rprog3.html#cb193-14" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;I got caught up in the heat of the moment.&quot;</span>,</span>
+<span id="cb193-15"><a href="rprog3.html#cb193-15" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;I was given an opportunity. I took my shot.&quot;</span>,</span>
+<span id="cb193-16"><a href="rprog3.html#cb193-16" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;I plead the 5th.&quot;</span>,</span>
+<span id="cb193-17"><a href="rprog3.html#cb193-17" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;I could ask you the same question.&quot;</span>)</span>
+<span id="cb193-18"><a href="rprog3.html#cb193-18" aria-hidden="true" tabindex="-1"></a>failure_mode <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;fracture&quot;</span>,</span>
+<span id="cb193-19"><a href="rprog3.html#cb193-19" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;yielding&quot;</span>, </span>
+<span id="cb193-20"><a href="rprog3.html#cb193-20" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;deflection&quot;</span>, </span>
+<span id="cb193-21"><a href="rprog3.html#cb193-21" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;fatigue&quot;</span>, </span>
+<span id="cb193-22"><a href="rprog3.html#cb193-22" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;creep&quot;</span>)</span>
+<span id="cb193-23"><a href="rprog3.html#cb193-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-24"><a href="rprog3.html#cb193-24" aria-hidden="true" tabindex="-1"></a><span class="co"># proof of vector type</span></span>
+<span id="cb193-25"><a href="rprog3.html#cb193-25" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(names_respond)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>The first step in analyzing a string is to parse it.
 <strong>To parse means to examine the individual components.</strong> For example, when you
@@ -509,7 +562,7 @@ and the <code>stringr</code> package. We will also introduce the concept of
 <strong>regular expressions</strong> as a means to perform more advanced string
 manipulation.</p>
 <p><img src="images/parse_comic.png" width="1000" style="display: block; margin: auto;" /></p>
-<div id="string-detect-match-subset" class="section level3">
+<div id="string-detect-match-subset" class="section level3" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> String detect, match, subset</h3>
 <p>One of the simplest string operations is to search whether a string contains a
 pattern of interest. The <code>stringr</code> package (part of the
@@ -521,36 +574,36 @@ end with a specific function name. A full list of functions is provided
 <ol style="list-style-type: decimal">
 <li><strong><code>str_detect()</code></strong> returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the <code>string</code> to be searched and the <code>pattern</code> for which to search. Let’s search for the pattern <code>"Josh"</code> in the character vector of strings, <code>names_respond</code>, that we created above:</li>
 </ol>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="rprog3.html#cb195-1"></a>stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="dt">string =</span> names_respond, </span>
-<span id="cb195-2"><a href="rprog3.html#cb195-2"></a>                    <span class="dt">pattern =</span> <span class="st">&quot;Josh&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="rprog3.html#cb195-1" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_detect</span>(<span class="at">string =</span> names_respond, </span>
+<span id="cb195-2"><a href="rprog3.html#cb195-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">pattern =</span> <span class="st">&quot;Josh&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
 <p>As expected, only one string in the vector produced a match.</p>
 <p>An added benefit of logical functions like <code>str_detect()</code> is that return values
 of <code>TRUE</code> are coded as 1 and <code>FALSE</code> as 0. Thus, if we <code>sum()</code> the result of
 the <code>str_detect()</code> search, we will get the cumulative number of matches to
 <code>"Josh"</code> from within our data.</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="rprog3.html#cb197-1"></a>stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="dt">string =</span> names_respond, </span>
-<span id="cb197-2"><a href="rprog3.html#cb197-2"></a>           <span class="dt">pattern =</span> <span class="st">&quot;Josh&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb197-3"><a href="rprog3.html#cb197-3"></a><span class="st">  </span><span class="kw">sum</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="rprog3.html#cb197-1" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_detect</span>(<span class="at">string =</span> names_respond, </span>
+<span id="cb197-2"><a href="rprog3.html#cb197-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">&quot;Josh&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb197-3"><a href="rprog3.html#cb197-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>()</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>In other words, logical functions like <code>str_detect()</code> allow us to do math on
 string data! For example, we can now calculate the proportion of <code>"Josh"</code>
 entries within our sample:</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="rprog3.html#cb199-1"></a>stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="dt">string =</span> names_respond, </span>
-<span id="cb199-2"><a href="rprog3.html#cb199-2"></a>                    <span class="dt">pattern =</span> <span class="st">&quot;Josh&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb199-3"><a href="rprog3.html#cb199-3"></a><span class="st">  </span><span class="kw">sum</span>() <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(names_respond)</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="rprog3.html#cb199-1" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_detect</span>(<span class="at">string =</span> names_respond, </span>
+<span id="cb199-2"><a href="rprog3.html#cb199-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">pattern =</span> <span class="st">&quot;Josh&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb199-3"><a href="rprog3.html#cb199-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>() <span class="sc">/</span> <span class="fu">length</span>(names_respond)</span></code></pre></div>
 <pre><code>## [1] 0.125</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><strong><code>str_extract()</code></strong> takes the same arguments as <code>str_detect()</code> but returns a vector of the matched values (by string index). By “matched values”, I mean only the portion of the string for which the search created a match.</li>
+<li><strong><code>str_extract()</code></strong> takes the same arguments as <code>str_detect()</code> but returns a vector of the matched values (by string index). By “matched values,” I mean only the portion of the string for which the search created a match.</li>
 </ol>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="rprog3.html#cb201-1"></a>stringr<span class="op">::</span><span class="kw">str_extract</span>(<span class="dt">string =</span> names_respond, </span>
-<span id="cb201-2"><a href="rprog3.html#cb201-2"></a>                     <span class="dt">pattern =</span> <span class="st">&quot;Jo&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="rprog3.html#cb201-1" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_extract</span>(<span class="at">string =</span> names_respond, </span>
+<span id="cb201-2"><a href="rprog3.html#cb201-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">pattern =</span> <span class="st">&quot;Jo&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] NA   &quot;Jo&quot; NA   NA   NA   NA   NA   &quot;Jo&quot;</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li><strong><code>str_subset()</code></strong> returns only the entries that were matched (i.e., if a match was detected, then the entire string that was matched is returned). If we subset our short list of names to the pattern of letters <code>"li"</code>, we get:</li>
 </ol>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="rprog3.html#cb203-1"></a>stringr<span class="op">::</span><span class="kw">str_subset</span>(<span class="dt">string =</span> names_respond, </span>
-<span id="cb203-2"><a href="rprog3.html#cb203-2"></a>           <span class="dt">pattern =</span> <span class="st">&quot;li&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="rprog3.html#cb203-1" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_subset</span>(<span class="at">string =</span> names_respond, </span>
+<span id="cb203-2"><a href="rprog3.html#cb203-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">&quot;li&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;William&quot; &quot;Ali&quot;</code></pre>
 <p>To note, there are base R versions of all these <code>stringr</code> functions. Most are
 performed with the <code>grep</code> family of functions. The term <em>“grep”</em> is an acronym
@@ -597,12 +650,12 @@ grep(pattern, x, value = TRUE)
 </tbody>
 </table>
 </div>
-<div id="regular-expressions" class="section level3">
+<div id="regular-expressions" class="section level3" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Regular Expressions</h3>
 <p>Before going much farther, we should spend some time discussing
 <strong><em>regular expressions</em></strong> or <strong>regex</strong> for short. When we pass a <code>pattern</code>
 argument to a function like <code>str_detect()</code>, the function treats that argument
-like a “regex”. Up until this point, I have only passed simple character
+like a “regex.” Up until this point, I have only passed simple character
 strings as <code>pattern</code> arguments (i.e., <code>pattern = "Josh"</code>). In reality, we can
 create much more advanced search criteria using <strong>regex</strong> syntax within our
 search patterns.</p>
@@ -768,7 +821,7 @@ on the <code>stringr</code>
 developed by RStudio, and through practice with, my personal favorite, a game
 of <a href="https://alf.nu/RegexGolf" target="_blank">Regex Golf</a>.</p>
 </div>
-<div id="string-split-replace" class="section level3">
+<div id="string-split-replace" class="section level3" number="6.2.3">
 <h3><span class="header-section-number">6.2.3</span> String split, replace</h3>
 <p><code>str_split()</code> will split a string into two (or more) pieces when a match is
 detected. The string will always be split at the first match and again at each
@@ -780,7 +833,7 @@ is <em>not</em> included in the output.</p></li>
 <li><p>because both sides of the split string are returned, your output will take
 the form of a <code>list</code>.</p></li>
 </ul>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="rprog3.html#cb205-1"></a>stringr<span class="op">::</span><span class="kw">str_split</span>(<span class="dt">string =</span> names_respond, <span class="dt">pattern =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="rprog3.html#cb205-1" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="at">string =</span> names_respond, <span class="at">pattern =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;Ahmed&quot;
 ## 
@@ -811,9 +864,9 @@ string to be inserted. Let’s replace the first period detected in each of
 the <code>q1_responses</code> strings with a question mark. Both <code>.</code> and <code>?</code> are
 <em>special characters</em> so we need to <em>“escape”</em> each of these symbols with two
 back-slashes <code>\\</code>.</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="rprog3.html#cb207-1"></a>stringr<span class="op">::</span><span class="kw">str_replace</span>(<span class="dt">string =</span> q1_responses,</span>
-<span id="cb207-2"><a href="rprog3.html#cb207-2"></a>                     <span class="dt">pattern =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>,</span>
-<span id="cb207-3"><a href="rprog3.html#cb207-3"></a>                     <span class="dt">replacement =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">?&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="rprog3.html#cb207-1" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_replace</span>(<span class="at">string =</span> q1_responses,</span>
+<span id="cb207-2"><a href="rprog3.html#cb207-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.&quot;</span>,</span>
+<span id="cb207-3"><a href="rprog3.html#cb207-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">replacement =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">?&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Because you told me to do it?&quot;                    
 ## [2] &quot;It seemed like the right thing to do at the time?&quot;
 ## [3] &quot;Because I had been over-served?&quot;                  
@@ -828,19 +881,19 @@ will normally replace only one instance of a match; use <code>str_replace_all()<
 you plan to encounter multiple matches that need replacing.</p>
 <div class="rmdtip">
 <p>
-The <code>pattern =</code> argument for matching can be a single string or a vector of strings. In the latter case, you can define a vector of <em>keywords</em> that you might be searching for across sentences. In that case, use <code>pattern = c(“pattern_1”, “pattern_2”, “pattern_3”, …etc)</code>.
+The <code>pattern =</code> argument for matching can be a single string or a vector of strings. In the latter case, you can define a vector of <em>keywords</em> that you might be searching for across sentences. In that case, use <code>pattern = c(“pattern_1,” “pattern_2,” “pattern_3,” …etc)</code>.
 </p>
 </div>
 </div>
 </div>
-<div id="dates-and-date-times" class="section level2">
+<div id="dates-and-date-times" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Dates and Date-times</h2>
 <p>Working with dates and times can be challenging. This section begins with a
 discussion of how base R handles dates and times, since there is a ton of code
 out there that utilizes these older functions. We will then quickly transition
 to the <code>lubridate</code> family of functions (part of the Tidyverse) because of their
 versatility and ease-of-use.</p>
-<div id="dates-and-times-in-base-r" class="section level3">
+<div id="dates-and-times-in-base-r" class="section level3" number="6.3.1">
 <h3><span class="header-section-number">6.3.1</span> Dates and Times in base R</h3>
 <p>Dates and times in base R all proceed from an <em>“epoch”</em> or <em>time origin</em>. In
 R, the <em>epoch</em> or “dawn of time” occurred at midnight on January 1<sup>st</sup>, 1970.
@@ -849,26 +902,26 @@ precise moment and has moved forward ever since. To note: R can handle
 date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time”
 by calling the <code>Sys.time()</code> function.</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="rprog3.html#cb209-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2021-01-11 12:03:19 MST&quot;</code></pre>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="rprog3.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;2021-01-27 15:31:41 MST&quot;</code></pre>
 <p>As you can see, we got back the date, time, and timezone used by my computer
 (<em>whenever I last ran this code in <code>bookdown</code></em>). If you want to see how this
 time is stored in R internally, you can use <code>unclass()</code>, which returns an
 object value with its class attributes removed. When we wrap <code>unclass()</code>
 around <code>Sys.time()</code>, we will see the number of seconds that have occurred
 between the epoch of 1/1/1970 and right now:</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="rprog3.html#cb211-1"></a><span class="kw">unclass</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1610391799</code></pre>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="rprog3.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(<span class="fu">Sys.time</span>())</span></code></pre></div>
+<pre><code>## [1] 1611786701</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
 Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span>
-365d/yr] =&gt; 51.065189 years.</p>
+365d/yr] =&gt; 51.109421 years.</p>
 <p>This calculation ignores leap years, but you get the point…</p>
 </div>
-<div id="date-time-formats" class="section level3">
+<div id="date-time-formats" class="section level3" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats</h3>
 <p>Note that the <code>Sys.time()</code> function provided the date in a
 <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong>
-format: 2021-01-11 12:03:19.</p>
+format: 2021-01-27 15:31:41.</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
 have little difficulty recognizing the following date-time objects as
@@ -907,7 +960,7 @@ In Colorado, we are UTC-6 hours during <em>daylight savings</em> (March-Nov) and
 </p>
 </div>
 </div>
-<div id="date-time-classes-in-r" class="section level3">
+<div id="date-time-classes-in-r" class="section level3" number="6.3.3">
 <h3><span class="header-section-number">6.3.3</span> Date-time classes in R</h3>
 <p>R has several classes of date-time objects, none of which are easy to remember:</p>
 <ol style="list-style-type: decimal">
@@ -955,7 +1008,7 @@ Example
 <code>character</code>
 </td>
 <td style="text-align:left;">
-“Chemistry”, “Physics”, “Mathematics”
+“Chemistry,” “Physics,” “Mathematics”
 </td>
 </tr>
 <tr>
@@ -1002,27 +1055,27 @@ TRUE, FALSE
 </table>
 <p>To discover the class of a vector (including a column in a dataframe—remember
 each column can be thought of as a vector), you can use <code>class()</code>:</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="rprog3.html#cb213-1"></a><span class="kw">class</span>(<span class="kw">Sys.time</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="rprog3.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.time</span>())</span></code></pre></div>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <p>Both the <code>POSIXct</code> and <code>POSIXlt</code> class of objects return the same value to the
 user; the difference is really in how these classes store date-time objects
 internally. To examine them, you can coerce <code>Sys.time()</code> into each of the two
 classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and then examine their
 attributes.</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="rprog3.html#cb215-1"></a>time_now_ct &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">Sys.time</span>())</span>
-<span id="cb215-2"><a href="rprog3.html#cb215-2"></a><span class="kw">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1610391799</code></pre>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="rprog3.html#cb217-1"></a>time_now_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>())</span>
-<span id="cb217-2"><a href="rprog3.html#cb217-2"></a><span class="kw">str</span>(<span class="kw">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="rprog3.html#cb215-1" aria-hidden="true" tabindex="-1"></a>time_now_ct <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="fu">Sys.time</span>())</span>
+<span id="cb215-2"><a href="rprog3.html#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(time_now_ct)</span></code></pre></div>
+<pre><code>## [1] 1611786701</code></pre>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="rprog3.html#cb217-1" aria-hidden="true" tabindex="-1"></a>time_now_lt <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(<span class="fu">Sys.time</span>())</span>
+<span id="cb217-2"><a href="rprog3.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 19.2
-##  $ min   : int 3
-##  $ hour  : int 12
-##  $ mday  : int 11
+##  $ sec   : num 41.3
+##  $ min   : int 31
+##  $ hour  : int 15
+##  $ mday  : int 27
 ##  $ mon   : int 0
 ##  $ year  : int 121
-##  $ wday  : int 1
-##  $ yday  : int 10
+##  $ wday  : int 3
+##  $ yday  : int 26
 ##  $ isdst : int 0
 ##  $ zone  : chr &quot;MST&quot;
 ##  $ gmtoff: int -25200
@@ -1032,13 +1085,13 @@ efficient, but it’s also nice to see all the date-time information packed into
 the <code>POSIXlt</code>. This is why R keeps a key to unlock both using <code>POSIXt</code>.<br />
 As my father used to say: clear as mud?</p>
 </div>
-<div id="reading-and-classifying-date-times" class="section level3">
+<div id="reading-and-classifying-date-times" class="section level3" number="6.3.4">
 <h3><span class="header-section-number">6.3.4</span> Reading and classifying date-times</h3>
 <p>Oftentimes, when data is read into R, there are column elements that contain
 date and time information. These dates and times are often interpreted by R
 as <em>character</em> vectors, which means they have lost their relational attributes
 For example, you cannot subtract “Monday 08:00” from “Wednesday 12:00” and get
-“2 days 4 hours”. If we want to analyze dates and times in a relational way,
+“2 days 4 hours.” If we want to analyze dates and times in a relational way,
 we need to instruct R to recognize these as date-time objects (i.e., as either
 the <code>POSIXct</code> or <code>POSIXlt</code> class). Thus, to convert a character vector into
 date or date-time object requires a change of that vector’s class.</p>
@@ -1146,16 +1199,16 @@ date-time object of class POSIXlt
 </table>
 </div>
 </div>
-<div id="lubridate" class="section level2">
+<div id="lubridate" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> <code>lubridate</code></h2>
 <p>The <code>lubridate</code> package was developed specifically to make it easier to work
 with date-time objects. You can find out more information on <code>lubridate</code>
 <a href="https://lubridate.tidyverse.org/" target="_blank">here</a>.</p>
-<div id="parsing-functions-in-lubridate" class="section level3">
+<div id="parsing-functions-in-lubridate" class="section level3" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> Parsing functions in <code>lubridate</code></h3>
 <p>One of best aspects of <code>lubridate</code> is its ability to parse date-time objects
 with simplicity and ease; the <code>lubridate</code> parsing functions are designed as
-“named-to-order”. Let me explain:</p>
+“named-to-order.” Let me explain:</p>
 <blockquote>
 <p><span style="color: blue;"> <strong>Parse</strong>: <strong><em>to break apart and analyze the individual components</em></strong> of something, like a character string. </span></p>
 </blockquote>
@@ -1163,29 +1216,29 @@ with simplicity and ease; the <code>lubridate</code> parsing functions are desig
 <li><p>If a character vector is written in “<strong>y</strong>ear-<strong>m</strong>onth-<strong>d</strong>ay” format (e.g., <code>"2020-Dec-18"</code>), then the <code>lubridate</code> function to convert that vector is <code>ymd()</code>.</p></li>
 <li><p>If a character vector is written in “<strong>d</strong>ay-<strong>m</strong>onth-<strong>y</strong>ear” format (e.g., <code>"18-Dec-2020"</code>), then the <code>lubridate</code> function to convert that vector is <code>dmy()</code>. Try it out:</p></li>
 </ul>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="rprog3.html#cb219-1"></a><span class="co"># create a character vector</span></span>
-<span id="cb219-2"><a href="rprog3.html#cb219-2"></a>date_old &lt;-<span class="st"> &quot;2020-Dec-18&quot;</span></span>
-<span id="cb219-3"><a href="rprog3.html#cb219-3"></a></span>
-<span id="cb219-4"><a href="rprog3.html#cb219-4"></a><span class="co"># prove it&#39;s a character class</span></span>
-<span id="cb219-5"><a href="rprog3.html#cb219-5"></a><span class="kw">class</span>(date_old)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="rprog3.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a character vector</span></span>
+<span id="cb219-2"><a href="rprog3.html#cb219-2" aria-hidden="true" tabindex="-1"></a>date_old <span class="ot">&lt;-</span> <span class="st">&quot;2020-Dec-18&quot;</span></span>
+<span id="cb219-3"><a href="rprog3.html#cb219-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb219-4"><a href="rprog3.html#cb219-4" aria-hidden="true" tabindex="-1"></a><span class="co"># prove it&#39;s a character class</span></span>
+<span id="cb219-5"><a href="rprog3.html#cb219-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(date_old)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="rprog3.html#cb221-1"></a><span class="co"># convert it to a `Date` class with `ymd()`</span></span>
-<span id="cb221-2"><a href="rprog3.html#cb221-2"></a>date_new &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="kw">ymd</span>(date_old)</span>
-<span id="cb221-3"><a href="rprog3.html#cb221-3"></a></span>
-<span id="cb221-4"><a href="rprog3.html#cb221-4"></a><span class="co"># prove it worked</span></span>
-<span id="cb221-5"><a href="rprog3.html#cb221-5"></a><span class="kw">class</span>(date_new)</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="rprog3.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert it to a `Date` class with `ymd()`</span></span>
+<span id="cb221-2"><a href="rprog3.html#cb221-2" aria-hidden="true" tabindex="-1"></a>date_new <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">ymd</span>(date_old)</span>
+<span id="cb221-3"><a href="rprog3.html#cb221-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-4"><a href="rprog3.html#cb221-4" aria-hidden="true" tabindex="-1"></a><span class="co"># prove it worked</span></span>
+<span id="cb221-5"><a href="rprog3.html#cb221-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(date_new)</span></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 <p>That little conversion exercise may not have blown you away, but watch what
 happens when I feed the following set of wacky character vectors into that
 same <code>lubridate</code> parsing function, <code>ymd()</code>:</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="rprog3.html#cb223-1"></a>messy_dates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2020------Dec the 12&quot;</span>,</span>
-<span id="cb223-2"><a href="rprog3.html#cb223-2"></a>                 <span class="st">&quot;20.-.12.-.12&quot;</span>,</span>
-<span id="cb223-3"><a href="rprog3.html#cb223-3"></a>                 <span class="st">&quot;2020aaa12aaa12&quot;</span>,</span>
-<span id="cb223-4"><a href="rprog3.html#cb223-4"></a>                 <span class="st">&quot;20,12,12&quot;</span>,</span>
-<span id="cb223-5"><a href="rprog3.html#cb223-5"></a>                 <span class="st">&quot;2020x12-12&quot;</span>,</span>
-<span id="cb223-6"><a href="rprog3.html#cb223-6"></a>                 <span class="st">&quot;2020   ....    12        ......     12&quot;</span>,</span>
-<span id="cb223-7"><a href="rprog3.html#cb223-7"></a>                 <span class="st">&quot;&#39;20.December-12&quot;</span>)</span>
-<span id="cb223-8"><a href="rprog3.html#cb223-8"></a><span class="kw">ymd</span>(messy_dates)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="rprog3.html#cb223-1" aria-hidden="true" tabindex="-1"></a>messy_dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2020------Dec the 12&quot;</span>,</span>
+<span id="cb223-2"><a href="rprog3.html#cb223-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;20.-.12.-.12&quot;</span>,</span>
+<span id="cb223-3"><a href="rprog3.html#cb223-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;2020aaa12aaa12&quot;</span>,</span>
+<span id="cb223-4"><a href="rprog3.html#cb223-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;20,12,12&quot;</span>,</span>
+<span id="cb223-5"><a href="rprog3.html#cb223-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;2020x12-12&quot;</span>,</span>
+<span id="cb223-6"><a href="rprog3.html#cb223-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;2020   ....    12        ......     12&quot;</span>,</span>
+<span id="cb223-7"><a href="rprog3.html#cb223-7" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;&#39;20.December-12&quot;</span>)</span>
+<span id="cb223-8"><a href="rprog3.html#cb223-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(messy_dates)</span></code></pre></div>
 <pre><code>## [1] &quot;2020-12-12&quot; &quot;2020-12-12&quot; &quot;2020-12-12&quot; &quot;2020-12-12&quot; &quot;2020-12-12&quot;
 ## [6] &quot;2020-12-12&quot; &quot;2020-12-12&quot;</code></pre>
 <p>Boom. That’s right, the <code>ymd()</code> parsing function figured them all out correctly
@@ -1276,49 +1329,49 @@ year-month-day_hours-minutes-seconds
 up the character vector, regardless of separators or delimiters within each
 string, and return either a <code>Date</code> or <code>Date-time</code> object class.</p>
 </div>
-<div id="date-time-manipulation-with-lubridate" class="section level3">
+<div id="date-time-manipulation-with-lubridate" class="section level3" number="6.4.2">
 <h3><span class="header-section-number">6.4.2</span> Date-time manipulation with <code>lubridate</code></h3>
 <p>To convert the <code>date</code> column in the <code>daily_show</code> data into a Date class, you can
 run:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="rprog3.html#cb225-1"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">&quot;lubridate&quot;</span>)</span>
-<span id="cb225-2"><a href="rprog3.html#cb225-2"></a></span>
-<span id="cb225-3"><a href="rprog3.html#cb225-3"></a><span class="co"># check the class of the &#39;date&#39; column before mutating it</span></span>
-<span id="cb225-4"><a href="rprog3.html#cb225-4"></a><span class="kw">class</span>(<span class="dt">x =</span> daily_show<span class="op">$</span>date) </span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="rprog3.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;lubridate&quot;</span>)</span>
+<span id="cb225-2"><a href="rprog3.html#cb225-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb225-3"><a href="rprog3.html#cb225-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check the class of the &#39;date&#39; column before mutating it</span></span>
+<span id="cb225-4"><a href="rprog3.html#cb225-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="at">x =</span> daily_show<span class="sc">$</span>date) </span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="rprog3.html#cb227-1"></a>daily_show &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> daily_show,</span>
-<span id="cb227-2"><a href="rprog3.html#cb227-2"></a>                     <span class="dt">date =</span> <span class="kw">mdy</span>(date))</span>
-<span id="cb227-3"><a href="rprog3.html#cb227-3"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dt">n =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="rprog3.html#cb227-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> <span class="fu">mutate</span>(<span class="at">.data =</span> daily_show,</span>
+<span id="cb227-2"><a href="rprog3.html#cb227-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">date =</span> <span class="fu">mdy</span>(date))</span>
+<span id="cb227-3"><a href="rprog3.html#cb227-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> daily_show, <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 5
 ##    year job                date       category guest_name     
 ##   &lt;dbl&gt; &lt;chr&gt;              &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;          
 ## 1  1999 actor              1999-01-11 Acting   Michael J. Fox 
 ## 2  1999 Comedian           1999-01-12 Comedy   Sandra Bernhard
 ## 3  1999 television actress 1999-01-13 Acting   Tracey Ullman</code></pre>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="rprog3.html#cb229-1"></a><span class="co"># check the class of the &#39;date&#39; column after mutating it</span></span>
-<span id="cb229-2"><a href="rprog3.html#cb229-2"></a><span class="kw">class</span>(<span class="dt">x =</span> daily_show<span class="op">$</span>date) </span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="rprog3.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the class of the &#39;date&#39; column after mutating it</span></span>
+<span id="cb229-2"><a href="rprog3.html#cb229-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="at">x =</span> daily_show<span class="sc">$</span>date) </span></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 <p>Once you have an object in the <code>Date</code> class, you can do things like plot by
 date, calculate the range of dates, and calculate the total number of days the
 dataset covers:</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="rprog3.html#cb231-1"></a><span class="co"># report the min and max dates</span></span>
-<span id="cb231-2"><a href="rprog3.html#cb231-2"></a><span class="kw">range</span>(daily_show<span class="op">$</span>date)</span>
-<span id="cb231-3"><a href="rprog3.html#cb231-3"></a></span>
-<span id="cb231-4"><a href="rprog3.html#cb231-4"></a><span class="co"># calculate the duration from first to last date using base</span></span>
-<span id="cb231-5"><a href="rprog3.html#cb231-5"></a><span class="kw">max</span>(daily_show<span class="op">$</span>date) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(daily_show<span class="op">$</span>date)</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="rprog3.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="co"># report the min and max dates</span></span>
+<span id="cb231-2"><a href="rprog3.html#cb231-2" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(daily_show<span class="sc">$</span>date)</span>
+<span id="cb231-3"><a href="rprog3.html#cb231-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb231-4"><a href="rprog3.html#cb231-4" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the duration from first to last date using base</span></span>
+<span id="cb231-5"><a href="rprog3.html#cb231-5" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(daily_show<span class="sc">$</span>date) <span class="sc">-</span> <span class="fu">min</span>(daily_show<span class="sc">$</span>date)</span></code></pre></div>
 <p>We could have used these to transform the date in <code>daily_show</code>, using the
 following pipe chain:</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="rprog3.html#cb232-1"></a>daily_show &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>,</span>
-<span id="cb232-2"><a href="rprog3.html#cb232-2"></a>                              <span class="dt">skip =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span></span>
-<span id="cb232-3"><a href="rprog3.html#cb232-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">job =</span> GoogleKnowlege_Occupation,</span>
-<span id="cb232-4"><a href="rprog3.html#cb232-4"></a>                <span class="dt">date =</span> Show,</span>
-<span id="cb232-5"><a href="rprog3.html#cb232-5"></a>                <span class="dt">category =</span> Group,</span>
-<span id="cb232-6"><a href="rprog3.html#cb232-6"></a>                <span class="dt">guest_name =</span> Raw_Guest_List) <span class="op">%&gt;%</span></span>
-<span id="cb232-7"><a href="rprog3.html#cb232-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>YEAR) <span class="op">%&gt;%</span></span>
-<span id="cb232-8"><a href="rprog3.html#cb232-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">date =</span> lubridate<span class="op">::</span><span class="kw">mdy</span>(date)) <span class="op">%&gt;%</span></span>
-<span id="cb232-9"><a href="rprog3.html#cb232-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(category <span class="op">==</span><span class="st"> &quot;Science&quot;</span>)</span>
-<span id="cb232-10"><a href="rprog3.html#cb232-10"></a></span>
-<span id="cb232-11"><a href="rprog3.html#cb232-11"></a><span class="co"># show first two rows of dataframe</span></span>
-<span id="cb232-12"><a href="rprog3.html#cb232-12"></a><span class="kw">head</span>(<span class="dt">x =</span> daily_show, <span class="dt">n =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="rprog3.html#cb232-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>,</span>
+<span id="cb232-2"><a href="rprog3.html#cb232-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">skip =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb232-3"><a href="rprog3.html#cb232-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">job =</span> GoogleKnowlege_Occupation,</span>
+<span id="cb232-4"><a href="rprog3.html#cb232-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">date =</span> Show,</span>
+<span id="cb232-5"><a href="rprog3.html#cb232-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">category =</span> Group,</span>
+<span id="cb232-6"><a href="rprog3.html#cb232-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">guest_name =</span> Raw_Guest_List) <span class="sc">%&gt;%</span></span>
+<span id="cb232-7"><a href="rprog3.html#cb232-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>YEAR) <span class="sc">%&gt;%</span></span>
+<span id="cb232-8"><a href="rprog3.html#cb232-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">date =</span> lubridate<span class="sc">::</span><span class="fu">mdy</span>(date)) <span class="sc">%&gt;%</span></span>
+<span id="cb232-9"><a href="rprog3.html#cb232-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(category <span class="sc">==</span> <span class="st">&quot;Science&quot;</span>)</span>
+<span id="cb232-10"><a href="rprog3.html#cb232-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-11"><a href="rprog3.html#cb232-11" aria-hidden="true" tabindex="-1"></a><span class="co"># show first two rows of dataframe</span></span>
+<span id="cb232-12"><a href="rprog3.html#cb232-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> daily_show, <span class="at">n =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##   job          date       category guest_name     
 ##   &lt;chr&gt;        &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;          
@@ -1336,11 +1389,11 @@ a date, including:</p>
 </ul>
 <p>For example, we could use <code>wday()</code> to create a new column with the weekday of
 each show:</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="rprog3.html#cb234-1"></a>daily_show <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb234-2"><a href="rprog3.html#cb234-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">show_day =</span> lubridate<span class="op">::</span><span class="kw">wday</span>(<span class="dt">x =</span> date,</span>
-<span id="cb234-3"><a href="rprog3.html#cb234-3"></a>                                           <span class="dt">label =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb234-4"><a href="rprog3.html#cb234-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(date, show_day, guest_name) <span class="op">%&gt;%</span></span>
-<span id="cb234-5"><a href="rprog3.html#cb234-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="rprog3.html#cb234-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="sc">%&gt;%</span> </span>
+<span id="cb234-2"><a href="rprog3.html#cb234-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">show_day =</span> lubridate<span class="sc">::</span><span class="fu">wday</span>(<span class="at">x =</span> date,</span>
+<span id="cb234-3"><a href="rprog3.html#cb234-3" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">label =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb234-4"><a href="rprog3.html#cb234-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(date, show_day, guest_name) <span class="sc">%&gt;%</span></span>
+<span id="cb234-5"><a href="rprog3.html#cb234-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 3
 ##   date       show_day guest_name            
 ##   &lt;date&gt;     &lt;ord&gt;    &lt;chr&gt;                 
@@ -1356,7 +1409,7 @@ R functions tend to use the timezone of <strong>YOUR</strong> computer’s opera
 </div>
 </div>
 </div>
-<div id="tidy-data" class="section level2">
+<div id="tidy-data" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> Tidy Data</h2>
 <p><strong><em>“Tidy Data”</em></strong> is a philosophy for how to arrange your data in a intuitive,
 rectangular fashion, commonly in a <code>dataframe</code>. In his
@@ -1448,7 +1501,7 @@ Hermione
 </table>
 <p>Thus, to tidy table <a href="rprog3.html#tab:grades-untidy">6.4</a>, we need to create a variable
 called <code>Exam</code> and move all the scores into a new column vector named <code>Scores</code>.
-This effectively makes the data “long” rather than “wide”.</p>
+This effectively makes the data “long” rather than “wide.”</p>
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:grades-tidy">Table 6.5: </span>A Tidy Table of Exam Scores
@@ -1604,24 +1657,24 @@ into a column of <code>values_to = "Scores"</code>. We also add a call to <code>
 and <code>dplyr::case_when()</code> to convert strings to numbers.</p>
 <p>The <code>case_when()</code> function allows you introduce multiple “if/else” statements into
 a vectorized operation, such as within this call to <code>dplyr:mutate()</code>. This function
-takes a series of logical arguments as <em>cases</em>, with each case seeking to find a “match”. Once a “match” occurs, an outcome instruction is followed. In the code
+takes a series of logical arguments as <em>cases</em>, with each case seeking to find a “match.” Once a “match” occurs, an outcome instruction is followed. In the code
 chunk below, the left-hand-side of each “case” evaluates whether each entry in
 the <code>Exam</code> column equates to a particular string (like <code>"Exam_1_Score"</code>). On the
 right-hand-side of each case, separated by a <em>tilde</em> ~, contains the <code>mutate()</code>
 instruction. In plain speak, the function reads:</p>
 <blockquote>
-<p>If the vector contains a string that matches “Exam_1_Score”, then replace that entry with a 1; else, if the vector contains a string that matches “Exam_2_Score”,
-then replace that entry with a 2; else, if the vector contains a string that matches “Exam_3_Score”, then replace that entry with a 3.</p>
+<p>If the vector contains a string that matches “Exam_1_Score,” then replace that entry with a 1; else, if the vector contains a string that matches “Exam_2_Score,”
+then replace that entry with a 2; else, if the vector contains a string that matches “Exam_3_Score,” then replace that entry with a 3.</p>
 </blockquote>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="rprog3.html#cb236-1"></a>tidygrades &lt;-<span class="st"> </span>tidyr<span class="op">::</span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> grades_untidy,</span>
-<span id="cb236-2"><a href="rprog3.html#cb236-2"></a>                                  <span class="dt">cols =</span> Exam1_Score<span class="op">:</span>Exam3_Score,</span>
-<span id="cb236-3"><a href="rprog3.html#cb236-3"></a>                                  <span class="dt">names_to =</span> <span class="st">&quot;Exam&quot;</span>,</span>
-<span id="cb236-4"><a href="rprog3.html#cb236-4"></a>                                  <span class="dt">values_to =</span> <span class="st">&quot;Scores&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb236-5"><a href="rprog3.html#cb236-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">Exam =</span> dplyr<span class="op">::</span><span class="kw">case_when</span>(</span>
-<span id="cb236-6"><a href="rprog3.html#cb236-6"></a>    Exam <span class="op">==</span><span class="st"> &quot;Exam1_Score&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
-<span id="cb236-7"><a href="rprog3.html#cb236-7"></a>    Exam <span class="op">==</span><span class="st"> &quot;Exam2_Score&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,</span>
-<span id="cb236-8"><a href="rprog3.html#cb236-8"></a>    Exam <span class="op">==</span><span class="st"> &quot;Exam3_Score&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span></span>
-<span id="cb236-9"><a href="rprog3.html#cb236-9"></a>  ))</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="rprog3.html#cb236-1" aria-hidden="true" tabindex="-1"></a>tidygrades <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">data =</span> grades_untidy,</span>
+<span id="cb236-2"><a href="rprog3.html#cb236-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">cols =</span> Exam1_Score<span class="sc">:</span>Exam3_Score,</span>
+<span id="cb236-3"><a href="rprog3.html#cb236-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">names_to =</span> <span class="st">&quot;Exam&quot;</span>,</span>
+<span id="cb236-4"><a href="rprog3.html#cb236-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">values_to =</span> <span class="st">&quot;Scores&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb236-5"><a href="rprog3.html#cb236-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Exam =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb236-6"><a href="rprog3.html#cb236-6" aria-hidden="true" tabindex="-1"></a>    Exam <span class="sc">==</span> <span class="st">&quot;Exam1_Score&quot;</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb236-7"><a href="rprog3.html#cb236-7" aria-hidden="true" tabindex="-1"></a>    Exam <span class="sc">==</span> <span class="st">&quot;Exam2_Score&quot;</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb236-8"><a href="rprog3.html#cb236-8" aria-hidden="true" tabindex="-1"></a>    Exam <span class="sc">==</span> <span class="st">&quot;Exam3_Score&quot;</span> <span class="sc">~</span> <span class="dv">3</span></span>
+<span id="cb236-9"><a href="rprog3.html#cb236-9" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:grades-tab3">Table 6.6: </span>Pivot longer applied to untidy data
@@ -1748,11 +1801,11 @@ data management techniques. Remember: What might seem useful at the time—like
 a color-coded Excel spreadsheet—is a pain for computers and not reproducible.
 Do yourself a favor and begin with the end in mind: <em>tidy data</em>.</p>
 </div>
-<div id="chapter-6-exercises" class="section level2">
+<div id="chapter-6-exercises" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> Chapter 6 Exercises</h2>
 <p>The following exercises use data on tweets from United Senators, processed by
 <a href="https://github.com/fivethirtyeight/data/tree/master/twitter-ratio" target="_blank">FiveThirtyEight</a>.</p>
-<div id="set-1-data-import-and-manipulation" class="section level3">
+<div id="set-1-data-import-and-manipulation" class="section level3" number="6.6.1">
 <h3><span class="header-section-number">6.6.1</span> Set 1: Data import and manipulation</h3>
 <p>Create a pipeline that</p>
 <ul>
@@ -1767,75 +1820,75 @@ Do yourself a favor and begin with the end in mind: <em>tidy data</em>.</p>
 </ul></li>
 <li>retains all variables <strong>except</strong> <code>url</code>, <code>created_at</code>, and <code>bioguide_id</code></li>
 </ul>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="rprog3.html#cb237-1"></a><span class="co"># pipeline to import, filter, manipulate datetime vars, select vars </span></span>
-<span id="cb237-2"><a href="rprog3.html#cb237-2"></a>tweets_co &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/senators.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb237-3"><a href="rprog3.html#cb237-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(state <span class="op">==</span><span class="st"> &quot;CO&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># filter to Colorado senators</span></span>
-<span id="cb237-4"><a href="rprog3.html#cb237-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">date =</span> lubridate<span class="op">::</span><span class="kw">mdy_hm</span>(created_at), <span class="co"># convert timestamp to datetime object</span></span>
-<span id="cb237-5"><a href="rprog3.html#cb237-5"></a>         <span class="dt">hour_co =</span> lubridate<span class="op">::</span><span class="kw">hour</span>(lubridate<span class="op">::</span><span class="kw">with_tz</span>(date, <span class="co"># convert timestamp to datetime object </span></span>
-<span id="cb237-6"><a href="rprog3.html#cb237-6"></a>                                                      <span class="dt">tzone =</span> <span class="st">&quot;America/Denver&quot;</span>)), <span class="co"># and add timezone label</span></span>
-<span id="cb237-7"><a href="rprog3.html#cb237-7"></a>         <span class="dt">month =</span> lubridate<span class="op">::</span><span class="kw">month</span>(date), <span class="co"># create var of month from timestamp</span></span>
-<span id="cb237-8"><a href="rprog3.html#cb237-8"></a>         <span class="dt">week =</span> lubridate<span class="op">::</span><span class="kw">week</span>(date)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># create var of week from timestamp</span></span>
-<span id="cb237-9"><a href="rprog3.html#cb237-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>(<span class="kw">c</span>(url, created_at, bioguide_id))) <span class="co"># retain all vars except 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="rprog3.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pipeline to import, filter, manipulate datetime vars, select vars </span></span>
+<span id="cb237-2"><a href="rprog3.html#cb237-2" aria-hidden="true" tabindex="-1"></a>tweets_co <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;data/senators.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb237-3"><a href="rprog3.html#cb237-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">&quot;CO&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># filter to Colorado senators</span></span>
+<span id="cb237-4"><a href="rprog3.html#cb237-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">date =</span> lubridate<span class="sc">::</span><span class="fu">mdy_hm</span>(created_at), <span class="co"># convert timestamp to datetime object</span></span>
+<span id="cb237-5"><a href="rprog3.html#cb237-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">hour_co =</span> lubridate<span class="sc">::</span><span class="fu">hour</span>(lubridate<span class="sc">::</span><span class="fu">with_tz</span>(date, <span class="co"># convert timestamp to datetime object </span></span>
+<span id="cb237-6"><a href="rprog3.html#cb237-6" aria-hidden="true" tabindex="-1"></a>                                                      <span class="at">tzone =</span> <span class="st">&quot;America/Denver&quot;</span>)), <span class="co"># and add timezone label</span></span>
+<span id="cb237-7"><a href="rprog3.html#cb237-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">month =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(date), <span class="co"># create var of month from timestamp</span></span>
+<span id="cb237-8"><a href="rprog3.html#cb237-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">week =</span> lubridate<span class="sc">::</span><span class="fu">week</span>(date)) <span class="sc">%&gt;%</span> <span class="co"># create var of week from timestamp</span></span>
+<span id="cb237-9"><a href="rprog3.html#cb237-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>(<span class="fu">c</span>(url, created_at, bioguide_id))) <span class="co"># retain all vars except 3</span></span></code></pre></div>
 </div>
-<div id="set-2-counting" class="section level3">
+<div id="set-2-counting" class="section level3" number="6.6.2">
 <h3><span class="header-section-number">6.6.2</span> Set 2: Counting</h3>
 <ol style="list-style-type: decimal">
 <li>Which Colorado senators are included in the data?</li>
 </ol>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="rprog3.html#cb238-1"></a><span class="co"># find unique strings within user variable</span></span>
-<span id="cb238-2"><a href="rprog3.html#cb238-2"></a><span class="co"># if you convert to factor, you can also find `levels()`</span></span>
-<span id="cb238-3"><a href="rprog3.html#cb238-3"></a><span class="kw">unique</span>(tweets_co<span class="op">$</span>user) </span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="rprog3.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find unique strings within user variable</span></span>
+<span id="cb238-2"><a href="rprog3.html#cb238-2" aria-hidden="true" tabindex="-1"></a><span class="co"># if you convert to factor, you can also find `levels()`</span></span>
+<span id="cb238-3"><a href="rprog3.html#cb238-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(tweets_co<span class="sc">$</span>user) </span></code></pre></div>
 <pre><code>## [1] &quot;SenBennetCO&quot;    &quot;SenCoryGardner&quot;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Which Colorado Senator tweets the most?</li>
 </ol>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="rprog3.html#cb240-1"></a><span class="co"># compare number of tweets by senator; remember to always ungroup grouped data!</span></span>
-<span id="cb240-2"><a href="rprog3.html#cb240-2"></a>tweets_co <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb240-3"><a href="rprog3.html#cb240-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(user) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb240-4"><a href="rprog3.html#cb240-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb240-5"><a href="rprog3.html#cb240-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="rprog3.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compare number of tweets by senator; remember to always ungroup grouped data!</span></span>
+<span id="cb240-2"><a href="rprog3.html#cb240-2" aria-hidden="true" tabindex="-1"></a>tweets_co <span class="sc">%&gt;%</span> </span>
+<span id="cb240-3"><a href="rprog3.html#cb240-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(user) <span class="sc">%&gt;%</span> </span>
+<span id="cb240-4"><a href="rprog3.html#cb240-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">tally</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb240-5"><a href="rprog3.html#cb240-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   user               n
 ##   &lt;chr&gt;          &lt;int&gt;
 ## 1 SenBennetCO     2211
 ## 2 SenCoryGardner  3225</code></pre>
 </div>
-<div id="set-3-weekly-tweets" class="section level3">
+<div id="set-3-weekly-tweets" class="section level3" number="6.6.3">
 <h3><span class="header-section-number">6.6.3</span> Set 3: Weekly tweets</h3>
 <p>Create a time series plot that indicates tweet activity on a weekly basis since
 2011 for the Colorado senators. You will need to first create a new dataframe
 that contains new time-date variables based on the (a) total time and (b) weeks
 since data collection started.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="rprog3.html#cb242-1"></a><span class="co"># create new time-based variables</span></span>
-<span id="cb242-2"><a href="rprog3.html#cb242-2"></a>tweets_co_wk &lt;-<span class="st"> </span>tweets_co <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb242-3"><a href="rprog3.html#cb242-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">time_since =</span> <span class="kw">as.duration</span>(date <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(date)), <span class="co"># &quot;time from&quot; var</span></span>
-<span id="cb242-4"><a href="rprog3.html#cb242-4"></a>         <span class="dt">week =</span> <span class="kw">round</span>(<span class="kw">as.numeric</span>(time_since, <span class="st">&quot;weeks&quot;</span>), <span class="dv">0</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># &quot;weeks from&quot; var</span></span>
-<span id="cb242-5"><a href="rprog3.html#cb242-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(user, week) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># by week per user</span></span>
-<span id="cb242-6"><a href="rprog3.html#cb242-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># tweet count </span></span>
-<span id="cb242-7"><a href="rprog3.html#cb242-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>() <span class="co"># remember to ungroup grouped data</span></span></code></pre></div>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="rprog3.html#cb243-1"></a><span class="co"># plot time series of tweets per week per senator since 2011</span></span>
-<span id="cb243-2"><a href="rprog3.html#cb243-2"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> tweets_co_wk, </span>
-<span id="cb243-3"><a href="rprog3.html#cb243-3"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> week, <span class="dt">y =</span> n, <span class="dt">color =</span> user)) <span class="op">+</span></span>
-<span id="cb243-4"><a href="rprog3.html#cb243-4"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb243-5"><a href="rprog3.html#cb243-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
-<span id="cb243-6"><a href="rprog3.html#cb243-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Number of tweets per week by Colorado senator since 2011&quot;</span>,</span>
-<span id="cb243-7"><a href="rprog3.html#cb243-7"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;Gardner joined Twitter later but tweets more (and cyclically)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="rprog3.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create new time-based variables</span></span>
+<span id="cb242-2"><a href="rprog3.html#cb242-2" aria-hidden="true" tabindex="-1"></a>tweets_co_wk <span class="ot">&lt;-</span> tweets_co <span class="sc">%&gt;%</span> </span>
+<span id="cb242-3"><a href="rprog3.html#cb242-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">time_since =</span> <span class="fu">as.duration</span>(date <span class="sc">-</span> <span class="fu">min</span>(date)), <span class="co"># &quot;time from&quot; var</span></span>
+<span id="cb242-4"><a href="rprog3.html#cb242-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">week =</span> <span class="fu">round</span>(<span class="fu">as.numeric</span>(time_since, <span class="st">&quot;weeks&quot;</span>), <span class="dv">0</span>)) <span class="sc">%&gt;%</span> <span class="co"># &quot;weeks from&quot; var</span></span>
+<span id="cb242-5"><a href="rprog3.html#cb242-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(user, week) <span class="sc">%&gt;%</span> <span class="co"># by week per user</span></span>
+<span id="cb242-6"><a href="rprog3.html#cb242-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">tally</span>() <span class="sc">%&gt;%</span> <span class="co"># tweet count </span></span>
+<span id="cb242-7"><a href="rprog3.html#cb242-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="co"># remember to ungroup grouped data</span></span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="rprog3.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot time series of tweets per week per senator since 2011</span></span>
+<span id="cb243-2"><a href="rprog3.html#cb243-2" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> tweets_co_wk, </span>
+<span id="cb243-3"><a href="rprog3.html#cb243-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> week, <span class="at">y =</span> n, <span class="at">color =</span> user)) <span class="sc">+</span></span>
+<span id="cb243-4"><a href="rprog3.html#cb243-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb243-5"><a href="rprog3.html#cb243-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb243-6"><a href="rprog3.html#cb243-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of tweets per week by Colorado senator since 2011&quot;</span>,</span>
+<span id="cb243-7"><a href="rprog3.html#cb243-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Gardner joined Twitter later but tweets more (and cyclically)&quot;</span>)</span></code></pre></div>
 <p><img src="06-string_date_files/figure-html/tweet-time-series-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
-<div id="set-4-csu-vs.-cu" class="section level3">
+<div id="set-4-csu-vs.-cu" class="section level3" number="6.6.4">
 <h3><span class="header-section-number">6.6.4</span> Set 4: CSU vs. CU</h3>
 <ol style="list-style-type: decimal">
 <li>How many times are strings related to CSU mentioned by each senator by year?
-This might include things like “CSU”, “colostate”, “Colostate”, “Colorado State
-U”, “Rams”, etc. You will need to use a few <code>dplyr</code> functions, one <code>lubridate</code>
+This might include things like “CSU,” “colostate,” “Colostate,” “Colorado State
+U,” “Rams,” etc. You will need to use a few <code>dplyr</code> functions, one <code>lubridate</code>
 function, and one <code>stringr</code> function within the pipeline.</li>
 </ol>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="rprog3.html#cb244-1"></a><span class="co"># determine number of csu-related tweets by senator per year</span></span>
-<span id="cb244-2"><a href="rprog3.html#cb244-2"></a>tweets_co <span class="op">%&gt;%</span></span>
-<span id="cb244-3"><a href="rprog3.html#cb244-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(user, lubridate<span class="op">::</span><span class="kw">year</span>(date)) <span class="op">%&gt;%</span></span>
-<span id="cb244-4"><a href="rprog3.html#cb244-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(stringr<span class="op">::</span><span class="kw">str_detect</span>(text, <span class="st">&quot;CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb244-5"><a href="rprog3.html#cb244-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb244-6"><a href="rprog3.html#cb244-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="rprog3.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="co"># determine number of csu-related tweets by senator per year</span></span>
+<span id="cb244-2"><a href="rprog3.html#cb244-2" aria-hidden="true" tabindex="-1"></a>tweets_co <span class="sc">%&gt;%</span></span>
+<span id="cb244-3"><a href="rprog3.html#cb244-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(user, lubridate<span class="sc">::</span><span class="fu">year</span>(date)) <span class="sc">%&gt;%</span></span>
+<span id="cb244-4"><a href="rprog3.html#cb244-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(text, <span class="st">&quot;CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb244-5"><a href="rprog3.html#cb244-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">tally</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb244-6"><a href="rprog3.html#cb244-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 3
 ##    user           `lubridate::year(date)`     n
 ##    &lt;chr&gt;                            &lt;dbl&gt; &lt;int&gt;
@@ -1854,9 +1907,9 @@ function, and one <code>stringr</code> function within the pipeline.</li>
 will need to use another <code>stringr</code> function. You can use the same text strings
 as before.</li>
 </ol>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="rprog3.html#cb246-1"></a><span class="co"># extract csu-related tweet content</span></span>
-<span id="cb246-2"><a href="rprog3.html#cb246-2"></a>stringr<span class="op">::</span><span class="kw">str_subset</span>(tweets_co<span class="op">$</span>text, </span>
-<span id="cb246-3"><a href="rprog3.html#cb246-3"></a>                    <span class="st">&quot;CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="rprog3.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract csu-related tweet content</span></span>
+<span id="cb246-2"><a href="rprog3.html#cb246-2" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_subset</span>(tweets_co<span class="sc">$</span>text, </span>
+<span id="cb246-3"><a href="rprog3.html#cb246-3" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu&quot;</span>)</span></code></pre></div>
 <pre><code>##  [1] &quot;RT @CSUAgSci: .@SenBennetCO &amp;amp; @SenCoryGardner announce $500K @usda grant to @ColoradoStateU to study Farm to School program https://t.co/kb��_&quot;
 ##  [2] &quot;Best of luck to @CSUMensBball in #NIT first round against South Dakota State! #GoRams&quot;                                                             
 ##  [3] &quot;CSU-led study shows risks for CO if we don&#39;t tackle climate change. Risks worsen the longer we wait. It&#39;s time to act http://t.co/Nlz4pmj8D6&quot;      
@@ -1881,16 +1934,16 @@ as before.</li>
 <ol start="3" style="list-style-type: decimal">
 <li>Which Colorado senator tweets the most about University of Colorado? Use a
 similar approach to Question 7, with strings related to CU, such as “Buffs” or
-“University of Colorado”.</li>
+“University of Colorado.”</li>
 </ol>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="rprog3.html#cb248-1"></a><span class="co"># number of cu-related tweets by senator per year</span></span>
-<span id="cb248-2"><a href="rprog3.html#cb248-2"></a>tweets_co <span class="op">%&gt;%</span></span>
-<span id="cb248-3"><a href="rprog3.html#cb248-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(user, lubridate<span class="op">::</span><span class="kw">year</span>(date)) <span class="op">%&gt;%</span></span>
-<span id="cb248-4"><a href="rprog3.html#cb248-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="kw">year</span>(date) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2013</span>) <span class="op">%&gt;%</span></span>
-<span id="cb248-5"><a href="rprog3.html#cb248-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(stringr<span class="op">::</span><span class="kw">str_detect</span>(text, </span>
-<span id="cb248-6"><a href="rprog3.html#cb248-6"></a>                                    <span class="st">&quot;CU|Buffs|buffs|University of Colorado&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb248-7"><a href="rprog3.html#cb248-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb248-8"><a href="rprog3.html#cb248-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="rprog3.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of cu-related tweets by senator per year</span></span>
+<span id="cb248-2"><a href="rprog3.html#cb248-2" aria-hidden="true" tabindex="-1"></a>tweets_co <span class="sc">%&gt;%</span></span>
+<span id="cb248-3"><a href="rprog3.html#cb248-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(user, lubridate<span class="sc">::</span><span class="fu">year</span>(date)) <span class="sc">%&gt;%</span></span>
+<span id="cb248-4"><a href="rprog3.html#cb248-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">year</span>(date) <span class="sc">&gt;=</span> <span class="dv">2013</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb248-5"><a href="rprog3.html#cb248-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(text, </span>
+<span id="cb248-6"><a href="rprog3.html#cb248-6" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;CU|Buffs|buffs|University of Colorado&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb248-7"><a href="rprog3.html#cb248-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">tally</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb248-8"><a href="rprog3.html#cb248-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 9 x 3
 ##   user           `lubridate::year(date)`     n
 ##   &lt;chr&gt;                            &lt;dbl&gt; &lt;int&gt;
@@ -1905,7 +1958,7 @@ similar approach to Question 7, with strings related to CU, such as “Buffs” 
 ## 9 SenCoryGardner                    2017     3</code></pre>
 </div>
 </div>
-<div id="chapter-6-homework" class="section level2">
+<div id="chapter-6-homework" class="section level2" number="6.7">
 <h2><span class="header-section-number">6.7</span> Chapter 6 Homework</h2>
 <p>You will continue to use the <a href="https://github.com/fivethirtyeight/data/tree/master/twitter-ratio" target="_blank">FiveThirtyEight</a> Twitter data for homework.</p>
 <p>Download the csv from Canvas containing Colorado senators’ tweets from 2011 to

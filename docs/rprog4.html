@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-11" />
+<meta name="date" content="2021-01-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="eda2.html"/>
 <link rel="next" href="transform.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,26 +51,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -89,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -138,14 +136,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Engineering Data Analysis in R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1</b> How to use this book</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a><ul>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
 <li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a><ul>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#install-r-and-rstudio"><i class="fa fa-check"></i><b>1.4.1</b> Install R and RStudio</a></li>
 <li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#install-git-and-create-a-github-account"><i class="fa fa-check"></i><b>1.4.2</b> Install Git and create a GitHub account</a></li>
 <li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#connect-git-github-and-rstudio"><i class="fa fa-check"></i><b>1.4.3</b> Connect Git, GitHub, and RStudio</a></li>
@@ -154,57 +155,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#confirm-successful-set-up"><i class="fa fa-check"></i><b>1.4.6</b> Confirm successful set-up</a></li>
 <li class="chapter" data-level="1.4.7" data-path="index.html"><a href="index.html#asking-for-help-properly"><i class="fa fa-check"></i><b>1.4.7</b> Asking for help (properly)</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a><ul>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#other-helpful-books-not-required"><i class="fa fa-check"></i><b>1.5.1</b> Other helpful books (not required)</a></li>
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a><ul>
+<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="rprog1.html"><a href="rprog1.html#ch.-2-objectives"><i class="fa fa-check"></i><b>2.1</b> Ch. 2 Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="rprog1.html"><a href="rprog1.html#what-is-r"><i class="fa fa-check"></i><b>2.2.1</b> What is R?</a></li>
 <li class="chapter" data-level="2.2.2" data-path="rprog1.html"><a href="rprog1.html#free-and-open-source-software"><i class="fa fa-check"></i><b>2.2.2</b> Free and open-source software</a></li>
 <li class="chapter" data-level="2.2.3" data-path="rprog1.html"><a href="rprog1.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2.3</b> What is RStudio?</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a><ul>
+<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="rprog1.html"><a href="rprog1.html#r-sessions-console-and-command-prompt"><i class="fa fa-check"></i><b>2.3.1</b> R sessions, console, and command prompt</a></li>
 <li class="chapter" data-level="2.3.2" data-path="rprog1.html"><a href="rprog1.html#r-expressions-function-calls-and-objects"><i class="fa fa-check"></i><b>2.3.2</b> R expressions, function calls, and objects</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a><ul>
+<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="rprog1.html"><a href="rprog1.html#commenting-code"><i class="fa fa-check"></i><b>2.4.1</b> Commenting code</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a><ul>
+<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="rprog1.html"><a href="rprog1.html#r-packages"><i class="fa fa-check"></i><b>2.5.1</b> R packages</a></li>
 <li class="chapter" data-level="2.5.2" data-path="rprog1.html"><a href="rprog1.html#installing-from-cran"><i class="fa fa-check"></i><b>2.5.2</b> Installing from CRAN</a></li>
 <li class="chapter" data-level="2.5.3" data-path="rprog1.html"><a href="rprog1.html#loading-an-installed-package"><i class="fa fa-check"></i><b>2.5.3</b> Loading an installed package</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
 <li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#chapter-2-exercises"><i class="fa fa-check"></i><b>2.7</b> Chapter 2 Exercises</a><ul>
+<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#chapter-2-exercises"><i class="fa fa-check"></i><b>2.7</b> Chapter 2 Exercises</a>
+<ul>
 <li class="chapter" data-level="2.7.1" data-path="rprog1.html"><a href="rprog1.html#set-1-session-helpfiles-scripts-and-objects"><i class="fa fa-check"></i><b>2.7.1</b> Set 1: Session, helpfiles, scripts, and objects</a></li>
 <li class="chapter" data-level="2.7.2" data-path="rprog1.html"><a href="rprog1.html#set-2-loading-and-using-packages"><i class="fa fa-check"></i><b>2.7.2</b> Set 2: Loading and using packages</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#chapter-2-homework"><i class="fa fa-check"></i><b>2.8</b> Chapter 2 Homework</a><ul>
+<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#chapter-2-homework"><i class="fa fa-check"></i><b>2.8</b> Chapter 2 Homework</a>
+<ul>
 <li class="chapter" data-level="2.8.1" data-path="rprog1.html"><a href="rprog1.html#special-swirl-commands"><i class="fa fa-check"></i><b>2.8.1</b> Special <code>swirl</code> commands</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a><ul>
+<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="rprog2.html"><a href="rprog2.html#ch.-3-objectives"><i class="fa fa-check"></i><b>3.1</b> Ch. 3 Objectives</a></li>
 <li class="chapter" data-level="3.2" data-path="rprog2.html"><a href="rprog2.html#overview"><i class="fa fa-check"></i><b>3.2</b> Overview</a></li>
-<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a><ul>
+<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="rprog2.html"><a href="rprog2.html#reading-local-flat-files"><i class="fa fa-check"></i><b>3.3.1</b> Reading local flat files</a></li>
 <li class="chapter" data-level="3.3.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-other-file-types"><i class="fa fa-check"></i><b>3.3.2</b> Reading in other file types</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a><ul>
+<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="rprog2.html"><a href="rprog2.html#directory-structure"><i class="fa fa-check"></i><b>3.4.1</b> Directory structure</a></li>
 <li class="chapter" data-level="3.4.2" data-path="rprog2.html"><a href="rprog2.html#working-directory"><i class="fa fa-check"></i><b>3.4.2</b> Working directory</a></li>
 <li class="chapter" data-level="3.4.3" data-path="rprog2.html"><a href="rprog2.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>3.4.3</b> File and directory pathnames</a></li>
 <li class="chapter" data-level="3.4.4" data-path="rprog2.html"><a href="rprog2.html#tangent-paste"><i class="fa fa-check"></i><b>3.4.4</b> Tangent: <code>paste</code></a></li>
 <li class="chapter" data-level="3.4.5" data-path="rprog2.html"><a href="rprog2.html#reading-online-flat-files"><i class="fa fa-check"></i><b>3.4.5</b> Reading online flat files</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a><ul>
+<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="rprog2.html"><a href="rprog2.html#renaming-columns"><i class="fa fa-check"></i><b>3.5.1</b> Renaming columns</a></li>
 <li class="chapter" data-level="3.5.2" data-path="rprog2.html"><a href="rprog2.html#selecting-columns"><i class="fa fa-check"></i><b>3.5.2</b> Selecting columns</a></li>
 <li class="chapter" data-level="3.5.3" data-path="rprog2.html"><a href="rprog2.html#add-or-change-columns"><i class="fa fa-check"></i><b>3.5.3</b> Add or change columns</a></li>
@@ -212,26 +226,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.5" data-path="rprog2.html"><a href="rprog2.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>3.5.5</b> Filtering to certain rows</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="rprog2.html"><a href="rprog2.html#piping"><i class="fa fa-check"></i><b>3.6</b> Piping</a></li>
-<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#markdowns"><i class="fa fa-check"></i><b>3.7</b> Markdowns</a><ul>
+<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#markdowns"><i class="fa fa-check"></i><b>3.7</b> Markdowns</a>
+<ul>
 <li class="chapter" data-level="3.7.1" data-path="rprog2.html"><a href="rprog2.html#r-markdowns"><i class="fa fa-check"></i><b>3.7.1</b> R Markdowns</a></li>
 <li class="chapter" data-level="3.7.2" data-path="rprog2.html"><a href="rprog2.html#header"><i class="fa fa-check"></i><b>3.7.2</b> Header</a></li>
 <li class="chapter" data-level="3.7.3" data-path="rprog2.html"><a href="rprog2.html#text"><i class="fa fa-check"></i><b>3.7.3</b> Text</a></li>
 <li class="chapter" data-level="3.7.4" data-path="rprog2.html"><a href="rprog2.html#code-chunks"><i class="fa fa-check"></i><b>3.7.4</b> Code Chunks</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#chapter-3-exercises"><i class="fa fa-check"></i><b>3.8</b> Chapter 3 Exercises</a><ul>
+<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#chapter-3-exercises"><i class="fa fa-check"></i><b>3.8</b> Chapter 3 Exercises</a>
+<ul>
 <li class="chapter" data-level="3.8.1" data-path="rprog2.html"><a href="rprog2.html#set-1-pathnames-and-data-import"><i class="fa fa-check"></i><b>3.8.1</b> Set 1: Pathnames and data import</a></li>
 <li class="chapter" data-level="3.8.2" data-path="rprog2.html"><a href="rprog2.html#set-2-data-wrangling-and-piping"><i class="fa fa-check"></i><b>3.8.2</b> Set 2: Data wrangling and piping</a></li>
 <li class="chapter" data-level="3.8.3" data-path="rprog2.html"><a href="rprog2.html#set-3-r-markdown"><i class="fa fa-check"></i><b>3.8.3</b> Set 3: R Markdown</a></li>
 </ul></li>
 <li class="chapter" data-level="3.9" data-path="rprog2.html"><a href="rprog2.html#chapter-3-homework"><i class="fa fa-check"></i><b>3.9</b> Chapter 3 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#chapter-4-objectives"><i class="fa fa-check"></i><b>4.1</b> Chapter 4 Objectives</a></li>
 <li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#install-and-load-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Install and load <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#steps-to-create-a-ggplot2-object"><i class="fa fa-check"></i><b>4.3</b> Steps to create a <code>ggplot2</code> object</a></li>
 <li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#initializing-a-ggplot2-object"><i class="fa fa-check"></i><b>4.4</b> Initializing a <code>ggplot2</code> object</a></li>
 <li class="chapter" data-level="4.5" data-path="dataviz.html"><a href="dataviz.html#plot-aesthetics"><i class="fa fa-check"></i><b>4.5</b> Plot aesthetics</a></li>
-<li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.6</b> Adding geoms</a><ul>
+<li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.6</b> Adding geoms</a>
+<ul>
 <li class="chapter" data-level="4.6.1" data-path="dataviz.html"><a href="dataviz.html#aesthetic-override-a-warning"><i class="fa fa-check"></i><b>4.6.1</b> Aesthetic override: a warning</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="dataviz.html"><a href="dataviz.html#shapes-and-colors"><i class="fa fa-check"></i><b>4.7</b> Shapes and colors</a></li>
@@ -242,15 +260,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.12" data-path="dataviz.html"><a href="dataviz.html#getting-help-with-ggplot2"><i class="fa fa-check"></i><b>4.12</b> Getting help with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.13" data-path="dataviz.html"><a href="dataviz.html#chapter-4-homework"><i class="fa fa-check"></i><b>4.13</b> Chapter 4 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a><ul>
+<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="eda1.html"><a href="eda1.html#ch.-5-objectives"><i class="fa fa-check"></i><b>5.1</b> Ch. 5 Objectives</a></li>
-<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univar"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a><ul>
+<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univar"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>5.2.1</b> Location, Dispersion, and Shape</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantile"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a><ul>
+<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantile"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="eda1.html"><a href="eda1.html#descriptive-statistics"><i class="fa fa-check"></i><b>5.3.1</b> Descriptive Statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a><ul>
+<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
 <li class="chapter" data-level="5.4.2" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.4.2</b> Cumulative Distribution Plot</a></li>
 <li class="chapter" data-level="5.4.3" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.4.3</b> Histogram</a></li>
@@ -262,25 +284,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="eda1.html"><a href="eda1.html#exploring-data"><i class="fa fa-check"></i><b>5.5</b> Exploring Data</a></li>
 <li class="chapter" data-level="5.6" data-path="eda1.html"><a href="eda1.html#chapter-5-homework"><i class="fa fa-check"></i><b>5.6</b> Chapter 5 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a><ul>
+<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#chapter-6-objectives"><i class="fa fa-check"></i><b>6.1</b> Chapter 6 Objectives</a></li>
-<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a><ul>
+<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="rprog3.html"><a href="rprog3.html#string-detect-match-subset"><i class="fa fa-check"></i><b>6.2.1</b> String detect, match, subset</a></li>
 <li class="chapter" data-level="6.2.2" data-path="rprog3.html"><a href="rprog3.html#regular-expressions"><i class="fa fa-check"></i><b>6.2.2</b> Regular Expressions</a></li>
 <li class="chapter" data-level="6.2.3" data-path="rprog3.html"><a href="rprog3.html#string-split-replace"><i class="fa fa-check"></i><b>6.2.3</b> String split, replace</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a><ul>
+<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="rprog3.html"><a href="rprog3.html#dates-and-times-in-base-r"><i class="fa fa-check"></i><b>6.3.1</b> Dates and Times in base R</a></li>
 <li class="chapter" data-level="6.3.2" data-path="rprog3.html"><a href="rprog3.html#date-time-formats"><i class="fa fa-check"></i><b>6.3.2</b> Date-time formats</a></li>
 <li class="chapter" data-level="6.3.3" data-path="rprog3.html"><a href="rprog3.html#date-time-classes-in-r"><i class="fa fa-check"></i><b>6.3.3</b> Date-time classes in R</a></li>
 <li class="chapter" data-level="6.3.4" data-path="rprog3.html"><a href="rprog3.html#reading-and-classifying-date-times"><i class="fa fa-check"></i><b>6.3.4</b> Reading and classifying date-times</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>lubridate</code></a><ul>
+<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>lubridate</code></a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="rprog3.html"><a href="rprog3.html#parsing-functions-in-lubridate"><i class="fa fa-check"></i><b>6.4.1</b> Parsing functions in <code>lubridate</code></a></li>
 <li class="chapter" data-level="6.4.2" data-path="rprog3.html"><a href="rprog3.html#date-time-manipulation-with-lubridate"><i class="fa fa-check"></i><b>6.4.2</b> Date-time manipulation with <code>lubridate</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#tidy-data"><i class="fa fa-check"></i><b>6.5</b> Tidy Data</a></li>
-<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#chapter-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Chapter 6 Exercises</a><ul>
+<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#chapter-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Chapter 6 Exercises</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="rprog3.html"><a href="rprog3.html#set-1-data-import-and-manipulation"><i class="fa fa-check"></i><b>6.6.1</b> Set 1: Data import and manipulation</a></li>
 <li class="chapter" data-level="6.6.2" data-path="rprog3.html"><a href="rprog3.html#set-2-counting"><i class="fa fa-check"></i><b>6.6.2</b> Set 2: Counting</a></li>
 <li class="chapter" data-level="6.6.3" data-path="rprog3.html"><a href="rprog3.html#set-3-weekly-tweets"><i class="fa fa-check"></i><b>6.6.3</b> Set 3: Weekly tweets</a></li>
@@ -288,19 +315,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="rprog3.html"><a href="rprog3.html#chapter-6-homework"><i class="fa fa-check"></i><b>6.7</b> Chapter 6 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a><ul>
+<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#chapter-7-objectives"><i class="fa fa-check"></i><b>7.1</b> Chapter 7 Objectives</a></li>
 <li class="chapter" data-level="7.2" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>7.2</b> Bivariate Data</a></li>
-<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a><ul>
+<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="eda2.html"><a href="eda2.html#causality"><i class="fa fa-check"></i><b>7.3.1</b> Causality</a></li>
 <li class="chapter" data-level="7.3.2" data-path="eda2.html"><a href="eda2.html#corr"><i class="fa fa-check"></i><b>7.3.2</b> Correlation</a></li>
 <li class="chapter" data-level="7.3.3" data-path="eda2.html"><a href="eda2.html#correlation-neq-causation"><i class="fa fa-check"></i><b>7.3.3</b> Correlation <span class="math inline">\(\neq\)</span> causation</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.4</b> Exploring Multivariate Data</a><ul>
+<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.4</b> Exploring Multivariate Data</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="eda2.html"><a href="eda2.html#facets"><i class="fa fa-check"></i><b>7.4.1</b> Facets</a></li>
 <li class="chapter" data-level="7.4.2" data-path="eda2.html"><a href="eda2.html#colors"><i class="fa fa-check"></i><b>7.4.2</b> Colors</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#chapter-7-exercises"><i class="fa fa-check"></i><b>7.5</b> Chapter 7 Exercises</a><ul>
+<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#chapter-7-exercises"><i class="fa fa-check"></i><b>7.5</b> Chapter 7 Exercises</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="eda2.html"><a href="eda2.html#fuel-economy-data"><i class="fa fa-check"></i><b>7.5.1</b> Fuel economy data</a></li>
 <li class="chapter" data-level="7.5.2" data-path="eda2.html"><a href="eda2.html#import-and-wrangle-data"><i class="fa fa-check"></i><b>7.5.2</b> Import and wrangle data</a></li>
 <li class="chapter" data-level="7.5.3" data-path="eda2.html"><a href="eda2.html#check-data"><i class="fa fa-check"></i><b>7.5.3</b> Check data</a></li>
@@ -313,35 +344,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="eda2.html"><a href="eda2.html#chapter-7-homework"><i class="fa fa-check"></i><b>7.6</b> Chapter 7 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a><ul>
+<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="rprog4.html"><a href="rprog4.html#ch.-8-objectives"><i class="fa fa-check"></i><b>8.1</b> Ch. 8 Objectives</a></li>
 <li class="chapter" data-level="8.2" data-path="rprog4.html"><a href="rprog4.html#what-is-functional-programming"><i class="fa fa-check"></i><b>8.2</b> What is <strong><em>functional programming</em></strong>?</a></li>
-<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a><ul>
+<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="rprog4.html"><a href="rprog4.html#example-function-my_mean"><i class="fa fa-check"></i><b>8.3.1</b> Example Function: my_mean</a></li>
 <li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: “import.w.name”</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a><ul>
+<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="rprog4.html"><a href="rprog4.html#function-mapping"><i class="fa fa-check"></i><b>8.4.1</b> Function Mapping</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.5</b> Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a><ul>
+<li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="transform.html"><a href="transform.html#ch.-9-objectives"><i class="fa fa-check"></i><b>9.1</b> Ch. 9 Objectives</a></li>
-<li class="chapter" data-level="9.2" data-path="transform.html"><a href="transform.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a><ul>
+<li class="chapter" data-level="9.2" data-path="transform.html"><a href="transform.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="transform.html"><a href="transform.html#centering"><i class="fa fa-check"></i><b>9.2.1</b> Centering</a></li>
 <li class="chapter" data-level="9.2.2" data-path="transform.html"><a href="transform.html#rescaling"><i class="fa fa-check"></i><b>9.2.2</b> Rescaling</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="transform.html"><a href="transform.html#normalization-and-standardization"><i class="fa fa-check"></i><b>9.3</b> Normalization and Standardization</a><ul>
+<li class="chapter" data-level="9.3" data-path="transform.html"><a href="transform.html#normalization-and-standardization"><i class="fa fa-check"></i><b>9.3</b> Normalization and Standardization</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="transform.html"><a href="transform.html#rate-normalization"><i class="fa fa-check"></i><b>9.3.1</b> Rate normalization</a></li>
 <li class="chapter" data-level="9.3.2" data-path="transform.html"><a href="transform.html#standardizing"><i class="fa fa-check"></i><b>9.3.2</b> Standardizing</a></li>
 <li class="chapter" data-level="9.3.3" data-path="transform.html"><a href="transform.html#reducing-skewness"><i class="fa fa-check"></i><b>9.3.3</b> Reducing Skewness</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="transform.html"><a href="transform.html#stratification"><i class="fa fa-check"></i><b>9.4</b> Stratification</a></li>
-<li class="chapter" data-level="9.5" data-path="transform.html"><a href="transform.html#outliers-and-censoring"><i class="fa fa-check"></i><b>9.5</b> Outliers and Censoring</a><ul>
+<li class="chapter" data-level="9.5" data-path="transform.html"><a href="transform.html#outliers-and-censoring"><i class="fa fa-check"></i><b>9.5</b> Outliers and Censoring</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="transform.html"><a href="transform.html#outliers"><i class="fa fa-check"></i><b>9.5.1</b> Detecting Outliers</a></li>
 <li class="chapter" data-level="9.5.2" data-path="transform.html"><a href="transform.html#censoring-outliers"><i class="fa fa-check"></i><b>9.5.2</b> Censoring outliers</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="transform.html"><a href="transform.html#ch-9-exercises"><i class="fa fa-check"></i><b>9.6</b> Ch-9 Exercises</a><ul>
+<li class="chapter" data-level="9.6" data-path="transform.html"><a href="transform.html#ch-9-exercises"><i class="fa fa-check"></i><b>9.6</b> Ch-9 Exercises</a>
+<ul>
 <li class="chapter" data-level="9.6.1" data-path="transform.html"><a href="transform.html#salary-data-for-poly-sci-majors"><i class="fa fa-check"></i><b>9.6.1</b> Salary Data for Poly Sci Majors</a></li>
 <li class="chapter" data-level="9.6.2" data-path="transform.html"><a href="transform.html#univariate-data-visualization-1"><i class="fa fa-check"></i><b>9.6.2</b> Univariate Data Visualization</a></li>
 <li class="chapter" data-level="9.6.3" data-path="transform.html"><a href="transform.html#rescale-and-censor-data"><i class="fa fa-check"></i><b>9.6.3</b> Rescale and Censor Data</a></li>
@@ -350,9 +389,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.7" data-path="transform.html"><a href="transform.html#ch-9-homework"><i class="fa fa-check"></i><b>9.7</b> Ch-9 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a><ul>
+<li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="measure.html"><a href="measure.html#ch.-10-objectives"><i class="fa fa-check"></i><b>10.1</b> Ch. 10 Objectives</a></li>
-<li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a><ul>
+<li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#sample"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
 <li class="chapter" data-level="10.2.2" data-path="measure.html"><a href="measure.html#sample.collect"><i class="fa fa-check"></i><b>10.2.2</b> Collecting a sample</a></li>
 <li class="chapter" data-level="10.2.3" data-path="measure.html"><a href="measure.html#simple-random-sampling"><i class="fa fa-check"></i><b>10.2.3</b> Simple Random Sampling</a></li>
@@ -360,50 +401,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.5" data-path="measure.html"><a href="measure.html#stratified-sampling"><i class="fa fa-check"></i><b>10.2.5</b> Stratified Sampling</a></li>
 <li class="chapter" data-level="10.2.6" data-path="measure.html"><a href="measure.html#cluster-sampling"><i class="fa fa-check"></i><b>10.2.6</b> Cluster Sampling</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a><ul>
+<li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a>
+<ul>
 <li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#LOD"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
 <li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
 <li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>10.3.3</b> Precision</a></li>
 <li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>10.3.4</b> Bias (accuracy)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a><ul>
+<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a>
+<ul>
 <li class="chapter" data-level="10.4.1" data-path="measure.html"><a href="measure.html#repeated"><i class="fa fa-check"></i><b>10.4.1</b> Repeated Measures</a></li>
 <li class="chapter" data-level="10.4.2" data-path="measure.html"><a href="measure.html#error-propagation"><i class="fa fa-check"></i><b>10.4.2</b> Error Propagation</a></li>
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="measure.html"><a href="measure.html#ch-10-homework"><i class="fa fa-check"></i><b>10.5</b> CH-10 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a><ul>
+<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="model.html"><a href="model.html#ch.-11-objectives"><i class="fa fa-check"></i><b>11.1</b> Ch. 11 Objectives</a></li>
-<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#process-modeling"><i class="fa fa-check"></i><b>11.2</b> Process Modeling</a><ul>
+<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#process-modeling"><i class="fa fa-check"></i><b>11.2</b> Process Modeling</a>
+<ul>
 <li class="chapter" data-level="11.2.1" data-path="model.html"><a href="model.html#assumptions"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions</a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="model.html"><a href="model.html#model-fitting"><i class="fa fa-check"></i><b>11.3</b> Model Fitting</a></li>
-<li class="chapter" data-level="11.4" data-path="model.html"><a href="model.html#ols-regression"><i class="fa fa-check"></i><b>11.4</b> OLS Regression</a><ul>
+<li class="chapter" data-level="11.4" data-path="model.html"><a href="model.html#ols-regression"><i class="fa fa-check"></i><b>11.4</b> OLS Regression</a>
+<ul>
 <li class="chapter" data-level="11.4.1" data-path="model.html"><a href="model.html#OLS_assum"><i class="fa fa-check"></i><b>11.4.1</b> OLS Assumptions and Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="model.html"><a href="model.html#example-ols-linear-regression"><i class="fa fa-check"></i><b>11.5</b> Example: OLS Linear Regression</a><ul>
+<li class="chapter" data-level="11.5" data-path="model.html"><a href="model.html#example-ols-linear-regression"><i class="fa fa-check"></i><b>11.5</b> Example: OLS Linear Regression</a>
+<ul>
 <li class="chapter" data-level="11.5.1" data-path="model.html"><a href="model.html#the-lm-function"><i class="fa fa-check"></i><b>11.5.1</b> The <code>lm()</code> function</a></li>
 <li class="chapter" data-level="11.5.2" data-path="model.html"><a href="model.html#ols-diagnostics"><i class="fa fa-check"></i><b>11.5.2</b> OLS Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a><ul>
+<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a>
+<ul>
 <li class="chapter" data-level="11.6.1" data-path="model.html"><a href="model.html#example-calibration"><i class="fa fa-check"></i><b>11.6.1</b> Example Calibration</a></li>
 </ul></li>
 <li class="chapter" data-level="11.7" data-path="model.html"><a href="model.html#ch-11-homework"><i class="fa fa-check"></i><b>11.7</b> Ch-11 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Stats &amp; Reference Distributions</a><ul>
+<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Stats &amp; Reference Distributions</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="dist.html"><a href="dist.html#measures-of-central-tendency"><i class="fa fa-check"></i><b>12.1</b> Measures of Central Tendency</a></li>
 <li class="chapter" data-level="12.2" data-path="dist.html"><a href="dist.html#measures-of-dispersion"><i class="fa fa-check"></i><b>12.2</b> Measures of Dispersion</a></li>
-<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.3</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.3</b> Uniform Distribution</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="dist.html"><a href="dist.html#uniform-characteristic-plots"><i class="fa fa-check"></i><b>12.3.1</b> Uniform Characteristic Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.4</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="12.4" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.4</b> Normal Distribution</a>
+<ul>
 <li class="chapter" data-level="12.4.1" data-path="dist.html"><a href="dist.html#normal-characteristic-plots"><i class="fa fa-check"></i><b>12.4.1</b> Normal Characteristic Plots</a></li>
 <li class="chapter" data-level="12.4.2" data-path="dist.html"><a href="dist.html#rule"><i class="fa fa-check"></i><b>12.4.2</b> 68-95-99 rule</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>12.5</b> Log-normal Distribution</a><ul>
+<li class="chapter" data-level="12.5" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>12.5</b> Log-normal Distribution</a>
+<ul>
 <li class="chapter" data-level="12.5.1" data-path="dist.html"><a href="dist.html#lognormal-characteristic-plots"><i class="fa fa-check"></i><b>12.5.1</b> Lognormal Characteristic Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="12.6" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>12.6</b> Pearson Correlation Coefficient</a></li>
+<li class="chapter" data-level="12.7" data-path="dist.html"><a href="dist.html#OLS"><i class="fa fa-check"></i><b>12.7</b> OLS Regression Coefficients</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -425,9 +478,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rprog4" class="section level1">
+<div id="rprog4" class="section level1" number="8">
 <h1><span class="header-section-number">Chapter 8</span> Functional Programming</h1>
-<div id="ch.-8-objectives" class="section level2">
+<div id="ch.-8-objectives" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Ch. 8 Objectives</h2>
 <p>This chapter is designed around the following learning objectives for functional
 programming in R. Upon completing this chapter, you should be able to:</p>
@@ -439,7 +492,7 @@ programming in R. Upon completing this chapter, you should be able to:</p>
 <li>Interpret and apply the <code>purrr::map</code> family of functions</li>
 </ul>
 </div>
-<div id="what-is-functional-programming" class="section level2">
+<div id="what-is-functional-programming" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> What is <strong><em>functional programming</em></strong>?</h2>
 <p><em>Functional programming</em> means just that: programming with functions. A basic
 philosophy of functional programming in R is to replace “for-loops” with functions.
@@ -448,12 +501,12 @@ to follow, especially when they are nested within one to another.
 R is well-poised to support the elimination of “for-loops” because R is a
 <em>vectorized language</em>. To be vectorized means that you don’t need a for-loop to
 execute this code:</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="rprog4.html#cb287-1"></a>evens &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">2</span>, <span class="dt">to =</span> <span class="dv">20</span>, <span class="dt">by =</span> <span class="dv">2</span>)  </span>
-<span id="cb287-2"><a href="rprog4.html#cb287-2"></a>evens_squared &lt;-<span class="st"> </span>evens<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="rprog4.html#cb287-1" aria-hidden="true" tabindex="-1"></a>evens <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)  </span>
+<span id="cb287-2"><a href="rprog4.html#cb287-2" aria-hidden="true" tabindex="-1"></a>evens_squared <span class="ot">&lt;-</span> evens<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <p>with code like this:</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="rprog4.html#cb288-1"></a>evens_squared &lt;-<span class="st"> </span><span class="cf">for</span>( i <span class="cf">in</span> <span class="kw">length</span>(evens)){  </span>
-<span id="cb288-2"><a href="rprog4.html#cb288-2"></a>  evens_squared &lt;-<span class="st"> </span>evens[i] <span class="op">*</span><span class="st"> </span>evens[i] </span>
-<span id="cb288-3"><a href="rprog4.html#cb288-3"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="rprog4.html#cb288-1" aria-hidden="true" tabindex="-1"></a>evens_squared <span class="ot">&lt;-</span> <span class="cf">for</span>( i <span class="cf">in</span> <span class="fu">length</span>(evens)){  </span>
+<span id="cb288-2"><a href="rprog4.html#cb288-2" aria-hidden="true" tabindex="-1"></a>  evens_squared <span class="ot">&lt;-</span> evens[i] <span class="sc">*</span> evens[i] </span>
+<span id="cb288-3"><a href="rprog4.html#cb288-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>The top code performs the <code>squared</code> operator across each entry in the
 vector, one after another. The bottom set uses a for-loop to accomplish the
 same task, albeit in a longer (and harder to follow) version.</p>
@@ -465,22 +518,22 @@ it allows you to interpret the code as if you were reading instructions in a
 operator, we are forced to nest functions together or write long and verbose
 code that steps through treatments slowly (and somewhat painfully). Looking at
 the code below should make clear which set is easier to comprehend:</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="rprog4.html#cb289-1"></a><span class="co">#nested code</span></span>
-<span id="cb289-2"><a href="rprog4.html#cb289-2"></a>daily_show_<span class="dv">2000</span> &lt;-<span class="st"> </span><span class="kw">select</span>(<span class="kw">filter</span>(<span class="kw">rename</span>(daily_show, </span>
-<span id="cb289-3"><a href="rprog4.html#cb289-3"></a>                                          <span class="dt">year =</span> YEAR, </span>
-<span id="cb289-4"><a href="rprog4.html#cb289-4"></a>                                          <span class="dt">job =</span> GoogleKnowlege_Occupation, </span>
-<span id="cb289-5"><a href="rprog4.html#cb289-5"></a>                                          <span class="dt">date =</span> Show, </span>
-<span id="cb289-6"><a href="rprog4.html#cb289-6"></a>                                          <span class="dt">name =</span> Raw_Guest_List), </span>
-<span id="cb289-7"><a href="rprog4.html#cb289-7"></a>                                   year <span class="op">==</span><span class="st"> </span><span class="dv">2000</span>), </span>
-<span id="cb289-8"><a href="rprog4.html#cb289-8"></a>                            job, date, name)</span>
-<span id="cb289-9"><a href="rprog4.html#cb289-9"></a><span class="co">#piped code</span></span>
-<span id="cb289-10"><a href="rprog4.html#cb289-10"></a>daily_show_<span class="dv">2000</span> &lt;-<span class="st"> </span>daily_show <span class="op">%&gt;%</span></span>
-<span id="cb289-11"><a href="rprog4.html#cb289-11"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">year =</span> YEAR, </span>
-<span id="cb289-12"><a href="rprog4.html#cb289-12"></a>         <span class="dt">job =</span> GoogleKnowlege_Occupation, </span>
-<span id="cb289-13"><a href="rprog4.html#cb289-13"></a>         <span class="dt">date =</span> Show, </span>
-<span id="cb289-14"><a href="rprog4.html#cb289-14"></a>         <span class="dt">name =</span> Raw_Guest_List) <span class="op">%&gt;%</span></span>
-<span id="cb289-15"><a href="rprog4.html#cb289-15"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2000</span>) <span class="op">%&gt;%</span></span>
-<span id="cb289-16"><a href="rprog4.html#cb289-16"></a><span class="st">  </span><span class="kw">select</span>(job, date, name)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="rprog4.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="co">#nested code</span></span>
+<span id="cb289-2"><a href="rprog4.html#cb289-2" aria-hidden="true" tabindex="-1"></a>daily_show_2000 <span class="ot">&lt;-</span> <span class="fu">select</span>(<span class="fu">filter</span>(<span class="fu">rename</span>(daily_show, </span>
+<span id="cb289-3"><a href="rprog4.html#cb289-3" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">year =</span> YEAR, </span>
+<span id="cb289-4"><a href="rprog4.html#cb289-4" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">job =</span> GoogleKnowlege_Occupation, </span>
+<span id="cb289-5"><a href="rprog4.html#cb289-5" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">date =</span> Show, </span>
+<span id="cb289-6"><a href="rprog4.html#cb289-6" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">name =</span> Raw_Guest_List), </span>
+<span id="cb289-7"><a href="rprog4.html#cb289-7" aria-hidden="true" tabindex="-1"></a>                                   year <span class="sc">==</span> <span class="dv">2000</span>), </span>
+<span id="cb289-8"><a href="rprog4.html#cb289-8" aria-hidden="true" tabindex="-1"></a>                            job, date, name)</span>
+<span id="cb289-9"><a href="rprog4.html#cb289-9" aria-hidden="true" tabindex="-1"></a><span class="co">#piped code</span></span>
+<span id="cb289-10"><a href="rprog4.html#cb289-10" aria-hidden="true" tabindex="-1"></a>daily_show_2000 <span class="ot">&lt;-</span> daily_show <span class="sc">%&gt;%</span></span>
+<span id="cb289-11"><a href="rprog4.html#cb289-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">year =</span> YEAR, </span>
+<span id="cb289-12"><a href="rprog4.html#cb289-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">job =</span> GoogleKnowlege_Occupation, </span>
+<span id="cb289-13"><a href="rprog4.html#cb289-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">date =</span> Show, </span>
+<span id="cb289-14"><a href="rprog4.html#cb289-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">name =</span> Raw_Guest_List) <span class="sc">%&gt;%</span></span>
+<span id="cb289-15"><a href="rprog4.html#cb289-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb289-16"><a href="rprog4.html#cb289-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(job, date, name)</span></code></pre></div>
 <p>In the nested example above, we “see” the <code>dplyr::select()</code> function first, yet
 yet the arguments to this function show up last (at the end of the nested code).
 This separation between functions and their arguments only gets worse as the
@@ -489,7 +542,7 @@ as the nested code but in a much more “readable” fashion. A similar analogy
 holds for the nesting of “for-loops” (which, when nested, are even
 harder to follow!).</p>
 </div>
-<div id="writng-functions" class="section level2">
+<div id="writng-functions" class="section level2" number="8.3">
 <h2><span class="header-section-number">8.3</span> Writng Functions</h2>
 <blockquote>
 <p><span style="color: blue;"> “If you have to do something more than twice,
@@ -502,13 +555,13 @@ function they are desiring simply doesn’t exist - at least not in the way that
 suits their vision. To that end, it’s worth learning how to create your own
 functions.</p>
 <p>The syntax for function generation is relatively straight forward:</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="rprog4.html#cb290-1"></a><span class="co">#example code; will not run</span></span>
-<span id="cb290-2"><a href="rprog4.html#cb290-2"></a></span>
-<span id="cb290-3"><a href="rprog4.html#cb290-3"></a>function_name &lt;-<span class="st"> </span><span class="cf">function</span>(argument1, argument2, ...) {</span>
-<span id="cb290-4"><a href="rprog4.html#cb290-4"></a>   <span class="co"># insert code to manipulate arguments here</span></span>
-<span id="cb290-5"><a href="rprog4.html#cb290-5"></a>   <span class="co"># maybe some code to check validity of input arguments</span></span>
-<span id="cb290-6"><a href="rprog4.html#cb290-6"></a>   <span class="co"># specify a return value, if desired</span></span>
-<span id="cb290-7"><a href="rprog4.html#cb290-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="rprog4.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="co">#example code; will not run</span></span>
+<span id="cb290-2"><a href="rprog4.html#cb290-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb290-3"><a href="rprog4.html#cb290-3" aria-hidden="true" tabindex="-1"></a>function_name <span class="ot">&lt;-</span> <span class="cf">function</span>(argument1, argument2, ...) {</span>
+<span id="cb290-4"><a href="rprog4.html#cb290-4" aria-hidden="true" tabindex="-1"></a>   <span class="co"># insert code to manipulate arguments here</span></span>
+<span id="cb290-5"><a href="rprog4.html#cb290-5" aria-hidden="true" tabindex="-1"></a>   <span class="co"># maybe some code to check validity of input arguments</span></span>
+<span id="cb290-6"><a href="rprog4.html#cb290-6" aria-hidden="true" tabindex="-1"></a>   <span class="co"># specify a return value, if desired</span></span>
+<span id="cb290-7"><a href="rprog4.html#cb290-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Each function has <strong>arguments</strong> as input, <strong>body code</strong> as the working parts, and
 an <strong>environment</strong> where the function resides. These components can be
 accessed by passing the function name as an argument to:</p>
@@ -525,19 +578,19 @@ accessed by passing the function name as an argument to:</p>
 <li>more on <em>R environments</em> below</li>
 </ul></li>
 </ul>
-<div id="example-function-my_mean" class="section level3">
+<div id="example-function-my_mean" class="section level3" number="8.3.1">
 <h3><span class="header-section-number">8.3.1</span> Example Function: my_mean</h3>
 <p>Let’s create a simple function, named <code>my_mean</code>, to calculate the arithmetic mean
 for a numeric vector. This function takes only one argument, a vector <code>x</code>, for
 which we calculate the mean (<code>sum(x) / length(x)</code>), assign it to a
 value <code>y</code>, and the return <code>y</code> as output. Note that all the <em>“action”</em> for <code>my_mean</code>
 happens within the curly braces <code>{ }</code> that follow the function assignment.</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="rprog4.html#cb291-1"></a>my_mean &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb291-2"><a href="rprog4.html#cb291-2"></a>     y &lt;-<span class="st"> </span><span class="kw">sum</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x) </span>
-<span id="cb291-3"><a href="rprog4.html#cb291-3"></a>     <span class="kw">return</span>(y)</span>
-<span id="cb291-4"><a href="rprog4.html#cb291-4"></a>   }</span>
-<span id="cb291-5"><a href="rprog4.html#cb291-5"></a></span>
-<span id="cb291-6"><a href="rprog4.html#cb291-6"></a><span class="kw">my_mean</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="rprog4.html#cb291-1" aria-hidden="true" tabindex="-1"></a>my_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb291-2"><a href="rprog4.html#cb291-2" aria-hidden="true" tabindex="-1"></a>     y <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x) </span>
+<span id="cb291-3"><a href="rprog4.html#cb291-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">return</span>(y)</span>
+<span id="cb291-4"><a href="rprog4.html#cb291-4" aria-hidden="true" tabindex="-1"></a>   }</span>
+<span id="cb291-5"><a href="rprog4.html#cb291-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb291-6"><a href="rprog4.html#cb291-6" aria-hidden="true" tabindex="-1"></a><span class="fu">my_mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>While this function is simple and straightforward, it does have some limitations.
 For example, what happens if we pass a character vector to <code>my_mean</code> or a numeric
@@ -549,26 +602,26 @@ of that function).</p>
 returned. This many not seem like a big deal but if your analysis depends on
 calling <code>my_mean</code> in several locations (over and over), you might have a hard
 time debugging it…</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="rprog4.html#cb293-1"></a><span class="kw">my_mean</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="ot">NA</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="rprog4.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="cn">NA</span>))</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
 <p>For this reason, functions often contain <em>optional arguments</em> that allow the user
 to specify how to handle such errors. The function <code>my_mean2</code> below contains
 an optional argument, <code>na.rm = TRUE</code>, that defaults to remove <code>NA</code> values when
 present. This function uses <code>if else</code> logic to handle the <code>na.rm = TRUE</code>
 argument, since this argument can only have one of two values.</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="rprog4.html#cb295-1"></a>my_mean2 &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) {</span>
-<span id="cb295-2"><a href="rprog4.html#cb295-2"></a>  <span class="cf">if</span> (na.rm <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>) {</span>
-<span id="cb295-3"><a href="rprog4.html#cb295-3"></a>    y &lt;-<span class="st"> </span><span class="kw">sum</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x)</span>
-<span id="cb295-4"><a href="rprog4.html#cb295-4"></a>    <span class="kw">return</span>(y)</span>
-<span id="cb295-5"><a href="rprog4.html#cb295-5"></a>    }</span>
-<span id="cb295-6"><a href="rprog4.html#cb295-6"></a>  <span class="cf">else</span> {</span>
-<span id="cb295-7"><a href="rprog4.html#cb295-7"></a>    y &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">na.omit</span>(x)) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(<span class="kw">na.omit</span>(x))</span>
-<span id="cb295-8"><a href="rprog4.html#cb295-8"></a>    <span class="kw">return</span>(y)</span>
-<span id="cb295-9"><a href="rprog4.html#cb295-9"></a>    }</span>
-<span id="cb295-10"><a href="rprog4.html#cb295-10"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="rprog4.html#cb295-1" aria-hidden="true" tabindex="-1"></a>my_mean2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb295-2"><a href="rprog4.html#cb295-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (na.rm <span class="sc">==</span> <span class="cn">FALSE</span>) {</span>
+<span id="cb295-3"><a href="rprog4.html#cb295-3" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb295-4"><a href="rprog4.html#cb295-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(y)</span>
+<span id="cb295-5"><a href="rprog4.html#cb295-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb295-6"><a href="rprog4.html#cb295-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
+<span id="cb295-7"><a href="rprog4.html#cb295-7" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">na.omit</span>(x)) <span class="sc">/</span> <span class="fu">length</span>(<span class="fu">na.omit</span>(x))</span>
+<span id="cb295-8"><a href="rprog4.html#cb295-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(y)</span>
+<span id="cb295-9"><a href="rprog4.html#cb295-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb295-10"><a href="rprog4.html#cb295-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now, when we pass a vector containing <code>NAs</code> to <code>my_mean2</code>, we get a numeric
 result.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="rprog4.html#cb296-1"></a><span class="kw">my_mean2</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="rprog4.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_mean2</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="cn">NA</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>A couple points worth noting about the functions above. First, take note that
 most <em>homemade</em> functions rely on other functions called within their body text,
@@ -589,7 +642,7 @@ The take-home point is that a homemade function can exist within the global
 environment and return values to the global environment, even if the objects
 created within that function don’t.</p>
 </div>
-<div id="example-function-import.w.name" class="section level3">
+<div id="example-function-import.w.name" class="section level3" number="8.3.2">
 <h3><span class="header-section-number">8.3.2</span> Example Function: “import.w.name”</h3>
 <p>Oftentimes, you will have a list of files of the same type/structure
 that you want to import and analyze in a single data frame. This exercise (and
@@ -609,7 +662,7 @@ this list being hundreds of entries.<em>To Note: these are real data collected</
 <em><a href="https://doi.org/10.1016/j.atmosenv.2019.117067" target="_blank">here</a> in 2019.</em>
 The “PA” in each file name stands for
 <a href="www.purpleair.com" target="_blank">Purple Air</a>.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="rprog4.html#cb298-1"></a><span class="kw">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="dt">full.names=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="rprog4.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="at">full.names=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;./data/purpleair//PA019_20181022.csv&quot;
 ## [2] &quot;./data/purpleair//PA019_20181023.csv&quot;
 ## [3] &quot;./data/purpleair//PA019_20181024.csv&quot;
@@ -624,32 +677,32 @@ as one of the data columns (otherwise, when the data were combined we might not 
 include a step to clean up the newly created data frame with a call to
 <code>dplyr::select()</code> to retain only a few variables of interest. Seeing that these
 files are .csv, we can leverage <code>readr::read_csv</code></p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="rprog4.html#cb300-1"></a><span class="co"># create an object that tracks the file names and file paths</span></span>
-<span id="cb300-2"><a href="rprog4.html#cb300-2"></a>file_list &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="dt">full.names=</span><span class="ot">TRUE</span>)</span>
-<span id="cb300-3"><a href="rprog4.html#cb300-3"></a></span>
-<span id="cb300-4"><a href="rprog4.html#cb300-4"></a><span class="co"># function to import a .csv and include part of the filename as a data column</span></span>
-<span id="cb300-5"><a href="rprog4.html#cb300-5"></a>import.w.name &lt;-<span class="st"> </span><span class="cf">function</span>(pathname) {</span>
-<span id="cb300-6"><a href="rprog4.html#cb300-6"></a>  <span class="co">#create a tibble by importing the &#39;pathname&#39; file</span></span>
-<span id="cb300-7"><a href="rprog4.html#cb300-7"></a>  df &lt;-<span class="st"> </span><span class="kw">read_csv</span>(pathname, <span class="dt">col_names =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb300-8"><a href="rprog4.html#cb300-8"></a>  df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></span>
-<span id="cb300-9"><a href="rprog4.html#cb300-9"></a><span class="st">    </span><span class="co"># use stringr::str_extract &amp; a regex to get sensor ID from file name</span></span>
-<span id="cb300-10"><a href="rprog4.html#cb300-10"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">sensor_ID =</span> <span class="kw">str_extract</span>(pathname, </span>
-<span id="cb300-11"><a href="rprog4.html#cb300-11"></a>                                  <span class="st">&quot;(?&lt;=//)[:alnum:]+(?=_)&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb300-12"><a href="rprog4.html#cb300-12"></a><span class="st">    </span><span class="co"># clean up the resultant data frame with dplyr::select</span></span>
-<span id="cb300-13"><a href="rprog4.html#cb300-13"></a><span class="st">    </span><span class="kw">select</span>(UTCDateTime, </span>
-<span id="cb300-14"><a href="rprog4.html#cb300-14"></a>           current_temp_f, </span>
-<span id="cb300-15"><a href="rprog4.html#cb300-15"></a>           current_humidity, </span>
-<span id="cb300-16"><a href="rprog4.html#cb300-16"></a>           pressure,</span>
-<span id="cb300-17"><a href="rprog4.html#cb300-17"></a>           pm2_<span class="dv">5</span>_atm,</span>
-<span id="cb300-18"><a href="rprog4.html#cb300-18"></a>           sensor_ID) <span class="op">%&gt;%</span></span>
-<span id="cb300-19"><a href="rprog4.html#cb300-19"></a><span class="st">    </span><span class="kw">na.omit</span>() <span class="co"># remove NA values, which happens when sensor goes offline</span></span>
-<span id="cb300-20"><a href="rprog4.html#cb300-20"></a>  <span class="kw">return</span>(df)</span>
-<span id="cb300-21"><a href="rprog4.html#cb300-21"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="rprog4.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create an object that tracks the file names and file paths</span></span>
+<span id="cb300-2"><a href="rprog4.html#cb300-2" aria-hidden="true" tabindex="-1"></a>file_list <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="at">full.names=</span><span class="cn">TRUE</span>)</span>
+<span id="cb300-3"><a href="rprog4.html#cb300-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb300-4"><a href="rprog4.html#cb300-4" aria-hidden="true" tabindex="-1"></a><span class="co"># function to import a .csv and include part of the filename as a data column</span></span>
+<span id="cb300-5"><a href="rprog4.html#cb300-5" aria-hidden="true" tabindex="-1"></a>import.w.name <span class="ot">&lt;-</span> <span class="cf">function</span>(pathname) {</span>
+<span id="cb300-6"><a href="rprog4.html#cb300-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#create a tibble by importing the &#39;pathname&#39; file</span></span>
+<span id="cb300-7"><a href="rprog4.html#cb300-7" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(pathname, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb300-8"><a href="rprog4.html#cb300-8" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb300-9"><a href="rprog4.html#cb300-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># use stringr::str_extract &amp; a regex to get sensor ID from file name</span></span>
+<span id="cb300-10"><a href="rprog4.html#cb300-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">sensor_ID =</span> <span class="fu">str_extract</span>(pathname, </span>
+<span id="cb300-11"><a href="rprog4.html#cb300-11" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">&quot;(?&lt;=//)[:alnum:]+(?=_)&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb300-12"><a href="rprog4.html#cb300-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># clean up the resultant data frame with dplyr::select</span></span>
+<span id="cb300-13"><a href="rprog4.html#cb300-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(UTCDateTime, </span>
+<span id="cb300-14"><a href="rprog4.html#cb300-14" aria-hidden="true" tabindex="-1"></a>           current_temp_f, </span>
+<span id="cb300-15"><a href="rprog4.html#cb300-15" aria-hidden="true" tabindex="-1"></a>           current_humidity, </span>
+<span id="cb300-16"><a href="rprog4.html#cb300-16" aria-hidden="true" tabindex="-1"></a>           pressure,</span>
+<span id="cb300-17"><a href="rprog4.html#cb300-17" aria-hidden="true" tabindex="-1"></a>           pm2_5_atm,</span>
+<span id="cb300-18"><a href="rprog4.html#cb300-18" aria-hidden="true" tabindex="-1"></a>           sensor_ID) <span class="sc">%&gt;%</span></span>
+<span id="cb300-19"><a href="rprog4.html#cb300-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">na.omit</span>() <span class="co"># remove NA values, which happens when sensor goes offline</span></span>
+<span id="cb300-20"><a href="rprog4.html#cb300-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
+<span id="cb300-21"><a href="rprog4.html#cb300-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>After sourcing this function, we can test it out on the first entry of our list
 of files. <em>We specify the first entry with a subset to</em> <code>file_list[1]</code>.</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="rprog4.html#cb301-1"></a>PA_data_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">import.w.name</span>(file_list[<span class="dv">1</span>])</span>
-<span id="cb301-2"><a href="rprog4.html#cb301-2"></a></span>
-<span id="cb301-3"><a href="rprog4.html#cb301-3"></a><span class="kw">head</span>(PA_data_<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="rprog4.html#cb301-1" aria-hidden="true" tabindex="-1"></a>PA_data_1 <span class="ot">&lt;-</span> <span class="fu">import.w.name</span>(file_list[<span class="dv">1</span>])</span>
+<span id="cb301-2"><a href="rprog4.html#cb301-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb301-3"><a href="rprog4.html#cb301-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(PA_data_1)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   UTCDateTime       current_temp_f current_humidity pressure pm2_5_atm sensor_ID
 ##   &lt;chr&gt;                      &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;    
@@ -667,13 +720,13 @@ coding skills, a good strategy is to keep useful functions in a .R script
 file so that you can call upon them when needed: <code>source(import.w.name.R)</code></p>
 </div>
 </div>
-<div id="the-purrr-package" class="section level2">
+<div id="the-purrr-package" class="section level2" number="8.4">
 <h2><span class="header-section-number">8.4</span> The <code>purrr::</code> package</h2>
 <p>The <code>purrr::</code> package was designed specifically with functional programming in mind.
 Similar to the discussion of <em>vectorized operations</em> above, <code>purrr::</code> was created
 to help you apply functions to vectors in a way that is easy to implement and
-easy to “read”.</p>
-<div id="function-mapping" class="section level3">
+easy to “read.”</p>
+<div id="function-mapping" class="section level3" number="8.4.1">
 <h3><span class="header-section-number">8.4.1</span> Function Mapping</h3>
 <p>The <code>map_</code> family of functions are the core of the <code>purrr</code> package. These
 functions are intended to <em>map</em> functions (i.e., to apply them) to individual elements in a vector (or data frames); the <code>map_</code> functions are similar to functions like <code>lapply()</code> and <code>vapply()</code> from base R (but more versatile). <em>“Mapping”</em> a function onto a vector is a common theme of functional programming. To illustrate how the <code>map_</code> functions work, its best to visualize the process first.</p>
@@ -685,60 +738,59 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 </div>
 <p>As shown above in Figure <a href="rprog4.html#fig:map-anno1">8.1</a>, the generic form of <code>map()</code> always returns a <code>list</code> object as the output (thanks to Hadley Wickham for the <a href="https://adv-r.hadley.nz/functionals.html#map" target="_blank">graphic</a>). A <code>list</code> is a generic vector that can contain multiple objects (other vectors, data frames, etc.). Indeed, a data frame (and a <code>tibble</code>) is a special kind of list: a data frame is a list of vectors (columns) of equal length. A data frame can contain different vector objects but those objects must be placed in separate columns and each column vector must be the same length (when all the columns are equal length that means that data frames are <em>rectangular</em> lists). A generic <code>list</code> does not need to be rectangular because generic list entries are more distinct. Further, a list can contain another list (like a set of small boxes that are nested within a larger box). Think of a <code>list</code> like a drawer organizer - it can contain lots of different objects, all of which might be related to another in some way or, at least, might be used together for some common purpose.</p>
 <ul>
-<li>A <strong><em>vector</em></strong> is a one-dimensional object where all the entries are the same type.
-<ul>
+<li>A <strong><em>vector</em></strong> is a one-dimensional object where all the entries are the same type.<br />
+</li>
 <li>A <strong><em>matrix</em></strong> is a two-dimensional (rectangular) object where all entries are the same type, but ordered into <em>rows</em> and <em>column</em> indices.</li>
 <li>A <strong><em>data frame</em></strong> is a two dimensional (rectangular) object that contains columns of different vectors. The type of vector (e.g., <code>character</code>, <code>numeric</code>, <code>logical</code>, etc.) can differ from one column to the next but all entries within each vector column must be the same.</li>
 <li>A <strong><em>list</em></strong> can contain different vector objects of different types and different lengths. A list can also contain other lists. A list does not need to be rectangular.</li>
-</ul></li>
 </ul>
 <p>To illustrate the versatility of lists, let’s create one that contains a numeric vector, a matrix, and a data frame.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="rprog4.html#cb303-1"></a>my.chr.vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Harry&quot;</span>, <span class="st">&quot;Ron&quot;</span>, <span class="st">&quot;Hermione&quot;</span>, <span class="st">&quot;Draco&quot;</span>)</span>
-<span id="cb303-2"><a href="rprog4.html#cb303-2"></a></span>
-<span id="cb303-3"><a href="rprog4.html#cb303-3"></a>my.num.matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">nrow=</span><span class="dv">5</span>)</span>
-<span id="cb303-4"><a href="rprog4.html#cb303-4"></a></span>
-<span id="cb303-5"><a href="rprog4.html#cb303-5"></a>my.df &lt;-<span class="st"> </span><span class="kw">slice_sample</span>(<span class="dt">.data =</span> mpg, <span class="dt">n=</span><span class="dv">7</span>)</span>
-<span id="cb303-6"><a href="rprog4.html#cb303-6"></a></span>
-<span id="cb303-7"><a href="rprog4.html#cb303-7"></a>my.list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;entry_1&quot;</span> =<span class="st"> </span>my.chr.vector, </span>
-<span id="cb303-8"><a href="rprog4.html#cb303-8"></a>                <span class="st">&quot;entry_2&quot;</span> =<span class="st"> </span>my.num.matrix, </span>
-<span id="cb303-9"><a href="rprog4.html#cb303-9"></a>                <span class="st">&quot;entry_3&quot;</span> =<span class="st"> </span>my.df)</span>
-<span id="cb303-10"><a href="rprog4.html#cb303-10"></a></span>
-<span id="cb303-11"><a href="rprog4.html#cb303-11"></a><span class="kw">glimpse</span>(my.list)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="rprog4.html#cb303-1" aria-hidden="true" tabindex="-1"></a>my.chr.vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Harry&quot;</span>, <span class="st">&quot;Ron&quot;</span>, <span class="st">&quot;Hermione&quot;</span>, <span class="st">&quot;Draco&quot;</span>)</span>
+<span id="cb303-2"><a href="rprog4.html#cb303-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb303-3"><a href="rprog4.html#cb303-3" aria-hidden="true" tabindex="-1"></a>my.num.matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow=</span><span class="dv">5</span>)</span>
+<span id="cb303-4"><a href="rprog4.html#cb303-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb303-5"><a href="rprog4.html#cb303-5" aria-hidden="true" tabindex="-1"></a>my.df <span class="ot">&lt;-</span> <span class="fu">slice_sample</span>(<span class="at">.data =</span> mpg, <span class="at">n=</span><span class="dv">7</span>)</span>
+<span id="cb303-6"><a href="rprog4.html#cb303-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb303-7"><a href="rprog4.html#cb303-7" aria-hidden="true" tabindex="-1"></a>my.list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;entry_1&quot;</span> <span class="ot">=</span> my.chr.vector, </span>
+<span id="cb303-8"><a href="rprog4.html#cb303-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;entry_2&quot;</span> <span class="ot">=</span> my.num.matrix, </span>
+<span id="cb303-9"><a href="rprog4.html#cb303-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;entry_3&quot;</span> <span class="ot">=</span> my.df)</span>
+<span id="cb303-10"><a href="rprog4.html#cb303-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb303-11"><a href="rprog4.html#cb303-11" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(my.list)</span></code></pre></div>
 <pre><code>## List of 3
 ##  $ entry_1: chr [1:4] &quot;Harry&quot; &quot;Ron&quot; &quot;Hermione&quot; &quot;Draco&quot;
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] &quot;jeep&quot; &quot;hyundai&quot; &quot;audi&quot; &quot;nissan&quot; ...
-##   ..$ model       : chr [1:7] &quot;grand cherokee 4wd&quot; &quot;sonata&quot; &quot;a4&quot; &quot;altima&quot; ...
-##   ..$ displ       : num [1:7] 4.7 2.4 3.1 2.5 3.1 6.2 3.7
-##   ..$ year        : int [1:7] 2008 1999 2008 2008 1999 2008 2008
-##   ..$ cyl         : int [1:7] 8 4 6 4 6 8 6
-##   ..$ trans       : chr [1:7] &quot;auto(l5)&quot; &quot;auto(l4)&quot; &quot;auto(av)&quot; &quot;auto(av)&quot; ...
-##   ..$ drv         : chr [1:7] &quot;4&quot; &quot;f&quot; &quot;f&quot; &quot;f&quot; ...
-##   ..$ cty         : int [1:7] 14 18 18 23 18 16 14
-##   ..$ hwy         : int [1:7] 19 26 27 31 26 26 18
-##   ..$ fl          : chr [1:7] &quot;r&quot; &quot;r&quot; &quot;p&quot; &quot;r&quot; ...
-##   ..$ class       : chr [1:7] &quot;suv&quot; &quot;midsize&quot; &quot;compact&quot; &quot;midsize&quot; ...</code></pre>
+##   ..$ manufacturer: chr [1:7] &quot;jeep&quot; &quot;dodge&quot; &quot;honda&quot; &quot;toyota&quot; ...
+##   ..$ model       : chr [1:7] &quot;grand cherokee 4wd&quot; &quot;ram 1500 pickup 4wd&quot; &quot;civic&quot; &quot;land cruiser wagon 4wd&quot; ...
+##   ..$ displ       : num [1:7] 4.7 4.7 1.6 5.7 2.8 1.8 5.2
+##   ..$ year        : int [1:7] 2008 2008 1999 2008 1999 1999 1999
+##   ..$ cyl         : int [1:7] 8 8 4 8 6 4 8
+##   ..$ trans       : chr [1:7] &quot;auto(l5)&quot; &quot;auto(l5)&quot; &quot;auto(l4)&quot; &quot;auto(s6)&quot; ...
+##   ..$ drv         : chr [1:7] &quot;4&quot; &quot;4&quot; &quot;f&quot; &quot;4&quot; ...
+##   ..$ cty         : int [1:7] 14 9 24 13 16 18 11
+##   ..$ hwy         : int [1:7] 19 12 32 18 26 26 16
+##   ..$ fl          : chr [1:7] &quot;r&quot; &quot;e&quot; &quot;r&quot; &quot;r&quot; ...
+##   ..$ class       : chr [1:7] &quot;suv&quot; &quot;pickup&quot; &quot;subcompact&quot; &quot;suv&quot; ...</code></pre>
 <p>Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, <code>[ ]</code>, a list element is returned.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="rprog4.html#cb305-1"></a>my.list[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="rprog4.html#cb305-1" aria-hidden="true" tabindex="-1"></a>my.list[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## $entry_1
 ## [1] &quot;Harry&quot;    &quot;Ron&quot;      &quot;Hermione&quot; &quot;Draco&quot;</code></pre>
 <p>Note that <em>“single bracket”</em> indexing returns a “list element” of class: <code>list</code>.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="rprog4.html#cb307-1"></a><span class="kw">class</span>(my.list[<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="rprog4.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(my.list[<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>## [1] &quot;list&quot;</code></pre>
 <p>If you want access to the vector contents of the list element, you can use the <code>$</code> symbol to access the contents of each list entry, or, you can use <em>“double bracket”</em> indexing, <code>[[ ]]</code>:</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="rprog4.html#cb309-1"></a>my.list<span class="op">$</span>entry_<span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="rprog4.html#cb309-1" aria-hidden="true" tabindex="-1"></a>my.list<span class="sc">$</span>entry_1</span></code></pre></div>
 <pre><code>## [1] &quot;Harry&quot;    &quot;Ron&quot;      &quot;Hermione&quot; &quot;Draco&quot;</code></pre>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="rprog4.html#cb311-1"></a><span class="kw">class</span>(my.list<span class="op">$</span>entry_<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="rprog4.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(my.list<span class="sc">$</span>entry_1)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="rprog4.html#cb313-1"></a>my.list[[<span class="dv">2</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="rprog4.html#cb313-1" aria-hidden="true" tabindex="-1"></a>my.list[[<span class="dv">2</span>]]</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]    1    6   11   16
 ## [2,]    2    7   12   17
 ## [3,]    3    8   13   18
 ## [4,]    4    9   14   19
 ## [5,]    5   10   15   20</code></pre>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="rprog4.html#cb315-1"></a><span class="kw">class</span>(my.list[[<span class="dv">2</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="rprog4.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(my.list[[<span class="dv">2</span>]])</span></code></pre></div>
 <pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
 <p>Working with lists is one of the mental hurdles to overcome when learning <code>map()</code>. However, there are variants in the <code>map_</code> family of functions that return simpler object types; we will work with these simplified functions to begin.</p>
 <table>
@@ -780,10 +832,10 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 </tbody>
 </table>
 <p>Let’s use <code>map_dfr()</code> to apply our function, <code>import.w.name()</code>, onto the vector of file names and paths (<code>file_list</code>). The <em>“r”</em> in <code>map_dfr()</code> means that the resultant data frame output by <code>map_</code> will be created by binding rows together as the function moves down each index in the file list. This is shown schematically in the figure below.</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="rprog4.html#cb317-1"></a>file_list &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="dt">full.names=</span><span class="ot">TRUE</span>)</span>
-<span id="cb317-2"><a href="rprog4.html#cb317-2"></a>PA_data_merged &lt;-<span class="st"> </span><span class="kw">map_dfr</span>(file_list, import.w.name) </span>
-<span id="cb317-3"><a href="rprog4.html#cb317-3"></a></span>
-<span id="cb317-4"><a href="rprog4.html#cb317-4"></a><span class="kw">glimpse</span>(PA_data_merged)</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="rprog4.html#cb317-1" aria-hidden="true" tabindex="-1"></a>file_list <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="at">full.names=</span><span class="cn">TRUE</span>)</span>
+<span id="cb317-2"><a href="rprog4.html#cb317-2" aria-hidden="true" tabindex="-1"></a>PA_data_merged <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(file_list, import.w.name) </span>
+<span id="cb317-3"><a href="rprog4.html#cb317-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb317-4"><a href="rprog4.html#cb317-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(PA_data_merged)</span></code></pre></div>
 <pre><code>## Rows: 6,374
 ## Columns: 6
 ## $ UTCDateTime      &lt;chr&gt; &quot;2018/10/22T17:52:21z&quot;, &quot;2018/10/22T17:53:41z&quot;, &quot;201…
@@ -800,7 +852,7 @@ Figure 8.2: Example: using <code>map_dfr()</code> to import a file list using a 
 </div>
 </div>
 </div>
-<div id="homework" class="section level2">
+<div id="homework" class="section level2" number="8.5">
 <h2><span class="header-section-number">8.5</span> Homework</h2>
 <p>This homework will give you practice at writing functions, mapping functions, and cleaning/plotting data. To begin, download the PurpleAir data files from Canvas. Note: the data are contained in a .zip file, which you can unzip on your computer or using R!</p>
 

@@ -24,7 +24,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-11" />
+<meta name="date" content="2021-01-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="dataviz.html"/>
 <link rel="next" href="rprog3.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,26 +51,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -89,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -138,14 +136,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Engineering Data Analysis in R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1</b> How to use this book</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a><ul>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
 <li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a><ul>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#install-r-and-rstudio"><i class="fa fa-check"></i><b>1.4.1</b> Install R and RStudio</a></li>
 <li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#install-git-and-create-a-github-account"><i class="fa fa-check"></i><b>1.4.2</b> Install Git and create a GitHub account</a></li>
 <li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#connect-git-github-and-rstudio"><i class="fa fa-check"></i><b>1.4.3</b> Connect Git, GitHub, and RStudio</a></li>
@@ -154,57 +155,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#confirm-successful-set-up"><i class="fa fa-check"></i><b>1.4.6</b> Confirm successful set-up</a></li>
 <li class="chapter" data-level="1.4.7" data-path="index.html"><a href="index.html#asking-for-help-properly"><i class="fa fa-check"></i><b>1.4.7</b> Asking for help (properly)</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a><ul>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#coursebook"><i class="fa fa-check"></i><b>1.5</b> Coursebook</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#other-helpful-books-not-required"><i class="fa fa-check"></i><b>1.5.1</b> Other helpful books (not required)</a></li>
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a><ul>
+<li class="chapter" data-level="2" data-path="rprog1.html"><a href="rprog1.html"><i class="fa fa-check"></i><b>2</b> The R Programming Environment</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="rprog1.html"><a href="rprog1.html#ch.-2-objectives"><i class="fa fa-check"></i><b>2.1</b> Ch. 2 Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="2.2" data-path="rprog1.html"><a href="rprog1.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.2</b> R and R Studio</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="rprog1.html"><a href="rprog1.html#what-is-r"><i class="fa fa-check"></i><b>2.2.1</b> What is R?</a></li>
 <li class="chapter" data-level="2.2.2" data-path="rprog1.html"><a href="rprog1.html#free-and-open-source-software"><i class="fa fa-check"></i><b>2.2.2</b> Free and open-source software</a></li>
 <li class="chapter" data-level="2.2.3" data-path="rprog1.html"><a href="rprog1.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2.3</b> What is RStudio?</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a><ul>
+<li class="chapter" data-level="2.3" data-path="rprog1.html"><a href="rprog1.html#communicating-with-r"><i class="fa fa-check"></i><b>2.3</b> Communicating with R</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="rprog1.html"><a href="rprog1.html#r-sessions-console-and-command-prompt"><i class="fa fa-check"></i><b>2.3.1</b> R sessions, console, and command prompt</a></li>
 <li class="chapter" data-level="2.3.2" data-path="rprog1.html"><a href="rprog1.html#r-expressions-function-calls-and-objects"><i class="fa fa-check"></i><b>2.3.2</b> R expressions, function calls, and objects</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a><ul>
+<li class="chapter" data-level="2.4" data-path="rprog1.html"><a href="rprog1.html#r-scripts"><i class="fa fa-check"></i><b>2.4</b> R scripts</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="rprog1.html"><a href="rprog1.html#commenting-code"><i class="fa fa-check"></i><b>2.4.1</b> Commenting code</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a><ul>
+<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="rprog1.html"><a href="rprog1.html#r-packages"><i class="fa fa-check"></i><b>2.5.1</b> R packages</a></li>
 <li class="chapter" data-level="2.5.2" data-path="rprog1.html"><a href="rprog1.html#installing-from-cran"><i class="fa fa-check"></i><b>2.5.2</b> Installing from CRAN</a></li>
 <li class="chapter" data-level="2.5.3" data-path="rprog1.html"><a href="rprog1.html#loading-an-installed-package"><i class="fa fa-check"></i><b>2.5.3</b> Loading an installed package</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
 <li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#chapter-2-exercises"><i class="fa fa-check"></i><b>2.7</b> Chapter 2 Exercises</a><ul>
+<li class="chapter" data-level="2.7" data-path="rprog1.html"><a href="rprog1.html#chapter-2-exercises"><i class="fa fa-check"></i><b>2.7</b> Chapter 2 Exercises</a>
+<ul>
 <li class="chapter" data-level="2.7.1" data-path="rprog1.html"><a href="rprog1.html#set-1-session-helpfiles-scripts-and-objects"><i class="fa fa-check"></i><b>2.7.1</b> Set 1: Session, helpfiles, scripts, and objects</a></li>
 <li class="chapter" data-level="2.7.2" data-path="rprog1.html"><a href="rprog1.html#set-2-loading-and-using-packages"><i class="fa fa-check"></i><b>2.7.2</b> Set 2: Loading and using packages</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#chapter-2-homework"><i class="fa fa-check"></i><b>2.8</b> Chapter 2 Homework</a><ul>
+<li class="chapter" data-level="2.8" data-path="rprog1.html"><a href="rprog1.html#chapter-2-homework"><i class="fa fa-check"></i><b>2.8</b> Chapter 2 Homework</a>
+<ul>
 <li class="chapter" data-level="2.8.1" data-path="rprog1.html"><a href="rprog1.html#special-swirl-commands"><i class="fa fa-check"></i><b>2.8.1</b> Special <code>swirl</code> commands</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a><ul>
+<li class="chapter" data-level="3" data-path="rprog2.html"><a href="rprog2.html"><i class="fa fa-check"></i><b>3</b> Getting and Cleaning Data</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="rprog2.html"><a href="rprog2.html#ch.-3-objectives"><i class="fa fa-check"></i><b>3.1</b> Ch. 3 Objectives</a></li>
 <li class="chapter" data-level="3.2" data-path="rprog2.html"><a href="rprog2.html#overview"><i class="fa fa-check"></i><b>3.2</b> Overview</a></li>
-<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a><ul>
+<li class="chapter" data-level="3.3" data-path="rprog2.html"><a href="rprog2.html#reading-data-into-r"><i class="fa fa-check"></i><b>3.3</b> Reading data into R</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="rprog2.html"><a href="rprog2.html#reading-local-flat-files"><i class="fa fa-check"></i><b>3.3.1</b> Reading local flat files</a></li>
 <li class="chapter" data-level="3.3.2" data-path="rprog2.html"><a href="rprog2.html#reading-in-other-file-types"><i class="fa fa-check"></i><b>3.3.2</b> Reading in other file types</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a><ul>
+<li class="chapter" data-level="3.4" data-path="rprog2.html"><a href="rprog2.html#directories-and-pathnames"><i class="fa fa-check"></i><b>3.4</b> Directories and pathnames</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="rprog2.html"><a href="rprog2.html#directory-structure"><i class="fa fa-check"></i><b>3.4.1</b> Directory structure</a></li>
 <li class="chapter" data-level="3.4.2" data-path="rprog2.html"><a href="rprog2.html#working-directory"><i class="fa fa-check"></i><b>3.4.2</b> Working directory</a></li>
 <li class="chapter" data-level="3.4.3" data-path="rprog2.html"><a href="rprog2.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>3.4.3</b> File and directory pathnames</a></li>
 <li class="chapter" data-level="3.4.4" data-path="rprog2.html"><a href="rprog2.html#tangent-paste"><i class="fa fa-check"></i><b>3.4.4</b> Tangent: <code>paste</code></a></li>
 <li class="chapter" data-level="3.4.5" data-path="rprog2.html"><a href="rprog2.html#reading-online-flat-files"><i class="fa fa-check"></i><b>3.4.5</b> Reading online flat files</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a><ul>
+<li class="chapter" data-level="3.5" data-path="rprog2.html"><a href="rprog2.html#data-cleaning"><i class="fa fa-check"></i><b>3.5</b> Data cleaning</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="rprog2.html"><a href="rprog2.html#renaming-columns"><i class="fa fa-check"></i><b>3.5.1</b> Renaming columns</a></li>
 <li class="chapter" data-level="3.5.2" data-path="rprog2.html"><a href="rprog2.html#selecting-columns"><i class="fa fa-check"></i><b>3.5.2</b> Selecting columns</a></li>
 <li class="chapter" data-level="3.5.3" data-path="rprog2.html"><a href="rprog2.html#add-or-change-columns"><i class="fa fa-check"></i><b>3.5.3</b> Add or change columns</a></li>
@@ -212,26 +226,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.5" data-path="rprog2.html"><a href="rprog2.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>3.5.5</b> Filtering to certain rows</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="rprog2.html"><a href="rprog2.html#piping"><i class="fa fa-check"></i><b>3.6</b> Piping</a></li>
-<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#markdowns"><i class="fa fa-check"></i><b>3.7</b> Markdowns</a><ul>
+<li class="chapter" data-level="3.7" data-path="rprog2.html"><a href="rprog2.html#markdowns"><i class="fa fa-check"></i><b>3.7</b> Markdowns</a>
+<ul>
 <li class="chapter" data-level="3.7.1" data-path="rprog2.html"><a href="rprog2.html#r-markdowns"><i class="fa fa-check"></i><b>3.7.1</b> R Markdowns</a></li>
 <li class="chapter" data-level="3.7.2" data-path="rprog2.html"><a href="rprog2.html#header"><i class="fa fa-check"></i><b>3.7.2</b> Header</a></li>
 <li class="chapter" data-level="3.7.3" data-path="rprog2.html"><a href="rprog2.html#text"><i class="fa fa-check"></i><b>3.7.3</b> Text</a></li>
 <li class="chapter" data-level="3.7.4" data-path="rprog2.html"><a href="rprog2.html#code-chunks"><i class="fa fa-check"></i><b>3.7.4</b> Code Chunks</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#chapter-3-exercises"><i class="fa fa-check"></i><b>3.8</b> Chapter 3 Exercises</a><ul>
+<li class="chapter" data-level="3.8" data-path="rprog2.html"><a href="rprog2.html#chapter-3-exercises"><i class="fa fa-check"></i><b>3.8</b> Chapter 3 Exercises</a>
+<ul>
 <li class="chapter" data-level="3.8.1" data-path="rprog2.html"><a href="rprog2.html#set-1-pathnames-and-data-import"><i class="fa fa-check"></i><b>3.8.1</b> Set 1: Pathnames and data import</a></li>
 <li class="chapter" data-level="3.8.2" data-path="rprog2.html"><a href="rprog2.html#set-2-data-wrangling-and-piping"><i class="fa fa-check"></i><b>3.8.2</b> Set 2: Data wrangling and piping</a></li>
 <li class="chapter" data-level="3.8.3" data-path="rprog2.html"><a href="rprog2.html#set-3-r-markdown"><i class="fa fa-check"></i><b>3.8.3</b> Set 3: R Markdown</a></li>
 </ul></li>
 <li class="chapter" data-level="3.9" data-path="rprog2.html"><a href="rprog2.html#chapter-3-homework"><i class="fa fa-check"></i><b>3.9</b> Chapter 3 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Data Visualization with <code>ggplot2</code></a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#chapter-4-objectives"><i class="fa fa-check"></i><b>4.1</b> Chapter 4 Objectives</a></li>
 <li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#install-and-load-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Install and load <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#steps-to-create-a-ggplot2-object"><i class="fa fa-check"></i><b>4.3</b> Steps to create a <code>ggplot2</code> object</a></li>
 <li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#initializing-a-ggplot2-object"><i class="fa fa-check"></i><b>4.4</b> Initializing a <code>ggplot2</code> object</a></li>
 <li class="chapter" data-level="4.5" data-path="dataviz.html"><a href="dataviz.html#plot-aesthetics"><i class="fa fa-check"></i><b>4.5</b> Plot aesthetics</a></li>
-<li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.6</b> Adding geoms</a><ul>
+<li class="chapter" data-level="4.6" data-path="dataviz.html"><a href="dataviz.html#adding-geoms"><i class="fa fa-check"></i><b>4.6</b> Adding geoms</a>
+<ul>
 <li class="chapter" data-level="4.6.1" data-path="dataviz.html"><a href="dataviz.html#aesthetic-override-a-warning"><i class="fa fa-check"></i><b>4.6.1</b> Aesthetic override: a warning</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="dataviz.html"><a href="dataviz.html#shapes-and-colors"><i class="fa fa-check"></i><b>4.7</b> Shapes and colors</a></li>
@@ -242,15 +260,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.12" data-path="dataviz.html"><a href="dataviz.html#getting-help-with-ggplot2"><i class="fa fa-check"></i><b>4.12</b> Getting help with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.13" data-path="dataviz.html"><a href="dataviz.html#chapter-4-homework"><i class="fa fa-check"></i><b>4.13</b> Chapter 4 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a><ul>
+<li class="chapter" data-level="5" data-path="eda1.html"><a href="eda1.html"><i class="fa fa-check"></i><b>5</b> Univariate Data Exploration</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="eda1.html"><a href="eda1.html#ch.-5-objectives"><i class="fa fa-check"></i><b>5.1</b> Ch. 5 Objectives</a></li>
-<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univar"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a><ul>
+<li class="chapter" data-level="5.2" data-path="eda1.html"><a href="eda1.html#univar"><i class="fa fa-check"></i><b>5.2</b> Univariate Data</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="eda1.html"><a href="eda1.html#location-dispersion-and-shape"><i class="fa fa-check"></i><b>5.2.1</b> Location, Dispersion, and Shape</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantile"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a><ul>
+<li class="chapter" data-level="5.3" data-path="eda1.html"><a href="eda1.html#quantile"><i class="fa fa-check"></i><b>5.3</b> Quantiles</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="eda1.html"><a href="eda1.html#descriptive-statistics"><i class="fa fa-check"></i><b>5.3.1</b> Descriptive Statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a><ul>
+<li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
 <li class="chapter" data-level="5.4.2" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.4.2</b> Cumulative Distribution Plot</a></li>
 <li class="chapter" data-level="5.4.3" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.4.3</b> Histogram</a></li>
@@ -262,25 +284,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="eda1.html"><a href="eda1.html#exploring-data"><i class="fa fa-check"></i><b>5.5</b> Exploring Data</a></li>
 <li class="chapter" data-level="5.6" data-path="eda1.html"><a href="eda1.html#chapter-5-homework"><i class="fa fa-check"></i><b>5.6</b> Chapter 5 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a><ul>
+<li class="chapter" data-level="6" data-path="rprog3.html"><a href="rprog3.html"><i class="fa fa-check"></i><b>6</b> Strings, Dates, and Tidying</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="rprog3.html"><a href="rprog3.html#chapter-6-objectives"><i class="fa fa-check"></i><b>6.1</b> Chapter 6 Objectives</a></li>
-<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a><ul>
+<li class="chapter" data-level="6.2" data-path="rprog3.html"><a href="rprog3.html#strings"><i class="fa fa-check"></i><b>6.2</b> Strings</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="rprog3.html"><a href="rprog3.html#string-detect-match-subset"><i class="fa fa-check"></i><b>6.2.1</b> String detect, match, subset</a></li>
 <li class="chapter" data-level="6.2.2" data-path="rprog3.html"><a href="rprog3.html#regular-expressions"><i class="fa fa-check"></i><b>6.2.2</b> Regular Expressions</a></li>
 <li class="chapter" data-level="6.2.3" data-path="rprog3.html"><a href="rprog3.html#string-split-replace"><i class="fa fa-check"></i><b>6.2.3</b> String split, replace</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a><ul>
+<li class="chapter" data-level="6.3" data-path="rprog3.html"><a href="rprog3.html#dates-and-date-times"><i class="fa fa-check"></i><b>6.3</b> Dates and Date-times</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="rprog3.html"><a href="rprog3.html#dates-and-times-in-base-r"><i class="fa fa-check"></i><b>6.3.1</b> Dates and Times in base R</a></li>
 <li class="chapter" data-level="6.3.2" data-path="rprog3.html"><a href="rprog3.html#date-time-formats"><i class="fa fa-check"></i><b>6.3.2</b> Date-time formats</a></li>
 <li class="chapter" data-level="6.3.3" data-path="rprog3.html"><a href="rprog3.html#date-time-classes-in-r"><i class="fa fa-check"></i><b>6.3.3</b> Date-time classes in R</a></li>
 <li class="chapter" data-level="6.3.4" data-path="rprog3.html"><a href="rprog3.html#reading-and-classifying-date-times"><i class="fa fa-check"></i><b>6.3.4</b> Reading and classifying date-times</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>lubridate</code></a><ul>
+<li class="chapter" data-level="6.4" data-path="rprog3.html"><a href="rprog3.html#lubridate"><i class="fa fa-check"></i><b>6.4</b> <code>lubridate</code></a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="rprog3.html"><a href="rprog3.html#parsing-functions-in-lubridate"><i class="fa fa-check"></i><b>6.4.1</b> Parsing functions in <code>lubridate</code></a></li>
 <li class="chapter" data-level="6.4.2" data-path="rprog3.html"><a href="rprog3.html#date-time-manipulation-with-lubridate"><i class="fa fa-check"></i><b>6.4.2</b> Date-time manipulation with <code>lubridate</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="rprog3.html"><a href="rprog3.html#tidy-data"><i class="fa fa-check"></i><b>6.5</b> Tidy Data</a></li>
-<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#chapter-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Chapter 6 Exercises</a><ul>
+<li class="chapter" data-level="6.6" data-path="rprog3.html"><a href="rprog3.html#chapter-6-exercises"><i class="fa fa-check"></i><b>6.6</b> Chapter 6 Exercises</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="rprog3.html"><a href="rprog3.html#set-1-data-import-and-manipulation"><i class="fa fa-check"></i><b>6.6.1</b> Set 1: Data import and manipulation</a></li>
 <li class="chapter" data-level="6.6.2" data-path="rprog3.html"><a href="rprog3.html#set-2-counting"><i class="fa fa-check"></i><b>6.6.2</b> Set 2: Counting</a></li>
 <li class="chapter" data-level="6.6.3" data-path="rprog3.html"><a href="rprog3.html#set-3-weekly-tweets"><i class="fa fa-check"></i><b>6.6.3</b> Set 3: Weekly tweets</a></li>
@@ -288,19 +315,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="rprog3.html"><a href="rprog3.html#chapter-6-homework"><i class="fa fa-check"></i><b>6.7</b> Chapter 6 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a><ul>
+<li class="chapter" data-level="7" data-path="eda2.html"><a href="eda2.html"><i class="fa fa-check"></i><b>7</b> Multivariate Data Exploration</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="eda2.html"><a href="eda2.html#chapter-7-objectives"><i class="fa fa-check"></i><b>7.1</b> Chapter 7 Objectives</a></li>
 <li class="chapter" data-level="7.2" data-path="eda2.html"><a href="eda2.html#bivariate"><i class="fa fa-check"></i><b>7.2</b> Bivariate Data</a></li>
-<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a><ul>
+<li class="chapter" data-level="7.3" data-path="eda2.html"><a href="eda2.html#scatt"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="eda2.html"><a href="eda2.html#causality"><i class="fa fa-check"></i><b>7.3.1</b> Causality</a></li>
 <li class="chapter" data-level="7.3.2" data-path="eda2.html"><a href="eda2.html#corr"><i class="fa fa-check"></i><b>7.3.2</b> Correlation</a></li>
 <li class="chapter" data-level="7.3.3" data-path="eda2.html"><a href="eda2.html#correlation-neq-causation"><i class="fa fa-check"></i><b>7.3.3</b> Correlation <span class="math inline">\(\neq\)</span> causation</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.4</b> Exploring Multivariate Data</a><ul>
+<li class="chapter" data-level="7.4" data-path="eda2.html"><a href="eda2.html#exploring-multivariate-data"><i class="fa fa-check"></i><b>7.4</b> Exploring Multivariate Data</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="eda2.html"><a href="eda2.html#facets"><i class="fa fa-check"></i><b>7.4.1</b> Facets</a></li>
 <li class="chapter" data-level="7.4.2" data-path="eda2.html"><a href="eda2.html#colors"><i class="fa fa-check"></i><b>7.4.2</b> Colors</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#chapter-7-exercises"><i class="fa fa-check"></i><b>7.5</b> Chapter 7 Exercises</a><ul>
+<li class="chapter" data-level="7.5" data-path="eda2.html"><a href="eda2.html#chapter-7-exercises"><i class="fa fa-check"></i><b>7.5</b> Chapter 7 Exercises</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="eda2.html"><a href="eda2.html#fuel-economy-data"><i class="fa fa-check"></i><b>7.5.1</b> Fuel economy data</a></li>
 <li class="chapter" data-level="7.5.2" data-path="eda2.html"><a href="eda2.html#import-and-wrangle-data"><i class="fa fa-check"></i><b>7.5.2</b> Import and wrangle data</a></li>
 <li class="chapter" data-level="7.5.3" data-path="eda2.html"><a href="eda2.html#check-data"><i class="fa fa-check"></i><b>7.5.3</b> Check data</a></li>
@@ -313,35 +344,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="eda2.html"><a href="eda2.html#chapter-7-homework"><i class="fa fa-check"></i><b>7.6</b> Chapter 7 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a><ul>
+<li class="chapter" data-level="8" data-path="rprog4.html"><a href="rprog4.html"><i class="fa fa-check"></i><b>8</b> Functional Programming</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="rprog4.html"><a href="rprog4.html#ch.-8-objectives"><i class="fa fa-check"></i><b>8.1</b> Ch. 8 Objectives</a></li>
 <li class="chapter" data-level="8.2" data-path="rprog4.html"><a href="rprog4.html#what-is-functional-programming"><i class="fa fa-check"></i><b>8.2</b> What is <strong><em>functional programming</em></strong>?</a></li>
-<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a><ul>
+<li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="rprog4.html"><a href="rprog4.html#example-function-my_mean"><i class="fa fa-check"></i><b>8.3.1</b> Example Function: my_mean</a></li>
 <li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: “import.w.name”</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a><ul>
+<li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="rprog4.html"><a href="rprog4.html#function-mapping"><i class="fa fa-check"></i><b>8.4.1</b> Function Mapping</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.5</b> Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a><ul>
+<li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="transform.html"><a href="transform.html#ch.-9-objectives"><i class="fa fa-check"></i><b>9.1</b> Ch. 9 Objectives</a></li>
-<li class="chapter" data-level="9.2" data-path="transform.html"><a href="transform.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a><ul>
+<li class="chapter" data-level="9.2" data-path="transform.html"><a href="transform.html#transformation"><i class="fa fa-check"></i><b>9.2</b> Transformation</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="transform.html"><a href="transform.html#centering"><i class="fa fa-check"></i><b>9.2.1</b> Centering</a></li>
 <li class="chapter" data-level="9.2.2" data-path="transform.html"><a href="transform.html#rescaling"><i class="fa fa-check"></i><b>9.2.2</b> Rescaling</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="transform.html"><a href="transform.html#normalization-and-standardization"><i class="fa fa-check"></i><b>9.3</b> Normalization and Standardization</a><ul>
+<li class="chapter" data-level="9.3" data-path="transform.html"><a href="transform.html#normalization-and-standardization"><i class="fa fa-check"></i><b>9.3</b> Normalization and Standardization</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="transform.html"><a href="transform.html#rate-normalization"><i class="fa fa-check"></i><b>9.3.1</b> Rate normalization</a></li>
 <li class="chapter" data-level="9.3.2" data-path="transform.html"><a href="transform.html#standardizing"><i class="fa fa-check"></i><b>9.3.2</b> Standardizing</a></li>
 <li class="chapter" data-level="9.3.3" data-path="transform.html"><a href="transform.html#reducing-skewness"><i class="fa fa-check"></i><b>9.3.3</b> Reducing Skewness</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="transform.html"><a href="transform.html#stratification"><i class="fa fa-check"></i><b>9.4</b> Stratification</a></li>
-<li class="chapter" data-level="9.5" data-path="transform.html"><a href="transform.html#outliers-and-censoring"><i class="fa fa-check"></i><b>9.5</b> Outliers and Censoring</a><ul>
+<li class="chapter" data-level="9.5" data-path="transform.html"><a href="transform.html#outliers-and-censoring"><i class="fa fa-check"></i><b>9.5</b> Outliers and Censoring</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="transform.html"><a href="transform.html#outliers"><i class="fa fa-check"></i><b>9.5.1</b> Detecting Outliers</a></li>
 <li class="chapter" data-level="9.5.2" data-path="transform.html"><a href="transform.html#censoring-outliers"><i class="fa fa-check"></i><b>9.5.2</b> Censoring outliers</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="transform.html"><a href="transform.html#ch-9-exercises"><i class="fa fa-check"></i><b>9.6</b> Ch-9 Exercises</a><ul>
+<li class="chapter" data-level="9.6" data-path="transform.html"><a href="transform.html#ch-9-exercises"><i class="fa fa-check"></i><b>9.6</b> Ch-9 Exercises</a>
+<ul>
 <li class="chapter" data-level="9.6.1" data-path="transform.html"><a href="transform.html#salary-data-for-poly-sci-majors"><i class="fa fa-check"></i><b>9.6.1</b> Salary Data for Poly Sci Majors</a></li>
 <li class="chapter" data-level="9.6.2" data-path="transform.html"><a href="transform.html#univariate-data-visualization-1"><i class="fa fa-check"></i><b>9.6.2</b> Univariate Data Visualization</a></li>
 <li class="chapter" data-level="9.6.3" data-path="transform.html"><a href="transform.html#rescale-and-censor-data"><i class="fa fa-check"></i><b>9.6.3</b> Rescale and Censor Data</a></li>
@@ -350,9 +389,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.7" data-path="transform.html"><a href="transform.html#ch-9-homework"><i class="fa fa-check"></i><b>9.7</b> Ch-9 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a><ul>
+<li class="chapter" data-level="10" data-path="measure.html"><a href="measure.html"><i class="fa fa-check"></i><b>10</b> Measurement</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="measure.html"><a href="measure.html#ch.-10-objectives"><i class="fa fa-check"></i><b>10.1</b> Ch. 10 Objectives</a></li>
-<li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a><ul>
+<li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#sample"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
 <li class="chapter" data-level="10.2.2" data-path="measure.html"><a href="measure.html#sample.collect"><i class="fa fa-check"></i><b>10.2.2</b> Collecting a sample</a></li>
 <li class="chapter" data-level="10.2.3" data-path="measure.html"><a href="measure.html#simple-random-sampling"><i class="fa fa-check"></i><b>10.2.3</b> Simple Random Sampling</a></li>
@@ -360,50 +401,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.5" data-path="measure.html"><a href="measure.html#stratified-sampling"><i class="fa fa-check"></i><b>10.2.5</b> Stratified Sampling</a></li>
 <li class="chapter" data-level="10.2.6" data-path="measure.html"><a href="measure.html#cluster-sampling"><i class="fa fa-check"></i><b>10.2.6</b> Cluster Sampling</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a><ul>
+<li class="chapter" data-level="10.3" data-path="measure.html"><a href="measure.html#figures-of-merit"><i class="fa fa-check"></i><b>10.3</b> Figures of Merit</a>
+<ul>
 <li class="chapter" data-level="10.3.1" data-path="measure.html"><a href="measure.html#LOD"><i class="fa fa-check"></i><b>10.3.1</b> Limit of Detection &amp; Quantification</a></li>
 <li class="chapter" data-level="10.3.2" data-path="measure.html"><a href="measure.html#dynamic"><i class="fa fa-check"></i><b>10.3.2</b> Dynamic Range</a></li>
 <li class="chapter" data-level="10.3.3" data-path="measure.html"><a href="measure.html#precision"><i class="fa fa-check"></i><b>10.3.3</b> Precision</a></li>
 <li class="chapter" data-level="10.3.4" data-path="measure.html"><a href="measure.html#bias"><i class="fa fa-check"></i><b>10.3.4</b> Bias (accuracy)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a><ul>
+<li class="chapter" data-level="10.4" data-path="measure.html"><a href="measure.html#measurement-uncertainty"><i class="fa fa-check"></i><b>10.4</b> Measurement Uncertainty</a>
+<ul>
 <li class="chapter" data-level="10.4.1" data-path="measure.html"><a href="measure.html#repeated"><i class="fa fa-check"></i><b>10.4.1</b> Repeated Measures</a></li>
 <li class="chapter" data-level="10.4.2" data-path="measure.html"><a href="measure.html#error-propagation"><i class="fa fa-check"></i><b>10.4.2</b> Error Propagation</a></li>
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="measure.html"><a href="measure.html#ch-10-homework"><i class="fa fa-check"></i><b>10.5</b> CH-10 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a><ul>
+<li class="chapter" data-level="11" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>11</b> Modeling</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="model.html"><a href="model.html#ch.-11-objectives"><i class="fa fa-check"></i><b>11.1</b> Ch. 11 Objectives</a></li>
-<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#process-modeling"><i class="fa fa-check"></i><b>11.2</b> Process Modeling</a><ul>
+<li class="chapter" data-level="11.2" data-path="model.html"><a href="model.html#process-modeling"><i class="fa fa-check"></i><b>11.2</b> Process Modeling</a>
+<ul>
 <li class="chapter" data-level="11.2.1" data-path="model.html"><a href="model.html#assumptions"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions</a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="model.html"><a href="model.html#model-fitting"><i class="fa fa-check"></i><b>11.3</b> Model Fitting</a></li>
-<li class="chapter" data-level="11.4" data-path="model.html"><a href="model.html#ols-regression"><i class="fa fa-check"></i><b>11.4</b> OLS Regression</a><ul>
+<li class="chapter" data-level="11.4" data-path="model.html"><a href="model.html#ols-regression"><i class="fa fa-check"></i><b>11.4</b> OLS Regression</a>
+<ul>
 <li class="chapter" data-level="11.4.1" data-path="model.html"><a href="model.html#OLS_assum"><i class="fa fa-check"></i><b>11.4.1</b> OLS Assumptions and Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="model.html"><a href="model.html#example-ols-linear-regression"><i class="fa fa-check"></i><b>11.5</b> Example: OLS Linear Regression</a><ul>
+<li class="chapter" data-level="11.5" data-path="model.html"><a href="model.html#example-ols-linear-regression"><i class="fa fa-check"></i><b>11.5</b> Example: OLS Linear Regression</a>
+<ul>
 <li class="chapter" data-level="11.5.1" data-path="model.html"><a href="model.html#the-lm-function"><i class="fa fa-check"></i><b>11.5.1</b> The <code>lm()</code> function</a></li>
 <li class="chapter" data-level="11.5.2" data-path="model.html"><a href="model.html#ols-diagnostics"><i class="fa fa-check"></i><b>11.5.2</b> OLS Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a><ul>
+<li class="chapter" data-level="11.6" data-path="model.html"><a href="model.html#calibration"><i class="fa fa-check"></i><b>11.6</b> Calibration</a>
+<ul>
 <li class="chapter" data-level="11.6.1" data-path="model.html"><a href="model.html#example-calibration"><i class="fa fa-check"></i><b>11.6.1</b> Example Calibration</a></li>
 </ul></li>
 <li class="chapter" data-level="11.7" data-path="model.html"><a href="model.html#ch-11-homework"><i class="fa fa-check"></i><b>11.7</b> Ch-11 Homework</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Stats &amp; Reference Distributions</a><ul>
+<li class="chapter" data-level="12" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>12</b> Appendix: Stats &amp; Reference Distributions</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="dist.html"><a href="dist.html#measures-of-central-tendency"><i class="fa fa-check"></i><b>12.1</b> Measures of Central Tendency</a></li>
 <li class="chapter" data-level="12.2" data-path="dist.html"><a href="dist.html#measures-of-dispersion"><i class="fa fa-check"></i><b>12.2</b> Measures of Dispersion</a></li>
-<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.3</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="12.3" data-path="dist.html"><a href="dist.html#unif_dist"><i class="fa fa-check"></i><b>12.3</b> Uniform Distribution</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="dist.html"><a href="dist.html#uniform-characteristic-plots"><i class="fa fa-check"></i><b>12.3.1</b> Uniform Characteristic Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.4</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="12.4" data-path="dist.html"><a href="dist.html#normal_dist"><i class="fa fa-check"></i><b>12.4</b> Normal Distribution</a>
+<ul>
 <li class="chapter" data-level="12.4.1" data-path="dist.html"><a href="dist.html#normal-characteristic-plots"><i class="fa fa-check"></i><b>12.4.1</b> Normal Characteristic Plots</a></li>
 <li class="chapter" data-level="12.4.2" data-path="dist.html"><a href="dist.html#rule"><i class="fa fa-check"></i><b>12.4.2</b> 68-95-99 rule</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>12.5</b> Log-normal Distribution</a><ul>
+<li class="chapter" data-level="12.5" data-path="dist.html"><a href="dist.html#log_normal_dist"><i class="fa fa-check"></i><b>12.5</b> Log-normal Distribution</a>
+<ul>
 <li class="chapter" data-level="12.5.1" data-path="dist.html"><a href="dist.html#lognormal-characteristic-plots"><i class="fa fa-check"></i><b>12.5.1</b> Lognormal Characteristic Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="12.6" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>12.6</b> Pearson Correlation Coefficient</a></li>
+<li class="chapter" data-level="12.7" data-path="dist.html"><a href="dist.html#OLS"><i class="fa fa-check"></i><b>12.7</b> OLS Regression Coefficients</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -425,7 +478,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="eda1" class="section level1">
+<div id="eda1" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Univariate Data Exploration</h1>
 <blockquote>
 <p><span style="color: blue;"> “Exploratory data analysis is graphical detective work.” - John Tukey </span></p>
@@ -442,7 +495,7 @@ EDA. You can use EDA to jump-start ideas on <em>“what do I do with my data?”
 <blockquote>
 <p><span style="color: blue;"> “Perfect data are boring. Flawed data, on the other hand, are interesting and mysterious. Perfect data don’t get asked out on a second date.” - John Volckens </span></p>
 </blockquote>
-<div id="ch.-5-objectives" class="section level2">
+<div id="ch.-5-objectives" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Ch. 5 Objectives</h2>
 <p>This chapter is designed around the following learning objectives. Upon
 completing this Chapter, you should be able to:</p>
@@ -460,7 +513,7 @@ summary and enumerative plots</li>
 <li>Identify time lags where autocorrelation is significant, using autocorrelation and partial autocorrelation plots</li>
 </ul>
 </div>
-<div id="univar" class="section level2">
+<div id="univar" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Univariate Data</h2>
 <p><em>Univariate</em> means that “only one variable” is being considered. Just like medical
 doctors, statisticians enjoy the use fancy words to describe basic things.</p>
@@ -475,7 +528,7 @@ procedure because, as engineers, we are taught about <em>mechanisms</em> and
 through some physical process. That’s OK to admit. Univariate analyses are
 still useful. Trust me for now, or skip ahead to <a href="eda2.html#eda2">multivariate analyses</a> or <a href="model.html#model">modeling</a>—your
 choice.</p>
-<div id="location-dispersion-and-shape" class="section level3">
+<div id="location-dispersion-and-shape" class="section level3" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Location, Dispersion, and Shape</h3>
 <p>Univariate EDA often begins with an attempt to discover three important
 properties about an observed variable: its location, dispersion, and shape.
@@ -485,14 +538,14 @@ and “why” of a variable’s location, dispersion, and shape might sound simp
 and yet, answering such questions often represents the pinnacle of scientific
 discovery; they give out Nobel Prizes for that stuff! Let’s start with “what”
 (location, dispersion, and shape) and build from there.</p>
-<div id="location" class="section level4">
+<div id="location" class="section level4" number="5.2.1.1">
 <h4><span class="header-section-number">5.2.1.1</span> Location</h4>
 <p>The location of univariate data means: where do the values or
 observations fall? Do the values tend to be large or small, based on what you
 know about the variable? Do the observations have a <em>central tendency</em> - a
 region where values are more likely to show up?</p>
 </div>
-<div id="dispersion" class="section level4">
+<div id="dispersion" class="section level4" number="5.2.1.2">
 <h4><span class="header-section-number">5.2.1.2</span> Dispersion</h4>
 <p>The dispersion of the data refers to its variability. Are the values tightly
 bound in a small range, or do they vary widely from one observation to the
@@ -501,7 +554,7 @@ cost of an ice cream cone from one location to the next might look small to
 you, but could mean the difference between joy and sorrow for a 10-year-old
 with only $1.50 in their pocket.</p>
 </div>
-<div id="shape" class="section level4">
+<div id="shape" class="section level4" number="5.2.1.3">
 <h4><span class="header-section-number">5.2.1.3</span> Shape</h4>
 <p>The shape of the distribution is actually a combination of location and
 dispersion but with some mathematical nuance. Knowing the shape of your data
@@ -519,7 +572,7 @@ a reference distribution, most of your modeling work is already done! Examples
 of reference distributions include the uniform distribution, normal
 distribution, and the lognormal distribution. More on different types of
 reference distributions <a href="dist.html#dist">here</a>.</p>
-<div id="example-location-and-dispersion" class="section level5">
+<div id="example-location-and-dispersion" class="section level5" number="5.2.1.3.1">
 <h5><span class="header-section-number">5.2.1.3.1</span> Example: Location and Dispersion</h5>
 <p>Let’s plan a camping trip. Our trip is purely hypothetical, so let’s not worry
 about costs, logistics, or other important factors. For this exercise, we only
@@ -579,7 +632,7 @@ Figure 5.2: The temperature data from Hawaii and Colorado have similar locations
 </div>
 </div>
 </div>
-<div id="quantile" class="section level2">
+<div id="quantile" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Quantiles</h2>
 <p>Let’s assume you have a sample of univariate data. A good starting point for
 exploring these data is to break them into <em>quantiles</em> and extract some basic
@@ -592,7 +645,7 @@ A “quantile” represents a fractional portion of an ordered, univariate distr
 </p>
 </div>
 <p>Quantiles break a set of observations into similarly sized
-“chunks”, wherein each chunk represents an equal fraction of the total
+“chunks,” wherein each chunk represents an equal fraction of the total
 distribution, from start to finish. If you line your data up from smallest to
 largest and then slice that list into sections, you have created a set of
 quantiles. For example, when a distribution is broken into 10 equal chunks, or
@@ -623,16 +676,16 @@ will create a <a href="dist.html#unif_dist">uniform distribution</a> across the 
 provided because all values within that range have equal probability of being
 chosen. With that in mind, you can probably guess what the quartiles will look
 like, given a sufficiently large sample…</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="eda1.html#cb183-1"></a><span class="co"># &quot;set seed&quot; to generate the same results each time</span></span>
-<span id="cb183-2"><a href="eda1.html#cb183-2"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb183-3"><a href="eda1.html#cb183-3"></a><span class="co"># create uniform distribution</span></span>
-<span id="cb183-4"><a href="eda1.html#cb183-4"></a>univar &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">1000</span>, </span>
-<span id="cb183-5"><a href="eda1.html#cb183-5"></a>                <span class="dt">min =</span> <span class="dv">0</span>, </span>
-<span id="cb183-6"><a href="eda1.html#cb183-6"></a>                <span class="dt">max =</span> <span class="dv">100</span>) </span>
-<span id="cb183-7"><a href="eda1.html#cb183-7"></a><span class="co"># split uniform distribution into quantiles</span></span>
-<span id="cb183-8"><a href="eda1.html#cb183-8"></a>univar_quart &lt;-<span class="st"> </span><span class="kw">quantile</span>(univar, </span>
-<span id="cb183-9"><a href="eda1.html#cb183-9"></a>                         <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb183-10"><a href="eda1.html#cb183-10"></a><span class="st">  </span><span class="kw">round</span>(<span class="dv">1</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="eda1.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;set seed&quot; to generate the same results each time</span></span>
+<span id="cb183-2"><a href="eda1.html#cb183-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb183-3"><a href="eda1.html#cb183-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create uniform distribution</span></span>
+<span id="cb183-4"><a href="eda1.html#cb183-4" aria-hidden="true" tabindex="-1"></a>univar <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1000</span>, </span>
+<span id="cb183-5"><a href="eda1.html#cb183-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">min =</span> <span class="dv">0</span>, </span>
+<span id="cb183-6"><a href="eda1.html#cb183-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">max =</span> <span class="dv">100</span>) </span>
+<span id="cb183-7"><a href="eda1.html#cb183-7" aria-hidden="true" tabindex="-1"></a><span class="co"># split uniform distribution into quantiles</span></span>
+<span id="cb183-8"><a href="eda1.html#cb183-8" aria-hidden="true" tabindex="-1"></a>univar_quart <span class="ot">&lt;-</span> <span class="fu">quantile</span>(univar, </span>
+<span id="cb183-9"><a href="eda1.html#cb183-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb183-10"><a href="eda1.html#cb183-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">1</span>) </span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unif-quartiles"></span>
 <img src="images/quantile_1.png" alt="Quartiles estimated from n=1000 samples of a uniform distribution between 0 and 100." width="700pt" />
 <p class="caption">
@@ -648,7 +701,7 @@ distribution between 0 and 100 fall into predictable chunks of approximately
 <li><p>The third quartile contains data for the 50<sup>th</sup> to the 75<sup>th</sup> percentile values (0.5 to 0.75 quantiles).</p></li>
 <li><p>The fourth quartile contains the upper 25% of the distribution: 0.75 to 1.0 quantiles.</p></li>
 </ul>
-<div id="descriptive-statistics" class="section level3">
+<div id="descriptive-statistics" class="section level3" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Descriptive Statistics</h3>
 <p>Quantiles allow us to calculate several important descriptive statistics for
 univariate data. For example, quartile calculations for highway fuel
@@ -763,37 +816,37 @@ with a mean of 50 and standard deviation of 15. We’ll start by randomly sampli
 1000 values, using <code>rnorm()</code>, and then arranging them with the <code>quanitle()</code>
 function. Note that the second half of the code chunk below shows how to
 calculate quantiles manually.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="eda1.html#cb184-1"></a><span class="co"># &quot;set seed&quot; to generate the same results each time</span></span>
-<span id="cb184-2"><a href="eda1.html#cb184-2"></a><span class="kw">set.seed</span>(<span class="dv">2</span>) </span>
-<span id="cb184-3"><a href="eda1.html#cb184-3"></a><span class="co"># create normal distribution</span></span>
-<span id="cb184-4"><a href="eda1.html#cb184-4"></a>norm_dist &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">15</span>)</span>
-<span id="cb184-5"><a href="eda1.html#cb184-5"></a><span class="co"># split normal distribution into quantiles and output tabular result</span></span>
-<span id="cb184-6"><a href="eda1.html#cb184-6"></a><span class="kw">quantile</span>(norm_dist, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="eda1.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;set seed&quot; to generate the same results each time</span></span>
+<span id="cb184-2"><a href="eda1.html#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>) </span>
+<span id="cb184-3"><a href="eda1.html#cb184-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create normal distribution</span></span>
+<span id="cb184-4"><a href="eda1.html#cb184-4" aria-hidden="true" tabindex="-1"></a>norm_dist <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">15</span>)</span>
+<span id="cb184-5"><a href="eda1.html#cb184-5" aria-hidden="true" tabindex="-1"></a><span class="co"># split normal distribution into quantiles and output tabular result</span></span>
+<span id="cb184-6"><a href="eda1.html#cb184-6" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(norm_dist, <span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>)) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">0</span>)</span></code></pre></div>
 <pre><code>##   0%  10%  20%  30%  40%  50%  60%  70%  80%  90% 100% 
 ##    9   32   38   43   46   51   54   59   64   71   95</code></pre>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="eda1.html#cb186-1"></a><span class="co"># manual method for calculating quantiles; start with norms_dist values</span></span>
-<span id="cb186-2"><a href="eda1.html#cb186-2"></a>norm_manual &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(</span>
-<span id="cb186-3"><a href="eda1.html#cb186-3"></a>  <span class="dt">sample_data =</span> norm_dist) <span class="op">%&gt;%</span></span>
-<span id="cb186-4"><a href="eda1.html#cb186-4"></a><span class="st">  </span><span class="co"># sort the data using</span></span>
-<span id="cb186-5"><a href="eda1.html#cb186-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(sample_data) <span class="op">%&gt;%</span><span class="st">  </span></span>
-<span id="cb186-6"><a href="eda1.html#cb186-6"></a><span class="st">  </span><span class="co"># calculate cumulative fraction for each entry</span></span>
-<span id="cb186-7"><a href="eda1.html#cb186-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">cum_frac =</span> <span class="kw">seq.int</span>(<span class="dt">from =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(norm_dist), </span>
-<span id="cb186-8"><a href="eda1.html#cb186-8"></a>                     <span class="dt">to =</span> <span class="dv">1</span>,</span>
-<span id="cb186-9"><a href="eda1.html#cb186-9"></a>                     <span class="dt">by =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(norm_dist)))</span>
-<span id="cb186-10"><a href="eda1.html#cb186-10"></a></span>
-<span id="cb186-11"><a href="eda1.html#cb186-11"></a><span class="co"># create a quantile sequence corresponding to deciles</span></span>
-<span id="cb186-12"><a href="eda1.html#cb186-12"></a>deciles &lt;-<span class="st"> </span><span class="kw">seq.int</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)</span>
-<span id="cb186-13"><a href="eda1.html#cb186-13"></a></span>
-<span id="cb186-14"><a href="eda1.html#cb186-14"></a><span class="co"># extract quantiles that match the decile values created above </span></span>
-<span id="cb186-15"><a href="eda1.html#cb186-15"></a>normal_data_deciles &lt;-<span class="st"> </span>norm_manual <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb186-16"><a href="eda1.html#cb186-16"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(cum_frac <span class="op">%in%</span><span class="st"> </span>deciles) </span>
-<span id="cb186-17"><a href="eda1.html#cb186-17"></a><span class="co"># %in% means: return whatever &quot;matches&quot; between these two vectors</span></span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="eda1.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manual method for calculating quantiles; start with norms_dist values</span></span>
+<span id="cb186-2"><a href="eda1.html#cb186-2" aria-hidden="true" tabindex="-1"></a>norm_manual <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb186-3"><a href="eda1.html#cb186-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample_data =</span> norm_dist) <span class="sc">%&gt;%</span></span>
+<span id="cb186-4"><a href="eda1.html#cb186-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sort the data using</span></span>
+<span id="cb186-5"><a href="eda1.html#cb186-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(sample_data) <span class="sc">%&gt;%</span>  </span>
+<span id="cb186-6"><a href="eda1.html#cb186-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate cumulative fraction for each entry</span></span>
+<span id="cb186-7"><a href="eda1.html#cb186-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">cum_frac =</span> <span class="fu">seq.int</span>(<span class="at">from =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">length</span>(norm_dist), </span>
+<span id="cb186-8"><a href="eda1.html#cb186-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">to =</span> <span class="dv">1</span>,</span>
+<span id="cb186-9"><a href="eda1.html#cb186-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">by =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">length</span>(norm_dist)))</span>
+<span id="cb186-10"><a href="eda1.html#cb186-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb186-11"><a href="eda1.html#cb186-11" aria-hidden="true" tabindex="-1"></a><span class="co"># create a quantile sequence corresponding to deciles</span></span>
+<span id="cb186-12"><a href="eda1.html#cb186-12" aria-hidden="true" tabindex="-1"></a>deciles <span class="ot">&lt;-</span> <span class="fu">seq.int</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb186-13"><a href="eda1.html#cb186-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb186-14"><a href="eda1.html#cb186-14" aria-hidden="true" tabindex="-1"></a><span class="co"># extract quantiles that match the decile values created above </span></span>
+<span id="cb186-15"><a href="eda1.html#cb186-15" aria-hidden="true" tabindex="-1"></a>normal_data_deciles <span class="ot">&lt;-</span> norm_manual <span class="sc">%&gt;%</span> </span>
+<span id="cb186-16"><a href="eda1.html#cb186-16" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cum_frac <span class="sc">%in%</span> deciles) </span>
+<span id="cb186-17"><a href="eda1.html#cb186-17" aria-hidden="true" tabindex="-1"></a><span class="co"># %in% means: return whatever &quot;matches&quot; between these two vectors</span></span></code></pre></div>
 <p>Normal distributions are more complicated than uniform distributions, and it’s
 hard to get a lot out of the decile summary when shown in tabular format. This
 brings us to my favorite part of exploratory data analysis: data visualization.</p>
 </div>
 </div>
-<div id="univariate-data-visualization" class="section level2">
+<div id="univariate-data-visualization" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Univariate Data Visualization</h2>
 <p>Data visualization is a powerful technique for exploring data. Visualizing
 univariate data is the <strong>first step</strong> in getting to know your data, once they
@@ -802,7 +855,7 @@ have been imported and wrangled.</p>
 and shape of univariate data. Later, we will explore relationships between two
 or more variables in <a href="eda2.html#eda2">multivariate data analyses</a>. The techniques shown
 below are simple, powerful, and often underutilized.</p>
-<div id="summary-vs.-enumerative-plots" class="section level3">
+<div id="summary-vs.-enumerative-plots" class="section level3" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Summary vs. Enumerative Plots</h3>
 <p>Univariate data visualizations can be broken down into two categories:
 summary plots and enumerative plots. A <strong>summary plot</strong> shows you the data
@@ -813,7 +866,7 @@ data in a single plot. There are strengths and weaknesses to both:</p>
 <ul>
 <li>Summary plots
 <ul>
-<li>Strengths: Easy to read; easy to see the “main points”.</li>
+<li>Strengths: Easy to read; easy to see the “main points.”</li>
 <li>Weaknesses: Don’t show all of the data; only show you a summary.
 You are more likely to miss nuances or special features when looking at
 a summary plot.</li>
@@ -827,7 +880,7 @@ mean more work for your brain.</li>
 </ul></li>
 </ul>
 </div>
-<div id="cumulative-distribution-plot" class="section level3">
+<div id="cumulative-distribution-plot" class="section level3" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> Cumulative Distribution Plot</h3>
 <p>A cumulative distribution plot is an enumerative plot that lays out the raw
 quantiles, typically on the y-axis, against the observed data on the x-axis.
@@ -843,16 +896,16 @@ The cumulative distribution plot shows the rolling fraction (or percent) of data
 <p>An annotated cumulative distribution plot is shown below for a sample of
 temperature data that follow a normal distribution. For this plot, I calculated
 the <code>unit_quantiles</code> manually to show you how this can be done:</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="eda1.html#cb187-1"></a><span class="co"># randomly sample two variables from normal distributions with `rnorm()`</span></span>
-<span id="cb187-2"><a href="eda1.html#cb187-2"></a>normal_data &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">15</span>, <span class="dt">sd =</span> <span class="dv">5</span>),</span>
-<span id="cb187-3"><a href="eda1.html#cb187-3"></a>                              <span class="dt">b =</span> <span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">3</span>))</span>
-<span id="cb187-4"><a href="eda1.html#cb187-4"></a><span class="co"># create unit quantile values for the `normal_data`</span></span>
-<span id="cb187-5"><a href="eda1.html#cb187-5"></a>normal_data_cdf &lt;-<span class="st"> </span>normal_data <span class="op">%&gt;%</span></span>
-<span id="cb187-6"><a href="eda1.html#cb187-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(a) <span class="op">%&gt;%</span></span>
-<span id="cb187-7"><a href="eda1.html#cb187-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(a) <span class="op">%&gt;%</span></span>
-<span id="cb187-8"><a href="eda1.html#cb187-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">unit_quantiles =</span> <span class="kw">seq.int</span>(<span class="dt">from =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(a), </span>
-<span id="cb187-9"><a href="eda1.html#cb187-9"></a>                                         <span class="dt">to =</span> <span class="dv">1</span>,</span>
-<span id="cb187-10"><a href="eda1.html#cb187-10"></a>                                         <span class="dt">by =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(a)))</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="eda1.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="co"># randomly sample two variables from normal distributions with `rnorm()`</span></span>
+<span id="cb187-2"><a href="eda1.html#cb187-2" aria-hidden="true" tabindex="-1"></a>normal_data <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">a =</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="dv">5</span>),</span>
+<span id="cb187-3"><a href="eda1.html#cb187-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">b =</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">3</span>))</span>
+<span id="cb187-4"><a href="eda1.html#cb187-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create unit quantile values for the `normal_data`</span></span>
+<span id="cb187-5"><a href="eda1.html#cb187-5" aria-hidden="true" tabindex="-1"></a>normal_data_cdf <span class="ot">&lt;-</span> normal_data <span class="sc">%&gt;%</span></span>
+<span id="cb187-6"><a href="eda1.html#cb187-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(a) <span class="sc">%&gt;%</span></span>
+<span id="cb187-7"><a href="eda1.html#cb187-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(a) <span class="sc">%&gt;%</span></span>
+<span id="cb187-8"><a href="eda1.html#cb187-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">unit_quantiles =</span> <span class="fu">seq.int</span>(<span class="at">from =</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">length</span>(a), </span>
+<span id="cb187-9"><a href="eda1.html#cb187-9" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">to =</span> <span class="dv">1</span>,</span>
+<span id="cb187-10"><a href="eda1.html#cb187-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">by =</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">length</span>(a)))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:norm-cdf-plot"></span>
 <img src="images/normal_cum_dist_anno.png" alt="Annotated Cumulative Distribution Plot for Normally-Distributed Temperature Data" width="700pt" />
 <p class="caption">
@@ -881,7 +934,7 @@ distribution. For example, in the temperature example above (Figure
 <a href="eda1.html#fig:norm-cdf-plot">5.4</a>), the curve has geometric <em>symmetry</em> about the median;
 this symmetry indicates that the dispersion of the data is equal as you move
 away from the median in either direction.</p>
-<div id="example-cumulative-distribution-plot" class="section level4">
+<div id="example-cumulative-distribution-plot" class="section level4" number="5.4.2.1">
 <h4><span class="header-section-number">5.4.2.1</span> Example: Cumulative Distribution Plot</h4>
 <p>The <code>ggplot2</code> package can create cumulative distribution plots with different
 <code>geom</code> options:</p>
@@ -896,39 +949,39 @@ United States. These data come from the
 <a href="https://www.nsf.gov/statistics/srvygrads/">NSF Survey of College Graduates</a>.
 I’ve also taken the liberty of identifying the minimum, maximum, and quartile
 values on the plot.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="eda1.html#cb188-1"></a><span class="co"># create cumulative fractions </span></span>
-<span id="cb188-2"><a href="eda1.html#cb188-2"></a>ordered_salaries &lt;-<span class="st"> </span>raw_salaries <span class="op">%&gt;%</span></span>
-<span id="cb188-3"><a href="eda1.html#cb188-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(salary) <span class="op">%&gt;%</span></span>
-<span id="cb188-4"><a href="eda1.html#cb188-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(salary <span class="op">&lt;</span><span class="st"> </span><span class="dv">500000</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># to remove numeric identifiers </span></span>
-<span id="cb188-5"><a href="eda1.html#cb188-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(salary) <span class="op">%&gt;%</span></span>
-<span id="cb188-6"><a href="eda1.html#cb188-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">cum_pct =</span> <span class="kw">seq.int</span>(<span class="dt">from =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(salary),</span>
-<span id="cb188-7"><a href="eda1.html#cb188-7"></a>                                  <span class="dt">to =</span> <span class="dv">1</span>, </span>
-<span id="cb188-8"><a href="eda1.html#cb188-8"></a>                                  <span class="dt">by =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(salary))) </span></code></pre></div>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="eda1.html#cb189-1"></a><span class="co"># alternate method if you don&#39;t want to calculate cumulative fractions</span></span>
-<span id="cb189-2"><a href="eda1.html#cb189-2"></a>ordered_salaries <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb189-3"><a href="eda1.html#cb189-3"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> salary)) <span class="op">+</span></span>
-<span id="cb189-4"><a href="eda1.html#cb189-4"></a><span class="st">  </span><span class="kw">geom_step</span>(<span class="dt">stat =</span> <span class="st">&quot;ecdf&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># &quot;empirical cumulative distribution function&quot;</span></span>
-<span id="cb189-5"><a href="eda1.html#cb189-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Salaries of ME Graduates&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Cumulative Fraction&quot;</span>) <span class="op">+</span></span>
-<span id="cb189-6"><a href="eda1.html#cb189-6"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.05</span>, <span class="fl">1.03</span>), </span>
-<span id="cb189-7"><a href="eda1.html#cb189-7"></a>                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb189-8"><a href="eda1.html#cb189-8"></a>                     <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, </span>
-<span id="cb189-9"><a href="eda1.html#cb189-9"></a>                                  <span class="dt">to =</span> <span class="dv">1</span>, </span>
-<span id="cb189-10"><a href="eda1.html#cb189-10"></a>                                  <span class="dt">by =</span> <span class="fl">0.1</span>)) <span class="op">+</span></span>
-<span id="cb189-11"><a href="eda1.html#cb189-11"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">label_dollar</span>(<span class="dt">scale =</span> <span class="fl">0.001</span>, </span>
-<span id="cb189-12"><a href="eda1.html#cb189-12"></a>                                                   <span class="dt">prefix =</span> <span class="st">&#39;$&#39;</span>, </span>
-<span id="cb189-13"><a href="eda1.html#cb189-13"></a>                                                   <span class="dt">suffix =</span> <span class="st">&#39;k&#39;</span>),</span>
-<span id="cb189-14"><a href="eda1.html#cb189-14"></a>                     <span class="dt">minor_breaks =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>,</span>
-<span id="cb189-15"><a href="eda1.html#cb189-15"></a>                                        <span class="dt">to =</span> <span class="dv">450000</span>,</span>
-<span id="cb189-16"><a href="eda1.html#cb189-16"></a>                                        <span class="dt">by =</span> <span class="dv">10000</span>))<span class="op">+</span></span>
-<span id="cb189-17"><a href="eda1.html#cb189-17"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">quantile</span>(ordered_salaries<span class="op">$</span>salary),</span>
-<span id="cb189-18"><a href="eda1.html#cb189-18"></a>                                 <span class="dt">y =</span> <span class="kw">rep.int</span>(<span class="op">-</span>.<span class="dv">05</span>, <span class="dv">5</span>),</span>
-<span id="cb189-19"><a href="eda1.html#cb189-19"></a>                                 <span class="dt">xend =</span> <span class="kw">quantile</span>(ordered_salaries<span class="op">$</span>salary),</span>
-<span id="cb189-20"><a href="eda1.html#cb189-20"></a>                                 <span class="dt">yend =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.25</span>)),</span>
-<span id="cb189-21"><a href="eda1.html#cb189-21"></a>               <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">xend =</span> xend, <span class="dt">yend =</span> yend),</span>
-<span id="cb189-22"><a href="eda1.html#cb189-22"></a>               <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb189-23"><a href="eda1.html#cb189-23"></a>               <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
-<span id="cb189-24"><a href="eda1.html#cb189-24"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span>
-<span id="cb189-25"><a href="eda1.html#cb189-25"></a>  <span class="kw">ggsave</span>(<span class="st">&quot;./images/cdf_me_salaries.png&quot;</span>, <span class="dt">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="eda1.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create cumulative fractions </span></span>
+<span id="cb188-2"><a href="eda1.html#cb188-2" aria-hidden="true" tabindex="-1"></a>ordered_salaries <span class="ot">&lt;-</span> raw_salaries <span class="sc">%&gt;%</span></span>
+<span id="cb188-3"><a href="eda1.html#cb188-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(salary) <span class="sc">%&gt;%</span></span>
+<span id="cb188-4"><a href="eda1.html#cb188-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(salary <span class="sc">&lt;</span> <span class="dv">500000</span>) <span class="sc">%&gt;%</span> <span class="co"># to remove numeric identifiers </span></span>
+<span id="cb188-5"><a href="eda1.html#cb188-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(salary) <span class="sc">%&gt;%</span></span>
+<span id="cb188-6"><a href="eda1.html#cb188-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">cum_pct =</span> <span class="fu">seq.int</span>(<span class="at">from =</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">length</span>(salary),</span>
+<span id="cb188-7"><a href="eda1.html#cb188-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">to =</span> <span class="dv">1</span>, </span>
+<span id="cb188-8"><a href="eda1.html#cb188-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">by =</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">length</span>(salary))) </span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="eda1.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alternate method if you don&#39;t want to calculate cumulative fractions</span></span>
+<span id="cb189-2"><a href="eda1.html#cb189-2" aria-hidden="true" tabindex="-1"></a>ordered_salaries <span class="sc">%&gt;%</span> </span>
+<span id="cb189-3"><a href="eda1.html#cb189-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> salary)) <span class="sc">+</span></span>
+<span id="cb189-4"><a href="eda1.html#cb189-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_step</span>(<span class="at">stat =</span> <span class="st">&quot;ecdf&quot;</span>) <span class="sc">+</span> <span class="co"># &quot;empirical cumulative distribution function&quot;</span></span>
+<span id="cb189-5"><a href="eda1.html#cb189-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Salaries of ME Graduates&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Cumulative Fraction&quot;</span>) <span class="sc">+</span></span>
+<span id="cb189-6"><a href="eda1.html#cb189-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.05</span>, <span class="fl">1.03</span>), </span>
+<span id="cb189-7"><a href="eda1.html#cb189-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb189-8"><a href="eda1.html#cb189-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, </span>
+<span id="cb189-9"><a href="eda1.html#cb189-9" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">to =</span> <span class="dv">1</span>, </span>
+<span id="cb189-10"><a href="eda1.html#cb189-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">by =</span> <span class="fl">0.1</span>)) <span class="sc">+</span></span>
+<span id="cb189-11"><a href="eda1.html#cb189-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">scale =</span> <span class="fl">0.001</span>, </span>
+<span id="cb189-12"><a href="eda1.html#cb189-12" aria-hidden="true" tabindex="-1"></a>                                                   <span class="at">prefix =</span> <span class="st">&#39;$&#39;</span>, </span>
+<span id="cb189-13"><a href="eda1.html#cb189-13" aria-hidden="true" tabindex="-1"></a>                                                   <span class="at">suffix =</span> <span class="st">&#39;k&#39;</span>),</span>
+<span id="cb189-14"><a href="eda1.html#cb189-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">minor_breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>,</span>
+<span id="cb189-15"><a href="eda1.html#cb189-15" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">to =</span> <span class="dv">450000</span>,</span>
+<span id="cb189-16"><a href="eda1.html#cb189-16" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">by =</span> <span class="dv">10000</span>))<span class="sc">+</span></span>
+<span id="cb189-17"><a href="eda1.html#cb189-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">quantile</span>(ordered_salaries<span class="sc">$</span>salary),</span>
+<span id="cb189-18"><a href="eda1.html#cb189-18" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">y =</span> <span class="fu">rep.int</span>(<span class="sc">-</span>.<span class="dv">05</span>, <span class="dv">5</span>),</span>
+<span id="cb189-19"><a href="eda1.html#cb189-19" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">xend =</span> <span class="fu">quantile</span>(ordered_salaries<span class="sc">$</span>salary),</span>
+<span id="cb189-20"><a href="eda1.html#cb189-20" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">yend =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.25</span>)),</span>
+<span id="cb189-21"><a href="eda1.html#cb189-21" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">xend =</span> xend, <span class="at">yend =</span> yend),</span>
+<span id="cb189-22"><a href="eda1.html#cb189-22" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb189-23"><a href="eda1.html#cb189-23" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb189-24"><a href="eda1.html#cb189-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb189-25"><a href="eda1.html#cb189-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(<span class="st">&quot;./images/cdf_me_salaries.png&quot;</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:cdf-me-salaries"></span>
 <img src="images/cdf_me_salaries.png" alt="Annual Salaries (2017) for US Graduates (all ages) with a Mechanical Engineering Degree" width="500" />
 <p class="caption">
@@ -946,7 +999,7 @@ explore skewed data at several points in this course and discuss some of the
 mechanisms that cause data to be skewed.</p>
 </div>
 </div>
-<div id="hist" class="section level3">
+<div id="hist" class="section level3" number="5.4.3">
 <h3><span class="header-section-number">5.4.3</span> Histogram</h3>
 <p>A histogram is a summary plot of counts, or frequency of observations, as a
 function of magnitude, or levels. Histograms are useful because they allow you
@@ -972,7 +1025,7 @@ majority of the data appear to fall between a range of 20 - 40.</p>
 Figure 5.6: A histogram is a plot of counts, or frequency of observations, as a function of magnitude, or levels, of univariate data.
 </p>
 </div>
-<div id="what-to-look-for-in-a-histogram" class="section level4">
+<div id="what-to-look-for-in-a-histogram" class="section level4" number="5.4.3.1">
 <h4><span class="header-section-number">5.4.3.1</span> What to look for in a histogram?</h4>
 <p>In addition to being able to “see” key data descriptors such as mean, range,
 and spread, a histogram also allows one (a) to get a feel for <strong><em>skewness</em></strong>,
@@ -1019,7 +1072,7 @@ case, we can always rely on quantile calculations for descriptors such as
 median and IQR because those descriptors do not make assumptions about the
 shape of the distribution.</p>
 </div>
-<div id="skew" class="section level4">
+<div id="skew" class="section level4" number="5.4.3.2">
 <h4><span class="header-section-number">5.4.3.2</span> What causes skewed histograms?</h4>
 <p>I want to spend some time thinking about mechanisms that cause variability in
 an observation. These mechanisms are often responsible for whether a set of
@@ -1030,7 +1083,7 @@ exist in the real world.</p>
 <p>A general “rule of thumb” is that <em>additive</em> variability tends to produce
 normally distributed data, whereas mechanisms that cause <em>multiplicative</em>
 variability tend to produce skewed data—often log-normal, as seen in Figure
-<a href="eda1.html#fig:skew-hist-anno-2">5.8</a>). By “additive”, I mean that variable <code>x</code> tends to
+<a href="eda1.html#fig:skew-hist-anno-2">5.8</a>). By “additive,” I mean that variable <code>x</code> tends to
 vary in a “plus/minus” sense about its central tendency. Examples of additive
 variability include the distribution of heights measured in a sample of 3<sup>rd</sup>
 graders or the variability in the mass of a 3D-printed part produced 100 times
@@ -1047,7 +1100,7 @@ that suggest <span class="math inline">\(x = a * b * c\)</span> not <span class=
 multiplicative variability and how it leads to log-normal data are provided
 <a href="dist.html#log_normal_dist">here</a>.</p>
 </div>
-<div id="pdf" class="section level4">
+<div id="pdf" class="section level4" number="5.4.3.3">
 <h4><span class="header-section-number">5.4.3.3</span> Probability Density Function</h4>
 <p>The histogram is really an attempt to visualize the <strong>probability density function</strong>
 (pdf) for a distribution of univariate data. The pdf is a mathematical
@@ -1058,16 +1111,16 @@ expressed empirically (as a numeric approximation) or as an exact analytic
 equation (in the case normal, lognormal, and other <em>known</em> distributional forms).</p>
 </div>
 </div>
-<div id="box" class="section level3">
+<div id="box" class="section level3" number="5.4.4">
 <h3><span class="header-section-number">5.4.4</span> Boxplot</h3>
 <p>The boxplot is summary plot that allows one to view a distribution by its
 quartiles (Figure <a href="eda1.html#fig:boxplot-anno">5.9</a>). The “box” in a boxplot consists of
 three parallel lines, usually oriented vertically, connected on their sides to
-form a box. The outer box lines, also called the “hinges”, represent the 0.25
+form a box. The outer box lines, also called the “hinges,” represent the 0.25
 and 0.75 quantiles, and the inner line represents the 0.5 quantile, or median.
 Thus, the height of the box depicts the inter-quartile range of the data.</p>
 <p>Boxplots are often drawn with lines extending out from each end of the box
-called “whiskers”. These whisker lines vary in their representation. For some
+called “whiskers.” These whisker lines vary in their representation. For some
 plots, the whiskers represent either the maximum and minimum values,
 respectively, or a distance of <span class="math inline">\(1.5\cdot IQR\)</span> if either the maximum or minimum
 value are larger than <span class="math inline">\(1.5\cdot IQR\)</span>. Other times the whiskers represent the 0.9
@@ -1104,18 +1157,18 @@ example, we can add a Boxplot layer to Figure <a href="eda1.html#fig:noaa-temp-p
 we can visualize quartiles in addition to the location, dispersion, and shape
 of the raw data. The ability to layer geoms is one of the many strengths of the
 <code>ggplot2</code> package.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="eda1.html#cb190-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> noaa_temp,</span>
-<span id="cb190-2"><a href="eda1.html#cb190-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> temp_hr_f, </span>
-<span id="cb190-3"><a href="eda1.html#cb190-3"></a>                     <span class="dt">y =</span> location, </span>
-<span id="cb190-4"><a href="eda1.html#cb190-4"></a>                     <span class="dt">fill =</span> location)) <span class="op">+</span></span>
-<span id="cb190-5"><a href="eda1.html#cb190-5"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
-<span id="cb190-6"><a href="eda1.html#cb190-6"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.25</span>,</span>
-<span id="cb190-7"><a href="eda1.html#cb190-7"></a>              <span class="dt">alpha =</span> <span class="fl">0.2</span>,</span>
-<span id="cb190-8"><a href="eda1.html#cb190-8"></a>              <span class="dt">shape =</span> <span class="st">&quot;circle filled&quot;</span>,</span>
-<span id="cb190-9"><a href="eda1.html#cb190-9"></a>              <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
-<span id="cb190-10"><a href="eda1.html#cb190-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Region&quot;</span>,</span>
-<span id="cb190-11"><a href="eda1.html#cb190-11"></a>       <span class="dt">x =</span> <span class="st">&quot;Temperature (°F)&quot;</span>) <span class="op">+</span></span>
-<span id="cb190-12"><a href="eda1.html#cb190-12"></a><span class="st">  </span><span class="kw">theme_bw</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="eda1.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> noaa_temp,</span>
+<span id="cb190-2"><a href="eda1.html#cb190-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> temp_hr_f, </span>
+<span id="cb190-3"><a href="eda1.html#cb190-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> location, </span>
+<span id="cb190-4"><a href="eda1.html#cb190-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">fill =</span> location)) <span class="sc">+</span></span>
+<span id="cb190-5"><a href="eda1.html#cb190-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb190-6"><a href="eda1.html#cb190-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.25</span>,</span>
+<span id="cb190-7"><a href="eda1.html#cb190-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.2</span>,</span>
+<span id="cb190-8"><a href="eda1.html#cb190-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">shape =</span> <span class="st">&quot;circle filled&quot;</span>,</span>
+<span id="cb190-9"><a href="eda1.html#cb190-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb190-10"><a href="eda1.html#cb190-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Region&quot;</span>,</span>
+<span id="cb190-11"><a href="eda1.html#cb190-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Temperature (°F)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb190-12"><a href="eda1.html#cb190-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code></pre></div>
 <div class="figure"><span id="fig:noaa-box-2"></span>
 <img src="05-univar_eda_files/figure-html/noaa-box-2-1.png" alt="Boxplots of hourly temperatures in CO and HI for July, 2010" width="672" />
 <p class="caption">
@@ -1123,7 +1176,7 @@ Figure 5.11: Boxplots of hourly temperatures in CO and HI for July, 2010
 </p>
 </div>
 </div>
-<div id="time_series" class="section level3">
+<div id="time_series" class="section level3" number="5.4.5">
 <h3><span class="header-section-number">5.4.5</span> Time-Series Plot</h3>
 <p>The time-series plot (also called a “run sequence” plot) is something you have
 undoubtedly seen before. This plot, typically shown as an enumerative plot,
@@ -1162,7 +1215,7 @@ Figure 5.13: Time series of hourly temperature measurements in Kauai, Hawaii for
 </p>
 </div>
 </div>
-<div id="autocorr" class="section level3">
+<div id="autocorr" class="section level3" number="5.4.6">
 <h3><span class="header-section-number">5.4.6</span> Autocorrelation Plot</h3>
 <p>Autocorrelation, or serial correlation, means <em>correlated with oneself across
 time</em>. Autocorrelation is a concept that suggests “whatever is happening in
@@ -1213,15 +1266,15 @@ plots (<em>sigh</em>), but there are simple alternatives.</p>
 time, wherein each unit of time represents the duration of a single lag. Here,
 the y-axis represents the Pearson correlation coefficient and the x-axis
 represents time lags for the basic unit of time in which the data are arranged.</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="eda1.html#cb191-1"></a><span class="co"># subset data to contain only measures from Hawaii</span></span>
-<span id="cb191-2"><a href="eda1.html#cb191-2"></a>noaa_temp_hi &lt;-<span class="st"> </span>noaa_temp <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb191-3"><a href="eda1.html#cb191-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(location <span class="op">==</span><span class="st"> &quot;Hawaii&quot;</span>)</span>
-<span id="cb191-4"><a href="eda1.html#cb191-4"></a></span>
-<span id="cb191-5"><a href="eda1.html#cb191-5"></a><span class="co"># call the autocorrelation plot from base R `stats` package</span></span>
-<span id="cb191-6"><a href="eda1.html#cb191-6"></a>stats<span class="op">::</span><span class="kw">acf</span>(noaa_temp_hi<span class="op">$</span>temp_hr_f,</span>
-<span id="cb191-7"><a href="eda1.html#cb191-7"></a>           <span class="dt">main =</span> <span class="st">&quot; &quot;</span> ,</span>
-<span id="cb191-8"><a href="eda1.html#cb191-8"></a>           <span class="dt">xlab =</span> <span class="st">&quot;Lag (hours)&quot;</span>,</span>
-<span id="cb191-9"><a href="eda1.html#cb191-9"></a>           <span class="dt">ylab =</span> <span class="st">&quot;Correlation coefficient&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="eda1.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset data to contain only measures from Hawaii</span></span>
+<span id="cb191-2"><a href="eda1.html#cb191-2" aria-hidden="true" tabindex="-1"></a>noaa_temp_hi <span class="ot">&lt;-</span> noaa_temp <span class="sc">%&gt;%</span> </span>
+<span id="cb191-3"><a href="eda1.html#cb191-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">&quot;Hawaii&quot;</span>)</span>
+<span id="cb191-4"><a href="eda1.html#cb191-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-5"><a href="eda1.html#cb191-5" aria-hidden="true" tabindex="-1"></a><span class="co"># call the autocorrelation plot from base R `stats` package</span></span>
+<span id="cb191-6"><a href="eda1.html#cb191-6" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">acf</span>(noaa_temp_hi<span class="sc">$</span>temp_hr_f,</span>
+<span id="cb191-7"><a href="eda1.html#cb191-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">main =</span> <span class="st">&quot; &quot;</span> ,</span>
+<span id="cb191-8"><a href="eda1.html#cb191-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">&quot;Lag (hours)&quot;</span>,</span>
+<span id="cb191-9"><a href="eda1.html#cb191-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylab =</span> <span class="st">&quot;Correlation coefficient&quot;</span>) </span></code></pre></div>
 <p><img src="05-univar_eda_files/figure-html/acf-plot-1.png" width="672" /></p>
 <p>The plot suggests a <strong>fairly strong level of autocorrelation</strong> in these
 temperature data. We should not be surprised, especially after seeing the time
@@ -1237,23 +1290,23 @@ at 24-hr lags?</p>
 <li>This <em>lack of independence</em> violates the assumptions of many modeling approaches. This is potentially bad.</li>
 </ul>
 </div>
-<div id="partial-autocorrelation-plot" class="section level3">
+<div id="partial-autocorrelation-plot" class="section level3" number="5.4.7">
 <h3><span class="header-section-number">5.4.7</span> Partial Autocorrelation Plot</h3>
 <p>The partial autocorrelation plot is a summary plot that gives the correlation
 coefficient (<em>r</em>) between all timepoints (x<sub>i</sub>) and their lags (x<sub>i+n</sub>) after
 accounting for autocorrelation for all previous lags.</p>
 <p>The partial autocorrelation plot can help you decide: <em>how far out in time should I go in order to assume that measurement (x<sub>i</sub>) is independent from (x<sub>i+n</sub>)?</em></p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="eda1.html#cb192-1"></a><span class="co"># create partial autocorrelation plot</span></span>
-<span id="cb192-2"><a href="eda1.html#cb192-2"></a>stats<span class="op">::</span><span class="kw">pacf</span>(noaa_temp_hi<span class="op">$</span>temp_hr_f,</span>
-<span id="cb192-3"><a href="eda1.html#cb192-3"></a>            <span class="dt">main =</span> <span class="st">&quot; &quot;</span>,</span>
-<span id="cb192-4"><a href="eda1.html#cb192-4"></a>            <span class="dt">xlab =</span> <span class="st">&quot;Lag (hours)&quot;</span>,</span>
-<span id="cb192-5"><a href="eda1.html#cb192-5"></a>            <span class="dt">ylab =</span> <span class="st">&quot;Partial Correlation Coefficient&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="eda1.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create partial autocorrelation plot</span></span>
+<span id="cb192-2"><a href="eda1.html#cb192-2" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">pacf</span>(noaa_temp_hi<span class="sc">$</span>temp_hr_f,</span>
+<span id="cb192-3"><a href="eda1.html#cb192-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">main =</span> <span class="st">&quot; &quot;</span>,</span>
+<span id="cb192-4"><a href="eda1.html#cb192-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlab =</span> <span class="st">&quot;Lag (hours)&quot;</span>,</span>
+<span id="cb192-5"><a href="eda1.html#cb192-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">ylab =</span> <span class="st">&quot;Partial Correlation Coefficient&quot;</span>) </span></code></pre></div>
 <p><img src="05-univar_eda_files/figure-html/pacf-plot-1.png" width="672" /></p>
 <p>In this case, after a 2-hr lag, the data loses most autocorrelation, except for
 some periodicity around 12- and 24-hr lags.</p>
 </div>
 </div>
-<div id="exploring-data" class="section level2">
+<div id="exploring-data" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> Exploring Data</h2>
 <p>The whole point of this chapter comes down to this: when you have new,
 unfamiliar data, the best thing to do is to explore that data graphically.
@@ -1271,7 +1324,7 @@ Figure 5.14: EDA Plots of Annual Salaries among Mech Eng Graduates
 </p>
 </div>
 </div>
-<div id="chapter-5-homework" class="section level2">
+<div id="chapter-5-homework" class="section level2" number="5.6">
 <h2><span class="header-section-number">5.6</span> Chapter 5 Homework</h2>
 <p>You will continue to work with the ozone measurement data introduced in the
 previous chapters. Download the R Markdown template from Canvas. This homework

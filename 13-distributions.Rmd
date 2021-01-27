@@ -5,6 +5,7 @@ Before we delve into distributions, however, we should begin with measures of *c
 
 ```{r dist1, include=FALSE}
 library(tidyverse)
+library(bookdown)
 library(gridExtra)
 library(grid)
 library(broom)
@@ -573,3 +574,23 @@ cor(x, y)
 
 If you wish to quantify correlation between two variables but fear that your data
 violate the Pearson assumptions listed above, then try the ***Spearman Correlation Coefficient*** or ***Lin's Concordance Coefficient***. 
+
+## OLS Regression Coefficients {#OLS}
+
+In [Chapter 11](#model) we discuss how to create a simple linear model (regression) between two observed variables $X$ and $Y$.  Here, we present the math behind an OLS linear fit, where the goal is to estimate model coefficients for the intercept ($\beta_{0}$) and slope ($\beta_{1}$) of the line between $Y$ and $X$ such that:
+
+$$Y = \beta_{0} + \beta_{1}\cdot X + \epsilon$$
+
+where the last term, $\epsilon$, represents the model error, or residual.
+
+To calculate the slope term, $\beta_{1}$, we multiply the [Pearson correlation coefficient](#pearson) (i.e., `cor(x, y)`) by the ratio of the standard deviations for $Y$ and $X$ (i.e., `sd(y)/sd(x)`):
+
+$$\beta_{1} = r\cdot\frac{\hat\sigma_y}{\hat\sigma_x}$$
+
+This is mathematically equivalent to taking the ratio of the *covariance* between $X,Y$ to the *variance* of $X$:
+
+$$\beta_{1} = \frac{cov(x,y)}{var(x)} = \frac{\sum_{i=1}^{n}(x_{i} - \bar{x})\cdot(y_{i} - \bar{y})}{\sum_{i=1}^{n}(x_{i}-\bar{x})^2}$$
+
+Once we know the slope term ($\beta_{1}$) we calculate the intercept ($\beta_{0}$) using $\beta_{1}$ and the sample means:
+
+$$\beta_{0} =\bar{Y} - (\beta_{1}\cdot \bar{X})$$

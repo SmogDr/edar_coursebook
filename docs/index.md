@@ -1,11 +1,11 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens and Kathleen E. Wendt"
-date: "2021-01-11"
+date: "2021-01-27"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
-bibliography: 
+bibliography: packages.bib
 biblio-style: apalike
 link-citations: yes
 description: "This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language."
@@ -17,7 +17,7 @@ description: "This is an undergraduate technical elective course for mechanical 
 ```
 
 ```
-## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
+## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
 ## ✓ tibble  3.0.4     ✓ dplyr   1.0.2
 ## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
 ## ✓ readr   1.4.0     ✓ forcats 0.5.0
