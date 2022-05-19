@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Getting and Cleaning Data | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Getting and Cleaning Data | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-27" />
+<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="rprog1.html"/>
 <link rel="next" href="dataviz.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -119,6 +120,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -478,10 +480,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rprog2" class="section level1" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Getting and Cleaning Data</h1>
-<div id="ch.-3-objectives" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Ch. 3 Objectives</h2>
+<div id="rprog2" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Getting and Cleaning Data<a href="rprog2.html#rprog2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="ch.-3-objectives" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Ch. 3 Objectives<a href="rprog2.html#ch.-3-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This chapter is designed around the following learning objectives. Upon
 completing this chapter, you should be able to:</p>
 <ul>
@@ -505,8 +507,8 @@ create subsets of a dataframe based on logical conditions</li>
 <li>Create R Markdown documents and describe their basic content and function</li>
 </ul>
 </div>
-<div id="overview" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Overview</h2>
+<div id="overview" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Overview<a href="rprog2.html#overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are four basic steps you will often repeat as you prepare to analyze data
 in R:</p>
 <ol style="list-style-type: decimal">
@@ -522,8 +524,8 @@ support a streamlined data analysis.</li>
 deeper into some related topics you should learn now to make your life easier
 as you get started using R for data analysis.</p>
 </div>
-<div id="reading-data-into-r" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Reading data into R</h2>
+<div id="reading-data-into-r" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Reading data into R<a href="rprog2.html#reading-data-into-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Data comes in files of all shapes and sizes. R has the capability to import
 data from many files types and locations, even proprietary files for other
 software. Here are some of the types of data files that R can read and work with:</p>
@@ -547,8 +549,8 @@ functions like <code>scan()</code> and <code>readLines()</code> to read the data
 and then using regular expressions to clean up the data as it gets imported. For
 this course, however, we will begin with less challenging file formats (and
 degrees of messiness).</p>
-<div id="reading-local-flat-files" class="section level3" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Reading local flat files</h3>
+<div id="reading-local-flat-files" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Reading local flat files<a href="rprog2.html#reading-local-flat-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Much of the data that you will want to read in will be in <strong>flat files</strong> that
 are stored locally (i.e., on your computer’s hard drive). A <em>flat file</em> is
 basically a file that you can open using a text editor. The most
@@ -637,28 +639,14 @@ you could either use <code>read_table()</code> with a <code>delim</code> argumen
 <span id="cb116-2"><a href="rprog2.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The following two calls do the same thing</span></span>
 <span id="cb116-3"><a href="rprog2.html#cb116-3" aria-hidden="true" tabindex="-1"></a>ebola <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_delim</span>(<span class="at">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="rprog2.html#cb117-1" aria-hidden="true" tabindex="-1"></a>ebola <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## 
+<pre><code>## Rows: 122 Columns: 18
 ## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   Date = col_character(),
-##   Day = col_double(),
-##   Cases_Guinea = col_double(),
-##   Cases_Liberia = col_double(),
-##   Cases_SierraLeone = col_double(),
-##   Cases_Nigeria = col_double(),
-##   Cases_Senegal = col_double(),
-##   Cases_UnitedStates = col_double(),
-##   Cases_Spain = col_double(),
-##   Cases_Mali = col_double(),
-##   Deaths_Guinea = col_double(),
-##   Deaths_Liberia = col_double(),
-##   Deaths_SierraLeone = col_double(),
-##   Deaths_Nigeria = col_double(),
-##   Deaths_Senegal = col_double(),
-##   Deaths_UnitedStates = col_double(),
-##   Deaths_Spain = col_double(),
-##   Deaths_Mali = col_double()
-## )</code></pre>
+## Delimiter: &quot;,&quot;
+## chr  (1): Date
+## dbl (17): Day, Cases_Guinea, Cases_Liberia, Cases_SierraLeone, Cases_Nigeria...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div class="rmdtip">
 <p>
 The message that R prints after this call (“Parsed with column specification: …”) lets you know what classes were used for each column. This function tries to guess the appropriate class and typically gets it right. You can suppress the message using the <code>cols_types = cols()</code> argument, or by adjusting the code chunk options in an R Markdown. If <code>readr</code> doesn’t correctly assign some of the columns classes, you can use the <code>type_convert()</code> function for R to guess again after you’ve tweaked the formats of the rogue columns.
@@ -738,8 +726,8 @@ The <code>readr</code> package is a member of the <code>tidyverse</code> suite o
 </p>
 </div>
 </div>
-<div id="reading-in-other-file-types" class="section level3" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Reading in other file types</h3>
+<div id="reading-in-other-file-types" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Reading in other file types<a href="rprog2.html#reading-in-other-file-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Later in the course, we’ll talk about how to open a variety of other file types
 in R. You might find it immediately useful to be able to read in files from
 other statistical programs.</p>
@@ -778,10 +766,10 @@ They allow you to read in files from the following formats:</p>
 </table>
 </div>
 </div>
-<div id="directories-and-pathnames" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Directories and pathnames</h2>
-<div id="directory-structure" class="section level3" number="3.4.1">
-<h3><span class="header-section-number">3.4.1</span> Directory structure</h3>
+<div id="directories-and-pathnames" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Directories and pathnames<a href="rprog2.html#directories-and-pathnames" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="directory-structure" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Directory structure<a href="rprog2.html#directory-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>So far, we’ve only looked at reading in files that are located in your current
 working directory. For example, if you’re working in an R Project, by default
 the project will open with that directory as the working directory, so you can
@@ -829,7 +817,7 @@ probably created new directories to store data files and Word documents for a
 specific project.</p>
 <p>Figure <a href="rprog2.html#fig:filedirstructure">3.1</a> gives an example file directory structure
 for a hypothetical computer. Directories are shown in blue, and files in green.</p>
-<div class="figure" style="text-align: center"><span id="fig:filedirstructure"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:filedirstructure"></span>
 <img src="figures/FileDirectoryStructure.png" alt="An example of file directory structure." width="600pt" />
 <p class="caption">
 Figure 3.1: An example of file directory structure.
@@ -856,8 +844,8 @@ Figure <a href="rprog2.html#fig:filedirstructure">3.1</a>, the home directory is
 <code>/Users/brookeanderson</code>. I’ll describe just a bit later how you can figure out
 what your own home directory is on your own computer.</p>
 </div>
-<div id="working-directory" class="section level3" number="3.4.2">
-<h3><span class="header-section-number">3.4.2</span> Working directory</h3>
+<div id="working-directory" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Working directory<a href="rprog2.html#working-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When you run R, it’s always running from within some working directory, which
 will be one of the directories somewhere in your computer’s directory
 structure. At any time, you can figure out which directory R is working in by
@@ -882,8 +870,8 @@ file for the project is stored. This is one of the reasons why we always create
 a new R Project when starting a data analysis - RStudio projects remember where
 to look!</p>
 </div>
-<div id="file-and-directory-pathnames" class="section level3" number="3.4.3">
-<h3><span class="header-section-number">3.4.3</span> File and directory pathnames</h3>
+<div id="file-and-directory-pathnames" class="section level3 hasAnchor" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> File and directory pathnames<a href="rprog2.html#file-and-directory-pathnames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Once you get a picture of how your directories and files are organized, you can
 use pathnames, either absolute or relative, to read in files from different
 directories outside your current working directory. Pathnames are the
@@ -999,8 +987,8 @@ vector of filenames you can do things like ask logical questions (does this file
 exist?), or count the number of files, or pass a relative path to a new
 function…</p>
 </div>
-<div id="tangent-paste" class="section level3" number="3.4.4">
-<h3><span class="header-section-number">3.4.4</span> Tangent: <code>paste</code></h3>
+<div id="tangent-paste" class="section level3 hasAnchor" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> Tangent: <code>paste</code><a href="rprog2.html#tangent-paste" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This is a good opportunity to explain how to use some functions that can be
 very helpful when you’re using relative or absolute pathnames: <code>paste()</code> and
 <code>paste0()</code>. It’s important that you understand that you can save a pathname
@@ -1054,8 +1042,8 @@ heat_mort &lt;- read_csv(file = my_file)</code></pre>
 this is a good example of how you can start using these functions to start to
 get a feel for them.</p>
 </div>
-<div id="reading-online-flat-files" class="section level3" number="3.4.5">
-<h3><span class="header-section-number">3.4.5</span> Reading online flat files</h3>
+<div id="reading-online-flat-files" class="section level3 hasAnchor" number="3.4.5">
+<h3><span class="header-section-number">3.4.5</span> Reading online flat files<a href="rprog2.html#reading-online-flat-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>So far, I’ve only shown you how to import data from files that are saved to
 your computer. R can also read in data directly from the web. If a flat file is
 posted online, you can read it into R in almost exactly the same way that you
@@ -1071,7 +1059,7 @@ Dropbox.</p>
 <span id="cb141-2"><a href="rprog2.html#cb141-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;ebola/master/country_timeseries.csv&quot;</span>)</span>
 <span id="cb141-3"><a href="rprog2.html#cb141-3" aria-hidden="true" tabindex="-1"></a>ebola <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> url)</span>
 <span id="cb141-4"><a href="rprog2.html#cb141-4" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(<span class="at">.data =</span> (dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">.data =</span> ebola, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)), <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 3
+<pre><code>## # A tibble: 3 × 3
 ##   Date       Day Cases_Guinea
 ##   &lt;chr&gt;    &lt;dbl&gt;        &lt;dbl&gt;
 ## 1 1/5/2015   289         2776
@@ -1079,8 +1067,8 @@ Dropbox.</p>
 ## 3 1/3/2015   287         2769</code></pre>
 </div>
 </div>
-<div id="data-cleaning" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Data cleaning</h2>
+<div id="data-cleaning" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Data cleaning<a href="rprog2.html#data-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Once you have loaded data into R, you’ll likely need to clean it up a little
 before you’re ready to analyze it. Here, I’ll go over the first steps of how to
 do that with functions from <code>dplyr</code>, another package in the tidyverse. Here are
@@ -1122,7 +1110,7 @@ done so already.</p>
 <p>I’ve used this data in previous examples, but as a reminder, here’s what it
 looks like:</p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="rprog2.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> daily_show)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 5
+<pre><code>## # A tibble: 6 × 5
 ##    YEAR GoogleKnowlege_Occupation Show    Group  Raw_Guest_List  
 ##   &lt;dbl&gt; &lt;chr&gt;                     &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;           
 ## 1  1999 actor                     1/11/99 Acting Michael J. Fox  
@@ -1131,8 +1119,8 @@ looks like:</p>
 ## 4  1999 film actress              1/14/99 Acting Gillian Anderson
 ## 5  1999 actor                     1/18/99 Acting David Alan Grier
 ## 6  1999 actor                     1/19/99 Acting William Baldwin</code></pre>
-<div id="renaming-columns" class="section level3" number="3.5.1">
-<h3><span class="header-section-number">3.5.1</span> Renaming columns</h3>
+<div id="renaming-columns" class="section level3 hasAnchor" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Renaming columns<a href="rprog2.html#renaming-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A first step is often renaming the columns of the dataframe. It can be hard to
 work with a column name that:</p>
 <ul>
@@ -1163,7 +1151,7 @@ using <code>rename()</code>, for example, you would run:</p>
 <span id="cb149-5"><a href="rprog2.html#cb149-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">category =</span> Group,</span>
 <span id="cb149-6"><a href="rprog2.html#cb149-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">guest_name =</span> Raw_Guest_List)</span>
 <span id="cb149-7"><a href="rprog2.html#cb149-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> daily_show, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 5
+<pre><code>## # A tibble: 3 × 5
 ##    year job                date    category guest_name     
 ##   &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;          
 ## 1  1999 actor              1/11/99 Acting   Michael J. Fox 
@@ -1187,8 +1175,8 @@ package (and send you a message stating as much). This can be tricky business
 when your R session has many packages running, which is why it never hurts to
 be <strong>explicit</strong> in your function calls.</p>
 </div>
-<div id="selecting-columns" class="section level3" number="3.5.2">
-<h3><span class="header-section-number">3.5.2</span> Selecting columns</h3>
+<div id="selecting-columns" class="section level3 hasAnchor" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Selecting columns<a href="rprog2.html#selecting-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Next, you may want to select only some columns of the dataframe. You can use
 the <code>select()</code> function from <code>dplyr</code> to subset the dataframe to certain
 columns. The basic structure of this command is:</p>
@@ -1199,7 +1187,7 @@ column names to include in the output dataframe, with commas between each
 column name. For example, to select all columns in <code>daily_show</code> except <code>year</code>
 (since that information is already included in <code>date</code>), run:</p>
 <div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="rprog2.html#cb152-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">.data =</span> daily_show, job, date, category, guest_name)</span></code></pre></div>
-<pre><code>## # A tibble: 2,693 x 4
+<pre><code>## # A tibble: 2,693 × 4
 ##    job                date    category guest_name      
 ##    &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;           
 ##  1 actor              1/11/99 Acting   Michael J. Fox  
@@ -1224,15 +1212,15 @@ columns we want, we can use <code>-</code> with only the columns we don’t want
 save time (notice the object reassignment/override):</p>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="rprog2.html#cb154-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">.data =</span> daily_show, <span class="sc">-</span>year)</span>
 <span id="cb154-2"><a href="rprog2.html#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> daily_show, <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 4
+<pre><code>## # A tibble: 3 × 4
 ##   job                date    category guest_name     
 ##   &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;          
 ## 1 actor              1/11/99 Acting   Michael J. Fox 
 ## 2 Comedian           1/12/99 Comedy   Sandra Bernhard
 ## 3 television actress 1/13/99 Acting   Tracey Ullman</code></pre>
 </div>
-<div id="add-or-change-columns" class="section level3" number="3.5.3">
-<h3><span class="header-section-number">3.5.3</span> Add or change columns</h3>
+<div id="add-or-change-columns" class="section level3 hasAnchor" number="3.5.3">
+<h3><span class="header-section-number">3.5.3</span> Add or change columns<a href="rprog2.html#add-or-change-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You can change a column or add a new column using the <code>mutate()</code> function from
 the <code>dplyr</code> package. That function has the syntax:</p>
 <div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="rprog2.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generic code; will not run</span></span>
@@ -1253,7 +1241,7 @@ function:</p>
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="rprog2.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;stringr&quot;</span>)</span>
 <span id="cb159-2"><a href="rprog2.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">.data =</span> daily_show, </span>
 <span id="cb159-3"><a href="rprog2.html#cb159-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">job =</span> <span class="fu">str_to_lower</span>(<span class="at">string =</span> job))</span></code></pre></div>
-<pre><code>## # A tibble: 2,693 x 4
+<pre><code>## # A tibble: 2,693 × 4
 ##    job                date    category guest_name      
 ##    &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;           
 ##  1 actor              1/11/99 Acting   Michael J. Fox  
@@ -1270,8 +1258,8 @@ function:</p>
 <p>We will take a deeper dive into strings and the <code>stringr</code> package
 <a href="rprog3.html#rprog3">later on</a>.</p>
 </div>
-<div id="base-r-equivalents-to-dplyr-functions" class="section level3" number="3.5.4">
-<h3><span class="header-section-number">3.5.4</span> Base R equivalents to <code>dplyr</code> functions</h3>
+<div id="base-r-equivalents-to-dplyr-functions" class="section level3 hasAnchor" number="3.5.4">
+<h3><span class="header-section-number">3.5.4</span> Base R equivalents to <code>dplyr</code> functions<a href="rprog2.html#base-r-equivalents-to-dplyr-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Just so you know, all of these <code>dplyr</code> functions have alternatives, either
 functions or processes, in base R:</p>
 <table>
@@ -1311,8 +1299,8 @@ example, under <code>slice()</code>, there are others such as <code>slice_max()<
 dataset based on user input in the required arguments, including <code>n</code> and
 <code>order_by</code>.</p>
 </div>
-<div id="filtering-to-certain-rows" class="section level3" number="3.5.5">
-<h3><span class="header-section-number">3.5.5</span> Filtering to certain rows</h3>
+<div id="filtering-to-certain-rows" class="section level3 hasAnchor" number="3.5.5">
+<h3><span class="header-section-number">3.5.5</span> Filtering to certain rows<a href="rprog2.html#filtering-to-certain-rows" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Next, you might want to filter the dataset to certain rows. For example, you
 might want to get a dataset with only the guests from 2015, or only guests who
 are scientists.</p>
@@ -1326,7 +1314,7 @@ data frame that only includes guests who were scientists, you can run:</p>
 <div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="rprog2.html#cb162-1" aria-hidden="true" tabindex="-1"></a>scientists <span class="ot">&lt;-</span> <span class="fu">filter</span>(<span class="at">.data =</span> daily_show, </span>
 <span id="cb162-2"><a href="rprog2.html#cb162-2" aria-hidden="true" tabindex="-1"></a>                     category <span class="sc">==</span> <span class="st">&quot;Science&quot;</span>)</span>
 <span id="cb162-3"><a href="rprog2.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> scientists)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 4
+<pre><code>## # A tibble: 6 × 4
 ##   job            date    category guest_name            
 ##   &lt;chr&gt;          &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;                 
 ## 1 neurosurgeon   4/28/03 Science  Dr Sanjay Gupta       
@@ -1392,8 +1380,8 @@ Two common mistakes with logical operators are: (1) Using <code>=</code> instead
 </div>
 </div>
 </div>
-<div id="piping" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> Piping</h2>
+<div id="piping" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Piping<a href="rprog2.html#piping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>So far, I’ve shown how to use these <code>dplyr</code> functions one at a time to clean up
 the data, reassigning the dataframe object at each step; however, there’s a
 trick called “piping” (with <code>%&gt;%</code>) that will let you complete multiple data
@@ -1453,8 +1441,8 @@ Piping with <code>%&gt;%</code> should only be used when you want to perform suc
 </p>
 </div>
 </div>
-<div id="markdowns" class="section level2" number="3.7">
-<h2><span class="header-section-number">3.7</span> Markdowns</h2>
+<div id="markdowns" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Markdowns<a href="rprog2.html#markdowns" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A <strong><em>markdown</em></strong> is a file format designed for the internet. Markdown files
 allow you to enter plain text into a file, format that text, and embed
 code/images/data into the file (everything you are reading in this coursebook
@@ -1473,8 +1461,8 @@ read them.<br />
 why you did it, what you found, and any conclusions (or follow-on questions)
 you can draw from the work.</li>
 </ul>
-<div id="r-markdowns" class="section level3" number="3.7.1">
-<h3><span class="header-section-number">3.7.1</span> R Markdowns</h3>
+<div id="r-markdowns" class="section level3 hasAnchor" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> R Markdowns<a href="rprog2.html#r-markdowns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The R Studio IDE can create <strong><em>“R Markdowns”</em></strong> (file extension .Rmd)
 specifically for the R programming environment. An R markdown file allows you
 do lots of things; we will use them to create assignments and homework reports
@@ -1483,10 +1471,10 @@ markdown format, you need to install the <code>rmarkdown</code> package: <code>i
 <p><strong>Going forward, all of your homework and coding assignments will be created and submitted in the R Markdown format using either html or pdf outputs. This may seem uncomfortable at first but you will get accustomed to this format quickly.</strong></p>
 <p>Each R markdown file contains three basic elements: header, text, and code chunks. I will explain each of these elements below, but I recommend a visit to the <a href="https://rmarkdown.rstudio.com/docs/articles/rmarkdown.html" target="_blank">R Markdown section</a> on the RStudio website. A detailed guide on many of the R markdown output styles (beyond just html and pdf files) is provided in <a href="https://bookdown.org/yihui/rmarkdown/" target="_blank">R Markdown: The Definitive Guide</a>.</p>
 </div>
-<div id="header" class="section level3" number="3.7.2">
-<h3><span class="header-section-number">3.7.2</span> Header</h3>
+<div id="header" class="section level3 hasAnchor" number="3.7.2">
+<h3><span class="header-section-number">3.7.2</span> Header<a href="rprog2.html#header" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The R Markdown “header” section is where you specify details about the file being created. A markdown header contains <strong>YAML</strong> metadata, which stands for <a href="https://yaml.org/spec/1.2/spec.html#Introduction" target="_blank"><em>“YAML Ain’t Markup Language”</em></a>. The YAML (pronounced like “camel”) header is essentially a list of directives (referred to as “key:value” pairs) that help application software interpret the file. A YAML header can act simultaneously as a “configuration file,” a “log file,” and “translator file” - allowing one software program to read the output of another program. An example header with YAML metadata is shown below.</p>
-<div class="figure" style="text-align: center"><span id="fig:YAML-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:YAML-1"></span>
 <img src="images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file." width="500" />
 <p class="caption">
 Figure 3.2: Example of a YAML header to render an R Markdown into an html file.
@@ -1500,7 +1488,7 @@ The YAML header is optional in an R Markdown and default key:value pairs will be
 </p>
 </div>
 <p>Sometimes, you will want to provide nested formatting directives in your markdown header. For example, you can specify the addition of a <strong><em>“table of contents”</em></strong> to your html output file that <strong><em>“floats”</em></strong> alongside the text. In that case, your YAML metadata would look like this:</p>
-<div class="figure" style="text-align: center"><span id="fig:YAML-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:YAML-2"></span>
 <img src="images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents." width="497" />
 <p class="caption">
 Figure 3.3: Example R Markdown header with nested YAML directives to render an html file with a floating table of contents.
@@ -1508,8 +1496,8 @@ Figure 3.3: Example R Markdown header with nested YAML directives to render an h
 </div>
 <p>An important detail to remember with nested YAML metadata is that each nested command <strong>must be indented by 2 spaces</strong> to be interpreted properly.</p>
 </div>
-<div id="text" class="section level3" number="3.7.3">
-<h3><span class="header-section-number">3.7.3</span> Text</h3>
+<div id="text" class="section level3 hasAnchor" number="3.7.3">
+<h3><span class="header-section-number">3.7.3</span> Text<a href="rprog2.html#text" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The default space within an R markdown is a plain text editor, similar to a normal word processing file. Formatting text is more tedious in markdown files (a small price to pay given their versatility). Some basic formatting operations are shown below.</p>
 <table>
 <thead>
@@ -1546,17 +1534,17 @@ Figure 3.3: Example R Markdown header with nested YAML directives to render an h
 <p>To see a more complete set of formatting options see the <a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf" target="_blank">R Markdown CheatSheet</a>
 provided by RStudio.</p>
 </div>
-<div id="code-chunks" class="section level3" number="3.7.4">
-<h3><span class="header-section-number">3.7.4</span> Code Chunks</h3>
+<div id="code-chunks" class="section level3 hasAnchor" number="3.7.4">
+<h3><span class="header-section-number">3.7.4</span> Code Chunks<a href="rprog2.html#code-chunks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Code chunks are the places where you write and execute R code. A code chunk is initiated with 3 back ticks <code>```</code>, followed by a set of <em>braces</em> { }, or curly brackets, wihtin which you can name the chunk and specify <code>chunk options</code>. The chunk options tell the <code>knitr</code> package (the package that renders an R markdown into an output style) how you want that chunk to run and what to do with the output. A list of chunk options can be found <a href="https://yihui.org/knitr/options/" target="_blank">here</a>. An example markdown is shown below:</p>
-<div class="figure" style="text-align: center"><span id="fig:markdown-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:markdown-1"></span>
 <img src="images/markdown_anno.png" alt="Example R Markdown showing header, text, and code chunks." width="1000" />
 <p class="caption">
 Figure 3.4: Example R Markdown showing header, text, and code chunks.
 </p>
 </div>
 <p>Once your markdown is complete, you can <em>render</em> it into an output file (e.g., html, pdf, doc, rtf) using the <code>knitr</code> package, which interprets your YAML header and “knits” the markdown sections into the desired format. Here is the same markdown rendered into an html document using the <code>knit</code> button.</p>
-<div class="figure" style="text-align: center"><span id="fig:markdown-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:markdown-2"></span>
 <img src="images/markdown_render.png" alt="Example R Markdown when &quot;rendered&quot; into an html document." width="700" />
 <p class="caption">
 Figure 3.5: Example R Markdown when “rendered” into an html document.
@@ -1564,8 +1552,8 @@ Figure 3.5: Example R Markdown when “rendered” into an html document.
 </div>
 </div>
 </div>
-<div id="chapter-3-exercises" class="section level2" number="3.8">
-<h2><span class="header-section-number">3.8</span> Chapter 3 Exercises</h2>
+<div id="chapter-3-exercises" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> Chapter 3 Exercises<a href="rprog2.html#chapter-3-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The following sections includes exercises for each lecture regarding Chapter 3.
 Rhetorical or group discussion questions are also included to help you think
 about <em>why</em> we are making certain workflow recommendations and to get you in
@@ -1574,8 +1562,8 @@ questions will require you to look outside of the lecture and coursebook. These
 are optional and do not include answers within the coursebook, but give them a
 shot. They cover concepts that are important to you as an independent R
 programmer.</p>
-<div id="set-1-pathnames-and-data-import" class="section level3" number="3.8.1">
-<h3><span class="header-section-number">3.8.1</span> Set 1: Pathnames and data import</h3>
+<div id="set-1-pathnames-and-data-import" class="section level3 hasAnchor" number="3.8.1">
+<h3><span class="header-section-number">3.8.1</span> Set 1: Pathnames and data import<a href="rprog2.html#set-1-pathnames-and-data-import" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol start="0" style="list-style-type: decimal">
 <li><p>Open your class R Project locally. Restart session, if your R Project is
 already open. Create an R script (e.g., <code>ch-3-exercises.R</code>) and save it in the
@@ -1633,8 +1621,8 @@ small, regular commits and intermittent pushes in everything you do in R.</p></l
 <span id="cb167-22"><a href="rprog2.html#cb167-22" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ozone_data)</span>
 <span id="cb167-23"><a href="rprog2.html#cb167-23" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(ozone_data<span class="sc">$</span>[selected_colname]) <span class="co"># example structure; will not run</span></span></code></pre></div>
 </div>
-<div id="set-2-data-wrangling-and-piping" class="section level3" number="3.8.2">
-<h3><span class="header-section-number">3.8.2</span> Set 2: Data wrangling and piping</h3>
+<div id="set-2-data-wrangling-and-piping" class="section level3 hasAnchor" number="3.8.2">
+<h3><span class="header-section-number">3.8.2</span> Set 2: Data wrangling and piping<a href="rprog2.html#set-2-data-wrangling-and-piping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><em>Note</em>: In the real world, you would not receive such a “tidy” data file as you
 will use for the following exercises. You would normally need to clean up the
 file structure, variables, and column names before anything else, typically
@@ -1714,8 +1702,8 @@ conventions.</p></li>
 <span id="cb168-39"><a href="rprog2.html#cb168-39" aria-hidden="true" tabindex="-1"></a>ozone_hourly <span class="ot">&lt;-</span> ozone_hourly <span class="sc">%&gt;%</span> </span>
 <span id="cb168-40"><a href="rprog2.html#cb168-40" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ozone_ppb =</span> sample_measurement<span class="sc">*</span><span class="dv">1000</span>)</span></code></pre></div>
 </div>
-<div id="set-3-r-markdown" class="section level3" number="3.8.3">
-<h3><span class="header-section-number">3.8.3</span> Set 3: R Markdown</h3>
+<div id="set-3-r-markdown" class="section level3 hasAnchor" number="3.8.3">
+<h3><span class="header-section-number">3.8.3</span> Set 3: R Markdown<a href="rprog2.html#set-3-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol start="0" style="list-style-type: decimal">
 <li><p>Open your class R Project locally. Restart session, if R Project is already
 open.</p></li>
@@ -1739,13 +1727,13 @@ Markdown file. Organize this code into relevant headings and within
 thematically appropriate code chunks. For example, the code for data import
 would be in its own code chunk.</p></li>
 <li><p>Add first- , second-, and third-order headings (e.g., “Data Import,” “Using
-Relative Pathname,” "Using Absolute Pathname), using the appropriate Markdown
+Relative Pathname,” “Using Absolute Pathname), using the appropriate Markdown
 symbol. <em>What does this symbol also do (to a completely different effect) within R scripts or inside R Markdown code chunks?</em></p></li>
 <li><p>Knit this document to HTML and/or PDF and examine how R Markdown returns
 output.</p></li>
 </ol>
-<div id="challenge-questions" class="section level4" number="3.8.3.1">
-<h4><span class="header-section-number">3.8.3.1</span> Challenge Questions</h4>
+<div id="challenge-questions" class="section level4 hasAnchor" number="3.8.3.1">
+<h4><span class="header-section-number">3.8.3.1</span> Challenge Questions<a href="rprog2.html#challenge-questions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">
 <li><p>Change the date to a YYYY-MM-DD format within the R Markdown YAML such that
 it changes <em>every time</em> you re-knit the document on a different day.</p></li>
@@ -1760,8 +1748,8 @@ Compare these to what can be done in an individual code chunk.</p></li>
 </div>
 </div>
 </div>
-<div id="chapter-3-homework" class="section level2" number="3.9">
-<h2><span class="header-section-number">3.9</span> Chapter 3 Homework</h2>
+<div id="chapter-3-homework" class="section level2 hasAnchor" number="3.9">
+<h2><span class="header-section-number">3.9</span> Chapter 3 Homework<a href="rprog2.html#chapter-3-homework" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You will continue to explore and manipulate data on ozone measurements in Fort
 Collins, CO during January 2019.</p>
 <p>On Canvas, download the ozone data (.csv) and R Markdown template (.Rmd),
@@ -1792,7 +1780,6 @@ latest knit occurs after the deadline.</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1811,6 +1798,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -1831,6 +1819,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

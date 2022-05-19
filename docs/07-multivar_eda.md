@@ -126,7 +126,7 @@ Does this mean lighters in your pocket *cause* lung cancer?
 </div>
 
 Let's take a closer look at the dangers of mistaking a *correlated*
-relationship as *causal* relationship between two variables. Shown below is a
+relationship as a *causal* relationship between two variables. Shown below is a
 scatterplot that builds off the `mpg` dataset we first discussed in Chapter
 \@ref(dataviz). Using the `mpg` dataframe, we will plot the relationship
 between the number of cylinders in an engine (`cyl`) (independent variable)
@@ -140,7 +140,7 @@ and that vehicle's fuel economy (`hwy`) (dependent variable).
 Looking at this plot, there appears a clear correlation between the number of
 cylinders in a vehicle and its fuel efficiency. A linear fit through these data
 gives a Pearson correlation coefficient of -0.76, which is not a perfect
-relationship but a strong one, nonethless. Does this mean that a 
+relationship but a strong one, nonetheless. Does this mean that a 
 *causal relationship* exists? If so, then we only need to mandate that all
 future vehicles on the road be built with 4-cylinder engines, if we want more a
 fuel-efficient fleet! That mandate, of course, would likely produce minimal
@@ -151,7 +151,7 @@ Those who understand internal combustion know that the number of cylinders is a
 design parameter related more to engine power than to engine efficiency. In
 other words, the number of cylinders helps determine total displacement
 volume. Indeed, the causal relationship for fuel efficiency, in terms of miles
-traveled per gallon, is due more directly to engine conversion efficiency,
+traveled per gallon, is due more directly to the energy conversion efficiency of the engine,
 vehicle drag coefficient, and vehicle mass. If you want more fuel-efficient
 cars and trucks, you need more efficient engines that weigh less. In the 1990s
 and early 2000s nearly all engine blocks were made from cast iron. Today,
@@ -449,15 +449,15 @@ head(df_mpg)
 ```
 
 ```
-## # A tibble: 6 x 13
-##      id make  model  year   cyl displ drive tran  v_class fuel_type comb08
-##   <dbl> <fct> <chr> <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
-## 1 15589 Acura NSX    2000     6   3   Rear… Auto… Two Se… Premium …     18
-## 2 15590 Acura NSX    2000     6   3.2 Rear… Manu… Two Se… Premium …     18
-## 3 15591 BMW   M Co…  2000     6   3.2 Rear… Manu… Two Se… Premium …     19
-## 4 15592 BMW   Z3 C…  2000     6   2.8 Rear… Auto… Two Se… Premium …     19
-## 5 15593 BMW   Z3 C…  2000     6   2.8 Rear… Manu… Two Se… Premium …     19
-## 6 15594 BMW   Z3 R…  2000     6   2.5 Rear… Auto… Two Se… Premium …     19
+## # A tibble: 6 × 13
+##      id make  model        year   cyl displ drive tran  v_class fuel_type comb08
+##   <dbl> <fct> <chr>       <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
+## 1 15589 Acura NSX          2000     6   3   Rear… Auto… Two Se… Premium …     18
+## 2 15590 Acura NSX          2000     6   3.2 Rear… Manu… Two Se… Premium …     18
+## 3 15591 BMW   M Coupe      2000     6   3.2 Rear… Manu… Two Se… Premium …     19
+## 4 15592 BMW   Z3 Coupe     2000     6   2.8 Rear… Auto… Two Se… Premium …     19
+## 5 15593 BMW   Z3 Coupe     2000     6   2.8 Rear… Manu… Two Se… Premium …     19
+## 6 15594 BMW   Z3 Roadster  2000     6   2.5 Rear… Auto… Two Se… Premium …     19
 ## # … with 2 more variables: highway08 <dbl>, city08 <dbl>
 ```
 
@@ -525,7 +525,7 @@ sum(is.na(df_mpg))
 ```
 
 ```
-## [1] 478
+## [1] 752
 ```
 
 ```r
@@ -534,7 +534,7 @@ sum(is.na(df_mpg))
 ```
 
 With a dataframe of this size, we shouldn't be surprised that there are 
-478 `NA` values present. The next question is: where do
+752 `NA` values present. The next question is: where do
 these `NA` values show up? There are several ways to answer this question;
 here, we will use the `stats::complete.cases()` function with a
 `dplyr::filter()` search. 
@@ -554,20 +554,20 @@ df_mpg %>%
 ```
 
 ```
-## # A tibble: 233 x 13
-##       id make  model  year   cyl displ drive tran  v_class fuel_type comb08
-##    <dbl> <fct> <chr> <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
-##  1 16423 Niss… Altr…  2000    NA    NA <NA>  <NA>  Midsiz… Electric…     85
-##  2 16424 Toyo… RAV4…  2000    NA    NA 2-Wh… <NA>  Sport … Electric…     72
-##  3 17328 Toyo… RAV4…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     72
-##  4 17329 Ford  Th!nk  2001    NA    NA <NA>  <NA>  Two Se… Electric…     65
-##  5 17330 Ford  Expl…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     39
-##  6 17331 Niss… Hype…  2001    NA    NA <NA>  <NA>  Two Se… Electric…     75
-##  7 18290 Toyo… RAV4…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     78
-##  8 18291 Ford  Expl…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     39
-##  9 19296 Toyo… RAV4…  2003    NA    NA 2-Wh… <NA>  Sport … Electric…     78
-## 10 30965 Ford  Rang…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
-## # … with 223 more rows, and 2 more variables: highway08 <dbl>, city08 <dbl>
+## # A tibble: 370 × 13
+##       id make   model      year   cyl displ drive tran  v_class fuel_type comb08
+##    <dbl> <fct>  <chr>     <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
+##  1 16423 Nissan Altra EV   2000    NA    NA <NA>  <NA>  Midsiz… Electric…     85
+##  2 16424 Toyota RAV4 EV    2000    NA    NA 2-Wh… <NA>  Sport … Electric…     72
+##  3 17328 Toyota RAV4 EV    2001    NA    NA 2-Wh… <NA>  Sport … Electric…     72
+##  4 17329 Ford   Th!nk      2001    NA    NA <NA>  <NA>  Two Se… Electric…     65
+##  5 17330 Ford   Explorer…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     39
+##  6 17331 Nissan Hyper-Mi…  2001    NA    NA <NA>  <NA>  Two Se… Electric…     75
+##  7 18290 Toyota RAV4 EV    2002    NA    NA 2-Wh… <NA>  Sport … Electric…     78
+##  8 18291 Ford   Explorer…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     39
+##  9 19296 Toyota RAV4 EV    2003    NA    NA 2-Wh… <NA>  Sport … Electric…     78
+## 10 30965 Ford   Ranger P…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
+## # … with 360 more rows, and 2 more variables: highway08 <dbl>, city08 <dbl>
 ```
 
 Here, we discover that most of the the `NA` values are in the `cyl`, `displ`, 
@@ -620,20 +620,20 @@ df_mpg %>%
 ```
 
 ```
-## # A tibble: 233 x 13
-##       id make  model  year   cyl displ drive tran  v_class fuel_type comb08
-##    <dbl> <fct> <chr> <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
-##  1 16423 Niss… Altr…  2000    NA    NA <NA>  <NA>  Midsiz… Electric…     85
-##  2 16424 Toyo… RAV4…  2000    NA    NA 2-Wh… <NA>  Sport … Electric…     72
-##  3 17328 Toyo… RAV4…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     72
-##  4 17329 Ford  Th!nk  2001    NA    NA <NA>  <NA>  Two Se… Electric…     65
-##  5 17330 Ford  Expl…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     39
-##  6 17331 Niss… Hype…  2001    NA    NA <NA>  <NA>  Two Se… Electric…     75
-##  7 18290 Toyo… RAV4…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     78
-##  8 18291 Ford  Expl…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     39
-##  9 19296 Toyo… RAV4…  2003    NA    NA 2-Wh… <NA>  Sport … Electric…     78
-## 10 30965 Ford  Rang…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
-## # … with 223 more rows, and 2 more variables: highway08 <dbl>, city08 <dbl>
+## # A tibble: 370 × 13
+##       id make   model      year   cyl displ drive tran  v_class fuel_type comb08
+##    <dbl> <fct>  <chr>     <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
+##  1 16423 Nissan Altra EV   2000    NA    NA <NA>  <NA>  Midsiz… Electric…     85
+##  2 16424 Toyota RAV4 EV    2000    NA    NA 2-Wh… <NA>  Sport … Electric…     72
+##  3 17328 Toyota RAV4 EV    2001    NA    NA 2-Wh… <NA>  Sport … Electric…     72
+##  4 17329 Ford   Th!nk      2001    NA    NA <NA>  <NA>  Two Se… Electric…     65
+##  5 17330 Ford   Explorer…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     39
+##  6 17331 Nissan Hyper-Mi…  2001    NA    NA <NA>  <NA>  Two Se… Electric…     75
+##  7 18290 Toyota RAV4 EV    2002    NA    NA 2-Wh… <NA>  Sport … Electric…     78
+##  8 18291 Ford   Explorer…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     39
+##  9 19296 Toyota RAV4 EV    2003    NA    NA 2-Wh… <NA>  Sport … Electric…     78
+## 10 30965 Ford   Ranger P…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
+## # … with 360 more rows, and 2 more variables: highway08 <dbl>, city08 <dbl>
 ```
 
 #### Example 3: Missing Data
@@ -882,7 +882,7 @@ df_mpg %>%
 ```
 
 ```
-## # A tibble: 1 x 5
+## # A tibble: 1 × 5
 ##   make    model      drive              year highway08
 ##   <fct>   <chr>      <fct>             <dbl>     <dbl>
 ## 1 Hyundai Ioniq Blue Front-Wheel Drive  2018        59
@@ -902,7 +902,7 @@ df_mpg %>%
 ```
 
 ```
-## # A tibble: 1 x 5
+## # A tibble: 1 × 5
 ##   make    model    drive             year city08
 ##   <fct>   <chr>    <fct>            <dbl>  <dbl>
 ## 1 Bentley Mulsanne Rear-Wheel Drive  2019     10

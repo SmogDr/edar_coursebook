@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Functional Programming | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Functional Programming | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-27" />
+<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="eda2.html"/>
 <link rel="next" href="transform.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -119,6 +120,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -478,10 +480,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rprog4" class="section level1" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Functional Programming</h1>
-<div id="ch.-8-objectives" class="section level2" number="8.1">
-<h2><span class="header-section-number">8.1</span> Ch. 8 Objectives</h2>
+<div id="rprog4" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Functional Programming<a href="rprog4.html#rprog4" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="ch.-8-objectives" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Ch. 8 Objectives<a href="rprog4.html#ch.-8-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This chapter is designed around the following learning objectives for functional
 programming in R. Upon completing this chapter, you should be able to:</p>
 <ul>
@@ -492,8 +494,8 @@ programming in R. Upon completing this chapter, you should be able to:</p>
 <li>Interpret and apply the <code>purrr::map</code> family of functions</li>
 </ul>
 </div>
-<div id="what-is-functional-programming" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> What is <strong><em>functional programming</em></strong>?</h2>
+<div id="what-is-functional-programming" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> What is <strong><em>functional programming</em></strong>?<a href="rprog4.html#what-is-functional-programming" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><em>Functional programming</em> means just that: programming with functions. A basic
 philosophy of functional programming in R is to replace “for-loops” with functions.
 While there isn’t anything inherently wrong with for-loops, they can be difficult
@@ -542,8 +544,8 @@ as the nested code but in a much more “readable” fashion. A similar analogy
 holds for the nesting of “for-loops” (which, when nested, are even
 harder to follow!).</p>
 </div>
-<div id="writng-functions" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> Writng Functions</h2>
+<div id="writng-functions" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Writng Functions<a href="rprog4.html#writng-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
 <p><span style="color: blue;"> “If you have to do something more than twice,
 use a function to do it.” - Programming Proverb </span></p>
@@ -578,8 +580,8 @@ accessed by passing the function name as an argument to:</p>
 <li>more on <em>R environments</em> below</li>
 </ul></li>
 </ul>
-<div id="example-function-my_mean" class="section level3" number="8.3.1">
-<h3><span class="header-section-number">8.3.1</span> Example Function: my_mean</h3>
+<div id="example-function-my_mean" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Example Function: my_mean<a href="rprog4.html#example-function-my_mean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s create a simple function, named <code>my_mean</code>, to calculate the arithmetic mean
 for a numeric vector. This function takes only one argument, a vector <code>x</code>, for
 which we calculate the mean (<code>sum(x) / length(x)</code>), assign it to a
@@ -642,13 +644,13 @@ The take-home point is that a homemade function can exist within the global
 environment and return values to the global environment, even if the objects
 created within that function don’t.</p>
 </div>
-<div id="example-function-import.w.name" class="section level3" number="8.3.2">
-<h3><span class="header-section-number">8.3.2</span> Example Function: “import.w.name”</h3>
+<div id="example-function-import.w.name" class="section level3 hasAnchor" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Example Function: “import.w.name”<a href="rprog4.html#example-function-import.w.name" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Oftentimes, you will have a list of files of the same type/structure
 that you want to import and analyze in a single data frame. This exercise (and
 the section that follows) will demonstrate how you can streamline that process
-using functional programming. Let’s create a function to <em>"import a file with</em>
-<em>its name appended".</em></p>
+using functional programming. Let’s create a function to <em>“import a file with</em>
+<em>its name appended”.</em></p>
 <p>For this example, assume that your files represent data from a network of sensors,
 where the name/ID assigned to each sensor is <strong>included in its file name</strong> but
 <em>not in the file itself</em>. To give you an example of what we are working with,
@@ -703,7 +705,7 @@ of files. <em>We specify the first entry with a subset to</em> <code>file_list[1
 <div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="rprog4.html#cb301-1" aria-hidden="true" tabindex="-1"></a>PA_data_1 <span class="ot">&lt;-</span> <span class="fu">import.w.name</span>(file_list[<span class="dv">1</span>])</span>
 <span id="cb301-2"><a href="rprog4.html#cb301-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb301-3"><a href="rprog4.html#cb301-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(PA_data_1)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 6
+<pre><code>## # A tibble: 6 × 6
 ##   UTCDateTime       current_temp_f current_humidity pressure pm2_5_atm sensor_ID
 ##   &lt;chr&gt;                      &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;    
 ## 1 2018/10/22T17:52…             90               12     852.      2.45 PA019    
@@ -720,17 +722,17 @@ coding skills, a good strategy is to keep useful functions in a .R script
 file so that you can call upon them when needed: <code>source(import.w.name.R)</code></p>
 </div>
 </div>
-<div id="the-purrr-package" class="section level2" number="8.4">
-<h2><span class="header-section-number">8.4</span> The <code>purrr::</code> package</h2>
+<div id="the-purrr-package" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> The <code>purrr::</code> package<a href="rprog4.html#the-purrr-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <code>purrr::</code> package was designed specifically with functional programming in mind.
 Similar to the discussion of <em>vectorized operations</em> above, <code>purrr::</code> was created
 to help you apply functions to vectors in a way that is easy to implement and
 easy to “read.”</p>
-<div id="function-mapping" class="section level3" number="8.4.1">
-<h3><span class="header-section-number">8.4.1</span> Function Mapping</h3>
+<div id="function-mapping" class="section level3 hasAnchor" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> Function Mapping<a href="rprog4.html#function-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>map_</code> family of functions are the core of the <code>purrr</code> package. These
 functions are intended to <em>map</em> functions (i.e., to apply them) to individual elements in a vector (or data frames); the <code>map_</code> functions are similar to functions like <code>lapply()</code> and <code>vapply()</code> from base R (but more versatile). <em>“Mapping”</em> a function onto a vector is a common theme of functional programming. To illustrate how the <code>map_</code> functions work, its best to visualize the process first.</p>
-<div class="figure" style="text-align: center"><span id="fig:map-anno1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:map-anno1"></span>
 <img src="images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input." width="632" />
 <p class="caption">
 Figure 8.1: The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input.
@@ -760,17 +762,17 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 ##  $ entry_1: chr [1:4] &quot;Harry&quot; &quot;Ron&quot; &quot;Hermione&quot; &quot;Draco&quot;
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] &quot;jeep&quot; &quot;dodge&quot; &quot;honda&quot; &quot;toyota&quot; ...
-##   ..$ model       : chr [1:7] &quot;grand cherokee 4wd&quot; &quot;ram 1500 pickup 4wd&quot; &quot;civic&quot; &quot;land cruiser wagon 4wd&quot; ...
-##   ..$ displ       : num [1:7] 4.7 4.7 1.6 5.7 2.8 1.8 5.2
-##   ..$ year        : int [1:7] 2008 2008 1999 2008 1999 1999 1999
-##   ..$ cyl         : int [1:7] 8 8 4 8 6 4 8
-##   ..$ trans       : chr [1:7] &quot;auto(l5)&quot; &quot;auto(l5)&quot; &quot;auto(l4)&quot; &quot;auto(s6)&quot; ...
-##   ..$ drv         : chr [1:7] &quot;4&quot; &quot;4&quot; &quot;f&quot; &quot;4&quot; ...
-##   ..$ cty         : int [1:7] 14 9 24 13 16 18 11
-##   ..$ hwy         : int [1:7] 19 12 32 18 26 26 16
-##   ..$ fl          : chr [1:7] &quot;r&quot; &quot;e&quot; &quot;r&quot; &quot;r&quot; ...
-##   ..$ class       : chr [1:7] &quot;suv&quot; &quot;pickup&quot; &quot;subcompact&quot; &quot;suv&quot; ...</code></pre>
+##   ..$ manufacturer: chr [1:7] &quot;ford&quot; &quot;volkswagen&quot; &quot;nissan&quot; &quot;subaru&quot; ...
+##   ..$ model       : chr [1:7] &quot;explorer 4wd&quot; &quot;jetta&quot; &quot;pathfinder 4wd&quot; &quot;impreza awd&quot; ...
+##   ..$ displ       : num [1:7] 4 1.9 5.6 2.5 5.4 2.4 1.8
+##   ..$ year        : int [1:7] 2008 1999 2008 2008 2008 1999 1999
+##   ..$ cyl         : int [1:7] 6 4 8 4 8 4 4
+##   ..$ trans       : chr [1:7] &quot;auto(l5)&quot; &quot;manual(m5)&quot; &quot;auto(s5)&quot; &quot;manual(m5)&quot; ...
+##   ..$ drv         : chr [1:7] &quot;4&quot; &quot;f&quot; &quot;4&quot; &quot;4&quot; ...
+##   ..$ cty         : int [1:7] 13 33 12 20 12 18 24
+##   ..$ hwy         : int [1:7] 19 44 18 27 18 24 30
+##   ..$ fl          : chr [1:7] &quot;r&quot; &quot;d&quot; &quot;p&quot; &quot;r&quot; ...
+##   ..$ class       : chr [1:7] &quot;suv&quot; &quot;compact&quot; &quot;suv&quot; &quot;compact&quot; ...</code></pre>
 <p>Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, <code>[ ]</code>, a list element is returned.</p>
 <div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="rprog4.html#cb305-1" aria-hidden="true" tabindex="-1"></a>my.list[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## $entry_1
@@ -838,13 +840,13 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 <span id="cb317-4"><a href="rprog4.html#cb317-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(PA_data_merged)</span></code></pre></div>
 <pre><code>## Rows: 6,374
 ## Columns: 6
-## $ UTCDateTime      &lt;chr&gt; &quot;2018/10/22T17:52:21z&quot;, &quot;2018/10/22T17:53:41z&quot;, &quot;201…
-## $ current_temp_f   &lt;dbl&gt; 90, 86, 87, 87, 87, 87, 86, 86, 86, 86, 86, 86, 86, …
-## $ current_humidity &lt;dbl&gt; 12, 13, 13, 13, 13, 13, 12, 13, 13, 13, 13, 13, 13, …
-## $ pressure         &lt;dbl&gt; 851.66, 851.68, 851.56, 851.59, 851.54, 851.57, 851.…
-## $ pm2_5_atm        &lt;dbl&gt; 2.45, 3.43, 2.76, 2.00, 1.82, 1.98, 1.95, 2.48, 2.27…
-## $ sensor_ID        &lt;chr&gt; &quot;PA019&quot;, &quot;PA019&quot;, &quot;PA019&quot;, &quot;PA019&quot;, &quot;PA019&quot;, &quot;PA019&quot;…</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:map-dfr-anno"></span>
+## $ UTCDateTime      &lt;chr&gt; &quot;2018/10/22T17:52:21z&quot;, &quot;2018/10/22T17:53:41z&quot;, &quot;2018…
+## $ current_temp_f   &lt;dbl&gt; 90, 86, 87, 87, 87, 87, 86, 86, 86, 86, 86, 86, 86, 8…
+## $ current_humidity &lt;dbl&gt; 12, 13, 13, 13, 13, 13, 12, 13, 13, 13, 13, 13, 13, 1…
+## $ pressure         &lt;dbl&gt; 851.66, 851.68, 851.56, 851.59, 851.54, 851.57, 851.5…
+## $ pm2_5_atm        &lt;dbl&gt; 2.45, 3.43, 2.76, 2.00, 1.82, 1.98, 1.95, 2.48, 2.27,…
+## $ sensor_ID        &lt;chr&gt; &quot;PA019&quot;, &quot;PA019&quot;, &quot;PA019&quot;, &quot;PA019&quot;, &quot;PA019&quot;, &quot;PA019&quot;,…</code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:map-dfr-anno"></span>
 <img src="images/map_dfr_anno.png" alt="Example: using `map_dfr()` to import a file list using a custom function" width="632" />
 <p class="caption">
 Figure 8.2: Example: using <code>map_dfr()</code> to import a file list using a custom function
@@ -852,8 +854,8 @@ Figure 8.2: Example: using <code>map_dfr()</code> to import a file list using a 
 </div>
 </div>
 </div>
-<div id="homework" class="section level2" number="8.5">
-<h2><span class="header-section-number">8.5</span> Homework</h2>
+<div id="homework" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Homework<a href="rprog4.html#homework" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This homework will give you practice at writing functions, mapping functions, and cleaning/plotting data. To begin, download the PurpleAir data files from Canvas. Note: the data are contained in a .zip file, which you can unzip on your computer or using R!</p>
 
 </div>
@@ -868,7 +870,6 @@ Figure 8.2: Example: using <code>map_dfr()</code> to import a file list using a 
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -887,6 +888,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -907,6 +909,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Strings, Dates, and Tidying | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Strings, Dates, and Tidying | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-27" />
+<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="eda1.html"/>
 <link rel="next" href="eda2.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -119,6 +120,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -478,10 +480,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rprog3" class="section level1" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Strings, Dates, and Tidying</h1>
-<div id="chapter-6-objectives" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> Chapter 6 Objectives</h2>
+<div id="rprog3" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Strings, Dates, and Tidying<a href="rprog3.html#rprog3" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="chapter-6-objectives" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Chapter 6 Objectives<a href="rprog3.html#chapter-6-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This Chapter is designed around the following learning objectives. Upon
 completing this Chapter, you should be able to:</p>
 <ul>
@@ -496,8 +498,8 @@ completing this Chapter, you should be able to:</p>
 <li>Apply functions from the <code>dplyr</code> and <code>tidyr</code> packages to make dataframes “tidy”</li>
 </ul>
 </div>
-<div id="strings" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> Strings</h2>
+<div id="strings" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Strings<a href="rprog3.html#strings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong><em>Strings</em></strong> are a form of character data like “John,” or “blue,” or “John’s
 sample 8021A turned blue.”</p>
 <p><strong>Strings are defined in R using quotes <code>" "</code></strong> and stored as <code>character</code>
@@ -562,8 +564,8 @@ and the <code>stringr</code> package. We will also introduce the concept of
 <strong>regular expressions</strong> as a means to perform more advanced string
 manipulation.</p>
 <p><img src="images/parse_comic.png" width="1000" style="display: block; margin: auto;" /></p>
-<div id="string-detect-match-subset" class="section level3" number="6.2.1">
-<h3><span class="header-section-number">6.2.1</span> String detect, match, subset</h3>
+<div id="string-detect-match-subset" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> String detect, match, subset<a href="rprog3.html#string-detect-match-subset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One of the simplest string operations is to search whether a string contains a
 pattern of interest. The <code>stringr</code> package (part of the
 <a href="https://stringr.tidyverse.org/" target="_blank">Tidyverse</a>) was developed
@@ -650,8 +652,8 @@ grep(pattern, x, value = TRUE)
 </tbody>
 </table>
 </div>
-<div id="regular-expressions" class="section level3" number="6.2.2">
-<h3><span class="header-section-number">6.2.2</span> Regular Expressions</h3>
+<div id="regular-expressions" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Regular Expressions<a href="rprog3.html#regular-expressions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Before going much farther, we should spend some time discussing
 <strong><em>regular expressions</em></strong> or <strong>regex</strong> for short. When we pass a <code>pattern</code>
 argument to a function like <code>str_detect()</code>, the function treats that argument
@@ -730,7 +732,7 @@ Example in R
 Any numeric digit
 </td>
 <td style="text-align:center;">
-“\\d” or “[:digit:]”
+"\\d" or "[:digit:]"
 </td>
 </tr>
 <tr>
@@ -741,7 +743,7 @@ Any numeric digit
 matches a, b, or c
 </td>
 <td style="text-align:center;">
-“[abc]”
+"[abc]"
 </td>
 </tr>
 <tr>
@@ -752,7 +754,7 @@ matches a, b, or c
 matches every character between a and z
 </td>
 <td style="text-align:center;">
-“[a-z]”
+"[a-z]"
 </td>
 </tr>
 <tr>
@@ -763,7 +765,7 @@ matches every character between a and z
 matches anything except a, b, or c
 </td>
 <td style="text-align:center;">
-“[^abc]”
+"[^abc]"
 </td>
 </tr>
 <tr>
@@ -771,10 +773,10 @@ matches anything except a, b, or c
 (abc)
 </td>
 <td style="text-align:center;">
-creates a “capture group” whereby abc must occur together
+creates a "capture group" whereby abc must occur together
 </td>
 <td style="text-align:center;">
-“(abc)”
+"(abc)"
 </td>
 </tr>
 <tr>
@@ -782,10 +784,10 @@ creates a “capture group” whereby abc must occur together
 ^b
 </td>
 <td style="text-align:center;">
-starts with: look for “b” at the start of a string
+starts with: look for "b" at the start of a string
 </td>
 <td style="text-align:center;">
-“^b”
+"^b"
 </td>
 </tr>
 <tr>
@@ -793,10 +795,10 @@ starts with: look for “b” at the start of a string
 b$
 </td>
 <td style="text-align:center;">
-ends with: look for “b” at the end of a string
+ends with: look for "b" at the end of a string
 </td>
 <td style="text-align:center;">
-“b$”
+"b$"
 </td>
 </tr>
 <tr>
@@ -807,7 +809,7 @@ a|b
 match a or b
 </td>
 <td style="text-align:center;">
-“a|b”
+"a|b"
 </td>
 </tr>
 </tbody>
@@ -821,8 +823,8 @@ on the <code>stringr</code>
 developed by RStudio, and through practice with, my personal favorite, a game
 of <a href="https://alf.nu/RegexGolf" target="_blank">Regex Golf</a>.</p>
 </div>
-<div id="string-split-replace" class="section level3" number="6.2.3">
-<h3><span class="header-section-number">6.2.3</span> String split, replace</h3>
+<div id="string-split-replace" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> String split, replace<a href="rprog3.html#string-split-replace" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>str_split()</code> will split a string into two (or more) pieces when a match is
 detected. The string will always be split at the first match and again at each
 additional match location, unless you specify that only a finite number of <code>n</code>
@@ -886,15 +888,15 @@ The <code>pattern =</code> argument for matching can be a single string or a vec
 </div>
 </div>
 </div>
-<div id="dates-and-date-times" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Dates and Date-times</h2>
+<div id="dates-and-date-times" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Dates and Date-times<a href="rprog3.html#dates-and-date-times" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Working with dates and times can be challenging. This section begins with a
 discussion of how base R handles dates and times, since there is a ton of code
 out there that utilizes these older functions. We will then quickly transition
 to the <code>lubridate</code> family of functions (part of the Tidyverse) because of their
 versatility and ease-of-use.</p>
-<div id="dates-and-times-in-base-r" class="section level3" number="6.3.1">
-<h3><span class="header-section-number">6.3.1</span> Dates and Times in base R</h3>
+<div id="dates-and-times-in-base-r" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Dates and Times in base R<a href="rprog3.html#dates-and-times-in-base-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Dates and times in base R all proceed from an <em>“epoch”</em> or <em>time origin</em>. In
 R, the <em>epoch</em> or “dawn of time” occurred at midnight on January 1<sup>st</sup>, 1970.
 For the sake of the R programming world, the concept of time started at that
@@ -903,7 +905,7 @@ date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time”
 by calling the <code>Sys.time()</code> function.</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="rprog3.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2021-01-27 15:31:41 MST&quot;</code></pre>
+<pre><code>## [1] &quot;2022-05-19 15:53:54 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and timezone used by my computer
 (<em>whenever I last ran this code in <code>bookdown</code></em>). If you want to see how this
 time is stored in R internally, you can use <code>unclass()</code>, which returns an
@@ -911,17 +913,17 @@ object value with its class attributes removed. When we wrap <code>unclass()</co
 around <code>Sys.time()</code>, we will see the number of seconds that have occurred
 between the epoch of 1/1/1970 and right now:</p>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="rprog3.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(<span class="fu">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1611786701</code></pre>
+<pre><code>## [1] 1652997234</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
 Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span>
-365d/yr] =&gt; 51.109421 years.</p>
+365d/yr] =&gt; 52.4161985 years.</p>
 <p>This calculation ignores leap years, but you get the point…</p>
 </div>
-<div id="date-time-formats" class="section level3" number="6.3.2">
-<h3><span class="header-section-number">6.3.2</span> Date-time formats</h3>
+<div id="date-time-formats" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Date-time formats<a href="rprog3.html#date-time-formats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Note that the <code>Sys.time()</code> function provided the date in a
 <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong>
-format: 2021-01-27 15:31:41.</p>
+format: 2022-05-19 15:53:54.</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
 have little difficulty recognizing the following date-time objects as
@@ -960,8 +962,8 @@ In Colorado, we are UTC-6 hours during <em>daylight savings</em> (March-Nov) and
 </p>
 </div>
 </div>
-<div id="date-time-classes-in-r" class="section level3" number="6.3.3">
-<h3><span class="header-section-number">6.3.3</span> Date-time classes in R</h3>
+<div id="date-time-classes-in-r" class="section level3 hasAnchor" number="6.3.3">
+<h3><span class="header-section-number">6.3.3</span> Date-time classes in R<a href="rprog3.html#date-time-classes-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R has several classes of date-time objects, none of which are easy to remember:</p>
 <ol style="list-style-type: decimal">
 <li><strong><code>POSIXct</code></strong> - stored as the time, in seconds, between the <code>epoch</code> of 1970-01-01 00:00:00 UTC and the date-time object in question.
@@ -1064,29 +1066,29 @@ classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and 
 attributes.</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="rprog3.html#cb215-1" aria-hidden="true" tabindex="-1"></a>time_now_ct <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="fu">Sys.time</span>())</span>
 <span id="cb215-2"><a href="rprog3.html#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1611786701</code></pre>
+<pre><code>## [1] 1652997234</code></pre>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="rprog3.html#cb217-1" aria-hidden="true" tabindex="-1"></a>time_now_lt <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(<span class="fu">Sys.time</span>())</span>
 <span id="cb217-2"><a href="rprog3.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 41.3
-##  $ min   : int 31
+##  $ sec   : num 54.4
+##  $ min   : int 53
 ##  $ hour  : int 15
-##  $ mday  : int 27
-##  $ mon   : int 0
-##  $ year  : int 121
-##  $ wday  : int 3
-##  $ yday  : int 26
-##  $ isdst : int 0
-##  $ zone  : chr &quot;MST&quot;
-##  $ gmtoff: int -25200
+##  $ mday  : int 19
+##  $ mon   : int 4
+##  $ year  : int 122
+##  $ wday  : int 4
+##  $ yday  : int 138
+##  $ isdst : int 1
+##  $ zone  : chr &quot;MDT&quot;
+##  $ gmtoff: int -21600
 ##  - attr(*, &quot;tzone&quot;)= chr [1:3] &quot;&quot; &quot;MST&quot; &quot;MDT&quot;</code></pre>
 <p>It’s easy to see why the <code>POSIXct</code> object class is more computationally
 efficient, but it’s also nice to see all the date-time information packed into
 the <code>POSIXlt</code>. This is why R keeps a key to unlock both using <code>POSIXt</code>.<br />
 As my father used to say: clear as mud?</p>
 </div>
-<div id="reading-and-classifying-date-times" class="section level3" number="6.3.4">
-<h3><span class="header-section-number">6.3.4</span> Reading and classifying date-times</h3>
+<div id="reading-and-classifying-date-times" class="section level3 hasAnchor" number="6.3.4">
+<h3><span class="header-section-number">6.3.4</span> Reading and classifying date-times<a href="rprog3.html#reading-and-classifying-date-times" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Oftentimes, when data is read into R, there are column elements that contain
 date and time information. These dates and times are often interpreted by R
 as <em>character</em> vectors, which means they have lost their relational attributes
@@ -1199,13 +1201,13 @@ date-time object of class POSIXlt
 </table>
 </div>
 </div>
-<div id="lubridate" class="section level2" number="6.4">
-<h2><span class="header-section-number">6.4</span> <code>lubridate</code></h2>
+<div id="lubridate" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> <code>lubridate</code><a href="rprog3.html#lubridate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <code>lubridate</code> package was developed specifically to make it easier to work
 with date-time objects. You can find out more information on <code>lubridate</code>
 <a href="https://lubridate.tidyverse.org/" target="_blank">here</a>.</p>
-<div id="parsing-functions-in-lubridate" class="section level3" number="6.4.1">
-<h3><span class="header-section-number">6.4.1</span> Parsing functions in <code>lubridate</code></h3>
+<div id="parsing-functions-in-lubridate" class="section level3 hasAnchor" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Parsing functions in <code>lubridate</code><a href="rprog3.html#parsing-functions-in-lubridate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One of best aspects of <code>lubridate</code> is its ability to parse date-time objects
 with simplicity and ease; the <code>lubridate</code> parsing functions are designed as
 “named-to-order.” Let me explain:</p>
@@ -1329,8 +1331,8 @@ year-month-day_hours-minutes-seconds
 up the character vector, regardless of separators or delimiters within each
 string, and return either a <code>Date</code> or <code>Date-time</code> object class.</p>
 </div>
-<div id="date-time-manipulation-with-lubridate" class="section level3" number="6.4.2">
-<h3><span class="header-section-number">6.4.2</span> Date-time manipulation with <code>lubridate</code></h3>
+<div id="date-time-manipulation-with-lubridate" class="section level3 hasAnchor" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> Date-time manipulation with <code>lubridate</code><a href="rprog3.html#date-time-manipulation-with-lubridate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To convert the <code>date</code> column in the <code>daily_show</code> data into a Date class, you can
 run:</p>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="rprog3.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;lubridate&quot;</span>)</span>
@@ -1341,7 +1343,7 @@ run:</p>
 <div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="rprog3.html#cb227-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> <span class="fu">mutate</span>(<span class="at">.data =</span> daily_show,</span>
 <span id="cb227-2"><a href="rprog3.html#cb227-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">date =</span> <span class="fu">mdy</span>(date))</span>
 <span id="cb227-3"><a href="rprog3.html#cb227-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> daily_show, <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 5
+<pre><code>## # A tibble: 3 × 5
 ##    year job                date       category guest_name     
 ##   &lt;dbl&gt; &lt;chr&gt;              &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;          
 ## 1  1999 actor              1999-01-11 Acting   Michael J. Fox 
@@ -1372,7 +1374,7 @@ following pipe chain:</p>
 <span id="cb232-10"><a href="rprog3.html#cb232-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb232-11"><a href="rprog3.html#cb232-11" aria-hidden="true" tabindex="-1"></a><span class="co"># show first two rows of dataframe</span></span>
 <span id="cb232-12"><a href="rprog3.html#cb232-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> daily_show, <span class="at">n =</span> <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 4
+<pre><code>## # A tibble: 2 × 4
 ##   job          date       category guest_name     
 ##   &lt;chr&gt;        &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;          
 ## 1 neurosurgeon 2003-04-28 Science  Dr Sanjay Gupta
@@ -1394,7 +1396,7 @@ each show:</p>
 <span id="cb234-3"><a href="rprog3.html#cb234-3" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">label =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb234-4"><a href="rprog3.html#cb234-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(date, show_day, guest_name) <span class="sc">%&gt;%</span></span>
 <span id="cb234-5"><a href="rprog3.html#cb234-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 5 x 3
+<pre><code>## # A tibble: 5 × 3
 ##   date       show_day guest_name            
 ##   &lt;date&gt;     &lt;ord&gt;    &lt;chr&gt;                 
 ## 1 2003-04-28 Mon      Dr Sanjay Gupta       
@@ -1409,8 +1411,8 @@ R functions tend to use the timezone of <strong>YOUR</strong> computer’s opera
 </div>
 </div>
 </div>
-<div id="tidy-data" class="section level2" number="6.5">
-<h2><span class="header-section-number">6.5</span> Tidy Data</h2>
+<div id="tidy-data" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Tidy Data<a href="rprog3.html#tidy-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong><em>“Tidy Data”</em></strong> is a philosophy for how to arrange your data in a intuitive,
 rectangular fashion, commonly in a <code>dataframe</code>. In his
 <a href="https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf" target="_blank">2014 paper</a>,
@@ -1624,7 +1626,7 @@ Hermione
 <p>For our work, one of the goals of data cleaning is to create datasets that
 follow this <em>tidy</em> convention. Fortunately, the <code>tidyr</code> package contains a
 useful function called <code>pivot_longer()</code> for re-arranging dataframes from
-untidy (typically “wide) to tidy (”long").</p>
+untidy (typically “wide) to tidy (”long”).</p>
 <p><code>pivot_longer()</code> is designed to “lengthen” a data frame by
 <em>“increasing the number of rows and decreasing the number of columns”</em>.
 This function creates two new columns as output and requires four arguments:</p>
@@ -1801,12 +1803,12 @@ data management techniques. Remember: What might seem useful at the time—like
 a color-coded Excel spreadsheet—is a pain for computers and not reproducible.
 Do yourself a favor and begin with the end in mind: <em>tidy data</em>.</p>
 </div>
-<div id="chapter-6-exercises" class="section level2" number="6.6">
-<h2><span class="header-section-number">6.6</span> Chapter 6 Exercises</h2>
+<div id="chapter-6-exercises" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> Chapter 6 Exercises<a href="rprog3.html#chapter-6-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The following exercises use data on tweets from United Senators, processed by
 <a href="https://github.com/fivethirtyeight/data/tree/master/twitter-ratio" target="_blank">FiveThirtyEight</a>.</p>
-<div id="set-1-data-import-and-manipulation" class="section level3" number="6.6.1">
-<h3><span class="header-section-number">6.6.1</span> Set 1: Data import and manipulation</h3>
+<div id="set-1-data-import-and-manipulation" class="section level3 hasAnchor" number="6.6.1">
+<h3><span class="header-section-number">6.6.1</span> Set 1: Data import and manipulation<a href="rprog3.html#set-1-data-import-and-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Create a pipeline that</p>
 <ul>
 <li>imports the raw data (.csv) containing tweets from all US senators,</li>
@@ -1830,8 +1832,8 @@ Do yourself a favor and begin with the end in mind: <em>tidy data</em>.</p>
 <span id="cb237-8"><a href="rprog3.html#cb237-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">week =</span> lubridate<span class="sc">::</span><span class="fu">week</span>(date)) <span class="sc">%&gt;%</span> <span class="co"># create var of week from timestamp</span></span>
 <span id="cb237-9"><a href="rprog3.html#cb237-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>(<span class="fu">c</span>(url, created_at, bioguide_id))) <span class="co"># retain all vars except 3</span></span></code></pre></div>
 </div>
-<div id="set-2-counting" class="section level3" number="6.6.2">
-<h3><span class="header-section-number">6.6.2</span> Set 2: Counting</h3>
+<div id="set-2-counting" class="section level3 hasAnchor" number="6.6.2">
+<h3><span class="header-section-number">6.6.2</span> Set 2: Counting<a href="rprog3.html#set-2-counting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li>Which Colorado senators are included in the data?</li>
 </ol>
@@ -1847,14 +1849,14 @@ Do yourself a favor and begin with the end in mind: <em>tidy data</em>.</p>
 <span id="cb240-3"><a href="rprog3.html#cb240-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(user) <span class="sc">%&gt;%</span> </span>
 <span id="cb240-4"><a href="rprog3.html#cb240-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">tally</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb240-5"><a href="rprog3.html#cb240-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 2
+<pre><code>## # A tibble: 2 × 2
 ##   user               n
 ##   &lt;chr&gt;          &lt;int&gt;
 ## 1 SenBennetCO     2211
 ## 2 SenCoryGardner  3225</code></pre>
 </div>
-<div id="set-3-weekly-tweets" class="section level3" number="6.6.3">
-<h3><span class="header-section-number">6.6.3</span> Set 3: Weekly tweets</h3>
+<div id="set-3-weekly-tweets" class="section level3 hasAnchor" number="6.6.3">
+<h3><span class="header-section-number">6.6.3</span> Set 3: Weekly tweets<a href="rprog3.html#set-3-weekly-tweets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Create a time series plot that indicates tweet activity on a weekly basis since
 2011 for the Colorado senators. You will need to first create a new dataframe
 that contains new time-date variables based on the (a) total time and (b) weeks
@@ -1875,8 +1877,8 @@ since data collection started.</p>
 <span id="cb243-7"><a href="rprog3.html#cb243-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Gardner joined Twitter later but tweets more (and cyclically)&quot;</span>)</span></code></pre></div>
 <p><img src="06-string_date_files/figure-html/tweet-time-series-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
-<div id="set-4-csu-vs.-cu" class="section level3" number="6.6.4">
-<h3><span class="header-section-number">6.6.4</span> Set 4: CSU vs. CU</h3>
+<div id="set-4-csu-vs.-cu" class="section level3 hasAnchor" number="6.6.4">
+<h3><span class="header-section-number">6.6.4</span> Set 4: CSU vs. CU<a href="rprog3.html#set-4-csu-vs.-cu" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li>How many times are strings related to CSU mentioned by each senator by year?
 This might include things like “CSU,” “colostate,” “Colostate,” “Colorado State
@@ -1889,7 +1891,7 @@ function, and one <code>stringr</code> function within the pipeline.</li>
 <span id="cb244-4"><a href="rprog3.html#cb244-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(text, <span class="st">&quot;CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu&quot;</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb244-5"><a href="rprog3.html#cb244-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">tally</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb244-6"><a href="rprog3.html#cb244-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 10 x 3
+<pre><code>## # A tibble: 10 × 3
 ##    user           `lubridate::year(date)`     n
 ##    &lt;chr&gt;                            &lt;dbl&gt; &lt;int&gt;
 ##  1 SenBennetCO                       2011     1
@@ -1944,7 +1946,7 @@ similar approach to Question 7, with strings related to CU, such as “Buffs” 
 <span id="cb248-6"><a href="rprog3.html#cb248-6" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;CU|Buffs|buffs|University of Colorado&quot;</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb248-7"><a href="rprog3.html#cb248-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">tally</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb248-8"><a href="rprog3.html#cb248-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 9 x 3
+<pre><code>## # A tibble: 9 × 3
 ##   user           `lubridate::year(date)`     n
 ##   &lt;chr&gt;                            &lt;dbl&gt; &lt;int&gt;
 ## 1 SenBennetCO                       2013     3
@@ -1958,8 +1960,8 @@ similar approach to Question 7, with strings related to CU, such as “Buffs” 
 ## 9 SenCoryGardner                    2017     3</code></pre>
 </div>
 </div>
-<div id="chapter-6-homework" class="section level2" number="6.7">
-<h2><span class="header-section-number">6.7</span> Chapter 6 Homework</h2>
+<div id="chapter-6-homework" class="section level2 hasAnchor" number="6.7">
+<h2><span class="header-section-number">6.7</span> Chapter 6 Homework<a href="rprog3.html#chapter-6-homework" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You will continue to use the <a href="https://github.com/fivethirtyeight/data/tree/master/twitter-ratio" target="_blank">FiveThirtyEight</a> Twitter data for homework.</p>
 <p>Download the csv from Canvas containing Colorado senators’ tweets from 2011 to
 2017 (not the full data file used in the above exercises) and the R Markdown
@@ -1978,7 +1980,6 @@ next chapter.</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1997,6 +1998,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -2017,6 +2019,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

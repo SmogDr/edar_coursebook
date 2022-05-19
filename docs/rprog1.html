@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 The R Programming Environment | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 The R Programming Environment | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-27" />
+<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="rprog2.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -119,6 +120,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -478,10 +480,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rprog1" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> The R Programming Environment</h1>
-<div id="ch.-2-objectives" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Ch. 2 Objectives</h2>
+<div id="rprog1" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> The R Programming Environment<a href="rprog1.html#rprog1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="ch.-2-objectives" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Ch. 2 Objectives<a href="rprog1.html#ch.-2-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This chapter is designed around the following learning objectives. Upon
 completing this chapter, you should be able to:</p>
 <ul>
@@ -502,10 +504,10 @@ completing this chapter, you should be able to:</p>
 <li>Compare the key differences between running R code from the console versus writing and running R code in an R script</li>
 </ul>
 </div>
-<div id="r-and-r-studio" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> R and R Studio</h2>
-<div id="what-is-r" class="section level3" number="2.2.1">
-<h3><span class="header-section-number">2.2.1</span> What is R?</h3>
+<div id="r-and-r-studio" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> R and R Studio<a href="rprog1.html#r-and-r-studio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="what-is-r" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> What is R?<a href="rprog1.html#what-is-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R in an open-source programming language that evolved from the S language. The
 S language was developed at Bell Labs in the 1970s, which is the same place
 (and about the same time) that the C programming language was developed.</p>
@@ -522,7 +524,7 @@ machine learning, and data analysis.</p>
 <p>R is an <strong>interpreted language</strong>. That means that you can communicate with it
 interactively from a command line. Other common interpreted languages include
 Python and Perl.</p>
-<div class="figure" style="text-align: center"><span id="fig:interpreted-language"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:interpreted-language"></span>
 <img src="figures/program_types2.jpg" alt="Broad types of software programs. R is an interpreted language. 'Point-and-click' programs, like Excel and Word, are often easiest for a new user to get started with, but are slower for the computer and are restricted in the functionality they offer. By contrast, compiled languages (like C and Java), assembly languages, and machine code are faster for the computer and allow you to create a wider range of things, but can take longer to code and take longer for a new user to learn to work with." width="600pt" />
 <p class="caption">
 Figure 2.1: Broad types of software programs. R is an interpreted language. ‘Point-and-click’ programs, like Excel and Word, are often easiest for a new user to get started with, but are slower for the computer and are restricted in the functionality they offer. By contrast, compiled languages (like C and Java), assembly languages, and machine code are faster for the computer and allow you to create a wider range of things, but can take longer to code and take longer for a new user to learn to work with.
@@ -539,8 +541,8 @@ cutting-edge statistical methods.</p>
 <p><span style="color: blue;"> “The best thing about R is that it was developed by statisticians. The worst thing about R is that…it was developed by statisticians.” – Bo Cowgill, Google, at the Bay Area R Users Group </span></p>
 </blockquote>
 </div>
-<div id="free-and-open-source-software" class="section level3" number="2.2.2">
-<h3><span class="header-section-number">2.2.2</span> Free and open-source software</h3>
+<div id="free-and-open-source-software" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Free and open-source software<a href="rprog1.html#free-and-open-source-software" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <blockquote>
 <p><span style="color: blue;"> “Life is too short to run proprietary software.” – Bdale Garbee </span></p>
 </blockquote>
@@ -556,7 +558,7 @@ different meanings of the word “free.” “Free” can mean:</p>
 <li><em>Gratis</em>: Free as in free beer</li>
 <li><em>Libre</em>: Free as in free speech</li>
 </ul>
-<div class="figure" style="text-align: center"><span id="fig:open-source-overview"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:open-source-overview"></span>
 <img src="figures/OpenSourceOverview.png" alt="An overview of how software can be each type of free (beer and speech). For software programs developed using a compiled programming language, the final product that you open on your computer is run by machine-readable binary code. A developer can give you this code for free (as in beer) without sharing any of the original source code with you. This means you can't dig in to figure out how the software works and how you can extend it. By contrast, open-source software (free as in speech) is software for which you have access to the human-readable code that was used as in input in creating the software binaries. With open-source code, you can figure out exactly how the program is coded." width="500pt" />
 <p class="caption">
 Figure 2.2: An overview of how software can be each type of free (beer and speech). For software programs developed using a compiled programming language, the final product that you open on your computer is run by machine-readable binary code. A developer can give you this code for free (as in beer) without sharing any of the original source code with you. This means you can’t dig in to figure out how the software works and how you can extend it. By contrast, open-source software (free as in speech) is software for which you have access to the human-readable code that was used as in input in creating the software binaries. With open-source code, you can figure out exactly how the program is coded.
@@ -607,8 +609,8 @@ have to take my word for that. Actually, you don’t. The whole engine is open s
 <p><span style="color: blue;"> “Talk is cheap. Show me the code.” – Linus Torvalds </span></p>
 </blockquote>
 </div>
-<div id="what-is-rstudio" class="section level3" number="2.2.3">
-<h3><span class="header-section-number">2.2.3</span> What is RStudio?</h3>
+<div id="what-is-rstudio" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> What is RStudio?<a href="rprog1.html#what-is-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To get the R software, you’ll
 <a href="https://www.r-project.org" target="_blank">download R</a> from the
 R Project for Statistical Computing. This is enough for you to use R on your
@@ -632,8 +634,8 @@ elegance with which it does it, in large part because of the enormous
 contributions of people involved with RStudio.</p>
 </div>
 </div>
-<div id="communicating-with-r" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Communicating with R</h2>
+<div id="communicating-with-r" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Communicating with R<a href="rprog1.html#communicating-with-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Because R is an interpreted language, you can communicate with it
 interactively. You do this using the following general steps:</p>
 <ol style="list-style-type: decimal">
@@ -643,8 +645,8 @@ interactively. You do this using the following general steps:</p>
 <li>Repeat 2 and 3</li>
 <li>Close the R session</li>
 </ol>
-<div id="r-sessions-console-and-command-prompt" class="section level3" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> R sessions, console, and command prompt</h3>
+<div id="r-sessions-console-and-command-prompt" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> R sessions, console, and command prompt<a href="rprog1.html#r-sessions-console-and-command-prompt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>An <strong>R session</strong> is an “instance” of you using R. To open an R session,
 double-click on the icon for the RStudio IDE on you computer. When RStudio
 opens, you will be in a “fresh” R session, unless you restore a saved session,
@@ -657,7 +659,7 @@ importing data (discussed later).</p>
 pane called “Console.” The <strong>console</strong> lets you “talk” to R. This is where you
 can “talk” to R by typing an <strong>expression</strong> at the <strong>prompt</strong> (the caret
 symbol, “&gt;”). You press the “Return” key to send this message to R.</p>
-<div class="figure" style="text-align: center"><span id="fig:r-console"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:r-console"></span>
 <img src="figures/r_console.jpg" alt="Finding the 'Console' pane and the command prompt in RStudio." width="500pt" />
 <p class="caption">
 Figure 2.3: Finding the ‘Console’ pane and the command prompt in RStudio.
@@ -676,8 +678,8 @@ listening, waiting for you to finish asking it something.</li>
 something new.</li>
 </ol>
 </div>
-<div id="r-expressions-function-calls-and-objects" class="section level3" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> R expressions, function calls, and objects</h3>
+<div id="r-expressions-function-calls-and-objects" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> R expressions, function calls, and objects<a href="rprog1.html#r-expressions-function-calls-and-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To “talk” with R, you need to know how to give it a complete <strong>expression</strong>.
 Most expressions you’ll want to give R will be some combination of two
 elements:</p>
@@ -712,7 +714,7 @@ function call. Here is an example of this structure:</p>
 function call. In this example, we’re <strong>calling</strong> a function with the <strong>name</strong>
 <code>print</code>. It has one <strong>argument</strong>, with a <strong>formal argument</strong> of <code>x</code>, which in
 this call we’ve provided the <strong>named argument</strong>: “Hello, world!”</p>
-<div class="figure" style="text-align: center"><span id="fig:function-call"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:function-call"></span>
 <img src="figures/function_call.jpg" alt="Main parts of a function call. This example is calling a function with the name 'print'. The function call has one argument, with a formal argument of 'x', which in this call is provided the named argument 'Hello world'." width="500pt" />
 <p class="caption">
 Figure 2.4: Main parts of a function call. This example is calling a function with the name ‘print.’ The function call has one argument, with a formal argument of ‘x,’ which in this call is provided the named argument ‘Hello world.’
@@ -728,7 +730,7 @@ the <code>print()</code> function. Note that the formal argument never changes.<
 <p>Some functions do not require any arguments. For example, the <code>getRversion()</code>
 function will print out the version of R you are using.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="rprog1.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getRversion</span>()</span></code></pre></div>
-<pre><code>## [1] &#39;4.0.3&#39;</code></pre>
+<pre><code>## [1] &#39;4.1.2&#39;</code></pre>
 <p>Some functions will accept multiple arguments. For example, the <code>print()</code>
 function allows you to specify whether the output should include quotation
 marks, using the <code>quote</code> formal argument:</p>
@@ -771,7 +773,7 @@ this function, at the console type:</p>
 helpfile for the <code>mean()</code> function. In particular, the “Usage” section helps
 you figure out which arguments are <strong>required</strong> and which are <strong>optional</strong> in
 the Usage section of the helpfile.</p>
-<div class="figure" style="text-align: center"><span id="fig:helpfile"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:helpfile"></span>
 <img src="figures/helpfile_arguments.jpg" alt="Navigating a helpfile. This example shows some key parts of the helpfile for the 'mean' function." width="700pt" />
 <p class="caption">
 Figure 2.5: Navigating a helpfile. This example shows some key parts of the helpfile for the ‘mean’ function.
@@ -846,7 +848,7 @@ names that have been assigned in the current R session.</li>
 <ol start="3" style="list-style-type: decimal">
 <li>Look in the “Environment” pane in RStudio (see Figure <a href="rprog1.html#fig:environment">2.6</a>).</li>
 </ol>
-<div class="figure" style="text-align: center"><span id="fig:environment"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:environment"></span>
 <img src="figures/environment_pane.jpg" alt="'Environment' pane in RStudio. This shows the names and first few values of all objects that have been assigned to object names in the global environment." width="500pt" />
 <p class="caption">
 Figure 2.6: ‘Environment’ pane in RStudio. This shows the names and first few values of all objects that have been assigned to object names in the global environment.
@@ -930,7 +932,7 @@ function call. For example:</p>
 <p>Just like with math, the order that the functions are evaluated moves from the
 inner set of parentheses to the outer one (Figure <a href="rprog1.html#fig:composing-functions">2.7</a>). There’s one more way we’ll look at later
 called “piping.”</p>
-<div class="figure" style="text-align: center"><span id="fig:composing-functions"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:composing-functions"></span>
 <img src="figures/composing_function_calls.jpg" alt="'Environment' pane in RStudio. This shows the names and first few values of all objects that have been assigned to object names in the global environment." width="500pt" />
 <p class="caption">
 Figure 2.7: ‘Environment’ pane in RStudio. This shows the names and first few values of all objects that have been assigned to object names in the global environment.
@@ -938,8 +940,8 @@ Figure 2.7: ‘Environment’ pane in RStudio. This shows the names and first fe
 </div>
 </div>
 </div>
-<div id="r-scripts" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> R scripts</h2>
+<div id="r-scripts" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> R scripts<a href="rprog1.html#r-scripts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This is a good point in learning R for you to start putting your code in R
 scripts, rather than entering commands at the console.</p>
 <p>An R script is a plain text file where you can save a series of R commands. You
@@ -950,7 +952,7 @@ paper.</p>
 File” -&gt; “R Script.” Alternatively, you can use the keyboard shortcut
 Command-Shift-N. Figure <a href="rprog1.html#fig:rscript">2.8</a> gives an example of an R script file
 opened in RStudio and points out some interesting elements.</p>
-<div class="figure" style="text-align: center"><span id="fig:rscript"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rscript"></span>
 <img src="figures/ExampleOfRScript.jpg" alt="Example of an R script in RStudio." width="600pt" />
 <p class="caption">
 Figure 2.8: Example of an R script in RStudio.
@@ -987,8 +989,8 @@ commands for this task, like <code>str()</code>, <code>head()</code>, <code>tail
 the console. These are all examples of commands where you’re trying to look at
 something about your data <strong>right now</strong>, rather than code that builds toward
 your analysis, or helps you import or wrangle your data.</p>
-<div id="commenting-code" class="section level3" number="2.4.1">
-<h3><span class="header-section-number">2.4.1</span> Commenting code</h3>
+<div id="commenting-code" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Commenting code<a href="rprog1.html#commenting-code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Sometimes, you’ll want to include notes in your code. You can do this in all
 programming languages by using a <em>comment character</em> to start the line with
 your comment. In R, the comment character is the hash symbol, <code>#</code>. You can add
@@ -1015,10 +1017,10 @@ revisit your code later.</p>
 </blockquote>
 </div>
 </div>
-<div id="the-package-system" class="section level2" number="2.5">
-<h2><span class="header-section-number">2.5</span> The “package” system</h2>
-<div id="r-packages" class="section level3" number="2.5.1">
-<h3><span class="header-section-number">2.5.1</span> R packages</h3>
+<div id="the-package-system" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> The “package” system<a href="rprog1.html#the-package-system" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="r-packages" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> R packages<a href="rprog1.html#r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <blockquote>
 <p><span style="color: blue;"> “Any doubts about R’s big-league status should be put to rest, now that we have a Sudoku Puzzle Solver. Take that, SAS!” – David Brahm (announcing the <code>sudoku</code> package), R-packages (January 2006) </span></p>
 </blockquote>
@@ -1027,7 +1029,7 @@ functionality of R with what are called <em>packages</em>, or extensions with ne
 and functionality that add to the basic “base R” environment. To me, this is a
 bit like this toy train set. You first buy a very basic set that looks
 something like Figure <a href="rprog1.html#fig:toy-train-basic">2.9</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:toy-train-basic"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:toy-train-basic"></span>
 <img src="figures/TrainBasic.JPG" alt="The toy version of base R." width="400pt" />
 <p class="caption">
 Figure 2.9: The toy version of base R.
@@ -1036,7 +1038,7 @@ Figure 2.9: The toy version of base R.
 <p>To take full advantage of R, you’ll want to add on packages. In the case of the
 train set, at this point, a doting grandparent adds on extensively through
 birthday presents, so you end up with something that looks like Figure <a href="rprog1.html#fig:toy-train-fancy">2.10</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:toy-train-fancy"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:toy-train-fancy"></span>
 <img src="figures/TrainComplex.JPG" alt="The toy version of what your R set-up will look like once you find cool packages to use for your research." width="400pt" />
 <p class="caption">
 Figure 2.10: The toy version of what your R set-up will look like once you find cool packages to use for your research.
@@ -1053,9 +1055,9 @@ growing in popularity, especially for packages that are still in active
 development. You can also create and share packages among your collaborators or
 co-workers, without ever posting them publicly.</p>
 </div>
-<div id="installing-from-cran" class="section level3" number="2.5.2">
-<h3><span class="header-section-number">2.5.2</span> Installing from CRAN</h3>
-<div class="figure" style="text-align: center"><span id="fig:cran10000"></span>
+<div id="installing-from-cran" class="section level3 hasAnchor" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Installing from CRAN<a href="rprog1.html#installing-from-cran" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cran10000"></span>
 <img src="figures/CRAN_package_10000.png" alt="Celebrating CRAN's 10,000th package, which was developed by Dr. Brooke Anderson." width="600pt" />
 <p class="caption">
 Figure 2.11: Celebrating CRAN’s 10,000th package, which was developed by Dr. Brooke Anderson.
@@ -1068,7 +1070,7 @@ function. For example, telephone keypads include letters for each number
 (Figure <a href="rprog1.html#fig:phone-keypad">2.12</a>), which allow companies to have “named” phone
 numbers that are easier for people to remember, like 1-800-GO-FEDEX and
 1-800-FLOWERS.</p>
-<div class="figure" style="text-align: center"><span id="fig:phone-keypad"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:phone-keypad"></span>
 <img src="figures/telephone_keypad.png" alt="Telephone keypad with letters corresponding to each number." width="150pt" />
 <p class="caption">
 Figure 2.12: Telephone keypad with letters corresponding to each number.
@@ -1089,8 +1091,8 @@ You should update your packages as new versions come out. Typically, you have
 to reinstall packages when you update your version of R, so this is a good
 chance to get the most up-to-date version of the packages you use.</p>
 </div>
-<div id="loading-an-installed-package" class="section level3" number="2.5.3">
-<h3><span class="header-section-number">2.5.3</span> Loading an installed package</h3>
+<div id="loading-an-installed-package" class="section level3 hasAnchor" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> Loading an installed package<a href="rprog1.html#loading-an-installed-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Once you have installed a package, it will be saved to your computer. But, you
 won’t be able to access its functions within an R session until you <em>load</em> it
 in that R session. Loading a package essentially makes all of the package’s
@@ -1100,7 +1102,7 @@ package name inside the parentheses.</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="rprog1.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;phonenumber&quot;</span>)</span></code></pre></div>
 <p>Figure <a href="rprog1.html#fig:install-vs-load">2.13</a> provides a conceptual picture of the
 different steps of installing and loading a package.</p>
-<div class="figure" style="text-align: center"><span id="fig:install-vs-load"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:install-vs-load"></span>
 <img src="figures/install_vs_library.jpg" alt="Install a package (with `install.packages()`) to get it onto your computer. Load it (with `library()`) to get it into your R session." width="400pt" />
 <p class="caption">
 Figure 2.13: Install a package (with <code>install.packages()</code>) to get it onto your computer. Load it (with <code>library()</code>) to get it into your R session.
@@ -1133,8 +1135,8 @@ package:</p>
 <pre><code>## 
 ## To cite package &#39;phonenumber&#39; in publications use:
 ## 
-##   Steve Myles (2015). phonenumber: Convert Letters to Numbers and Back
-##   as on a Telephone Keypad. R package version 0.2.2.
+##   Steve Myles (2021). phonenumber: Convert Letters to Numbers and Back
+##   as on a Telephone Keypad. R package version 0.2.3.
 ##   https://CRAN.R-project.org/package=phonenumber
 ## 
 ## A BibTeX entry for LaTeX users is
@@ -1142,8 +1144,8 @@ package:</p>
 ##   @Manual{,
 ##     title = {phonenumber: Convert Letters to Numbers and Back as on a Telephone Keypad},
 ##     author = {Steve Myles},
-##     year = {2015},
-##     note = {R package version 0.2.2},
+##     year = {2021},
+##     note = {R package version 0.2.3},
 ##     url = {https://CRAN.R-project.org/package=phonenumber},
 ##   }</code></pre>
 <div class="rmdnote">
@@ -1171,8 +1173,8 @@ use <code>?</code> followed by the function’s name, but note the lack of <code
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="rprog1.html#cb62-1" aria-hidden="true" tabindex="-1"></a>?letterToNumber</span></code></pre></div>
 </div>
 </div>
-<div id="rs-most-basic-object-types" class="section level2" number="2.6">
-<h2><span class="header-section-number">2.6</span> R’s most basic object types</h2>
+<div id="rs-most-basic-object-types" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> R’s most basic object types<a href="rprog1.html#rs-most-basic-object-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>An R object stores some type of data that you want to use later in your R code,
 without fully recreating it. The content of R objects can vary from very simple
 (e.g., <code>"GoFedEx"</code> string in the example code above) to very complex objects
@@ -1191,13 +1193,13 @@ analysis: <strong>vectors</strong> (one-dimensional objects) and <strong>datafra
 <li>How to make a new object with that class</li>
 <li>How to extract values from objects with that class</li>
 </ol>
-<div id="vectors" class="section level3" number="2.6.1">
-<h3><span class="header-section-number">2.6.1</span> Vectors</h3>
+<div id="vectors" class="section level3 hasAnchor" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Vectors<a href="rprog1.html#vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To get an initial grasp of the <em>vector</em> object type in R, think of it as a
 one-dimensional object, or a string of values. Figure <a href="rprog1.html#fig:vector-example">2.14</a>
 provides an example of the structure for a very simple vector, one that holds
 the names of the three main characters in the <em>Harry Potter</em> book series.</p>
-<div class="figure" style="text-align: center"><span id="fig:vector-example"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vector-example"></span>
 <img src="figures/example_vector.jpg" alt="An example of the structure of an R object with the vector class. This object class contains data as a string of values, all with the same data type." width="400pt" />
 <p class="caption">
 Figure 2.14: An example of the structure of an R object with the vector class. This object class contains data as a string of values, all with the same data type.
@@ -1211,7 +1213,7 @@ included elements (e.g., “FedEx” and “3” will both become characters, si
 can be changed to a character, but “FedEx” can’t be changed to a number).
 Figure <a href="rprog1.html#fig:vector-example-classes">2.15</a> gives some examples of different
 classes of vectors.</p>
-<div class="figure" style="text-align: center"><span id="fig:vector-example-classes"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vector-example-classes"></span>
 <img src="figures/vector_class_examples.jpg" alt="Examples of vectors of different classes. All the values in a vector must be of the same type (e.g., all numbers or all characters). There are different classes of vectors depending on the type of data they store." width="400pt" />
 <p class="caption">
 Figure 2.15: Examples of vectors of different classes. All the values in a vector must be of the same type (e.g., all numbers or all characters). There are different classes of vectors depending on the type of data they store.
@@ -1232,7 +1234,7 @@ expression:</p>
 <p>This <strong>assignment expression</strong>, for assigning a vector an object name, follows
 the structure we covered earlier for function calls and assignment expressions
 (Figure <a href="rprog1.html#fig:vector-assignment">2.16</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:vector-assignment"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vector-assignment"></span>
 <img src="figures/vector_class_examples.jpg" alt="Elements of the assignment expression for creating a vector and assigning it an object name." width="400pt" />
 <p class="caption">
 Figure 2.16: Elements of the assignment expression for creating a vector and assigning it an object name.
@@ -1293,21 +1295,21 @@ One thing that makes this rule confusing is that there are a few cases in R wher
 </p>
 </div>
 </div>
-<div id="dataframes" class="section level3" number="2.6.2">
-<h3><span class="header-section-number">2.6.2</span> Dataframes</h3>
+<div id="dataframes" class="section level3 hasAnchor" number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span> Dataframes<a href="rprog1.html#dataframes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A dataframe is a two-dimensional object made of one or more vectors of the same
 length stuck together side-by-side. It is the closest R has to an Excel
 spreadsheet-type structure. Figure <a href="rprog1.html#fig:example-dataframe">2.17</a> gives a
 conceptual example of a dataframe created from several of the vector examples
 in Figure <a href="rprog1.html#fig:vector-example-classes">2.15</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:example-dataframe"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:example-dataframe"></span>
 <img src="figures/example_dataframe.jpg" alt="An example dataframe created from several vectors of the same length and with observations aligned across vector positions. For example, the first value in each vector provides a value for Harry, the second for Ron." width="400pt" />
 <p class="caption">
 Figure 2.17: An example dataframe created from several vectors of the same length and with observations aligned across vector positions. For example, the first value in each vector provides a value for Harry, the second for Ron.
 </p>
 </div>
 <p>Here’s how the dataframe in Figure <a href="rprog1.html#fig:example-dataframe">2.17</a> will look in R:</p>
-<pre><code>## # A tibble: 3 x 4
+<pre><code>## # A tibble: 3 × 4
 ##   first_name last_name n_kids survived
 ##   &lt;chr&gt;      &lt;chr&gt;      &lt;dbl&gt; &lt;lgl&gt;   
 ## 1 Harry      Potter         1 TRUE    
@@ -1322,7 +1324,7 @@ the observations (i.e., book characters). Notice that the number of elements in
 each of the columns must be the same in this dataframe, but that the different
 columns can have different classes of data (e.g., character vectors for
 <code>first_name</code> and <code>last_name</code>; logical value of TRUE or FALSE for <code>alive</code>).</p>
-<div class="figure" style="text-align: center"><span id="fig:annotated-dataframe"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:annotated-dataframe"></span>
 <img src="figures/example_dataframe_labeled.jpg" alt="The elements of a dataframe: columns, rows, and column names." width="400pt" />
 <p class="caption">
 Figure 2.18: The elements of a dataframe: columns, rows, and column names.
@@ -1351,7 +1353,7 @@ create the <em>Harry Potter</em> <code>tibble</code> dataframe shown above:</p>
 <span id="cb84-4"><a href="rprog1.html#cb84-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">n_kids =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">1</span>),</span>
 <span id="cb84-5"><a href="rprog1.html#cb84-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">survived =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>))</span>
 <span id="cb84-6"><a href="rprog1.html#cb84-6" aria-hidden="true" tabindex="-1"></a>hp_data</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 4
+<pre><code>## # A tibble: 3 × 4
 ##   first_name last_name n_kids survived
 ##   &lt;chr&gt;      &lt;chr&gt;      &lt;dbl&gt; &lt;lgl&gt;   
 ## 1 Harry      Potter         1 TRUE    
@@ -1364,7 +1366,7 @@ saved as R objects. For example:</p>
 <span id="cb86-3"><a href="rprog1.html#cb86-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">n_kids =</span> n_kids,</span>
 <span id="cb86-4"><a href="rprog1.html#cb86-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">survived =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>))</span>
 <span id="cb86-5"><a href="rprog1.html#cb86-5" aria-hidden="true" tabindex="-1"></a>hp_data</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 4
+<pre><code>## # A tibble: 3 × 4
 ##   first_name last_name n_kids survived
 ##   &lt;chr&gt;      &lt;chr&gt;      &lt;dbl&gt; &lt;lgl&gt;   
 ## 1 Harry      Potter         1 TRUE    
@@ -1410,7 +1412,7 @@ dimensions (i.e., number of rows and columns) of a dataframe:</p>
 <p>For example, you can explore the data we just pulled in on the <em>Daily Show</em>
 with:</p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="rprog1.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="at">object =</span> daily_show)</span></code></pre></div>
-<pre><code>## tibble [2,693 × 5] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+<pre><code>## spec_tbl_df [2,693 × 5] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ YEAR                     : num [1:2693] 1999 1999 1999 1999 1999 ...
 ##  $ GoogleKnowlege_Occupation: chr [1:2693] &quot;actor&quot; &quot;Comedian&quot; &quot;television actress&quot; &quot;film actress&quot; ...
 ##  $ Show                     : chr [1:2693] &quot;1/11/99&quot; &quot;1/12/99&quot; &quot;1/13/99&quot; &quot;1/14/99&quot; ...
@@ -1423,7 +1425,8 @@ with:</p>
 ##   ..   Show = col_character(),
 ##   ..   Group = col_character(),
 ##   ..   Raw_Guest_List = col_character()
-##   .. )</code></pre>
+##   .. )
+##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="rprog1.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="at">object =</span> daily_show)</span></code></pre></div>
 <pre><code>##       YEAR      GoogleKnowlege_Occupation     Show              Group          
 ##  Min.   :1999   Length:2693               Length:2693        Length:2693       
@@ -1447,14 +1450,14 @@ their <em>position</em> (i.e., based on row or column number). For example, if y
 wanted to get the first two rows of the <code>hp_data</code> dataframe, you could run:</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="rprog1.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;dplyr&quot;</span>)</span>
 <span id="cb99-2"><a href="rprog1.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(<span class="at">.data =</span> hp_data, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>))</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 4
+<pre><code>## # A tibble: 2 × 4
 ##   first_name last_name n_kids survived
 ##   &lt;chr&gt;      &lt;chr&gt;      &lt;dbl&gt; &lt;lgl&gt;   
 ## 1 Harry      Potter         1 TRUE    
 ## 2 Ron        Weasley        7 TRUE</code></pre>
 <p>If you wanted to get the first and fourth columns, you could run:</p>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="rprog1.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="at">.data =</span> hp_data, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>))</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 2
+<pre><code>## # A tibble: 3 × 2
 ##   first_name survived
 ##   &lt;chr&gt;      &lt;lgl&gt;   
 ## 1 Harry      TRUE    
@@ -1463,7 +1466,7 @@ wanted to get the first two rows of the <code>hp_data</code> dataframe, you coul
 <p>You can compose calls from both functions. For example, you could extract the
 values in the first and fourth columns of the first two rows with:</p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="rprog1.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="at">.data =</span> <span class="fu">slice</span>(<span class="at">.data =</span> hp_data, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)), <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>))</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 2
+<pre><code>## # A tibble: 2 × 2
 ##   first_name survived
 ##   &lt;chr&gt;      &lt;lgl&gt;   
 ## 1 Harry      TRUE    
@@ -1474,13 +1477,13 @@ before the comma and the columns after; if you want all rows or all columns,
 leave the corresponding spot blank. Here are two examples of using
 square-bracket indexing to pull a subset of the <code>hp_data</code> dataframe:</p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="rprog1.html#cb105-1" aria-hidden="true" tabindex="-1"></a>hp_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">2</span>] <span class="co"># First two rows, second column</span></span></code></pre></div>
-<pre><code>## # A tibble: 2 x 1
+<pre><code>## # A tibble: 2 × 1
 ##   last_name
 ##   &lt;chr&gt;    
 ## 1 Potter   
 ## 2 Weasley</code></pre>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="rprog1.html#cb107-1" aria-hidden="true" tabindex="-1"></a>hp_data[<span class="dv">3</span>, ] <span class="co"># Last row, all columns</span></span></code></pre></div>
-<pre><code>## # A tibble: 1 x 4
+<pre><code>## # A tibble: 1 × 4
 ##   first_name last_name n_kids survived
 ##   &lt;chr&gt;      &lt;chr&gt;      &lt;dbl&gt; &lt;lgl&gt;   
 ## 1 Hermione   Granger        1 TRUE</code></pre>
@@ -1491,18 +1494,18 @@ If you forget to put the comma in the indexing for a dataframe (e.g., <code>fibo
 </div>
 </div>
 </div>
-<div id="chapter-2-exercises" class="section level2" number="2.7">
-<h2><span class="header-section-number">2.7</span> Chapter 2 Exercises</h2>
-<div id="set-1-session-helpfiles-scripts-and-objects" class="section level3" number="2.7.1">
-<h3><span class="header-section-number">2.7.1</span> Set 1: Session, helpfiles, scripts, and objects</h3>
+<div id="chapter-2-exercises" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Chapter 2 Exercises<a href="rprog1.html#chapter-2-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="set-1-session-helpfiles-scripts-and-objects" class="section level3 hasAnchor" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Set 1: Session, helpfiles, scripts, and objects<a href="rprog1.html#set-1-session-helpfiles-scripts-and-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol start="0" style="list-style-type: decimal">
 <li><p>Within your R project for this course, open a “fresh” R session (Session &gt; Restart R, if RStudio is already open). Using <code>getwd()</code> in the console, confirm the working directory is your R project.</p></li>
 <li><p>Type <code>sessionInfo()</code> into the console. What R version are you using? What base R packages were loaded automatically in your R session?</p></li>
 <li><p>Still in the console and using <code>?</code>, open and examine the helpfile for one of the base R packages named above. Use the function listed in the “Details” section of the helpfile to call the full package documentation, including a list of functions. Call and examine the helpfile for one of these functions.</p></li>
 <li><p>Go to File &gt; New File &gt; R Script to open a new R script. Add your name to the top of the R script as a comment. Call <code>mtcars</code> (dataset about cars in base R) in the console. Then, using the <code>gets arrow</code>, save <code>mtcars</code> as an object named <code>mtcars_data</code> in your R script. Saving the relevant commands in the R script, examine the structure of <code>mtcars_data</code> and determine its dimensions and variable class types (e.g., numeric, logical). Save your R script with an informative file name (e.g., “class-activity-DATE”) in the <code>/code</code> folder of your R project and commit your changes to GitHub with a meaningful commit message and push the changes.</p></li>
 </ol>
-<div id="example-code" class="section level4" number="2.7.1.1">
-<h4><span class="header-section-number">2.7.1.1</span> Example Code</h4>
+<div id="example-code" class="section level4 hasAnchor" number="2.7.1.1">
+<h4><span class="header-section-number">2.7.1.1</span> Example Code<a href="rprog1.html#example-code" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol start="0" style="list-style-type: decimal">
 <li>Working directory</li>
 </ol>
@@ -1542,14 +1545,14 @@ If you forget to put the comma in the indexing for a dataframe (e.g., <code>fibo
 numeric.</p>
 </div>
 </div>
-<div id="set-2-loading-and-using-packages" class="section level3" number="2.7.2">
-<h3><span class="header-section-number">2.7.2</span> Set 2: Loading and using packages</h3>
+<div id="set-2-loading-and-using-packages" class="section level3 hasAnchor" number="2.7.2">
+<h3><span class="header-section-number">2.7.2</span> Set 2: Loading and using packages<a href="rprog1.html#set-2-loading-and-using-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol start="4" style="list-style-type: decimal">
 <li><p>Reopen the R script from the above set of exercises. Install <code>dplyr</code>, a popular R package for data wrangling, from your console. In your R script, load <code>dplyr</code>. Using <code>dplyr::filter()</code>, determine the number of cars in <code>mtcars_data</code> with an average miles per gallon (<code>mpg</code>) above 25. Save the R script and commit the changes to GitHub with a meaningful commit message; push the changes.</p></li>
 <li><p>Navigate to the “Tutorial” tab in your environment panel. Complete the “Data Basics” tutorial via <code>learnr</code>.</p></li>
 </ol>
-<div id="example-code-1" class="section level4" number="2.7.2.1">
-<h4><span class="header-section-number">2.7.2.1</span> Example Code</h4>
+<div id="example-code-1" class="section level4 hasAnchor" number="2.7.2.1">
+<h4><span class="header-section-number">2.7.2.1</span> Example Code<a href="rprog1.html#example-code-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol start="4" style="list-style-type: decimal">
 <li>Data wrangling</li>
 </ol>
@@ -1562,8 +1565,8 @@ numeric.</p>
 </div>
 </div>
 </div>
-<div id="chapter-2-homework" class="section level2" number="2.8">
-<h2><span class="header-section-number">2.8</span> Chapter 2 Homework</h2>
+<div id="chapter-2-homework" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> Chapter 2 Homework<a href="rprog1.html#chapter-2-homework" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>During the next few class periods and for homework, you will complete ten
 lessons in <a href="https://swirlstats.com/" target="_blank"><code>swirl</code></a>, an R package for learning R
 <strong>in</strong> R, written by Roger Peng, Brooke Anderson, and Sean Kross. Each lesson
@@ -1595,8 +1598,8 @@ course such as “Exploratory Data Analysis.”</p>
 alarmed or discouraged if you see some unfamiliar techniques or concepts. If
 you are interested in learning more about something from <code>swirl</code>, Google is a
 great place to start. We will cover a lot of the material later in the class.</p>
-<div id="special-swirl-commands" class="section level3" number="2.8.1">
-<h3><span class="header-section-number">2.8.1</span> Special <code>swirl</code> commands</h3>
+<div id="special-swirl-commands" class="section level3 hasAnchor" number="2.8.1">
+<h3><span class="header-section-number">2.8.1</span> Special <code>swirl</code> commands<a href="rprog1.html#special-swirl-commands" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the <code>swirl</code> environment, knowing about the following commands will be
 helpful:</p>
 <ul>
@@ -1621,7 +1624,6 @@ helpful:</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1640,6 +1642,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -1660,6 +1663,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

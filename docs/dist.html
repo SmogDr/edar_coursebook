@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 12 Appendix: Stats &amp; Reference Distributions | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 12 Appendix: Stats &amp; Reference Distributions | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-27" />
+<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="model.html"/>
 
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -119,6 +120,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -478,12 +480,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dist" class="section level1" number="12">
-<h1><span class="header-section-number">Chapter 12</span> Appendix: Stats &amp; Reference Distributions</h1>
+<div id="dist" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Appendix: Stats &amp; Reference Distributions<a href="dist.html#dist" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In this chapter I discuss a handful of basic statistical concepts, including several reference distributions, that you may encounter while working through this course. I don’t go into great detail on any of these topics (or their mathematical structure) because smarter, better, and more authoritative descriptions can be found elsewhere in reference texts or online. This is the $1 tour. None of the material that follows is required learning for R programming, but if you haven’t previously studied statistics (or need a refresher), it can’t hurt. The concepts outlined below, along with the discussion on <a href="eda1.html#quantile">quantiles</a> in Chapter <a href="eda1.html#eda1">5</a>, form the basis for many, many data analysis techniques.</p>
 <p>Before we delve into distributions, however, we should begin with measures of <em>central tendency</em> and <em>spread</em>, since many reference distributions have those as defining properties.</p>
-<div id="measures-of-central-tendency" class="section level2" number="12.1">
-<h2><span class="header-section-number">12.1</span> Measures of Central Tendency</h2>
+<div id="measures-of-central-tendency" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Measures of Central Tendency<a href="dist.html#measures-of-central-tendency" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When we think about a distribution of data (in a <a href="eda1.html#univar">univariate</a> sense), the <strong><em>central tendency</em></strong> represents the center, or <em>location</em>, of the data. The central tendency is the answer to the question: <em>where do the values typically fall</em>? We will use the terms <strong>mean</strong>, <strong>median</strong>, and <strong>mode</strong> to describe a distribution’s central tendency. They are defined as follows.</p>
 <p>Let <span class="math inline">\(x\)</span> be the variable of interest and assume that we have <span class="math inline">\(n\)</span> observations of <em><code>x</code></em> stored in R as a vector. Thus, each individual observation would be <span class="math inline">\(x_{i}\)</span> where <span class="math inline">\(i\)</span> goes from <span class="math inline">\(1\)</span> to <span class="math inline">\(n\)</span>. In an R programming sense, <span class="math inline">\(n =\)</span> <code>length(x)</code>.</p>
 <ul>
@@ -500,8 +502,8 @@ The median can be calculated directly using <code>median()</code> or the <code>q
 function.</p></li>
 </ul>
 </div>
-<div id="measures-of-dispersion" class="section level2" number="12.2">
-<h2><span class="header-section-number">12.2</span> Measures of Dispersion</h2>
+<div id="measures-of-dispersion" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Measures of Dispersion<a href="dist.html#measures-of-dispersion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The dispersion of a univariate distribution of data refers to its variability. We will use the following terms to describe dispersion. This is not a comprehensive list by any means, but these terms are common:</p>
 <ul>
 <li><p><strong>Range</strong>: The range is defined by the minimum and maximum value observed for
@@ -530,8 +532,8 @@ The mean and standard deviation are fine measures of central tendency and disper
 </p>
 </div>
 </div>
-<div id="unif_dist" class="section level2" number="12.3">
-<h2><span class="header-section-number">12.3</span> Uniform Distribution</h2>
+<div id="unif_dist" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Uniform Distribution<a href="dist.html#unif_dist" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The uniform distribution describes a situation where all obervations have an equal probability of occurrence. Examples of uniform distributions include: the outcome of a single roll of a 6-sided die, or the flip of a coin, or the chance of picking a spade, heart, diamond, or club from a well-shuffled deck of cards. In each of these cases, all potential outcomes have an equal chance of occuring. A uniform distribition may be specified simply by setting the range of possible outcomes (i.e., a minimum, maximum, and anything in between). The “in-between” part also lets you specify whether you want to allow outcome values that are continuous (like from a random-number generator), integers (like from a dice roll), or some other format (like a binary 0 or 1; heads or tails).</p>
 <p>Below, we create a <a href="eda1.html#pdf">probability density function</a> for the first roll of a six-sided die; this is a <em>discrete uniform distribition</em> since we only allow integers to occur. A uniform distribution is appropriate here because any of the numbers between 1 and 6 has equal probability of being rolled. Notice the shape of the histogram…flat.</p>
 <div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="dist.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="co">#create a uniform distribition for the first roll of a 6-sided die</span></span>
@@ -549,16 +551,16 @@ The mean and standard deviation are fine measures of central tendency and disper
 <span id="cb370-13"><a href="dist.html#cb370-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>, <span class="fl">5.5</span>, <span class="fl">6.5</span>),</span>
 <span id="cb370-14"><a href="dist.html#cb370-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">as.factor</span>(<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">6</span>,<span class="dv">1</span>))) <span class="sc">+</span></span>
 <span id="cb370-15"><a href="dist.html#cb370-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unif-dist"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unif-dist"></span>
 <img src="13-distributions_files/figure-html/unif-dist-1.png" alt="Relative counts for the first roll of a 6-sided die, rolled 100,000 times" width="384" />
 <p class="caption">
 Figure 12.1: Relative counts for the first roll of a 6-sided die, rolled 100,000 times
 </p>
 </div>
-<div id="uniform-characteristic-plots" class="section level3" number="12.3.1">
-<h3><span class="header-section-number">12.3.1</span> Uniform Characteristic Plots</h3>
+<div id="uniform-characteristic-plots" class="section level3 hasAnchor" number="12.3.1">
+<h3><span class="header-section-number">12.3.1</span> Uniform Characteristic Plots<a href="dist.html#uniform-characteristic-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 Below, we show the cumulative distribution plot and probability density function for a uniform distribution between 0 and 1.
-<div class="figure"><span id="fig:unif-dist-plots2"></span>
+<div class="figure"><span style="display:block;" id="fig:unif-dist-plots2"></span>
 <img src="13-distributions_files/figure-html/unif-dist-plots2-1.png" alt="Characteristic Plots for a Uniform Distribution" width="672" />
 <p class="caption">
 Figure 12.2: Characteristic Plots for a Uniform Distribution
@@ -566,28 +568,28 @@ Figure 12.2: Characteristic Plots for a Uniform Distribution
 </div>
 </div>
 </div>
-<div id="normal_dist" class="section level2" number="12.4">
-<h2><span class="header-section-number">12.4</span> Normal Distribution</h2>
+<div id="normal_dist" class="section level2 hasAnchor" number="12.4">
+<h2><span class="header-section-number">12.4</span> Normal Distribution<a href="dist.html#normal_dist" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The normal distribution arises from phenomena that tend to have <em>additive</em> variability. By “additive,” I mean that the outcome (or variable of interest) tends to vary in a +/- fashion from one observation to the next. Lots of things have additive variability: the heights of 1<sup>st</sup> graders, the size of pollen grains from a tree or plant, the variation in blood pressure across the population, or the average temperature in Fort Collins, CO for the month of June.</p>
 Let’s examine what <em>additive variability</em> looks like using the 6-sided dice mentioned above. Although a dice roll has a uniform distribution of possible outcomes (rolling a 1,2,3,4,5, or 6), the variability associated with adding up the sum of three or more dice creates a normal distribution of outcomes. If we were to roll four, 6-sided dice and sum the result (getting a value between 4 and 24 for each roll), and then repeat this experiment 10,000 times, we see the distribution shown below. The smooth line represents a fit using a normal distribution - a pretty nice fit considering that we are working with a discrete (integer-based) dataset!
-<div class="figure" style="text-align: center"><span id="fig:normal1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:normal1"></span>
 <img src="13-distributions_files/figure-html/normal1-1.png" alt="A Normal Distribution" width="384" />
 <p class="caption">
 Figure 12.3: A Normal Distribution
 </p>
 </div>
-<div id="normal-characteristic-plots" class="section level3" number="12.4.1">
-<h3><span class="header-section-number">12.4.1</span> Normal Characteristic Plots</h3>
+<div id="normal-characteristic-plots" class="section level3 hasAnchor" number="12.4.1">
+<h3><span class="header-section-number">12.4.1</span> Normal Characteristic Plots<a href="dist.html#normal-characteristic-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Unlike the uniform distribution, the normal distribution is not specified by a range (it doesn’t have one). The normal distribution is specified by a <em>central tendency</em> (a most-common value) and a measure of data’s <em>dispersion</em> or spread (a standard deviation). A normal distribution is symmetric, meaning that the spread of the data is equal on each side of the central tendency. This symmetry also means that the mode (the most common value), the median (the 50<sup>th</sup> percentile or 0.5 quantile) and the mean (the average value) are all equal. A series of normal distributions of varying dispersion is shown in the panels below.</p>
-<div class="figure" style="text-align: center"><span id="fig:normal2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:normal2"></span>
 <img src="13-distributions_files/figure-html/normal2-1.png" alt="Characteristic Plots for a Normal Distribution" width="576" />
 <p class="caption">
 Figure 12.4: Characteristic Plots for a Normal Distribution
 </p>
 </div>
 </div>
-<div id="rule" class="section level3" number="12.4.2">
-<h3><span class="header-section-number">12.4.2</span> 68-95-99 rule</h3>
+<div id="rule" class="section level3 hasAnchor" number="12.4.2">
+<h3><span class="header-section-number">12.4.2</span> 68-95-99 rule<a href="dist.html#rule" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A <strong><em>standard</em></strong> deviation for a normal distribution relates the <em>spread</em> of the data about the mean (and <em>median</em>, since they are one-in-the-same for normal data). Since we often care about the probability of occurrence for some value, whether it be a more probable value close to the mean or an extreme value close to one of the tails, the standard deviation helps tell us precisely what the odds are for getting that value, given a random sample. We use the <code>pnorm()</code> function to estimate these probabilities. The <code>pnorm()</code> function returns the probability of returning a value less than the value indicated for a given mean and standard deviation. For example, from plot in Figure <a href="dist.html#fig:normal2">12.4</a> where <span class="math inline">\(\mu=50\)</span> and <span class="math inline">\(\sigma=10\)</span>, the probability of sampling a value of 70 or less is:</p>
 <div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="dist.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">70</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb371-2"><a href="dist.html#cb371-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(., <span class="dv">3</span>)</span></code></pre></div>
@@ -605,7 +607,7 @@ Figure 12.4: Characteristic Plots for a Normal Distribution
 <li>Two standard deviations about the mean (the interval from <span class="math inline">\(\mu - 2\sigma\)</span> to <span class="math inline">\(\mu + 2\sigma\)</span>) contains 95.5% of the observed data.</li>
 <li>Three standard deviations about the mean (<span class="math inline">\(\mu - 3\sigma\)</span> to <span class="math inline">\(\mu + 3\sigma\)</span>) contains 99.7% of the observed data. Figure <a href="dist.html#fig:shaded-prob-anno">12.5</a> below depicts this rule graphically.</li>
 </ul>
-<div class="figure" style="text-align: center"><span id="fig:shaded-prob-anno"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:shaded-prob-anno"></span>
 <img src="images/shaded_prob_anno.png" alt="The 68-95-99 Rule for Normal Probability Distributions. Numbers represent the probability of finding a value within 1-3 standard deviations about the mean." width="671" />
 <p class="caption">
 Figure 12.5: The 68-95-99 Rule for Normal Probability Distributions. Numbers represent the probability of finding a value within 1-3 standard deviations about the mean.
@@ -614,8 +616,8 @@ Figure 12.5: The 68-95-99 Rule for Normal Probability Distributions. Numbers rep
 <p>Inspection of Figure <a href="dist.html#fig:shaded-prob-anno">12.5</a> indicates that the probability of encountering a value <span class="math inline">\(\pm1\sigma\)</span> from the mean is fairly common, occurring about 32% of the time. Encountering a value <span class="math inline">\(\pm2\sigma\)</span> from the mean, however, is rare - happening less than 5% of the time. When you hear someone refer to a “two sigma” displacement, this is likely the type of scenario they are depicting (though people rarely indicate whether they mean a one-tailed or two-tailed situation). A <span class="math inline">\(\pm3\sigma\)</span> deviation is extremely rare, happening less than 0.3% of the time.</p>
 </div>
 </div>
-<div id="log_normal_dist" class="section level2" number="12.5">
-<h2><span class="header-section-number">12.5</span> Log-normal Distribution</h2>
+<div id="log_normal_dist" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> Log-normal Distribution<a href="dist.html#log_normal_dist" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Multiplicative variation is what gives rise to a “log-normal” distribution: a special type of skewed data.</p>
 <p>Let’s create two normal distributions for variables <code>a</code> and <code>b</code>:</p>
 <div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="dist.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="co">#create two variables that are normally distributed</span></span>
@@ -633,7 +635,7 @@ Figure 12.5: The 68-95-99 Rule for Normal Probability Distributions. Numbers rep
 <span id="cb376-9"><a href="dist.html#cb376-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
 <span id="cb376-10"><a href="dist.html#cb376-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Sum of a + b&quot;</span>) <span class="sc">+</span></span>
 <span id="cb376-11"><a href="dist.html#cb376-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:a-b-histogram"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:a-b-histogram"></span>
 <img src="13-distributions_files/figure-html/a-b-histogram-1.png" alt="The Sum of Two Normally Distributed Variables" width="384" />
 <p class="caption">
 Figure 12.6: The Sum of Two Normally Distributed Variables
@@ -652,7 +654,7 @@ Figure 12.6: The Sum of Two Normally Distributed Variables
 <span id="cb377-9"><a href="dist.html#cb377-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
 <span id="cb377-10"><a href="dist.html#cb377-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;a * b * c&quot;</span>) <span class="sc">+</span></span>
 <span id="cb377-11"><a href="dist.html#cb377-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) </span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:a-b-lognormal"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:a-b-lognormal"></span>
 <img src="13-distributions_files/figure-html/a-b-lognormal-1.png" alt="The Product of Three Normally Distributed Variables Multiplied Together" width="384" />
 <p class="caption">
 Figure 12.7: The Product of Three Normally Distributed Variables Multiplied Together
@@ -668,8 +670,8 @@ the size of rocks found in a section of a riverbed, or the size of particles
 found in air. All of these phenomena tend to be governed by multiplicative
 factors. In other words, all of these observations are controlled by mechanisms
 that suggest <span class="math inline">\(x = a\cdot b\cdot c\)</span> not <span class="math inline">\(x = a + b + c\)</span>. Note: we provide an example of fitting a log-normal distribution in Section <a href="transform.html#logfit">9.6.4</a>.</p>
-<div id="lognormal-characteristic-plots" class="section level3" number="12.5.1">
-<h3><span class="header-section-number">12.5.1</span> Lognormal Characteristic Plots</h3>
+<div id="lognormal-characteristic-plots" class="section level3 hasAnchor" number="12.5.1">
+<h3><span class="header-section-number">12.5.1</span> Lognormal Characteristic Plots<a href="dist.html#lognormal-characteristic-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The lognormal distribution is called such because you observe a “normal” distribution only after taking the log of each observation, <span class="math inline">\(log(x_i)\)</span>. Similar to its normal counterpart, the lognormal distribution is characterized by a <strong>mean</strong> (<span class="math inline">\(\mu\)</span>) and a <strong>standard deviation</strong> (<span class="math inline">\(\sigma\)</span>), but in this case, <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> are calculated using <span class="math inline">\(log(x_i)\)</span>. Thus, to estimate <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> we take the log of all our observations of <span class="math inline">\(x\)</span> and then calculate means and standard deviations of those logged values.</p>
 <p><span class="math display">\[\hat{\mu} = \frac{\sum_{i=1}^{n}ln(x_{i})}{n}\]</span></p>
 <span class="math display">\[\hat{\sigma} = \sqrt {\frac{\sum_{i=1}^{n}(ln(x_{i})-\hat{\mu})^2}{n-1}}\]</span>
@@ -679,14 +681,14 @@ Note that <span class="math inline"><span class="math inline">\(\mu\)</span></sp
 </p>
 </div>
 <p>Let’s take a look at a series of lognormal distributions where <span class="math inline">\(\mu\)</span> is held constant at 0 (if <span class="math inline">\(\mu=0\)</span> then <span class="math inline">\(e^\mu=1\)</span>) and <span class="math inline">\(\sigma\)</span> is varied from 0.4 to 1.1 (which means that GSD will vary from 1.5 to 3).</p>
-<div class="figure" style="text-align: center"><span id="fig:log-plot1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:log-plot1"></span>
 <img src="13-distributions_files/figure-html/log-plot1-1.png" alt="Characteristic Plots for a Series of Lognormal Distributions of Varying GSD" width="672" />
 <p class="caption">
 Figure 12.8: Characteristic Plots for a Series of Lognormal Distributions of Varying GSD
 </p>
 </div>
 <p>A key characteristic of lognormal distributions is that they are <em>left-skewed</em>, meaning that the plot has a tail that extends far to the right (towards increasing values). Another interesting thing about lognormal distributions is that when plotted on a log-scale axis, they look normal! Take a look at Figure <a href="dist.html#fig:log-plot1">12.8</a> when plotted with <code>scale_x_log10()</code> and compare it to Figure <a href="dist.html#fig:normal2">12.4</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:log-plot2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:log-plot2"></span>
 <img src="13-distributions_files/figure-html/log-plot2-1.png" alt="Lognormal Distributions look &quot;normal&quot; when plotted on a log scale axis." width="672" />
 <p class="caption">
 Figure 12.9: Lognormal Distributions look “normal” when plotted on a log scale axis.
@@ -699,8 +701,8 @@ The terms <em>meanlog</em> and <em>sdlog</em> represent log-space values (i.e., 
 </div>
 </div>
 </div>
-<div id="pearson" class="section level2" number="12.6">
-<h2><span class="header-section-number">12.6</span> Pearson Correlation Coefficient</h2>
+<div id="pearson" class="section level2 hasAnchor" number="12.6">
+<h2><span class="header-section-number">12.6</span> Pearson Correlation Coefficient<a href="dist.html#pearson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The Pearson correlation coefficient, <strong><em>r</em></strong>, is a quantitative descriptor of the degree of <strong>linear correlation</strong> between two variables (let’s call them <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>).</p>
 <p>The Pearson correlation coefficient indicates the proportion of linear variation
 in <span class="math inline">\(y\)</span> that can be explained by knowing <span class="math inline">\(x\)</span>, when the data are paired. By “linear” we mean a straight-line fit between the two variables. The assumptions underlying the
@@ -714,7 +716,7 @@ Pearson correlation coefficient are as follows:</p>
 <p>Below, we show a series of scatter plots with varying levels of linear correlation
 between two vectors:
 <code>x</code> and <code>y</code>.</p>
-<div class="figure"><span id="fig:pearson-plot-correlation"></span>
+<div class="figure"><span style="display:block;" id="fig:pearson-plot-correlation"></span>
 <img src="13-distributions_files/figure-html/pearson-plot-correlation-1.png" alt="Pearson correlation for variables with perfect, strong, moderate, and no correlation." width="672" />
 <p class="caption">
 Figure 12.10: Pearson correlation for variables with perfect, strong, moderate, and no correlation.
@@ -731,7 +733,7 @@ If we have <code>n</code> paired samples of <code>x</code> and <code>y</code>, t
 <span class="math display">\[r = \frac{cov(x,y)} {\hat{\sigma}_{x} \cdot \hat{\sigma}_{y}}\]</span>
 You can rearrange the equation to calculate <strong>r</strong> using the mean and standard deviation as follows (note: the <span class="math inline">\(n-1\)</span> parts get canceled out):
 <span class="math display">\[r = \frac{\sum_{i=1}^{n}(x_{i} - \bar{x})\cdot(y_{i} - \bar{y}) } {\sqrt {\sum_{i=1}^{n}(x_{i}-\bar{x})^{2}} \cdot \sqrt {\sum_{i=1}^{n}(y_{i}-\bar{y})^{2}}}\]</span>
-<div class="figure" style="text-align: center"><span id="fig:pearson-anno"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pearson-anno"></span>
 <img src="images/pearson_anno.png" alt="The Pearson Correlation Coefficient is not as bad as it loooks in algebraic form." width="632" />
 <p class="caption">
 Figure 12.11: The Pearson Correlation Coefficient is not as bad as it loooks in algebraic form.
@@ -754,8 +756,8 @@ Figure 12.11: The Pearson Correlation Coefficient is not as bad as it loooks in 
 <p>If you wish to quantify correlation between two variables but fear that your data
 violate the Pearson assumptions listed above, then try the <strong><em>Spearman Correlation Coefficient</em></strong> or <strong><em>Lin’s Concordance Coefficient</em></strong>.</p>
 </div>
-<div id="OLS" class="section level2" number="12.7">
-<h2><span class="header-section-number">12.7</span> OLS Regression Coefficients</h2>
+<div id="OLS" class="section level2 hasAnchor" number="12.7">
+<h2><span class="header-section-number">12.7</span> OLS Regression Coefficients<a href="dist.html#OLS" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In <a href="model.html#model">Chapter 11</a> we discuss how to create a simple linear model (regression) between two observed variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. Here, we present the math behind an OLS linear fit, where the goal is to estimate model coefficients for the intercept (<span class="math inline">\(\beta_{0}\)</span>) and slope (<span class="math inline">\(\beta_{1}\)</span>) of the line between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> such that:</p>
 <p><span class="math display">\[Y = \beta_{0} + \beta_{1}\cdot X + \epsilon\]</span></p>
 <p>where the last term, <span class="math inline">\(\epsilon\)</span>, represents the model error, or residual.</p>
@@ -778,7 +780,6 @@ violate the Pearson assumptions listed above, then try the <strong><em>Spearman 
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -797,6 +798,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -817,6 +819,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

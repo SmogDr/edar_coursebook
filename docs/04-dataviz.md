@@ -203,7 +203,7 @@ You can add these with `+` after the `ggplot()` statement to initialize the
 `ggplot2` object. Some of the most common geoms are:
 
 <table>
-<caption>(\#tab:geom-table)Common Plot Aesthetics</caption>
+<caption>(\#tab:geom-table)A Few Basic Geom Types</caption>
  <thead>
   <tr>
    <th style="text-align:left;"> Plot type </th>
@@ -399,7 +399,7 @@ mpg %>%
 ```
 
 ```
-## # A tibble: 7 x 2
+## # A tibble: 7 × 2
 ##   class          n
 ##   <chr>      <int>
 ## 1 2seater        3
@@ -502,7 +502,8 @@ ggplot2::ggplot() +
              size = 2) +
   # second geom layer (line)
   geom_abline(intercept = 0,
-              slope = 1) +
+              slope = 1, 
+              color = "grey") +
   # call fixed coordinate system
   coord_fixed() +
   # set axis limits

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Multivariate Data Exploration | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Multivariate Data Exploration | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-27" />
+<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="rprog3.html"/>
 <link rel="next" href="rprog4.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -119,6 +120,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -478,10 +480,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="eda2" class="section level1" number="7">
-<h1><span class="header-section-number">Chapter 7</span> Multivariate Data Exploration</h1>
-<div id="chapter-7-objectives" class="section level2" number="7.1">
-<h2><span class="header-section-number">7.1</span> Chapter 7 Objectives</h2>
+<div id="eda2" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Multivariate Data Exploration<a href="eda2.html#eda2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="chapter-7-objectives" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Chapter 7 Objectives<a href="eda2.html#chapter-7-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This Chapter is designed around the following learning objectives. Upon
 completion, you should be able to:</p>
 <ul>
@@ -492,8 +494,8 @@ completion, you should be able to:</p>
 <li>Leverage <code>ggplot2</code> for multivariate exploratory data analysis through facets and colors</li>
 </ul>
 </div>
-<div id="bivariate" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> Bivariate Data</h2>
+<div id="bivariate" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Bivariate Data<a href="eda2.html#bivariate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Whereas univariate data analyses are directed at “getting to know” the
 observations made for a single variable, bivariate—and multivariate—
 analyses are designed to examine the <em>relationship</em> that may exist between two
@@ -507,8 +509,8 @@ Bivariate means <em>two variables</em> where the observations are paired; each o
 </p>
 </div>
 </div>
-<div id="scatt" class="section level2" number="7.3">
-<h2><span class="header-section-number">7.3</span> Scatterplot</h2>
+<div id="scatt" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Scatterplot<a href="eda2.html#scatt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Undoubtedly, you have seen scatterplots many times before; we will discuss them
 in more detail here. The <strong>scatterplot</strong> allows you to assess the strength,
 direction, and type of relationship between two variables. This can be
@@ -536,8 +538,8 @@ purpose or “mode” affects the intention behind a plot:</p>
 <li><p><strong>Statistics:</strong> The independent variable (x-axis) is thought to have some influence or control over the dependent variable (y-axis).</p></li>
 <li><p><strong>Exploratory Data Analysis:</strong> We throw two variables on a plot to investigate their relationship. We make a guess about which is the independent variable (x-axis) and which is the dependent variable (y-axis), and we hope that nobody calls us out if we got it wrong…</p></li>
 </ul>
-<div id="causality" class="section level3" number="7.3.1">
-<h3><span class="header-section-number">7.3.1</span> Causality</h3>
+<div id="causality" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Causality<a href="eda2.html#causality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>All this talk about dependent and independent variables is fundamentally rooted
 in the practice of <strong><em>causal inference</em></strong> reasoning, which is the ability to
 say that “action A <em>caused</em> outcome B.” Discovering—or proving—that one
@@ -551,8 +553,8 @@ science can be a beautiful and compelling way to demonstrate causality, but we
 need to learn to crawl before we can walk, run, or fly. For now, let’s put
 aside the pursuit of causation and begin with <strong><em>correlation</em></strong>.</p>
 </div>
-<div id="corr" class="section level3" number="7.3.2">
-<h3><span class="header-section-number">7.3.2</span> Correlation</h3>
+<div id="corr" class="section level3 hasAnchor" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Correlation<a href="eda2.html#corr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <strong><em>scatterplot</em></strong> is a great way to visualize <em>whether</em>, and, to some
 extent, <em>how</em>, two variables are related to each other.</p>
 <div class="rmdnote">
@@ -569,7 +571,7 @@ research context.</p>
 quantitatively, you can explore the Pearson Correlation Coefficient (<strong><em>r</em></strong>)
 in the <a href="dist.html#pearson">Appendix</a>, which is used to quantify the degree of linear
 correlation between two variables.</p>
-<div class="figure" style="text-align: center"><span id="fig:corr-example-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:corr-example-1"></span>
 <img src="images/correlation_example_1.png" alt="Scatterplot examples showing bivariate data with varying degrees of correlation." width="700pt" />
 <p class="caption">
 Figure 7.1: Scatterplot examples showing bivariate data with varying degrees of correlation.
@@ -586,15 +588,15 @@ correlation can vary, too:</p>
 </li>
 <li><strong>non-linear correlation</strong>: the relationship between the two variables is curvilinear</li>
 </ul>
-<div class="figure" style="text-align: center"><span id="fig:corr-example-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:corr-example-2"></span>
 <img src="images/correlation_example_2.png" alt="Scatterplot examples showing bivariate data with varying types of correlation." width="700pt" />
 <p class="caption">
 Figure 7.2: Scatterplot examples showing bivariate data with varying types of correlation.
 </p>
 </div>
 </div>
-<div id="correlation-neq-causation" class="section level3" number="7.3.3">
-<h3><span class="header-section-number">7.3.3</span> Correlation <span class="math inline">\(\neq\)</span> causation</h3>
+<div id="correlation-neq-causation" class="section level3 hasAnchor" number="7.3.3">
+<h3><span class="header-section-number">7.3.3</span> Correlation <span class="math inline">\(\neq\)</span> causation<a href="eda2.html#correlation-neq-causation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Did you know that being a smoker is correlated with having a lighter in your
 pocket? Furthermore, it can be shown that keeping a lighter in your pocket is
 correlated with an increased risk of developing heart disease and lung cancer.
@@ -605,12 +607,12 @@ Causation: the process or condition by which one event (cause) contributes to th
 </p>
 </div>
 <p>Let’s take a closer look at the dangers of mistaking a <em>correlated</em>
-relationship as <em>causal</em> relationship between two variables. Shown below is a
+relationship as a <em>causal</em> relationship between two variables. Shown below is a
 scatterplot that builds off the <code>mpg</code> dataset we first discussed in Chapter
 <a href="dataviz.html#dataviz">4</a>. Using the <code>mpg</code> dataframe, we will plot the relationship
 between the number of cylinders in an engine (<code>cyl</code>) (independent variable)
 and that vehicle’s fuel economy (<code>hwy</code>) (dependent variable).</p>
-<div class="figure" style="text-align: center"><span id="fig:corr-example-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:corr-example-3"></span>
 <img src="07-multivar_eda_files/figure-html/corr-example-3-1.png" alt="Scatterplot of Engine Displacement vs. Fuel Economy" width="672" />
 <p class="caption">
 Figure 7.3: Scatterplot of Engine Displacement vs. Fuel Economy
@@ -619,7 +621,7 @@ Figure 7.3: Scatterplot of Engine Displacement vs. Fuel Economy
 <p>Looking at this plot, there appears a clear correlation between the number of
 cylinders in a vehicle and its fuel efficiency. A linear fit through these data
 gives a Pearson correlation coefficient of -0.76, which is not a perfect
-relationship but a strong one, nonethless. Does this mean that a
+relationship but a strong one, nonetheless. Does this mean that a
 <em>causal relationship</em> exists? If so, then we only need to mandate that all
 future vehicles on the road be built with 4-cylinder engines, if we want more a
 fuel-efficient fleet! That mandate, of course, would likely produce minimal
@@ -629,15 +631,15 @@ one will <strong><em>cause</em></strong> a change in the other.</p>
 design parameter related more to engine power than to engine efficiency. In
 other words, the number of cylinders helps determine total displacement
 volume. Indeed, the causal relationship for fuel efficiency, in terms of miles
-traveled per gallon, is due more directly to engine conversion efficiency,
+traveled per gallon, is due more directly to the energy conversion efficiency of the engine,
 vehicle drag coefficient, and vehicle mass. If you want more fuel-efficient
 cars and trucks, you need more efficient engines that weigh less. In the 1990s
 and early 2000s nearly all engine blocks were made from cast iron. Today,
 nearly all engine blocks are made from aluminum. Can you guess why?</p>
 </div>
 </div>
-<div id="exploring-multivariate-data" class="section level2" number="7.4">
-<h2><span class="header-section-number">7.4</span> Exploring Multivariate Data</h2>
+<div id="exploring-multivariate-data" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Exploring Multivariate Data<a href="eda2.html#exploring-multivariate-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>With <em>multivariate data</em>, we often consider more than just two variables;
 however, visualizing more than two variables in a single plot can be
 challenging. There are advanced statistical approaches to exploring such data,
@@ -645,8 +647,8 @@ including multivariate regression, principal component analysis, and machine
 learning approaches, but these techniques are beyond the scope of this course.
 Here, I will introduce a few graphical techniques that are useful for exploring
 multivariate data.</p>
-<div id="facets" class="section level3" number="7.4.1">
-<h3><span class="header-section-number">7.4.1</span> Facets</h3>
+<div id="facets" class="section level3 hasAnchor" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Facets<a href="eda2.html#facets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One easy way to evaluate two or more variables is to create multiple plots (or
 facets) with the <code>ggplot2::facet()</code> function. This function creates a series of
 plots, as panels, where each panel represents a different value (or level) of a
@@ -667,7 +669,7 @@ haven’t discussed modeling yet but more on that <a href="model.html#model">lat
 <span id="cb250-10"><a href="eda2.html#cb250-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Fuel Economy (mi/gal)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb250-11"><a href="eda2.html#cb250-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Vehicle Weight (x1000 lb)&quot;</span>)</span>
 <span id="cb250-12"><a href="eda2.html#cb250-12" aria-hidden="true" tabindex="-1"></a>g1</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:facet-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:facet-1"></span>
 <img src="07-multivar_eda_files/figure-html/facet-1-1.png" alt="Scatterplot of fuel economy vs. vehicle weight from the `mtcars` dataset." width="672" />
 <p class="caption">
 Figure 7.4: Scatterplot of fuel economy vs. vehicle weight from the <code>mtcars</code> dataset.
@@ -697,7 +699,7 @@ Note: <code>vars()</code> is a <code>ggplot2::</code> function that allows you t
 <div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="eda2.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="co"># facet previous plot by `cyl` columns and retain labels</span></span>
 <span id="cb251-2"><a href="eda2.html#cb251-2" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(cyl),</span>
 <span id="cb251-3"><a href="eda2.html#cb251-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">labeller =</span> label_both) <span class="co"># label each panel w/ variable name &amp; value</span></span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:facet-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:facet-2"></span>
 <img src="07-multivar_eda_files/figure-html/facet-2-1.png" alt="Scatterplots of fuel economy vs. vehicle weight by number of cylinders in the engine (data from the `mtcars` dataset)." width="672" />
 <p class="caption">
 Figure 7.5: Scatterplots of fuel economy vs. vehicle weight by number of cylinders in the engine (data from the <code>mtcars</code> dataset).
@@ -713,15 +715,15 @@ linear models—one for each facet.</p>
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="eda2.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="co"># facet previous plot by`cyl` in rows and retain labels</span></span>
 <span id="cb252-2"><a href="eda2.html#cb252-2" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(cyl),</span>
 <span id="cb252-3"><a href="eda2.html#cb252-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">labeller =</span> label_both)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:facet-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:facet-3"></span>
 <img src="07-multivar_eda_files/figure-html/facet-3-1.png" alt="Scatterplots of fuel economy vs. vehicle weight by number of cylinders in the engine (data from the `mtcars` dataset)." width="672" />
 <p class="caption">
 Figure 7.6: Scatterplots of fuel economy vs. vehicle weight by number of cylinders in the engine (data from the <code>mtcars</code> dataset).
 </p>
 </div>
 </div>
-<div id="colors" class="section level3" number="7.4.2">
-<h3><span class="header-section-number">7.4.2</span> Colors</h3>
+<div id="colors" class="section level3 hasAnchor" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Colors<a href="eda2.html#colors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can also use color to indicate variation in data; this can be useful for
 introducing a third variable into scatter, jitter, and time-series plots (or when plotting multiple boxplots, histograms, or cumulative distributions). When
 introducing <strong>color as a variable</strong> into a plot, you must do so through an
@@ -743,7 +745,7 @@ insight as the facets above.</p>
 <span id="cb253-12"><a href="eda2.html#cb253-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Vehicle Weight, (x1000 lb)&quot;</span>)</span>
 <span id="cb253-13"><a href="eda2.html#cb253-13" aria-hidden="true" tabindex="-1"></a><span class="co"># call plot</span></span>
 <span id="cb253-14"><a href="eda2.html#cb253-14" aria-hidden="true" tabindex="-1"></a>g3</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:colorplot-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:colorplot-1"></span>
 <img src="07-multivar_eda_files/figure-html/colorplot-1-1.png" alt="Vehicle fuel economy vs. weight and colored by number of engine cylinders (data from mtcars)" width="672" />
 <p class="caption">
 Figure 7.7: Vehicle fuel economy vs. weight and colored by number of engine cylinders (data from mtcars)
@@ -770,7 +772,7 @@ both colors and symbols.</p>
 <span id="cb254-11"><a href="eda2.html#cb254-11" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;orangered&quot;</span>, </span>
 <span id="cb254-12"><a href="eda2.html#cb254-12" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;steelblue2&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb254-13"><a href="eda2.html#cb254-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:colorplot-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:colorplot-2"></span>
 <img src="07-multivar_eda_files/figure-html/colorplot-2-1.png" alt="Vehicle fuel economy vs. weight and colored by number of engine cylinders (data from mtcars)" width="672" />
 <p class="caption">
 Figure 7.8: Vehicle fuel economy vs. weight and colored by number of engine cylinders (data from mtcars)
@@ -783,10 +785,10 @@ Whenever you use <strong>color</strong> to differentiate variables, use symbols,
 </div>
 </div>
 </div>
-<div id="chapter-7-exercises" class="section level2" number="7.5">
-<h2><span class="header-section-number">7.5</span> Chapter 7 Exercises</h2>
-<div id="fuel-economy-data" class="section level3" number="7.5.1">
-<h3><span class="header-section-number">7.5.1</span> Fuel economy data</h3>
+<div id="chapter-7-exercises" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Chapter 7 Exercises<a href="eda2.html#chapter-7-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="fuel-economy-data" class="section level3 hasAnchor" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Fuel economy data<a href="eda2.html#fuel-economy-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This in-class exercise will conduct an exploratory, multivariate data
 analysis on vehicle fuel economy. We will begin by downloading a .zip file from
 <a href="https://www.fueleconomy.gov/feg/ws/" target="_blank">fueleconomy.gov</a>, which
@@ -797,8 +799,8 @@ nearly every vehicle manufactured between 1984 and today. We will use the
 dictionary (something that defines and explains each variable in the dataset)
 is also available at the website above.</p>
 </div>
-<div id="import-and-wrangle-data" class="section level3" number="7.5.2">
-<h3><span class="header-section-number">7.5.2</span> Import and wrangle data</h3>
+<div id="import-and-wrangle-data" class="section level3 hasAnchor" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> Import and wrangle data<a href="eda2.html#import-and-wrangle-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The first code chunk will download the data directly into a temporary file
 using <code>download.file()</code> from base R. We will then <code>unzip()</code> (base R) the temp
 file into a .csv and use <code>readr</code> to read that .csv into a dataframe named
@@ -883,20 +885,20 @@ the data to retain only vehicles made after the year 2000.</p>
 <span id="cb257-15"><a href="eda2.html#cb257-15" aria-hidden="true" tabindex="-1"></a><span class="co"># remove previous objects from global environment</span></span>
 <span id="cb257-16"><a href="eda2.html#cb257-16" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(vars_needed, vars_factr)</span></code></pre></div>
 </div>
-<div id="check-data" class="section level3" number="7.5.3">
-<h3><span class="header-section-number">7.5.3</span> Check data</h3>
+<div id="check-data" class="section level3 hasAnchor" number="7.5.3">
+<h3><span class="header-section-number">7.5.3</span> Check data<a href="eda2.html#check-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Begin as we always do, by simply looking at some of the data.</p>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="eda2.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="co"># examine first five rows of df</span></span>
 <span id="cb258-2"><a href="eda2.html#cb258-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_mpg)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 13
-##      id make  model  year   cyl displ drive tran  v_class fuel_type comb08
-##   &lt;dbl&gt; &lt;fct&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;      &lt;dbl&gt;
-## 1 15589 Acura NSX    2000     6   3   Rear… Auto… Two Se… Premium …     18
-## 2 15590 Acura NSX    2000     6   3.2 Rear… Manu… Two Se… Premium …     18
-## 3 15591 BMW   M Co…  2000     6   3.2 Rear… Manu… Two Se… Premium …     19
-## 4 15592 BMW   Z3 C…  2000     6   2.8 Rear… Auto… Two Se… Premium …     19
-## 5 15593 BMW   Z3 C…  2000     6   2.8 Rear… Manu… Two Se… Premium …     19
-## 6 15594 BMW   Z3 R…  2000     6   2.5 Rear… Auto… Two Se… Premium …     19
+<pre><code>## # A tibble: 6 × 13
+##      id make  model        year   cyl displ drive tran  v_class fuel_type comb08
+##   &lt;dbl&gt; &lt;fct&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;      &lt;dbl&gt;
+## 1 15589 Acura NSX          2000     6   3   Rear… Auto… Two Se… Premium …     18
+## 2 15590 Acura NSX          2000     6   3.2 Rear… Manu… Two Se… Premium …     18
+## 3 15591 BMW   M Coupe      2000     6   3.2 Rear… Manu… Two Se… Premium …     19
+## 4 15592 BMW   Z3 Coupe     2000     6   2.8 Rear… Auto… Two Se… Premium …     19
+## 5 15593 BMW   Z3 Coupe     2000     6   2.8 Rear… Manu… Two Se… Premium …     19
+## 6 15594 BMW   Z3 Roadster  2000     6   2.5 Rear… Auto… Two Se… Premium …     19
 ## # … with 2 more variables: highway08 &lt;dbl&gt;, city08 &lt;dbl&gt;</code></pre>
 <p>Next, let’s take a look at some of the factor levels. There are lots of ways
 to do this in R, but the <code>levels()</code> function is the most straightforward.</p>
@@ -930,21 +932,21 @@ to do this in R, but the <code>levels()</code> function is the most straightforw
 ## [31] &quot;Vans&quot;                               &quot;Vans Passenger&quot;                    
 ## [33] &quot;Vans, Cargo Type&quot;                   &quot;Vans, Passenger Type&quot;</code></pre>
 </div>
-<div id="check-for-missing-data" class="section level3" number="7.5.4">
-<h3><span class="header-section-number">7.5.4</span> Check for missing data</h3>
+<div id="check-for-missing-data" class="section level3 hasAnchor" number="7.5.4">
+<h3><span class="header-section-number">7.5.4</span> Check for missing data<a href="eda2.html#check-for-missing-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Next, let’s see whether this dataframe contains missing data (<code>NA</code>s).</p>
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="eda2.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count instances of missing values within df_mpg</span></span>
 <span id="cb266-2"><a href="eda2.html#cb266-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(df_mpg))</span></code></pre></div>
-<pre><code>## [1] 478</code></pre>
+<pre><code>## [1] 752</code></pre>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="eda2.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note this can work as a pipe, too</span></span>
 <span id="cb268-2"><a href="eda2.html#cb268-2" aria-hidden="true" tabindex="-1"></a><span class="co"># df_mpg %&gt;% is.na() %&gt;% sum()</span></span></code></pre></div>
 <p>With a dataframe of this size, we shouldn’t be surprised that there are
-478 <code>NA</code> values present. The next question is: where do
+752 <code>NA</code> values present. The next question is: where do
 these <code>NA</code> values show up? There are several ways to answer this question;
 here, we will use the <code>stats::complete.cases()</code> function with a
 <code>dplyr::filter()</code> search.</p>
-<div id="example-1-missing-data" class="section level4" number="7.5.4.1">
-<h4><span class="header-section-number">7.5.4.1</span> Example 1: Missing Data</h4>
+<div id="example-1-missing-data" class="section level4 hasAnchor" number="7.5.4.1">
+<h4><span class="header-section-number">7.5.4.1</span> Example 1: Missing Data<a href="eda2.html#example-1-missing-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <code>compelete.cases()</code> function returns a logical vector indicating
 which rows are <em>complete</em> (i.e., no missing values). The opposite of this
 logical function, <code>!complete.cases()</code>, should return ONLY those rows that do
@@ -953,20 +955,20 @@ contain <code>NA</code>s. Let’s create a subset of <code>df_mpg</code> that on
 <div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="eda2.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="co"># return a df of rows with missing values</span></span>
 <span id="cb269-2"><a href="eda2.html#cb269-2" aria-hidden="true" tabindex="-1"></a>df_mpg <span class="sc">%&gt;%</span></span>
 <span id="cb269-3"><a href="eda2.html#cb269-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">complete.cases</span>(.))</span></code></pre></div>
-<pre><code>## # A tibble: 233 x 13
-##       id make  model  year   cyl displ drive tran  v_class fuel_type comb08
-##    &lt;dbl&gt; &lt;fct&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;      &lt;dbl&gt;
-##  1 16423 Niss… Altr…  2000    NA    NA &lt;NA&gt;  &lt;NA&gt;  Midsiz… Electric…     85
-##  2 16424 Toyo… RAV4…  2000    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     72
-##  3 17328 Toyo… RAV4…  2001    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     72
-##  4 17329 Ford  Th!nk  2001    NA    NA &lt;NA&gt;  &lt;NA&gt;  Two Se… Electric…     65
-##  5 17330 Ford  Expl…  2001    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     39
-##  6 17331 Niss… Hype…  2001    NA    NA &lt;NA&gt;  &lt;NA&gt;  Two Se… Electric…     75
-##  7 18290 Toyo… RAV4…  2002    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     78
-##  8 18291 Ford  Expl…  2002    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     39
-##  9 19296 Toyo… RAV4…  2003    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     78
-## 10 30965 Ford  Rang…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
-## # … with 223 more rows, and 2 more variables: highway08 &lt;dbl&gt;, city08 &lt;dbl&gt;</code></pre>
+<pre><code>## # A tibble: 370 × 13
+##       id make   model      year   cyl displ drive tran  v_class fuel_type comb08
+##    &lt;dbl&gt; &lt;fct&gt;  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;      &lt;dbl&gt;
+##  1 16423 Nissan Altra EV   2000    NA    NA &lt;NA&gt;  &lt;NA&gt;  Midsiz… Electric…     85
+##  2 16424 Toyota RAV4 EV    2000    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     72
+##  3 17328 Toyota RAV4 EV    2001    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     72
+##  4 17329 Ford   Th!nk      2001    NA    NA &lt;NA&gt;  &lt;NA&gt;  Two Se… Electric…     65
+##  5 17330 Ford   Explorer…  2001    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     39
+##  6 17331 Nissan Hyper-Mi…  2001    NA    NA &lt;NA&gt;  &lt;NA&gt;  Two Se… Electric…     75
+##  7 18290 Toyota RAV4 EV    2002    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     78
+##  8 18291 Ford   Explorer…  2002    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     39
+##  9 19296 Toyota RAV4 EV    2003    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     78
+## 10 30965 Ford   Ranger P…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
+## # … with 360 more rows, and 2 more variables: highway08 &lt;dbl&gt;, city08 &lt;dbl&gt;</code></pre>
 <p>Here, we discover that most of the the <code>NA</code> values are in the <code>cyl</code>, <code>displ</code>,
 and <code>tran</code>, columns. Further, we see that <strong>all</strong> of these vehicles have a
 <code>fuel_type</code> of <em>electric</em>, which makes sense because electric vehicles (EVs) do not
@@ -985,8 +987,8 @@ exclude from certain analyses later…</p>
 <div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="eda2.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="co">#this code will throw an error</span></span>
 <span id="cb272-2"><a href="eda2.html#cb272-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_mpg, <span class="sc">!</span><span class="fu">complete.cases</span>(.))  </span></code></pre></div>
 </div>
-<div id="example-2-missing-data" class="section level4" number="7.5.4.2">
-<h4><span class="header-section-number">7.5.4.2</span> Example 2: Missing Data</h4>
+<div id="example-2-missing-data" class="section level4 hasAnchor" number="7.5.4.2">
+<h4><span class="header-section-number">7.5.4.2</span> Example 2: Missing Data<a href="eda2.html#example-2-missing-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Filter the <code>df_mpg</code> data for <em>any variables</em> (<code>dplyr::any_vars()</code>) that contain
 <code>NA</code>. Like <code>tidyselect::all_of()</code> that was used to clean the dataframe above,
 the <code>any_vars()</code> function is a helper function designed for use within <code>dplyr</code>
@@ -999,32 +1001,32 @@ on the topic.</p>
 <div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="eda2.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter the df for rows where any of the observations contain NA</span></span>
 <span id="cb273-2"><a href="eda2.html#cb273-2" aria-hidden="true" tabindex="-1"></a>df_mpg <span class="sc">%&gt;%</span> </span>
 <span id="cb273-3"><a href="eda2.html#cb273-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter_all</span>(dplyr<span class="sc">::</span><span class="fu">any_vars</span>(<span class="fu">is.na</span>(.)))</span></code></pre></div>
-<pre><code>## # A tibble: 233 x 13
-##       id make  model  year   cyl displ drive tran  v_class fuel_type comb08
-##    &lt;dbl&gt; &lt;fct&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;      &lt;dbl&gt;
-##  1 16423 Niss… Altr…  2000    NA    NA &lt;NA&gt;  &lt;NA&gt;  Midsiz… Electric…     85
-##  2 16424 Toyo… RAV4…  2000    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     72
-##  3 17328 Toyo… RAV4…  2001    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     72
-##  4 17329 Ford  Th!nk  2001    NA    NA &lt;NA&gt;  &lt;NA&gt;  Two Se… Electric…     65
-##  5 17330 Ford  Expl…  2001    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     39
-##  6 17331 Niss… Hype…  2001    NA    NA &lt;NA&gt;  &lt;NA&gt;  Two Se… Electric…     75
-##  7 18290 Toyo… RAV4…  2002    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     78
-##  8 18291 Ford  Expl…  2002    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     39
-##  9 19296 Toyo… RAV4…  2003    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     78
-## 10 30965 Ford  Rang…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
-## # … with 223 more rows, and 2 more variables: highway08 &lt;dbl&gt;, city08 &lt;dbl&gt;</code></pre>
+<pre><code>## # A tibble: 370 × 13
+##       id make   model      year   cyl displ drive tran  v_class fuel_type comb08
+##    &lt;dbl&gt; &lt;fct&gt;  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;      &lt;dbl&gt;
+##  1 16423 Nissan Altra EV   2000    NA    NA &lt;NA&gt;  &lt;NA&gt;  Midsiz… Electric…     85
+##  2 16424 Toyota RAV4 EV    2000    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     72
+##  3 17328 Toyota RAV4 EV    2001    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     72
+##  4 17329 Ford   Th!nk      2001    NA    NA &lt;NA&gt;  &lt;NA&gt;  Two Se… Electric…     65
+##  5 17330 Ford   Explorer…  2001    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     39
+##  6 17331 Nissan Hyper-Mi…  2001    NA    NA &lt;NA&gt;  &lt;NA&gt;  Two Se… Electric…     75
+##  7 18290 Toyota RAV4 EV    2002    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     78
+##  8 18291 Ford   Explorer…  2002    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     39
+##  9 19296 Toyota RAV4 EV    2003    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     78
+## 10 30965 Ford   Ranger P…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
+## # … with 360 more rows, and 2 more variables: highway08 &lt;dbl&gt;, city08 &lt;dbl&gt;</code></pre>
 </div>
-<div id="example-3-missing-data" class="section level4" number="7.5.4.3">
-<h4><span class="header-section-number">7.5.4.3</span> Example 3: Missing Data</h4>
+<div id="example-3-missing-data" class="section level4 hasAnchor" number="7.5.4.3">
+<h4><span class="header-section-number">7.5.4.3</span> Example 3: Missing Data<a href="eda2.html#example-3-missing-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Note: In <a href="rprog4.html#rprog4">Chapter 8</a>, you will learn to “map” the <code>sum()</code> and <code>is.na()</code> functions to each column of the data frame using <code>map_dfc</code> from the <code>purrr</code> package, which is designed to apply one ore more functions across columns of a data frame. This approach is the recommended way and I show it mainly as a preview of things to come in <a href="rprog4.html#rprog4">Chapter 8</a>.</p>
 <div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="eda2.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="co"># preview of code we will learn in Chapter 8</span></span>
 <span id="cb275-2"><a href="eda2.html#cb275-2" aria-hidden="true" tabindex="-1"></a>df_mpg <span class="sc">%&gt;%</span> purrr<span class="sc">::</span><span class="fu">map_dfc</span>(<span class="sc">~</span><span class="fu">sum</span>(<span class="fu">is.na</span>(.)))</span></code></pre></div>
 </div>
 </div>
-<div id="visualize-data" class="section level3" number="7.5.5">
-<h3><span class="header-section-number">7.5.5</span> Visualize data</h3>
-<div id="tidy-data-1" class="section level4" number="7.5.5.1">
-<h4><span class="header-section-number">7.5.5.1</span> Tidy data</h4>
+<div id="visualize-data" class="section level3 hasAnchor" number="7.5.5">
+<h3><span class="header-section-number">7.5.5</span> Visualize data<a href="eda2.html#visualize-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="tidy-data-1" class="section level4 hasAnchor" number="7.5.5.1">
+<h4><span class="header-section-number">7.5.5.1</span> Tidy data<a href="eda2.html#tidy-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Our primary variable of interest is fuel economy, so let’s begin by visualizing
 the location, dispersion, and shape of <code>city08</code>, <code>highway08</code>, and <code>comb08</code>,
 which represent city, highway and combined fuel economy estimates. Note that
@@ -1043,8 +1045,8 @@ different columns. We’ll fix that with <code>tidyr::pivot_longer()</code>.</p>
 <span id="cb276-11"><a href="eda2.html#cb276-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># switch var to factor</span></span>
 <span id="cb276-12"><a href="eda2.html#cb276-12" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">metric =</span> <span class="fu">as.factor</span>(metric))</span></code></pre></div>
 </div>
-<div id="multivariate-eda-options" class="section level4" number="7.5.5.2">
-<h4><span class="header-section-number">7.5.5.2</span> Multivariate EDA options</h4>
+<div id="multivariate-eda-options" class="section level4 hasAnchor" number="7.5.5.2">
+<h4><span class="header-section-number">7.5.5.2</span> Multivariate EDA options<a href="eda2.html#multivariate-eda-options" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>With the data properly tidy, we can use our basic EDA plots with <code>stat_ecdf()</code>,
 <code>geom_boxplot()</code>, and <code>geom_histogram()</code>, to visualize the fuel economy data.<br />
 To show the different variables within the same plot, we use <code>color =</code>
@@ -1086,7 +1088,7 @@ or <code>fill =</code> as an extra aesthetic. All three plots are then laid out 
 <span id="cb277-34"><a href="eda2.html#cb277-34" aria-hidden="true" tabindex="-1"></a>                        <span class="at">layout_matrix =</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="cn">NA</span>),</span>
 <span id="cb277-35"><a href="eda2.html#cb277-35" aria-hidden="true" tabindex="-1"></a>                                              <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>, <span class="cn">NA</span>),</span>
 <span id="cb277-36"><a href="eda2.html#cb277-36" aria-hidden="true" tabindex="-1"></a>                                              <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">3</span>, <span class="cn">NA</span>)))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:tidy-mpg-plot"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:tidy-mpg-plot"></span>
 <img src="07-multivar_eda_files/figure-html/tidy-mpg-plot-1.png" alt="Cumulative Distribution, Histogram, and Boxplots of 21st Centurty Vehicles." width="672" />
 <p class="caption">
 Figure 7.9: Cumulative Distribution, Histogram, and Boxplots of 21st Centurty Vehicles.
@@ -1094,8 +1096,8 @@ Figure 7.9: Cumulative Distribution, Histogram, and Boxplots of 21st Centurty Ve
 </div>
 </div>
 </div>
-<div id="multivariate-time-series" class="section level3" number="7.5.6">
-<h3><span class="header-section-number">7.5.6</span> Multivariate time series</h3>
+<div id="multivariate-time-series" class="section level3 hasAnchor" number="7.5.6">
+<h3><span class="header-section-number">7.5.6</span> Multivariate time series<a href="eda2.html#multivariate-time-series" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Next, let’s look at a rough time series (by year) of all the combined fuel
 economy values, <code>comb08</code>, for all vehicle observations. The fuel economy data
 will be shown with boxplots, and we will use <code>group = year</code> as an aesthetic to
@@ -1113,14 +1115,14 @@ effect.</p>
 <span id="cb278-9"><a href="eda2.html#cb278-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
 <span id="cb278-10"><a href="eda2.html#cb278-10" aria-hidden="true" tabindex="-1"></a><span class="co"># call plot</span></span>
 <span id="cb278-11"><a href="eda2.html#cb278-11" aria-hidden="true" tabindex="-1"></a>e1</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:fuel-econ-ts"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fuel-econ-ts"></span>
 <img src="07-multivar_eda_files/figure-html/fuel-econ-ts-1.png" alt="Boxplots of fleet-wide fuel efficiency by year." width="672" />
 <p class="caption">
 Figure 7.10: Boxplots of fleet-wide fuel efficiency by year.
 </p>
 </div>
-<div id="consider-context" class="section level4" number="7.5.6.1">
-<h4><span class="header-section-number">7.5.6.1</span> Consider context</h4>
+<div id="consider-context" class="section level4 hasAnchor" number="7.5.6.1">
+<h4><span class="header-section-number">7.5.6.1</span> Consider context<a href="eda2.html#consider-context" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><a href="https://afdc.energy.gov/data/10562">This Department of Energy website</a> outlines
 the <em>Corporate Average Fuel Economy</em> (CAFE) standards from the Environmental
 Protection Agency that require vehicles to meet set fuel economy levels, in
@@ -1149,8 +1151,8 @@ of why the average fuel economy numbers don’t match well to the published CAFE
 standards.</p>
 </div>
 </div>
-<div id="density-plots" class="section level3" number="7.5.7">
-<h3><span class="header-section-number">7.5.7</span> Density plots</h3>
+<div id="density-plots" class="section level3 hasAnchor" number="7.5.7">
+<h3><span class="header-section-number">7.5.7</span> Density plots<a href="eda2.html#density-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Create a series of geom_density plots showing combined fuel economy <code>comb08</code>
 across all vehicles and years as a function of <code>fuel_type</code>. Break out the
 different <code>fuel_type</code> categories into facets (ncol = 3).</p>
@@ -1180,8 +1182,8 @@ different <code>fuel_type</code> categories into facets (ncol = 3).</p>
 <span id="cb281-11"><a href="eda2.html#cb281-11" aria-hidden="true" tabindex="-1"></a>g2</span></code></pre></div>
 <p><img src="07-multivar_eda_files/figure-html/eda-fuel-2-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
-<div id="more-multivariate-plotting" class="section level3" number="7.5.8">
-<h3><span class="header-section-number">7.5.8</span> More multivariate plotting</h3>
+<div id="more-multivariate-plotting" class="section level3 hasAnchor" number="7.5.8">
+<h3><span class="header-section-number">7.5.8</span> More multivariate plotting<a href="eda2.html#more-multivariate-plotting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Next, let’s examine the effect of vehicle class on combined fuel economy for a
 single year: 2020.</p>
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="eda2.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter to year 2020 and reorder factor levels </span></span>
@@ -1200,19 +1202,19 @@ single year: 2020.</p>
 <span id="cb282-14"><a href="eda2.html#cb282-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
 <span id="cb282-15"><a href="eda2.html#cb282-15" aria-hidden="true" tabindex="-1"></a><span class="co"># call plot</span></span>
 <span id="cb282-16"><a href="eda2.html#cb282-16" aria-hidden="true" tabindex="-1"></a>g1</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:v-class"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:v-class"></span>
 <img src="07-multivar_eda_files/figure-html/v-class-1.png" alt="Highway Fuel Economy for 2020 Vehicles by Type" width="672" />
 <p class="caption">
 Figure 7.11: Highway Fuel Economy for 2020 Vehicles by Type
 </p>
 </div>
 </div>
-<div id="practice-questions" class="section level3" number="7.5.9">
-<h3><span class="header-section-number">7.5.9</span> Practice questions</h3>
+<div id="practice-questions" class="section level3 hasAnchor" number="7.5.9">
+<h3><span class="header-section-number">7.5.9</span> Practice questions<a href="eda2.html#practice-questions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Finally, let’s ask some simple questions and use some basic data wrangling to
 get the answers.</p>
-<div id="question-1" class="section level4" number="7.5.9.1">
-<h4><span class="header-section-number">7.5.9.1</span> Question 1</h4>
+<div id="question-1" class="section level4 hasAnchor" number="7.5.9.1">
+<h4><span class="header-section-number">7.5.9.1</span> Question 1<a href="eda2.html#question-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Among 4-cylinder vehicles with Front-Wheel Drive, what make/model has the best highway fuel economy in 2018?</p>
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="eda2.html#cb283-1" aria-hidden="true" tabindex="-1"></a>df_mpg <span class="sc">%&gt;%</span></span>
 <span id="cb283-2"><a href="eda2.html#cb283-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">4</span>, </span>
@@ -1221,7 +1223,7 @@ get the answers.</p>
 <span id="cb283-5"><a href="eda2.html#cb283-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_max</span>(<span class="at">order_by =</span> highway08, </span>
 <span id="cb283-6"><a href="eda2.html#cb283-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">n =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb283-7"><a href="eda2.html#cb283-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(make, model, drive, year, highway08)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 5
+<pre><code>## # A tibble: 1 × 5
 ##   make    model      drive              year highway08
 ##   &lt;fct&gt;   &lt;chr&gt;      &lt;fct&gt;             &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 Hyundai Ioniq Blue Front-Wheel Drive  2018        59</code></pre>
@@ -1233,11 +1235,11 @@ worst city fuel economy in 2019?</p>
 <span id="cb285-4"><a href="eda2.html#cb285-4" aria-hidden="true" tabindex="-1"></a>                year <span class="sc">==</span> <span class="dv">2019</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb285-5"><a href="eda2.html#cb285-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_min</span>(<span class="at">order_by =</span> city08) <span class="sc">%&gt;%</span></span>
 <span id="cb285-6"><a href="eda2.html#cb285-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(make, model, drive, year, city08)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 5
+<pre><code>## # A tibble: 1 × 5
 ##   make    model    drive             year city08
 ##   &lt;fct&gt;   &lt;chr&gt;    &lt;fct&gt;            &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 Bentley Mulsanne Rear-Wheel Drive  2019     10</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:Q2a"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Q2a"></span>
 <img src="images/Bentley_Mulsanne_2019.jpg" alt="The Bentley Mulsanne: $330k lets you park it on the sidewalk!" width="450pt" />
 <p class="caption">
 Figure 7.12: The Bentley Mulsanne: $330k lets you park it on the sidewalk!
@@ -1246,8 +1248,8 @@ Figure 7.12: The Bentley Mulsanne: $330k lets you park it on the sidewalk!
 </div>
 </div>
 </div>
-<div id="chapter-7-homework" class="section level2" number="7.6">
-<h2><span class="header-section-number">7.6</span> Chapter 7 Homework</h2>
+<div id="chapter-7-homework" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Chapter 7 Homework<a href="eda2.html#chapter-7-homework" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You will continue to explore data from the National Science Foundation 2017
 <a href="https://www.nsf.gov/statistics/srvygrads/" target="_blank">National Survey of Graduates</a>, which were introduced in an earlier chapter.</p>
 <p>From Canvas, download the R Markdown template and the reduced dataset (.csv)
@@ -1266,7 +1268,6 @@ at the start of the class for the exam review.</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1285,6 +1286,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -1305,6 +1307,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

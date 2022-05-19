@@ -57,7 +57,7 @@ In this chapter, I will teach you about the assumptions of linear regression, bu
 The best models are those that advance your understanding of a phenomenon so well that you soon leave the model behind, because the questions have since changed. We will not aspire to such great heights here, but it's worth understanding how models can be *fit* to data.  Model construction, fitting, and validation could represent an entire semester (or more) of work.  Here, will will discuss one introductory application: fitting of a linear model using ordinary least squares (OLS). You have undoubtedly used a computer program to create a linear fit between an X and Y variable.  Microsoft Excel will do this for you with two columns of data and a few simple mouse clicks.  How that fit is achieved (and what assumptions underpin that fit) is what we will discuss here.
 
 ## OLS Regression
-OLS stands for **"Ordinary Least Squares"**. The OLS technique is one of the most commons ways to fit a linear regression.  To keep things simple, let's discuss fitting a model with a single independent variable ($X$) as a predictor for our (dependent) outcome variable of interest ($Y$). A model with one instance of a single independent variable means we have, at maximum, only two parameter estimates to fit: the *intercept* term when $X = 0$ (which we call $\beta_{0}$) and the slope term for all values of $X$ (which we call $\beta_{1}$). Thus, we are fitting a straight-line equation between two variables with the following notation:
+OLS stands for **"Ordinary Least Squares"**. The OLS technique is one of the most common ways to fit a linear regression.  To keep things simple, let's discuss fitting a model with a single independent variable ($X$) as a predictor for our (dependent) outcome variable of interest ($Y$). A model with one instance of a single independent variable means we have, at maximum, only two parameter estimates to fit: the *intercept* term when $X = 0$ (which we call $\beta_{0}$) and the slope term for all values of $X$ (which we call $\beta_{1}$). Thus, we are fitting a straight-line equation between two variables with the following notation:
 
 $$Y = \beta_{0} + \beta_{1}\cdot X + \epsilon$$
 where:  
@@ -206,7 +206,7 @@ head(data_18)
 ```
 
 ```
-## # A tibble: 6 x 7
+## # A tibble: 6 × 7
 ##      id  mass waist height gender   age sqrt_mass
 ##   <dbl> <dbl> <dbl>  <dbl>  <dbl> <dbl>     <dbl>
 ## 1 93705  79.5 102.    158.      2    66      8.92
@@ -333,7 +333,7 @@ grid.arrange(p1.2, p2.2, ncol = 2)
 <p class="caption">(\#fig:model-fits)There are many ways in R to overlay a linear fit onto a scatter plot</p>
 </div>
 
-Note that `geom_abline()` extends the line to the $X$ and $Y$ axis limits (beyond the reach of the actual data).  This type of extrapolation is sometimes frowned upon because you don't have data out there. In the case of Figure \@ref(fig:model-fits), this isn't such a bid deal because we set our plot limits to closely match our data limits.  We will come back to these plots later on, as we examine our model assumptions.
+Note that `geom_abline()` extends the line to the $X$ and $Y$ axis limits (beyond the reach of the actual data).  This type of extrapolation is sometimes frowned upon because you don't have data out there. In the case of Figure \@ref(fig:model-fits), this isn't such a big deal because we set our plot limits to closely match our data limits.  We will come back to these plots later on, as we examine our model assumptions.
 
 ### OLS Diagnostics
 In this section, we will run through our list of [OLS assumptions](#OLS_assum) for each of the models to prove that our models are proper and to help us decide which is better.
@@ -562,7 +562,7 @@ head(cal_data)
 ```
 
 ```
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##   wave  time_r               amod aeronet
 ##   <chr> <dttm>              <dbl>   <dbl>
 ## 1 440nm 2020-08-15 20:05:54 0.457   0.445
@@ -586,7 +586,7 @@ head(tidy_cal)
 ```
 
 ```
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##   wave  time_r              instrument   aod
 ##   <chr> <dttm>              <chr>      <dbl>
 ## 1 440nm 2020-08-15 20:05:54 amod       0.457

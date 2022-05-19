@@ -507,7 +507,8 @@ ordered_salaries %>%
                color = "red",
                linetype = "dashed") +
   theme_bw()
-  ggsave("./images/cdf_me_salaries.png", dpi = 150)
+
+ggsave("./images/cdf_me_salaries.png", dpi = 150)
 ```
 
 <div class="figure" style="text-align: center">

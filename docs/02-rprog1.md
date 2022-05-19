@@ -289,7 +289,7 @@ getRversion()
 ```
 
 ```
-## [1] '4.0.3'
+## [1] '4.1.2'
 ```
 
 Some functions will accept multiple arguments. For example, the `print()`
@@ -867,8 +867,8 @@ citation(package = "phonenumber")
 ## 
 ## To cite package 'phonenumber' in publications use:
 ## 
-##   Steve Myles (2015). phonenumber: Convert Letters to Numbers and Back
-##   as on a Telephone Keypad. R package version 0.2.2.
+##   Steve Myles (2021). phonenumber: Convert Letters to Numbers and Back
+##   as on a Telephone Keypad. R package version 0.2.3.
 ##   https://CRAN.R-project.org/package=phonenumber
 ## 
 ## A BibTeX entry for LaTeX users is
@@ -876,8 +876,8 @@ citation(package = "phonenumber")
 ##   @Manual{,
 ##     title = {phonenumber: Convert Letters to Numbers and Back as on a Telephone Keypad},
 ##     author = {Steve Myles},
-##     year = {2015},
-##     note = {R package version 0.2.2},
+##     year = {2021},
+##     note = {R package version 0.2.3},
 ##     url = {https://CRAN.R-project.org/package=phonenumber},
 ##   }
 ```
@@ -1133,7 +1133,7 @@ Here's how the dataframe in Figure \@ref(fig:example-dataframe) will look in R:
 
 
 ```
-## # A tibble: 3 x 4
+## # A tibble: 3 × 4
 ##   first_name last_name n_kids survived
 ##   <chr>      <chr>      <dbl> <lgl>   
 ## 1 Harry      Potter         1 TRUE    
@@ -1190,7 +1190,7 @@ hp_data
 ```
 
 ```
-## # A tibble: 3 x 4
+## # A tibble: 3 × 4
 ##   first_name last_name n_kids survived
 ##   <chr>      <chr>      <dbl> <lgl>   
 ## 1 Harry      Potter         1 TRUE    
@@ -1211,7 +1211,7 @@ hp_data
 ```
 
 ```
-## # A tibble: 3 x 4
+## # A tibble: 3 × 4
 ##   first_name last_name n_kids survived
 ##   <chr>      <chr>      <dbl> <lgl>   
 ## 1 Harry      Potter         1 TRUE    
@@ -1293,7 +1293,7 @@ str(object = daily_show)
 ```
 
 ```
-## tibble [2,693 × 5] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+## spec_tbl_df [2,693 × 5] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ YEAR                     : num [1:2693] 1999 1999 1999 1999 1999 ...
 ##  $ GoogleKnowlege_Occupation: chr [1:2693] "actor" "Comedian" "television actress" "film actress" ...
 ##  $ Show                     : chr [1:2693] "1/11/99" "1/12/99" "1/13/99" "1/14/99" ...
@@ -1307,6 +1307,7 @@ str(object = daily_show)
 ##   ..   Group = col_character(),
 ##   ..   Raw_Guest_List = col_character()
 ##   .. )
+##  - attr(*, "problems")=<externalptr>
 ```
 
 ```r
@@ -1344,7 +1345,7 @@ slice(.data = hp_data, c(1:2))
 ```
 
 ```
-## # A tibble: 2 x 4
+## # A tibble: 2 × 4
 ##   first_name last_name n_kids survived
 ##   <chr>      <chr>      <dbl> <lgl>   
 ## 1 Harry      Potter         1 TRUE    
@@ -1359,7 +1360,7 @@ select(.data = hp_data, c(1, 4))
 ```
 
 ```
-## # A tibble: 3 x 2
+## # A tibble: 3 × 2
 ##   first_name survived
 ##   <chr>      <lgl>   
 ## 1 Harry      TRUE    
@@ -1376,7 +1377,7 @@ select(.data = slice(.data = hp_data, c(1:2)), c(1, 4))
 ```
 
 ```
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   first_name survived
 ##   <chr>      <lgl>   
 ## 1 Harry      TRUE    
@@ -1395,7 +1396,7 @@ hp_data[1:2, 2] # First two rows, second column
 ```
 
 ```
-## # A tibble: 2 x 1
+## # A tibble: 2 × 1
 ##   last_name
 ##   <chr>    
 ## 1 Potter   
@@ -1407,7 +1408,7 @@ hp_data[3, ] # Last row, all columns
 ```
 
 ```
-## # A tibble: 1 x 4
+## # A tibble: 1 × 4
 ##   first_name last_name n_kids survived
 ##   <chr>      <chr>      <dbl> <lgl>   
 ## 1 Hermione   Granger        1 TRUE

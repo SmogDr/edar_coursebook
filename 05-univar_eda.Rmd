@@ -138,7 +138,7 @@ noaa_temp <- readr::read_csv("data/NOAA_temps2.csv") %>%
   dplyr::rename(station = STATION,
                 name = NAME,
                 temp_hr_f = `HLY-TEMP-NORMAL`) %>%
-  dplyr::mutate(date = lubridate::parse_date_time(DATE, orders = "mdhms")) %>%
+  dplyr::mutate(date = lubridate::parse_date_time(DATE, orders = "mdHMS")) %>%
   dplyr::mutate(location = dplyr::case_when(
     stringr::str_detect(station, "23066") ~ "Colorado",
     stringr::str_detect(station, "22536") ~ "Hawaii")) %>%
@@ -159,8 +159,9 @@ ggplot2::ggplot(data = noaa_temp,
   labs(y = "Region",
        x = "Temperature (°F)") +
   theme_bw() +
-  theme(legend.position = "none") +
-  ggsave("./images/NOAA_temps.png", dpi = 150)
+  theme(legend.position = "none") 
+
+ggsave("./images/NOAA_temps.png", dpi = 150)
 ```
 
 ``` {r noaa-temp-plot, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Hourly temperature levels in Colorado and Hawaii for the month of July, 2010."}
@@ -451,8 +452,9 @@ normal_data_cdf %>%
   theme(text = element_text(size=15),
         axis.title.y = element_text(margin = unit(c(0, 5, 0, 0), "mm")),
         axis.title.x = element_text(margin = unit(c(5, 0, 0, 0), "mm")),
-        aspect.ratio=3/4) +
-  ggsave("./images/normal_cum_dist.png", dpi = 150)
+        aspect.ratio=3/4)
+
+ggsave("./images/normal_cum_dist.png", dpi = 150)
 ```
 
 ``` {r norm-cdf-plot, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Annotated Cumulative Distribution Plot for Normally-Distributed Temperature Data"}
@@ -538,7 +540,8 @@ ordered_salaries %>%
                color = "red",
                linetype = "dashed") +
   theme_bw()
-  ggsave("./images/cdf_me_salaries.png", dpi = 150)
+
+ggsave("./images/cdf_me_salaries.png", dpi = 150)
 ```
 
 ``` {r cdf-me-salaries, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Annual Salaries (2017) for US Graduates (all ages) with a Mechanical Engineering Degree", out.width="500"}
@@ -592,8 +595,9 @@ sample_norm %>%
                  fill = "white",
                  color = "darkgrey") +
   theme_minimal() +
-  theme(text = element_text(size=20)) + 
-  ggsave("./images/hist_norm.png", dpi = 150)
+  theme(text = element_text(size=20))
+
+ggsave("./images/hist_norm.png", dpi = 150)
 ```
 
 ``` {r hist-anno-1, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="A histogram is a plot of counts, or frequency of observations, as a function of magnitude, or levels, of univariate data."}
@@ -628,8 +632,9 @@ skew_norm %>%
                  color = "darkgrey") +
   xlim(1, 400) +
   theme_minimal() +
-  theme(text = element_text(size = 28)) +
-  ggsave("images/skew_hist_2.png",
+  theme(text = element_text(size = 28)) 
+  
+ggsave("images/skew_hist_2.png",
          dpi = 150, width = 9, height = 6, units = "in")
 ```
 
@@ -744,8 +749,9 @@ normal_data %>%
   theme_classic() +
   theme(text = element_text(size=15),
         axis.text.x=element_blank(),
-        axis.ticks.x=element_blank()) +
-  ggsave("./images/boxplot_1.png")
+        axis.ticks.x=element_blank())
+
+ggsave("./images/boxplot_1.png")
 ```
 
 ``` {r boxplot-anno, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="A generic boxplot. The box lines represent the lower, middle, and upper quartiles, respectively. The whiskers represent 1.5*IQR in each direction."}
@@ -827,8 +833,9 @@ noaa_temp %>%
              color = "purple") +
   labs(x = "Date",
        y = "Temperature, °F") +
-  theme_bw() + 
-  ggsave("./images/noaa_hi_time.png", dpi = 150)
+  theme_bw()  
+
+ggsave("./images/noaa_hi_time.png", dpi = 150)
 ```
 
 ``` {r noaa-hi-time, echo = FALSE, out.width = "700pt", fig.align = "center", fig.cap = "Time series of hourly temperature measurements in Kauai, Hawaii for July 2010."}
@@ -861,8 +868,9 @@ noaa_temp %>%
              color = "purple") +
   labs(x = "Date",
        y = "Temperature, °F") +
-  theme_bw() + 
-  ggsave("./images/noaa_hi_week.png", dpi = 150)
+  theme_bw() 
+
+ggsave("./images/noaa_hi_week.png", dpi = 150)
 ``` 
 
 ``` {r noaa-hi-week, echo=FALSE, out.width="700pt", fig.align="center", fig.cap="Time series of hourly temperature measurements in Kauai, Hawaii for July 1-5, 2010."}

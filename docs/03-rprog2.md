@@ -164,28 +164,14 @@ ebola <- readr::read_csv(file = "data/country_timeseries.csv")
 ```
 
 ```
-## 
+## Rows: 122 Columns: 18
 ## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   Date = col_character(),
-##   Day = col_double(),
-##   Cases_Guinea = col_double(),
-##   Cases_Liberia = col_double(),
-##   Cases_SierraLeone = col_double(),
-##   Cases_Nigeria = col_double(),
-##   Cases_Senegal = col_double(),
-##   Cases_UnitedStates = col_double(),
-##   Cases_Spain = col_double(),
-##   Cases_Mali = col_double(),
-##   Deaths_Guinea = col_double(),
-##   Deaths_Liberia = col_double(),
-##   Deaths_SierraLeone = col_double(),
-##   Deaths_Nigeria = col_double(),
-##   Deaths_Senegal = col_double(),
-##   Deaths_UnitedStates = col_double(),
-##   Deaths_Spain = col_double(),
-##   Deaths_Mali = col_double()
-## )
+## Delimiter: ","
+## chr  (1): Date
+## dbl (17): Day, Cases_Guinea, Cases_Liberia, Cases_SierraLeone, Cases_Nigeria...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 <div class="rmdtip">
@@ -648,7 +634,7 @@ slice(.data = (dplyr::select(.data = ebola, 1:3)), 1:3)
 ```
 
 ```
-## # A tibble: 3 x 3
+## # A tibble: 3 × 3
 ##   Date       Day Cases_Guinea
 ##   <chr>    <dbl>        <dbl>
 ## 1 1/5/2015   289         2776
@@ -693,7 +679,7 @@ head(x = daily_show)
 ```
 
 ```
-## # A tibble: 6 x 5
+## # A tibble: 6 × 5
 ##    YEAR GoogleKnowlege_Occupation Show    Group  Raw_Guest_List  
 ##   <dbl> <chr>                     <chr>   <chr>  <chr>           
 ## 1  1999 actor                     1/11/99 Acting Michael J. Fox  
@@ -755,7 +741,7 @@ head(x = daily_show, 3)
 ```
 
 ```
-## # A tibble: 3 x 5
+## # A tibble: 3 × 5
 ##    year job                date    category guest_name     
 ##   <dbl> <chr>              <chr>   <chr>    <chr>          
 ## 1  1999 actor              1/11/99 Acting   Michael J. Fox 
@@ -803,7 +789,7 @@ dplyr::select(.data = daily_show, job, date, category, guest_name)
 ```
 
 ```
-## # A tibble: 2,693 x 4
+## # A tibble: 2,693 × 4
 ##    job                date    category guest_name      
 ##    <chr>              <chr>   <chr>    <chr>           
 ##  1 actor              1/11/99 Acting   Michael J. Fox  
@@ -835,7 +821,7 @@ head(x = daily_show, n = 3)
 ```
 
 ```
-## # A tibble: 3 x 4
+## # A tibble: 3 × 4
 ##   job                date    category guest_name     
 ##   <chr>              <chr>   <chr>    <chr>          
 ## 1 actor              1/11/99 Acting   Michael J. Fox 
@@ -884,7 +870,7 @@ mutate(.data = daily_show,
 ```
 
 ```
-## # A tibble: 2,693 x 4
+## # A tibble: 2,693 × 4
 ##    job                date    category guest_name      
 ##    <chr>              <chr>   <chr>    <chr>           
 ##  1 actor              1/11/99 Acting   Michael J. Fox  
@@ -951,7 +937,7 @@ head(x = scientists)
 ```
 
 ```
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##   job            date    category guest_name            
 ##   <chr>          <chr>   <chr>    <chr>                 
 ## 1 neurosurgeon   4/28/03 Science  Dr Sanjay Gupta       

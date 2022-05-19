@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Measurement | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Measurement | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-27" />
+<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="transform.html"/>
 <link rel="next" href="model.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -119,6 +120,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -478,11 +480,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="measure" class="section level1" number="10">
-<h1><span class="header-section-number">Chapter 10</span> Measurement</h1>
+<div id="measure" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Measurement<a href="measure.html#measure" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Measurement is a fundamental tool for characterization and verification in engineering (and many fields). This chapter will provide a quick introduction to the science of measurement.</p>
-<div id="ch.-10-objectives" class="section level2" number="10.1">
-<h2><span class="header-section-number">10.1</span> Ch. 10 Objectives</h2>
+<div id="ch.-10-objectives" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Ch. 10 Objectives<a href="measure.html#ch.-10-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:</p>
 <ul>
 <li>Explain the difference between a sample and a population;</li>
@@ -494,17 +496,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Define limit of detection and estimate it for a measurement process</li>
 </ul>
 </div>
-<div id="sampling" class="section level2" number="10.2">
-<h2><span class="header-section-number">10.2</span> Sampling</h2>
+<div id="sampling" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Sampling<a href="measure.html#sampling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To conduct univariate analyses, we need data (i.e., observations). To get those data, we need a sample. To get that sample, we need to identify a population from which to sample. Allow me to digress…</p>
-<div id="sample" class="section level3" number="10.2.1">
-<h3><span class="header-section-number">10.2.1</span> Samples vs. Populations</h3>
+<div id="sample" class="section level3 hasAnchor" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Samples vs. Populations<a href="measure.html#sample" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>At some point in the history of science someone came up with the idea that very few things are known for certain: we can only make estimates or educated guesses. This idea (which is hard to refute) gave rise to the concept of <em>samples</em> vs. <em>populations</em>. In statistics, the <strong><em>population</em></strong> of an observed quantity or variable is the totality of every instance of that variable in the universe (…whoa…).</p>
 <p>Take the molecular diameter of an oxygen molecule. Even if we could measure the diameters of ALL the oxygen molecues in our atmosphere that would still represent only a tiny fraction (i.e., a <strong><em>sample</em></strong>) of all the oxygen molecules bound up in the planet (and all of Earth’s oxygen is but a tiny fraction of our solar system’s, and so on). The <em>population</em> of all oxygen molecules across the universe is impossible to measure or “know” given our current capabilities. If, however, we measure a sufficient <em>sample</em> of oxygen molecules, we could probably infer the size of all the other O<sub>2</sub> molecules within reason.</p>
 <p>This is to say that the <strong>population</strong> is the thing we strive to make conclusions about but the <strong>sample</strong> is the thing (read: the data) that we have to work with.</p>
 </div>
-<div id="sample.collect" class="section level3" number="10.2.2">
-<h3><span class="header-section-number">10.2.2</span> Collecting a sample</h3>
+<div id="sample.collect" class="section level3 hasAnchor" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> Collecting a sample<a href="measure.html#sample.collect" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Samples are collected to provide estimates of populations so that those estimates can be used for <strong><em>inference</em></strong> (a fancy word that means: to make conclusions). Many statistical procedures are based on the assumption that your sample is <strong><em>representative</em></strong> of the population you are trying to model/understand. Assuming that your sample is good (read: representative) is a dangerous thing to do. In fact, MOST samples have some degree of un-good. Just ask the polling experts from the 2016 U.S. presidential election, or the now humiliated and vilified <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2954080/" target="_blank">doctor who concluded that vaccines were the cause of childhood autism based on a sample of 12 kids</a>
 taken from a single birthday party…</p>
 <p>A sample is representative if each measure is drawn in a way that makes it <strong><em>independent</em></strong> from the next AND if the measurement method itself is <strong><em>unbiased</em></strong> (i.e., the making of the measurement does not alter the way the sample is counted). We will talk more about <strong><em>bias</em></strong> later in this Chapter, but suffice it so say that if I made you watch a 10-minute video on catastrophic airplane disasters and then gave you a survey about your fears of flying, I might be introducing some bias into that survey measurement.</p>
@@ -516,7 +518,7 @@ taken from a single birthday party…</p>
 <li><p>They could ask repair shops for data but then they would only be sampling from cars that had broken down for some reason…(potential for <em>bias</em> and <em>non-independence</em>)</p></li>
 </ul>
 <p>So…if you cannot collect a truly representative sample, how can you trust your results? Suffice it to say that there is an art to empirical research (empirical is a fancy word for observational). If you study <em>how</em> data were collected (especially from a sampling strategy) you will often realize how a “wrong conclusion” came to be.</p>
-<div class="figure" style="text-align: center"><span id="fig:samping-bias"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:samping-bias"></span>
 <img src="images/sampling_bias.png" alt="Biased samples are easy to come by" width="100%" />
 <p class="caption">
 Figure 10.1: Biased samples are easy to come by
@@ -529,8 +531,8 @@ Figure 10.1: Biased samples are easy to come by
 </div>
 <p>Let’s review a few common sampling strategies here.</p>
 </div>
-<div id="simple-random-sampling" class="section level3" number="10.2.3">
-<h3><span class="header-section-number">10.2.3</span> Simple Random Sampling</h3>
+<div id="simple-random-sampling" class="section level3 hasAnchor" number="10.2.3">
+<h3><span class="header-section-number">10.2.3</span> Simple Random Sampling<a href="measure.html#simple-random-sampling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Simple random sampling means that samples are randomly collected from across the population and over a period of time where the population characteristics (especially those characteristics being measured) remain constant. The main advantage of simple random sampling is that, when done correctly, your data should be unbiased and representative of the population. The main issue with simple random sampling is that it can be hard to do “correctly.”</p>
 <div class="rmdnote">
 <p>
@@ -576,16 +578,16 @@ that your sample size is sufficient to make inferences (read: conclusions) with 
 <li><span class="math inline">\(d\)</span> is the difference (in means) that you are trying to detect</li>
 </ul>
 </div>
-<div id="systematic-sampling" class="section level3" number="10.2.4">
-<h3><span class="header-section-number">10.2.4</span> Systematic Sampling</h3>
+<div id="systematic-sampling" class="section level3 hasAnchor" number="10.2.4">
+<h3><span class="header-section-number">10.2.4</span> Systematic Sampling<a href="measure.html#systematic-sampling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Systematic sampling is often employed when simple random sampling is not feasible. With systematic sampling, the population is first ordered according to a characteristic of interest (e.g., first to last, front to back, smallest to largest, youngest to oldest, etc.) and then samples are drawn at regular intervals from across the ordered range of values. For example, if you wanted to know the opinions of marathoners at the finish line of a particular race, you might decide to randomly sample one person passing through the finish line every five minutes starting with the winner’s group and ending with the last finisher. The main disadvantage to systematic sampling is that your ordering scheme might introduce bias into the results. For example, in the NBA’s annual <a href="https://en.wikipedia.org/wiki/Three-Point_Contest" target="_blank">3-point shooting contest</a>, every 5th ball is worth extra points to the shooter; if we conducted systematic sampling of every 5th shot from start to finish, we would only select the shots worth extra points (i.e., the shots that the shooter cares the most about).</p>
 </div>
-<div id="stratified-sampling" class="section level3" number="10.2.5">
-<h3><span class="header-section-number">10.2.5</span> Stratified Sampling</h3>
+<div id="stratified-sampling" class="section level3 hasAnchor" number="10.2.5">
+<h3><span class="header-section-number">10.2.5</span> Stratified Sampling<a href="measure.html#stratified-sampling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Stratified sampling is often used when (1) you know “something” (a priori) about the population that you want to sutdy (or at least account for in your sample) and (2) when that “something” can be mapped onto the population to form groups. With stratified sampling, you break the population into strata (a fancy word for <em>groups</em>) and then sample randomly (in equal proportion) from within each strata. This technique is used because the strata are believed to be important relative to the the variables of interest. The strata can be time-based (e.g., the quality of parts produced during the morning, afternoon, and night shift at a factory), place-based (e.g., the quality of parts produced at assembly plant A, B, C), or based on other known characteristics. For example, when people are the subject of study, strata are often formed about age groups, sex, income brackets, and educational attainment, to name a few. Stratified random sampling can be more tedious to conduct and is sometimes biased if not all of the subgroups within a population are identified. For example, a survey of the effects of housing on health (stratified into homeowners vs. renters) would ignore a key subgroup: those who are experiencing homelessness.</p>
 </div>
-<div id="cluster-sampling" class="section level3" number="10.2.6">
-<h3><span class="header-section-number">10.2.6</span> Cluster Sampling</h3>
+<div id="cluster-sampling" class="section level3 hasAnchor" number="10.2.6">
+<h3><span class="header-section-number">10.2.6</span> Cluster Sampling<a href="measure.html#cluster-sampling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Cluster sampling is often used to save on time and effort during a sampling campaign when it’s possible to break the population into <strong>similar groups</strong>, or clusters. The population is divided into clusters (based on some grouping characteristic) and then a proportion of those clusters are fully sampled. For example, if your company had 50 distribution centers across the country, and you wished to study some measure of process efficiency, then you might select 10 centers as clusters, and fully sample each.</p>
 <p>Cluster sampling is considered less precise (i.e., more samples needed for a given question) than simple random sampling, but oftentimes its unfeasible or too costly to sample the whole population. If cluster units are apparent, they can provide considerable cost savings.</p>
 <div class="rmdnote">
@@ -595,14 +597,14 @@ The important difference between <strong><em>stratified</em></strong> and <stron
 </div>
 </div>
 </div>
-<div id="figures-of-merit" class="section level2" number="10.3">
-<h2><span class="header-section-number">10.3</span> Figures of Merit</h2>
+<div id="figures-of-merit" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Figures of Merit<a href="measure.html#figures-of-merit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>All measurements are estimates of a <em>“true value”</em> that you seek to discover. To ensure that measurements are sound, we often estimate the <strong><em>figures of merit</em></strong> for a measurement system (or an instrument). There are many different figures of merit; we will only examine a few here, namely: limit of detection, dynamic range, precision, and bias. Other figures of merit for measurement systems include things like linearity, sensitivity, and specificity - those topics will be covered in the <em>advanced</em> version of this course (which doesn’t yet exist).</p>
-<div id="LOD" class="section level3" number="10.3.1">
-<h3><span class="header-section-number">10.3.1</span> Limit of Detection &amp; Quantification</h3>
+<div id="LOD" class="section level3 hasAnchor" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> Limit of Detection &amp; Quantification<a href="measure.html#LOD" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Imagine that I asked you to hold out your hand and close your eyes. Could you tell if I added a single grain of flour to your hand? Likely not. The mass of that grain is about 1/50<sup>th</sup> that of an eyelash. What if I added 100 grains? Maybe you could tell. If I added 1000 grains you could likely feel it. This imaginary exercise outlines the concept of <strong><em>“limit of detection”</em></strong>, or “LOD,” which represents the <em>threshold</em> at which an instrument can distinguish between “something” and “nothing” being measured. The concept of LOD applies best to instruments that measure continuous properties like time, distance, energy, force, etc.</p>
 <p>There are several approaches to estimating an instrument’s lower limit of detection. The simplest approach is first to challenge that instrument to measure increasingly more “stuff” and observe it’s response. This is shown graphically below with “instrument response” on the y-axis and “amount of stuff being measured” on the x-axis. We use a logarithmic scale for the x axis because when we measure “stuff” in engineering we usually have the ability to observe several orders of magnitude (the length of a baseball stitch, a baseball, a baseball field, or a baseball stadium). Many instruments respond with an “S” shaped curve where you initially see no (or asymptotic response), followed by a linear response, followed by another asymptotic tail at the upper detection limit.</p>
-<div class="figure" style="text-align: center"><span id="fig:lod-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lod-2"></span>
 <img src="images/lod_depiction_anno.png" alt="Experimental investigations into LOD and dynamic range" width="100%" />
 <p class="caption">
 Figure 10.2: Experimental investigations into LOD and dynamic range
@@ -626,15 +628,15 @@ The <strong>LOD</strong> indicates a threshold above which you can detect someth
 </p>
 </div>
 </div>
-<div id="dynamic" class="section level3" number="10.3.2">
-<h3><span class="header-section-number">10.3.2</span> Dynamic Range</h3>
+<div id="dynamic" class="section level3 hasAnchor" number="10.3.2">
+<h3><span class="header-section-number">10.3.2</span> Dynamic Range<a href="measure.html#dynamic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The LOD/LOQ concept is most often applied to an instrument’s <em>minimum detectable quantity</em>, but it’s important to realize that instruments also have a <em>maximum detectable quantities</em>, too. The <strong><em>dynamic range</em></strong> of an instrument, thus, describes the range of values (min/max) that an instrument can measure. It’s important to know an instrument’s dynamic range so that you don’t misuse it. For example, you wouldn’t use the scale in a doctor’s office to weigh grains of rice just as you wouldn’t ask human beings to report on the loudness of dog whistles. The dynamic range of an instrument represents the measurement range between a lower and upper detection limit.</p>
 <p>Upper detection limits are typically obtained from instrument manufacturers (as opposed to experiment) because, while it’s usually safe to repeatedly measure <em>blanks</em> for LOD/LOQ determinations, you run the risk of breaking the instrument if you overload it with signal!</p>
 </div>
-<div id="precision" class="section level3" number="10.3.3">
-<h3><span class="header-section-number">10.3.3</span> Precision</h3>
+<div id="precision" class="section level3 hasAnchor" number="10.3.3">
+<h3><span class="header-section-number">10.3.3</span> Precision<a href="measure.html#precision" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In measurement science the term <em>precision</em> means “repeatability” or “instrument variability.” A precise measurement (made by a single instrument) is one that provides the same (or nearly the same) answer each time you take the measurement. This assumes, of course, that the thing being measured remains unchanged. Human vision is something that suffers from imprecision, especially as you get older (your eyesight usually gets worse). Look at the image below quickly and try to decode the letters you see. If I asked you to identify this text quickly (in 10 seconds or less) once per day for a week, you might give me 7 different answers. That’s not a precise measurement.</p>
-<div class="figure" style="text-align: center"><span id="fig:imprecise-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:imprecise-1"></span>
 <img src="images/blurry_text.png" alt="Blurry vision is imprecise: repeated measures could lead to different answers" width="500" />
 <p class="caption">
 Figure 10.3: Blurry vision is imprecise: repeated measures could lead to different answers
@@ -698,8 +700,8 @@ Figure 10.3: Blurry vision is imprecise: repeated measures could lead to differe
 </ul>
 <p>Thus, we report a precision of ± 0.9 °C around a value of 94 °C. Note that we report precision <em>about</em> a value (0.9 °C in this case), since our data are limited to a certain range. In other words, we don’t know if our estimate of precision is applicable to 0 or 200 °C conditions.</p>
 <p>Precision is often reported in relative terms, too, as a percentage about the location where the measurements were made. For the example above, we would report <span class="math inline">\(\frac{\widehat{\sigma}}{\widehat{\mu}}\cdot100\)</span>, which R calculates as 0.9574468, but which we would report as ±1% at 94 °C.</p>
-<div id="significant-figures" class="section level4" number="10.3.3.1">
-<h4><span class="header-section-number">10.3.3.1</span> Significant Figures</h4>
+<div id="significant-figures" class="section level4 hasAnchor" number="10.3.3.1">
+<h4><span class="header-section-number">10.3.3.1</span> Significant Figures<a href="measure.html#significant-figures" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The number of <strong>significant figures</strong> you report should always reflect what you believe to be the precision of your data. The danger here is that R, like most computer programs, will report many significant figures because it has no idea as to the context of the data. See, for example:</p>
 <div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="measure.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(temperatures<span class="sc">$</span>data_temp)</span></code></pre></div>
 <pre><code>## [1] 0.880814</code></pre>
@@ -711,11 +713,11 @@ If you measure temperature with a k-type thermocouple and report a value of 93.2
 </div>
 </div>
 </div>
-<div id="bias" class="section level3" number="10.3.4">
-<h3><span class="header-section-number">10.3.4</span> Bias (accuracy)</h3>
+<div id="bias" class="section level3 hasAnchor" number="10.3.4">
+<h3><span class="header-section-number">10.3.4</span> Bias (accuracy)<a href="measure.html#bias" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The word <strong><em>bias</em></strong> has several meanings depending on the field of use (e.g., a biased opinion, a racial or gender bias, or a biased voltage). Here, we define <em>bias</em> as the quantifiable difference between a measurement and a true value. The terms bias and accuracy are closely related, but we prefer to use bias because that word implies a magnitude and direction, whereas accuracy is more qualitative.</p>
 <p>Precision and bias are easy to view graphically. In Figure <a href="measure.html#fig:bias-precision-plot2">10.4</a> I show the performance of four measurement systems. Each image shows a green circle in space that represents a “true value” that we are trying to measure. Each measurement attempt is depicted by an “x.” If a measurement system (i.e., an instrument) is precise and unbiased, then each of the repeated measures would show up in the green circle, because they are close to the “true value” and to each other. This is the case in the lower right panel. The upper-left panel, on the other hand, demonstrate a biased and imprecise instrument - biased because the average of the 20 measurements would not come close to the center and imprecise because the location of each individual measurement tends to vary by a distance larger than the size of the circle. The lower-left is unbiased but imprecise - unbiased because the average of the 20 measurements would land close to the center of the circle but imprecise because the measurements vary widely. The upper-right panel demonstrates a precise (the repeated measures do not vary much) but biased (“off the mark” from center) measurement system.</p>
-<div class="figure" style="text-align: center"><span id="fig:bias-precision-plot2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bias-precision-plot2"></span>
 <img src="images/bias_precision.png" alt="Examples of different combinations of bias and precision" width="1050" />
 <p class="caption">
 Figure 10.4: Examples of different combinations of bias and precision
@@ -723,8 +725,8 @@ Figure 10.4: Examples of different combinations of bias and precision
 </div>
 </div>
 </div>
-<div id="measurement-uncertainty" class="section level2" number="10.4">
-<h2><span class="header-section-number">10.4</span> Measurement Uncertainty</h2>
+<div id="measurement-uncertainty" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Measurement Uncertainty<a href="measure.html#measurement-uncertainty" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <em>uncertainty</em> in any measurement represents the doubt about how close to the truth our measurement might be. If a measurement has uncertainty, that implies the possibility of <strong>measurement error</strong>. In a vein similar to bias and precision, we say that measurement error typically comes in one of two forms:</p>
 <ul>
 <li><strong>Systematic error</strong> is error that is repeatable in magnitude and direction; this type of error is traceable to some problem associated with how the measurement was made (and so can be corrected by “fixing” or calibrating the measurement system). Bias is a type of systematic error. Note that bias can only be detected by measuring a known quantity (i.e., a <strong>standard</strong>) or by comparing your measurement to that made by a <strong>reference instrument</strong>. Reference instruments are called such because they are trusted to be “bias free.”</li>
@@ -732,25 +734,25 @@ Figure 10.4: Examples of different combinations of bias and precision
 </ul>
 <p>Both imprecision and bias can contribute to measurement uncertainty; although, if we know that bias exists we often try to correct for that bias through <a href="model.html#calibration"><em>calibration</em></a>, which we will discuss in the next chapter. We try to correct for imprecision by increasing our sample size.</p>
 <p>There are several ways that one can estimate uncertainty from imprecision, we will discuss two common approaches here: repeated measures and propagation of error.</p>
-<div id="repeated" class="section level3" number="10.4.1">
-<h3><span class="header-section-number">10.4.1</span> Repeated Measures</h3>
+<div id="repeated" class="section level3 hasAnchor" number="10.4.1">
+<h3><span class="header-section-number">10.4.1</span> Repeated Measures<a href="measure.html#repeated" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One of the simplest ways to quantify uncertainty in a single measurement is to repeat the measurement and examine the spread of the data. For example, wrap a length of string around your finger and measure that circumference to the nearest millimeter using a ruler. Do it 5 times. You probably won’t get the same answer each time (but you <em>should</em> come close). The variability in those repeated measures represents an estimate of the uncertainty for that measurement. We often assume that random errors associated with repeated measures are normally distributed, so we estimate this imprecision by reporting a measurement as a <code>mean()</code> followed by a standard deviation, <code>sd()</code>: <span class="math inline">\(\bar{X}\pm \hat{\sigma}_{X}\)</span>.</p>
 <p>If you care about your measurement, make sure to repeat it so that you can report it with confidence. How many repeats are needed? That depends on your definition of <em>acceptable precision</em>. The <em>standard error about a mean</em> is an estimate of the relative uncertainty for a generic measurement of <span class="math inline">\(X\)</span>. The standard error (not to be confused with a standard deviation) is an estimate of the precision of a measurement; it scales with the inverse square root of the sample size, where <span class="math inline">\(n\)</span> is the number of repeated measurements:</p>
 <p><span class="math display">\[SE = \frac{\hat{\sigma}_{X}}{\sqrt{n}}\]</span>
 By this relationship, we see that more repeated measures afford more precision, but with diminishing returns: we need to increase our sample size by a factor of 4 to improve our relative precision by a factor of 2.</p>
-<div class="figure" style="text-align: center"><span id="fig:margin-of-error"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:margin-of-error"></span>
 <img src="10-measure_files/figure-html/margin-of-error-1.png" alt="Relative gain in Precision when estimating a mean with repeated measures" width="384" />
 <p class="caption">
 Figure 10.5: Relative gain in Precision when estimating a mean with repeated measures
 </p>
 </div>
 </div>
-<div id="error-propagation" class="section level3" number="10.4.2">
-<h3><span class="header-section-number">10.4.2</span> Error Propagation</h3>
+<div id="error-propagation" class="section level3 hasAnchor" number="10.4.2">
+<h3><span class="header-section-number">10.4.2</span> Error Propagation<a href="measure.html#error-propagation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To <strong>propagate</strong> means to spread or grow. When our measurements are performed in series, or as part of a larger system of measurements (read: an equation), then we must consider how each part contributes to the overall uncertainty. Thus, when we refer to <em>propagation of error</em>, we mean that measurement errors/uncertainties tend to compound each other.</p>
 <p><strong>Propagation of error</strong> is a method to estimate overall uncertainty by examining the contribution by parts. We will examine three basic forms: addition, multiplication, and exponential.</p>
-<div id="additionsubtraction-error" class="section level4" number="10.4.2.1">
-<h4><span class="header-section-number">10.4.2.1</span> Addition/Subtraction Error</h4>
+<div id="additionsubtraction-error" class="section level4 hasAnchor" number="10.4.2.1">
+<h4><span class="header-section-number">10.4.2.1</span> Addition/Subtraction Error<a href="measure.html#additionsubtraction-error" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>When two measurements are added (or subtracted), the uncertainties are propagated by a root sum of squares. Let <span class="math inline">\(U\)</span> represent the uncertainty in a measurement process that we are trying to estimate. If the measurement involves the addition of three variables (<span class="math inline">\(A + B + C\)</span>), each with uncertainty <span class="math inline">\(\sigma_{a}\)</span>, <span class="math inline">\(\sigma_{b}\)</span>, <span class="math inline">\(\sigma_{c}\)</span>, then the overall uncertainty is reported as:</p>
 <p><span class="math display">\[U_{A+B+C} = \sqrt{\left({\sigma_{a}}\right)^2+\left(\sigma_{b}\right)^2+\left(\sigma_{c}\right)^2}\]</span>
 For example, imagine that you are weighing three components that are intended to comprise an assembled part. Each component <span class="math inline">\(A, B, C\)</span> has been repeatedly weighed 5 times. Thus, you can report a mean and standard deviation for each.</p>
@@ -820,22 +822,22 @@ C
 <p><span class="math display">\[U_{A+B+C} = \sqrt{26^2+8^2+51^2} = 58 g\]</span>
 You may notice that the overall uncertainty is less than the absolute sum of the individual standard deviations. This is because we expect some random error to be negative and some to be positive, meaning that they can tend to cancel out.</p>
 </div>
-<div id="multiplicative-error" class="section level4" number="10.4.2.2">
-<h4><span class="header-section-number">10.4.2.2</span> Multiplicative Error</h4>
+<div id="multiplicative-error" class="section level4 hasAnchor" number="10.4.2.2">
+<h4><span class="header-section-number">10.4.2.2</span> Multiplicative Error<a href="measure.html#multiplicative-error" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>When variables are multiplied together, the uncertainty is propagated by a fractional root sum of squares. For example, <span class="math inline">\(\frac{A}{B\cdot C}\)</span> has uncertainty of:
 <span class="math display">\[U_{\frac{A}{B\cdot C}}, \% = 100\cdot \sqrt{\left(\frac{\sigma_{a}}{A}\right)^2+\left(\frac{\sigma_{b}}{B}\right)^2+\left(\frac{\sigma_{c}}{C}\right)^2}\]</span>
 Note that while additive uncertainty has units of the variable in question, multiplicative uncertainty is reported in relative percent terms.</p>
 </div>
-<div id="exponential-error" class="section level4" number="10.4.2.3">
-<h4><span class="header-section-number">10.4.2.3</span> Exponential Error</h4>
+<div id="exponential-error" class="section level4 hasAnchor" number="10.4.2.3">
+<h4><span class="header-section-number">10.4.2.3</span> Exponential Error<a href="measure.html#exponential-error" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>When values are raised to a power, such as <span class="math inline">\(A^n\)</span>, then uncertainty is again relative and takes the form:</p>
 <p><span class="math display">\[U_{A^n}, \% = 100\cdot \lvert{n}\rvert \frac{\sigma_a}{\lvert A \rvert}\]</span>
 This calculation does not utilize a root-mean operation, which is why the absolute values are indicated.</p>
 </div>
 </div>
 </div>
-<div id="ch-10-homework" class="section level2" number="10.5">
-<h2><span class="header-section-number">10.5</span> CH-10 Homework</h2>
+<div id="ch-10-homework" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> CH-10 Homework<a href="measure.html#ch-10-homework" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This homework will give you practice at working with a measurement data set: <code>airlift_mass_repeatability.csv</code>. This data set represents repeated measures of “blank” air sampling filters.</p>
 
 </div>
@@ -850,7 +852,6 @@ This calculation does not utilize a root-mean operation, which is why the absolu
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -869,6 +870,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -889,6 +891,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

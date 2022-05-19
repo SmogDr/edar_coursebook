@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Univariate Data Exploration | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Univariate Data Exploration | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-27" />
+<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="dataviz.html"/>
 <link rel="next" href="rprog3.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -119,6 +120,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -478,8 +480,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="eda1" class="section level1" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Univariate Data Exploration</h1>
+<div id="eda1" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Univariate Data Exploration<a href="eda1.html#eda1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <blockquote>
 <p><span style="color: blue;"> “Exploratory data analysis is graphical detective work.” - John Tukey </span></p>
 </blockquote>
@@ -495,8 +497,8 @@ EDA. You can use EDA to jump-start ideas on <em>“what do I do with my data?”
 <blockquote>
 <p><span style="color: blue;"> “Perfect data are boring. Flawed data, on the other hand, are interesting and mysterious. Perfect data don’t get asked out on a second date.” - John Volckens </span></p>
 </blockquote>
-<div id="ch.-5-objectives" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Ch. 5 Objectives</h2>
+<div id="ch.-5-objectives" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Ch. 5 Objectives<a href="eda1.html#ch.-5-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This chapter is designed around the following learning objectives. Upon
 completing this Chapter, you should be able to:</p>
 <ul>
@@ -513,8 +515,8 @@ summary and enumerative plots</li>
 <li>Identify time lags where autocorrelation is significant, using autocorrelation and partial autocorrelation plots</li>
 </ul>
 </div>
-<div id="univar" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> Univariate Data</h2>
+<div id="univar" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Univariate Data<a href="eda1.html#univar" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><em>Univariate</em> means that “only one variable” is being considered. Just like medical
 doctors, statisticians enjoy the use fancy words to describe basic things.</p>
 <p><em>Univariate data analyses</em> describe ways to discover features about a single
@@ -528,8 +530,8 @@ procedure because, as engineers, we are taught about <em>mechanisms</em> and
 through some physical process. That’s OK to admit. Univariate analyses are
 still useful. Trust me for now, or skip ahead to <a href="eda2.html#eda2">multivariate analyses</a> or <a href="model.html#model">modeling</a>—your
 choice.</p>
-<div id="location-dispersion-and-shape" class="section level3" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Location, Dispersion, and Shape</h3>
+<div id="location-dispersion-and-shape" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Location, Dispersion, and Shape<a href="eda1.html#location-dispersion-and-shape" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Univariate EDA often begins with an attempt to discover three important
 properties about an observed variable: its location, dispersion, and shape.
 Once you define these properties (the “what”), you can begin to probe the
@@ -538,15 +540,15 @@ and “why” of a variable’s location, dispersion, and shape might sound simp
 and yet, answering such questions often represents the pinnacle of scientific
 discovery; they give out Nobel Prizes for that stuff! Let’s start with “what”
 (location, dispersion, and shape) and build from there.</p>
-<div id="location" class="section level4" number="5.2.1.1">
-<h4><span class="header-section-number">5.2.1.1</span> Location</h4>
+<div id="location" class="section level4 hasAnchor" number="5.2.1.1">
+<h4><span class="header-section-number">5.2.1.1</span> Location<a href="eda1.html#location" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The location of univariate data means: where do the values or
 observations fall? Do the values tend to be large or small, based on what you
 know about the variable? Do the observations have a <em>central tendency</em> - a
 region where values are more likely to show up?</p>
 </div>
-<div id="dispersion" class="section level4" number="5.2.1.2">
-<h4><span class="header-section-number">5.2.1.2</span> Dispersion</h4>
+<div id="dispersion" class="section level4 hasAnchor" number="5.2.1.2">
+<h4><span class="header-section-number">5.2.1.2</span> Dispersion<a href="eda1.html#dispersion" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The dispersion of the data refers to its variability. Are the values tightly
 bound in a small range, or do they vary widely from one observation to the
 next? Note that the phrase “varies widely” is contextual. The variation in the
@@ -554,8 +556,8 @@ cost of an ice cream cone from one location to the next might look small to
 you, but could mean the difference between joy and sorrow for a 10-year-old
 with only $1.50 in their pocket.</p>
 </div>
-<div id="shape" class="section level4" number="5.2.1.3">
-<h4><span class="header-section-number">5.2.1.3</span> Shape</h4>
+<div id="shape" class="section level4 hasAnchor" number="5.2.1.3">
+<h4><span class="header-section-number">5.2.1.3</span> Shape<a href="eda1.html#shape" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The shape of the distribution is actually a combination of location and
 dispersion but with some mathematical nuance. Knowing the shape of your data
 distribution means that you have insight into its
@@ -572,8 +574,8 @@ a reference distribution, most of your modeling work is already done! Examples
 of reference distributions include the uniform distribution, normal
 distribution, and the lognormal distribution. More on different types of
 reference distributions <a href="dist.html#dist">here</a>.</p>
-<div id="example-location-and-dispersion" class="section level5" number="5.2.1.3.1">
-<h5><span class="header-section-number">5.2.1.3.1</span> Example: Location and Dispersion</h5>
+<div id="example-location-and-dispersion" class="section level5 hasAnchor" number="5.2.1.3.1">
+<h5><span class="header-section-number">5.2.1.3.1</span> Example: Location and Dispersion<a href="eda1.html#example-location-and-dispersion" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Let’s plan a camping trip. Our trip is purely hypothetical, so let’s not worry
 about costs, logistics, or other important factors. For this exercise, we only
 care about comfort while outdoors. When I think of being comfortable
@@ -596,7 +598,7 @@ define three aesthetics:</p>
 <li><code>color =</code> location (not necessary for the plot, but the color between
 variables can be helpful)</li>
 </ul>
-<div class="figure" style="text-align: center"><span id="fig:noaa-temp-plot"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:noaa-temp-plot"></span>
 <img src="images/NOAA_temps.png" alt="Hourly temperature levels in Colorado and Hawaii for the month of July, 2010." width="700pt" />
 <p class="caption">
 Figure 5.1: Hourly temperature levels in Colorado and Hawaii for the month of July, 2010.
@@ -622,7 +624,7 @@ more layers to be comfortable in Colorado. See Figure
 <code>mode()</code>, <code>mean()</code>, <code>median()</code>) and dispersion (e.g., <code>range()</code>, interquartile
 range <code>IQR()</code>, and standard deviation <code>sd()</code>). We will discuss several such
 descriptors in this course.</p>
-<div class="figure" style="text-align: center"><span id="fig:noaa-temp-anno"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:noaa-temp-anno"></span>
 <img src="images/NOAA_temps_annotate.png" alt="The temperature data from Hawaii and Colorado have similar locations (central tendencies) but differing dispersion (spread)." width="700pt" />
 <p class="caption">
 Figure 5.2: The temperature data from Hawaii and Colorado have similar locations (central tendencies) but differing dispersion (spread).
@@ -632,8 +634,8 @@ Figure 5.2: The temperature data from Hawaii and Colorado have similar locations
 </div>
 </div>
 </div>
-<div id="quantile" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> Quantiles</h2>
+<div id="quantile" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Quantiles<a href="eda1.html#quantile" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s assume you have a sample of univariate data. A good starting point for
 exploring these data is to break them into <em>quantiles</em> and extract some basic
 information. Quantiles allow you to see things like the start, middle, and end
@@ -686,7 +688,7 @@ like, given a sufficiently large sample…</p>
 <span id="cb183-8"><a href="eda1.html#cb183-8" aria-hidden="true" tabindex="-1"></a>univar_quart <span class="ot">&lt;-</span> <span class="fu">quantile</span>(univar, </span>
 <span id="cb183-9"><a href="eda1.html#cb183-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb183-10"><a href="eda1.html#cb183-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">1</span>) </span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unif-quartiles"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unif-quartiles"></span>
 <img src="images/quantile_1.png" alt="Quartiles estimated from n=1000 samples of a uniform distribution between 0 and 100." width="700pt" />
 <p class="caption">
 Figure 5.3: Quartiles estimated from n=1000 samples of a uniform distribution between 0 and 100.
@@ -701,8 +703,8 @@ distribution between 0 and 100 fall into predictable chunks of approximately
 <li><p>The third quartile contains data for the 50<sup>th</sup> to the 75<sup>th</sup> percentile values (0.5 to 0.75 quantiles).</p></li>
 <li><p>The fourth quartile contains the upper 25% of the distribution: 0.75 to 1.0 quantiles.</p></li>
 </ul>
-<div id="descriptive-statistics" class="section level3" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> Descriptive Statistics</h3>
+<div id="descriptive-statistics" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Descriptive Statistics<a href="eda1.html#descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Quantiles allow us to calculate several important descriptive statistics for
 univariate data. For example, quartile calculations for highway fuel
 effeciencies from the <code>mpg</code> dataset allows us to report the
@@ -846,8 +848,8 @@ hard to get a lot out of the decile summary when shown in tabular format. This
 brings us to my favorite part of exploratory data analysis: data visualization.</p>
 </div>
 </div>
-<div id="univariate-data-visualization" class="section level2" number="5.4">
-<h2><span class="header-section-number">5.4</span> Univariate Data Visualization</h2>
+<div id="univariate-data-visualization" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Univariate Data Visualization<a href="eda1.html#univariate-data-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Data visualization is a powerful technique for exploring data. Visualizing
 univariate data is the <strong>first step</strong> in getting to know your data, once they
 have been imported and wrangled.</p>
@@ -855,8 +857,8 @@ have been imported and wrangled.</p>
 and shape of univariate data. Later, we will explore relationships between two
 or more variables in <a href="eda2.html#eda2">multivariate data analyses</a>. The techniques shown
 below are simple, powerful, and often underutilized.</p>
-<div id="summary-vs.-enumerative-plots" class="section level3" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> Summary vs. Enumerative Plots</h3>
+<div id="summary-vs.-enumerative-plots" class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Summary vs. Enumerative Plots<a href="eda1.html#summary-vs.-enumerative-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Univariate data visualizations can be broken down into two categories:
 summary plots and enumerative plots. A <strong>summary plot</strong> shows you the data
 summarized in some way; a data analysis or manipulation happens prior
@@ -880,8 +882,8 @@ mean more work for your brain.</li>
 </ul></li>
 </ul>
 </div>
-<div id="cumulative-distribution-plot" class="section level3" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Cumulative Distribution Plot</h3>
+<div id="cumulative-distribution-plot" class="section level3 hasAnchor" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> Cumulative Distribution Plot<a href="eda1.html#cumulative-distribution-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A cumulative distribution plot is an enumerative plot that lays out the raw
 quantiles, typically on the y-axis, against the observed data on the x-axis.
 Because these plots show all the data, each observation gets assigned a unit
@@ -906,7 +908,7 @@ the <code>unit_quantiles</code> manually to show you how this can be done:</p>
 <span id="cb187-8"><a href="eda1.html#cb187-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">unit_quantiles =</span> <span class="fu">seq.int</span>(<span class="at">from =</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">length</span>(a), </span>
 <span id="cb187-9"><a href="eda1.html#cb187-9" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">to =</span> <span class="dv">1</span>,</span>
 <span id="cb187-10"><a href="eda1.html#cb187-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">by =</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">length</span>(a)))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:norm-cdf-plot"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:norm-cdf-plot"></span>
 <img src="images/normal_cum_dist_anno.png" alt="Annotated Cumulative Distribution Plot for Normally-Distributed Temperature Data" width="700pt" />
 <p class="caption">
 Figure 5.4: Annotated Cumulative Distribution Plot for Normally-Distributed Temperature Data
@@ -934,8 +936,8 @@ distribution. For example, in the temperature example above (Figure
 <a href="eda1.html#fig:norm-cdf-plot">5.4</a>), the curve has geometric <em>symmetry</em> about the median;
 this symmetry indicates that the dispersion of the data is equal as you move
 away from the median in either direction.</p>
-<div id="example-cumulative-distribution-plot" class="section level4" number="5.4.2.1">
-<h4><span class="header-section-number">5.4.2.1</span> Example: Cumulative Distribution Plot</h4>
+<div id="example-cumulative-distribution-plot" class="section level4 hasAnchor" number="5.4.2.1">
+<h4><span class="header-section-number">5.4.2.1</span> Example: Cumulative Distribution Plot<a href="eda1.html#example-cumulative-distribution-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <code>ggplot2</code> package can create cumulative distribution plots with different
 <code>geom</code> options:</p>
 <ul>
@@ -981,8 +983,9 @@ values on the plot.</p>
 <span id="cb189-22"><a href="eda1.html#cb189-22" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;red&quot;</span>,</span>
 <span id="cb189-23"><a href="eda1.html#cb189-23" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
 <span id="cb189-24"><a href="eda1.html#cb189-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb189-25"><a href="eda1.html#cb189-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(<span class="st">&quot;./images/cdf_me_salaries.png&quot;</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:cdf-me-salaries"></span>
+<span id="cb189-25"><a href="eda1.html#cb189-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb189-26"><a href="eda1.html#cb189-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;./images/cdf_me_salaries.png&quot;</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cdf-me-salaries"></span>
 <img src="images/cdf_me_salaries.png" alt="Annual Salaries (2017) for US Graduates (all ages) with a Mechanical Engineering Degree" width="500" />
 <p class="caption">
 Figure 5.5: Annual Salaries (2017) for US Graduates (all ages) with a Mechanical Engineering Degree
@@ -999,8 +1002,8 @@ explore skewed data at several points in this course and discuss some of the
 mechanisms that cause data to be skewed.</p>
 </div>
 </div>
-<div id="hist" class="section level3" number="5.4.3">
-<h3><span class="header-section-number">5.4.3</span> Histogram</h3>
+<div id="hist" class="section level3 hasAnchor" number="5.4.3">
+<h3><span class="header-section-number">5.4.3</span> Histogram<a href="eda1.html#hist" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A histogram is a summary plot of counts, or frequency of observations, as a
 function of magnitude, or levels. Histograms are useful because they allow you
 to visualize the spread and shape of your data as a distribution. A histogram
@@ -1019,20 +1022,20 @@ run.</p>
 <p>Examination of this histogram quickly reveals a lot about the underlying data.
 For example, the central tendency is located around a value of ~30 and the
 majority of the data appear to fall between a range of 20 - 40.</p>
-<div class="figure" style="text-align: center"><span id="fig:hist-anno-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:hist-anno-1"></span>
 <img src="images/hist_anno_1.png" alt="A histogram is a plot of counts, or frequency of observations, as a function of magnitude, or levels, of univariate data." width="700pt" />
 <p class="caption">
 Figure 5.6: A histogram is a plot of counts, or frequency of observations, as a function of magnitude, or levels, of univariate data.
 </p>
 </div>
-<div id="what-to-look-for-in-a-histogram" class="section level4" number="5.4.3.1">
-<h4><span class="header-section-number">5.4.3.1</span> What to look for in a histogram?</h4>
+<div id="what-to-look-for-in-a-histogram" class="section level4 hasAnchor" number="5.4.3.1">
+<h4><span class="header-section-number">5.4.3.1</span> What to look for in a histogram?<a href="eda1.html#what-to-look-for-in-a-histogram" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>In addition to being able to “see” key data descriptors such as mean, range,
 and spread, a histogram also allows one (a) to get a feel for <strong><em>skewness</em></strong>,
 that is whether the distribution is symmetric about the central tendency, (b)
 to see <strong><em>outliers</em></strong>, and (c) to visualize other potential interesting
 features in the dataset.</p>
-<div class="figure" style="text-align: center"><span id="fig:skew-hist-anno"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:skew-hist-anno"></span>
 <img src="images/hist_anno_2.png" alt="A histogram depicting a skewed distribution." width="700pt" />
 <p class="caption">
 Figure 5.7: A histogram depicting a skewed distribution.
@@ -1051,7 +1054,7 @@ of skewed data is that traditional location measures of central tendency such
 as mode, median, and mean do not agree with each other. According to Figure
 <a href="eda1.html#fig:skew-hist-anno">5.7</a>, the central tendency calculations differ based on
 type of location measure.</p>
-<div class="figure" style="text-align: center"><span id="fig:skew-hist-anno-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:skew-hist-anno-2"></span>
 <img src="images/hist_anno_3.png" alt="Describing the spread of skewed data with a &quot;standard deviation&quot; can lead to confusion and trouble: in this case, the existence of physically impossible values." width="700pt" />
 <p class="caption">
 Figure 5.8: Describing the spread of skewed data with a “standard deviation” can lead to confusion and trouble: in this case, the existence of physically impossible values.
@@ -1072,8 +1075,8 @@ case, we can always rely on quantile calculations for descriptors such as
 median and IQR because those descriptors do not make assumptions about the
 shape of the distribution.</p>
 </div>
-<div id="skew" class="section level4" number="5.4.3.2">
-<h4><span class="header-section-number">5.4.3.2</span> What causes skewed histograms?</h4>
+<div id="skew" class="section level4 hasAnchor" number="5.4.3.2">
+<h4><span class="header-section-number">5.4.3.2</span> What causes skewed histograms?<a href="eda1.html#skew" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>I want to spend some time thinking about mechanisms that cause variability in
 an observation. These mechanisms are often responsible for whether a set of
 observations appears normally distributed or skewed. We will focus on two types
@@ -1100,8 +1103,8 @@ that suggest <span class="math inline">\(x = a * b * c\)</span> not <span class=
 multiplicative variability and how it leads to log-normal data are provided
 <a href="dist.html#log_normal_dist">here</a>.</p>
 </div>
-<div id="pdf" class="section level4" number="5.4.3.3">
-<h4><span class="header-section-number">5.4.3.3</span> Probability Density Function</h4>
+<div id="pdf" class="section level4 hasAnchor" number="5.4.3.3">
+<h4><span class="header-section-number">5.4.3.3</span> Probability Density Function<a href="eda1.html#pdf" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The histogram is really an attempt to visualize the <strong>probability density function</strong>
 (pdf) for a distribution of univariate data. The pdf is a mathematical
 representation of the likelihood of sampling a given value from the distribution,
@@ -1111,8 +1114,8 @@ expressed empirically (as a numeric approximation) or as an exact analytic
 equation (in the case normal, lognormal, and other <em>known</em> distributional forms).</p>
 </div>
 </div>
-<div id="box" class="section level3" number="5.4.4">
-<h3><span class="header-section-number">5.4.4</span> Boxplot</h3>
+<div id="box" class="section level3 hasAnchor" number="5.4.4">
+<h3><span class="header-section-number">5.4.4</span> Boxplot<a href="eda1.html#box" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The boxplot is summary plot that allows one to view a distribution by its
 quartiles (Figure <a href="eda1.html#fig:boxplot-anno">5.9</a>). The “box” in a boxplot consists of
 three parallel lines, usually oriented vertically, connected on their sides to
@@ -1132,7 +1135,7 @@ the console:</p>
 <blockquote>
 <p>The upper whisker extends from the hinge to the largest value no further than 1.5 * IQR from the hinge (where IQR is the inter-quartile range, or distance between the first and third quartiles). The lower whisker extends from the hinge to the smallest value at most 1.5 * IQR of the hinge. Data beyond the end of the whiskers are called “outlying” points and are plotted individually.</p>
 </blockquote>
-<div class="figure" style="text-align: center"><span id="fig:boxplot-anno"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:boxplot-anno"></span>
 <img src="images/boxplot_1_anno.png" alt="A generic boxplot. The box lines represent the lower, middle, and upper quartiles, respectively. The whiskers represent 1.5*IQR in each direction." width="700pt" />
 <p class="caption">
 Figure 5.9: A generic boxplot. The box lines represent the lower, middle, and upper quartiles, respectively. The whiskers represent 1.5*IQR in each direction.
@@ -1146,7 +1149,7 @@ themselves, and the same information presented by a boxplot is just as easy to
 get from a cumulative distribution plot. Nonetheless, I think it’s faster to
 view quartiles and the IQR on the boxplot, so a plot with multiple boxplots has
 advantages. For example, let’s look at the data from Figure <a href="eda1.html#fig:noaa-temp-plot">5.1</a> as two boxplots.</p>
-<div class="figure" style="text-align: center"><span id="fig:temp-boxplot"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:temp-boxplot"></span>
 <img src="05-univar_eda_files/figure-html/temp-boxplot-1.png" alt="Boxplots of hourly temperatures in CO and HI for July, 2010. Whiskers represent 1.5*IQR." width="500" />
 <p class="caption">
 Figure 5.10: Boxplots of hourly temperatures in CO and HI for July, 2010. Whiskers represent 1.5*IQR.
@@ -1169,15 +1172,15 @@ of the raw data. The ability to layer geoms is one of the many strengths of the
 <span id="cb190-10"><a href="eda1.html#cb190-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Region&quot;</span>,</span>
 <span id="cb190-11"><a href="eda1.html#cb190-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Temperature (°F)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb190-12"><a href="eda1.html#cb190-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code></pre></div>
-<div class="figure"><span id="fig:noaa-box-2"></span>
+<div class="figure"><span style="display:block;" id="fig:noaa-box-2"></span>
 <img src="05-univar_eda_files/figure-html/noaa-box-2-1.png" alt="Boxplots of hourly temperatures in CO and HI for July, 2010" width="672" />
 <p class="caption">
 Figure 5.11: Boxplots of hourly temperatures in CO and HI for July, 2010
 </p>
 </div>
 </div>
-<div id="time_series" class="section level3" number="5.4.5">
-<h3><span class="header-section-number">5.4.5</span> Time-Series Plot</h3>
+<div id="time_series" class="section level3 hasAnchor" number="5.4.5">
+<h3><span class="header-section-number">5.4.5</span> Time-Series Plot<a href="eda1.html#time_series" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The time-series plot (also called a “run sequence” plot) is something you have
 undoubtedly seen before. This plot, typically shown as an enumerative plot,
 depicts the value of a variable on the y-axis plotted in the sequence that the
@@ -1192,7 +1195,7 @@ time-series plot allows you to do several things:</p>
 <p>Let’s plot the same temperature data from Hawaii as shown in Figure
 <a href="eda1.html#fig:noaa-temp-plot">5.1</a> as a time series. We will use <code>geom_point()</code>
 to add the data and <code>geom_line()</code> to connect the dots for this plot.</p>
-<div class="figure" style="text-align: center"><span id="fig:noaa-hi-time"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:noaa-hi-time"></span>
 <img src="images/noaa_hi_time.png" alt="Time series of hourly temperature measurements in Kauai, Hawaii for July 2010." width="700pt" />
 <p class="caption">
 Figure 5.12: Time series of hourly temperature measurements in Kauai, Hawaii for July 2010.
@@ -1208,15 +1211,15 @@ important outcome: there are patterns to be seen in these data! None of those
 patterns were evident in the cumulative distribution or histogram plots. If we
 zoom in on just the first 5 days of the month, we see the daily temperature
 patterns in more detail.</p>
-<div class="figure" style="text-align: center"><span id="fig:noaa-hi-week"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:noaa-hi-week"></span>
 <img src="images/noaa_hi_week.png" alt="Time series of hourly temperature measurements in Kauai, Hawaii for July 1-5, 2010." width="700pt" />
 <p class="caption">
 Figure 5.13: Time series of hourly temperature measurements in Kauai, Hawaii for July 1-5, 2010.
 </p>
 </div>
 </div>
-<div id="autocorr" class="section level3" number="5.4.6">
-<h3><span class="header-section-number">5.4.6</span> Autocorrelation Plot</h3>
+<div id="autocorr" class="section level3 hasAnchor" number="5.4.6">
+<h3><span class="header-section-number">5.4.6</span> Autocorrelation Plot<a href="eda1.html#autocorr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Autocorrelation, or serial correlation, means <em>correlated with oneself across
 time</em>. Autocorrelation is a concept that suggests “whatever is happening in
 this moment is still likely to be happening in the next moment.” Lots of things
@@ -1290,8 +1293,8 @@ at 24-hr lags?</p>
 <li>This <em>lack of independence</em> violates the assumptions of many modeling approaches. This is potentially bad.</li>
 </ul>
 </div>
-<div id="partial-autocorrelation-plot" class="section level3" number="5.4.7">
-<h3><span class="header-section-number">5.4.7</span> Partial Autocorrelation Plot</h3>
+<div id="partial-autocorrelation-plot" class="section level3 hasAnchor" number="5.4.7">
+<h3><span class="header-section-number">5.4.7</span> Partial Autocorrelation Plot<a href="eda1.html#partial-autocorrelation-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The partial autocorrelation plot is a summary plot that gives the correlation
 coefficient (<em>r</em>) between all timepoints (x<sub>i</sub>) and their lags (x<sub>i+n</sub>) after
 accounting for autocorrelation for all previous lags.</p>
@@ -1306,8 +1309,8 @@ accounting for autocorrelation for all previous lags.</p>
 some periodicity around 12- and 24-hr lags.</p>
 </div>
 </div>
-<div id="exploring-data" class="section level2" number="5.5">
-<h2><span class="header-section-number">5.5</span> Exploring Data</h2>
+<div id="exploring-data" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Exploring Data<a href="eda1.html#exploring-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The whole point of this chapter comes down to this: when you have new,
 unfamiliar data, the best thing to do is to explore that data graphically.
 Create a panel of plots from available candidates: histogram, cumulative distribution, time-series, boxplot, autocorrelation.
@@ -1317,15 +1320,15 @@ shape, and quantiles. EDA plots also frequently lead to more questions; the
 answers to which will bring you even closer to understanding what the data are
 trying to tell you. Let your eyes do the listening at first.</p>
 <p>For example, here is a “3-plot” for the ME Salary data originally shown in Figure <a href="eda1.html#fig:cdf-me-salaries">5.5</a>:</p>
-<div class="figure"><span id="fig:3-plot-noaa"></span>
+<div class="figure"><span style="display:block;" id="fig:3-plot-noaa"></span>
 <img src="05-univar_eda_files/figure-html/3-plot-noaa-1.png" alt="EDA Plots of Annual Salaries among Mech Eng Graduates" width="672" />
 <p class="caption">
 Figure 5.14: EDA Plots of Annual Salaries among Mech Eng Graduates
 </p>
 </div>
 </div>
-<div id="chapter-5-homework" class="section level2" number="5.6">
-<h2><span class="header-section-number">5.6</span> Chapter 5 Homework</h2>
+<div id="chapter-5-homework" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Chapter 5 Homework<a href="eda1.html#chapter-5-homework" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You will continue to work with the ozone measurement data introduced in the
 previous chapters. Download the R Markdown template from Canvas. This homework
 assignment is due at the start of the class when we begin Chapter 6. Your work
@@ -1343,7 +1346,6 @@ will be considered late if the latest knit occurs after the deadline.</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1362,6 +1364,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -1382,6 +1385,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

@@ -238,7 +238,7 @@ head(salary_ps)
 ```
 
 ```
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ##   salary sex   major   
 ##    <dbl> <chr> <chr>   
 ## 1  80000 M     Poly Sci
@@ -263,7 +263,7 @@ salary_ps %>%
 ```
 
 ```
-## # A tibble: 2 x 6
+## # A tibble: 2 × 6
 ##   sex   median    mean   min     max   IQR
 ##   <chr>  <dbl>   <dbl> <dbl>   <dbl> <dbl>
 ## 1 F      69003  84432.     0 1027653 57375

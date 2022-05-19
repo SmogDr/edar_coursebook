@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Modeling | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Modeling | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-27" />
+<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="measure.html"/>
 <link rel="next" href="dist.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -119,6 +120,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -478,8 +480,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="model" class="section level1" number="11">
-<h1><span class="header-section-number">Chapter 11</span> Modeling</h1>
+<div id="model" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Modeling<a href="model.html#model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div class="rmdnote">
 <p>
 A <a href="https://www.merriam-webster.com/dictionary/model" target="_blank"><strong><em>model</em></strong></a> is a system of postulates, data, and inferences presented as a mathematical description of an entity or state of affairs.
@@ -496,8 +498,8 @@ A <a href="https://www.merriam-webster.com/dictionary/model" target="_blank"><st
 <blockquote>
 <p><span style="color: blue;"> “All models are wrong, but some are useful” - George Cox, pioneering statistician </span></p>
 </blockquote>
-<div id="ch.-11-objectives" class="section level2" number="11.1">
-<h2><span class="header-section-number">11.1</span> Ch. 11 Objectives</h2>
+<div id="ch.-11-objectives" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Ch. 11 Objectives<a href="model.html#ch.-11-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This chapter is designed around the following learning objectives. Upon
 completing this chapter, you should be able to:</p>
 <ul>
@@ -509,8 +511,8 @@ completing this chapter, you should be able to:</p>
 <li>Estimate probability density functions for univariate distributions</li>
 </ul>
 </div>
-<div id="process-modeling" class="section level2" number="11.2">
-<h2><span class="header-section-number">11.2</span> Process Modeling</h2>
+<div id="process-modeling" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Process Modeling<a href="model.html#process-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Figure <a href="model.html#fig:model-1">11.1</a> below provides a general process diagram for modeling (<a href="https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd41.htm" target="_blank">adapted from the NIST Handbook on Statistics</a>);
 these are the steps you should follow when developing a model. Even before you begin this process, however, you should ask yourself the following three questions:</p>
 <ol style="list-style-type: decimal">
@@ -519,31 +521,31 @@ these are the steps you should follow when developing a model. Even before you b
 <li><strong><em>What do I plan to do with this model?</em></strong></li>
 </ol>
 <p>The answer to these questions will undoubtedly guide your thinking as you move through the process steps; it’s important to have objectives and expectations at the start. Without purpose, a process model often comes up short.</p>
-<div class="figure" style="text-align: center"><span id="fig:model-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:model-1"></span>
 <p class="caption">
 Figure 11.1: A generic process diagram for model conceptualization, development, and evaluation.
 </p>
 <img src="images/model_steps.png" alt="A generic process diagram for model conceptualization, development, and evaluation." width="400" />
 </div>
 <p>A couple points worth making about the process outline in Figure <a href="model.html#fig:model-1">11.1</a>. First, observing a process and matching your observations to your training and experience is an invaluable tool for model construction. Second, most models of “real-world things” like Newton’s work on gravity or Milliken’s model of elctron charge are empircal - that is, they are based on observation (not pure math). Purely <em>analytic</em> models exist (mostly as mathematical “proofs”) and such models don’t need data to be <em>“fit”</em> but do need data to be <em>validated</em>. Third, many people choose to validate their model with the same data they used to fit the model (using an approach like blocking or cross-validation). While I acknowledge that this approach is convenient (and sometimes the only means available), I disagree with it. You should always try to validate your model with an independent sample (better yet, with a sample that you didn’t collect). Why? Although we put a lot of emphasis on <a href="measure.html#sample.collect">“random sampling”</a>, we rarely succeed at it in the real world. Having someone else validate your model with their (independent) data will go a long way towards convincing others that your model is both <strong>useful</strong> and <strong>generalizable</strong>.</p>
-<div id="assumptions" class="section level3" number="11.2.1">
-<h3><span class="header-section-number">11.2.1</span> Assumptions</h3>
+<div id="assumptions" class="section level3 hasAnchor" number="11.2.1">
+<h3><span class="header-section-number">11.2.1</span> Assumptions<a href="model.html#assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>An <strong><em>assumption</em></strong> is a fact or condition that is taken for granted. If you think about it, nearly every action you undertake carries assumptions. If someone throws a baseball to you and you reach out your hand to catch it, you are assuming that you will indeed make that catch. Otherwise, you would probably duck! When you walk across a high bridge, you undoubtedly assume that it will hold your weight. Sure, you might have a compelling reason to cross the bridge at any cost, but in that case you have assumed that the reason for crossing the bridge outweighs other risks. Those of us who live in Colorado have, at one point, made the incorrect assumption about our car or truck’s braking ability in the snow.</p>
 <p><strong>All scientific models are based on assumptions; many of those assumptions are necessary (read: critical) for the model or theory to be “correct.”</strong></p>
 <p>Although assumptions can be <em>taken for granted</em> when constructing a model or theory, that doesn’t mean they should be ignored. Indeed, evaluating the assumptions of a model (or theory) is one of the first things that you should do when developing OR evaluating OR applying it. <em>Testing assumptions</em> is the hallmark of a talented researcher, and yet, few researchers test their model assumptions regularly.</p>
 <p>In this chapter, I will teach you about the assumptions of linear regression, but the take-home lesson is this: <strong><em>those who recognize and validate their assumptions will be rewarded for their efforts, prepared for what is to come, and will rarely depend on luck for success.</em></strong></p>
 </div>
 </div>
-<div id="model-fitting" class="section level2" number="11.3">
-<h2><span class="header-section-number">11.3</span> Model Fitting</h2>
+<div id="model-fitting" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Model Fitting<a href="model.html#model-fitting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
 <p><span style="color: blue;"> “The purpose of models is not to fit the data but to sharpen the questions.” - Samuel Karlim, mathematician and genomicist </span></p>
 </blockquote>
 <p>The best models are those that advance your understanding of a phenomenon so well that you soon leave the model behind, because the questions have since changed. We will not aspire to such great heights here, but it’s worth understanding how models can be <em>fit</em> to data. Model construction, fitting, and validation could represent an entire semester (or more) of work. Here, will will discuss one introductory application: fitting of a linear model using ordinary least squares (OLS). You have undoubtedly used a computer program to create a linear fit between an X and Y variable. Microsoft Excel will do this for you with two columns of data and a few simple mouse clicks. How that fit is achieved (and what assumptions underpin that fit) is what we will discuss here.</p>
 </div>
-<div id="ols-regression" class="section level2" number="11.4">
-<h2><span class="header-section-number">11.4</span> OLS Regression</h2>
-<p>OLS stands for <strong>“Ordinary Least Squares”</strong>. The OLS technique is one of the most commons ways to fit a linear regression. To keep things simple, let’s discuss fitting a model with a single independent variable (<span class="math inline">\(X\)</span>) as a predictor for our (dependent) outcome variable of interest (<span class="math inline">\(Y\)</span>). A model with one instance of a single independent variable means we have, at maximum, only two parameter estimates to fit: the <em>intercept</em> term when <span class="math inline">\(X = 0\)</span> (which we call <span class="math inline">\(\beta_{0}\)</span>) and the slope term for all values of <span class="math inline">\(X\)</span> (which we call <span class="math inline">\(\beta_{1}\)</span>). Thus, we are fitting a straight-line equation between two variables with the following notation:</p>
+<div id="ols-regression" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> OLS Regression<a href="model.html#ols-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>OLS stands for <strong>“Ordinary Least Squares”</strong>. The OLS technique is one of the most common ways to fit a linear regression. To keep things simple, let’s discuss fitting a model with a single independent variable (<span class="math inline">\(X\)</span>) as a predictor for our (dependent) outcome variable of interest (<span class="math inline">\(Y\)</span>). A model with one instance of a single independent variable means we have, at maximum, only two parameter estimates to fit: the <em>intercept</em> term when <span class="math inline">\(X = 0\)</span> (which we call <span class="math inline">\(\beta_{0}\)</span>) and the slope term for all values of <span class="math inline">\(X\)</span> (which we call <span class="math inline">\(\beta_{1}\)</span>). Thus, we are fitting a straight-line equation between two variables with the following notation:</p>
 <p><span class="math display">\[Y = \beta_{0} + \beta_{1}\cdot X + \epsilon\]</span>
 where:</p>
 <p>    <span class="math inline">\(Y\)</span> = the dependent variable (i.e, the outcome - what we are trying to model)<br />
@@ -552,7 +554,7 @@ where:</p>
     <span class="math inline">\(X\)</span> = the independent variable (i.e., the predictor variable)<br />
     <span class="math inline">\(\epsilon\)</span> = the error term (i.e., what is left over; what the model doesn’t explain about <span class="math inline">\(Y\)</span>)</p>
 <p>The OLS approach is straightforward: select model parameters (<span class="math inline">\(\beta_{0}\)</span>, <span class="math inline">\(\beta_{1}\)</span>) so that the model produces as little error as possible. With OLS, the model error is expressed as a <em>sum-of-squares error</em> (SSE; explained below). Graphically, this is shown in Figure <a href="model.html#fig:OLS-anno">11.2</a>, where the solid blue circles represent the data (<span class="math inline">\(X_{i}, Y_{i}\)</span>). The grey line represents the “best fit” line that gives the smallest SSE possible. The model <strong><em>residuals</em></strong> (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the “best-fit line.” The optimization algorithm is executed with matrix algebra, although the paramaters for simple linear regression between two variables, <span class="math inline">\(X,Y,\)</span>, are easily calculated - see <a href="dist.html#OLS">here</a>.</p>
-<div class="figure"><span id="fig:OLS-anno"></span>
+<div class="figure"><span style="display:block;" id="fig:OLS-anno"></span>
 <img src="images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals" width="632" />
 <p class="caption">
 Figure 11.2: Graphical depiction for an OLS regression fit to minimize the sum of squared residuals
@@ -578,11 +580,11 @@ The <em>total sum of squares</em> represents a measure of all of the variability
 The terms “residual sum of squares” and “error sum of squares” are interchangeable; you will see them both in the wild and they mean the same thing.
 </p>
 </div>
-<div id="OLS_assum" class="section level3" number="11.4.1">
-<h3><span class="header-section-number">11.4.1</span> OLS Assumptions and Diagnostics</h3>
+<div id="OLS_assum" class="section level3 hasAnchor" number="11.4.1">
+<h3><span class="header-section-number">11.4.1</span> OLS Assumptions and Diagnostics<a href="model.html#OLS_assum" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now that you have an idea “how” OLS works, let’s talk about the assumptions of OLS linear models. I will break the assumptions of OLS linear regression into two groups: front-end and back-end. The front-end assumptions are ones that apply to the model and the data at the outset. Most of the front-end assumptions can be tested before you fit the model. The back-end assumptions are ones that you test <em>after</em> the model has been built - these assumptions apply to the error term (<span class="math inline">\(\epsilon\)</span>). I will write them out here and provide a brief explanation of how to evaluate each (and why you should care about doing so).</p>
-<div id="front-end-assumptions" class="section level4" number="11.4.1.1">
-<h4><span class="header-section-number">11.4.1.1</span> Front-end assumptions:</h4>
+<div id="front-end-assumptions" class="section level4 hasAnchor" number="11.4.1.1">
+<h4><span class="header-section-number">11.4.1.1</span> Front-end assumptions:<a href="model.html#front-end-assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">
 <li><strong>The form of the model is linear in the coefficients.</strong>
 <ul>
@@ -612,8 +614,8 @@ The terms “residual sum of squares” and “error sum of squares” are inter
 </ul></li>
 </ol>
 </div>
-<div id="back-end-assumptions" class="section level4" number="11.4.1.2">
-<h4><span class="header-section-number">11.4.1.2</span> Back-end assumptions:</h4>
+<div id="back-end-assumptions" class="section level4 hasAnchor" number="11.4.1.2">
+<h4><span class="header-section-number">11.4.1.2</span> Back-end assumptions:<a href="model.html#back-end-assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <strong>error term</strong> (4) has a <strong>mean of zero</strong>, is (5) <strong>normally distributed</strong>, (6) <strong>homoscedastic</strong>, and has (7) <strong>no autocorrelation</strong> or (8) <strong>correlation with predictor (independent) variables</strong>. There’s a lot riding on that little error term, <span class="math inline">\(\epsilon\)</span>!.</p>
 <ol start="4" style="list-style-type: decimal">
 <li><strong>Mean of residuals is zero</strong>.
@@ -668,13 +670,13 @@ The terms “residual sum of squares” and “error sum of squares” are inter
 </div>
 </div>
 </div>
-<div id="example-ols-linear-regression" class="section level2" number="11.5">
-<h2><span class="header-section-number">11.5</span> Example: OLS Linear Regression</h2>
+<div id="example-ols-linear-regression" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Example: OLS Linear Regression<a href="model.html#example-ols-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s conduct a simple linear regression with two variables that we know are correlated: a person’s waist size and their weight. We will use data collected by the US Centers for Disease Control as part of the <a href="https://www.cdc.gov/nchs/nhanes/about_nhanes.htm" target="_blank">National Health and Nutrition Examination Survey (NHANES)</a>
 - a detailed annual survey of ~5,000 people living in the US.</p>
 <strong>1. Specify the model</strong><br />
 Before we begin let’s “look” at the data and apply some process knowledge. A scatterplot of waist size vs. body mass is shown below.
-<div class="figure" style="text-align: center"><span id="fig:model1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:model1"></span>
 <img src="11-model_files/figure-html/model1-1.png" alt="Scatterplot of body mass (kg) vs. waist circumfrence (cm) for US adults." width="500" />
 <p class="caption">
 Figure 11.3: Scatterplot of body mass (kg) vs. waist circumfrence (cm) for US adults.
@@ -709,7 +711,7 @@ Or, another way to say this is that the square root of mass is linearly related 
 <span id="cb342-15"><a href="model.html#cb342-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
 <span id="cb342-16"><a href="model.html#cb342-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb342-17"><a href="model.html#cb342-17" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:model-compare"></span>
+<div class="figure"><span style="display:block;" id="fig:model-compare"></span>
 <img src="11-model_files/figure-html/model-compare-1.png" alt="Side-by-side comparison of two model specifications. Does one look more linear than the other?" width="672" />
 <p class="caption">
 Figure 11.4: Side-by-side comparison of two model specifications. Does one look more linear than the other?
@@ -718,7 +720,7 @@ Figure 11.4: Side-by-side comparison of two model specifications. Does one look 
 <p>Looking at the right plot in Figure <a href="model.html#fig:model-compare">11.4</a>, where <span class="math inline">\(\sqrt(mass)\)</span> is plotted, helps make the slight curvature in the left-side plot more evident. Both plots appear “mostly” linear but the one on the right “looks better,” at least to me! Our process knowledge suggests that the model on the right is better specified. Let’s fit both models and find out!</p>
 <p>The NHANES data we use here is from 2017-2018 (saved as <code>bodysize.csv</code> and read into a data frame labeled: <code>data_18</code>). These data have been filtered to include adults only (<code>filter(age &gt; 18)</code>). The first few lines of data look like this:</p>
 <div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="model.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_18)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 7
+<pre><code>## # A tibble: 6 × 7
 ##      id  mass waist height gender   age sqrt_mass
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 93705  79.5 102.    158.      2    66      8.92
@@ -727,14 +729,14 @@ Figure 11.4: Side-by-side comparison of two model specifications. Does one look 
 ## 4 93709  88.8 113     151.      2    75      9.42
 ## 5 93711  62.1  86.6   171.      1    56      7.88
 ## 6 93712  58.9  72     173.      1    18      7.67</code></pre>
-<div id="the-lm-function" class="section level3" number="11.5.1">
-<h3><span class="header-section-number">11.5.1</span> The <code>lm()</code> function</h3>
+<div id="the-lm-function" class="section level3 hasAnchor" number="11.5.1">
+<h3><span class="header-section-number">11.5.1</span> The <code>lm()</code> function<a href="model.html#the-lm-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>lm()</code> function in R stands for <em>“linear model”</em> and will perform an OLS fit on any linear model you specify. The function requires two arguments: a <code>formula</code> (i.e., the model specification) and the <code>data</code> with which to fit that model. Formulas are specified as <code>y ~ x</code>, so our call to <code>lm()</code> looks like this for each model:</p>
 <div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="model.html#cb345-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mass <span class="sc">~</span> waist, <span class="at">data =</span> data_18)</span>
 <span id="cb345-2"><a href="model.html#cb345-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb345-3"><a href="model.html#cb345-3" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(sqrt_mass <span class="sc">~</span> waist, <span class="at">data =</span> data_18)</span></code></pre></div>
 <p>Now that we have stored each model as an object (<code>model1</code>, <code>model2</code>), so we can examine what they contain. The output of <code>lm()</code> is a list of class “lm.” If we type <code>view(model1)</code> the contents of the list become apparent.</p>
-<div class="figure"><span id="fig:model1-list"></span>
+<div class="figure"><span style="display:block;" id="fig:model1-list"></span>
 <img src="images/model1_list.png" alt="The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more." width="632" />
 <p class="caption">
 Figure 11.5: The <code>lm()</code> function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more.
@@ -815,16 +817,16 @@ Figure 11.5: The <code>lm()</code> function provides a self-contained list of th
 <span id="cb350-11"><a href="model.html#cb350-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">slope =</span> model2<span class="sc">$</span>coefficients[[<span class="dv">2</span>]])</span>
 <span id="cb350-12"><a href="model.html#cb350-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb350-13"><a href="model.html#cb350-13" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1<span class="fl">.2</span>, p2<span class="fl">.2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:model-fits"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:model-fits"></span>
 <img src="11-model_files/figure-html/model-fits-1.png" alt="There are many ways in R to overlay a linear fit onto a scatter plot" width="672" />
 <p class="caption">
 Figure 11.6: There are many ways in R to overlay a linear fit onto a scatter plot
 </p>
 </div>
-<p>Note that <code>geom_abline()</code> extends the line to the <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> axis limits (beyond the reach of the actual data). This type of extrapolation is sometimes frowned upon because you don’t have data out there. In the case of Figure <a href="model.html#fig:model-fits">11.6</a>, this isn’t such a bid deal because we set our plot limits to closely match our data limits. We will come back to these plots later on, as we examine our model assumptions.</p>
+<p>Note that <code>geom_abline()</code> extends the line to the <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> axis limits (beyond the reach of the actual data). This type of extrapolation is sometimes frowned upon because you don’t have data out there. In the case of Figure <a href="model.html#fig:model-fits">11.6</a>, this isn’t such a big deal because we set our plot limits to closely match our data limits. We will come back to these plots later on, as we examine our model assumptions.</p>
 </div>
-<div id="ols-diagnostics" class="section level3" number="11.5.2">
-<h3><span class="header-section-number">11.5.2</span> OLS Diagnostics</h3>
+<div id="ols-diagnostics" class="section level3 hasAnchor" number="11.5.2">
+<h3><span class="header-section-number">11.5.2</span> OLS Diagnostics<a href="model.html#ols-diagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In this section, we will run through our list of <a href="model.html#OLS_assum">OLS assumptions</a> for each of the models to prove that our models are proper and to help us decide which is better.</p>
 <p><strong>Assumption #1: The form of the model is linear in the coefficients.</strong><br />
 This one is easy to answer because both models were set up with only one independent variable and an intercept term: <span class="math inline">\(Y = \beta_{0} + \beta_{1}\cdot X\)</span>. The <span class="math inline">\(\beta\)</span>’s are added together so this assumption is valid for both <code>model1</code> and <code>model2</code>.</p>
@@ -857,7 +859,7 @@ This assumption can be checked several ways, but my preference is to create a Q-
 <span id="cb355-13"><a href="model.html#cb355-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
 <span id="cb355-14"><a href="model.html#cb355-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb355-15"><a href="model.html#cb355-15" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p3, p4, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:qqplot"></span>
+<div class="figure"><span style="display:block;" id="fig:qqplot"></span>
 <img src="11-model_files/figure-html/qqplot-1.png" alt="Q-Q plots of residuals for two linear models. Which set of residuals better approximates a normal distribution?" width="672" />
 <p class="caption">
 Figure 11.7: Q-Q plots of residuals for two linear models. Which set of residuals better approximates a normal distribution?
@@ -883,7 +885,7 @@ To evaluate this assumption, we create a <a href="eda2.html#scatt">scatterplot</
 <span id="cb356-15"><a href="model.html#cb356-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="fl">0.5</span>)</span>
 <span id="cb356-16"><a href="model.html#cb356-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb356-17"><a href="model.html#cb356-17" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p5, p6, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:residual-plot"></span>
+<div class="figure"><span style="display:block;" id="fig:residual-plot"></span>
 <img src="11-model_files/figure-html/residual-plot-1.png" alt="Residuals vs. fitted values as a check for homoscedasticity." width="672" />
 <p class="caption">
 Figure 11.8: Residuals vs. fitted values as a check for homoscedasticity.
@@ -894,7 +896,7 @@ Figure 11.8: Residuals vs. fitted values as a check for homoscedasticity.
 This assumption is evaluated by making a <a href="eda1.html#autocorr">partial autocorrelation plot</a> of your residuals. We will accomplish these plots using <code>pacf()</code> function from the <code>{stats}</code> package.</p>
 <div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="model.html#cb357-1" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">pacf</span>(model1<span class="sc">$</span>residuals, </span>
 <span id="cb357-2"><a href="model.html#cb357-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">main =</span> <span class="st">&quot;Model 1 Partial Autocorrelation Plot&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:resid-autocorr-1"></span>
+<div class="figure"><span style="display:block;" id="fig:resid-autocorr-1"></span>
 <img src="11-model_files/figure-html/resid-autocorr-1.png" alt="Partial autocorrelation plots of residuals." width="672" />
 <p class="caption">
 Figure 11.9: Partial autocorrelation plots of residuals.
@@ -902,7 +904,7 @@ Figure 11.9: Partial autocorrelation plots of residuals.
 </div>
 <div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="model.html#cb358-1" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">pacf</span>(model2<span class="sc">$</span>residuals, </span>
 <span id="cb358-2"><a href="model.html#cb358-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">main =</span> <span class="st">&quot;Model 2 Partial Autocorrelation Plot&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:resid-autocorr-2"></span>
+<div class="figure"><span style="display:block;" id="fig:resid-autocorr-2"></span>
 <img src="11-model_files/figure-html/resid-autocorr-2.png" alt="Partial autocorrelation plots of residuals." width="672" />
 <p class="caption">
 Figure 11.10: Partial autocorrelation plots of residuals.
@@ -924,8 +926,8 @@ This assumption can be evaluated through a correlation analysis. The <code>cor()
 Both models explained ~80% of the variance in our dependent variable. Based on our process knowledge and the fit diagnostics, we can conclude that <code>model2</code> is better specified than <code>model1</code>. In examining our process knowledge and the residuals, however, we cannot help but wonder if a better model exists out there to predict body mass based on measurement variables?</p>
 </div>
 </div>
-<div id="calibration" class="section level2" number="11.6">
-<h2><span class="header-section-number">11.6</span> Calibration</h2>
+<div id="calibration" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> Calibration<a href="model.html#calibration" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Calibration is a common technique in science and engineering used to aid
 measurement. To <em>calibrate</em> an instrument means to compare its measurements
 to those of a better one (when measuring the same thing). What qualifies as a better instrument? That depends on on the thing being measured but we usually utilize
@@ -998,8 +1000,8 @@ Calculate instrument precision and linearity. Decide on whether the dynamic
 range of the instrument was exceeded by any of calibration levels.</li>
 </ul></li>
 </ol>
-<div id="example-calibration" class="section level3" number="11.6.1">
-<h3><span class="header-section-number">11.6.1</span> Example Calibration</h3>
+<div id="example-calibration" class="section level3 hasAnchor" number="11.6.1">
+<h3><span class="header-section-number">11.6.1</span> Example Calibration<a href="model.html#example-calibration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In this example, we will evaluate the calibration of a low-cost instrument
 designed to measure <em>aerosol optical depth</em>, or AOD. The term aerosol optical
 depth is a term in atmospheric science that describes whether air pollution
@@ -1009,7 +1011,7 @@ smoke from wildfires shows up (and that happens more often each year).</p>
 <div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="model.html#cb363-1" aria-hidden="true" tabindex="-1"></a>cal_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;./data/cal_aod.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb363-2"><a href="model.html#cb363-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb363-3"><a href="model.html#cb363-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cal_data)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 4
+<pre><code>## # A tibble: 6 × 4
 ##   wave  time_r               amod aeronet
 ##   &lt;chr&gt; &lt;dttm&gt;              &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 440nm 2020-08-15 20:05:54 0.457   0.445
@@ -1025,7 +1027,7 @@ smoke from wildfires shows up (and that happens more often each year).</p>
 <span id="cb365-4"><a href="model.html#cb365-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;aod&quot;</span>)</span>
 <span id="cb365-5"><a href="model.html#cb365-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb365-6"><a href="model.html#cb365-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tidy_cal)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 4
+<pre><code>## # A tibble: 6 × 4
 ##   wave  time_r              instrument   aod
 ##   &lt;chr&gt; &lt;dttm&gt;              &lt;chr&gt;      &lt;dbl&gt;
 ## 1 440nm 2020-08-15 20:05:54 amod       0.457
@@ -1035,7 +1037,7 @@ smoke from wildfires shows up (and that happens more often each year).</p>
 ## 5 440nm 2020-08-15 20:35:54 amod       0.432
 ## 6 440nm 2020-08-15 20:35:54 aeronet    0.394</code></pre>
 <p>Before we begin our calibration, let’s examine the data using EDA techniques. We know that the <code>amod</code> column represents the instrument to be calibrated and the <code>aeronet</code> instrument represent the standard reference.</p>
-<div class="figure" style="text-align: center"><span id="fig:aod-eda-4plot"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:aod-eda-4plot"></span>
 <img src="images/aod_eda_4plot.png" alt="A 4-plot EDA of our AOD Calibration Data" width="1050" />
 <p class="caption">
 Figure 11.11: A 4-plot EDA of our AOD Calibration Data
@@ -1081,8 +1083,8 @@ Figure 11.11: A 4-plot EDA of our AOD Calibration Data
 <p>Note the one outlier present in the scatterplot. Does this outlier influence the result of the calibration? How could you evaluate it?</p>
 </div>
 </div>
-<div id="ch-11-homework" class="section level2" number="11.7">
-<h2><span class="header-section-number">11.7</span> Ch-11 Homework</h2>
+<div id="ch-11-homework" class="section level2 hasAnchor" number="11.7">
+<h2><span class="header-section-number">11.7</span> Ch-11 Homework<a href="model.html#ch-11-homework" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This homework will give you experience with fitting OLS linear models and testing model assumptions.</p>
 
 </div>
@@ -1097,7 +1099,6 @@ Figure 11.11: A 4-plot EDA of our AOD Calibration Data
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1116,6 +1117,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -1136,6 +1138,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

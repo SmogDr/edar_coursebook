@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-27" />
+<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 
 <link rel="next" href="rprog1.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -119,6 +120,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -481,10 +483,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Engineering Data Analysis in R</h1>
 <p class="author"><em>John Volckens and Kathleen E. Wendt</em></p>
-<p class="date"><em>2021-01-27</em></p>
+<p class="date"><em>2022-05-19</em></p>
 </div>
-<div id="intro" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<div id="intro" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><font size="5"> Preface </font></p>
 <p>I developed this coursebook to help engineers begin to <em>think</em> about data. Most
 of my job at the university is to conduct research, yet most of the students
@@ -502,8 +504,8 @@ ain’t easy. Once you come to terms with accepting failure as a regular
 occurrence, you put yourself in a position to learn from it. To learn from
 failure requires that you observe and diagnose “what went wrong” and to do
 that, you need to listen to what the data are telling you. Let’s begin.</p>
-<div id="how-to-use-this-book" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> How to use this book</h2>
+<div id="how-to-use-this-book" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> How to use this book<a href="index.html#how-to-use-this-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The coursebook is intended to be a sort of <em>self-help</em> guide for students who
 want to learn R programming and the art of engineering data science. The book
 is designed to get you started in the art, not master it. I’m not qualified to
@@ -519,15 +521,15 @@ streamline the message. If you ever wonder “How did he do that?” you can
 download any of the R Markdowns on <a href="https://github.com/SmogDr/edar_coursebook/">the GitHub repository</a>, where this coursebook
 is hosted.</p>
 </div>
-<div id="prerequisites" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Prerequisites</h2>
+<div id="prerequisites" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Prerequisites<a href="index.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This course is intended for upper-level undergraduates who have completed MECH
 231 (Experimental Design).</p>
 </div>
-<div id="grading" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Grading</h2>
-<div id="grading-for-mech-481a6" class="section level3" number="1.3.1">
-<h3><span class="header-section-number">1.3.1</span> Grading for MECH 481A6</h3>
+<div id="grading" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Grading<a href="index.html#grading" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="grading-for-mech-481a6" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Grading for MECH 481A6<a href="index.html#grading-for-mech-481a6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Course grades will be determined by the following five components:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -568,8 +570,8 @@ Homework
 </tbody>
 </table>
 </div>
-<div id="homework-submission" class="section level3" number="1.3.2">
-<h3><span class="header-section-number">1.3.2</span> Homework submission</h3>
+<div id="homework-submission" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Homework submission<a href="index.html#homework-submission" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There will be a homework assignment per coursebook chapter. Each homework will
 be due at the start of the class period when lecture coverage of the <em>next</em>
 chapter commences. For example, Chapter 2 Homework will be due at the start
@@ -581,8 +583,8 @@ assignment will be graded (or not graded) accordingly. Guidance on installing
 and connecting R/RStudio and Git/GitHub is provided in the next section.</p>
 </div>
 </div>
-<div id="course-set-up" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Course set-up</h2>
+<div id="course-set-up" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Course set-up<a href="index.html#course-set-up" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This might be painful, but bear with me. There will be a lot of software
 development <a href="https://docs.github.com/en/github/getting-started-with-github/github-glossary">jargon</a> (e.g., “commit,” “push,” “pull”), but the general idea is:
 We want to set up and learn how to use a collaborative tracking system. Git is
@@ -598,8 +600,8 @@ read carefully. If you have any questions at each stage, ask!</p>
 <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1399928" target="_blank">paper</a> on
 version control. I sprinkled in some suggestions from others. If you would like
 to gain more background on basic Git and GitHub, take a look at <a href="https://uncoast-unconf.github.io/uu-2019-day-zero/01-git-github-cornucopia/git-github-cornucopia.html#1" target="_blank">these slides</a> from <a href="https://twitter.com/AmeliaMN" target="_blank">Dr. Amelia McNamara</a>.</p>
-<div id="install-r-and-rstudio" class="section level3" number="1.4.1">
-<h3><span class="header-section-number">1.4.1</span> Install R and RStudio</h3>
+<div id="install-r-and-rstudio" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Install R and RStudio<a href="index.html#install-r-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li>Download and install the pre-compiled binary of the most recent version (4.0+) of <a href="https://cran.r-project.org" target="_blank">R</a> appropriate for your machine’s
 operating system</li>
@@ -623,8 +625,8 @@ Console, if you have never installed LaTex. More installation guidance can be fo
 <span id="cb7-3"><a href="index.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install LaTex &quot;ingredients&quot;</span></span>
 <span id="cb7-4"><a href="index.html#cb7-4" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code></pre></div>
 </div>
-<div id="install-git-and-create-a-github-account" class="section level3" number="1.4.2">
-<h3><span class="header-section-number">1.4.2</span> Install Git and create a GitHub account</h3>
+<div id="install-git-and-create-a-github-account" class="section level3 hasAnchor" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Install Git and create a GitHub account<a href="index.html#install-git-and-create-a-github-account" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li><p>Install <a href="https://git-scm.com/downloads" target="_blank">Git</a>. See <a href="https://happygitwithr.com/install-git.html" target="_blank">here</a> and <a href="https://rstats.wtf/set-up-an-r-dev-environment.html" target="_blank">here</a>
 for OS-specific installation instructions. For Mac users, you need to install
@@ -652,8 +654,8 @@ sufficient for this course, but the choice is yours.</li>
 <a href="https://education.github.com/" target="_blank">GitHub Education</a>.</li>
 </ol>
 </div>
-<div id="connect-git-github-and-rstudio" class="section level3" number="1.4.3">
-<h3><span class="header-section-number">1.4.3</span> Connect Git, GitHub, and RStudio</h3>
+<div id="connect-git-github-and-rstudio" class="section level3 hasAnchor" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Connect Git, GitHub, and RStudio<a href="index.html#connect-git-github-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li>Read and follow the
 <a href="https://happygitwithr.com/connect-intro.html" target="_blank">instructions</a>
@@ -662,8 +664,8 @@ slowly and carefully, and pay attention to the specific needs for your operating
 system.</li>
 </ol>
 </div>
-<div id="create-new-project-github-first" class="section level3" number="1.4.4">
-<h3><span class="header-section-number">1.4.4</span> Create new project, GitHub first</h3>
+<div id="create-new-project-github-first" class="section level3 hasAnchor" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> Create new project, GitHub first<a href="index.html#create-new-project-github-first" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol start="0" style="list-style-type: decimal">
 <li>Keep in mind: You should save the local R Project from this step in a top-level directory. We suggest creating an <code>R</code> folder at the top of your <code>Documents</code> folder (or OS-specific equivalent) to contain all of your R Projects. For the duration of this course, you should have a directory pathname like <code>/user/Documents/R/[YourLastName]-MECH481A6</code>. We will discuss directory structures and pathnames more in the next chapter.</li>
 <li>Read and follow these
@@ -678,8 +680,8 @@ system.</li>
 <a href="https://uncoast-unconf.github.io/uu-2019-day-zero/02-project-workflows/workflow.html#13" target="_blank">project-oriented workflow</a></li>
 </ul>
 </div>
-<div id="use-rstudiogithub-system-for-homework-submission" class="section level3" number="1.4.5">
-<h3><span class="header-section-number">1.4.5</span> Use RStudio/GitHub system for homework submission</h3>
+<div id="use-rstudiogithub-system-for-homework-submission" class="section level3 hasAnchor" number="1.4.5">
+<h3><span class="header-section-number">1.4.5</span> Use RStudio/GitHub system for homework submission<a href="index.html#use-rstudiogithub-system-for-homework-submission" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For homework submission, you will download the R Markdown templates provided
 to you and save and edit them within your own R Project, which is connected a
 private repository on the class GitHub Organization. In order to track your
@@ -687,8 +689,8 @@ changes and communicate with the Instructor and TA, you will
 regularly <em>commit</em> changes to your R Project files with meaningful <em>commit messages</em>. We will practice commits, pushes, and pulls to the <em>master branch</em>
 (main copy of R Project) during class.</p>
 </div>
-<div id="confirm-successful-set-up" class="section level3" number="1.4.6">
-<h3><span class="header-section-number">1.4.6</span> Confirm successful set-up</h3>
+<div id="confirm-successful-set-up" class="section level3 hasAnchor" number="1.4.6">
+<h3><span class="header-section-number">1.4.6</span> Confirm successful set-up<a href="index.html#confirm-successful-set-up" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>At this point, you should be able to commit, push to, and pull from the master
 branch of your private GitHub repository within the RStudio IDE. In later
 chapters, we will provide more information on these interfaces, and you will
@@ -707,8 +709,8 @@ you hope to gain from this course. Remember to mention/assign Kathleen
 <span class="citation">(<a href="#ref-wendtke" role="doc-biblioref"><strong>wendtke?</strong></a>)</span>, so she is alerted to your post.</p>
 <p>Kathleen will then close both of your issues, and you will be ready to go!</p>
 </div>
-<div id="asking-for-help-properly" class="section level3" number="1.4.7">
-<h3><span class="header-section-number">1.4.7</span> Asking for help (properly)</h3>
+<div id="asking-for-help-properly" class="section level3 hasAnchor" number="1.4.7">
+<h3><span class="header-section-number">1.4.7</span> Asking for help (properly)<a href="index.html#asking-for-help-properly" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>All questions regarding technology and code should be directed to the Teaching
 Assistant via GitHub Issues on
 <a href="https://github.com/MECH481A6/questions" target="_blank">this repository</a>.
@@ -722,8 +724,8 @@ semester, you will have an efficient, reproducible workflow and effective
 solution-seeking toolbox.</p>
 </div>
 </div>
-<div id="coursebook" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> Coursebook</h2>
+<div id="coursebook" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Coursebook<a href="index.html#coursebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This coursebook will serve as the only required textbook for this course. I
 regularly edit and add to this book, so content may change somewhat over the
 semester. We typically cover about a chapter of the book every 1-2 weeks of the
@@ -748,8 +750,8 @@ The online book is hosted using GitHub’s free
 <a href="https://pages.github.com" target="_blank">GitHub Pages</a>. All material for
 this book is available and can be explored at the book’s
 <a href="https://github.com/SmogDr/edar_coursebook" target="_blank">GitHub repository</a>.</p>
-<div id="other-helpful-books-not-required" class="section level3" number="1.5.1">
-<h3><span class="header-section-number">1.5.1</span> Other helpful books (not required)</h3>
+<div id="other-helpful-books-not-required" class="section level3 hasAnchor" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> Other helpful books (not required)<a href="index.html#other-helpful-books-not-required" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The best book to supplement the coursebook and lectures for this course is
 <a href="http://r4ds.had.co.nz" target="_blank">R for Data Science</a> by Garrett
 Grolemund and Hadley Wickham. The entire book is freely available online through
@@ -772,8 +774,8 @@ general and specific statistical analysis, including many available in print or
 online through the CSU library.</p>
 </div>
 </div>
-<div id="acknowledgements" class="section level2" number="1.6">
-<h2><span class="header-section-number">1.6</span> Acknowledgements</h2>
+<div id="acknowledgements" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Acknowledgements<a href="index.html#acknowledgements" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Most of the introductory material for this book was adapted from Dr. Brooke
 Anderson’s course on
 <a href="https://geanders.github.io/RProgrammingForResearch/" target="_blank">R Programming for Research</a>
@@ -796,7 +798,6 @@ from which I have drawn many techniques.</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -815,6 +816,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -835,6 +837,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

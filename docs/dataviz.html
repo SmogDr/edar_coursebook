@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Data Visualization with ggplot2 | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Data Visualization with ggplot2 | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="John Volckens and Kathleen E. Wendt" />
 
 
-<meta name="date" content="2021-01-27" />
+<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="rprog2.html"/>
 <link rel="next" href="eda1.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -119,6 +120,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -478,10 +480,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dataviz" class="section level1" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Data Visualization with <code>ggplot2</code></h1>
-<div id="chapter-4-objectives" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Chapter 4 Objectives</h2>
+<div id="dataviz" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Data Visualization with <code>ggplot2</code><a href="dataviz.html#dataviz" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="chapter-4-objectives" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Chapter 4 Objectives<a href="dataviz.html#chapter-4-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This chapter is designed around the following learning objectives for basic
 data visualization in R. Upon completing this chapter, you should be able to:</p>
 <ul>
@@ -491,8 +493,8 @@ data visualization in R. Upon completing this chapter, you should be able to:</p
 <li>Create, store, and save a <code>ggplot2</code> object in an R script</li>
 </ul>
 </div>
-<div id="install-and-load-ggplot2" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Install and load <code>ggplot2</code></h2>
+<div id="install-and-load-ggplot2" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Install and load <code>ggplot2</code><a href="dataviz.html#install-and-load-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
 <p><span style="color: blue;"> “The best design gets out of the way between the viewer’s brain and the content.” - Edward Tufte </span></p>
 </blockquote>
@@ -514,8 +516,8 @@ then need to load the package in your current session of R:</p>
 same R session, you can simply install and load the <code>tidyverse</code> “R
 package suite of R packages” with <code>library(tidyverse)</code>.</p>
 </div>
-<div id="steps-to-create-a-ggplot2-object" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> Steps to create a <code>ggplot2</code> object</h2>
+<div id="steps-to-create-a-ggplot2-object" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Steps to create a <code>ggplot2</code> object<a href="dataviz.html#steps-to-create-a-ggplot2-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The process of creating a plot using <code>ggplot2</code> follows conventions that are a
 bit different than most of the code you’ve seen so far in R, although it is
 somewhat similar to the idea of piping I introduced in the last chapter. The
@@ -534,8 +536,8 @@ range from very simple to very customized. We will start by focusing on simple
 geoms and added elements; later on, we will explore more options for
 customization.</p>
 </div>
-<div id="initializing-a-ggplot2-object" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> Initializing a <code>ggplot2</code> object</h2>
+<div id="initializing-a-ggplot2-object" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Initializing a <code>ggplot2</code> object<a href="dataviz.html#initializing-a-ggplot2-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The first step in creating a plot using <code>ggplot()</code> is to create a ggplot
 object. This object will not, by itself, create a plot with anything in it.
 Instead, this first step typically specifies the data frame you want to use and
@@ -555,8 +557,8 @@ While the <code>ggplot()</code> call is the place where you will most often see 
 </p>
 </div>
 </div>
-<div id="plot-aesthetics" class="section level2" number="4.5">
-<h2><span class="header-section-number">4.5</span> Plot aesthetics</h2>
+<div id="plot-aesthetics" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Plot aesthetics<a href="dataviz.html#plot-aesthetics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Aesthetics</strong> are properties of the plot that can show certain elements of the
 data. For example, in Figure <a href="dataviz.html#fig:mpg-bar">4.1</a>, we call an x-axis aesthetic
 (<code>x = class</code>) from the <code>mpg</code> dataset. We then plot counts of cars within
@@ -573,7 +575,7 @@ the dataframe structure and variable classes.</p>
 <div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="dataviz.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use ggplot() to map the data and a single aesthetic (variable = class)</span></span>
 <span id="cb171-2"><a href="dataviz.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> class)) <span class="sc">+</span> </span>
 <span id="cb171-3"><a href="dataviz.html#cb171-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="co"># call to a specific geom to plot the mapped data</span></span></code></pre></div>
-<div class="figure"><span id="fig:mpg-bar"></span>
+<div class="figure"><span style="display:block;" id="fig:mpg-bar"></span>
 <img src="04-dataviz_files/figure-html/mpg-bar-1.png" alt="Example of a simple call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe." width="672" />
 <p class="caption">
 Figure 4.1: Example of a simple call to <code>ggplot</code> showing counts of vehicle classes from the <code>mpg</code> dataframe.
@@ -588,7 +590,7 @@ class colored colored by <code>drv</code>).</p>
 <div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="dataviz.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call to ggplot to map the data and a single aesthetic</span></span>
 <span id="cb172-2"><a href="dataviz.html#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">fill =</span> drv)) <span class="sc">+</span></span>
 <span id="cb172-3"><a href="dataviz.html#cb172-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()  <span class="co"># call to a specific geom to plot the mapped data</span></span></code></pre></div>
-<div class="figure"><span id="fig:mpg-fill"></span>
+<div class="figure"><span style="display:block;" id="fig:mpg-fill"></span>
 <img src="04-dataviz_files/figure-html/mpg-fill-1.png" alt="Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)." width="672" />
 <p class="caption">
 Figure 4.2: Example of a call to <code>ggplot</code> showing counts of vehicle classes from the <code>mpg</code> dataframe and colored by the <code>fill</code> aesthetic mapped to drive type (<code>drv</code>).
@@ -690,14 +692,14 @@ Type of line (e.g., solid, dashed)
 </tbody>
 </table>
 </div>
-<div id="adding-geoms" class="section level2" number="4.6">
-<h2><span class="header-section-number">4.6</span> Adding geoms</h2>
+<div id="adding-geoms" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Adding geoms<a href="dataviz.html#adding-geoms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When creating plots, you’ll often want to add more than one <code>geom</code> to the plot.
 You can add these with <code>+</code> after the <code>ggplot()</code> statement to initialize the
 <code>ggplot2</code> object. Some of the most common geoms are:</p>
 <table>
 <caption>
-<span id="tab:geom-table">Table 4.2: </span>Common Plot Aesthetics
+<span id="tab:geom-table">Table 4.2: </span>A Few Basic Geom Types
 </caption>
 <thead>
 <tr>
@@ -749,8 +751,8 @@ Line graph (2 numeric variables)
 A common error when writing <code>ggplot2</code> code is to put the <code>+</code> to add a geom or element at the beginning of a line rather than the end of a previous line. In this case, R will try to execute the call too soon. If R gets to the end of a line and there is no indication to continue the call (e.g., <code>%&gt;%</code> for piping or <code>+</code> for <code>ggplot2</code> plots), R interprets that as a message to run the call without reading in further code. Thus, to avoid errors, be sure to end each line in <code>ggplot2</code> calls with <code>+</code>, except for the final line when the call is actually done. Don’t start lines with <code>+</code>.
 </p>
 </div>
-<div id="aesthetic-override-a-warning" class="section level3" number="4.6.1">
-<h3><span class="header-section-number">4.6.1</span> Aesthetic override: a warning</h3>
+<div id="aesthetic-override-a-warning" class="section level3 hasAnchor" number="4.6.1">
+<h3><span class="header-section-number">4.6.1</span> Aesthetic override: a warning<a href="dataviz.html#aesthetic-override-a-warning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>ggplot2</code> package, like many <code>tidyverse</code> packages, is both flexible and
 forgiving, designed to accommodate the user by “filling in the blanks” when no
 information is provided. For example, in the <code>ggplot()</code> call that created
@@ -789,7 +791,7 @@ different points in the call:</p>
 <div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="dataviz.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call to ggplot where one `fill` overrides another</span></span>
 <span id="cb174-2"><a href="dataviz.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">fill =</span> drv)) <span class="sc">+</span></span>
 <span id="cb174-3"><a href="dataviz.html#cb174-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">&quot;darkgreen&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:mpg-green"></span>
+<div class="figure"><span style="display:block;" id="fig:mpg-green"></span>
 <img src="04-dataviz_files/figure-html/mpg-green-1.png" alt="Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)." width="672" />
 <p class="caption">
 Figure 4.3: Example of a call to <code>ggplot</code> showing counts of vehicle classes from the <code>mpg</code> dataframe and colored by the <code>fill</code> aesthetic mapped to drive type (<code>drv</code>).
@@ -803,14 +805,14 @@ customized this sort of issue can arise; it comes with the territory of having
 flexible code.</p>
 </div>
 </div>
-<div id="shapes-and-colors" class="section level2" number="4.7">
-<h2><span class="header-section-number">4.7</span> Shapes and colors</h2>
+<div id="shapes-and-colors" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Shapes and colors<a href="dataviz.html#shapes-and-colors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In R, you can specify the shape of points with a number. Figure <a href="dataviz.html#fig:shape-examples">4.4</a> shows the shapes that correspond to the numbers 1 to
 25 in the <code>shape</code> aesthetic. This figure also provides an example of the
 difference between color (black for all these example points) and fill (red for
 these examples). You can see that some point shapes include a fill (21 for
 example), while some are either empty (1) or solid (19).</p>
-<div class="figure" style="text-align: center"><span id="fig:shape-examples"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:shape-examples"></span>
 <img src="04-dataviz_files/figure-html/shape-examples-1.png" alt="Examples of the shapes corresponding to different numeric choices for the `shape` aesthetic. For all examples, `color` is set to black and `fill` to red." width="480" />
 <p class="caption">
 Figure 4.4: Examples of the shapes corresponding to different numeric choices for the <code>shape</code> aesthetic. For all examples, <code>color</code> is set to black and <code>fill</code> to red.
@@ -823,15 +825,15 @@ listings of different R colors, look up “R colors” and search by “Images.�
 that colors are specified as <em>character strings</em> and define using quotes <code>" "</code>.
 See the code chunk for Figure <a href="dataviz.html#fig:mpg-green">4.3</a> where color is defined by
 <code>fill = "darkgreen"</code>.</p>
-<div class="figure" style="text-align: center"><span id="fig:color-examples"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:color-examples"></span>
 <img src="04-dataviz_files/figure-html/color-examples-1.png" alt="Example of available shades of blue in R." width="480" />
 <p class="caption">
 Figure 4.5: Example of available shades of blue in R.
 </p>
 </div>
 </div>
-<div id="scales-useful-plot-edits" class="section level2" number="4.8">
-<h2><span class="header-section-number">4.8</span> Scales: useful plot edits</h2>
+<div id="scales-useful-plot-edits" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Scales: useful plot edits<a href="dataviz.html#scales-useful-plot-edits" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <code>ggplot2</code> package uses <strong><em>scales</em></strong> as a way to make all sorts of tweaks
 and changes to how the plot is presented. According to the <code>ggplot2</code>
 documentation:</p>
@@ -893,8 +895,8 @@ Log scale of x-axis
 function options to automatically detect and show breaks and labels for axes
 and legends. These additional functions can be called on a <code>ggplot</code> object.</p>
 </div>
-<div id="ggplot2-example-1" class="section level2" number="4.9">
-<h2><span class="header-section-number">4.9</span> <code>ggplot2</code> example 1</h2>
+<div id="ggplot2-example-1" class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> <code>ggplot2</code> example 1<a href="dataviz.html#ggplot2-example-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For the example plots, we will continue to use the <code>mpg</code> dataset from the
 <code>ggplot2</code> package. We will use functions from the <code>dplyr</code> package, too, so both
 need to be loaded. Fortunately, the <code>ggplot2</code> package is loaded in addition to regular <code>tidyverse</code> packages when you call <code>library(tidyverse)</code>.</p>
@@ -915,7 +917,7 @@ you could pipe together the following:</p>
 <span id="cb175-4"><a href="dataviz.html#cb175-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(class) <span class="sc">%&gt;%</span></span>
 <span id="cb175-5"><a href="dataviz.html#cb175-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">tally</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb175-6"><a href="dataviz.html#cb175-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 7 x 2
+<pre><code>## # A tibble: 7 × 2
 ##   class          n
 ##   &lt;chr&gt;      &lt;int&gt;
 ## 1 2seater        3
@@ -937,7 +939,7 @@ you could pipe together the following:</p>
 <span id="cb178-6"><a href="dataviz.html#cb178-6" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb178-7"><a href="dataviz.html#cb178-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(mpg, year <span class="sc">==</span> <span class="dv">2008</span>), <span class="co"># filter data</span></span>
 <span id="cb178-8"><a href="dataviz.html#cb178-8" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> hwy, <span class="at">y =</span> cty, <span class="at">color =</span> class)) <span class="co"># assign x, y, and color</span></span></code></pre></div>
-<div class="figure"><span id="fig:mpg-example1"></span>
+<div class="figure"><span style="display:block;" id="fig:mpg-example1"></span>
 <img src="04-dataviz_files/figure-html/mpg-example1-1.png" alt="Scatterplot (geom_point) of highway vs. city fuel economy for model year 2008, colored by vehicle type" width="672" />
 <p class="caption">
 Figure 4.6: Scatterplot (geom_point) of highway vs. city fuel economy for model year 2008, colored by vehicle type
@@ -1017,26 +1019,27 @@ distance are equal to 10 units of y distance) by specifying a
 <span id="cb179-8"><a href="dataviz.html#cb179-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb179-9"><a href="dataviz.html#cb179-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># second geom layer (line)</span></span>
 <span id="cb179-10"><a href="dataviz.html#cb179-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>,</span>
-<span id="cb179-11"><a href="dataviz.html#cb179-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">slope =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb179-12"><a href="dataviz.html#cb179-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># call fixed coordinate system</span></span>
-<span id="cb179-13"><a href="dataviz.html#cb179-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
-<span id="cb179-14"><a href="dataviz.html#cb179-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set axis limits</span></span>
-<span id="cb179-15"><a href="dataviz.html#cb179-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>)) <span class="sc">+</span></span>
-<span id="cb179-16"><a href="dataviz.html#cb179-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>)) <span class="sc">+</span></span>
-<span id="cb179-17"><a href="dataviz.html#cb179-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add axis labels</span></span>
-<span id="cb179-18"><a href="dataviz.html#cb179-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Highway Fuel Economy, mi/gal&quot;</span>) <span class="sc">+</span></span>
-<span id="cb179-19"><a href="dataviz.html#cb179-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;City Fuel Economy, mi/gal&quot;</span>) <span class="sc">+</span></span>
-<span id="cb179-20"><a href="dataviz.html#cb179-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># adopt theme without grey background</span></span>
-<span id="cb179-21"><a href="dataviz.html#cb179-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<div class="figure"><span id="fig:mpg-example1a"></span>
+<span id="cb179-11"><a href="dataviz.html#cb179-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">slope =</span> <span class="dv">1</span>, </span>
+<span id="cb179-12"><a href="dataviz.html#cb179-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb179-13"><a href="dataviz.html#cb179-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># call fixed coordinate system</span></span>
+<span id="cb179-14"><a href="dataviz.html#cb179-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb179-15"><a href="dataviz.html#cb179-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set axis limits</span></span>
+<span id="cb179-16"><a href="dataviz.html#cb179-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>)) <span class="sc">+</span></span>
+<span id="cb179-17"><a href="dataviz.html#cb179-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>)) <span class="sc">+</span></span>
+<span id="cb179-18"><a href="dataviz.html#cb179-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add axis labels</span></span>
+<span id="cb179-19"><a href="dataviz.html#cb179-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Highway Fuel Economy, mi/gal&quot;</span>) <span class="sc">+</span></span>
+<span id="cb179-20"><a href="dataviz.html#cb179-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;City Fuel Economy, mi/gal&quot;</span>) <span class="sc">+</span></span>
+<span id="cb179-21"><a href="dataviz.html#cb179-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># adopt theme without grey background</span></span>
+<span id="cb179-22"><a href="dataviz.html#cb179-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:mpg-example1a"></span>
 <img src="04-dataviz_files/figure-html/mpg-example1a-1.png" alt="Scatterplot (geom_jitter) of highway vs. city fuel economy for model year 2008, colored by vehicle type" width="672" />
 <p class="caption">
 Figure 4.7: Scatterplot (geom_jitter) of highway vs. city fuel economy for model year 2008, colored by vehicle type
 </p>
 </div>
 </div>
-<div id="ggplot2-example-2" class="section level2" number="4.10">
-<h2><span class="header-section-number">4.10</span> <code>ggplot2</code> example 2</h2>
+<div id="ggplot2-example-2" class="section level2 hasAnchor" number="4.10">
+<h2><span class="header-section-number">4.10</span> <code>ggplot2</code> example 2<a href="dataviz.html#ggplot2-example-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the second example, we will look at highway fuel efficiency for SUVs in 2008,
 ordered by manufacturer and colored by the engine displacement size in liters.
 We create subsets of the <code>mpg</code> dataframe in two ways:</p>
@@ -1094,7 +1097,7 @@ lines, which are neither necessary nor visually appealing.</p>
 <span id="cb180-29"><a href="dataviz.html#cb180-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">&quot;D&quot;</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb180-30"><a href="dataviz.html#cb180-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># adopt a theme without gray background</span></span>
 <span id="cb180-31"><a href="dataviz.html#cb180-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
-<div class="figure"><span id="fig:mpg-example2"></span>
+<div class="figure"><span style="display:block;" id="fig:mpg-example2"></span>
 <img src="04-dataviz_files/figure-html/mpg-example2-1.png" alt="A two-layer (two `geom`) plot with customization" width="672" />
 <p class="caption">
 Figure 4.8: A two-layer (two <code>geom</code>) plot with customization
@@ -1104,8 +1107,8 @@ Figure 4.8: A two-layer (two <code>geom</code>) plot with customization
 In general, model year 2008 SUVs did not have great fuel economy, evidenced by
 both the means and the individual data points.</p>
 </div>
-<div id="store-and-save-ggplot2-objects" class="section level2" number="4.11">
-<h2><span class="header-section-number">4.11</span> Store and save <code>ggplot2</code> objects</h2>
+<div id="store-and-save-ggplot2-objects" class="section level2 hasAnchor" number="4.11">
+<h2><span class="header-section-number">4.11</span> Store and save <code>ggplot2</code> objects<a href="dataviz.html#store-and-save-ggplot2-objects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Sometimes, you will want to store a ggplot2 plot as an object in your global
 environment, so that it can be called or manipulated later. This is done in the
 same way as you would create and assign a name to any other object in R. But
@@ -1135,8 +1138,8 @@ specify parameters including image resolution (<code>dpi = 300</code>), image ty
 <span id="cb182-9"><a href="dataviz.html#cb182-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">20</span>,</span>
 <span id="cb182-10"><a href="dataviz.html#cb182-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">units =</span> <span class="st">&quot;cm&quot;</span>)</span></code></pre></div>
 </div>
-<div id="getting-help-with-ggplot2" class="section level2" number="4.12">
-<h2><span class="header-section-number">4.12</span> Getting help with <code>ggplot2</code></h2>
+<div id="getting-help-with-ggplot2" class="section level2 hasAnchor" number="4.12">
+<h2><span class="header-section-number">4.12</span> Getting help with <code>ggplot2</code><a href="dataviz.html#getting-help-with-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <code>ggplot2</code> package has become so popular that most of my “how do I do this?”
 questions have already been asked, answered, and archived on sites like
 <a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a>.</p>
@@ -1162,8 +1165,8 @@ fun), take a look at this
 <a href="https://exts.ggplot2.tidyverse.org/" target="_blank">compilation</a> of
 <code>ggplot2</code> extensions.</p>
 </div>
-<div id="chapter-4-homework" class="section level2" number="4.13">
-<h2><span class="header-section-number">4.13</span> Chapter 4 Homework</h2>
+<div id="chapter-4-homework" class="section level2 hasAnchor" number="4.13">
+<h2><span class="header-section-number">4.13</span> Chapter 4 Homework<a href="dataviz.html#chapter-4-homework" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You will continue to work with the ozone measurement data introduced in the
 previous chapter.</p>
 <p>On Canvas, download the R Markdown template (.Rmd), which includes a description
@@ -1195,7 +1198,6 @@ latest knit occurs after the deadline.</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1214,6 +1216,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -1234,6 +1237,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

@@ -410,7 +410,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2021-01-27 15:31:41 MST"
+## [1] "2022-05-19 15:53:54 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -426,12 +426,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1611786701
+## [1] 1652997234
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 51.109421 years.  
+365d/yr] => 52.4161985 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -439,7 +439,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2021-01-27 15:31:41.
+format: 2022-05-19 15:53:54.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -551,7 +551,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1611786701
+## [1] 1652997234
 ```
 
 
@@ -562,17 +562,17 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 41.3
-##  $ min   : int 31
+##  $ sec   : num 54.4
+##  $ min   : int 53
 ##  $ hour  : int 15
-##  $ mday  : int 27
-##  $ mon   : int 0
-##  $ year  : int 121
-##  $ wday  : int 3
-##  $ yday  : int 26
-##  $ isdst : int 0
-##  $ zone  : chr "MST"
-##  $ gmtoff: int -25200
+##  $ mday  : int 19
+##  $ mon   : int 4
+##  $ year  : int 122
+##  $ wday  : int 4
+##  $ yday  : int 138
+##  $ isdst : int 1
+##  $ zone  : chr "MDT"
+##  $ gmtoff: int -21600
 ##  - attr(*, "tzone")= chr [1:3] "" "MST" "MDT"
 ```
 
@@ -801,7 +801,7 @@ head(x = daily_show, n = 3)
 ```
 
 ```
-## # A tibble: 3 x 5
+## # A tibble: 3 × 5
 ##    year job                date       category guest_name     
 ##   <dbl> <chr>              <date>     <chr>    <chr>          
 ## 1  1999 actor              1999-01-11 Acting   Michael J. Fox 
@@ -851,7 +851,7 @@ head(x = daily_show, n = 2)
 ```
 
 ```
-## # A tibble: 2 x 4
+## # A tibble: 2 × 4
 ##   job          date       category guest_name     
 ##   <chr>        <date>     <chr>    <chr>          
 ## 1 neurosurgeon 2003-04-28 Science  Dr Sanjay Gupta
@@ -881,7 +881,7 @@ daily_show %>%
 ```
 
 ```
-## # A tibble: 5 x 3
+## # A tibble: 5 × 3
 ##   date       show_day guest_name            
 ##   <date>     <ord>    <chr>                 
 ## 1 2003-04-28 Mon      Dr Sanjay Gupta       
@@ -1195,7 +1195,7 @@ tweets_co %>%
 ```
 
 ```
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   user               n
 ##   <chr>          <int>
 ## 1 SenBennetCO     2211
@@ -1251,7 +1251,7 @@ tweets_co %>%
 ```
 
 ```
-## # A tibble: 10 x 3
+## # A tibble: 10 × 3
 ##    user           `lubridate::year(date)`     n
 ##    <chr>                            <dbl> <int>
 ##  1 SenBennetCO                       2011     1
@@ -1318,7 +1318,7 @@ tweets_co %>%
 ```
 
 ```
-## # A tibble: 9 x 3
+## # A tibble: 9 × 3
 ##   user           `lubridate::year(date)`     n
 ##   <chr>                            <dbl> <int>
 ## 1 SenBennetCO                       2013     3
