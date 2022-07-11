@@ -337,5 +337,5 @@ discussions. I would also like to acknowledge
 [John Tukey](http://rsbm.royalsocietypublishing.org/content/49/537.full.pdf+html){target="_blank"},
 one of the pioneers of exploratory data analysis, and the creators of the 
 [NIST Engineering Statistics Handbook](https://doi.org/10.18434/M32189){target="_blank"}, 
-from which I have drawn many techniques. Kathleen Wendt (@Wendtke), the one and only TA for this course, also contributed 
+from which I have drawn many techniques. Kathleen Wendt `@Wendtke`, the one and only TA for this course, also contributed 
 a tremendous amount of effort to the original course setup and execution in 2020.  Thank you!
