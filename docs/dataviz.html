@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Data Visualization with ggplot2 | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Data Visualization with ggplot2 | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
 
-<meta name="author" content="John Volckens and Kathleen E. Wendt" />
+<meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-05-19" />
+<meta name="date" content="2022-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-476"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 476</a></li>
 <li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a>
@@ -553,7 +553,16 @@ Aesthetics are defined within an <code>aes()</code> function call that is typica
 defined within the <code>ggplot()</code> function.</p>
 <div class="rmdnote">
 <p>
-While the <code>ggplot()</code> call is the place where you will most often see an <code>aes()</code> call, you can also make calls to <code>aes()</code> within the calls to specific geoms. This can be particularly useful if you want to map aesthetics differently for different geoms in your plot. We’ll see some examples of this use of <code>aes()</code> more in later sections, when we talk about customizing plots. The <code>data =</code> argument can be used in specific geom calls to use different dataframes (from the one defined when creating the original <code>ggplot</code> object), although this is less common.
+While the <code>ggplot()</code> call is the place where you will most
+often see an <code>aes()</code> call, you can also make calls to
+<code>aes()</code> within the calls to specific geoms. This can be
+particularly useful if you want to map aesthetics differently for
+different geoms in your plot. We’ll see some examples of this use of
+<code>aes()</code> more in later sections, when we talk about
+customizing plots. The <code>data =</code> argument can be used in
+specific geom calls to use different dataframes (from the one defined
+when creating the original <code>ggplot</code> object), although this is
+less common.
 </p>
 </div>
 </div>
@@ -602,7 +611,9 @@ drive, whereas pickups and SUVs (who tend to share the same chassis) tend to
 be 4-wheel drive. <em>This result is not surprising to anyone who studies cars and trucks, but it’s nice to confirm one’s knowledge with quantitative data!</em></p>
 <div class="rmdnote">
 <p>
-<code>ggplot()</code> will choose colors and add legends to plots when an aesthetic mapping creates such opportunities. You will learn ways to customize colors, legends, and other plot elements later.
+<code>ggplot()</code> will choose colors and add legends to plots
+when an aesthetic mapping creates such opportunities. You will learn
+ways to customize colors, legends, and other plot elements later.
 </p>
 </div>
 <p>Which aesthetics are required for a plot depend on which geoms (more on those
@@ -748,7 +759,16 @@ Line graph (2 numeric variables)
 </table>
 <div class="rmdwarning">
 <p>
-A common error when writing <code>ggplot2</code> code is to put the <code>+</code> to add a geom or element at the beginning of a line rather than the end of a previous line. In this case, R will try to execute the call too soon. If R gets to the end of a line and there is no indication to continue the call (e.g., <code>%&gt;%</code> for piping or <code>+</code> for <code>ggplot2</code> plots), R interprets that as a message to run the call without reading in further code. Thus, to avoid errors, be sure to end each line in <code>ggplot2</code> calls with <code>+</code>, except for the final line when the call is actually done. Don’t start lines with <code>+</code>.
+A common error when writing <code>ggplot2</code> code is to put the
+<code>+</code> to add a geom or element at the beginning of a line
+rather than the end of a previous line. In this case, R will try to
+execute the call too soon. If R gets to the end of a line and there is
+no indication to continue the call (e.g., <code>%&gt;%</code> for piping
+or <code>+</code> for <code>ggplot2</code> plots), R interprets that as
+a message to run the call without reading in further code. Thus, to
+avoid errors, be sure to end each line in <code>ggplot2</code> calls
+with <code>+</code>, except for the final line when the call is actually
+done. Don’t start lines with <code>+</code>.
 </p>
 </div>
 <div id="aesthetic-override-a-warning" class="section level3 hasAnchor" number="4.6.1">
@@ -821,7 +841,7 @@ Figure 4.4: Examples of the shapes corresponding to different numeric choices fo
 <p>If you want to set color to be a constant value, you can do that in R using
 character strings for different colors. Figure <a href="dataviz.html#fig:color-examples">4.5</a> gives
 an example of some of the different blues available in R. To find links to
-listings of different R colors, look up “R colors” and search by “Images.” Note
+listings of different R colors, look up “R colors” and search by “Images”. Note
 that colors are specified as <em>character strings</em> and define using quotes <code>" "</code>.
 See the code chunk for Figure <a href="dataviz.html#fig:mpg-green">4.3</a> where color is defined by
 <code>fill = "darkgreen"</code>.</p>
@@ -1120,7 +1140,10 @@ Chapter 3 (i.e., meaningful words; lowercase; underscore as separator).</p>
 <span id="cb181-3"><a href="dataviz.html#cb181-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
 <div class="rmdnote">
 <p>
-When you create and store a <code>ggplot()</code> object, the plot itself will be created and stored but not returned as output.If you want to “see” the plot, just enter its name into the console or script, and it will appear in the Viewer pane.
+When you create and store a <code>ggplot()</code> object, the plot
+itself will be created and stored but not returned as output.If you want
+to “see” the plot, just enter its name into the console or script, and
+it will appear in the Viewer pane.
 </p>
 </div>
 <p>You can also save <code>ggplot2</code> plots as image files to a local directory using the

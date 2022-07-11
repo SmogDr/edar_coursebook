@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Univariate Data Exploration | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Univariate Data Exploration | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
 
-<meta name="author" content="John Volckens and Kathleen E. Wendt" />
+<meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-05-19" />
+<meta name="date" content="2022-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-476"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 476</a></li>
 <li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a>
@@ -643,11 +643,12 @@ rather quickly because the first step of quantile calculation is to sort your
 data from smallest to largest value.</p>
 <div class="rmdtip">
 <p>
-A “quantile” represents a fractional portion of an ordered, univariate distribution.
+A “quantile” represents a fractional portion of an ordered,
+univariate distribution.
 </p>
 </div>
 <p>Quantiles break a set of observations into similarly sized
-“chunks,” wherein each chunk represents an equal fraction of the total
+“chunks”, wherein each chunk represents an equal fraction of the total
 distribution, from start to finish. If you line your data up from smallest to
 largest and then slice that list into sections, you have created a set of
 quantiles. For example, when a distribution is broken into 10 equal chunks, or
@@ -868,7 +869,7 @@ data in a single plot. There are strengths and weaknesses to both:</p>
 <ul>
 <li>Summary plots
 <ul>
-<li>Strengths: Easy to read; easy to see the “main points.”</li>
+<li>Strengths: Easy to read; easy to see the “main points”.</li>
 <li>Weaknesses: Don’t show all of the data; only show you a summary.
 You are more likely to miss nuances or special features when looking at
 a summary plot.</li>
@@ -892,7 +893,9 @@ the total, or a quantile of 0.01 . Thus, quantiles are shown on the y-axis, and
 the x-axis shows the observed data, ordered from smallest to largest value.</p>
 <div class="rmdnote">
 <p>
-The cumulative distribution plot shows the rolling fraction (or percent) of data on the y-axis that are “less than or equal to” the x-axis values of that data.
+The cumulative distribution plot shows the rolling fraction (or
+percent) of data on the y-axis that are “less than or equal to” the
+x-axis values of that data.
 </p>
 </div>
 <p>An annotated cumulative distribution plot is shown below for a sample of
@@ -1086,7 +1089,7 @@ exist in the real world.</p>
 <p>A general “rule of thumb” is that <em>additive</em> variability tends to produce
 normally distributed data, whereas mechanisms that cause <em>multiplicative</em>
 variability tend to produce skewed data—often log-normal, as seen in Figure
-<a href="eda1.html#fig:skew-hist-anno-2">5.8</a>). By “additive,” I mean that variable <code>x</code> tends to
+<a href="eda1.html#fig:skew-hist-anno-2">5.8</a>). By “additive”, I mean that variable <code>x</code> tends to
 vary in a “plus/minus” sense about its central tendency. Examples of additive
 variability include the distribution of heights measured in a sample of 3<sup>rd</sup>
 graders or the variability in the mass of a 3D-printed part produced 100 times
@@ -1119,11 +1122,11 @@ equation (in the case normal, lognormal, and other <em>known</em> distributional
 <p>The boxplot is summary plot that allows one to view a distribution by its
 quartiles (Figure <a href="eda1.html#fig:boxplot-anno">5.9</a>). The “box” in a boxplot consists of
 three parallel lines, usually oriented vertically, connected on their sides to
-form a box. The outer box lines, also called the “hinges,” represent the 0.25
+form a box. The outer box lines, also called the “hinges”, represent the 0.25
 and 0.75 quantiles, and the inner line represents the 0.5 quantile, or median.
 Thus, the height of the box depicts the inter-quartile range of the data.</p>
 <p>Boxplots are often drawn with lines extending out from each end of the box
-called “whiskers.” These whisker lines vary in their representation. For some
+called “whiskers”. These whisker lines vary in their representation. For some
 plots, the whiskers represent either the maximum and minimum values,
 respectively, or a distance of <span class="math inline">\(1.5\cdot IQR\)</span> if either the maximum or minimum
 value are larger than <span class="math inline">\(1.5\cdot IQR\)</span>. Other times the whiskers represent the 0.9

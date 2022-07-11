@@ -175,7 +175,15 @@ ebola <- readr::read_csv(file = "data/country_timeseries.csv")
 ```
 
 <div class="rmdtip">
-<p>The message that R prints after this call (“Parsed with column specification: …”) lets you know what classes were used for each column. This function tries to guess the appropriate class and typically gets it right. You can suppress the message using the <code>cols_types = cols()</code> argument, or by adjusting the code chunk options in an R Markdown. If <code>readr</code> doesn’t correctly assign some of the columns classes, you can use the <code>type_convert()</code> function for R to guess again after you’ve tweaked the formats of the rogue columns.</p>
+<p>The message that R prints after this call (“Parsed with column
+specification: …”) lets you know what classes were used for each column.
+This function tries to guess the appropriate class and typically gets it
+right. You can suppress the message using the
+<code>cols_types = cols()</code> argument, or by adjusting the code
+chunk options in an R Markdown. If <code>readr</code> doesn’t correctly
+assign some of the columns classes, you can use the
+<code>type_convert()</code> function for R to guess again after you’ve
+tweaked the formats of the rogue columns.</p>
 </div>
 
 This family of functions has a few other helpful options you can specify. For
@@ -198,7 +206,11 @@ Option  | Description
 
 
 <div class="rmdnote">
-<p>Remember that you can always find out more about a function by looking at its help file. For example, check out <code>?read_delim</code> and <code>?read_fwf</code> (note the lack of parentheses). You can also use the help files to determine the default values of arguments for each function.</p>
+<p>Remember that you can always find out more about a function by
+looking at its help file. For example, check out
+<code>?read_delim</code> and <code>?read_fwf</code> (note the lack of
+parentheses). You can also use the help files to determine the default
+values of arguments for each function.</p>
 </div>
 
 So far, we've only looked at functions from the `readr` package for reading in
@@ -227,7 +239,22 @@ Note: these base R functions use periods (`read.`) whereas the `readr` functions
 use underscores (`read_`).
 
 <div class="rmdnote">
-<p>The <code>readr</code> package is a member of the <code>tidyverse</code> suite of R packages. The <em>tidyverse</em> describes an evolving collection of R packages with a common philosophy and approach, and they are unquestionably changing the way people code in R. Many of these R packages were developed in part or full by Hadley Wickham and others at RStudio. Many of these packages are less than ten years old but have been rapidly adapted by the R community. As a result, newer examples of R code will often look very different from the code in older R scripts, including examples in books that are more than a few years old. In this course, I’ll focus on <code>tidyverse</code> functions when possible, but I do put in details about base R equivalent functions or processes at some points. This will help you interpret older code. You can download all the <code>tidyverse</code> packages at the same time with <code>install.packages("tidyverse")</code> and make all the <code>tidyverse</code> functions available for use with<code>library("tidyverse")</code>.</p>
+<p>The <code>readr</code> package is a member of the
+<code>tidyverse</code> suite of R packages. The <em>tidyverse</em>
+describes an evolving collection of R packages with a common philosophy
+and approach, and they are unquestionably changing the way people code
+in R. Many of these R packages were developed in part or full by Hadley
+Wickham and others at RStudio. Many of these packages are less than ten
+years old but have been rapidly adapted by the R community. As a result,
+newer examples of R code will often look very different from the code in
+older R scripts, including examples in books that are more than a few
+years old. In this course, I’ll focus on <code>tidyverse</code>
+functions when possible, but I do put in details about base R equivalent
+functions or processes at some points. This will help you interpret
+older code. You can download all the <code>tidyverse</code> packages at
+the same time with <code>install.packages("tidyverse")</code> and make
+all the <code>tidyverse</code> functions available for use
+with<code>library("tidyverse")</code>.</p>
 </div>
 
 ### Reading in other file types
@@ -750,7 +777,15 @@ head(x = daily_show, 3)
 ```
 
 <div class="rmdwarning">
-<p>Many of the functions in tidyverse packages, including those in <code>dplyr</code>, provide exceptions to the general rule about quotation marks. Unfortunately, this may make it a bit hard to learn when to use quotation marks. One way to think about this, which is a bit of an oversimplification but can help as you’re learning, is to assume that anytime you’re using a <code>dplyr</code> function, every column in the dataframe you’re working with has been loaded to your R session as its own object, which means you don’t need to use parentheses—most of the time.</p>
+<p>Many of the functions in tidyverse packages, including those in
+<code>dplyr</code>, provide exceptions to the general rule about
+quotation marks. Unfortunately, this may make it a bit hard to learn
+when to use quotation marks. One way to think about this, which is a bit
+of an oversimplification but can help as you’re learning, is to assume
+that anytime you’re using a <code>dplyr</code> function, every column in
+the dataframe you’re working with has been loaded to your R session as
+its own object, which means you don’t need to use parentheses—most of
+the time.</p>
 </div>
 
 If you have been paying close attention to the code snippets, you may have 
@@ -806,7 +841,14 @@ dplyr::select(.data = daily_show, job, date, category, guest_name)
 ```
 
 <div class="rmdwarning">
-<p>Don’t forget that, if you want to change column names in the saved object, you must reassign the object to be the output of <code>rename()</code>. If you run one of these cleaning functions without reassigning the object, R will print out the result, but the object itself won’t change. You can take advantage of this, as I’ve done in this example, to look at the result of applying a function to a dataframe without changing the original dataframe. This can be helpful as you’re figuring out how to write your code.</p>
+<p>Don’t forget that, if you want to change column names in the saved
+object, you must reassign the object to be the output of
+<code>rename()</code>. If you run one of these cleaning functions
+without reassigning the object, R will print out the result, but the
+object itself won’t change. You can take advantage of this, as I’ve done
+in this example, to look at the result of applying a function to a
+dataframe without changing the original dataframe. This can be helpful
+as you’re figuring out how to write your code.</p>
 </div>
 
 The `select()` function also provides some time-saving tools. In the last
@@ -965,7 +1007,10 @@ We'll use these logical operators and expressions a lot more as the course
 continues, so they're worth memorizing.
 
 <div class="rmdwarning">
-<p>Two common mistakes with logical operators are: (1) Using <code>=</code> instead of <code>==</code> to check if two values are equal; and (2) Using <code>== NA</code> instead of <code>is.na</code> to check for missing observations.</p>
+<p>Two common mistakes with logical operators are: (1) Using
+<code>=</code> instead of <code>==</code> to check if two values are
+equal; and (2) Using <code>== NA</code> instead of <code>is.na</code> to
+check for missing observations.</p>
 </div>
 
 ## Piping
@@ -1041,7 +1086,14 @@ You can use selective highlighting to run one line at a time to see how the
 dataframe changes in real-time as you move through successive pipes.
 
 <div class="rmdnote">
-<p>Piping with <code>%&gt;%</code> should only be used when you want to perform succesive data wrangling steps on a <strong>single object</strong>. Each pipe operation should be followed by a new line, as shown above. Creating a new line after each pipe step aids readability of the pipe, since each new action occurs on a new line of code. Also, if a single pipe function contains multiple arguments, consider putting each argument on a separate line, too (also shown in the code snippet above).</p>
+<p>Piping with <code>%&gt;%</code> should only be used when you want to
+perform succesive data wrangling steps on a <strong>single
+object</strong>. Each pipe operation should be followed by a new line,
+as shown above. Creating a new line after each pipe step aids
+readability of the pipe, since each new action occurs on a new line of
+code. Also, if a single pipe function contains multiple arguments,
+consider putting each argument on a separate line, too (also shown in
+the code snippet above).</p>
 </div>
 
 ## Markdowns
@@ -1080,7 +1132,7 @@ Each R markdown file contains three basic elements: header, text, and code chunk
 The R Markdown "header" section is where you specify details about the file being created.  A markdown header contains **YAML** metadata, which stands for [*"YAML Ain't Markup Language"*](https://yaml.org/spec/1.2/spec.html#Introduction){target="_blank"}. The YAML (pronounced like “camel") header is essentially a list of directives (referred to as "key:value" pairs) that help application software interpret the file. A YAML header can act simultaneously as a "configuration file", a "log file", and "translator file" - allowing one software program to read the output of another program.  An example header with YAML metadata is shown below.
 
 <div class="figure" style="text-align: center">
-<img src="./images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file." width="500" />
+<img src="./images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file."  />
 <p class="caption">(\#fig:YAML-1)Example of a YAML header to render an R Markdown into an html file.</p>
 </div>
 
@@ -1088,13 +1140,16 @@ The header is delineated at the top of the file by a section that begins and end
 and [pdf](https://bookdown.org/yihui/rmarkdown/pdf-document.html){target="_blank"}.
 
 <div class="rmdnote">
-<p>The YAML header is optional in an R Markdown and default key:value pairs will be implemented if none are supplied. That said, I would encourage you to specify key directives like “author:”, “date:” and “output:” in your YAML headers.</p>
+<p>The YAML header is optional in an R Markdown and default key:value
+pairs will be implemented if none are supplied. That said, I would
+encourage you to specify key directives like “author:”, “date:” and
+“output:” in your YAML headers.</p>
 </div>
 
 Sometimes, you will want to provide nested formatting directives in your markdown header.  For example, you can specify the addition of a ***"table of contents"*** to your html output file that ***"floats"*** alongside the text. In that case, your YAML metadata would look like this: 
 
 <div class="figure" style="text-align: center">
-<img src="./images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents." width="497" />
+<img src="./images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents."  />
 <p class="caption">(\#fig:YAML-2)Example R Markdown header with nested YAML directives to render an html file with a floating table of contents.</p>
 </div>
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Measurement | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Measurement | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
 
-<meta name="author" content="John Volckens and Kathleen E. Wendt" />
+<meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-05-19" />
+<meta name="date" content="2022-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-476"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 476</a></li>
 <li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a>
@@ -526,27 +526,39 @@ Figure 10.1: Biased samples are easy to come by
 </div>
 <div class="rmdcaution">
 <p>
-<strong>Hope</strong> is a dangerous word in science because it can create <em>implicit bias</em>. The experimenter who <em>hopes</em> for a certain outcome might unknowingly influence their sampling and/or analysis strategy to promote that outcome. The best experiments are designed as “win/win”: they produce valuable information, regardless of the outcome (yes/no, null/alternative hypothesis, etc.). Such designs, though often difficult to conceive, remove the need for hope altogether.
+<strong>Hope</strong> is a dangerous word in science because it can
+create <em>implicit bias</em>. The experimenter who <em>hopes</em> for a
+certain outcome might unknowingly influence their sampling and/or
+analysis strategy to promote that outcome. The best experiments are
+designed as “win/win”: they produce valuable information, regardless of
+the outcome (yes/no, null/alternative hypothesis, etc.). Such designs,
+though often difficult to conceive, remove the need for hope
+altogether.
 </p>
 </div>
 <p>Let’s review a few common sampling strategies here.</p>
 </div>
 <div id="simple-random-sampling" class="section level3 hasAnchor" number="10.2.3">
 <h3><span class="header-section-number">10.2.3</span> Simple Random Sampling<a href="measure.html#simple-random-sampling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Simple random sampling means that samples are randomly collected from across the population and over a period of time where the population characteristics (especially those characteristics being measured) remain constant. The main advantage of simple random sampling is that, when done correctly, your data should be unbiased and representative of the population. The main issue with simple random sampling is that it can be hard to do “correctly.”</p>
+<p>Simple random sampling means that samples are randomly collected from across the population and over a period of time where the population characteristics (especially those characteristics being measured) remain constant. The main advantage of simple random sampling is that, when done correctly, your data should be unbiased and representative of the population. The main issue with simple random sampling is that it can be hard to do “correctly”.</p>
 <div class="rmdnote">
 <p>
-To collect a simple random sample, you need to ensure three things:
+To collect a simple random sample, you need to ensure three
+things:
 </p>
 <ol style="list-style-type: decimal">
 <li>
-that your sampling method gives <strong><em>every single member</em></strong> of the population an <strong><em>equal chance</em></strong> of being selected;
+that your sampling method gives <strong><em>every single
+member</em></strong> of the population an <strong><em>equal
+chance</em></strong> of being selected;
 </li>
 <li>
-that your population remains relatively unchanged during the sampling window;<br />
+that your population remains relatively unchanged during the
+sampling window;<br />
 </li>
 <li>
-that your sample size is sufficient to make inferences (read: conclusions) with confidence.
+that your sample size is sufficient to make inferences (read:
+conclusions) with confidence.
 </li>
 </ol>
 </div>
@@ -592,7 +604,13 @@ that your sample size is sufficient to make inferences (read: conclusions) with 
 <p>Cluster sampling is considered less precise (i.e., more samples needed for a given question) than simple random sampling, but oftentimes its unfeasible or too costly to sample the whole population. If cluster units are apparent, they can provide considerable cost savings.</p>
 <div class="rmdnote">
 <p>
-The important difference between <strong><em>stratified</em></strong> and <strong><em>cluster</em></strong> sampling is how each design defines the groups. With <em>stratified sampling</em>, the distinction between groups (i.e., how the data varies from one group to the next) is important; with <em>cluster sampling</em>, the distinction between groups should be one of convenience (and hopefully not meaningful as it relates to data variability).
+The important difference between <strong><em>stratified</em></strong>
+and <strong><em>cluster</em></strong> sampling is how each design
+defines the groups. With <em>stratified sampling</em>, the distinction
+between groups (i.e., how the data varies from one group to the next) is
+important; with <em>cluster sampling</em>, the distinction between
+groups should be one of convenience (and hopefully not meaningful as it
+relates to data variability).
 </p>
 </div>
 </div>
@@ -602,7 +620,7 @@ The important difference between <strong><em>stratified</em></strong> and <stron
 <p>All measurements are estimates of a <em>“true value”</em> that you seek to discover. To ensure that measurements are sound, we often estimate the <strong><em>figures of merit</em></strong> for a measurement system (or an instrument). There are many different figures of merit; we will only examine a few here, namely: limit of detection, dynamic range, precision, and bias. Other figures of merit for measurement systems include things like linearity, sensitivity, and specificity - those topics will be covered in the <em>advanced</em> version of this course (which doesn’t yet exist).</p>
 <div id="LOD" class="section level3 hasAnchor" number="10.3.1">
 <h3><span class="header-section-number">10.3.1</span> Limit of Detection &amp; Quantification<a href="measure.html#LOD" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Imagine that I asked you to hold out your hand and close your eyes. Could you tell if I added a single grain of flour to your hand? Likely not. The mass of that grain is about 1/50<sup>th</sup> that of an eyelash. What if I added 100 grains? Maybe you could tell. If I added 1000 grains you could likely feel it. This imaginary exercise outlines the concept of <strong><em>“limit of detection”</em></strong>, or “LOD,” which represents the <em>threshold</em> at which an instrument can distinguish between “something” and “nothing” being measured. The concept of LOD applies best to instruments that measure continuous properties like time, distance, energy, force, etc.</p>
+<p>Imagine that I asked you to hold out your hand and close your eyes. Could you tell if I added a single grain of flour to your hand? Likely not. The mass of that grain is about 1/50<sup>th</sup> that of an eyelash. What if I added 100 grains? Maybe you could tell. If I added 1000 grains you could likely feel it. This imaginary exercise outlines the concept of <strong><em>“limit of detection”</em></strong>, or “LOD”, which represents the <em>threshold</em> at which an instrument can distinguish between “something” and “nothing” being measured. The concept of LOD applies best to instruments that measure continuous properties like time, distance, energy, force, etc.</p>
 <p>There are several approaches to estimating an instrument’s lower limit of detection. The simplest approach is first to challenge that instrument to measure increasingly more “stuff” and observe it’s response. This is shown graphically below with “instrument response” on the y-axis and “amount of stuff being measured” on the x-axis. We use a logarithmic scale for the x axis because when we measure “stuff” in engineering we usually have the ability to observe several orders of magnitude (the length of a baseball stitch, a baseball, a baseball field, or a baseball stadium). Many instruments respond with an “S” shaped curve where you initially see no (or asymptotic response), followed by a linear response, followed by another asymptotic tail at the upper detection limit.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:lod-2"></span>
 <img src="images/lod_depiction_anno.png" alt="Experimental investigations into LOD and dynamic range" width="100%" />
@@ -613,7 +631,12 @@ Figure 10.2: Experimental investigations into LOD and dynamic range
 To calculate the lower LOD, we often measure a series of “blanks” and then calculate the mean and standard deviation about those data.
 <div class="rmdnote">
 <p>
-<strong>What is a blank?</strong> A <em>blank</em> is an attempt to challenge the instrument to measure nothing from something. Let’s say you had a scale to weigh the mass of cherries picked at an orchard. Each load of cherries is weighed in a small paper bag (so that they don’t spill everywhere). Then weighing the empty paper bag would be considered a “blank” for that instrument.
+<strong>What is a blank?</strong> A <em>blank</em> is an attempt to
+challenge the instrument to measure nothing from something. Let’s say
+you had a scale to weigh the mass of cherries picked at an orchard. Each
+load of cherries is weighed in a small paper bag (so that they don’t
+spill everywhere). Then weighing the empty paper bag would be considered
+a “blank” for that instrument.
 </p>
 </div>
 <p>The LOD is typically defined as:</p>
@@ -624,7 +647,11 @@ where <span class="math inline">\(\sigma_b\)</span> is the standard deviation of
 Note that some texts suggest the use of <span class="math inline">\(10\cdot \sigma_b\)</span> for establishing an LOQ threshold; I think that’s too conservative…</p>
 <div class="rmdnote">
 <p>
-The <strong>LOD</strong> indicates a threshold above which you can detect something (and below which you do not have confidence that <em>something is there</em>). The <strong>LOQ</strong> indicates whether there is enough of that something to be quantified and reported as an actual value.
+The <strong>LOD</strong> indicates a threshold above which you can
+detect something (and below which you do not have confidence that
+<em>something is there</em>). The <strong>LOQ</strong> indicates whether
+there is enough of that something to be quantified and reported as an
+actual value.
 </p>
 </div>
 </div>
@@ -635,9 +662,9 @@ The <strong>LOD</strong> indicates a threshold above which you can detect someth
 </div>
 <div id="precision" class="section level3 hasAnchor" number="10.3.3">
 <h3><span class="header-section-number">10.3.3</span> Precision<a href="measure.html#precision" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In measurement science the term <em>precision</em> means “repeatability” or “instrument variability.” A precise measurement (made by a single instrument) is one that provides the same (or nearly the same) answer each time you take the measurement. This assumes, of course, that the thing being measured remains unchanged. Human vision is something that suffers from imprecision, especially as you get older (your eyesight usually gets worse). Look at the image below quickly and try to decode the letters you see. If I asked you to identify this text quickly (in 10 seconds or less) once per day for a week, you might give me 7 different answers. That’s not a precise measurement.</p>
+<p>In measurement science the term <em>precision</em> means “repeatability” or “instrument variability”. A precise measurement (made by a single instrument) is one that provides the same (or nearly the same) answer each time you take the measurement. This assumes, of course, that the thing being measured remains unchanged. Human vision is something that suffers from imprecision, especially as you get older (your eyesight usually gets worse). Look at the image below quickly and try to decode the letters you see. If I asked you to identify this text quickly (in 10 seconds or less) once per day for a week, you might give me 7 different answers. That’s not a precise measurement.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:imprecise-1"></span>
-<img src="images/blurry_text.png" alt="Blurry vision is imprecise: repeated measures could lead to different answers" width="500" />
+<img src="images/blurry_text.png" alt="Blurry vision is imprecise: repeated measures could lead to different answers"  />
 <p class="caption">
 Figure 10.3: Blurry vision is imprecise: repeated measures could lead to different answers
 </p>
@@ -693,7 +720,7 @@ Figure 10.3: Blurry vision is imprecise: repeated measures could lead to differe
 <li>values centered on 94 (spread from 92-96);</li>
 <li>no apparent autocorrelation in the data.</li>
 </ul>
-<p>These results are all “good,” as we are expecting the data to be tightly clustered together and somewhat boring. We are now ready to estimate the precision of these repeated measurements. Since the data are <em>approximate normal</em>, a mean and standard deviation seem appropriate.</p>
+<p>These results are all “good”, as we are expecting the data to be tightly clustered together and somewhat boring. We are now ready to estimate the precision of these repeated measurements. Since the data are <em>approximate normal</em>, a mean and standard deviation seem appropriate.</p>
 <ul>
 <li>Mean: 94 °C</li>
 <li>Std Dev: 0.9 °C</li>
@@ -708,7 +735,13 @@ Figure 10.3: Blurry vision is imprecise: repeated measures could lead to differe
 <p>Keep this in mind when reporting tabular or summary data. The <code>round()</code> function is your friend in this endeavor!</p>
 <div class="rmdnote">
 <p>
-If you measure temperature with a k-type thermocouple and report a value of 93.28876 °C, you are admitting to the world your ignorance of precision (and the science of temperature measurement). No thermocouple reading is repeatable to 5 decimal places (or seven significant figures) in °C; the best thermocouples are accurate to one decimal degree. <strong>Always make sure to align your measurement precision with the significant digits you report.</strong>
+If you measure temperature with a k-type thermocouple and report a
+value of 93.28876 °C, you are admitting to the world your ignorance of
+precision (and the science of temperature measurement). No thermocouple
+reading is repeatable to 5 decimal places (or seven significant figures)
+in °C; the best thermocouples are accurate to one decimal degree.
+<strong>Always make sure to align your measurement precision with the
+significant digits you report.</strong>
 </p>
 </div>
 </div>
@@ -716,9 +749,9 @@ If you measure temperature with a k-type thermocouple and report a value of 93.2
 <div id="bias" class="section level3 hasAnchor" number="10.3.4">
 <h3><span class="header-section-number">10.3.4</span> Bias (accuracy)<a href="measure.html#bias" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The word <strong><em>bias</em></strong> has several meanings depending on the field of use (e.g., a biased opinion, a racial or gender bias, or a biased voltage). Here, we define <em>bias</em> as the quantifiable difference between a measurement and a true value. The terms bias and accuracy are closely related, but we prefer to use bias because that word implies a magnitude and direction, whereas accuracy is more qualitative.</p>
-<p>Precision and bias are easy to view graphically. In Figure <a href="measure.html#fig:bias-precision-plot2">10.4</a> I show the performance of four measurement systems. Each image shows a green circle in space that represents a “true value” that we are trying to measure. Each measurement attempt is depicted by an “x.” If a measurement system (i.e., an instrument) is precise and unbiased, then each of the repeated measures would show up in the green circle, because they are close to the “true value” and to each other. This is the case in the lower right panel. The upper-left panel, on the other hand, demonstrate a biased and imprecise instrument - biased because the average of the 20 measurements would not come close to the center and imprecise because the location of each individual measurement tends to vary by a distance larger than the size of the circle. The lower-left is unbiased but imprecise - unbiased because the average of the 20 measurements would land close to the center of the circle but imprecise because the measurements vary widely. The upper-right panel demonstrates a precise (the repeated measures do not vary much) but biased (“off the mark” from center) measurement system.</p>
+<p>Precision and bias are easy to view graphically. In Figure <a href="measure.html#fig:bias-precision-plot2">10.4</a> I show the performance of four measurement systems. Each image shows a green circle in space that represents a “true value” that we are trying to measure. Each measurement attempt is depicted by an “x”. If a measurement system (i.e., an instrument) is precise and unbiased, then each of the repeated measures would show up in the green circle, because they are close to the “true value” and to each other. This is the case in the lower right panel. The upper-left panel, on the other hand, demonstrate a biased and imprecise instrument - biased because the average of the 20 measurements would not come close to the center and imprecise because the location of each individual measurement tends to vary by a distance larger than the size of the circle. The lower-left is unbiased but imprecise - unbiased because the average of the 20 measurements would land close to the center of the circle but imprecise because the measurements vary widely. The upper-right panel demonstrates a precise (the repeated measures do not vary much) but biased (“off the mark” from center) measurement system.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:bias-precision-plot2"></span>
-<img src="images/bias_precision.png" alt="Examples of different combinations of bias and precision" width="1050" />
+<img src="images/bias_precision.png" alt="Examples of different combinations of bias and precision"  />
 <p class="caption">
 Figure 10.4: Examples of different combinations of bias and precision
 </p>
@@ -729,7 +762,7 @@ Figure 10.4: Examples of different combinations of bias and precision
 <h2><span class="header-section-number">10.4</span> Measurement Uncertainty<a href="measure.html#measurement-uncertainty" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <em>uncertainty</em> in any measurement represents the doubt about how close to the truth our measurement might be. If a measurement has uncertainty, that implies the possibility of <strong>measurement error</strong>. In a vein similar to bias and precision, we say that measurement error typically comes in one of two forms:</p>
 <ul>
-<li><strong>Systematic error</strong> is error that is repeatable in magnitude and direction; this type of error is traceable to some problem associated with how the measurement was made (and so can be corrected by “fixing” or calibrating the measurement system). Bias is a type of systematic error. Note that bias can only be detected by measuring a known quantity (i.e., a <strong>standard</strong>) or by comparing your measurement to that made by a <strong>reference instrument</strong>. Reference instruments are called such because they are trusted to be “bias free.”</li>
+<li><strong>Systematic error</strong> is error that is repeatable in magnitude and direction; this type of error is traceable to some problem associated with how the measurement was made (and so can be corrected by “fixing” or calibrating the measurement system). Bias is a type of systematic error. Note that bias can only be detected by measuring a known quantity (i.e., a <strong>standard</strong>) or by comparing your measurement to that made by a <strong>reference instrument</strong>. Reference instruments are called such because they are trusted to be “bias free”.</li>
 <li><strong>Random error</strong> is error that appears stochastic in nature (*stochastic is another word for random). These errors are “inherent in the measurement” and cannot be eliminated by calibration. The best way to reduce the influence from random errors is to increase your sample size (see <a href="measure.html#repeated">Repeated Measures</a> below). Random error contributes to imprecision - this type of error can be detected simply by taking repeated measurements of the same thing.</li>
 </ul>
 <p>Both imprecision and bias can contribute to measurement uncertainty; although, if we know that bias exists we often try to correct for that bias through <a href="model.html#calibration"><em>calibration</em></a>, which we will discuss in the next chapter. We try to correct for imprecision by increasing our sample size.</p>

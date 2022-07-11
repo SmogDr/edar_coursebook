@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Getting and Cleaning Data | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Getting and Cleaning Data | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
 
-<meta name="author" content="John Volckens and Kathleen E. Wendt" />
+<meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-05-19" />
+<meta name="date" content="2022-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-476"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 476</a></li>
 <li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a>
@@ -563,7 +563,7 @@ categories:</p>
 </ol>
 <ul>
 <li>“.csv”: Comma-separated values</li>
-<li>“.tab,” “.tsv”: Tab-separated values</li>
+<li>“.tab”, “.tsv”: Tab-separated values</li>
 <li>Other possible delimiters: colon, semicolon, pipe (“|”)</li>
 </ul>
 <p><em>Fixed-width files</em> are files where a column always has the same width, for all
@@ -649,7 +649,15 @@ you could either use <code>read_table()</code> with a <code>delim</code> argumen
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div class="rmdtip">
 <p>
-The message that R prints after this call (“Parsed with column specification: …”) lets you know what classes were used for each column. This function tries to guess the appropriate class and typically gets it right. You can suppress the message using the <code>cols_types = cols()</code> argument, or by adjusting the code chunk options in an R Markdown. If <code>readr</code> doesn’t correctly assign some of the columns classes, you can use the <code>type_convert()</code> function for R to guess again after you’ve tweaked the formats of the rogue columns.
+The message that R prints after this call (“Parsed with column
+specification: …”) lets you know what classes were used for each column.
+This function tries to guess the appropriate class and typically gets it
+right. You can suppress the message using the
+<code>cols_types = cols()</code> argument, or by adjusting the code
+chunk options in an R Markdown. If <code>readr</code> doesn’t correctly
+assign some of the columns classes, you can use the
+<code>type_convert()</code> function for R to guess again after you’ve
+tweaked the formats of the rogue columns.
 </p>
 </div>
 <p>This family of functions has a few other helpful options you can specify. For
@@ -662,6 +670,10 @@ arguments to use in <code>read_delim()</code> for that file, you could include t
 <code>n_max = 10</code>. Here is a table of some of the most useful options common to the
 <code>read_delim()</code> family of functions:</p>
 <table>
+<colgroup>
+<col width="38%" />
+<col width="61%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Option</th>
@@ -693,7 +705,11 @@ arguments to use in <code>read_delim()</code> for that file, you could include t
 </table>
 <div class="rmdnote">
 <p>
-Remember that you can always find out more about a function by looking at its help file. For example, check out <code>?read_delim</code> and <code>?read_fwf</code> (note the lack of parentheses). You can also use the help files to determine the default values of arguments for each function.
+Remember that you can always find out more about a function by
+looking at its help file. For example, check out
+<code>?read_delim</code> and <code>?read_fwf</code> (note the lack of
+parentheses). You can also use the help files to determine the default
+values of arguments for each function.
 </p>
 </div>
 <p>So far, we’ve only looked at functions from the <code>readr</code> package for reading in
@@ -722,7 +738,22 @@ Functions in the <code>read.table</code> family include:</p>
 use underscores (<code>read_</code>).</p>
 <div class="rmdnote">
 <p>
-The <code>readr</code> package is a member of the <code>tidyverse</code> suite of R packages. The <em>tidyverse</em> describes an evolving collection of R packages with a common philosophy and approach, and they are unquestionably changing the way people code in R. Many of these R packages were developed in part or full by Hadley Wickham and others at RStudio. Many of these packages are less than ten years old but have been rapidly adapted by the R community. As a result, newer examples of R code will often look very different from the code in older R scripts, including examples in books that are more than a few years old. In this course, I’ll focus on <code>tidyverse</code> functions when possible, but I do put in details about base R equivalent functions or processes at some points. This will help you interpret older code. You can download all the <code>tidyverse</code> packages at the same time with <code>install.packages(“tidyverse”)</code> and make all the <code>tidyverse</code> functions available for use with<code>library(“tidyverse”)</code>.
+The <code>readr</code> package is a member of the
+<code>tidyverse</code> suite of R packages. The <em>tidyverse</em>
+describes an evolving collection of R packages with a common philosophy
+and approach, and they are unquestionably changing the way people code
+in R. Many of these R packages were developed in part or full by Hadley
+Wickham and others at RStudio. Many of these packages are less than ten
+years old but have been rapidly adapted by the R community. As a result,
+newer examples of R code will often look very different from the code in
+older R scripts, including examples in books that are more than a few
+years old. In this course, I’ll focus on <code>tidyverse</code>
+functions when possible, but I do put in details about base R equivalent
+functions or processes at some points. This will help you interpret
+older code. You can download all the <code>tidyverse</code> packages at
+the same time with <code>install.packages(“tidyverse”)</code> and make
+all the <code>tidyverse</code> functions available for use
+with<code>library(“tidyverse”)</code>.
 </p>
 </div>
 </div>
@@ -812,7 +843,7 @@ another to store all of your data, and so on. This can help you keep very
 complex projects more structured and easier to navigate.</p>
 <p>Your computer organizes files through a collection of directories. Chances are,
 you are fairly used to working with these in your daily life already, although
-you may call them “folders” rather than “directories.” For example, you’ve
+you may call them “folders” rather than “directories”. For example, you’ve
 probably created new directories to store data files and Word documents for a
 specific project.</p>
 <p>Figure <a href="rprog2.html#fig:filedirstructure">3.1</a> gives an example file directory structure
@@ -864,7 +895,7 @@ because often any of the data you’ll import for that script is somewhere
 near where the script file is saved in the directory structure. If you open R
 by double-clicking on the R icon in “Applications” (or the start menu on a
 PC), R will start in its default working directory. You can find out what this
-is, or change it, in RStudio’s “Preferences.” Finally, if you open an R
+is, or change it, in RStudio’s “Preferences”. Finally, if you open an R
 Project, R will start in that project’s working directory—where the <code>.Rproj</code>
 file for the project is stored. This is one of the reasons why we always create
 a new R Project when starting a data analysis - RStudio projects remember where
@@ -1159,7 +1190,15 @@ using <code>rename()</code>, for example, you would run:</p>
 ## 3  1999 television actress 1/13/99 Acting   Tracey Ullman</code></pre>
 <div class="rmdwarning">
 <p>
-Many of the functions in tidyverse packages, including those in <code>dplyr</code>, provide exceptions to the general rule about quotation marks. Unfortunately, this may make it a bit hard to learn when to use quotation marks. One way to think about this, which is a bit of an oversimplification but can help as you’re learning, is to assume that anytime you’re using a <code>dplyr</code> function, every column in the dataframe you’re working with has been loaded to your R session as its own object, which means you don’t need to use parentheses—most of the time.
+Many of the functions in tidyverse packages, including those in
+<code>dplyr</code>, provide exceptions to the general rule about
+quotation marks. Unfortunately, this may make it a bit hard to learn
+when to use quotation marks. One way to think about this, which is a bit
+of an oversimplification but can help as you’re learning, is to assume
+that anytime you’re using a <code>dplyr</code> function, every column in
+the dataframe you’re working with has been loaded to your R session as
+its own object, which means you don’t need to use parentheses—most of
+the time.
 </p>
 </div>
 <p>If you have been paying close attention to the code snippets, you may have
@@ -1203,7 +1242,14 @@ column name. For example, to select all columns in <code>daily_show</code> excep
 ## # … with 2,683 more rows</code></pre>
 <div class="rmdwarning">
 <p>
-Don’t forget that, if you want to change column names in the saved object, you must reassign the object to be the output of <code>rename()</code>. If you run one of these cleaning functions without reassigning the object, R will print out the result, but the object itself won’t change. You can take advantage of this, as I’ve done in this example, to look at the result of applying a function to a dataframe without changing the original dataframe. This can be helpful as you’re figuring out how to write your code.
+Don’t forget that, if you want to change column names in the saved
+object, you must reassign the object to be the output of
+<code>rename()</code>. If you run one of these cleaning functions
+without reassigning the object, R will print out the result, but the
+object itself won’t change. You can take advantage of this, as I’ve done
+in this example, to look at the result of applying a function to a
+dataframe without changing the original dataframe. This can be helpful
+as you’re figuring out how to write your code.
 </p>
 </div>
 <p>The <code>select()</code> function also provides some time-saving tools. In the last
@@ -1326,6 +1372,11 @@ data frame that only includes guests who were scientists, you can run:</p>
 <p>To build a logical expression to use in <code>filter</code>, you’ll need to know some of
 R’s logical operators. Some commonly used ones are:</p>
 <table>
+<colgroup>
+<col width="18%" />
+<col width="14%" />
+<col width="67%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Operator</th>
@@ -1375,7 +1426,10 @@ R’s logical operators. Some commonly used ones are:</p>
 continues, so they’re worth memorizing.</p>
 <div class="rmdwarning">
 <p>
-Two common mistakes with logical operators are: (1) Using <code>=</code> instead of <code>==</code> to check if two values are equal; and (2) Using <code>== NA</code> instead of <code>is.na</code> to check for missing observations.
+Two common mistakes with logical operators are: (1) Using
+<code>=</code> instead of <code>==</code> to check if two values are
+equal; and (2) Using <code>== NA</code> instead of <code>is.na</code> to
+check for missing observations.
 </p>
 </div>
 </div>
@@ -1437,7 +1491,14 @@ You can use selective highlighting to run one line at a time to see how the
 dataframe changes in real-time as you move through successive pipes.</p>
 <div class="rmdnote">
 <p>
-Piping with <code>%&gt;%</code> should only be used when you want to perform succesive data wrangling steps on a <strong>single object</strong>. Each pipe operation should be followed by a new line, as shown above. Creating a new line after each pipe step aids readability of the pipe, since each new action occurs on a new line of code. Also, if a single pipe function contains multiple arguments, consider putting each argument on a separate line, too (also shown in the code snippet above).
+Piping with <code>%&gt;%</code> should only be used when you want to
+perform succesive data wrangling steps on a <strong>single
+object</strong>. Each pipe operation should be followed by a new line,
+as shown above. Creating a new line after each pipe step aids
+readability of the pipe, since each new action occurs on a new line of
+code. Also, if a single pipe function contains multiple arguments,
+consider putting each argument on a separate line, too (also shown in
+the code snippet above).
 </p>
 </div>
 </div>
@@ -1473,23 +1534,26 @@ markdown format, you need to install the <code>rmarkdown</code> package: <code>i
 </div>
 <div id="header" class="section level3 hasAnchor" number="3.7.2">
 <h3><span class="header-section-number">3.7.2</span> Header<a href="rprog2.html#header" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The R Markdown “header” section is where you specify details about the file being created. A markdown header contains <strong>YAML</strong> metadata, which stands for <a href="https://yaml.org/spec/1.2/spec.html#Introduction" target="_blank"><em>“YAML Ain’t Markup Language”</em></a>. The YAML (pronounced like “camel”) header is essentially a list of directives (referred to as “key:value” pairs) that help application software interpret the file. A YAML header can act simultaneously as a “configuration file,” a “log file,” and “translator file” - allowing one software program to read the output of another program. An example header with YAML metadata is shown below.</p>
+<p>The R Markdown “header” section is where you specify details about the file being created. A markdown header contains <strong>YAML</strong> metadata, which stands for <a href="https://yaml.org/spec/1.2/spec.html#Introduction" target="_blank"><em>“YAML Ain’t Markup Language”</em></a>. The YAML (pronounced like “camel”) header is essentially a list of directives (referred to as “key:value” pairs) that help application software interpret the file. A YAML header can act simultaneously as a “configuration file”, a “log file”, and “translator file” - allowing one software program to read the output of another program. An example header with YAML metadata is shown below.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:YAML-1"></span>
-<img src="images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file." width="500" />
+<img src="images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file."  />
 <p class="caption">
 Figure 3.2: Example of a YAML header to render an R Markdown into an html file.
 </p>
 </div>
-<p>The header is delineated at the top of the file by a section that begins and ends with three dashes, “—.” Within the header are YAML metadata representing key:value pairs. <strong>What are “key:value” pairs?</strong> The <strong>“key:”</strong> is a directive that you want to give to the file and the <strong>“value”</strong> represents the level of detail or information that you want to associate with that directive. Key:value pairs provide instructions on how the file should be read, interpreted, and output. In Figure <a href="rprog2.html#fig:YAML-1">3.2</a>, the keys are <em>“title:”</em>, <em>“author:”</em>, <em>“date:”</em>, and <em>“output:”</em> and the corresponding values are <em>“Markdowns”</em>, <em>“JV”</em>, <em>“7/23/2020”</em>, and <em>“html_document”</em>. You can learn more about key:value pairs in the R Markdown Style Guide for <a href="https://bookdown.org/yihui/rmarkdown/html-document.html" target="_blank">html</a>
+<p>The header is delineated at the top of the file by a section that begins and ends with three dashes, “—”. Within the header are YAML metadata representing key:value pairs. <strong>What are “key:value” pairs?</strong> The <strong>“key:”</strong> is a directive that you want to give to the file and the <strong>“value”</strong> represents the level of detail or information that you want to associate with that directive. Key:value pairs provide instructions on how the file should be read, interpreted, and output. In Figure <a href="rprog2.html#fig:YAML-1">3.2</a>, the keys are <em>“title:”</em>, <em>“author:”</em>, <em>“date:”</em>, and <em>“output:”</em> and the corresponding values are <em>“Markdowns”</em>, <em>“JV”</em>, <em>“7/23/2020”</em>, and <em>“html_document”</em>. You can learn more about key:value pairs in the R Markdown Style Guide for <a href="https://bookdown.org/yihui/rmarkdown/html-document.html" target="_blank">html</a>
 and <a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html" target="_blank">pdf</a>.</p>
 <div class="rmdnote">
 <p>
-The YAML header is optional in an R Markdown and default key:value pairs will be implemented if none are supplied. That said, I would encourage you to specify key directives like “author:” “date:” and “output:” in your YAML headers.
+The YAML header is optional in an R Markdown and default key:value
+pairs will be implemented if none are supplied. That said, I would
+encourage you to specify key directives like “author:”, “date:” and
+“output:” in your YAML headers.
 </p>
 </div>
 <p>Sometimes, you will want to provide nested formatting directives in your markdown header. For example, you can specify the addition of a <strong><em>“table of contents”</em></strong> to your html output file that <strong><em>“floats”</em></strong> alongside the text. In that case, your YAML metadata would look like this:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:YAML-2"></span>
-<img src="images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents." width="497" />
+<img src="images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents."  />
 <p class="caption">
 Figure 3.3: Example R Markdown header with nested YAML directives to render an html file with a floating table of contents.
 </p>
@@ -1499,7 +1563,12 @@ Figure 3.3: Example R Markdown header with nested YAML directives to render an h
 <div id="text" class="section level3 hasAnchor" number="3.7.3">
 <h3><span class="header-section-number">3.7.3</span> Text<a href="rprog2.html#text" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The default space within an R markdown is a plain text editor, similar to a normal word processing file. Formatting text is more tedious in markdown files (a small price to pay given their versatility). Some basic formatting operations are shown below.</p>
-<table>
+<table style="width:100%;">
+<colgroup>
+<col width="25%" />
+<col width="39%" />
+<col width="34%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="center"><strong>Format Desired</strong></th>
@@ -1574,12 +1643,12 @@ your R Project. If it is not, navigate to Session &gt; Set Working Directory &gt
 Source File Location. Again, check your current working directory to confirm.</p></li>
 <li><p>Write “metadata” at the top of the R script using <code>#</code>, including your name,
 today’s date, class, and chapter. Add a heading called “Pathnames and Data
-Import.”</p></li>
+Import”.</p></li>
 <li><p>Download the Fort Collins ozone dataset locally and save the <code>.csv</code> file in
 the <code>/data</code> folder in your R Project. What would be a better, more descriptive
 name for the data file that also follows file-naming conventions (e.g., no
 spaces, human- and machine-readable)? Change the file name locally. Commit the
-additions to GitHub (e.g., “add ozone data file,” “create ch3 r script”) but
+additions to GitHub (e.g., “add ozone data file”, “create ch3 r script”) but
 leave a queue of commits to push at the end of the class.</p></li>
 <li><p>What is the absolute pathname of the ozone data file on your local computer?
 Using <code>paste0()</code>, save your absolute pathname as an object called
@@ -1709,7 +1778,7 @@ conventions.</p></li>
 open.</p></li>
 <li><p>Create a new R Markdown file (<code>.Rmd</code>) in RStudio IDE (File &gt; New File &gt; R
 Markdown) and pick a title (of document, not file) such as “Chapter 3
-Exercises.” Name the file (“ch-3-exercises.Rmd”) and save it to your local R
+Exercises”. Name the file (“ch-3-exercises.Rmd”) and save it to your local R
 Project in <code>/code</code>.</p></li>
 <li><p>In the RStudio Console, determine your current working directory. Make sure
 the working directory is pointed to the location of <code>.Rmd</code> within your R
@@ -1718,7 +1787,7 @@ File Location. Again, check your current working directory to confirm.</p></li>
 <li><p>Knit the sample R Markdown to HTML and/or PDF (if you installed LaTex).</p></li>
 <li><p>Commit and push the sample R Markdown and its knitted counterpart to your
 repository on GitHub with a short, informative commit message such as “test
-knit rmd template.”</p></li>
+knit rmd template”.</p></li>
 <li><p>Delete the sample content from the R Markdown file (line 8 and beyond) and
 recommit the change (e.g., “delete rmd template contents”).</p></li>
 <li><p>Below the YAML ( <em>where does the YAML end, and what tells you that?</em> ), copy
@@ -1726,8 +1795,8 @@ your code from the R script you used for the prior sets of exercises into the R
 Markdown file. Organize this code into relevant headings and within
 thematically appropriate code chunks. For example, the code for data import
 would be in its own code chunk.</p></li>
-<li><p>Add first- , second-, and third-order headings (e.g., “Data Import,” “Using
-Relative Pathname,” “Using Absolute Pathname), using the appropriate Markdown
+<li><p>Add first- , second-, and third-order headings (e.g., “Data Import”, “Using
+Relative Pathname”, “Using Absolute Pathname), using the appropriate Markdown
 symbol. <em>What does this symbol also do (to a completely different effect) within R scripts or inside R Markdown code chunks?</em></p></li>
 <li><p>Knit this document to HTML and/or PDF and examine how R Markdown returns
 output.</p></li>

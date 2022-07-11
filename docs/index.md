@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
-author: "John Volckens and Kathleen E. Wendt"
-date: "2022-05-19"
+author: "John Volckens"
+date: "2022-07-11"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
@@ -87,9 +87,9 @@ This course is intended for upper-level undergraduates who have completed MECH
 
 ## Grading
 
-### Grading for MECH 481A6
+### Grading for MECH 476
 
-Course grades will be determined by the following five components:
+Course grades will be determined by the following three components:
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
  <thead>
@@ -105,11 +105,11 @@ Course grades will be determined by the following five components:
   </tr>
   <tr>
    <td style="text-align:center;"> Quizzes </td>
-   <td style="text-align:center;"> 25 </td>
+   <td style="text-align:center;"> 15 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> Homework </td>
-   <td style="text-align:center;"> 15 </td>
+   <td style="text-align:center;"> Assignments </td>
+   <td style="text-align:center;"> 25 </td>
   </tr>
 </tbody>
 </table>
@@ -148,7 +148,7 @@ to gain more background on basic Git and GitHub, take a look at [these slides](h
 
 ### Install R and RStudio
 
-1. Download and install the pre-compiled binary of the most recent version (4.0+) of [R](https://cran.r-project.org){target="_blank"} appropriate for your machine's 
+1. Download and install the pre-compiled binary of the most recent version (4.2+) of [R](https://cran.r-project.org){target="_blank"} appropriate for your machine's 
 operating system
 2. Download and install the most recent, preview version of [RStudio](https://rstudio.com/products/rstudio/download/#download){target="_blank"};
 then, navigate to RStudio > Preferences to *NOT* "Restore .RData into workspace 
@@ -222,9 +222,9 @@ system.
 1. Read and follow these 
 [instructions](https://happygitwithr.com/new-github-first.html){target="_blank"}
 *exactly* with the following additions: 
-- Give your GitHub username to the TA, so you can be added to our 
+- Give your GitHub username to the Instructor, so you can be added to our 
 [GitHub Organization](https://github.com/MECH481A6){target="_blank"}
-- Work with the TA to create a *private* repository within the organization, labeled *[YourLastName]-MECH481A6*
+- Work with the Instructor to create a *private* repository within the organization, labeled *[YourLastName]-MECH481A6*
 - Confirm connection between your R Project and the GitHub repository, make subfolders (`data`, `code`, `figs`) within your `[YourLastName]-MECH481A6` folder on your local drive, and push them up to GitHub; this supports a 
 [project-oriented workflow](https://uncoast-unconf.github.io/uu-2019-day-zero/02-project-workflows/workflow.html#13){target="_blank"}
 
@@ -233,7 +233,7 @@ system.
 For homework submission, you will download the R Markdown templates provided
 to you and save and edit them within your own R Project, which is connected a
 private repository on the class GitHub Organization. In order to track your
-changes and communicate with the Instructor and TA, you will
+changes and communicate with the Instructor, you will
 regularly *commit* changes to your R Project files with meaningful *commit messages*. We will practice commits, pushes, and pulls to the *master branch*
 (main copy of R Project) during class. 
 
@@ -248,7 +248,7 @@ functional" is good enough!
 Once you have successfully installed and connected R/RStudio and Git/GitHub, 
 **open an issue** on YOUR private repository within the 
 [GitHub Organization](https://github.com/MECH481A6){target="_blank"}. 
-Mention/assign Kathleen (TA) @wendtke to let her know everything is working 
+Mention/assign @SmogDr to let me know everything is working 
 properly, or to request more help.
 
 Then, in the 
@@ -256,7 +256,7 @@ Then, in the
 class-related questions and discussion, **open another issue**. You can ask a
 question, share any course-related concerns, or post a brief comment about what
 you hope to gain from this course. Remember to mention/assign Kathleen
-@wendtke, so she is alerted to your post. 
+@SmogDr, so she is alerted to your post. 
 
 Kathleen will then close both of your issues, and you will be ready to go!
 
@@ -337,4 +337,5 @@ discussions. I would also like to acknowledge
 [John Tukey](http://rsbm.royalsocietypublishing.org/content/49/537.full.pdf+html){target="_blank"},
 one of the pioneers of exploratory data analysis, and the creators of the 
 [NIST Engineering Statistics Handbook](https://doi.org/10.18434/M32189){target="_blank"}, 
-from which I have drawn many techniques. 
+from which I have drawn many techniques. Kathleen Wendt (@Wendtke), the one and only TA for this course, also contributed 
+a tremendous amount of effort to the original course setup and execution in 2020.  Thank you!

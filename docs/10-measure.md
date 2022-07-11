@@ -49,7 +49,14 @@ So...if you cannot collect a truly representative sample, how can you trust your
 </div>
 
 <div class="rmdcaution">
-<p><strong>Hope</strong> is a dangerous word in science because it can create <em>implicit bias</em>. The experimenter who <em>hopes</em> for a certain outcome might unknowingly influence their sampling and/or analysis strategy to promote that outcome. The best experiments are designed as “win/win”: they produce valuable information, regardless of the outcome (yes/no, null/alternative hypothesis, etc.). Such designs, though often difficult to conceive, remove the need for hope altogether.</p>
+<p><strong>Hope</strong> is a dangerous word in science because it can
+create <em>implicit bias</em>. The experimenter who <em>hopes</em> for a
+certain outcome might unknowingly influence their sampling and/or
+analysis strategy to promote that outcome. The best experiments are
+designed as “win/win”: they produce valuable information, regardless of
+the outcome (yes/no, null/alternative hypothesis, etc.). Such designs,
+though often difficult to conceive, remove the need for hope
+altogether.</p>
 </div>
 
 Let's review a few common sampling strategies here.  
@@ -58,12 +65,17 @@ Let's review a few common sampling strategies here.
 Simple random sampling means that samples are randomly collected from across the population and over a period of time where the population characteristics (especially those characteristics being measured) remain constant.  The main advantage of simple random sampling is that, when done correctly, your data should be unbiased and representative of the population.  The main issue with simple random sampling is that it can be hard to do "correctly".  
 
 <div class="rmdnote">
-<p>To collect a simple random sample, you need to ensure three things:</p>
+<p>To collect a simple random sample, you need to ensure three
+things:</p>
 <ol style="list-style-type: decimal">
-<li>that your sampling method gives <strong><em>every single member</em></strong> of the population an <strong><em>equal chance</em></strong> of being selected;</li>
-<li>that your population remains relatively unchanged during the sampling window;<br />
+<li>that your sampling method gives <strong><em>every single
+member</em></strong> of the population an <strong><em>equal
+chance</em></strong> of being selected;</li>
+<li>that your population remains relatively unchanged during the
+sampling window;<br />
 </li>
-<li>that your sample size is sufficient to make inferences (read: conclusions) with confidence.</li>
+<li>that your sample size is sufficient to make inferences (read:
+conclusions) with confidence.</li>
 </ol>
 </div>
 
@@ -100,7 +112,13 @@ Cluster sampling is often used to save on time and effort during a sampling camp
 Cluster sampling is considered less precise (i.e., more samples needed for a given question) than simple random sampling, but oftentimes its unfeasible or too costly to sample the whole population.  If cluster units are apparent, they can provide considerable cost savings.
 
 <div class="rmdnote">
-<p>The important difference between <strong><em>stratified</em></strong> and <strong><em>cluster</em></strong> sampling is how each design defines the groups. With <em>stratified sampling</em>, the distinction between groups (i.e., how the data varies from one group to the next) is important; with <em>cluster sampling</em>, the distinction between groups should be one of convenience (and hopefully not meaningful as it relates to data variability).</p>
+<p>The important difference between <strong><em>stratified</em></strong>
+and <strong><em>cluster</em></strong> sampling is how each design
+defines the groups. With <em>stratified sampling</em>, the distinction
+between groups (i.e., how the data varies from one group to the next) is
+important; with <em>cluster sampling</em>, the distinction between
+groups should be one of convenience (and hopefully not meaningful as it
+relates to data variability).</p>
 </div>
 
 ## Figures of Merit
@@ -119,7 +137,12 @@ There are several approaches to estimating an instrument's lower limit of detect
 </div>
 To calculate the lower LOD, we often measure a series of "blanks" and then calculate the mean and standard deviation about those data.
 <div class="rmdnote">
-<p><strong>What is a blank?</strong> A <em>blank</em> is an attempt to challenge the instrument to measure nothing from something. Let’s say you had a scale to weigh the mass of cherries picked at an orchard. Each load of cherries is weighed in a small paper bag (so that they don’t spill everywhere). Then weighing the empty paper bag would be considered a “blank” for that instrument.</p>
+<p><strong>What is a blank?</strong> A <em>blank</em> is an attempt to
+challenge the instrument to measure nothing from something. Let’s say
+you had a scale to weigh the mass of cherries picked at an orchard. Each
+load of cherries is weighed in a small paper bag (so that they don’t
+spill everywhere). Then weighing the empty paper bag would be considered
+a “blank” for that instrument.</p>
 </div>
 
 The LOD is typically defined as:
@@ -133,7 +156,11 @@ $$LOQ = 5\cdot \sigma_b$$
 Note that some texts suggest the use of $10\cdot \sigma_b$ for establishing an LOQ threshold; I think that's too conservative...
 
 <div class="rmdnote">
-<p>The <strong>LOD</strong> indicates a threshold above which you can detect something (and below which you do not have confidence that <em>something is there</em>). The <strong>LOQ</strong> indicates whether there is enough of that something to be quantified and reported as an actual value.</p>
+<p>The <strong>LOD</strong> indicates a threshold above which you can
+detect something (and below which you do not have confidence that
+<em>something is there</em>). The <strong>LOQ</strong> indicates whether
+there is enough of that something to be quantified and reported as an
+actual value.</p>
 </div>
 
 ### Dynamic Range {#dynamic}
@@ -145,7 +172,7 @@ Upper detection limits are typically obtained from instrument manufacturers (as 
 In measurement science the term *precision* means "repeatability" or "instrument variability".  A precise measurement (made by a single instrument) is one that provides the same (or nearly the same) answer each time you take the measurement. This assumes, of course, that the thing being measured remains unchanged. Human vision is something that suffers from imprecision, especially as you get older (your eyesight usually gets worse). Look at the image below quickly and try to decode the letters you see.  If I asked you to identify this text quickly (in 10 seconds or less) once per day for a week, you might give me 7 different answers.  That's not a precise measurement.
 
 <div class="figure" style="text-align: center">
-<img src="./images/blurry_text.png" alt="Blurry vision is imprecise: repeated measures could lead to different answers" width="500" />
+<img src="./images/blurry_text.png" alt="Blurry vision is imprecise: repeated measures could lead to different answers"  />
 <p class="caption">(\#fig:imprecise-1)Blurry vision is imprecise: repeated measures could lead to different answers</p>
 </div>
 Different authorities have varying opinions about the *best* way to quantify precision.  A simple, "top-down" approach is to take repeated measures of something (for which that instrument is designed to measure) several times over and then report the *spread* of those data (often as a *standard deviation*, but *range*, *IQR*, and *95% or 99% confidence intervals* are also used). Alternatively, a "bottom-up" approach is to propagate the errors associated with each facet of the measurement. As an empiricist (a fancy word for experimental-type), I prefer to gather data, so I often employ the "top-down" approach to precision. There are dangers to this approach however; these dangers are a direct result of the **sampling strategy** used to make repeated measures (see the following section for a more in-depth analysis). 
@@ -241,7 +268,13 @@ sd(temperatures$data_temp)
 Keep this in mind when reporting tabular or summary data.  The `round()` function is your friend in this endeavor!
 
 <div class="rmdnote">
-<p>If you measure temperature with a k-type thermocouple and report a value of 93.28876 °C, you are admitting to the world your ignorance of precision (and the science of temperature measurement). No thermocouple reading is repeatable to 5 decimal places (or seven significant figures) in °C; the best thermocouples are accurate to one decimal degree. <strong>Always make sure to align your measurement precision with the significant digits you report.</strong></p>
+<p>If you measure temperature with a k-type thermocouple and report a
+value of 93.28876 °C, you are admitting to the world your ignorance of
+precision (and the science of temperature measurement). No thermocouple
+reading is repeatable to 5 decimal places (or seven significant figures)
+in °C; the best thermocouples are accurate to one decimal degree.
+<strong>Always make sure to align your measurement precision with the
+significant digits you report.</strong></p>
 </div>
 
 ### Bias (accuracy) {#bias}
@@ -252,7 +285,7 @@ The word ***bias*** has several meanings depending on the field of use (e.g., a 
 Precision and bias are easy to view graphically. In Figure \@ref(fig:bias-precision-plot2) I show the performance of four measurement systems. Each image shows a green circle in space that represents a "true value" that we are trying to measure. Each measurement attempt is depicted by an "x". If a measurement system (i.e., an instrument) is precise and unbiased, then each of the repeated measures would show up in the green circle, because they are close to the "true value" and to each other. This is the case in the lower right panel.  The upper-left panel, on the other hand, demonstrate a biased and imprecise instrument - biased because the average of the 20 measurements would not come close to the center and imprecise because the location of each individual measurement tends to vary by a distance larger than the size of the circle. The lower-left is unbiased but imprecise - unbiased because the average of the 20 measurements would land close to the center  of the circle but imprecise because the measurements vary widely. The upper-right panel demonstrates a precise (the repeated measures do not vary much) but biased ("off the mark" from center) measurement system.
 
 <div class="figure" style="text-align: center">
-<img src="./images/bias_precision.png" alt="Examples of different combinations of bias and precision" width="1050" />
+<img src="./images/bias_precision.png" alt="Examples of different combinations of bias and precision"  />
 <p class="caption">(\#fig:bias-precision-plot2)Examples of different combinations of bias and precision</p>
 </div>
 

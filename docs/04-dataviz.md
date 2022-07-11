@@ -85,7 +85,16 @@ Aesthetics are defined within an `aes()` function call that is typically
 defined within the `ggplot()` function. 
 
 <div class="rmdnote">
-<p>While the <code>ggplot()</code> call is the place where you will most often see an <code>aes()</code> call, you can also make calls to <code>aes()</code> within the calls to specific geoms. This can be particularly useful if you want to map aesthetics differently for different geoms in your plot. We’ll see some examples of this use of <code>aes()</code> more in later sections, when we talk about customizing plots. The <code>data =</code> argument can be used in specific geom calls to use different dataframes (from the one defined when creating the original <code>ggplot</code> object), although this is less common.</p>
+<p>While the <code>ggplot()</code> call is the place where you will most
+often see an <code>aes()</code> call, you can also make calls to
+<code>aes()</code> within the calls to specific geoms. This can be
+particularly useful if you want to map aesthetics differently for
+different geoms in your plot. We’ll see some examples of this use of
+<code>aes()</code> more in later sections, when we talk about
+customizing plots. The <code>data =</code> argument can be used in
+specific geom calls to use different dataframes (from the one defined
+when creating the original <code>ggplot</code> object), although this is
+less common.</p>
 </div>
 
 ## Plot aesthetics
@@ -141,7 +150,9 @@ drive, whereas pickups and SUVs (who tend to share the same chassis) tend to
 be 4-wheel drive. *This result is not surprising to anyone who studies cars and trucks, but it's nice to confirm one's knowledge with quantitative data!* 
 
 <div class="rmdnote">
-<p><code>ggplot()</code> will choose colors and add legends to plots when an aesthetic mapping creates such opportunities. You will learn ways to customize colors, legends, and other plot elements later.</p>
+<p><code>ggplot()</code> will choose colors and add legends to plots
+when an aesthetic mapping creates such opportunities. You will learn
+ways to customize colors, legends, and other plot elements later.</p>
 </div>
 
 Which aesthetics are required for a plot depend on which geoms (more on those
@@ -231,7 +242,16 @@ You can add these with `+` after the `ggplot()` statement to initialize the
 </table>
 
 <div class="rmdwarning">
-<p>A common error when writing <code>ggplot2</code> code is to put the <code>+</code> to add a geom or element at the beginning of a line rather than the end of a previous line. In this case, R will try to execute the call too soon. If R gets to the end of a line and there is no indication to continue the call (e.g., <code>%&gt;%</code> for piping or <code>+</code> for <code>ggplot2</code> plots), R interprets that as a message to run the call without reading in further code. Thus, to avoid errors, be sure to end each line in <code>ggplot2</code> calls with <code>+</code>, except for the final line when the call is actually done. Don’t start lines with <code>+</code>.</p>
+<p>A common error when writing <code>ggplot2</code> code is to put the
+<code>+</code> to add a geom or element at the beginning of a line
+rather than the end of a previous line. In this case, R will try to
+execute the call too soon. If R gets to the end of a line and there is
+no indication to continue the call (e.g., <code>%&gt;%</code> for piping
+or <code>+</code> for <code>ggplot2</code> plots), R interprets that as
+a message to run the call without reading in further code. Thus, to
+avoid errors, be sure to end each line in <code>ggplot2</code> calls
+with <code>+</code>, except for the final line when the call is actually
+done. Don’t start lines with <code>+</code>.</p>
 </div>
 
 ### Aesthetic override: a warning
@@ -613,7 +633,10 @@ plot1 <- ggplot(data = mpg, aes(x = class)) +
 ```
 
 <div class="rmdnote">
-<p>When you create and store a <code>ggplot()</code> object, the plot itself will be created and stored but not returned as output.If you want to “see” the plot, just enter its name into the console or script, and it will appear in the Viewer pane.</p>
+<p>When you create and store a <code>ggplot()</code> object, the plot
+itself will be created and stored but not returned as output.If you want
+to “see” the plot, just enter its name into the console or script, and
+it will appear in the Viewer pane.</p>
 </div>
 
 You can also save `ggplot2` plots as image files to a local directory using the

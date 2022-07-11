@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Strings, Dates, and Tidying | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Strings, Dates, and Tidying | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
 
-<meta name="author" content="John Volckens and Kathleen E. Wendt" />
+<meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-05-19" />
+<meta name="date" content="2022-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-476"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 476</a></li>
 <li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a>
@@ -500,19 +500,19 @@ completing this Chapter, you should be able to:</p>
 </div>
 <div id="strings" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Strings<a href="rprog3.html#strings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong><em>Strings</em></strong> are a form of character data like “John,” or “blue,” or “John’s
-sample 8021A turned blue.”</p>
+<p><strong><em>Strings</em></strong> are a form of character data like “John”, or “blue”, or “John’s
+sample 8021A turned blue”.</p>
 <p><strong>Strings are defined in R using quotes <code>" "</code></strong> and stored as <code>character</code>
 vectors; they often show up in data analysis in one of two ways:</p>
 <ol style="list-style-type: decimal">
-<li><p>As <strong><em>metadata</em></strong>. Metadata means: “data that describe other data.”<br />
+<li><p>As <strong><em>metadata</em></strong>. Metadata means: “data that describe other data”.<br />
 A <em>readme.txt</em> file is metadata; notes and code comments are metadata. All of
 these types of data usually come in the form of strings and are included
 <strong>with the data your are analyzing</strong> but not <strong>in the dataset</strong> itself.</p></li>
 <li><p>As <strong><em>vectorized data</em></strong>. In R programming, <em>“vectorized”</em> means: stored
 as a column of data. Examples of vectorized strings that you might find
-include things like: “participant names,” or “survey responses to question 1,”
-or “mode of failure.” The example below creates three different string vectors
+include things like: “participant names”, or “survey responses to question 1”,
+or “mode of failure”. The example below creates three different string vectors
 in R. <em>Note:</em> You can check the type of object you’ve created using the
 <code>class()</code> or <code>typeof()</code> functions.</p></li>
 </ol>
@@ -556,14 +556,17 @@ contextualization. Taken together, this means that strings can be challenging
 (but not impossible) to analyze using computers.</p>
 <div class="rmdnote">
 <p>
-Are you active on social media platforms like Instagram or Twitter? You can bet that a computer program has downloaded and parsed all of your posts, each one as a string. You can learn a lot about a person (and their buying habits) from what they post online!
+Are you active on social media platforms like Instagram or Twitter?
+You can bet that a computer program has downloaded and parsed all of
+your posts, each one as a string. You can learn a lot about a person
+(and their buying habits) from what they post online!
 </p>
 </div>
 <p>In this chapter, we will introduce a few simple string functions from base R
 and the <code>stringr</code> package. We will also introduce the concept of
 <strong>regular expressions</strong> as a means to perform more advanced string
 manipulation.</p>
-<p><img src="images/parse_comic.png" width="1000" style="display: block; margin: auto;" /></p>
+<p><img src="images/parse_comic.png" style="display: block; margin: auto;" /></p>
 <div id="string-detect-match-subset" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> String detect, match, subset<a href="rprog3.html#string-detect-match-subset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One of the simplest string operations is to search whether a string contains a
@@ -596,7 +599,7 @@ entries within our sample:</p>
 <span id="cb199-3"><a href="rprog3.html#cb199-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>() <span class="sc">/</span> <span class="fu">length</span>(names_respond)</span></code></pre></div>
 <pre><code>## [1] 0.125</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><strong><code>str_extract()</code></strong> takes the same arguments as <code>str_detect()</code> but returns a vector of the matched values (by string index). By “matched values,” I mean only the portion of the string for which the search created a match.</li>
+<li><strong><code>str_extract()</code></strong> takes the same arguments as <code>str_detect()</code> but returns a vector of the matched values (by string index). By “matched values”, I mean only the portion of the string for which the search created a match.</li>
 </ol>
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="rprog3.html#cb201-1" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_extract</span>(<span class="at">string =</span> names_respond, </span>
 <span id="cb201-2"><a href="rprog3.html#cb201-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">pattern =</span> <span class="st">&quot;Jo&quot;</span>)</span></code></pre></div>
@@ -657,13 +660,14 @@ grep(pattern, x, value = TRUE)
 <p>Before going much farther, we should spend some time discussing
 <strong><em>regular expressions</em></strong> or <strong>regex</strong> for short. When we pass a <code>pattern</code>
 argument to a function like <code>str_detect()</code>, the function treats that argument
-like a “regex.” Up until this point, I have only passed simple character
+like a “regex”. Up until this point, I have only passed simple character
 strings as <code>pattern</code> arguments (i.e., <code>pattern = "Josh"</code>). In reality, we can
 create much more advanced search criteria using <strong>regex</strong> syntax within our
 search patterns.</p>
 <div class="rmdnote">
 <p>
-A <strong>regular expression</strong> is a sequence of characters that define a search pattern to be implemented on a string.
+A <strong>regular expression</strong> is a sequence of characters
+that define a search pattern to be implemented on a string.
 </p>
 </div>
 <p>In the R programming language, regular expressions follow the POSIX 1003.2
@@ -883,7 +887,11 @@ will normally replace only one instance of a match; use <code>str_replace_all()<
 you plan to encounter multiple matches that need replacing.</p>
 <div class="rmdtip">
 <p>
-The <code>pattern =</code> argument for matching can be a single string or a vector of strings. In the latter case, you can define a vector of <em>keywords</em> that you might be searching for across sentences. In that case, use <code>pattern = c(“pattern_1,” “pattern_2,” “pattern_3,” …etc)</code>.
+The <code>pattern =</code> argument for matching can be a single
+string or a vector of strings. In the latter case, you can define a
+vector of <em>keywords</em> that you might be searching for across
+sentences. In that case, use
+<code>pattern = c(“pattern_1”, “pattern_2”, “pattern_3”, …etc)</code>.
 </p>
 </div>
 </div>
@@ -905,7 +913,7 @@ date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time”
 by calling the <code>Sys.time()</code> function.</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="rprog3.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2022-05-19 15:53:54 MDT&quot;</code></pre>
+<pre><code>## [1] &quot;2022-07-11 15:35:32 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and timezone used by my computer
 (<em>whenever I last ran this code in <code>bookdown</code></em>). If you want to see how this
 time is stored in R internally, you can use <code>unclass()</code>, which returns an
@@ -913,17 +921,17 @@ object value with its class attributes removed. When we wrap <code>unclass()</co
 around <code>Sys.time()</code>, we will see the number of seconds that have occurred
 between the epoch of 1/1/1970 and right now:</p>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="rprog3.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(<span class="fu">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1652997234</code></pre>
+<pre><code>## [1] 1657575333</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
 Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span>
-365d/yr] =&gt; 52.4161985 years.</p>
+365d/yr] =&gt; 52.561369 years.</p>
 <p>This calculation ignores leap years, but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3 hasAnchor" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats<a href="rprog3.html#date-time-formats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Note that the <code>Sys.time()</code> function provided the date in a
 <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong>
-format: 2022-05-19 15:53:54.</p>
+format: 2022-07-11 15:35:32.</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
 have little difficulty recognizing the following date-time objects as
@@ -952,13 +960,25 @@ December 1st, 1999, 20:46:00
 </table>
 <div class="rmdnote">
 <p>
-You will often see time followed by <strong>“UTC”</strong>, which stands for <em>“Universal Time, Coordinated”</em>. UTC is preferred by programmers because it doesn’t have a timezone and it doesn’t follow <em>Daylight Savings Time</em> conventions. Daylight savings is the bane of many coders.
+You will often see time followed by <strong>“UTC”</strong>, which
+stands for <em>“Universal Time, Coordinated”</em>. UTC is preferred by
+programmers because it doesn’t have a timezone and it doesn’t follow
+<em>Daylight Savings Time</em> conventions. Daylight savings is the bane
+of many coders.
 </p>
 <p>
-In practice, UTC is the same time as GMT (Greenwich Mean Time, pronounced “gren-itch”) but with an important distinction. GMT is one of the many <a href="https://wikipedia.org/wiki/List_of_tz_database_time_zones" target="_blank">time-zones</a> laid out across Earth’s longitude, whereas, <strong>UTC has no timezone</strong>; UTC is the same time for everyone, everywhere.
+In practice, UTC is the same time as GMT (Greenwich Mean Time,
+pronounced “gren-itch”) but with an important distinction. GMT is one of
+the many <a
+href="https://wikipedia.org/wiki/List_of_tz_database_time_zones"
+target="_blank">time-zones</a> laid out across Earth’s longitude,
+whereas, <strong>UTC has no timezone</strong>; UTC is the same time for
+everyone, everywhere.
 </p>
 <p>
-In Colorado, we are UTC-6 hours during <em>daylight savings</em> (March-Nov) and UTC-7 during <em>standard time</em> (Nov-March). This means that most Coloradoans eat dinner at 12am UTC (6pm MST).
+In Colorado, we are UTC-6 hours during <em>daylight savings</em>
+(March-Nov) and UTC-7 during <em>standard time</em> (Nov-March). This
+means that most Coloradoans eat dinner at 12am UTC (6pm MST).
 </p>
 </div>
 </div>
@@ -1010,7 +1030,7 @@ Example
 <code>character</code>
 </td>
 <td style="text-align:left;">
-“Chemistry,” “Physics,” “Mathematics”
+“Chemistry”, “Physics”, “Mathematics”
 </td>
 </tr>
 <tr>
@@ -1066,18 +1086,18 @@ classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and 
 attributes.</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="rprog3.html#cb215-1" aria-hidden="true" tabindex="-1"></a>time_now_ct <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="fu">Sys.time</span>())</span>
 <span id="cb215-2"><a href="rprog3.html#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1652997234</code></pre>
+<pre><code>## [1] 1657575333</code></pre>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="rprog3.html#cb217-1" aria-hidden="true" tabindex="-1"></a>time_now_lt <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(<span class="fu">Sys.time</span>())</span>
 <span id="cb217-2"><a href="rprog3.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 54.4
-##  $ min   : int 53
+##  $ sec   : num 32.8
+##  $ min   : int 35
 ##  $ hour  : int 15
-##  $ mday  : int 19
-##  $ mon   : int 4
+##  $ mday  : int 11
+##  $ mon   : int 6
 ##  $ year  : int 122
-##  $ wday  : int 4
-##  $ yday  : int 138
+##  $ wday  : int 1
+##  $ yday  : int 191
 ##  $ isdst : int 1
 ##  $ zone  : chr &quot;MDT&quot;
 ##  $ gmtoff: int -21600
@@ -1093,7 +1113,7 @@ As my father used to say: clear as mud?</p>
 date and time information. These dates and times are often interpreted by R
 as <em>character</em> vectors, which means they have lost their relational attributes
 For example, you cannot subtract “Monday 08:00” from “Wednesday 12:00” and get
-“2 days 4 hours.” If we want to analyze dates and times in a relational way,
+“2 days 4 hours”. If we want to analyze dates and times in a relational way,
 we need to instruct R to recognize these as date-time objects (i.e., as either
 the <code>POSIXct</code> or <code>POSIXlt</code> class). Thus, to convert a character vector into
 date or date-time object requires a change of that vector’s class.</p>
@@ -1210,7 +1230,7 @@ with date-time objects. You can find out more information on <code>lubridate</co
 <h3><span class="header-section-number">6.4.1</span> Parsing functions in <code>lubridate</code><a href="rprog3.html#parsing-functions-in-lubridate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One of best aspects of <code>lubridate</code> is its ability to parse date-time objects
 with simplicity and ease; the <code>lubridate</code> parsing functions are designed as
-“named-to-order.” Let me explain:</p>
+“named-to-order”. Let me explain:</p>
 <blockquote>
 <p><span style="color: blue;"> <strong>Parse</strong>: <strong><em>to break apart and analyze the individual components</em></strong> of something, like a character string. </span></p>
 </blockquote>
@@ -1406,7 +1426,11 @@ each show:</p>
 ## 5 2006-02-13 Mon      Astronaut Mike Mullane</code></pre>
 <div class="rmdwarning">
 <p>
-R functions tend to use the timezone of <strong>YOUR</strong> computer’s operating system by default—or UTC, or GMT. You need to be careful when working with dates and times to either specify the time zone or convince yourself the default behavior works for your application.
+R functions tend to use the timezone of <strong>YOUR</strong>
+computer’s operating system by default—or UTC, or GMT. You need to be
+careful when working with dates and times to either specify the time
+zone or convince yourself the default behavior works for your
+application.
 </p>
 </div>
 </div>
@@ -1503,7 +1527,7 @@ Hermione
 </table>
 <p>Thus, to tidy table <a href="rprog3.html#tab:grades-untidy">6.4</a>, we need to create a variable
 called <code>Exam</code> and move all the scores into a new column vector named <code>Scores</code>.
-This effectively makes the data “long” rather than “wide.”</p>
+This effectively makes the data “long” rather than “wide”.</p>
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:grades-tidy">Table 6.5: </span>A Tidy Table of Exam Scores
@@ -1641,7 +1665,8 @@ from within the old columns that are being combined.</li>
 </ul>
 <div class="rmdnote">
 <p>
-The <code>pivot_longer()</code> function always creates two new columns:
+The <code>pivot_longer()</code> function always creates two new
+columns:
 </p>
 <ul>
 <li>
@@ -1659,14 +1684,14 @@ into a column of <code>values_to = "Scores"</code>. We also add a call to <code>
 and <code>dplyr::case_when()</code> to convert strings to numbers.</p>
 <p>The <code>case_when()</code> function allows you introduce multiple “if/else” statements into
 a vectorized operation, such as within this call to <code>dplyr:mutate()</code>. This function
-takes a series of logical arguments as <em>cases</em>, with each case seeking to find a “match.” Once a “match” occurs, an outcome instruction is followed. In the code
+takes a series of logical arguments as <em>cases</em>, with each case seeking to find a “match”. Once a “match” occurs, an outcome instruction is followed. In the code
 chunk below, the left-hand-side of each “case” evaluates whether each entry in
 the <code>Exam</code> column equates to a particular string (like <code>"Exam_1_Score"</code>). On the
 right-hand-side of each case, separated by a <em>tilde</em> ~, contains the <code>mutate()</code>
 instruction. In plain speak, the function reads:</p>
 <blockquote>
-<p>If the vector contains a string that matches “Exam_1_Score,” then replace that entry with a 1; else, if the vector contains a string that matches “Exam_2_Score,”
-then replace that entry with a 2; else, if the vector contains a string that matches “Exam_3_Score,” then replace that entry with a 3.</p>
+<p>If the vector contains a string that matches “Exam_1_Score”, then replace that entry with a 1; else, if the vector contains a string that matches “Exam_2_Score”,
+then replace that entry with a 2; else, if the vector contains a string that matches “Exam_3_Score”, then replace that entry with a 3.</p>
 </blockquote>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="rprog3.html#cb236-1" aria-hidden="true" tabindex="-1"></a>tidygrades <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">data =</span> grades_untidy,</span>
 <span id="cb236-2"><a href="rprog3.html#cb236-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">cols =</span> Exam1_Score<span class="sc">:</span>Exam3_Score,</span>
@@ -1881,8 +1906,8 @@ since data collection started.</p>
 <h3><span class="header-section-number">6.6.4</span> Set 4: CSU vs. CU<a href="rprog3.html#set-4-csu-vs.-cu" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li>How many times are strings related to CSU mentioned by each senator by year?
-This might include things like “CSU,” “colostate,” “Colostate,” “Colorado State
-U,” “Rams,” etc. You will need to use a few <code>dplyr</code> functions, one <code>lubridate</code>
+This might include things like “CSU”, “colostate”, “Colostate”, “Colorado State
+U”, “Rams”, etc. You will need to use a few <code>dplyr</code> functions, one <code>lubridate</code>
 function, and one <code>stringr</code> function within the pipeline.</li>
 </ol>
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="rprog3.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="co"># determine number of csu-related tweets by senator per year</span></span>
@@ -1936,7 +1961,7 @@ as before.</li>
 <ol start="3" style="list-style-type: decimal">
 <li>Which Colorado senator tweets the most about University of Colorado? Use a
 similar approach to Question 7, with strings related to CU, such as “Buffs” or
-“University of Colorado.”</li>
+“University of Colorado”.</li>
 </ol>
 <div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="rprog3.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of cu-related tweets by senator per year</span></span>
 <span id="cb248-2"><a href="rprog3.html#cb248-2" aria-hidden="true" tabindex="-1"></a>tweets_co <span class="sc">%&gt;%</span></span>

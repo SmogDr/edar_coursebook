@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 The R Programming Environment | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 The R Programming Environment | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
 
-<meta name="author" content="John Volckens and Kathleen E. Wendt" />
+<meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-05-19" />
+<meta name="date" content="2022-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-476"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 476</a></li>
 <li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a>
@@ -548,12 +548,12 @@ cutting-edge statistical methods.</p>
 </blockquote>
 <p>R is <strong>free and open-source software</strong>. Conversely, many other popular
 statistical programming languages such as SAS and SPSS are proprietary. It’s
-useful to know what it means for software to be “open-source,” both
+useful to know what it means for software to be “open-source”, both
 conceptually and in terms of how you will be able to use and add to R in your
 own work.</p>
 <p>R is free, and it’s tempting to think of open-source software just as “free
-software.” It is a little more subtle than that. It helps to consider some
-different meanings of the word “free.” “Free” can mean:</p>
+software”. It is a little more subtle than that. It helps to consider some
+different meanings of the word “free”. “Free” can mean:</p>
 <ul>
 <li><em>Gratis</em>: Free as in free beer</li>
 <li><em>Libre</em>: Free as in free speech</li>
@@ -573,7 +573,7 @@ open-source, you can:</p>
 <li>Share the software and its code, as well as your extensions, with others</li>
 </ul>
 <p>Often, open-source software is also free, making it “free and open-source
-software,” or “FOSS.”</p>
+software”, or “FOSS”.</p>
 <p>Popular open source licenses for R and R packages include the GPL and MIT
 licenses.</p>
 <blockquote>
@@ -655,8 +655,8 @@ the defaults in RStudio’s Preferences menu, such that RStudio never saves the
 workspace to .RData on exit. A “fresh” R session means that, once you open
 RStudio, you will need to “set up” your session, including loading packages and
 importing data (discussed later).</p>
-<p>In RStudio, the screen is divided into several “panes.” We’ll start with the
-pane called “Console.” The <strong>console</strong> lets you “talk” to R. This is where you
+<p>In RStudio, the screen is divided into several “panes”. We’ll start with the
+pane called “Console”. The <strong>console</strong> lets you “talk” to R. This is where you
 can “talk” to R by typing an <strong>expression</strong> at the <strong>prompt</strong> (the caret
 symbol, “&gt;”). You press the “Return” key to send this message to R.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:r-console"></span>
@@ -665,13 +665,13 @@ symbol, “&gt;”). You press the “Return” key to send this message to R.</
 Figure 2.3: Finding the ‘Console’ pane and the command prompt in RStudio.
 </p>
 </div>
-<p>Once you press “Return,” R will respond in one of three ways:</p>
+<p>Once you press “Return”, R will respond in one of three ways:</p>
 <ol style="list-style-type: decimal">
 <li>R does whatever you asked it to do with the expression and prints the
 output, if any, of doing that, as well as a new prompt so you can ask it
 something new.</li>
 <li>R doesn’t think you’ve finished asking for something, and instead of giving
-you a new prompt (“&gt;”) it gives you a “+.” This means that R is still
+you a new prompt (“&gt;”) it gives you a “+”. This means that R is still
 listening, waiting for you to finish asking it something.</li>
 <li>R tries to do what you asked it to, but it can’t. It gives you an
 <strong>error message</strong>, as well as a new prompt so you can try again or ask it
@@ -702,7 +702,10 @@ R):</p>
 <span id="cb9-4"><a href="rprog1.html#cb9-4" aria-hidden="true" tabindex="-1"></a>              [etc.])</span></code></pre></div>
 <div class="rmdwarning">
 <p>
-Sometimes, we’ll show “generic” code in a code block, that doesn’t actually work if you put it in R, but instead shows the generic structure of an R call. We’ll try to always include a comment with any generic code, so you’ll know not to try to run it in R.
+Sometimes, we’ll show “generic” code in a code block, that doesn’t
+actually work if you put it in R, but instead shows the generic
+structure of an R call. We’ll try to always include a comment with any
+generic code, so you’ll know not to try to run it in R.
 </p>
 </div>
 <p>A function call forms a complete R expression, and the output will be the
@@ -713,11 +716,11 @@ function call. Here is an example of this structure:</p>
 <p>Figure <a href="rprog1.html#fig:function-call">2.4</a> shows an example of the typical elements of a
 function call. In this example, we’re <strong>calling</strong> a function with the <strong>name</strong>
 <code>print</code>. It has one <strong>argument</strong>, with a <strong>formal argument</strong> of <code>x</code>, which in
-this call we’ve provided the <strong>named argument</strong>: “Hello, world!”</p>
+this call we’ve provided the <strong>named argument</strong>: “Hello, world!”.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:function-call"></span>
 <img src="figures/function_call.jpg" alt="Main parts of a function call. This example is calling a function with the name 'print'. The function call has one argument, with a formal argument of 'x', which in this call is provided the named argument 'Hello world'." width="500pt" />
 <p class="caption">
-Figure 2.4: Main parts of a function call. This example is calling a function with the name ‘print.’ The function call has one argument, with a formal argument of ‘x,’ which in this call is provided the named argument ‘Hello world.’
+Figure 2.4: Main parts of a function call. This example is calling a function with the name ‘print’. The function call has one argument, with a formal argument of ‘x’, which in this call is provided the named argument ‘Hello world’.
 </p>
 </div>
 <p>The <strong>arguments</strong> are how you customize the call to an R function. For example,
@@ -730,7 +733,7 @@ the <code>print()</code> function. Note that the formal argument never changes.<
 <p>Some functions do not require any arguments. For example, the <code>getRversion()</code>
 function will print out the version of R you are using.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="rprog1.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getRversion</span>()</span></code></pre></div>
-<pre><code>## [1] &#39;4.1.2&#39;</code></pre>
+<pre><code>## [1] &#39;4.2.1&#39;</code></pre>
 <p>Some functions will accept multiple arguments. For example, the <code>print()</code>
 function allows you to specify whether the output should include quotation
 marks, using the <code>quote</code> formal argument:</p>
@@ -865,10 +868,10 @@ code according to
 which specifies using the “gets
 arrow” for object assignment.</p>
 <p>While the “gets arrow” takes two key strokes, you can somewhat get around this
-limitation by using RStudio’s keyboard shortcut for the “gets arrow.” This
+limitation by using RStudio’s keyboard shortcut for the “gets arrow”. This
 shortcut is Alt + - on Windows and Option + - on Macs. To see a full list of
 RStudio keyboard shortcuts, go to the “Help” tab in RStudio and select
-“Keyboard Shortcuts.”</p>
+“Keyboard Shortcuts”.</p>
 <p>There are some absolute <strong>rules</strong> for the names you can use for an object name:</p>
 <ul>
 <li>Use only letters, numbers, and underscores</li>
@@ -891,8 +894,8 @@ naming objects are from <a href="http://adv-r.had.co.nz/Style.html" target="_bla
 <code>mean</code>, because a <code>mean()</code> function exists)</li>
 </ul>
 <blockquote>
-<p><span style="color: blue;"> “Don’t call your matrix ‘matrix.’ Would you call your dog ‘dog?’ Anyway, it
-might clash with the function ‘matrix.’” – Barry Rowlingson, R-help (October 2004) </span></p>
+<p><span style="color: blue;"> “Don’t call your matrix ‘matrix’. Would you call your dog ‘dog’? Anyway, it
+might clash with the function ‘matrix’.” – Barry Rowlingson, R-help (October 2004) </span></p>
 </blockquote>
 <p>Another good practice is to name objects after nouns (e.g., <code>message</code>) and
 later, when you start writing functions, name those after verbs (e.g.,
@@ -901,10 +904,25 @@ don’t take forever to type as you’re coding, but not so short that you can�
 remember to what they refer.</p>
 <div class="rmdtip">
 <p>
-Sometimes, you’ll want to create an object that you won’t want to keep for very long. For example, you might want to create a small object to test some code, but you plan to not need the object again once you’ve done that. You may want to come up with some short, generic object names that you use for these kinds of objects, so that you’ll know that you can delete them without problems when you want to clean up your R session.
+Sometimes, you’ll want to create an object that you won’t want to
+keep for very long. For example, you might want to create a small object
+to test some code, but you plan to not need the object again once you’ve
+done that. You may want to come up with some short, generic object names
+that you use for these kinds of objects, so that you’ll know that you
+can delete them without problems when you want to clean up your R
+session.
 </p>
 <p>
-There are all kinds of traditions for these placeholder variable names in computer science. <code>foo</code> and <code>bar</code> are two popular choices, as are, evidently, <code>xyzzy</code>, <code>spam</code>, <code>ham</code>, and <code>norf</code>. There are different placeholder names in different languages: for example, <code>toto</code>, <code>truc</code>, and <code>azerty</code> (French); and <code>pippo</code>, <code>pluto</code>, <code>paperino</code> (Disney character names in Italian). See the Wikipedia page on <a href="https://en.wikipedia.org/wiki/Metasyntactic_variable">metasyntactic variables</a> to find out more.
+There are all kinds of traditions for these placeholder variable
+names in computer science. <code>foo</code> and <code>bar</code> are two
+popular choices, as are, evidently, <code>xyzzy</code>,
+<code>spam</code>, <code>ham</code>, and <code>norf</code>. There are
+different placeholder names in different languages: for example,
+<code>toto</code>, <code>truc</code>, and <code>azerty</code> (French);
+and <code>pippo</code>, <code>pluto</code>, <code>paperino</code>
+(Disney character names in Italian). See the Wikipedia page on <a
+href="https://en.wikipedia.org/wiki/Metasyntactic_variable">metasyntactic
+variables</a> to find out more.
 </p>
 </div>
 <p>What if you want to “compose” a call from more than one function call? One way
@@ -931,7 +949,7 @@ function call. For example:</p>
 <pre><code>## [1] &quot;Hello world&quot;</code></pre>
 <p>Just like with math, the order that the functions are evaluated moves from the
 inner set of parentheses to the outer one (Figure <a href="rprog1.html#fig:composing-functions">2.7</a>). There’s one more way we’ll look at later
-called “piping.”</p>
+called “piping”.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:composing-functions"></span>
 <img src="figures/composing_function_calls.jpg" alt="'Environment' pane in RStudio. This shows the names and first few values of all objects that have been assigned to object names in the global environment." width="500pt" />
 <p class="caption">
@@ -949,7 +967,7 @@ can save the script and open it up later to see or re-do what you did earlier,
 just like you could with something like a Word document when you’re writing a
 paper.</p>
 <p>To open a new R script in RStudio, go to the menu bar and select “File” -&gt; “New
-File” -&gt; “R Script.” Alternatively, you can use the keyboard shortcut
+File” -&gt; “R Script”. Alternatively, you can use the keyboard shortcut
 Command-Shift-N. Figure <a href="rprog1.html#fig:rscript">2.8</a> gives an example of an R script file
 opened in RStudio and points out some interesting elements.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:rscript"></span>
@@ -1119,7 +1137,13 @@ using the <code>library()</code> function, you can use this function in your R s
 <pre><code>## [1] &quot;4633339&quot;</code></pre>
 <div class="rmdnote">
 <p>
-R vectors can have several different <em>classes</em>. One common class is the character class, which is the class of the character string we’re using here (“GoFedEx”). You’ll always put character strings in quotation marks. Another key class is numeric (numbers). Later in the course, we’ll introduce other classes that vectors can have, including factors and dates. For the simplest vector classes, these classes are determined by the type of data that the vector stores.
+R vectors can have several different <em>classes</em>. One common
+class is the character class, which is the class of the character string
+we’re using here (“GoFedEx”). You’ll always put character strings in
+quotation marks. Another key class is numeric (numbers). Later in the
+course, we’ll introduce other classes that vectors can have, including
+factors and dates. For the simplest vector classes, these classes are
+determined by the type of data that the vector stores.
 </p>
 </div>
 <p>When you open RStudio, unless you reload the history of a previous R session
@@ -1135,9 +1159,9 @@ package:</p>
 <pre><code>## 
 ## To cite package &#39;phonenumber&#39; in publications use:
 ## 
-##   Steve Myles (2021). phonenumber: Convert Letters to Numbers and Back
-##   as on a Telephone Keypad. R package version 0.2.3.
-##   https://CRAN.R-project.org/package=phonenumber
+##   Myles S (2021). _phonenumber: Convert Letters to Numbers and Back as
+##   on a Telephone Keypad_. R package version 0.2.3,
+##   &lt;https://CRAN.R-project.org/package=phonenumber&gt;.
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -1150,7 +1174,21 @@ package:</p>
 ##   }</code></pre>
 <div class="rmdnote">
 <p>
-We’ve talked here about loading packages using the <code>library()</code> function to access their functions. This is not the only way to access the package’s functions. The syntax <code>[package name]::[function name]</code> will allow you to use a function from a package you have installed on your computer, even if its package has not been loaded in the current R session. Typically, this syntax is not used much in data analysis scripts, in part because it makes the code much longer. You will occasionally see it in learning contexts to build familiarity with the package::function connection and in which package a function exists. It is also used to distinguish between two functions from different packages that have the same name, as this format makes the desired function unambiguous. One example where this syntax often is needed is when both <code>plyr</code> and <code>dplyr</code> packages are loaded in an R session, since these share functions with the same name.
+We’ve talked here about loading packages using the
+<code>library()</code> function to access their functions. This is not
+the only way to access the package’s functions. The syntax
+<code>[package name]::[function name]</code> will allow you to use a
+function from a package you have installed on your computer, even if its
+package has not been loaded in the current R session. Typically, this
+syntax is not used much in data analysis scripts, in part because it
+makes the code much longer. You will occasionally see it in learning
+contexts to build familiarity with the package::function connection and
+in which package a function exists. It is also used to distinguish
+between two functions from different packages that have the same name,
+as this format makes the desired function unambiguous. One example where
+this syntax often is needed is when both <code>plyr</code> and
+<code>dplyr</code> packages are loaded in an R session, since these
+share functions with the same name.
 </p>
 </div>
 <p>Packages typically include some documentation to help users. These include:</p>
@@ -1207,7 +1245,7 @@ Figure 2.14: An example of the structure of an R object with the vector class. T
 </div>
 <p>All values in a vector must be of the same data type (i.e., all numbers, all
 characters, or all dates). If you try to create a vector with elements from
-different types (e.g., vector of “FedEx,” which is a character, and 3, a
+different types (e.g., vector of “FedEx”, which is a character, and 3, a
 number), R will coerce all of the elements to the most generic class of the
 included elements (e.g., “FedEx” and “3” will both become characters, since “3”
 can be changed to a character, but “FedEx” can’t be changed to a number).
@@ -1221,7 +1259,7 @@ Figure 2.15: Examples of vectors of different classes. All the values in a vecto
 </div>
 <p>To create a vector from different elements, you’ll use the <code>concatenate</code>
 function, <code>c()</code> to join them together, with commas between the elements;
-<em>concatenate</em> is a fancy word that means “to link together.” For example, to
+<em>concatenate</em> is a fancy word that means “to link together”. For example, to
 create the vector shown in Figure <a href="rprog1.html#fig:vector-example">2.14</a>, you
 can run:</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="rprog1.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;Harry&quot;</span>, <span class="st">&quot;Ron&quot;</span>, <span class="st">&quot;Hermione&quot;</span>)</span></code></pre></div>
@@ -1285,13 +1323,32 @@ you can use the <code>:</code> operator:</p>
 might only want to pull out even values from the <code>fibonacci</code> vector.</p>
 <div class="rmdtip">
 <p>
-One thing that people often find confusing when they start using R is knowing when to use and not use quotation marks. The general rule is that you use quotation marks when you want to refer to a character string literally, but no quotation marks when you want to refer to the value in a previously-defined object.
+One thing that people often find confusing when they start using R is
+knowing when to use and not use quotation marks. The general rule is
+that you use quotation marks when you want to refer to a character
+string literally, but no quotation marks when you want to refer to the
+value in a previously-defined object.
 </p>
 <p>
-For example, if you saved the string <code>“Volckens”</code> as the object <code>my_name</code> (<code>my_name &lt;- “Volckens”</code>), then in later code, if you type <code>my_name</code> (no quotation marks), you’ll get <code>“Volckens”</code>, while if you type out <code>“my_name”</code> (with quotation marks), you’ll get <code>“my_name”</code> (what you typed).
+For example, if you saved the string <code>“Volckens”</code> as the
+object <code>my_name</code> (<code>my_name &lt;- “Volckens”</code>),
+then in later code, if you type <code>my_name</code> (no quotation
+marks), you’ll get <code>“Volckens”</code>, while if you type out
+<code>“my_name”</code> (with quotation marks), you’ll get
+<code>“my_name”</code> (what you typed).
 </p>
 <p>
-One thing that makes this rule confusing is that there are a few cases in R where you really should, following this rule, use quotation marks, but the function is coded to let you be lazy and get away without them. One example is the <code>library()</code> function. In the code earlier in this section to load the “phonenumber” package, you want to load the package “phonenumber” (with quotation marks), rather than load whatever character string is saved in the object named <code>phonenumber</code>. But, <code>library()</code> is one of the functions where you can be lazy and skip the quotation marks, and it will still load the package. Therefore, this function works if you do or do not use quotation marks around the package name.
+One thing that makes this rule confusing is that there are a few
+cases in R where you really should, following this rule, use quotation
+marks, but the function is coded to let you be lazy and get away without
+them. One example is the <code>library()</code> function. In the code
+earlier in this section to load the “phonenumber” package, you want to
+load the package “phonenumber” (with quotation marks), rather than load
+whatever character string is saved in the object named
+<code>phonenumber</code>. But, <code>library()</code> is one of the
+functions where you can be lazy and skip the quotation marks, and it
+will still load the package. Therefore, this function works if you do or
+do not use quotation marks around the package name.
 </p>
 </div>
 </div>
@@ -1336,7 +1393,16 @@ package. Most often you will create a dataframe by reading in data from a file,
 using something like <code>read_csv()</code> from the <code>readr</code> package.</p>
 <div class="rmdnote">
 <p>
-There are base R functions for both of these tasks (i.e., <code>data.frame()</code> and <code>read.csv()</code>, respectively), eliminating the need to load additional packages with a <code>library()</code> call. The series of packages that make up what’s called the “tidyverse” have brought a huge improvement in the ease and speed of working with data in R. We will be teaching these tools in this course, and that’s why we’re going directly to <code>tibble()</code> and <code>read_csv()</code> from the start, rather than base R equivalents. Later in the course, we’ll talk more about this “tidyverse” and what makes it so great.
+There are base R functions for both of these tasks (i.e.,
+<code>data.frame()</code> and <code>read.csv()</code>, respectively),
+eliminating the need to load additional packages with a
+<code>library()</code> call. The series of packages that make up what’s
+called the “tidyverse” have brought a huge improvement in the ease and
+speed of working with data in R. We will be teaching these tools in this
+course, and that’s why we’re going directly to <code>tibble()</code> and
+<code>read_csv()</code> from the start, rather than base R equivalents.
+Later in the course, we’ll talk more about this “tidyverse” and what
+makes it so great.
 </p>
 </div>
 <p>To create a dataframe, you can use the <code>tibble()</code> function from the <code>tibble</code>
@@ -1378,7 +1444,12 @@ the same <em>length</em>. They don’t have to be, and, in this case, are not, t
 <code>n_kids</code> is numeric.</p>
 <div class="rmdnote">
 <p>
-You can put more than one function call in a single line of R code, as in this example. The <code>c()</code> creates a vector, while the <code>tibble()</code> creates a dataframe, using the vectors created by the calls to <code>c()</code>. When you use multiple functions within a single R call, R will evaluate starting from the inner-most parentheses outward, much like the order of mathematical operations.
+You can put more than one function call in a single line of R code,
+as in this example. The <code>c()</code> creates a vector, while the
+<code>tibble()</code> creates a dataframe, using the vectors created by
+the calls to <code>c()</code>. When you use multiple functions within a
+single R call, R will evaluate starting from the inner-most parentheses
+outward, much like the order of mathematical operations.
 </p>
 </div>
 <p>So far, we’ve only seen how to create dataframes from scratch within an R
@@ -1387,13 +1458,13 @@ an outside file using the <code>read_csv()</code> from the <code>readr</code> pa
 related functions. For example, you might want to analyze data on all the
 guests that came on the <em>Daily Show</em>, <em>circa</em> Jon Stewart. If you have this
 data in a comma-separated (csv) file on your computer called
-“daily_show_guests.csv,” you can read it into your R session with the following
+“daily_show_guests.csv”, you can read it into your R session with the following
 code:</p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="rprog1.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;readr&quot;</span>)</span>
 <span id="cb88-2"><a href="rprog1.html#cb88-2" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;daily_show_guests.csv&quot;</span>,</span>
 <span id="cb88-3"><a href="rprog1.html#cb88-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">skip =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p>In this code, the <code>read_csv()</code> function is reading in the data from the file
-“daily_show_guests.csv,” while the “gets arrow” (<code>&lt;-</code>) assigns that data to the
+“daily_show_guests.csv”, while the “gets arrow” (<code>&lt;-</code>) assigns that data to the
 object <code>daily_show</code>, which you can then reference in later code to explore and
 plot the data.</p>
 <p>You can use the functions <code>dim()</code>, <code>nrow()</code>, and <code>ncol()</code> to figure out the
@@ -1489,7 +1560,11 @@ square-bracket indexing to pull a subset of the <code>hp_data</code> dataframe:<
 ## 1 Hermione   Granger        1 TRUE</code></pre>
 <div class="rmdnote">
 <p>
-If you forget to put the comma in the indexing for a dataframe (e.g., <code>fibonacci_seq[1:2]</code>), you will index out the <em>columns</em> that fall at that position or positions. To avoid confusion, I suggest that you always use indexing with a comma when working with dataframes.
+If you forget to put the comma in the indexing for a dataframe (e.g.,
+<code>fibonacci_seq[1:2]</code>), you will index out the
+<em>columns</em> that fall at that position or positions. To avoid
+confusion, I suggest that you always use indexing with a comma when
+working with dataframes.
 </p>
 </div>
 </div>

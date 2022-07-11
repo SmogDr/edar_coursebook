@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Functional Programming | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Functional Programming | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
 
-<meta name="author" content="John Volckens and Kathleen E. Wendt" />
+<meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-05-19" />
+<meta name="date" content="2022-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-476"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 476</a></li>
 <li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a>
@@ -727,13 +727,13 @@ file so that you can call upon them when needed: <code>source(import.w.name.R)</
 <p>The <code>purrr::</code> package was designed specifically with functional programming in mind.
 Similar to the discussion of <em>vectorized operations</em> above, <code>purrr::</code> was created
 to help you apply functions to vectors in a way that is easy to implement and
-easy to “read.”</p>
+easy to “read”.</p>
 <div id="function-mapping" class="section level3 hasAnchor" number="8.4.1">
 <h3><span class="header-section-number">8.4.1</span> Function Mapping<a href="rprog4.html#function-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>map_</code> family of functions are the core of the <code>purrr</code> package. These
 functions are intended to <em>map</em> functions (i.e., to apply them) to individual elements in a vector (or data frames); the <code>map_</code> functions are similar to functions like <code>lapply()</code> and <code>vapply()</code> from base R (but more versatile). <em>“Mapping”</em> a function onto a vector is a common theme of functional programming. To illustrate how the <code>map_</code> functions work, its best to visualize the process first.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:map-anno1"></span>
-<img src="images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input." width="632" />
+<img src="images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input."  />
 <p class="caption">
 Figure 8.1: The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input.
 </p>
@@ -762,17 +762,17 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 ##  $ entry_1: chr [1:4] &quot;Harry&quot; &quot;Ron&quot; &quot;Hermione&quot; &quot;Draco&quot;
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] &quot;ford&quot; &quot;volkswagen&quot; &quot;nissan&quot; &quot;subaru&quot; ...
-##   ..$ model       : chr [1:7] &quot;explorer 4wd&quot; &quot;jetta&quot; &quot;pathfinder 4wd&quot; &quot;impreza awd&quot; ...
-##   ..$ displ       : num [1:7] 4 1.9 5.6 2.5 5.4 2.4 1.8
-##   ..$ year        : int [1:7] 2008 1999 2008 2008 2008 1999 1999
-##   ..$ cyl         : int [1:7] 6 4 8 4 8 4 4
-##   ..$ trans       : chr [1:7] &quot;auto(l5)&quot; &quot;manual(m5)&quot; &quot;auto(s5)&quot; &quot;manual(m5)&quot; ...
-##   ..$ drv         : chr [1:7] &quot;4&quot; &quot;f&quot; &quot;4&quot; &quot;4&quot; ...
-##   ..$ cty         : int [1:7] 13 33 12 20 12 18 24
-##   ..$ hwy         : int [1:7] 19 44 18 27 18 24 30
-##   ..$ fl          : chr [1:7] &quot;r&quot; &quot;d&quot; &quot;p&quot; &quot;r&quot; ...
-##   ..$ class       : chr [1:7] &quot;suv&quot; &quot;compact&quot; &quot;suv&quot; &quot;compact&quot; ...</code></pre>
+##   ..$ manufacturer: chr [1:7] &quot;dodge&quot; &quot;audi&quot; &quot;volkswagen&quot; &quot;ford&quot; ...
+##   ..$ model       : chr [1:7] &quot;ram 1500 pickup 4wd&quot; &quot;a4&quot; &quot;gti&quot; &quot;f150 pickup 4wd&quot; ...
+##   ..$ displ       : num [1:7] 4.7 2 2 4.2 2.4 1.9 3.9
+##   ..$ year        : int [1:7] 2008 2008 1999 1999 2008 1999 1999
+##   ..$ cyl         : int [1:7] 8 4 4 6 4 4 6
+##   ..$ trans       : chr [1:7] &quot;manual(m6)&quot; &quot;manual(m6)&quot; &quot;manual(m5)&quot; &quot;auto(l4)&quot; ...
+##   ..$ drv         : chr [1:7] &quot;4&quot; &quot;f&quot; &quot;f&quot; &quot;4&quot; ...
+##   ..$ cty         : int [1:7] 9 20 21 14 21 35 13
+##   ..$ hwy         : int [1:7] 12 31 29 17 31 44 17
+##   ..$ fl          : chr [1:7] &quot;e&quot; &quot;p&quot; &quot;r&quot; &quot;r&quot; ...
+##   ..$ class       : chr [1:7] &quot;pickup&quot; &quot;compact&quot; &quot;compact&quot; &quot;pickup&quot; ...</code></pre>
 <p>Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, <code>[ ]</code>, a list element is returned.</p>
 <div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="rprog4.html#cb305-1" aria-hidden="true" tabindex="-1"></a>my.list[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## $entry_1
@@ -847,7 +847,7 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 ## $ pm2_5_atm        &lt;dbl&gt; 2.45, 3.43, 2.76, 2.00, 1.82, 1.98, 1.95, 2.48, 2.27,…
 ## $ sensor_ID        &lt;chr&gt; &quot;PA019&quot;, &quot;PA019&quot;, &quot;PA019&quot;, &quot;PA019&quot;, &quot;PA019&quot;, &quot;PA019&quot;,…</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:map-dfr-anno"></span>
-<img src="images/map_dfr_anno.png" alt="Example: using `map_dfr()` to import a file list using a custom function" width="632" />
+<img src="images/map_dfr_anno.png" alt="Example: using `map_dfr()` to import a file list using a custom function"  />
 <p class="caption">
 Figure 8.2: Example: using <code>map_dfr()</code> to import a file list using a custom function
 </p>

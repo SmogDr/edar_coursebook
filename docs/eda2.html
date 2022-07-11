@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Multivariate Data Exploration | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Multivariate Data Exploration | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
 
-<meta name="author" content="John Volckens and Kathleen E. Wendt" />
+<meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-05-19" />
+<meta name="date" content="2022-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-476"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 476</a></li>
 <li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a>
@@ -505,7 +505,9 @@ know” your data and one that should always proceed inferential statistics, or
 <em>making conclusions about your data</em>.</p>
 <div class="rmdnote">
 <p>
-Bivariate means <em>two variables</em> where the observations are paired; each observation samples both variables so that they are linked.
+Bivariate means <em>two variables</em> where the observations are
+paired; each observation samples both variables so that they are
+linked.
 </p>
 </div>
 </div>
@@ -542,7 +544,7 @@ purpose or “mode” affects the intention behind a plot:</p>
 <h3><span class="header-section-number">7.3.1</span> Causality<a href="eda2.html#causality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>All this talk about dependent and independent variables is fundamentally rooted
 in the practice of <strong><em>causal inference</em></strong> reasoning, which is the ability to
-say that “action A <em>caused</em> outcome B.” Discovering—or proving—that one
+say that “action A <em>caused</em> outcome B”. Discovering—or proving—that one
 thing caused another to happen can be incredibly powerful. Proving causality
 leads to Nobel Prizes, creation of new laws and regulations, judgment of guilt
 or innocence in court, changing human behavior and convincing human minds, and,
@@ -559,7 +561,10 @@ aside the pursuit of causation and begin with <strong><em>correlation</em></stro
 extent, <em>how</em>, two variables are related to each other.</p>
 <div class="rmdnote">
 <p>
-Correlation: A mutual relationship or connection between two or more things; the process of establishing a relationship or connection between two or more measures. The variables can move up or down together or be inversely related.
+Correlation: A mutual relationship or connection between two or more
+things; the process of establishing a relationship or connection between
+two or more measures. The variables can move up or down together or be
+inversely related.
 </p>
 </div>
 <p>Below are four examples of bivariate data with differing degrees of
@@ -603,7 +608,9 @@ correlated with an increased risk of developing heart disease and lung cancer.
 Does this mean lighters in your pocket <em>cause</em> lung cancer?</p>
 <div class="rmdnote">
 <p>
-Causation: the process or condition by which one event (cause) contributes to the occurrence of another event (effect). In this process, the cause is partly or wholly responsible for the effect.
+Causation: the process or condition by which one event (cause)
+contributes to the occurrence of another event (effect). In this
+process, the cause is partly or wholly responsible for the effect.
 </p>
 </div>
 <p>Let’s take a closer look at the dangers of mistaking a <em>correlated</em>
@@ -753,7 +760,14 @@ Figure 7.7: Vehicle fuel economy vs. weight and colored by number of engine cyl
 </div>
 <div class="rmdwarning">
 <p>
-When using color, be aware that many people are unable to distinguish red from green or blue from yellow. Many options exist to avoid issues from color blindness (e.g., <code>viridis</code> palette) and websites like <a href="https://www.color-blindness.com/coblis-color-blindness-simulator/" target="_blank">color-blindness.com</a> allow you to upload image files so that you can see what your plot looks like to someone with color blindness.
+When using color, be aware that many people are unable to distinguish
+red from green or blue from yellow. Many options exist to avoid issues
+from color blindness (e.g., <code>viridis</code> palette) and websites
+like <a
+href="https://www.color-blindness.com/coblis-color-blindness-simulator/"
+target="_blank">color-blindness.com</a> allow you to upload image files
+so that you can see what your plot looks like to someone with color
+blindness.
 </p>
 </div>
 <p>Here is an updated version of Figure <a href="eda2.html#fig:colorplot-1">7.7</a> that avoids issues
@@ -780,7 +794,8 @@ Figure 7.8: Vehicle fuel economy vs. weight and colored by number of engine cyl
 </div>
 <div class="rmdtip">
 <p>
-Whenever you use <strong>color</strong> to differentiate variables, use symbols, too.
+Whenever you use <strong>color</strong> to differentiate variables,
+use symbols, too.
 </p>
 </div>
 </div>
@@ -974,7 +989,7 @@ and <code>tran</code>, columns. Further, we see that <strong>all</strong> of the
 <code>fuel_type</code> of <em>electric</em>, which makes sense because electric vehicles (EVs) do not
 have internal combustion. This may be a variable level that we choose to
 exclude from certain analyses later…</p>
-<p><strong>You might have noticed the “dot,” <code>.</code>, used at the end of the <code>dplyr::filter</code> pipe above:</strong></p>
+<p><strong>You might have noticed the “dot”, <code>.</code>, used at the end of the <code>dplyr::filter</code> pipe above:</strong></p>
 <p><code>df_mpg %&gt;% filter(!complete.cases(.))</code></p>
 <p><em>Why is there a <code>.</code> as an argument to a function?</em></p>
 <p>We use <code>.</code> as a <a href="https://magrittr.tidyverse.org/reference/pipe.html#arguments"><em>placeholder argument</em></a> when more than one function is nested within a single section of pipe (<code>%&gt;%</code>). The <code>complete.cases()</code> function requires an argument to run, so we must tell it to operate on the same dataframe on which <code>filter()</code> operates. The <code>.</code> accomplishes this need for an argument. In other words, these three lines of code are equivalent:</p>
@@ -1126,7 +1141,7 @@ Figure 7.10: Boxplots of fleet-wide fuel efficiency by year.
 <p><a href="https://afdc.energy.gov/data/10562">This Department of Energy website</a> outlines
 the <em>Corporate Average Fuel Economy</em> (CAFE) standards from the Environmental
 Protection Agency that require vehicles to meet set fuel economy levels, in
-terms of miles per gallon, or “mpg,” across the “fleet” of available vehicles.
+terms of miles per gallon, or “mpg”, across the “fleet” of available vehicles.
 Let’s load a .csv file named <code>cafe</code> and look at the requirements by year.</p>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="eda2.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data</span></span>
 <span id="cb279-2"><a href="eda2.html#cb279-2" aria-hidden="true" tabindex="-1"></a>cafe <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;./data/CAFE_stds.csv&quot;</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;mpg_avg&quot;</span>), <span class="at">skip =</span> <span class="dv">1</span>)</span>

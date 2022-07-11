@@ -2,7 +2,10 @@
 
 
 <div class="rmdnote">
-<p>A <a href="https://www.merriam-webster.com/dictionary/model" target="_blank"><strong><em>model</em></strong></a> is a system of postulates, data, and inferences presented as a mathematical description of an entity or state of affairs.</p>
+<p>A <a href="https://www.merriam-webster.com/dictionary/model"
+target="_blank"><strong><em>model</em></strong></a> is a system of
+postulates, data, and inferences presented as a mathematical description
+of an entity or state of affairs.</p>
 </div>
 
 In this chapter we will discuss how models are conceptualized and "fit" to represent the data we have available. Models are useful because they provide a mathematical basis for how we see the world (i.e., an explanation for the observational data we collect). This means that models can help you: 
@@ -71,7 +74,7 @@ where:
 The OLS approach is straightforward: select model parameters ($\beta_{0}$, $\beta_{1}$) so that the model produces as little error as possible. With OLS, the model error is expressed as a *sum-of-squares error* (SSE; explained below). Graphically, this is shown in Figure \@ref(fig:OLS-anno), where the solid blue circles represent the data ($X_{i}, Y_{i}$). The grey line represents the "best fit" line that gives the smallest SSE possible. The model ***residuals*** (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the "best-fit line". The optimization algorithm is executed with matrix algebra, although the paramaters for simple linear regression between two variables, $X,Y,$, are easily calculated - see [here](#OLS).
 
 <div class="figure">
-<img src="./images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals" width="632" />
+<img src="./images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals"  />
 <p class="caption">(\#fig:OLS-anno)Graphical depiction for an OLS regression fit to minimize the sum of squared residuals</p>
 </div>
 
@@ -98,7 +101,9 @@ $$R^2 = 1- \left(\frac{SSE}{TSS}\right)$$
 The *total sum of squares* represents a measure of all of the variability in the data; the *residual sum of squares* represents a measure of the variability that remains *after the linear model has been applied*. Thus, **the $R^{2}$ term represents the proportion of variability (variance) in your data that was explained by the linear model**.
 
 <div class="rmdnote">
-<p>The terms “residual sum of squares” and “error sum of squares” are interchangeable; you will see them both in the wild and they mean the same thing.</p>
+<p>The terms “residual sum of squares” and “error sum of squares” are
+interchangeable; you will see them both in the wild and they mean the
+same thing.</p>
 </div>
 
 ### OLS Assumptions and Diagnostics {#OLS_assum}
@@ -166,7 +171,7 @@ Thus, substituting one equation into another, we arrive at the conclusion that m
 $$mass \sim Circumference^{2}$$
 Or, another way to say this is that the square root of mass is linearly related to body circumference.
 $$\sqrt{mass} \sim Circumference$$
-<img src="./images/cylinder_comic.png" width="552" style="display: block; margin: auto;" />
+<img src="./images/cylinder_comic.png" style="display: block; margin: auto;" />
 
 Let's transform $mass \rightarrow \sqrt{mass}$ and then examine the two scatterplots side by side.
 
@@ -230,7 +235,7 @@ model2 <- lm(sqrt_mass ~ waist, data = data_18)
 Now that we have stored each model as an object (`model1`, `model2`), so we can examine what they contain. The output of `lm()` is a list of class "lm".  If we type `view(model1)` the contents of the list become apparent.
 
 <div class="figure">
-<img src="./images/model1_list.png" alt="The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more." width="632" />
+<img src="./images/model1_list.png" alt="The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more."  />
 <p class="caption">(\#fig:model1-list)The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more.</p>
 </div>
 As you can see, there is a wealth of information contained in the `lm()` object. The first list entry contains the model parameter estimates (`model1$coefficients`) in rank order:  
@@ -601,7 +606,7 @@ Before we begin our calibration, let's examine the data using EDA techniques. We
 
 
 <div class="figure" style="text-align: center">
-<img src="./images/aod_eda_4plot.png" alt="A 4-plot EDA of our AOD Calibration Data" width="1050" />
+<img src="./images/aod_eda_4plot.png" alt="A 4-plot EDA of our AOD Calibration Data"  />
 <p class="caption">(\#fig:aod-eda-4plot)A 4-plot EDA of our AOD Calibration Data</p>
 </div>
 

@@ -21,7 +21,13 @@ The phrase *"Data Transformation"* means different things in different fields so
 For example, your data are transformed whenever you convert temperature units from °F to °C, length units from inches to millimeters, or render a variable dimensionless (e.g., converting to units of percent, parts per million, or some other unitless value).  In addition to these "units transformations", we also conduct transformations to make the ***location*** and ***spread*** of data consistent, or to change the ***shape*** of a distribution of data (e.g., to reduce skewness or to linearize a variable). These latter approaches are often employed during multivariate analyses to help your variables "play nicely together" within the analytic framework you set forth. More on this to come.
 
 <div class="rmdnote">
-<p>There are two key facets to data transformation: <strong>justification</strong> and <strong>documentation</strong>. Whenever data are transformed, you must provide a good reason for doing so (hint: there are many good reasons and also a few bad ones). Furthermore, <strong>you must adequately document “how” and “why” the data were transformed</strong>, so that others can understand your work and reproduce your results if needed.</p>
+<p>There are two key facets to data transformation:
+<strong>justification</strong> and <strong>documentation</strong>.
+Whenever data are transformed, you must provide a good reason for doing
+so (hint: there are many good reasons and also a few bad ones).
+Furthermore, <strong>you must adequately document “how” and “why” the
+data were transformed</strong>, so that others can understand your work
+and reproduce your results if needed.</p>
 </div>
 
 ### Centering
@@ -32,7 +38,7 @@ In engineering, the most common reason for centering data is not to subtract the
 
 
 <div class="figure" style="text-align: center">
-<img src="./images/centering_anno.png" alt="Data are sometimes centered to correct spurious values" width="640" />
+<img src="./images/centering_anno.png" alt="Data are sometimes centered to correct spurious values"  />
 <p class="caption">(\#fig:centering-anno)Data are sometimes centered to correct spurious values</p>
 </div>
 
@@ -50,7 +56,11 @@ Some reasons to rescale data include:
 In a generic sense, to ***"normalize"*** a variable means: **to transform that variable so that it can be compared, evaluated, or comprehended more easily.**  Normalization often involves a combination of centering and rescaling operations that not only change the location and spread of the data, but also the *meaning* of data.  Normalization is performed all the time. 
 
 <div class="rmdwarning">
-<p>Like <em>“transformation”</em>, the word “<em>normalization</em>” is defined differently in different fields, so be explicit when using this term in your work. To some, the word normalization means to “make a variable normally distributed”; to others, it means to “normalize a database” so that redundancies are eliminated.</p>
+<p>Like <em>“transformation”</em>, the word “<em>normalization</em>” is
+defined differently in different fields, so be explicit when using this
+term in your work. To some, the word normalization means to “make a
+variable normally distributed”; to others, it means to “normalize a
+database” so that redundancies are eliminated.</p>
 </div>
 
 There are many types of normalization operations; we will discuss a few examples below.  
@@ -74,7 +84,7 @@ Sometimes your data are *not normally distributed*, even though you want them to
 
 
 <div class="figure" style="text-align: center">
-<img src="./images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable." width="640" />
+<img src="./images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable."  />
 <p class="caption">(\#fig:reduce-skew2)The log(x) transform is often used to reduce skewness in a variable.</p>
 </div>
 
@@ -125,7 +135,13 @@ Figure \@ref(fig:stratify-png) tells a very different story! Now we can see that
 Figure \@ref(fig:stratify-png) raises a subtle, but very important, point: **data often have hierarchy** and that hierarchy may be influential. In this case, only when we account for the hierarchy (the reactor that produced each sample), do we see an important relationship arise.
 
 <div class="rmdnote">
-<p><em>Hierarchical data</em> means data that can be ordered into different ranks (or levels). Students at a university might be ordered by their their college, their major, or the year in which they matriculated. Those ranks may be important when analyzing student data; if so, your analysis should account for that! Note: you can also manufacture strata from within continuous data, for example, you could define strata according to quantiles of GPA among the study body.</p>
+<p><em>Hierarchical data</em> means data that can be ordered into
+different ranks (or levels). Students at a university might be ordered
+by their their college, their major, or the year in which they
+matriculated. Those ranks may be important when analyzing student data;
+if so, your analysis should account for that! Note: you can also
+manufacture strata from within continuous data, for example, you could
+define strata according to quantiles of GPA among the study body.</p>
 </div>
 
 ## Outliers and Censoring
@@ -134,7 +150,8 @@ Have you ever heard the phrase ***"don't make the exception the rule"***?
 I think this phrase means, *don't let your judgment be governed solely by outliers.*  Whether or not this is good advice probably depends on the situation, but I do think one should have the ability to detect ***when an outlier has leverage over a situation***. 
 
 <div class="rmdnote">
-<p>An <strong>outlier</strong> is an observation that lies an abnormal distance from other values in a random sample.</p>
+<p>An <strong>outlier</strong> is an observation that lies an abnormal
+distance from other values in a random sample.</p>
 </div>
 
 ### Detecting Outliers {#outliers}
@@ -221,7 +238,14 @@ Examination of Figure \@ref(fig:outlier-2) suggests that the outlier is having a
 Unfortunately, this sort of conundrum happens more often than we might like in the real world. *My advice would be to collect more data to support/discount the outlier. If that isn't possible (and no other explanation was forthcoming), I would probably show the analysis* ***both ways***.
 
 <div class="rmdwarning">
-<p><strong>Censoring data is dangerous business.</strong> If you are going to censor an outlier, make sure to document <strong>how</strong> you discovered/defined the outlier, <strong>why</strong> you believe it should be censored, and <strong>“whether or not that censoring had an effect on your results/conclusions”</strong>. Then make sure to broadcast your thinking to everyone who comes in contact with your analysis. If you try to hide outliers, you are being unethical and setting yourself up for disaster.</p>
+<p><strong>Censoring data is dangerous business.</strong> If you are
+going to censor an outlier, make sure to document <strong>how</strong>
+you discovered/defined the outlier, <strong>why</strong> you believe it
+should be censored, and <strong>“whether or not that censoring had an
+effect on your results/conclusions”</strong>. Then make sure to
+broadcast your thinking to everyone who comes in contact with your
+analysis. If you try to hide outliers, you are being unethical and
+setting yourself up for disaster.</p>
 </div>
 
 ## Ch-9 Exercises
@@ -329,7 +353,11 @@ Let's make the following transformations to the data:
   - We will *censor* salary levels below $10k/yr, because values below that level do not exceed the minimum wage for someone working full time.
   
 <div class="rmdnote">
-<p>Each of these censoring actions is questionable and arguments for keeping or removing these outliers are possible. However, for the modeling exercise below (where we try to simulate the bulk of the univariate salary distribution), it is unlikely that these censoring actions have a strong effect on the outcome.</p>
+<p>Each of these censoring actions is questionable and arguments for
+keeping or removing these outliers are possible. However, for the
+modeling exercise below (where we try to simulate the bulk of the
+univariate salary distribution), it is unlikely that these censoring
+actions have a strong effect on the outcome.</p>
 </div>
 
 
@@ -420,7 +448,18 @@ Geometric mean salary = 75.37
 Geometric standard deviation = 1.95
 
 <div class="rmdnote">
-<p>The terms <em>meanlog</em> and <em>sdlog</em> represent log-space values (i.e., the data have been log transformed) - for that reason they are unitless. The term <em>geometric mean</em> is presented in the units of the data (read: it’s the easiest to comprehend). The <em>geometric standard deviation</em> (GSD) is also unitless but different from <em>sdlog</em>. The <strong>GSD is a ratio of quantiles</strong>: it represents the ratio of data values at quantiles that are separated by a standard deviation: <span class="math inline">\(GSD = \frac{q_{84}}{q_{50}}\)</span> (the 0.84 quantile divided by the 0.5 quantile). GSD can also be calculated in the other direction, <span class="math inline">\(GSD = \frac{q_{50}}{q_{16}}\)</span>, the 0.5 quantile divided by the 0.16 quantile.</p>
+<p>The terms <em>meanlog</em> and <em>sdlog</em> represent log-space
+values (i.e., the data have been log transformed) - for that reason they
+are unitless. The term <em>geometric mean</em> is presented in the units
+of the data (read: it’s the easiest to comprehend). The <em>geometric
+standard deviation</em> (GSD) is also unitless but different from
+<em>sdlog</em>. The <strong>GSD is a ratio of quantiles</strong>: it
+represents the ratio of data values at quantiles that are separated by a
+standard deviation: <span class="math inline">\(GSD =
+\frac{q_{84}}{q_{50}}\)</span> (the 0.84 quantile divided by the 0.5
+quantile). GSD can also be calculated in the other direction, <span
+class="math inline">\(GSD = \frac{q_{50}}{q_{16}}\)</span>, the 0.5
+quantile divided by the 0.16 quantile.</p>
 </div>
 
 ### Plot Fitted vs Actual Data

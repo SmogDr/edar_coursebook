@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
   
 
-<meta name="author" content="John Volckens and Kathleen E. Wendt" />
+<meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-05-19" />
+<meta name="date" content="2022-07-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.3</b> Grading</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-481a6"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 481A6</a></li>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#grading-for-mech-476"><i class="fa fa-check"></i><b>1.3.1</b> Grading for MECH 476</a></li>
 <li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#homework-submission"><i class="fa fa-check"></i><b>1.3.2</b> Homework submission</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-set-up"><i class="fa fa-check"></i><b>1.4</b> Course set-up</a>
@@ -482,8 +482,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">Engineering Data Analysis in R</h1>
-<p class="author"><em>John Volckens and Kathleen E. Wendt</em></p>
-<p class="date"><em>2022-05-19</em></p>
+<p class="author"><em>John Volckens</em></p>
+<p class="date"><em>2022-07-11</em></p>
 </div>
 <div id="intro" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -528,9 +528,9 @@ is hosted.</p>
 </div>
 <div id="grading" class="section level2 hasAnchor" number="1.3">
 <h2><span class="header-section-number">1.3</span> Grading<a href="index.html#grading" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="grading-for-mech-481a6" class="section level3 hasAnchor" number="1.3.1">
-<h3><span class="header-section-number">1.3.1</span> Grading for MECH 481A6<a href="index.html#grading-for-mech-481a6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Course grades will be determined by the following five components:</p>
+<div id="grading-for-mech-476" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Grading for MECH 476<a href="index.html#grading-for-mech-476" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Course grades will be determined by the following three components:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -556,15 +556,15 @@ Exams
 Quizzes
 </td>
 <td style="text-align:center;">
-25
+15
 </td>
 </tr>
 <tr>
 <td style="text-align:center;">
-Homework
+Assignments
 </td>
 <td style="text-align:center;">
-15
+25
 </td>
 </tr>
 </tbody>
@@ -586,7 +586,7 @@ and connecting R/RStudio and Git/GitHub is provided in the next section.</p>
 <div id="course-set-up" class="section level2 hasAnchor" number="1.4">
 <h2><span class="header-section-number">1.4</span> Course set-up<a href="index.html#course-set-up" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This might be painful, but bear with me. There will be a lot of software
-development <a href="https://docs.github.com/en/github/getting-started-with-github/github-glossary">jargon</a> (e.g., “commit,” “push,” “pull”), but the general idea is:
+development <a href="https://docs.github.com/en/github/getting-started-with-github/github-glossary">jargon</a> (e.g., “commit”, “push”, “pull”), but the general idea is:
 We want to set up and learn how to use a collaborative tracking system. Git is
 a version control system (i.e., Word’s “track changes” feature on steroids).
 GitHub is the most common Git-based collaborative cloud (i.e., Dropbox on
@@ -603,7 +603,7 @@ to gain more background on basic Git and GitHub, take a look at <a href="https:/
 <div id="install-r-and-rstudio" class="section level3 hasAnchor" number="1.4.1">
 <h3><span class="header-section-number">1.4.1</span> Install R and RStudio<a href="index.html#install-r-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
-<li>Download and install the pre-compiled binary of the most recent version (4.0+) of <a href="https://cran.r-project.org" target="_blank">R</a> appropriate for your machine’s
+<li>Download and install the pre-compiled binary of the most recent version (4.2+) of <a href="https://cran.r-project.org" target="_blank">R</a> appropriate for your machine’s
 operating system</li>
 <li>Download and install the most recent, preview version of <a href="https://rstudio.com/products/rstudio/download/#download" target="_blank">RStudio</a>;
 then, navigate to RStudio &gt; Preferences to <em>NOT</em> “Restore .RData into workspace
@@ -673,9 +673,9 @@ system.</li>
 <em>exactly</em> with the following additions:</li>
 </ol>
 <ul>
-<li>Give your GitHub username to the TA, so you can be added to our
+<li>Give your GitHub username to the Instructor, so you can be added to our
 <a href="https://github.com/MECH481A6" target="_blank">GitHub Organization</a></li>
-<li>Work with the TA to create a <em>private</em> repository within the organization, labeled <em>[YourLastName]-MECH481A6</em></li>
+<li>Work with the Instructor to create a <em>private</em> repository within the organization, labeled <em>[YourLastName]-MECH481A6</em></li>
 <li>Confirm connection between your R Project and the GitHub repository, make subfolders (<code>data</code>, <code>code</code>, <code>figs</code>) within your <code>[YourLastName]-MECH481A6</code> folder on your local drive, and push them up to GitHub; this supports a
 <a href="https://uncoast-unconf.github.io/uu-2019-day-zero/02-project-workflows/workflow.html#13" target="_blank">project-oriented workflow</a></li>
 </ul>
@@ -685,7 +685,7 @@ system.</li>
 <p>For homework submission, you will download the R Markdown templates provided
 to you and save and edit them within your own R Project, which is connected a
 private repository on the class GitHub Organization. In order to track your
-changes and communicate with the Instructor and TA, you will
+changes and communicate with the Instructor, you will
 regularly <em>commit</em> changes to your R Project files with meaningful <em>commit messages</em>. We will practice commits, pushes, and pulls to the <em>master branch</em>
 (main copy of R Project) during class.</p>
 </div>
@@ -699,14 +699,14 @@ functional” is good enough!</p>
 <p>Once you have successfully installed and connected R/RStudio and Git/GitHub,
 <strong>open an issue</strong> on YOUR private repository within the
 <a href="https://github.com/MECH481A6" target="_blank">GitHub Organization</a>.
-Mention/assign Kathleen (TA) <span class="citation">(<a href="#ref-wendtke" role="doc-biblioref"><strong>wendtke?</strong></a>)</span> to let her know everything is working
+Mention/assign <span class="citation">(<a href="#ref-SmogDr" role="doc-biblioref"><strong>SmogDr?</strong></a>)</span> to let me know everything is working
 properly, or to request more help.</p>
 <p>Then, in the
 <a href="https://github.com/MECH481A6/questions" target="_blank">public repository</a> for
 class-related questions and discussion, <strong>open another issue</strong>. You can ask a
 question, share any course-related concerns, or post a brief comment about what
 you hope to gain from this course. Remember to mention/assign Kathleen
-<span class="citation">(<a href="#ref-wendtke" role="doc-biblioref"><strong>wendtke?</strong></a>)</span>, so she is alerted to your post.</p>
+<span class="citation">(<a href="#ref-SmogDr" role="doc-biblioref"><strong>SmogDr?</strong></a>)</span>, so she is alerted to your post.</p>
 <p>Kathleen will then close both of your issues, and you will be ready to go!</p>
 </div>
 <div id="asking-for-help-properly" class="section level3 hasAnchor" number="1.4.7">
@@ -784,7 +784,8 @@ discussions. I would also like to acknowledge
 <a href="http://rsbm.royalsocietypublishing.org/content/49/537.full.pdf+html" target="_blank">John Tukey</a>,
 one of the pioneers of exploratory data analysis, and the creators of the
 <a href="https://doi.org/10.18434/M32189" target="_blank">NIST Engineering Statistics Handbook</a>,
-from which I have drawn many techniques.</p>
+from which I have drawn many techniques. Kathleen Wendt (<span class="citation">(<a href="#ref-Wendtke" role="doc-biblioref"><strong>Wendtke?</strong></a>)</span>), the one and only TA for this course, also contributed
+a tremendous amount of effort to the original course setup and execution in 2020. Thank you!</p>
 
 </div>
 </div>

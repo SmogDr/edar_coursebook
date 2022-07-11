@@ -86,7 +86,10 @@ contextualization. Taken together, this means that strings can be challenging
 (but not impossible) to analyze using computers. 
 
 <div class="rmdnote">
-<p>Are you active on social media platforms like Instagram or Twitter? You can bet that a computer program has downloaded and parsed all of your posts, each one as a string. You can learn a lot about a person (and their buying habits) from what they post online!</p>
+<p>Are you active on social media platforms like Instagram or Twitter?
+You can bet that a computer program has downloaded and parsed all of
+your posts, each one as a string. You can learn a lot about a person
+(and their buying habits) from what they post online!</p>
 </div>
 
 In this chapter, we will introduce a few simple string functions from base R
@@ -94,7 +97,7 @@ and the `stringr` package. We will also introduce the concept of
 **regular expressions** as a means to perform more advanced string
 manipulation.
 
-<img src="./images/parse_comic.png" width="1000" style="display: block; margin: auto;" />
+<img src="./images/parse_comic.png" style="display: block; margin: auto;" />
 
 ### String detect, match, subset
 
@@ -216,7 +219,8 @@ create much more advanced search criteria using **regex** syntax within our
 search patterns. 
 
 <div class="rmdnote">
-<p>A <strong>regular expression</strong> is a sequence of characters that define a search pattern to be implemented on a string.</p>
+<p>A <strong>regular expression</strong> is a sequence of characters
+that define a search pattern to be implemented on a string.</p>
 </div>
 
 In the R programming language, regular expressions follow the POSIX 1003.2
@@ -382,7 +386,11 @@ will normally replace only one instance of a match; use `str_replace_all()` if
 you plan to encounter multiple matches that need replacing.
 
 <div class="rmdtip">
-<p>The <code>pattern =</code> argument for matching can be a single string or a vector of strings. In the latter case, you can define a vector of <em>keywords</em> that you might be searching for across sentences. In that case, use <code>pattern = c("pattern_1", "pattern_2", "pattern_3", ...etc)</code>.</p>
+<p>The <code>pattern =</code> argument for matching can be a single
+string or a vector of strings. In the latter case, you can define a
+vector of <em>keywords</em> that you might be searching for across
+sentences. In that case, use
+<code>pattern = c("pattern_1", "pattern_2", "pattern_3", ...etc)</code>.</p>
 </div>
 
 ## Dates and Date-times
@@ -410,7 +418,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2022-05-19 15:53:54 MDT"
+## [1] "2022-07-11 15:35:32 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -426,12 +434,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1652997234
+## [1] 1657575333
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 52.4161985 years.  
+365d/yr] => 52.561369 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -439,7 +447,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2022-05-19 15:53:54.
+format: 2022-07-11 15:35:32.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -462,9 +470,21 @@ equivalent but, for some computer programs, not so much:
 </table>
 
 <div class="rmdnote">
-<p>You will often see time followed by <strong>“UTC”</strong>, which stands for <em>“Universal Time, Coordinated”</em>. UTC is preferred by programmers because it doesn’t have a timezone and it doesn’t follow <em>Daylight Savings Time</em> conventions. Daylight savings is the bane of many coders.</p>
-<p>In practice, UTC is the same time as GMT (Greenwich Mean Time, pronounced “gren-itch”) but with an important distinction. GMT is one of the many <a href="https://wikipedia.org/wiki/List_of_tz_database_time_zones" target="_blank">time-zones</a> laid out across Earth’s longitude, whereas, <strong>UTC has no timezone</strong>; UTC is the same time for everyone, everywhere.</p>
-<p>In Colorado, we are UTC-6 hours during <em>daylight savings</em> (March-Nov) and UTC-7 during <em>standard time</em> (Nov-March). This means that most Coloradoans eat dinner at 12am UTC (6pm MST).</p>
+<p>You will often see time followed by <strong>“UTC”</strong>, which
+stands for <em>“Universal Time, Coordinated”</em>. UTC is preferred by
+programmers because it doesn’t have a timezone and it doesn’t follow
+<em>Daylight Savings Time</em> conventions. Daylight savings is the bane
+of many coders.</p>
+<p>In practice, UTC is the same time as GMT (Greenwich Mean Time,
+pronounced “gren-itch”) but with an important distinction. GMT is one of
+the many <a
+href="https://wikipedia.org/wiki/List_of_tz_database_time_zones"
+target="_blank">time-zones</a> laid out across Earth’s longitude,
+whereas, <strong>UTC has no timezone</strong>; UTC is the same time for
+everyone, everywhere.</p>
+<p>In Colorado, we are UTC-6 hours during <em>daylight savings</em>
+(March-Nov) and UTC-7 during <em>standard time</em> (Nov-March). This
+means that most Coloradoans eat dinner at 12am UTC (6pm MST).</p>
 </div>
 
 ### Date-time classes in R
@@ -551,7 +571,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1652997234
+## [1] 1657575333
 ```
 
 
@@ -562,14 +582,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 54.4
-##  $ min   : int 53
+##  $ sec   : num 32.8
+##  $ min   : int 35
 ##  $ hour  : int 15
-##  $ mday  : int 19
-##  $ mon   : int 4
+##  $ mday  : int 11
+##  $ mon   : int 6
 ##  $ year  : int 122
-##  $ wday  : int 4
-##  $ yday  : int 138
+##  $ wday  : int 1
+##  $ yday  : int 191
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
@@ -892,7 +912,11 @@ daily_show %>%
 ```
 
 <div class="rmdwarning">
-<p>R functions tend to use the timezone of <strong>YOUR</strong> computer’s operating system by default—or UTC, or GMT. You need to be careful when working with dates and times to either specify the time zone or convince yourself the default behavior works for your application.</p>
+<p>R functions tend to use the timezone of <strong>YOUR</strong>
+computer’s operating system by default—or UTC, or GMT. You need to be
+careful when working with dates and times to either specify the time
+zone or convince yourself the default behavior works for your
+application.</p>
 </div>
 
 ## Tidy Data
@@ -1035,7 +1059,8 @@ old columns that are being combined.
 from within the old columns that are being combined.
     
 <div class="rmdnote">
-<p>The <code>pivot_longer()</code> function always creates two new columns:</p>
+<p>The <code>pivot_longer()</code> function always creates two new
+columns:</p>
 <ul>
 <li>one column contains <code>names_to =</code> information.</li>
 <li>the other column contains the <code>values_to =</code> data.</li>

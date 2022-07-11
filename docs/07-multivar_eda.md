@@ -24,7 +24,9 @@ know" your data and one that should always proceed inferential statistics, or
 *making conclusions about your data*.
 
 <div class="rmdnote">
-<p>Bivariate means <em>two variables</em> where the observations are paired; each observation samples both variables so that they are linked.</p>
+<p>Bivariate means <em>two variables</em> where the observations are
+paired; each observation samples both variables so that they are
+linked.</p>
 </div>
 
 ## Scatterplot {#scatt}
@@ -78,7 +80,10 @@ The ***scatterplot*** is a great way to visualize *whether*, and, to some
 extent, *how*, two variables are related to each other.  
 
 <div class="rmdnote">
-<p>Correlation: A mutual relationship or connection between two or more things; the process of establishing a relationship or connection between two or more measures. The variables can move up or down together or be inversely related.</p>
+<p>Correlation: A mutual relationship or connection between two or more
+things; the process of establishing a relationship or connection between
+two or more measures. The variables can move up or down together or be
+inversely related.</p>
 </div>
 
 
@@ -122,7 +127,9 @@ correlated with an increased risk of developing heart disease and lung cancer.
 Does this mean lighters in your pocket *cause* lung cancer?
 
 <div class="rmdnote">
-<p>Causation: the process or condition by which one event (cause) contributes to the occurrence of another event (effect). In this process, the cause is partly or wholly responsible for the effect.</p>
+<p>Causation: the process or condition by which one event (cause)
+contributes to the occurrence of another event (effect). In this
+process, the cause is partly or wholly responsible for the effect.</p>
 </div>
 
 Let's take a closer look at the dangers of mistaking a *correlated*
@@ -289,7 +296,14 @@ g3
 </div>
 
 <div class="rmdwarning">
-<p>When using color, be aware that many people are unable to distinguish red from green or blue from yellow. Many options exist to avoid issues from color blindness (e.g., <code>viridis</code> palette) and websites like <a href="https://www.color-blindness.com/coblis-color-blindness-simulator/" target="_blank">color-blindness.com</a> allow you to upload image files so that you can see what your plot looks like to someone with color blindness.</p>
+<p>When using color, be aware that many people are unable to distinguish
+red from green or blue from yellow. Many options exist to avoid issues
+from color blindness (e.g., <code>viridis</code> palette) and websites
+like <a
+href="https://www.color-blindness.com/coblis-color-blindness-simulator/"
+target="_blank">color-blindness.com</a> allow you to upload image files
+so that you can see what your plot looks like to someone with color
+blindness.</p>
 </div>
 
 Here is an updated version of Figure \@ref(fig:colorplot-1) that avoids issues
@@ -319,7 +333,8 @@ ggplot2::ggplot(data = mtcars,
 </div>
 
 <div class="rmdtip">
-<p>Whenever you use <strong>color</strong> to differentiate variables, use symbols, too.</p>
+<p>Whenever you use <strong>color</strong> to differentiate variables,
+use symbols, too.</p>
 </div>
 
 ## Chapter 7 Exercises

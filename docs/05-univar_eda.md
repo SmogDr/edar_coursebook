@@ -173,7 +173,8 @@ rather quickly because the first step of quantile calculation is to sort your
 data from smallest to largest value.
 
 <div class="rmdtip">
-<p>A “quantile” represents a fractional portion of an ordered, univariate distribution.</p>
+<p>A “quantile” represents a fractional portion of an ordered,
+univariate distribution.</p>
 </div>
 
 Quantiles break a set of observations into similarly sized
@@ -404,7 +405,9 @@ the total, or a quantile of 0.01 . Thus, quantiles are shown on the y-axis, and
 the x-axis shows the observed data, ordered from smallest to largest value.   
 
 <div class="rmdnote">
-<p>The cumulative distribution plot shows the rolling fraction (or percent) of data on the y-axis that are “less than or equal to” the x-axis values of that data.</p>
+<p>The cumulative distribution plot shows the rolling fraction (or
+percent) of data on the y-axis that are “less than or equal to” the
+x-axis values of that data.</p>
 </div>
 
 An annotated cumulative distribution plot is shown below for a sample of
