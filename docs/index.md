@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens"
-date: "2022-07-11"
+date: "2022-08-11"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
@@ -13,28 +13,18 @@ description: "This is an undergraduate technical elective course for mechanical 
 
 
 ```
-## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-```
-
-```
+## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
 ## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.7     ✔ dplyr   1.0.9
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
 ## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
 ## ✔ readr   2.1.2     ✔ forcats 0.5.1
-```
-
-```
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
-```
-
-```
 ## 
 ## Attaching package: 'kableExtra'
-```
-
-```
+## 
+## 
 ## The following object is masked from 'package:dplyr':
 ## 
 ##     group_rows
@@ -319,7 +309,7 @@ including:
 - [R Cookbook](https://colostate-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=01COLSU_ALMA21203304500003361&context=L&vid=01COLSU&lang=en_US&search_scope=Everything&adaptor=Local%20Search%20Engine&tab=default_tab&query=any,contains,r%20cookbook&sortby=rank&offset=0){target="_blank"}
 - [R Graphics Cookbook](http://www.amazon.com/R-Graphics-Cookbook-Winston-Chang/dp/1449316956/ref=sr_1_1?ie=UTF8&qid=1440997472&sr=8-1&keywords=r+graphics+cookbook){target="_blank"}
 - [Roger Peng's Leanpub books](https://leanpub.com/u/rdpeng){target="_blank"}
-- Various books on [bookdown.org](www.bookdown.org){target="_blank"}
+- Various books on [bookdown.org](https://bookdown.org/){target="_blank"}
 
 The R programming language is used extensively within certain fields, including
 statistics and bioinformatics. If you are using R for a specific type of

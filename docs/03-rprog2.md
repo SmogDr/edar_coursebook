@@ -16,8 +16,7 @@ file format
 - Demonstrate how to read in a few types of binary files (e.g., Matlab, Excel)
 - Recognize the difference between relative and absolute file pathnames
 - Describe the basics of your computer's directory structure
-- Reference files in different locations in your directory structure using
-relative and absolute pathnames
+- Reference files in your directory structure using relative and absolute pathnames
 - Apply the basic `dplyr` functions (e.g., `rename()`, `select()`, `mutate()`,
 `slice()`, `filter()`, and `arrange()`) to work with data in a dataframe object
 - Define a logical operator and know the R syntax for common logical operators
@@ -32,7 +31,7 @@ There are four basic steps you will often repeat as you prepare to analyze data
 in R:
 
 1. Identify the location of the data. If it's on your computer, which
-directory? If it's online, what's the link?
+directory? If it's online, what link?
 2. Read data into R (e.g., using a function like `read_delim()` or `read_csv()`
 from the `readr` package) using the file path you figured out in step 1
 3. Check to make sure the data came in correctly using functions like `dim()`, `head()`, `tail()`, `str()`, and/or `glimpse()`.
@@ -838,6 +837,7 @@ dplyr::select(.data = daily_show, job, date, category, guest_name)
 ##  9 actor              1/25/99 Acting   Matthew Lillard 
 ## 10 stand-up comedian  1/26/99 Comedy   David Cross     
 ## # … with 2,683 more rows
+## # ℹ Use `print(n = ...)` to see more rows
 ```
 
 <div class="rmdwarning">
@@ -926,6 +926,7 @@ mutate(.data = daily_show,
 ##  9 actor              1/25/99 Acting   Matthew Lillard 
 ## 10 stand-up comedian  1/26/99 Comedy   David Cross     
 ## # … with 2,683 more rows
+## # ℹ Use `print(n = ...)` to see more rows
 ```
 
 We will take a deeper dive into strings and the `stringr` package 

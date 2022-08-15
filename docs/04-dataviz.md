@@ -308,8 +308,8 @@ ggplot(data = mpg, aes(x = class, fill = drv)) +
 ```
 
 <div class="figure">
-<img src="04-dataviz_files/figure-html/mpg-green-1.png" alt="Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`)." width="672" />
-<p class="caption">(\#fig:mpg-green)Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by the `fill` aesthetic mapped to drive type (`drv`).</p>
+<img src="04-dataviz_files/figure-html/mpg-green-1.png" alt="Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by a `fill` aesthetic override." width="672" />
+<p class="caption">(\#fig:mpg-green)Example of a call to `ggplot` showing counts of vehicle classes from the `mpg` dataframe and colored by a `fill` aesthetic override.</p>
 </div>
 
 In this case, the aesthetic mapping of `aes(fill = drv)` was overridden by the
@@ -521,10 +521,11 @@ ggplot2::ggplot() +
              alpha = 0.6,
              size = 2) +
   # second geom layer (line)
-  geom_abline(intercept = 0,
+  geom_abline(xintercept = 0,
               slope = 1, 
-              color = "grey") +
-  # call fixed coordinate system
+              color = "grey",
+              linetype = "dashed") +
+  # fix x and y coordinates to be equal in relative scale
   coord_fixed() +
   # set axis limits
   xlim(c(0,40)) +
@@ -533,7 +534,7 @@ ggplot2::ggplot() +
   xlab("Highway Fuel Economy, mi/gal") +
   ylab("City Fuel Economy, mi/gal") +
   # adopt theme without grey background
-  theme_minimal()
+  theme_bw()
 ```
 
 <div class="figure">
@@ -582,11 +583,10 @@ mpg_subset <- mpg %>%
 # call to ggplot, note that data and aesthetics are called in each geom layer
 ggplot() +
   # first layer - note the main dataframe was called
-  geom_jitter(data = filter(mpg, class == "suv" & year == 2008),
+  geom_point(data = filter(mpg, class == "suv" & year == 2008),
            aes(x = manufacturer, 
                y = hwy, 
                color = displ),
-           width = 0.1,
            size = 2) +
   # second layer - note the subset dataframe was called 
   geom_errorbar(data = mpg_subset,
@@ -594,16 +594,18 @@ ggplot() +
                  ymin = hwy_mean,
                  ymax = hwy_mean,
                  color = displ_mean),
-             alpha = 0.5,
              size = 1) +
   # customize plot labels
   labs(title = "Fuel Economy for 2008 SUVs by Manufacturer and Engine Displacement",
        color = "Disp (L)") +
   ylab("highway fuel economy (miles/gal)") +
   # add a fancy color scale
-  scale_color_viridis_c(option = "D", direction = -1) +
-  # adopt a theme without gray background
-  theme_classic() 
+  scale_colour_stepsn(colours = hcl.colors(n=5, palette = "plasma")) +
+  # adopt a theme without a gray background
+  theme_classic() +
+  # enclose the plot on all sides with a black line
+  theme(panel.background = element_rect(color = "black",
+                                        size = 1))
 ```
 
 <div class="figure">

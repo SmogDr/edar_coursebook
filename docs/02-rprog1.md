@@ -985,10 +985,10 @@ For these two object classes (vectors and dataframes), we'll look at:
 To get an initial grasp of the *vector* object type in R, think of it as a
 one-dimensional object, or a string of values. Figure \@ref(fig:vector-example)
 provides an example of the structure for a very simple vector, one that holds
-the names of the three main characters in the *Harry Potter* book series.
+the names of three of the main characters in the first episode of the *Hunger Games* series.
 
 <div class="figure" style="text-align: center">
-<img src="figures/example_vector.jpg" alt="An example of the structure of an R object with the vector class. This object class contains data as a string of values, all with the same data type." width="400pt" />
+<img src="figures/example_vector.jpg" alt="An example of the structure of an R object with the vector class. This object class contains data as a string of values, all with the same data type." width="500pt" />
 <p class="caption">(\#fig:vector-example)An example of the structure of an R object with the vector class. This object class contains data as a string of values, all with the same data type.</p>
 </div>
 
@@ -1002,7 +1002,7 @@ Figure \@ref(fig:vector-example-classes) gives some examples of different
 classes of vectors.
 
 <div class="figure" style="text-align: center">
-<img src="figures/vector_class_examples.jpg" alt="Examples of vectors of different classes. All the values in a vector must be of the same type (e.g., all numbers or all characters). There are different classes of vectors depending on the type of data they store." width="400pt" />
+<img src="figures/vector_class_examples.jpg" alt="Examples of vectors of different classes. All the values in a vector must be of the same type (e.g., all numbers or all characters). There are different classes of vectors depending on the type of data they store." width="600pt" />
 <p class="caption">(\#fig:vector-example-classes)Examples of vectors of different classes. All the values in a vector must be of the same type (e.g., all numbers or all characters). There are different classes of vectors depending on the type of data they store.</p>
 </div>
 
@@ -1014,11 +1014,11 @@ can run:
 
 
 ```r
-c("Harry", "Ron", "Hermione")
+c("Katniss", "Peeta", "Rue")
 ```
 
 ```
-## [1] "Harry"    "Ron"      "Hermione"
+## [1] "Katniss" "Peeta"   "Rue"
 ```
 
 If you want to use that object later, you can assign it an object name in the
@@ -1026,12 +1026,12 @@ expression:
 
 
 ```r
-main_characters <- c("Harry", "Ron", "Hermione")
+main_characters <- c("Katniss", "Peeta", "Rue")
 print(x = main_characters)
 ```
 
 ```
-## [1] "Harry"    "Ron"      "Hermione"
+## [1] "Katniss" "Peeta"   "Rue"
 ```
 
 This **assignment expression**, for assigning a vector an object name, follows
@@ -1039,7 +1039,7 @@ the structure we covered earlier for function calls and assignment expressions
 (Figure \@ref(fig:vector-assignment)).
 
 <div class="figure" style="text-align: center">
-<img src="figures/vector_class_examples.jpg" alt="Elements of the assignment expression for creating a vector and assigning it an object name." width="400pt" />
+<img src="figures/vector_class_examples.jpg" alt="Elements of the assignment expression for creating a vector and assigning it an object name." width="600pt" />
 <p class="caption">(\#fig:vector-assignment)Elements of the assignment expression for creating a vector and assigning it an object name.</p>
 </div>
 
@@ -1048,7 +1048,7 @@ marks:
 
 
 ```r
-n_kids <- c(1, 7, 1)
+district <- c(12, 12, 11)
 ```
 
 If you mix classes when you create the vector, R will coerce all the elements
@@ -1102,7 +1102,7 @@ main_characters[2] # Get the second value
 ```
 
 ```
-## [1] "Ron"
+## [1] "Peeta"
 ```
 
 You can use this same method to extract more than one value. You just need to
@@ -1116,7 +1116,7 @@ main_characters[c(1, 3)] # Get first and third values
 ```
 
 ```
-## [1] "Harry"    "Hermione"
+## [1] "Katniss" "Rue"
 ```
 
 The `:` operator can be very helpful with extracting values from a vector. 
@@ -1142,7 +1142,7 @@ main_characters[1:2] # Get the first two values
 ```
 
 ```
-## [1] "Harry" "Ron"
+## [1] "Katniss" "Peeta"
 ```
 
 You can also use logic to pull out some values of a vector. For example, you
@@ -1182,34 +1182,33 @@ conceptual example of a dataframe created from several of the vector examples
 in Figure \@ref(fig:vector-example-classes).
 
 <div class="figure" style="text-align: center">
-<img src="figures/example_dataframe.jpg" alt="An example dataframe created from several vectors of the same length and with observations aligned across vector positions. For example, the first value in each vector provides a value for Harry, the second for Ron." width="400pt" />
-<p class="caption">(\#fig:example-dataframe)An example dataframe created from several vectors of the same length and with observations aligned across vector positions. For example, the first value in each vector provides a value for Harry, the second for Ron.</p>
+<img src="figures/example_dataframe.jpg" alt="An example dataframe created from several vectors of the same length and with observations aligned across vector positions. For example, the first value in each vector provides a value for Katniss, the second for Peeta." width="400pt" />
+<p class="caption">(\#fig:example-dataframe)An example dataframe created from several vectors of the same length and with observations aligned across vector positions. For example, the first value in each vector provides a value for Katniss, the second for Peeta.</p>
 </div>
 
 Here's how the dataframe in Figure \@ref(fig:example-dataframe) will look in R:
 
 
 ```
-## # A tibble: 3 × 4
-##   first_name last_name n_kids survived
-##   <chr>      <chr>      <dbl> <lgl>   
-## 1 Harry      Potter         1 TRUE    
-## 2 Ron        Weasley        7 TRUE    
-## 3 Hermione   Granger        1 TRUE
+## # A tibble: 3 × 3
+##   first_name district survived
+##   <chr>         <dbl> <lgl>   
+## 1 Katniss          12 TRUE    
+## 2 Peeta            12 TRUE    
+## 3 Rue              11 FALSE
 ```
 
 This dataframe is arranged in rows and columns, with names for each column
 (Figure \@ref(fig:annotated-dataframe)). Note that each row of this dataframe
-gives a different observation. In this case, our unit of observation is a Harry
-Potter character. Each column gives a different type of information, including
-first name, last name, birth year, and whether they're still alive for each of
-the observations (i.e., book characters). Notice that the number of elements in
+gives a different observation. In this case, our unit of observation is a Hunger Games
+ character. Each column gives a different type of information, including
+first name, residential district, and whether they're still alive after the first book/film. Notice that the number of elements in
 each of the columns must be the same in this dataframe, but that the different
 columns can have different classes of data (e.g., character vectors for
 `first_name` and `last_name`; logical value of TRUE or FALSE for `alive`).
 
 <div class="figure" style="text-align: center">
-<img src="figures/example_dataframe_labeled.jpg" alt="The elements of a dataframe: columns, rows, and column names." width="400pt" />
+<img src="figures/example_dataframe_labeled.jpg" alt="The elements of a dataframe: columns, rows, and column names." width="600pt" />
 <p class="caption">(\#fig:annotated-dataframe)The elements of a dataframe: columns, rows, and column names.</p>
 </div>
 
@@ -1243,25 +1242,24 @@ package. The general format for using `tibble()` is:
 
 with an equals sign between the column name and column content for each column,
 and commas between each of the columns. Here is an example of the code used to
-create the *Harry Potter* `tibble` dataframe shown above:
+create the *Hunger Games* `tibble` dataframe shown above:
 
 
 ```r
 library(package = "tibble")
-hp_data <- tibble(first_name = c("Harry", "Ron", "Hermione"),
-                  last_name = c("Potter", "Weasley", "Granger"),
-                  n_kids = c(1, 7, 1),
-                  survived = c(TRUE, TRUE, TRUE))
-hp_data
+hg_data <- tibble(first_name = c("Katniss", "Peeta", "Rue"),
+                  district = c(12, 12, 11),
+                  survived = c(TRUE, TRUE, FALSE))
+hg_data
 ```
 
 ```
-## # A tibble: 3 × 4
-##   first_name last_name n_kids survived
-##   <chr>      <chr>      <dbl> <lgl>   
-## 1 Harry      Potter         1 TRUE    
-## 2 Ron        Weasley        7 TRUE    
-## 3 Hermione   Granger        1 TRUE
+## # A tibble: 3 × 3
+##   first_name district survived
+##   <chr>         <dbl> <lgl>   
+## 1 Katniss          12 TRUE    
+## 2 Peeta            12 TRUE    
+## 3 Rue              11 FALSE
 ```
 
 You can also create a dataframe by sticking together vectors you already have
@@ -1269,26 +1267,25 @@ saved as R objects. For example:
 
 
 ```r
-hp_data <- tibble(first_name = main_characters,
-                  last_name = c("Potter", "Weasley", "Granger"),
-                  n_kids = n_kids,
-                  survived = c(TRUE, TRUE, TRUE))
-hp_data
+hg_data <- tibble(first_name = main_characters,
+                  district = district,
+                  survived = c(TRUE, TRUE, FALSE))
+hg_data
 ```
 
 ```
-## # A tibble: 3 × 4
-##   first_name last_name n_kids survived
-##   <chr>      <chr>      <dbl> <lgl>   
-## 1 Harry      Potter         1 TRUE    
-## 2 Ron        Weasley        7 TRUE    
-## 3 Hermione   Granger        1 TRUE
+## # A tibble: 3 × 3
+##   first_name district survived
+##   <chr>         <dbl> <lgl>   
+## 1 Katniss          12 TRUE    
+## 2 Peeta            12 TRUE    
+## 3 Rue              11 FALSE
 ```
 
-Note that this call requires the `main_characters` and `n_kids` vectors to be
+Note that this call requires the `main_characters` and `district` vectors to be
 the same *length*. They don't have to be, and, in this case, are not, the same
 *class* of objects. Specifically, `main_characters` is a character class, and
-`n_kids` is numeric.
+`district` is numeric.
 
 <div class="rmdnote">
 <p>You can put more than one function call in a single line of R code,
@@ -1407,82 +1404,82 @@ package, including `select()` and `slice()`. The `select()` function will pull
 out columns, while the `slice()` function will extract rows. In this chapter,
 we'll talk about  how to extract certain rows or columns of a dataframe by
 their *position* (i.e., based on row or column number). For example, if you
-wanted to get the first two rows of the `hp_data` dataframe, you could run:
+wanted to get the first two rows of the `hg_data` dataframe, you could run:
 
 
 ```r
 library(package = "dplyr")
-slice(.data = hp_data, c(1:2))
+slice(.data = hg_data, c(1:2))
 ```
 
 ```
-## # A tibble: 2 × 4
-##   first_name last_name n_kids survived
-##   <chr>      <chr>      <dbl> <lgl>   
-## 1 Harry      Potter         1 TRUE    
-## 2 Ron        Weasley        7 TRUE
+## # A tibble: 2 × 3
+##   first_name district survived
+##   <chr>         <dbl> <lgl>   
+## 1 Katniss          12 TRUE    
+## 2 Peeta            12 TRUE
 ```
 
-If you wanted to get the first and fourth columns, you could run: 
+If you wanted to get the first and third columns, you could run: 
 
 
 ```r
-select(.data = hp_data, c(1, 4))
+select(.data = hg_data, c(1, 3))
 ```
 
 ```
 ## # A tibble: 3 × 2
 ##   first_name survived
 ##   <chr>      <lgl>   
-## 1 Harry      TRUE    
-## 2 Ron        TRUE    
-## 3 Hermione   TRUE
+## 1 Katniss    TRUE    
+## 2 Peeta      TRUE    
+## 3 Rue        FALSE
 ```
 
 You can compose calls from both functions. For example, you could extract the
-values in the first and fourth columns of the first two rows with: 
+values in the first and third columns of the first two rows with: 
 
 
 ```r
-select(.data = slice(.data = hp_data, c(1:2)), c(1, 4))
+select(.data = slice(.data = hg_data, c(1:2)), c(1, 3))
 ```
 
 ```
 ## # A tibble: 2 × 2
 ##   first_name survived
 ##   <chr>      <lgl>   
-## 1 Harry      TRUE    
-## 2 Ron        TRUE
+## 1 Katniss    TRUE    
+## 2 Peeta      TRUE
 ```
 
 You can use square-bracket indexing (`[..., ...]`) for dataframes, too, but you
 will need to manage two dimensions: rows and columns. Put the rows you want
 before the comma and the columns after; if you want all rows or all columns,
 leave the corresponding spot blank. Here are two examples of using
-square-bracket indexing to pull a subset of the `hp_data` dataframe:
+square-bracket indexing to pull a subset of the `hg_data` dataframe:
 
 
 ```r
-hp_data[1:2, 2] # First two rows, second column
+hg_data[1:2, 2] # First two rows, second column
 ```
 
 ```
 ## # A tibble: 2 × 1
-##   last_name
-##   <chr>    
-## 1 Potter   
-## 2 Weasley
+##   district
+##      <dbl>
+## 1       12
+## 2       12
 ```
 
 ```r
-hp_data[3, ] # Last row, all columns
+hg_data[3, ] # Last row, all columns
 ```
 
 ```
-## # A tibble: 1 × 4
-##   first_name last_name n_kids survived
-##   <chr>      <chr>      <dbl> <lgl>   
-## 1 Hermione   Granger        1 TRUE
+## # A tibble: 1 × 3
+##   first_name district survived
+##   <chr>         <dbl> <lgl>   
+## 1 Rue              11 FALSE
 ```
 
 <div class="rmdnote">

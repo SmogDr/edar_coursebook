@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-07-11" />
+<meta name="date" content="2022-08-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -483,7 +483,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Engineering Data Analysis in R</h1>
 <p class="author"><em>John Volckens</em></p>
-<p class="date"><em>2022-07-11</em></p>
+<p class="date"><em>2022-08-11</em></p>
 </div>
 <div id="intro" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -612,18 +612,18 @@ might not know what this means yet)</li>
 <li>If you’ve installed R and RStudio in the past, please download the latest
 versions and update the R packages with the following code:</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if you&#39;ve previously installed R and RStudio, also update your R packages </span></span>
-<span id="cb6-2"><a href="index.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>, <span class="at">checkBuilt =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if you&#39;ve previously installed R and RStudio, also update your R packages </span></span>
+<span id="cb2-2"><a href="index.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>, <span class="at">checkBuilt =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>If you want to generate PDF output from R Markdown documents, you will also
 need to install LaTex. I suggest taking the following approach in the RStudio
 Console, if you have never installed LaTex. More installation guidance can be found
 <a href="https://bookdown.org/yihui/rmarkdown/installation.html" target="_blank">here</a>.</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="index.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install R package</span></span>
-<span id="cb7-2"><a href="index.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
-<span id="cb7-3"><a href="index.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install LaTex &quot;ingredients&quot;</span></span>
-<span id="cb7-4"><a href="index.html#cb7-4" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install R package</span></span>
+<span id="cb3-2"><a href="index.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
+<span id="cb3-3"><a href="index.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install LaTex &quot;ingredients&quot;</span></span>
+<span id="cb3-4"><a href="index.html#cb3-4" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code></pre></div>
 </div>
 <div id="install-git-and-create-a-github-account" class="section level3 hasAnchor" number="1.4.2">
 <h3><span class="header-section-number">1.4.2</span> Install Git and create a GitHub account<a href="index.html#install-git-and-create-a-github-account" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -638,12 +638,12 @@ this process is easier, as R now uses
 <li><p>Create a <a href="https://github.com" target="_blank">GitHub</a> account. Pick a good <a href="https://happygitwithr.com/github-acct.html" target="_blank">user name</a>!</p></li>
 <li><p><a href="https://happygitwithr.com/hello-git.html" target="_blank">Introduce</a> yourself to Git in RStudio with the following code in the Console. Provide your given name, not your user name, and the email address you used in creating your GitHub account. These commands return nothing, but you can check that it worked with <code>git config --global --list</code> in the <a href="https://happygitwithr.com/shell.html" target="_blank">shell</a>.</p></li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="index.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install `usethis` R package if needed (do this exactly once):</span></span>
-<span id="cb8-2"><a href="index.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages(&quot;usethis&quot;)</span></span>
-<span id="cb8-3"><a href="index.html#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="index.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usethis)</span>
-<span id="cb8-5"><a href="index.html#cb8-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git_config</span>(<span class="at">user.name =</span> <span class="st">&quot;John Doe&quot;</span>, </span>
-<span id="cb8-6"><a href="index.html#cb8-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">user.email =</span> <span class="st">&quot;john.doe@colostate.edu&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install `usethis` R package if needed (do this exactly once):</span></span>
+<span id="cb4-2"><a href="index.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages(&quot;usethis&quot;)</span></span>
+<span id="cb4-3"><a href="index.html#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="index.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usethis)</span>
+<span id="cb4-5"><a href="index.html#cb4-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git_config</span>(<span class="at">user.name =</span> <span class="st">&quot;John Doe&quot;</span>, </span>
+<span id="cb4-6"><a href="index.html#cb4-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">user.email =</span> <span class="st">&quot;john.doe@colostate.edu&quot;</span>)</span></code></pre></div>
 <p>Note: Avoid committing credentials or other sensitive information to GitHub by “<a href="https://github.com/uncoast-unconf/uu-2019-day-zero/blob/master/00-preparation/03-usethis/README.md" target="_blank">vaccinating</a>” with <code>usethis::git_vaccinate()</code>.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Optional but recommended for new users: Consider downloading a <a href="https://happygitwithr.com/git-client.html" target="_blank">GUI Git Client</a> to make
@@ -765,7 +765,7 @@ including:</p>
 <li><a href="https://colostate-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=01COLSU_ALMA21203304500003361&amp;context=L&amp;vid=01COLSU&amp;lang=en_US&amp;search_scope=Everything&amp;adaptor=Local%20Search%20Engine&amp;tab=default_tab&amp;query=any,contains,r%20cookbook&amp;sortby=rank&amp;offset=0" target="_blank">R Cookbook</a></li>
 <li><a href="http://www.amazon.com/R-Graphics-Cookbook-Winston-Chang/dp/1449316956/ref=sr_1_1?ie=UTF8&amp;qid=1440997472&amp;sr=8-1&amp;keywords=r+graphics+cookbook" target="_blank">R Graphics Cookbook</a></li>
 <li><a href="https://leanpub.com/u/rdpeng" target="_blank">Roger Peng’s Leanpub books</a></li>
-<li>Various books on <a href="www.bookdown.org" target="_blank">bookdown.org</a></li>
+<li>Various books on <a href="https://bookdown.org/" target="_blank">bookdown.org</a></li>
 </ul>
 <p>The R programming language is used extensively within certain fields, including
 statistics and bioinformatics. If you are using R for a specific type of

@@ -296,14 +296,15 @@ head(PA_data_1)
 
 ```
 ## # A tibble: 6 × 6
-##   UTCDateTime       current_temp_f current_humidity pressure pm2_5_atm sensor_ID
-##   <chr>                      <dbl>            <dbl>    <dbl>     <dbl> <chr>    
-## 1 2018/10/22T17:52…             90               12     852.      2.45 PA019    
-## 2 2018/10/22T17:53…             86               13     852.      3.43 PA019    
-## 3 2018/10/22T17:55…             87               13     852.      2.76 PA019    
-## 4 2018/10/22T17:56…             87               13     852.      2    PA019    
-## 5 2018/10/22T17:58…             87               13     852.      1.82 PA019    
-## 6 2018/10/22T17:59…             87               13     852.      1.98 PA019
+##   UTCDateTime          current_temp_f current_humidity pressure pm2_5_…¹ senso…²
+##   <chr>                         <dbl>            <dbl>    <dbl>    <dbl> <chr>  
+## 1 2018/10/22T17:52:21z             90               12     852.     2.45 PA019  
+## 2 2018/10/22T17:53:41z             86               13     852.     3.43 PA019  
+## 3 2018/10/22T17:55:01z             87               13     852.     2.76 PA019  
+## 4 2018/10/22T17:56:49z             87               13     852.     2    PA019  
+## 5 2018/10/22T17:58:08z             87               13     852.     1.82 PA019  
+## 6 2018/10/22T17:59:28z             87               13     852.     1.98 PA019  
+## # … with abbreviated variable names ¹​pm2_5_atm, ²​sensor_ID
 ```
 
 The `import.w.name()` function is useful, but not versatile; 
@@ -357,17 +358,17 @@ glimpse(my.list)
 ##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] "audi" "toyota" "chevrolet" "nissan" ...
-##   ..$ model       : chr [1:7] "a4 quattro" "camry" "k1500 tahoe 4wd" "altima" ...
-##   ..$ displ       : num [1:7] 2.8 3.5 5.3 2.4 2.7 2.7 4.6
-##   ..$ year        : int [1:7] 1999 2008 2008 1999 2008 1999 1999
-##   ..$ cyl         : int [1:7] 6 6 8 4 6 4 8
-##   ..$ trans       : chr [1:7] "manual(m5)" "auto(s6)" "auto(l4)" "manual(m5)" ...
-##   ..$ drv         : chr [1:7] "4" "f" "4" "f" ...
-##   ..$ cty         : int [1:7] 17 19 14 21 17 16 11
-##   ..$ hwy         : int [1:7] 25 28 19 29 24 20 17
-##   ..$ fl          : chr [1:7] "p" "r" "r" "r" ...
-##   ..$ class       : chr [1:7] "compact" "midsize" "suv" "compact" ...
+##   ..$ manufacturer: chr [1:7] "volkswagen" "ford" "jeep" "land rover" ...
+##   ..$ model       : chr [1:7] "passat" "f150 pickup 4wd" "grand cherokee 4wd" "range rover" ...
+##   ..$ displ       : num [1:7] 2.8 4.6 4.7 4.6 1.6 2 3
+##   ..$ year        : int [1:7] 1999 1999 1999 1999 1999 2008 2008
+##   ..$ cyl         : int [1:7] 6 8 8 8 4 4 6
+##   ..$ trans       : chr [1:7] "manual(m5)" "auto(l4)" "auto(l4)" "auto(l4)" ...
+##   ..$ drv         : chr [1:7] "f" "4" "4" "4" ...
+##   ..$ cty         : int [1:7] 18 13 14 11 28 19 17
+##   ..$ hwy         : int [1:7] 26 16 17 15 33 27 22
+##   ..$ fl          : chr [1:7] "p" "r" "r" "p" ...
+##   ..$ class       : chr [1:7] "midsize" "pickup" "suv" "suv" ...
 ```
 
 Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 

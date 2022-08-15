@@ -465,15 +465,17 @@ head(df_mpg)
 
 ```
 ## # A tibble: 6 × 13
-##      id make  model        year   cyl displ drive tran  v_class fuel_type comb08
-##   <dbl> <fct> <chr>       <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
-## 1 15589 Acura NSX          2000     6   3   Rear… Auto… Two Se… Premium …     18
-## 2 15590 Acura NSX          2000     6   3.2 Rear… Manu… Two Se… Premium …     18
-## 3 15591 BMW   M Coupe      2000     6   3.2 Rear… Manu… Two Se… Premium …     19
-## 4 15592 BMW   Z3 Coupe     2000     6   2.8 Rear… Auto… Two Se… Premium …     19
-## 5 15593 BMW   Z3 Coupe     2000     6   2.8 Rear… Manu… Two Se… Premium …     19
-## 6 15594 BMW   Z3 Roadster  2000     6   2.5 Rear… Auto… Two Se… Premium …     19
-## # … with 2 more variables: highway08 <dbl>, city08 <dbl>
+##      id make  model  year   cyl displ drive tran  v_class fuel_…¹ comb08 highw…²
+##   <dbl> <fct> <chr> <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>    <dbl>   <dbl>
+## 1 15589 Acura NSX    2000     6   3   Rear… Auto… Two Se… Premiu…     18      22
+## 2 15590 Acura NSX    2000     6   3.2 Rear… Manu… Two Se… Premiu…     18      22
+## 3 15591 BMW   M Co…  2000     6   3.2 Rear… Manu… Two Se… Premiu…     19      23
+## 4 15592 BMW   Z3 C…  2000     6   2.8 Rear… Auto… Two Se… Premiu…     19      24
+## 5 15593 BMW   Z3 C…  2000     6   2.8 Rear… Manu… Two Se… Premiu…     19      24
+## 6 15594 BMW   Z3 R…  2000     6   2.5 Rear… Auto… Two Se… Premiu…     19      24
+## # … with 1 more variable: city08 <dbl>, and abbreviated variable names
+## #   ¹​fuel_type, ²​highway08
+## # ℹ Use `colnames()` to see all variable names
 ```
 
 Next, let's take a look at some of the factor levels. There are lots of ways
@@ -570,19 +572,21 @@ df_mpg %>%
 
 ```
 ## # A tibble: 370 × 13
-##       id make   model      year   cyl displ drive tran  v_class fuel_type comb08
-##    <dbl> <fct>  <chr>     <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
-##  1 16423 Nissan Altra EV   2000    NA    NA <NA>  <NA>  Midsiz… Electric…     85
-##  2 16424 Toyota RAV4 EV    2000    NA    NA 2-Wh… <NA>  Sport … Electric…     72
-##  3 17328 Toyota RAV4 EV    2001    NA    NA 2-Wh… <NA>  Sport … Electric…     72
-##  4 17329 Ford   Th!nk      2001    NA    NA <NA>  <NA>  Two Se… Electric…     65
-##  5 17330 Ford   Explorer…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     39
-##  6 17331 Nissan Hyper-Mi…  2001    NA    NA <NA>  <NA>  Two Se… Electric…     75
-##  7 18290 Toyota RAV4 EV    2002    NA    NA 2-Wh… <NA>  Sport … Electric…     78
-##  8 18291 Ford   Explorer…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     39
-##  9 19296 Toyota RAV4 EV    2003    NA    NA 2-Wh… <NA>  Sport … Electric…     78
-## 10 30965 Ford   Ranger P…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
-## # … with 360 more rows, and 2 more variables: highway08 <dbl>, city08 <dbl>
+##       id make   model        year   cyl displ drive tran  v_class fuel_…¹ comb08
+##    <dbl> <fct>  <chr>       <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>    <dbl>
+##  1 16423 Nissan Altra EV     2000    NA    NA <NA>  <NA>  Midsiz… Electr…     85
+##  2 16424 Toyota RAV4 EV      2000    NA    NA 2-Wh… <NA>  Sport … Electr…     72
+##  3 17328 Toyota RAV4 EV      2001    NA    NA 2-Wh… <NA>  Sport … Electr…     72
+##  4 17329 Ford   Th!nk        2001    NA    NA <NA>  <NA>  Two Se… Electr…     65
+##  5 17330 Ford   Explorer U…  2001    NA    NA 2-Wh… <NA>  Sport … Electr…     39
+##  6 17331 Nissan Hyper-Mini   2001    NA    NA <NA>  <NA>  Two Se… Electr…     75
+##  7 18290 Toyota RAV4 EV      2002    NA    NA 2-Wh… <NA>  Sport … Electr…     78
+##  8 18291 Ford   Explorer U…  2002    NA    NA 2-Wh… <NA>  Sport … Electr…     39
+##  9 19296 Toyota RAV4 EV      2003    NA    NA 2-Wh… <NA>  Sport … Electr…     78
+## 10 30965 Ford   Ranger Pic…  2001    NA    NA 2-Wh… Auto… Standa… Electr…     58
+## # … with 360 more rows, 2 more variables: highway08 <dbl>, city08 <dbl>, and
+## #   abbreviated variable name ¹​fuel_type
+## # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 Here, we discover that most of the the `NA` values are in the `cyl`, `displ`, 
@@ -636,19 +640,21 @@ df_mpg %>%
 
 ```
 ## # A tibble: 370 × 13
-##       id make   model      year   cyl displ drive tran  v_class fuel_type comb08
-##    <dbl> <fct>  <chr>     <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
-##  1 16423 Nissan Altra EV   2000    NA    NA <NA>  <NA>  Midsiz… Electric…     85
-##  2 16424 Toyota RAV4 EV    2000    NA    NA 2-Wh… <NA>  Sport … Electric…     72
-##  3 17328 Toyota RAV4 EV    2001    NA    NA 2-Wh… <NA>  Sport … Electric…     72
-##  4 17329 Ford   Th!nk      2001    NA    NA <NA>  <NA>  Two Se… Electric…     65
-##  5 17330 Ford   Explorer…  2001    NA    NA 2-Wh… <NA>  Sport … Electric…     39
-##  6 17331 Nissan Hyper-Mi…  2001    NA    NA <NA>  <NA>  Two Se… Electric…     75
-##  7 18290 Toyota RAV4 EV    2002    NA    NA 2-Wh… <NA>  Sport … Electric…     78
-##  8 18291 Ford   Explorer…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     39
-##  9 19296 Toyota RAV4 EV    2003    NA    NA 2-Wh… <NA>  Sport … Electric…     78
-## 10 30965 Ford   Ranger P…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
-## # … with 360 more rows, and 2 more variables: highway08 <dbl>, city08 <dbl>
+##       id make   model        year   cyl displ drive tran  v_class fuel_…¹ comb08
+##    <dbl> <fct>  <chr>       <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>    <dbl>
+##  1 16423 Nissan Altra EV     2000    NA    NA <NA>  <NA>  Midsiz… Electr…     85
+##  2 16424 Toyota RAV4 EV      2000    NA    NA 2-Wh… <NA>  Sport … Electr…     72
+##  3 17328 Toyota RAV4 EV      2001    NA    NA 2-Wh… <NA>  Sport … Electr…     72
+##  4 17329 Ford   Th!nk        2001    NA    NA <NA>  <NA>  Two Se… Electr…     65
+##  5 17330 Ford   Explorer U…  2001    NA    NA 2-Wh… <NA>  Sport … Electr…     39
+##  6 17331 Nissan Hyper-Mini   2001    NA    NA <NA>  <NA>  Two Se… Electr…     75
+##  7 18290 Toyota RAV4 EV      2002    NA    NA 2-Wh… <NA>  Sport … Electr…     78
+##  8 18291 Ford   Explorer U…  2002    NA    NA 2-Wh… <NA>  Sport … Electr…     39
+##  9 19296 Toyota RAV4 EV      2003    NA    NA 2-Wh… <NA>  Sport … Electr…     78
+## 10 30965 Ford   Ranger Pic…  2001    NA    NA 2-Wh… Auto… Standa… Electr…     58
+## # … with 360 more rows, 2 more variables: highway08 <dbl>, city08 <dbl>, and
+## #   abbreviated variable name ¹​fuel_type
+## # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 #### Example 3: Missing Data
