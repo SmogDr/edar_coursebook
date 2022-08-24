@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-08-11" />
+<meta name="date" content="2022-08-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -696,10 +696,10 @@ R):</p>
 <li>Everything that happens in R is a <strong>call to a function</strong></li>
 </ol>
 <p>In general, function calls in R take the following structure:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rprog1.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generic code (this won&#39;t run)</span></span>
-<span id="cb1-2"><a href="rprog1.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">function_name</span>(<span class="at">formal_argument_1 =</span> named_argument_1, </span>
-<span id="cb1-3"><a href="rprog1.html#cb1-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">formal_argument_2 =</span> named_argument_2,</span>
-<span id="cb1-4"><a href="rprog1.html#cb1-4" aria-hidden="true" tabindex="-1"></a>              [etc.])</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="rprog1.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generic code (this won&#39;t run)</span></span>
+<span id="cb5-2"><a href="rprog1.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">function_name</span>(<span class="at">formal_argument_1 =</span> named_argument_1, </span>
+<span id="cb5-3"><a href="rprog1.html#cb5-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">formal_argument_2 =</span> named_argument_2,</span>
+<span id="cb5-4"><a href="rprog1.html#cb5-4" aria-hidden="true" tabindex="-1"></a>              [etc.])</span></code></pre></div>
 <div class="rmdwarning">
 <p>
 Sometimes, we’ll show “generic” code in a code block, that doesn’t
@@ -711,7 +711,7 @@ generic code, so you’ll know not to try to run it in R.
 <p>A function call forms a complete R expression, and the output will be the
 result of running <code>print()</code> or <code>show()</code> on the object that is output by the
 function call. Here is an example of this structure:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rprog1.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> <span class="st">&quot;Hello, world!&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rprog1.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> <span class="st">&quot;Hello, world!&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello, world!&quot;</code></pre>
 <p>Figure <a href="rprog1.html#fig:function-call">2.4</a> shows an example of the typical elements of a
 function call. In this example, we’re <strong>calling</strong> a function with the <strong>name</strong>
@@ -726,27 +726,27 @@ Figure 2.4: Main parts of a function call. This example is calling a function wi
 <p>The <strong>arguments</strong> are how you customize the call to an R function. For example,
 you can use change the named argument value to print different messages with
 the <code>print()</code> function. Note that the formal argument never changes.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rprog1.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> <span class="st">&quot;Hello, world!&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="rprog1.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> <span class="st">&quot;Hello, world!&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello, world!&quot;</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rprog1.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> <span class="st">&quot;Hi, Fort Collins!&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="rprog1.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> <span class="st">&quot;Hi, Fort Collins!&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hi, Fort Collins!&quot;</code></pre>
 <p>Some functions do not require any arguments. For example, the <code>getRversion()</code>
 function will print out the version of R you are using.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="rprog1.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getRversion</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="rprog1.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getRversion</span>()</span></code></pre></div>
 <pre><code>## [1] &#39;4.2.1&#39;</code></pre>
 <p>Some functions will accept multiple arguments. For example, the <code>print()</code>
 function allows you to specify whether the output should include quotation
 marks, using the <code>quote</code> formal argument:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="rprog1.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> <span class="st">&quot;Hello world&quot;</span>, <span class="at">quote =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="rprog1.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> <span class="st">&quot;Hello world&quot;</span>, <span class="at">quote =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello world&quot;</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="rprog1.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> <span class="st">&quot;Hello world&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="rprog1.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> <span class="st">&quot;Hello world&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## [1] Hello world</code></pre>
 <p>Arguments can be <strong>required</strong> or <strong>optional</strong>.</p>
 <p>For a required argument, if you don’t provide a value for the argument when you
 call the function, R will respond with an error. For example, <code>x</code> is a
 <strong>required argument</strong> for the <code>print()</code> function, so if you try to call the
 function without it, you’ll get an error:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="rprog1.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="rprog1.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>()</span></code></pre></div>
 <pre><code>Error in print.default() : argument &quot;x&quot; is 
   missing, with no default</code></pre>
 <p>For an <strong>optional argument</strong> on the other hand, R knows a <strong>default value</strong> for
@@ -756,9 +756,9 @@ use the default value provided by the R developer who wrote the function.</p>
 value <code>TRUE</code>. So if you don’t specify a value for that argument, R will assume
 it should use <code>quote = TRUE</code>. That’s why the following two calls give the same
 result:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="rprog1.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> <span class="st">&quot;Hello, world!&quot;</span>, <span class="at">quote =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="rprog1.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> <span class="st">&quot;Hello, world!&quot;</span>, <span class="at">quote =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello, world!&quot;</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="rprog1.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> <span class="st">&quot;Hello, world!&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="rprog1.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> <span class="st">&quot;Hello, world!&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello, world!&quot;</code></pre>
 <p>Often, you’ll want to find out more about a function, including:</p>
 <ul>
@@ -771,7 +771,7 @@ result:</p>
 can access using the function <code>?</code>. For example, the <code>mean()</code> function will let
 you calculate the mean (average) of a group of numbers. To find out more about
 this function, at the console type:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="rprog1.html#cb20-1" aria-hidden="true" tabindex="-1"></a>?mean</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="rprog1.html#cb24-1" aria-hidden="true" tabindex="-1"></a>?mean</span></code></pre></div>
 <p>This will open a helpfile in the “Help” pane in RStudio. Figure <a href="rprog1.html#fig:helpfile">2.5</a> shows some of the key elements of an example helpfile, the
 helpfile for the <code>mean()</code> function. In particular, the “Usage” section helps
 you figure out which arguments are <strong>required</strong> and which are <strong>optional</strong> in
@@ -786,7 +786,7 @@ Figure 2.5: Navigating a helpfile. This example shows some key parts of the help
 are the infix <strong>operator</strong> functions. Instead using parentheses after the
 function name, they usually go <em>between</em> two arguments. One common example is
 the <code>+</code> operator:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="rprog1.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="rprog1.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p>There are operators for several mathematical functions: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>.
 There are also other operators, including <strong>logical operators</strong> and
@@ -810,19 +810,19 @@ that data later, you won’t need to read it in again from the external file.</p
 <p>The <strong>“gets arrow”</strong> (<code>&lt;-</code>) is R’s assignment operator. It takes whatever
 you’ve created on the right hand side of the <code>&lt;-</code> and saves it as an object
 with the name you put on the left hand side of the <code>&lt;-</code>:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="rprog1.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generic code-- this will not work</span></span>
-<span id="cb23-2"><a href="rprog1.html#cb23-2" aria-hidden="true" tabindex="-1"></a>[object name] <span class="ot">&lt;-</span> [object]</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="rprog1.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generic code-- this will not work</span></span>
+<span id="cb27-2"><a href="rprog1.html#cb27-2" aria-hidden="true" tabindex="-1"></a>[object name] <span class="ot">&lt;-</span> [object]</span></code></pre></div>
 <p>For example, if I just type <code>"Hello, world!"</code>, R will print it back to me, but
 it won’t save it anywhere for me to use later:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="rprog1.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Hello, world!&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="rprog1.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Hello, world!&quot;</span></span></code></pre></div>
 <pre><code>## [1] &quot;Hello, world!&quot;</code></pre>
 <p>If I assign it to an object, I can “refer” to that object in a later
 expression. For example, the code below assigns the <strong>object</strong>
 <code>"Hello, world!"</code> the <strong>object name</strong> <code>message</code>. Later, I can just refer to
 this object using the name <code>message</code>, for example in a function call to the
 <code>print()</code> function:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="rprog1.html#cb26-1" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="st">&quot;Hello, world!&quot;</span></span>
-<span id="cb26-2"><a href="rprog1.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> message)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="rprog1.html#cb30-1" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="st">&quot;Hello, world!&quot;</span></span>
+<span id="cb30-2"><a href="rprog1.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> message)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello, world!&quot;</code></pre>
 <p>When you enter an <strong>assignment expression</strong> like this at the R console, if
 everything goes right, then R will “respond” by giving you a new prompt,
@@ -841,12 +841,12 @@ names that have been assigned in the current R session.</li>
 <ol style="list-style-type: decimal">
 <li>Enter the object’s name at the prompt and press return:</li>
 </ol>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="rprog1.html#cb28-1" aria-hidden="true" tabindex="-1"></a>message</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="rprog1.html#cb32-1" aria-hidden="true" tabindex="-1"></a>message</span></code></pre></div>
 <pre><code>## [1] &quot;Hello, world!&quot;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Call the <code>ls()</code> function:</li>
 </ol>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="rprog1.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="rprog1.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;message&quot;</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Look in the “Environment” pane in RStudio (see Figure <a href="rprog1.html#fig:environment">2.6</a>).</li>
@@ -880,9 +880,9 @@ RStudio keyboard shortcuts, go to the “Help” tab in RStudio and select
 <p>If you try to assign an object to a name that doesn’t follow the “hard” rules,
 you’ll get an error. For example, all of these expressions will give you an
 error:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="rprog1.html#cb32-1" aria-hidden="true" tabindex="-1"></a>1message <span class="ot">&lt;-</span> <span class="st">&quot;Hello world&quot;</span></span>
-<span id="cb32-2"><a href="rprog1.html#cb32-2" aria-hidden="true" tabindex="-1"></a>_message <span class="ot">&lt;-</span> <span class="st">&quot;Hello world&quot;</span></span>
-<span id="cb32-3"><a href="rprog1.html#cb32-3" aria-hidden="true" tabindex="-1"></a>message<span class="sc">!</span> <span class="er">&lt;</span><span class="sc">-</span> <span class="st">&quot;Hello world&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="rprog1.html#cb36-1" aria-hidden="true" tabindex="-1"></a>1message <span class="ot">&lt;-</span> <span class="st">&quot;Hello world&quot;</span></span>
+<span id="cb36-2"><a href="rprog1.html#cb36-2" aria-hidden="true" tabindex="-1"></a>_message <span class="ot">&lt;-</span> <span class="st">&quot;Hello world&quot;</span></span>
+<span id="cb36-3"><a href="rprog1.html#cb36-3" aria-hidden="true" tabindex="-1"></a>message<span class="sc">!</span> <span class="er">&lt;</span><span class="sc">-</span> <span class="st">&quot;Hello world&quot;</span></span></code></pre></div>
 <p>In addition to these fixed rules, there are also some guidelines for naming
 objects that you should adopt now, since they will make your life easier as you
 advance to writing more complex code in R. The following three guidelines for
@@ -928,24 +928,24 @@ variables</a> to find out more.
 <p>What if you want to “compose” a call from more than one function call? One way
 to do it is to assign the output from the first function call to a name and
 then use that name for the next call. For example:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="rprog1.html#cb33-1" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;world&quot;</span>)</span>
-<span id="cb33-2"><a href="rprog1.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> message)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="rprog1.html#cb37-1" aria-hidden="true" tabindex="-1"></a>message <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;world&quot;</span>)</span>
+<span id="cb37-2"><a href="rprog1.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> message)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello world&quot;</code></pre>
 <p>If you give two objects the same name, the most recent definition will be used;
 objects can be overwritten by assigning new content to the same object name.
 For example:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="rprog1.html#cb35-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb35-2"><a href="rprog1.html#cb35-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> LETTERS [<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
-<span id="cb35-3"><a href="rprog1.html#cb35-3" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="rprog1.html#cb39-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb39-2"><a href="rprog1.html#cb39-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> LETTERS [<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb39-3"><a href="rprog1.html#cb39-3" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="rprog1.html#cb37-1" aria-hidden="true" tabindex="-1"></a>b</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="rprog1.html#cb41-1" aria-hidden="true" tabindex="-1"></a>b</span></code></pre></div>
 <pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot;</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="rprog1.html#cb39-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> b</span>
-<span id="cb39-2"><a href="rprog1.html#cb39-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="rprog1.html#cb43-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> b</span>
+<span id="cb43-2"><a href="rprog1.html#cb43-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
 <pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot;</code></pre>
 <p>To create an R expression you can “nest” one function call inside another
 function call. For example:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="rprog1.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> <span class="fu">paste</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;world&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="rprog1.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> <span class="fu">paste</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;world&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;Hello world&quot;</code></pre>
 <p>Just like with math, the order that the functions are evaluated moves from the
 inner set of parentheses to the outer one (Figure <a href="rprog1.html#fig:composing-functions">2.7</a>). There’s one more way we’ll look at later
@@ -998,7 +998,7 @@ either from the console or from within another script by using the <code>source(
 function, with the filename of the script you want to run as the argument. For
 example, to run all of the code in a file named “MyFile.R” that is saved in
 your current working directory, run:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="rprog1.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;MyFile.R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="rprog1.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;MyFile.R&quot;</span>)</span></code></pre></div>
 <p>While it’s generally best to write your R code in a script and run it from
 there rather than entering it interactively at the R console, there are some
 exceptions. A main example is when you’re initially checking out a dataset to
@@ -1024,7 +1024,7 @@ that starts with <code>#</code> in a script. For example, if you run the followi
 <p>You can also use a comment in the middle of a line, to add a note on what
 you’re doing in that line of the code. R will skip any part of the code from
 the hash symbol on. For example:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="rprog1.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Print this&quot;</span> <span class="co"># But not this, it&#39;s a comment.</span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="rprog1.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Print this&quot;</span> <span class="co"># But not this, it&#39;s a comment.</span></span></code></pre></div>
 <pre><code>## [1] &quot;Print this&quot;</code></pre>
 <p>There’s usually no reason to use code comments when running commands at the R
 console; however, it’s very important to get in the practice of including
@@ -1098,7 +1098,7 @@ Figure 2.12: Telephone keypad with letters corresponding to each number.
 numbers and letters based on the telephone keypad. Since this package is on
 CRAN, you can install the package to your computer using the
 <code>install.packages()</code> function:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="rprog1.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="at">pkgs =</span> <span class="st">&quot;phonenumber&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="rprog1.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="at">pkgs =</span> <span class="st">&quot;phonenumber&quot;</span>)</span></code></pre></div>
 <p>This downloads the package from CRAN and saves it in a special location on your
 computer where R can load it when you’re ready to use it. Once you’ve installed
 a package to your computer this way, you don’t need to re-run this
@@ -1117,7 +1117,7 @@ in that R session. Loading a package essentially makes all of the package’s
 functions available to you.</p>
 <p>You can load a package in an R session using the <code>library()</code> function, with the
 package name inside the parentheses.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="rprog1.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;phonenumber&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="rprog1.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;phonenumber&quot;</span>)</span></code></pre></div>
 <p>Figure <a href="rprog1.html#fig:install-vs-load">2.13</a> provides a conceptual picture of the
 different steps of installing and loading a package.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:install-vs-load"></span>
@@ -1132,8 +1132,8 @@ called <code>letterToNumber()</code> that converts a character string to a numbe
 have not loaded the <code>phonenumber</code> package in your current R session and try to
 use this function, you will get an error. Once you’ve loaded <code>phonenumber</code>
 using the <code>library()</code> function, you can use this function in your R session:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="rprog1.html#cb48-1" aria-hidden="true" tabindex="-1"></a>fedex_number <span class="ot">&lt;-</span> <span class="st">&quot;GoFedEx&quot;</span></span>
-<span id="cb48-2"><a href="rprog1.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">letterToNumber</span>(<span class="at">value =</span> fedex_number)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="rprog1.html#cb52-1" aria-hidden="true" tabindex="-1"></a>fedex_number <span class="ot">&lt;-</span> <span class="st">&quot;GoFedEx&quot;</span></span>
+<span id="cb52-2"><a href="rprog1.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">letterToNumber</span>(<span class="at">value =</span> fedex_number)</span></code></pre></div>
 <pre><code>## [1] &quot;4633339&quot;</code></pre>
 <div class="rmdnote">
 <p>
@@ -1155,7 +1155,7 @@ will need for analysis in that session.</p>
 if it implements a nonstandard algorithm or method. You can use the
 <code>citation()</code> function to get the information you need about how to cite a
 package:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="rprog1.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="at">package =</span> <span class="st">&quot;phonenumber&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="rprog1.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="at">package =</span> <span class="st">&quot;phonenumber&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## To cite package &#39;phonenumber&#39; in publications use:
 ## 
@@ -1199,16 +1199,16 @@ share functions with the same name.
 <p>To determine which vignettes are available for a package, you can use the
 <code>vignette()</code> function, with the package’s name specified for the <code>package</code>
 option:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="rprog1.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="at">package =</span> <span class="st">&quot;phonenumber&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="rprog1.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="at">package =</span> <span class="st">&quot;phonenumber&quot;</span>)</span></code></pre></div>
 <p>From the output of this, you can call any of the package’s vignettes directly.
 For example, the previous call tells you that this package only has one
 vignette, and that vignette has the same name as the package (“phonenumber”).
 Once you know the name of the vignette you would like to open, you can also use
 <code>vignette()</code> to open it:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="rprog1.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="at">topic =</span> <span class="st">&quot;phonenumber&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="rprog1.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="at">topic =</span> <span class="st">&quot;phonenumber&quot;</span>)</span></code></pre></div>
 <p>To access the helpfile for any function within a package you’ve loaded, you can
 use <code>?</code> followed by the function’s name, but note the lack of <code>()</code>:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="rprog1.html#cb54-1" aria-hidden="true" tabindex="-1"></a>?letterToNumber</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="rprog1.html#cb58-1" aria-hidden="true" tabindex="-1"></a>?letterToNumber</span></code></pre></div>
 </div>
 </div>
 <div id="rs-most-basic-object-types" class="section level2 hasAnchor" number="2.6">
@@ -1262,12 +1262,12 @@ function, <code>c()</code> to join them together, with commas between the elemen
 <em>concatenate</em> is a fancy word that means “to link together”. For example, to
 create the vector shown in Figure <a href="rprog1.html#fig:vector-example">2.14</a>, you
 can run:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="rprog1.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;Katniss&quot;</span>, <span class="st">&quot;Peeta&quot;</span>, <span class="st">&quot;Rue&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="rprog1.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;Katniss&quot;</span>, <span class="st">&quot;Peeta&quot;</span>, <span class="st">&quot;Rue&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Katniss&quot; &quot;Peeta&quot;   &quot;Rue&quot;</code></pre>
 <p>If you want to use that object later, you can assign it an object name in the
 expression:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="rprog1.html#cb57-1" aria-hidden="true" tabindex="-1"></a>main_characters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Katniss&quot;</span>, <span class="st">&quot;Peeta&quot;</span>, <span class="st">&quot;Rue&quot;</span>)</span>
-<span id="cb57-2"><a href="rprog1.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> main_characters)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="rprog1.html#cb61-1" aria-hidden="true" tabindex="-1"></a>main_characters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Katniss&quot;</span>, <span class="st">&quot;Peeta&quot;</span>, <span class="st">&quot;Rue&quot;</span>)</span>
+<span id="cb61-2"><a href="rprog1.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">x =</span> main_characters)</span></code></pre></div>
 <pre><code>## [1] &quot;Katniss&quot; &quot;Peeta&quot;   &quot;Rue&quot;</code></pre>
 <p>This <strong>assignment expression</strong>, for assigning a vector an object name, follows
 the structure we covered earlier for function calls and assignment expressions
@@ -1280,20 +1280,20 @@ Figure 2.16: Elements of the assignment expression for creating a vector and ass
 </div>
 <p>If you create a numeric vector, you should not put the values in quotation
 marks:</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="rprog1.html#cb59-1" aria-hidden="true" tabindex="-1"></a>district <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">12</span>, <span class="dv">11</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="rprog1.html#cb63-1" aria-hidden="true" tabindex="-1"></a>district <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">12</span>, <span class="dv">11</span>)</span></code></pre></div>
 <p>If you mix classes when you create the vector, R will coerce all the elements
 to most generic class of the included elements:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="rprog1.html#cb60-1" aria-hidden="true" tabindex="-1"></a>mixed_classes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="st">&quot;five&quot;</span>)</span>
-<span id="cb60-2"><a href="rprog1.html#cb60-2" aria-hidden="true" tabindex="-1"></a>mixed_classes</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="rprog1.html#cb64-1" aria-hidden="true" tabindex="-1"></a>mixed_classes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="st">&quot;five&quot;</span>)</span>
+<span id="cb64-2"><a href="rprog1.html#cb64-2" aria-hidden="true" tabindex="-1"></a>mixed_classes</span></code></pre></div>
 <pre><code>## [1] &quot;1&quot;    &quot;3&quot;    &quot;five&quot;</code></pre>
 <p>Notice that the two integers, 1 and 3, are now in quotation marks because they
 were put in a vector with a value with the character data type. You can use the
 <code>class()</code> function to determine the class of an object:</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="rprog1.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="at">x =</span> mixed_classes)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="rprog1.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="at">x =</span> mixed_classes)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>A vector’s <em>length</em> is the number of elements in the vector. You can use the
 <code>length()</code> function to determine a vector’s length:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="rprog1.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="at">x =</span> mixed_classes)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="rprog1.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="at">x =</span> mixed_classes)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>Once you create an object, you will often want to reference the whole object in
 future code. Nonetheless, there will be some times when you’ll want to
@@ -1301,23 +1301,23 @@ reference only certain elements of the object. You can pull out certain values
 from a vector by using indexing with square brackets (<code>[...]</code>) to identify the
 locations of the element you want to extract. For example, to extract the
 second element of the <code>main_characters</code> vector, you can run:</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="rprog1.html#cb66-1" aria-hidden="true" tabindex="-1"></a>main_characters[<span class="dv">2</span>] <span class="co"># Get the second value</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="rprog1.html#cb70-1" aria-hidden="true" tabindex="-1"></a>main_characters[<span class="dv">2</span>] <span class="co"># Get the second value</span></span></code></pre></div>
 <pre><code>## [1] &quot;Peeta&quot;</code></pre>
 <p>You can use this same method to extract more than one value. You just need to
 create a numeric vector with the position of each element you want to extract
 and pass that in the square brackets. For example, to extract the first and
 third elements of the <code>main_characters</code> vector, you can run:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="rprog1.html#cb68-1" aria-hidden="true" tabindex="-1"></a>main_characters[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)] <span class="co"># Get first and third values</span></span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="rprog1.html#cb72-1" aria-hidden="true" tabindex="-1"></a>main_characters[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)] <span class="co"># Get first and third values</span></span></code></pre></div>
 <pre><code>## [1] &quot;Katniss&quot; &quot;Rue&quot;</code></pre>
 <p>The <code>:</code> operator can be very helpful with extracting values from a vector.
 This operator creates a sequence of values from the value before the <code>:</code> to the
 value after <code>:</code>, going by units of 1. For example, if you want to create a list
 of the numbers between 1 and 10, you can run:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="rprog1.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="rprog1.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <p>If you want to extract the first two values from the <code>main_characters</code> vector,
 you can use the <code>:</code> operator:</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="rprog1.html#cb72-1" aria-hidden="true" tabindex="-1"></a>main_characters[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="co"># Get the first two values</span></span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="rprog1.html#cb76-1" aria-hidden="true" tabindex="-1"></a>main_characters[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="co"># Get the first two values</span></span></code></pre></div>
 <pre><code>## [1] &quot;Katniss&quot; &quot;Peeta&quot;</code></pre>
 <p>You can also use logic to pull out some values of a vector. For example, you
 might only want to pull out even values from the <code>fibonacci</code> vector.</p>
@@ -1406,17 +1406,17 @@ makes it so great.
 </div>
 <p>To create a dataframe, you can use the <code>tibble()</code> function from the <code>tibble</code>
 package. The general format for using <code>tibble()</code> is:</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="rprog1.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="do">## generic code; will not run</span></span>
-<span id="cb75-2"><a href="rprog1.html#cb75-2" aria-hidden="true" tabindex="-1"></a>[name of object] <span class="ot">&lt;-</span> <span class="fu">tibble</span>([1st column name] <span class="ot">=</span> [1st column content],</span>
-<span id="cb75-3"><a href="rprog1.html#cb75-3" aria-hidden="true" tabindex="-1"></a>                           [2nd column name] <span class="ot">=</span> [2nd column content])</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="rprog1.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="do">## generic code; will not run</span></span>
+<span id="cb79-2"><a href="rprog1.html#cb79-2" aria-hidden="true" tabindex="-1"></a>[name of object] <span class="ot">&lt;-</span> <span class="fu">tibble</span>([1st column name] <span class="ot">=</span> [1st column content],</span>
+<span id="cb79-3"><a href="rprog1.html#cb79-3" aria-hidden="true" tabindex="-1"></a>                           [2nd column name] <span class="ot">=</span> [2nd column content])</span></code></pre></div>
 <p>with an equals sign between the column name and column content for each column,
 and commas between each of the columns. Here is an example of the code used to
 create the <em>Hunger Games</em> <code>tibble</code> dataframe shown above:</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="rprog1.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;tibble&quot;</span>)</span>
-<span id="cb76-2"><a href="rprog1.html#cb76-2" aria-hidden="true" tabindex="-1"></a>hg_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">first_name =</span> <span class="fu">c</span>(<span class="st">&quot;Katniss&quot;</span>, <span class="st">&quot;Peeta&quot;</span>, <span class="st">&quot;Rue&quot;</span>),</span>
-<span id="cb76-3"><a href="rprog1.html#cb76-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">district =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">12</span>, <span class="dv">11</span>),</span>
-<span id="cb76-4"><a href="rprog1.html#cb76-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">survived =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb76-5"><a href="rprog1.html#cb76-5" aria-hidden="true" tabindex="-1"></a>hg_data</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="rprog1.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;tibble&quot;</span>)</span>
+<span id="cb80-2"><a href="rprog1.html#cb80-2" aria-hidden="true" tabindex="-1"></a>hg_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">first_name =</span> <span class="fu">c</span>(<span class="st">&quot;Katniss&quot;</span>, <span class="st">&quot;Peeta&quot;</span>, <span class="st">&quot;Rue&quot;</span>),</span>
+<span id="cb80-3"><a href="rprog1.html#cb80-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">district =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">12</span>, <span class="dv">11</span>),</span>
+<span id="cb80-4"><a href="rprog1.html#cb80-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">survived =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
+<span id="cb80-5"><a href="rprog1.html#cb80-5" aria-hidden="true" tabindex="-1"></a>hg_data</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 3
 ##   first_name district survived
 ##   &lt;chr&gt;         &lt;dbl&gt; &lt;lgl&gt;   
@@ -1425,10 +1425,10 @@ create the <em>Hunger Games</em> <code>tibble</code> dataframe shown above:</p>
 ## 3 Rue              11 FALSE</code></pre>
 <p>You can also create a dataframe by sticking together vectors you already have
 saved as R objects. For example:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="rprog1.html#cb78-1" aria-hidden="true" tabindex="-1"></a>hg_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">first_name =</span> main_characters,</span>
-<span id="cb78-2"><a href="rprog1.html#cb78-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">district =</span> district,</span>
-<span id="cb78-3"><a href="rprog1.html#cb78-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">survived =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb78-4"><a href="rprog1.html#cb78-4" aria-hidden="true" tabindex="-1"></a>hg_data</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="rprog1.html#cb82-1" aria-hidden="true" tabindex="-1"></a>hg_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">first_name =</span> main_characters,</span>
+<span id="cb82-2"><a href="rprog1.html#cb82-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">district =</span> district,</span>
+<span id="cb82-3"><a href="rprog1.html#cb82-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">survived =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
+<span id="cb82-4"><a href="rprog1.html#cb82-4" aria-hidden="true" tabindex="-1"></a>hg_data</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 3
 ##   first_name district survived
 ##   &lt;chr&gt;         &lt;dbl&gt; &lt;lgl&gt;   
@@ -1457,20 +1457,20 @@ guests that came on the <em>Daily Show</em>, <em>circa</em> Jon Stewart. If you 
 data in a comma-separated (csv) file on your computer called
 “daily_show_guests.csv”, you can read it into your R session with the following
 code:</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="rprog1.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;readr&quot;</span>)</span>
-<span id="cb80-2"><a href="rprog1.html#cb80-2" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;daily_show_guests.csv&quot;</span>,</span>
-<span id="cb80-3"><a href="rprog1.html#cb80-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">skip =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="rprog1.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;readr&quot;</span>)</span>
+<span id="cb84-2"><a href="rprog1.html#cb84-2" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;daily_show_guests.csv&quot;</span>,</span>
+<span id="cb84-3"><a href="rprog1.html#cb84-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">skip =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p>In this code, the <code>read_csv()</code> function is reading in the data from the file
 “daily_show_guests.csv”, while the “gets arrow” (<code>&lt;-</code>) assigns that data to the
 object <code>daily_show</code>, which you can then reference in later code to explore and
 plot the data.</p>
 <p>You can use the functions <code>dim()</code>, <code>nrow()</code>, and <code>ncol()</code> to figure out the
 dimensions (i.e., number of rows and columns) of a dataframe:</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="rprog1.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="at">x =</span> daily_show)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="rprog1.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="at">x =</span> daily_show)</span></code></pre></div>
 <pre><code>## [1] 2693    5</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="rprog1.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(<span class="at">x =</span> daily_show)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="rprog1.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(<span class="at">x =</span> daily_show)</span></code></pre></div>
 <pre><code>## [1] 2693</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="rprog1.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(<span class="at">x =</span> daily_show)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="rprog1.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(<span class="at">x =</span> daily_show)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p>Base R also has some useful functions for quickly exploring dataframes:</p>
 <ul>
@@ -1479,7 +1479,7 @@ dimensions (i.e., number of rows and columns) of a dataframe:</p>
 </ul>
 <p>For example, you can explore the data we just pulled in on the <em>Daily Show</em>
 with:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="rprog1.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="at">object =</span> daily_show)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="rprog1.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="at">object =</span> daily_show)</span></code></pre></div>
 <pre><code>## spec_tbl_df [2,693 × 5] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ YEAR                     : num [1:2693] 1999 1999 1999 1999 1999 ...
 ##  $ GoogleKnowlege_Occupation: chr [1:2693] &quot;actor&quot; &quot;Comedian&quot; &quot;television actress&quot; &quot;film actress&quot; ...
@@ -1495,7 +1495,7 @@ with:</p>
 ##   ..   Raw_Guest_List = col_character()
 ##   .. )
 ##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="rprog1.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="at">object =</span> daily_show)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="rprog1.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="at">object =</span> daily_show)</span></code></pre></div>
 <pre><code>##       YEAR      GoogleKnowlege_Occupation     Show              Group          
 ##  Min.   :1999   Length:2693               Length:2693        Length:2693       
 ##  1st Qu.:2003   Class :character          Class :character   Class :character  
@@ -1516,15 +1516,15 @@ out columns, while the <code>slice()</code> function will extract rows. In this 
 we’ll talk about how to extract certain rows or columns of a dataframe by
 their <em>position</em> (i.e., based on row or column number). For example, if you
 wanted to get the first two rows of the <code>hg_data</code> dataframe, you could run:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="rprog1.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;dplyr&quot;</span>)</span>
-<span id="cb91-2"><a href="rprog1.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(<span class="at">.data =</span> hg_data, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="rprog1.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb95-2"><a href="rprog1.html#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(<span class="at">.data =</span> hg_data, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 3
 ##   first_name district survived
 ##   &lt;chr&gt;         &lt;dbl&gt; &lt;lgl&gt;   
 ## 1 Katniss          12 TRUE    
 ## 2 Peeta            12 TRUE</code></pre>
 <p>If you wanted to get the first and third columns, you could run:</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="rprog1.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="at">.data =</span> hg_data, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="rprog1.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="at">.data =</span> hg_data, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   first_name survived
 ##   &lt;chr&gt;      &lt;lgl&gt;   
@@ -1533,7 +1533,7 @@ wanted to get the first two rows of the <code>hg_data</code> dataframe, you coul
 ## 3 Rue        FALSE</code></pre>
 <p>You can compose calls from both functions. For example, you could extract the
 values in the first and third columns of the first two rows with:</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="rprog1.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="at">.data =</span> <span class="fu">slice</span>(<span class="at">.data =</span> hg_data, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)), <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="rprog1.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="at">.data =</span> <span class="fu">slice</span>(<span class="at">.data =</span> hg_data, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)), <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ##   first_name survived
 ##   &lt;chr&gt;      &lt;lgl&gt;   
@@ -1544,13 +1544,13 @@ will need to manage two dimensions: rows and columns. Put the rows you want
 before the comma and the columns after; if you want all rows or all columns,
 leave the corresponding spot blank. Here are two examples of using
 square-bracket indexing to pull a subset of the <code>hg_data</code> dataframe:</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="rprog1.html#cb97-1" aria-hidden="true" tabindex="-1"></a>hg_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">2</span>] <span class="co"># First two rows, second column</span></span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="rprog1.html#cb101-1" aria-hidden="true" tabindex="-1"></a>hg_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">2</span>] <span class="co"># First two rows, second column</span></span></code></pre></div>
 <pre><code>## # A tibble: 2 × 1
 ##   district
 ##      &lt;dbl&gt;
 ## 1       12
 ## 2       12</code></pre>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="rprog1.html#cb99-1" aria-hidden="true" tabindex="-1"></a>hg_data[<span class="dv">3</span>, ] <span class="co"># Last row, all columns</span></span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="rprog1.html#cb103-1" aria-hidden="true" tabindex="-1"></a>hg_data[<span class="dv">3</span>, ] <span class="co"># Last row, all columns</span></span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##   first_name district survived
 ##   &lt;chr&gt;         &lt;dbl&gt; &lt;lgl&gt;   
@@ -1581,38 +1581,38 @@ working with dataframes.
 <ol start="0" style="list-style-type: decimal">
 <li>Working directory</li>
 </ol>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="rprog1.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># confirm working directory is in high-level folder of R project</span></span>
-<span id="cb101-2"><a href="rprog1.html#cb101-2" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">getwd</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="rprog1.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co"># confirm working directory is in high-level folder of R project</span></span>
+<span id="cb105-2"><a href="rprog1.html#cb105-2" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">getwd</span>()</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Session information</li>
 </ol>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="rprog1.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identify R version and base R packages</span></span>
-<span id="cb102-2"><a href="rprog1.html#cb102-2" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="rprog1.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identify R version and base R packages</span></span>
+<span id="cb106-2"><a href="rprog1.html#cb106-2" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Helpfiles</li>
 </ol>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="rprog1.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call main helpfile for whole base R package</span></span>
-<span id="cb103-2"><a href="rprog1.html#cb103-2" aria-hidden="true" tabindex="-1"></a>?stats</span>
-<span id="cb103-3"><a href="rprog1.html#cb103-3" aria-hidden="true" tabindex="-1"></a><span class="co"># use function from Details section to call list of functions</span></span>
-<span id="cb103-4"><a href="rprog1.html#cb103-4" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">library</span>(<span class="at">help =</span> <span class="st">&quot;stats&quot;</span>)</span>
-<span id="cb103-5"><a href="rprog1.html#cb103-5" aria-hidden="true" tabindex="-1"></a><span class="co"># call helpfile for one function</span></span>
-<span id="cb103-6"><a href="rprog1.html#cb103-6" aria-hidden="true" tabindex="-1"></a>?lm</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="rprog1.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call main helpfile for whole base R package</span></span>
+<span id="cb107-2"><a href="rprog1.html#cb107-2" aria-hidden="true" tabindex="-1"></a>?stats</span>
+<span id="cb107-3"><a href="rprog1.html#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="co"># use function from Details section to call list of functions</span></span>
+<span id="cb107-4"><a href="rprog1.html#cb107-4" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">library</span>(<span class="at">help =</span> <span class="st">&quot;stats&quot;</span>)</span>
+<span id="cb107-5"><a href="rprog1.html#cb107-5" aria-hidden="true" tabindex="-1"></a><span class="co"># call helpfile for one function</span></span>
+<span id="cb107-6"><a href="rprog1.html#cb107-6" aria-hidden="true" tabindex="-1"></a>?lm</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Object assignment</li>
 </ol>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="rprog1.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load and view mtcars data</span></span>
-<span id="cb104-2"><a href="rprog1.html#cb104-2" aria-hidden="true" tabindex="-1"></a>mtcars</span>
-<span id="cb104-3"><a href="rprog1.html#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="co"># assign data as object in environment</span></span>
-<span id="cb104-4"><a href="rprog1.html#cb104-4" aria-hidden="true" tabindex="-1"></a>mtcars_data <span class="ot">&lt;-</span> mtcars</span>
-<span id="cb104-5"><a href="rprog1.html#cb104-5" aria-hidden="true" tabindex="-1"></a><span class="co"># view structure of mtcars_data</span></span>
-<span id="cb104-6"><a href="rprog1.html#cb104-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mtcars_data)</span>
-<span id="cb104-7"><a href="rprog1.html#cb104-7" aria-hidden="true" tabindex="-1"></a><span class="co"># a tidyverse alternative to `str()` </span></span>
-<span id="cb104-8"><a href="rprog1.html#cb104-8" aria-hidden="true" tabindex="-1"></a><span class="do">## extra: https://stackoverflow.com/questions/23660094/whats-the-difference-between-integer-class-and-numeric-class-in-r</span></span>
-<span id="cb104-9"><a href="rprog1.html#cb104-9" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">glimpse</span>(mtcars_data)</span>
-<span id="cb104-10"><a href="rprog1.html#cb104-10" aria-hidden="true" tabindex="-1"></a><span class="co"># assess dimensions of mtcars_data</span></span>
-<span id="cb104-11"><a href="rprog1.html#cb104-11" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mtcars_data)</span>
-<span id="cb104-12"><a href="rprog1.html#cb104-12" aria-hidden="true" tabindex="-1"></a><span class="co"># determine variable class types (by individual variable)</span></span>
-<span id="cb104-13"><a href="rprog1.html#cb104-13" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mtcars_data<span class="sc">$</span>mpg)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="rprog1.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load and view mtcars data</span></span>
+<span id="cb108-2"><a href="rprog1.html#cb108-2" aria-hidden="true" tabindex="-1"></a>mtcars</span>
+<span id="cb108-3"><a href="rprog1.html#cb108-3" aria-hidden="true" tabindex="-1"></a><span class="co"># assign data as object in environment</span></span>
+<span id="cb108-4"><a href="rprog1.html#cb108-4" aria-hidden="true" tabindex="-1"></a>mtcars_data <span class="ot">&lt;-</span> mtcars</span>
+<span id="cb108-5"><a href="rprog1.html#cb108-5" aria-hidden="true" tabindex="-1"></a><span class="co"># view structure of mtcars_data</span></span>
+<span id="cb108-6"><a href="rprog1.html#cb108-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mtcars_data)</span>
+<span id="cb108-7"><a href="rprog1.html#cb108-7" aria-hidden="true" tabindex="-1"></a><span class="co"># a tidyverse alternative to `str()` </span></span>
+<span id="cb108-8"><a href="rprog1.html#cb108-8" aria-hidden="true" tabindex="-1"></a><span class="do">## extra: https://stackoverflow.com/questions/23660094/whats-the-difference-between-integer-class-and-numeric-class-in-r</span></span>
+<span id="cb108-9"><a href="rprog1.html#cb108-9" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">glimpse</span>(mtcars_data)</span>
+<span id="cb108-10"><a href="rprog1.html#cb108-10" aria-hidden="true" tabindex="-1"></a><span class="co"># assess dimensions of mtcars_data</span></span>
+<span id="cb108-11"><a href="rprog1.html#cb108-11" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mtcars_data)</span>
+<span id="cb108-12"><a href="rprog1.html#cb108-12" aria-hidden="true" tabindex="-1"></a><span class="co"># determine variable class types (by individual variable)</span></span>
+<span id="cb108-13"><a href="rprog1.html#cb108-13" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mtcars_data<span class="sc">$</span>mpg)</span></code></pre></div>
 <p>There are 32 observations (vehicle models) and 11 variables, all of which are
 numeric.</p>
 </div>
@@ -1628,11 +1628,11 @@ numeric.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Data wrangling</li>
 </ol>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="rprog1.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;dplyr&quot;) if needed in the console</span></span>
-<span id="cb105-2"><a href="rprog1.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load `dplyr`, saving the command in your R script</span></span>
-<span id="cb105-3"><a href="rprog1.html#cb105-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb105-4"><a href="rprog1.html#cb105-4" aria-hidden="true" tabindex="-1"></a><span class="co"># filter to vehicles with mpg above 25</span></span>
-<span id="cb105-5"><a href="rprog1.html#cb105-5" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">filter</span>(mtcars_data, mpg <span class="sc">&gt;</span> <span class="fl">25.0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="rprog1.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;dplyr&quot;) if needed in the console</span></span>
+<span id="cb109-2"><a href="rprog1.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load `dplyr`, saving the command in your R script</span></span>
+<span id="cb109-3"><a href="rprog1.html#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb109-4"><a href="rprog1.html#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="co"># filter to vehicles with mpg above 25</span></span>
+<span id="cb109-5"><a href="rprog1.html#cb109-5" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">filter</span>(mtcars_data, mpg <span class="sc">&gt;</span> <span class="fl">25.0</span>)</span></code></pre></div>
 <p>There are six vehicles in <code>mtcars_data</code> with MPG above 25.</p>
 </div>
 </div>

@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens"
-date: "2022-08-11"
+date: "2022-08-24"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
@@ -245,10 +245,9 @@ Then, in the
 [public repository](https://github.com/MECH481A6/questions){target="_blank"} for
 class-related questions and discussion, **open another issue**. You can ask a
 question, share any course-related concerns, or post a brief comment about what
-you hope to gain from this course. Remember to mention/assign Kathleen
-@SmogDr, so she is alerted to your post. 
+you hope to gain from this course. Remember to mention/assign
+@SmogDr, so that I am alerted to your post. 
 
-Kathleen will then close both of your issues, and you will be ready to go!
 
 ### Asking for help (properly)
 
