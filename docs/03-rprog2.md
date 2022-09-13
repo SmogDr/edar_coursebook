@@ -1411,7 +1411,8 @@ Compare these to what can be done in an individual code chunk.
 You will continue to explore and manipulate data on ozone measurements in Fort
 Collins, CO during January 2019.
 
-On Canvas, download the ozone data (.csv) and R Markdown template (.Rmd),
+On Canvas (or at our Github organization), download the ozone data (.csv) 
+and R Markdown template (.Rmd),
 which includes a description of the data, the homework questions, and the
 general framework of code-figure-text integration, including the framework for
 a code appendix. Save the data and template files in your local R Project in
