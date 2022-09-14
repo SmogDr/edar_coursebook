@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-09-13" />
+<meta name="date" content="2022-09-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -558,7 +558,7 @@ where:</p>
     <span class="math inline">\(\epsilon\)</span> = the error term (i.e., what is left over; what the model doesn’t explain about <span class="math inline">\(Y\)</span>)</p>
 <p>The OLS approach is straightforward: select model parameters (<span class="math inline">\(\beta_{0}\)</span>, <span class="math inline">\(\beta_{1}\)</span>) so that the model produces as little error as possible. With OLS, the model error is expressed as a <em>sum-of-squares error</em> (SSE; explained below). Graphically, this is shown in Figure <a href="model.html#fig:OLS-anno">11.2</a>, where the solid blue circles represent the data (<span class="math inline">\(X_{i}, Y_{i}\)</span>). The grey line represents the “best fit” line that gives the smallest SSE possible. The model <strong><em>residuals</em></strong> (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the “best-fit line”. The optimization algorithm is executed with matrix algebra, although the paramaters for simple linear regression between two variables, <span class="math inline">\(X,Y,\)</span>, are easily calculated - see <a href="dist.html#OLS">here</a>.</p>
 <div class="figure"><span style="display:block;" id="fig:OLS-anno"></span>
-<img src="images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals"  />
+<img src="images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals" width="632" />
 <p class="caption">
 Figure 11.2: Graphical depiction for an OLS regression fit to minimize the sum of squared residuals
 </p>
@@ -697,7 +697,7 @@ Thus, substituting one equation into another, we arrive at the conclusion that m
 <span class="math display">\[mass \sim Circumference^{2}\]</span>
 Or, another way to say this is that the square root of mass is linearly related to body circumference.
 <span class="math display">\[\sqrt{mass} \sim Circumference\]</span>
-<img src="images/cylinder_comic.png" style="display: block; margin: auto;" /></p>
+<img src="images/cylinder_comic.png" width="552" style="display: block; margin: auto;" /></p>
 <p>Let’s transform <span class="math inline">\(mass \rightarrow \sqrt{mass}\)</span> and then examine the two scatterplots side by side.</p>
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="model.html#cb338-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data_18) <span class="sc">+</span></span>
 <span id="cb338-2"><a href="model.html#cb338-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> waist, <span class="at">y =</span> mass),</span>
@@ -742,7 +742,7 @@ Figure 11.4: Side-by-side comparison of two model specifications. Does one look 
 <span id="cb341-3"><a href="model.html#cb341-3" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(sqrt_mass <span class="sc">~</span> waist, <span class="at">data =</span> data_18)</span></code></pre></div>
 <p>Now that we have stored each model as an object (<code>model1</code>, <code>model2</code>), so we can examine what they contain. The output of <code>lm()</code> is a list of class “lm”. If we type <code>view(model1)</code> the contents of the list become apparent.</p>
 <div class="figure"><span style="display:block;" id="fig:model1-list"></span>
-<img src="images/model1_list.png" alt="The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more."  />
+<img src="images/model1_list.png" alt="The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more." width="632" />
 <p class="caption">
 Figure 11.5: The <code>lm()</code> function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more.
 </p>
@@ -1043,7 +1043,7 @@ smoke from wildfires shows up (and that happens more often each year).</p>
 ## 6 440nm 2020-08-15 20:35:54 aeronet    0.394</code></pre>
 <p>Before we begin our calibration, let’s examine the data using EDA techniques. We know that the <code>amod</code> column represents the instrument to be calibrated and the <code>aeronet</code> instrument represent the standard reference.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:aod-eda-4plot"></span>
-<img src="images/aod_eda_4plot.png" alt="A 4-plot EDA of our AOD Calibration Data"  />
+<img src="images/aod_eda_4plot.png" alt="A 4-plot EDA of our AOD Calibration Data" width="1050" />
 <p class="caption">
 Figure 11.11: A 4-plot EDA of our AOD Calibration Data
 </p>
