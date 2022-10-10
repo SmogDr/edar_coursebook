@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Multivariate Data Exploration | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Multivariate Data Exploration | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-09-14" />
+<meta name="date" content="2022-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -842,7 +842,7 @@ above code. This is an example of a recommended use case of this function;
 do not EVER use this function to “restart” your R session. If you do, <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/" target="_blank">Jenny
 Bryan will find you and throw your computer out the window</a>.</p>
 <p>Looking at the <code>raw_data</code> dataframe, we see there are 83 variables with over
-42,000 observations. That’s a LOT of vehicles! In most analyses of large
+45,000 observations. That’s a LOT of vehicles! In most analyses of large
 datasets, we don’t need to inspect every variable. Let’s create a vector of
 variables (<code>vars_needed</code>) that we want to keep and pass that vector to
 <code>dplyr::select()</code> to retain only the variables we want. To pass a character
@@ -915,8 +915,7 @@ the data to retain only vehicles made after the year 2000.</p>
 ## 5 15593 BMW   Z3 C…  2000     6   2.8 Rear… Manu… Two Se… Premiu…     19      24
 ## 6 15594 BMW   Z3 R…  2000     6   2.5 Rear… Auto… Two Se… Premiu…     19      24
 ## # … with 1 more variable: city08 &lt;dbl&gt;, and abbreviated variable names
-## #   ¹​fuel_type, ²​highway08
-## # ℹ Use `colnames()` to see all variable names</code></pre>
+## #   ¹​fuel_type, ²​highway08</code></pre>
 <p>Next, let’s take a look at some of the factor levels. There are lots of ways
 to do this in R, but the <code>levels()</code> function is the most straightforward.</p>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="eda2.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print a character vector of levels for the drive variable in df_mpg</span></span>
@@ -986,11 +985,10 @@ contain <code>NA</code>s. Let’s create a subset of <code>df_mpg</code> that on
 ##  9 19296 Toyota RAV4 EV      2003    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electr…     78
 ## 10 30965 Ford   Ranger Pic…  2001    NA    NA 2-Wh… Auto… Standa… Electr…     58
 ## # … with 360 more rows, 2 more variables: highway08 &lt;dbl&gt;, city08 &lt;dbl&gt;, and
-## #   abbreviated variable name ¹​fuel_type
-## # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+## #   abbreviated variable name ¹​fuel_type</code></pre>
 <p>Here, we discover that most of the the <code>NA</code> values are in the <code>cyl</code>, <code>displ</code>,
 and <code>tran</code>, columns. Further, we see that <strong>all</strong> of these vehicles have a
-<code>fuel_type</code> of <em>electric</em>, which makes sense because electric vehicles (EVs) do not
+<code>fuel_type</code> of <em>Electricity</em>, which makes sense because electric vehicles (EVs) do not
 have internal combustion. This may be a variable level that we choose to
 exclude from certain analyses later…</p>
 <p><strong>You might have noticed the “dot”, <code>.</code>, used at the end of the <code>dplyr::filter</code> pipe above:</strong></p>
@@ -1034,8 +1032,7 @@ on the topic.</p>
 ##  9 19296 Toyota RAV4 EV      2003    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electr…     78
 ## 10 30965 Ford   Ranger Pic…  2001    NA    NA 2-Wh… Auto… Standa… Electr…     58
 ## # … with 360 more rows, 2 more variables: highway08 &lt;dbl&gt;, city08 &lt;dbl&gt;, and
-## #   abbreviated variable name ¹​fuel_type
-## # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+## #   abbreviated variable name ¹​fuel_type</code></pre>
 </div>
 <div id="example-3-missing-data" class="section level4 hasAnchor" number="7.5.4.3">
 <h4><span class="header-section-number">7.5.4.3</span> Example 3: Missing Data<a href="eda2.html#example-3-missing-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1345,7 +1342,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

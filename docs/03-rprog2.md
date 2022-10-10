@@ -837,7 +837,6 @@ dplyr::select(.data = daily_show, job, date, category, guest_name)
 ##  9 actor              1/25/99 Acting   Matthew Lillard 
 ## 10 stand-up comedian  1/26/99 Comedy   David Cross     
 ## # … with 2,683 more rows
-## # ℹ Use `print(n = ...)` to see more rows
 ```
 
 <div class="rmdwarning">
@@ -926,7 +925,6 @@ mutate(.data = daily_show,
 ##  9 actor              1/25/99 Acting   Matthew Lillard 
 ## 10 stand-up comedian  1/26/99 Comedy   David Cross     
 ## # … with 2,683 more rows
-## # ℹ Use `print(n = ...)` to see more rows
 ```
 
 We will take a deeper dive into strings and the `stringr` package 

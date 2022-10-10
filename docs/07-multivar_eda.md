@@ -385,7 +385,7 @@ do not EVER use this function to "restart" your R session. If you do, [Jenny
 Bryan will find you and throw your computer out the window](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/){target="_blank"}.
 
 Looking at the `raw_data` dataframe, we see there are 83 variables with over 
-42,000 observations.  That's a LOT of vehicles! In most analyses of large
+45,000 observations.  That's a LOT of vehicles! In most analyses of large
 datasets, we don't need to inspect every variable. Let's create a vector of
 variables (`vars_needed`) that we want to keep and pass that vector to
 `dplyr::select()` to retain only the variables we want. To pass a character 
@@ -475,7 +475,6 @@ head(df_mpg)
 ## 6 15594 BMW   Z3 R…  2000     6   2.5 Rear… Auto… Two Se… Premiu…     19      24
 ## # … with 1 more variable: city08 <dbl>, and abbreviated variable names
 ## #   ¹​fuel_type, ²​highway08
-## # ℹ Use `colnames()` to see all variable names
 ```
 
 Next, let's take a look at some of the factor levels. There are lots of ways
@@ -586,12 +585,11 @@ df_mpg %>%
 ## 10 30965 Ford   Ranger Pic…  2001    NA    NA 2-Wh… Auto… Standa… Electr…     58
 ## # … with 360 more rows, 2 more variables: highway08 <dbl>, city08 <dbl>, and
 ## #   abbreviated variable name ¹​fuel_type
-## # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 Here, we discover that most of the the `NA` values are in the `cyl`, `displ`, 
 and `tran`, columns. Further, we see that **all** of these vehicles have a 
-`fuel_type` of *electric*, which makes sense because electric vehicles (EVs) do not
+`fuel_type` of *Electricity*, which makes sense because electric vehicles (EVs) do not
 have internal combustion. This may be a variable level that we choose to
 exclude from certain analyses later... 
 
@@ -654,7 +652,6 @@ df_mpg %>%
 ## 10 30965 Ford   Ranger Pic…  2001    NA    NA 2-Wh… Auto… Standa… Electr…     58
 ## # … with 360 more rows, 2 more variables: highway08 <dbl>, city08 <dbl>, and
 ## #   abbreviated variable name ¹​fuel_type
-## # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 #### Example 3: Missing Data
