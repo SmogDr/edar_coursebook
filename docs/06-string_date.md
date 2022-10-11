@@ -418,7 +418,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2022-10-11 13:22:35 MDT"
+## [1] "2022-10-11 15:27:48 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -434,12 +434,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1665516156
+## [1] 1665523668
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 52.8131708 years.  
+365d/yr] => 52.8134091 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -447,7 +447,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2022-10-11 13:22:35.
+format: 2022-10-11 15:27:48.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -571,7 +571,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1665516156
+## [1] 1665523668
 ```
 
 
@@ -582,9 +582,9 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 35.7
-##  $ min   : int 22
-##  $ hour  : int 13
+##  $ sec   : num 48.3
+##  $ min   : int 27
+##  $ hour  : int 15
 ##  $ mday  : int 11
 ##  $ mon   : int 9
 ##  $ year  : int 122
@@ -1237,7 +1237,7 @@ tweets_co %>%
 ### Set 3: Weekly tweets
 
 Create a time series plot that indicates tweet activity on a weekly basis since
-2011 for the Colorado senators. You will need to first create a new dataframe 
+2011 for the Colorado senators. You will need to first create a new data frame 
 that contains new time-date variables based on the (a) total time and (b) weeks
 since data collection started. 
 
@@ -1245,8 +1245,8 @@ since data collection started.
 ```r
 # create new time-based variables
 tweets_co_wk <- tweets_co %>% 
-  dplyr::mutate(time_since = as.duration(date - min(date)), # "time from" var
-         week = round(as.numeric(time_since, "weeks"), 0)) %>% # "weeks from" var
+  dplyr::mutate(time_since = as.duration(date - min(date)), # create duration variable, time since first datum
+         week = round(as.numeric(time_since, "weeks"), 0)) %>% # duration rounded to nearest cumulative "weeks"
   dplyr::group_by(user, week) %>% # by week per user
   dplyr::tally() %>% # tweet count 
   dplyr::ungroup() # remember to ungroup grouped data
@@ -1264,6 +1264,24 @@ ggplot2::ggplot(data = tweets_co_wk,
 ```
 
 <img src="06-string_date_files/figure-html/tweet-time-series-1.png" width="672" style="display: block; margin: auto;" />
+
+### Are tweets correlated in time?
+
+We arbitrarily selected "weekly number of tweets" by each senator and it's possible that tweet volume in a prior week correlate with tweet volume in a subsequent week (i.e., autocorrelation).  This calls for an autocorrelation plot! We'll create one for Senator Gardner.
+
+
+```r
+# create a data frame with only Gardner's tweets
+tweets_gardner <- tweets_co_wk %>%
+  filter(user == "SenCoryGardner")
+
+# create a partial autocorrelation plot of tweets by week
+pacf(tweets_gardner$n, lag.max = 60)  #go out more than 52 weeks to see annual correlation
+```
+
+<img src="06-string_date_files/figure-html/tweet-pacf-1.png" width="672" style="display: block; margin: auto;" />
+
+It appears, as one might expect, that tweets are correlated in time.  Most of the correlation happens in the first three lags, so maybe these data would be better suited for a monthly average...
 
 ### Set 4: CSU vs. CU 
 

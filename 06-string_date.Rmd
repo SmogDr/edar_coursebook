@@ -864,15 +864,15 @@ tweets_co %>%
 ### Set 3: Weekly tweets
 
 Create a time series plot that indicates tweet activity on a weekly basis since
-2011 for the Colorado senators. You will need to first create a new dataframe 
+2011 for the Colorado senators. You will need to first create a new data frame 
 that contains new time-date variables based on the (a) total time and (b) weeks
 since data collection started. 
 
 ```{r time-vars}
 # create new time-based variables
 tweets_co_wk <- tweets_co %>% 
-  dplyr::mutate(time_since = as.duration(date - min(date)), # "time from" var
-         week = round(as.numeric(time_since, "weeks"), 0)) %>% # "weeks from" var
+  dplyr::mutate(time_since = as.duration(date - min(date)), # create duration variable, time since first datum
+         week = round(as.numeric(time_since, "weeks"), 0)) %>% # duration rounded to nearest cumulative "weeks"
   dplyr::group_by(user, week) %>% # by week per user
   dplyr::tally() %>% # tweet count 
   dplyr::ungroup() # remember to ungroup grouped data
@@ -887,6 +887,21 @@ ggplot2::ggplot(data = tweets_co_wk,
   labs(title = "Number of tweets per week by Colorado senator since 2011",
        subtitle = "Gardner joined Twitter later but tweets more (and cyclically)")
 ```
+
+### Are tweets correlated in time?
+
+We arbitrarily selected "weekly number of tweets" by each senator and it's possible that tweet volume in a prior week correlate with tweet volume in a subsequent week (i.e., autocorrelation).  This calls for an autocorrelation plot! We'll create one for Senator Gardner.
+
+```{r tweet-pacf}
+# create a data frame with only Gardner's tweets
+tweets_gardner <- tweets_co_wk %>%
+  filter(user == "SenCoryGardner")
+
+# create a partial autocorrelation plot of tweets by week
+pacf(tweets_gardner$n, lag.max = 60)  #go out more than 52 weeks to see annual correlation
+```
+
+It appears, as one might expect, that tweets are correlated in time.  Most of the correlation happens in the first three lags, so maybe these data would be better suited for a monthly average...
 
 ### Set 4: CSU vs. CU 
 
