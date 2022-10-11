@@ -777,6 +777,13 @@ instruction.  In plain speak, the function reads:
 then replace that entry with a 2; else, if the vector contains a string that matches "Exam_3_Score", then replace that entry with a 3.
 
 ```{r pivot-longer}
+grades_untidy <- tibble::tibble(
+  Name = c("Harry", "Ron", "Hermione"),
+  Exam1_Score = c(85, 81, 95),
+  Exam2_Score = c(79, 75, 97),
+  Exam3_Score = c(88, 89, 99)
+  ) 
+
 tidygrades <- tidyr::pivot_longer(data = grades_untidy,
                                   cols = Exam1_Score:Exam3_Score,
                                   names_to = "Exam",

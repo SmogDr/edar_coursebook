@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-10-10" />
+<meta name="date" content="2022-10-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -913,7 +913,7 @@ date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time”
 by calling the <code>Sys.time()</code> function.</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="rprog3.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2022-10-10 09:51:04 MDT&quot;</code></pre>
+<pre><code>## [1] &quot;2022-10-11 13:22:35 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and timezone used by my computer
 (<em>whenever I last ran this code in <code>bookdown</code></em>). If you want to see how this
 time is stored in R internally, you can use <code>unclass()</code>, which returns an
@@ -921,17 +921,17 @@ object value with its class attributes removed. When we wrap <code>unclass()</co
 around <code>Sys.time()</code>, we will see the number of seconds that have occurred
 between the epoch of 1/1/1970 and right now:</p>
 <div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="rprog3.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(<span class="fu">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1665417065</code></pre>
+<pre><code>## [1] 1665516156</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
 Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span>
-365d/yr] =&gt; 52.8100287 years.</p>
+365d/yr] =&gt; 52.8131708 years.</p>
 <p>This calculation ignores leap years, but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3 hasAnchor" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats<a href="rprog3.html#date-time-formats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Note that the <code>Sys.time()</code> function provided the date in a
 <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong>
-format: 2022-10-10 09:51:04.</p>
+format: 2022-10-11 13:22:35.</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
 have little difficulty recognizing the following date-time objects as
@@ -1086,18 +1086,18 @@ classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and 
 attributes.</p>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="rprog3.html#cb211-1" aria-hidden="true" tabindex="-1"></a>time_now_ct <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="fu">Sys.time</span>())</span>
 <span id="cb211-2"><a href="rprog3.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1665417065</code></pre>
+<pre><code>## [1] 1665516156</code></pre>
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="rprog3.html#cb213-1" aria-hidden="true" tabindex="-1"></a>time_now_lt <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(<span class="fu">Sys.time</span>())</span>
 <span id="cb213-2"><a href="rprog3.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 5.01
-##  $ min   : int 51
-##  $ hour  : int 9
-##  $ mday  : int 10
+##  $ sec   : num 35.7
+##  $ min   : int 22
+##  $ hour  : int 13
+##  $ mday  : int 11
 ##  $ mon   : int 9
 ##  $ year  : int 122
-##  $ wday  : int 1
-##  $ yday  : int 282
+##  $ wday  : int 2
+##  $ yday  : int 283
 ##  $ isdst : int 1
 ##  $ zone  : chr &quot;MDT&quot;
 ##  $ gmtoff: int -21600
@@ -1693,15 +1693,22 @@ instruction. In plain speak, the function reads:</p>
 <p>If the vector contains a string that matches “Exam_1_Score”, then replace that entry with a 1; else, if the vector contains a string that matches “Exam_2_Score”,
 then replace that entry with a 2; else, if the vector contains a string that matches “Exam_3_Score”, then replace that entry with a 3.</p>
 </blockquote>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="rprog3.html#cb232-1" aria-hidden="true" tabindex="-1"></a>tidygrades <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">data =</span> grades_untidy,</span>
-<span id="cb232-2"><a href="rprog3.html#cb232-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">cols =</span> Exam1_Score<span class="sc">:</span>Exam3_Score,</span>
-<span id="cb232-3"><a href="rprog3.html#cb232-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">names_to =</span> <span class="st">&quot;Exam&quot;</span>,</span>
-<span id="cb232-4"><a href="rprog3.html#cb232-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">values_to =</span> <span class="st">&quot;Scores&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb232-5"><a href="rprog3.html#cb232-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Exam =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
-<span id="cb232-6"><a href="rprog3.html#cb232-6" aria-hidden="true" tabindex="-1"></a>    Exam <span class="sc">==</span> <span class="st">&quot;Exam1_Score&quot;</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb232-7"><a href="rprog3.html#cb232-7" aria-hidden="true" tabindex="-1"></a>    Exam <span class="sc">==</span> <span class="st">&quot;Exam2_Score&quot;</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb232-8"><a href="rprog3.html#cb232-8" aria-hidden="true" tabindex="-1"></a>    Exam <span class="sc">==</span> <span class="st">&quot;Exam3_Score&quot;</span> <span class="sc">~</span> <span class="dv">3</span></span>
-<span id="cb232-9"><a href="rprog3.html#cb232-9" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="rprog3.html#cb232-1" aria-hidden="true" tabindex="-1"></a>grades_untidy <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb232-2"><a href="rprog3.html#cb232-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;Harry&quot;</span>, <span class="st">&quot;Ron&quot;</span>, <span class="st">&quot;Hermione&quot;</span>),</span>
+<span id="cb232-3"><a href="rprog3.html#cb232-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Exam1_Score =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">81</span>, <span class="dv">95</span>),</span>
+<span id="cb232-4"><a href="rprog3.html#cb232-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Exam2_Score =</span> <span class="fu">c</span>(<span class="dv">79</span>, <span class="dv">75</span>, <span class="dv">97</span>),</span>
+<span id="cb232-5"><a href="rprog3.html#cb232-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Exam3_Score =</span> <span class="fu">c</span>(<span class="dv">88</span>, <span class="dv">89</span>, <span class="dv">99</span>)</span>
+<span id="cb232-6"><a href="rprog3.html#cb232-6" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb232-7"><a href="rprog3.html#cb232-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-8"><a href="rprog3.html#cb232-8" aria-hidden="true" tabindex="-1"></a>tidygrades <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">data =</span> grades_untidy,</span>
+<span id="cb232-9"><a href="rprog3.html#cb232-9" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">cols =</span> Exam1_Score<span class="sc">:</span>Exam3_Score,</span>
+<span id="cb232-10"><a href="rprog3.html#cb232-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">names_to =</span> <span class="st">&quot;Exam&quot;</span>,</span>
+<span id="cb232-11"><a href="rprog3.html#cb232-11" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">values_to =</span> <span class="st">&quot;Scores&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb232-12"><a href="rprog3.html#cb232-12" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Exam =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb232-13"><a href="rprog3.html#cb232-13" aria-hidden="true" tabindex="-1"></a>    Exam <span class="sc">==</span> <span class="st">&quot;Exam1_Score&quot;</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb232-14"><a href="rprog3.html#cb232-14" aria-hidden="true" tabindex="-1"></a>    Exam <span class="sc">==</span> <span class="st">&quot;Exam2_Score&quot;</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb232-15"><a href="rprog3.html#cb232-15" aria-hidden="true" tabindex="-1"></a>    Exam <span class="sc">==</span> <span class="st">&quot;Exam3_Score&quot;</span> <span class="sc">~</span> <span class="dv">3</span></span>
+<span id="cb232-16"><a href="rprog3.html#cb232-16" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:grades-tab3">Table 6.6: </span>Pivot longer applied to untidy data

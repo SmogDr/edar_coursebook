@@ -418,7 +418,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2022-10-10 09:51:04 MDT"
+## [1] "2022-10-11 13:22:35 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -434,12 +434,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1665417065
+## [1] 1665516156
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 52.8100287 years.  
+365d/yr] => 52.8131708 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -447,7 +447,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2022-10-10 09:51:04.
+format: 2022-10-11 13:22:35.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -571,7 +571,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1665417065
+## [1] 1665516156
 ```
 
 
@@ -582,14 +582,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 5.01
-##  $ min   : int 51
-##  $ hour  : int 9
-##  $ mday  : int 10
+##  $ sec   : num 35.7
+##  $ min   : int 22
+##  $ hour  : int 13
+##  $ mday  : int 11
 ##  $ mon   : int 9
 ##  $ year  : int 122
-##  $ wday  : int 1
-##  $ yday  : int 282
+##  $ wday  : int 2
+##  $ yday  : int 283
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
@@ -1086,6 +1086,13 @@ then replace that entry with a 2; else, if the vector contains a string that mat
 
 
 ```r
+grades_untidy <- tibble::tibble(
+  Name = c("Harry", "Ron", "Hermione"),
+  Exam1_Score = c(85, 81, 95),
+  Exam2_Score = c(79, 75, 97),
+  Exam3_Score = c(88, 89, 99)
+  ) 
+
 tidygrades <- tidyr::pivot_longer(data = grades_untidy,
                                   cols = Exam1_Score:Exam3_Score,
                                   names_to = "Exam",
