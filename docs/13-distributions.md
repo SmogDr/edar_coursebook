@@ -335,7 +335,7 @@ violate the Pearson assumptions listed above, then try the ***Spearman Correlati
 ### Anscombe's Quartet
 ***Anscombe's Quartet*** is a fabulous example of how *correlation coefficients* may be misinterpreted or misused.  Look at the following four scatterplots below between two variables, `x` and `y`.
 
-The data across these plots all have the same `x` mean and variance, `y` mean and variance, and the same slope, intercept, and R^2 when modeled under a linear OLS regression. 
+The data across these plots all have the same `x` mean and variance, `y` mean and variance, and the same slope, intercept, and $r^2$ when modeled under a linear OLS regression. 
 
 <div class="figure">
 <img src="13-distributions_files/figure-html/anscombe-1.png" alt="Anscombe's Quartet. All for data sets have the same x-mean &amp; variance, y-mean &amp; variance, and the same slope, intercept, and correlation coefficient from an OLS linear model." width="672" />
