@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-10-11" />
+<meta name="date" content="2022-10-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -458,7 +458,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="12.5.1" data-path="dist.html"><a href="dist.html#lognormal-characteristic-plots"><i class="fa fa-check"></i><b>12.5.1</b> Lognormal Characteristic Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="12.6" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>12.6</b> Pearson Correlation Coefficient</a></li>
+<li class="chapter" data-level="12.6" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>12.6</b> Pearson Correlation Coefficient</a>
+<ul>
+<li class="chapter" data-level="12.6.1" data-path="dist.html"><a href="dist.html#anscombes-quartet"><i class="fa fa-check"></i><b>12.6.1</b> Anscombe’s Quartet</a></li>
+</ul></li>
 <li class="chapter" data-level="12.7" data-path="dist.html"><a href="dist.html#OLS"><i class="fa fa-check"></i><b>12.7</b> OLS Regression Coefficients</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -756,6 +759,18 @@ Figure 12.11: The Pearson Correlation Coefficient is not as bad as it loooks in 
 <pre><code>## [1] 0.8672807</code></pre>
 <p>If you wish to quantify correlation between two variables but fear that your data
 violate the Pearson assumptions listed above, then try the <strong><em>Spearman Correlation Coefficient</em></strong> or <strong><em>Lin’s Concordance Coefficient</em></strong>.</p>
+<div id="anscombes-quartet" class="section level3 hasAnchor" number="12.6.1">
+<h3><span class="header-section-number">12.6.1</span> Anscombe’s Quartet<a href="dist.html#anscombes-quartet" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong><em>Anscombe’s Quartet</em></strong> is a fabulous example of how <em>correlation coefficients</em> may be misinterpreted or misused. Look at the following four scatterplots below between two variables, <code>x</code> and <code>y</code>.</p>
+<p>The data across these plots all have the same <code>x</code> mean and variance, <code>y</code> mean and variance, and the same slope, intercept, and R^2 when modeled under a linear OLS regression.</p>
+<div class="figure"><span style="display:block;" id="fig:anscombe"></span>
+<img src="13-distributions_files/figure-html/anscombe-1.png" alt="Anscombe's Quartet. All for data sets have the same x-mean &amp; variance, y-mean &amp; variance, and the same slope, intercept, and correlation coefficient from an OLS linear model." width="672" />
+<p class="caption">
+Figure 12.12: Anscombe’s Quartet. All for data sets have the same x-mean &amp; variance, y-mean &amp; variance, and the same slope, intercept, and correlation coefficient from an OLS linear model.
+</p>
+</div>
+<p>Clearly, despite similar statistics, the underlying data are from very different distributions. This example highlights why it’s so important to explore your data graphically! The top-left plot shows an imprecise linear relationship, the top-right plot shows a non-linear relationship, the bottom-left plot shows a precise linear relationship with an outlier, and the bottom-right plot shows the effect of a <em>high-leverage</em> point (another type of outlier) on an otherwise null relationship!</p>
+</div>
 </div>
 <div id="OLS" class="section level2 hasAnchor" number="12.7">
 <h2><span class="header-section-number">12.7</span> OLS Regression Coefficients<a href="dist.html#OLS" class="anchor-section" aria-label="Anchor link to header"></a></h2>

@@ -332,6 +332,18 @@ cor(x, y)
 If you wish to quantify correlation between two variables but fear that your data
 violate the Pearson assumptions listed above, then try the ***Spearman Correlation Coefficient*** or ***Lin's Concordance Coefficient***. 
 
+### Anscombe's Quartet
+***Anscombe's Quartet*** is a fabulous example of how *correlation coefficients* may be misinterpreted or misused.  Look at the following four scatterplots below between two variables, `x` and `y`.
+
+The data across these plots all have the same `x` mean and variance, `y` mean and variance, and the same slope, intercept, and R^2 when modeled under a linear OLS regression. 
+
+<div class="figure">
+<img src="13-distributions_files/figure-html/anscombe-1.png" alt="Anscombe's Quartet. All for data sets have the same x-mean &amp; variance, y-mean &amp; variance, and the same slope, intercept, and correlation coefficient from an OLS linear model." width="672" />
+<p class="caption">(\#fig:anscombe)Anscombe's Quartet. All for data sets have the same x-mean & variance, y-mean & variance, and the same slope, intercept, and correlation coefficient from an OLS linear model.</p>
+</div>
+
+Clearly, despite similar statistics, the underlying data are from very different distributions.  This example highlights why it's so important to explore your data graphically!  The top-left plot shows an imprecise linear relationship, the top-right plot shows a non-linear relationship, the bottom-left plot shows a precise linear relationship with an outlier, and the bottom-right plot shows the effect of a *high-leverage* point (another type of outlier) on an otherwise null relationship!
+
 ## OLS Regression Coefficients {#OLS}
 
 In [Chapter 11](#model) we discuss how to create a simple linear model (regression) between two observed variables $X$ and $Y$.  Here, we present the math behind an OLS linear fit, where the goal is to estimate model coefficients for the intercept ($\beta_{0}$) and slope ($\beta_{1}$) of the line between $Y$ and $X$ such that:

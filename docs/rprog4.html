@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-10-11" />
+<meta name="date" content="2022-10-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -458,7 +458,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="12.5.1" data-path="dist.html"><a href="dist.html#lognormal-characteristic-plots"><i class="fa fa-check"></i><b>12.5.1</b> Lognormal Characteristic Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="12.6" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>12.6</b> Pearson Correlation Coefficient</a></li>
+<li class="chapter" data-level="12.6" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>12.6</b> Pearson Correlation Coefficient</a>
+<ul>
+<li class="chapter" data-level="12.6.1" data-path="dist.html"><a href="dist.html#anscombes-quartet"><i class="fa fa-check"></i><b>12.6.1</b> Anscombe’s Quartet</a></li>
+</ul></li>
 <li class="chapter" data-level="12.7" data-path="dist.html"><a href="dist.html#OLS"><i class="fa fa-check"></i><b>12.7</b> OLS Regression Coefficients</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -764,17 +767,17 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 ##  $ entry_1: chr [1:4] &quot;Harry&quot; &quot;Ron&quot; &quot;Hermione&quot; &quot;Draco&quot;
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] &quot;audi&quot; &quot;ford&quot; &quot;toyota&quot; &quot;volkswagen&quot; ...
-##   ..$ model       : chr [1:7] &quot;a4&quot; &quot;expedition 2wd&quot; &quot;camry&quot; &quot;gti&quot; ...
-##   ..$ displ       : num [1:7] 2 5.4 2.4 2 2.7 2.7 5.4
-##   ..$ year        : int [1:7] 2008 2008 2008 2008 1999 1999 1999
-##   ..$ cyl         : int [1:7] 4 8 4 4 4 4 8
-##   ..$ trans       : chr [1:7] &quot;auto(av)&quot; &quot;auto(l6)&quot; &quot;manual(m5)&quot; &quot;manual(m6)&quot; ...
-##   ..$ drv         : chr [1:7] &quot;f&quot; &quot;r&quot; &quot;f&quot; &quot;f&quot; ...
-##   ..$ cty         : int [1:7] 21 12 21 21 16 15 11
-##   ..$ hwy         : int [1:7] 30 18 31 29 20 20 15
-##   ..$ fl          : chr [1:7] &quot;p&quot; &quot;r&quot; &quot;r&quot; &quot;p&quot; ...
-##   ..$ class       : chr [1:7] &quot;compact&quot; &quot;suv&quot; &quot;midsize&quot; &quot;compact&quot; ...</code></pre>
+##   ..$ manufacturer: chr [1:7] &quot;volkswagen&quot; &quot;volkswagen&quot; &quot;ford&quot; &quot;chevrolet&quot; ...
+##   ..$ model       : chr [1:7] &quot;passat&quot; &quot;passat&quot; &quot;mustang&quot; &quot;c1500 suburban 2wd&quot; ...
+##   ..$ displ       : num [1:7] 2.8 2 4 5.7 2.5 1.8 3.1
+##   ..$ year        : int [1:7] 1999 2008 2008 1999 1999 1999 2008
+##   ..$ cyl         : int [1:7] 6 4 6 8 6 4 6
+##   ..$ trans       : chr [1:7] &quot;manual(m5)&quot; &quot;manual(m6)&quot; &quot;manual(m5)&quot; &quot;auto(l4)&quot; ...
+##   ..$ drv         : chr [1:7] &quot;f&quot; &quot;f&quot; &quot;r&quot; &quot;r&quot; ...
+##   ..$ cty         : int [1:7] 18 21 17 13 18 18 15
+##   ..$ hwy         : int [1:7] 26 29 26 17 26 26 25
+##   ..$ fl          : chr [1:7] &quot;p&quot; &quot;p&quot; &quot;r&quot; &quot;r&quot; ...
+##   ..$ class       : chr [1:7] &quot;midsize&quot; &quot;midsize&quot; &quot;subcompact&quot; &quot;suv&quot; ...</code></pre>
 <p>Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, <code>[ ]</code>, a list element is returned.</p>
 <div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="rprog4.html#cb302-1" aria-hidden="true" tabindex="-1"></a>my.list[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## $entry_1
