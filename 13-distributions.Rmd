@@ -582,23 +582,30 @@ The data across these plots all have the same `x` mean and variance, `y` mean an
 
 ``` {r anscombe, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Anscombe's Quartet. All for data sets have the same x-mean & variance, y-mean & variance, and the same slope, intercept, and correlation coefficient from an OLS linear model."}
 
-anscombe <- read_csv("./data/anscombe.csv")
+anscombe <- read_csv("./data/anscombe.csv") %>%
+  mutate(name = case_when(
+    type == 1 ~ "1: Linear",
+    type == 2 ~ "2: Non-linear",
+    type == 3 ~ "3: Outlier",
+    type == 4 ~ "4: High Leverage"
+  ))
 
 ggplot(data = anscombe,
        aes(x = x,
            y = y,
-           color = type)) +
-  geom_point(size = 2) +
+           color = name)) +
+  geom_point(size = 2,
+             shape = 1) +
   geom_smooth(method = "lm",
               se = FALSE,
               size = 0.75) +
   coord_fixed() +
   theme_bw(base_size = 14) +
-  facet_wrap(facets = vars(type), nrow = 2) +
-  theme(strip.text = element_blank(),
-        strip.background = element_blank(),
-        panel.grid = element_blank(),
-        legend.position = "none")
+  facet_wrap(facets = vars(name), nrow = 2) +
+  theme(panel.grid = element_blank(),
+        legend.position = "none",
+        aspect.ratio = 1,
+        strip.text = element_text(size = 10))
 ```
 
 Clearly, despite similar statistics, the underlying data are from very different distributions.  This example highlights why it's so important to explore your data graphically!  The top-left plot shows an imprecise linear relationship, the top-right plot shows a non-linear relationship, the bottom-left plot shows a precise linear relationship with an outlier, and the bottom-right plot shows the effect of a *high-leverage* point (another type of outlier) on an otherwise null relationship!
