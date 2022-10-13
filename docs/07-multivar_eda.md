@@ -54,7 +54,7 @@ purpose or "mode" affects the intention behind a plot:
 
  - **Scientific Method:** The experimenter manipulates the control variable (independent; on x-axis) and observes the changes in the response variable (dependent; y-axis).   
  
- - **Statistics:** The independent variable (x-axis) is thought to have some influence or control over the dependent variable (y-axis).
+ - **Statistics:** The independent variable (x-axis) is thought to have some predictive ability, correlation with, or control over the dependent variable (y-axis).
 
  - **Exploratory Data Analysis:** We throw two variables on a plot to investigate their relationship. We make a guess about which is the independent variable (x-axis) and which is the dependent variable (y-axis), and we hope that nobody calls us out if we got it wrong...  
 
@@ -62,7 +62,7 @@ purpose or "mode" affects the intention behind a plot:
 
 All this talk about dependent and independent variables is fundamentally rooted
 in the practice of ***causal inference*** reasoning, which is the ability to 
-say that "action A *caused* outcome B". Discovering---or proving---that one
+say that "action A *caused* outcome B". Discovering---*or proving*---that one
 thing caused another to happen can be incredibly powerful. Proving causality
 leads to Nobel Prizes, creation of new laws and regulations, judgment of guilt
 or innocence in court, changing human behavior and convincing human minds, and,
@@ -88,7 +88,7 @@ inversely related.</p>
 
 
 
-Below are four examples of bivariate data with differing degrees of
+Below are four examples of bivariate data (shown in scatterplots) with differing degrees of
 correlation: perfect, strong, moderate, and none. These are qualitative terms,
 of course; what is "moderate" to one person may be poor and unacceptable to
 another. The qualitative strength of the correlation also depends on the 
@@ -96,7 +96,7 @@ research context.
 
 If you want to understand how to assess the strength of correlation 
 quantitatively, you can explore the Pearson Correlation Coefficient (***r***)
-in the [Appendix](#pearson), which is used to quantify the degree of linear
+in the [Appendix](#pearson), which is used to quantify the degree of *linear*
 correlation between two variables.
 
 <div class="figure" style="text-align: center">
@@ -109,7 +109,7 @@ correlation between two variables.
 In addition to the strength of the correlation, the sign and form of the
 correlation can vary, too:  
 
-  - **positive correlation**: the dependent variable *trends in the same direction* as the independent variable   
+  - **positive correlation**: the dependent variable *trends in the same direction* as the independent variable; when `y` increases, `x` increases, too.   
   - **negative correlation**: the dependent variable *decreases* when the independent variable *increases*  
   - **linear correlation**: the relationship between the two variables can be shown with a straight line  
   - **non-linear correlation**: the relationship between the two variables is curvilinear  
@@ -136,8 +136,8 @@ Let's take a closer look at the dangers of mistaking a *correlated*
 relationship as a *causal* relationship between two variables. Shown below is a
 scatterplot that builds off the `mpg` dataset we first discussed in Chapter
 \@ref(dataviz). Using the `mpg` dataframe, we will plot the relationship
-between the number of cylinders in an engine (`cyl`) (independent variable)
-and that vehicle's fuel economy (`hwy`) (dependent variable).
+between the number of cylinders in an engine (`cyl`; the independent variable)
+and that vehicle's fuel economy (`hwy`; the dependent variable).
 
 <div class="figure" style="text-align: center">
 <img src="07-multivar_eda_files/figure-html/corr-example-3-1.png" alt="Scatterplot of Engine Displacement vs. Fuel Economy" width="672" />
@@ -197,7 +197,8 @@ g1 <- ggplot2::ggplot(data = mtcars,
   geom_smooth(model = g1_model, 
               method = "lm") + 
   ylab("Fuel Economy (mi/gal)") +
-  xlab("Vehicle Weight (x1000 lb)")
+  xlab("Vehicle Weight (x1000 lb)") +
+  theme_bw(base_size = 14)
 g1
 ```
 
@@ -243,8 +244,7 @@ g1 + facet_grid(cols = vars(cyl),
 Interestingly, but perhaps not surprising, we can see that the vehicles with
 different cylinder numbers tend to have different fuel efficiency, but, even
 within these facets, we still see a relationship between efficiency and vehicle
-weight. Note that the faceting call led to the fitting of three different
-linear models---one for each facet. 
+weight. Note that because the original `ggplot` object (`g1`) contained a linear model, the faceting call led to the creation of three (separate) linear models---one for each facet. 
 
 Here are the same data in a plot that is faceted by rows instead of columns. Take note how `ggplot2::` allows you add the facet to the original plot object using a
 `+`, as in: `g1 + facet_grid(...)`
@@ -285,7 +285,8 @@ g3 <- ggplot2::ggplot(data = mtcars,
                            color = cyl)) + 
   geom_point() +
   ylab("Fuel Economy (mi/gal)") +
-  xlab("Vehicle Weight, (x1000 lb)")
+  xlab("Vehicle Weight (x1000 lb)") +
+  theme_bw(base_size = 14)
 # call plot
 g3
 ```
@@ -320,11 +321,11 @@ ggplot2::ggplot(data = mtcars,
                               shape = cyl)) + # distinguish by shape also!
   geom_point(size = 2.5) +
   ylab("Fuel Economy (mi/gal)") +
-  xlab("Vehicle Weight, (x1000 lb)") +
+  xlab("Vehicle Weight (x1000 lb)") +
   scale_colour_manual(values = c("sandybrown", # color-blind-friendly colors
                                  "orangered", 
                                  "steelblue2")) +
-  theme_classic()
+  theme_bw(base_size = 14)
 ```
 
 <div class="figure" style="text-align: center">
@@ -334,7 +335,7 @@ ggplot2::ggplot(data = mtcars,
 
 <div class="rmdtip">
 <p>Whenever you use <strong>color</strong> to differentiate variables,
-use symbols, too.</p>
+it’s a good idea to use symbols, too, if possible.</p>
 </div>
 
 ## Chapter 7 Exercises
@@ -739,8 +740,8 @@ gridExtra::grid.arrange(ecdf, box, hist,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-multivar_eda_files/figure-html/tidy-mpg-plot-1.png" alt="Cumulative Distribution, Histogram, and Boxplots of 21st Centurty Vehicles." width="672" />
-<p class="caption">(\#fig:tidy-mpg-plot)Cumulative Distribution, Histogram, and Boxplots of 21st Centurty Vehicles.</p>
+<img src="07-multivar_eda_files/figure-html/tidy-mpg-plot-1.png" alt="Cumulative Distribution, Histogram, and Boxplots of 21st Centurty Vehicle Fuel Efficiency." width="672" />
+<p class="caption">(\#fig:tidy-mpg-plot)Cumulative Distribution, Histogram, and Boxplots of 21st Centurty Vehicle Fuel Efficiency.</p>
 </div>
 
 ### Multivariate time series 
@@ -762,7 +763,9 @@ e1 <- ggplot2::ggplot(data = df_mpg,
                fill = "skyblue",
                outlier.alpha = 0.1) +
   scale_y_log10(limits = c(10,100)) +
-  theme_bw()
+  ylab("Combined Fuel Efficiency (mi/gal)") +
+  xlab("") +
+  theme_bw(base_size = 14)
 # call plot
 e1
 ```
@@ -809,6 +812,8 @@ standards.
 
 ### Density plots
 
+A ***density plot*** is akin to a *smoothed histogram*, where the y-axis depicts the frequency (or probability of occurrence) and the x-axis represents the magnitude of the observed variable.  They are called though `ggplot2::geom_density` and `ggplot2::stat_density`.  Density plots are useful when you have a lot of data (typically hundreds to thousands of observations) because they allow you to visualize the **shape** of a distribution - namely, it's central tendency(ies), dispersion, and skew.
+
 Create a series of geom_density plots showing combined fuel economy `comb08` 
 across all vehicles and years as a function of `fuel_type`. Break out the 
 different `fuel_type` categories into facets (ncol = 3).
@@ -822,7 +827,7 @@ g1 <- ggplot2::ggplot(data = df_mpg) +
   facet_wrap(~ fuel_type,
              ncol = 3) +
   scale_x_log10() +
-  theme_bw() +
+  theme_bw(base_size = 14) +
   theme(legend.position = "none")
 # call plot
 g1
@@ -849,17 +854,21 @@ g2
 
 <img src="07-multivar_eda_files/figure-html/eda-fuel-2-1.png" width="672" style="display: block; margin: auto;" />
 
+I like these plots because they lead to more questions (and that's the *point* of exploratory data analysis)!  Why are some of the categories bimodal? Why do many natural gas vehicles tend to have the lowest fuel deficiency?  Are any of these vehicles tested on multiple fuel types?  What is the most fuel efficient vehicle sold today?
+
 ### More multivariate plotting
 
 Next, let's examine the effect of vehicle class on combined fuel economy for a
-single year: 2020.
+single year: 2020. Note, for the plot below, since *vehicle class* (`v_class`) is a `factor` type of variable, I can structure the plot to show `v_class` from lowest median efficiency to highest median efficiency (where the median is taken from each class based on the `highway_08` variable) using: `forcats::fct_reorder(.f = v_class, .x = highway, .fun = median)`.
 
 
 ```r
 # filter to year 2020 and reorder factor levels 
 df_mpg.2020 <- df_mpg %>%
   dplyr::filter(year == 2020) %>%
-  dplyr::mutate(v_class = forcats::fct_reorder(v_class, highway08, median))
+  dplyr::mutate(v_class = forcats::fct_reorder(.f = v_class, 
+                                               .x = highway08, 
+                                               .fun = median))
 # create plot of 2020 combined fuel economy
 g1 <- ggplot2::ggplot(data = df_mpg.2020) + 
   geom_boxplot(aes(x = highway08, 
@@ -930,6 +939,266 @@ df_mpg %>%
 <img src="./images/Bentley_Mulsanne_2019.jpg" alt="The Bentley Mulsanne: $330k lets you park it on the sidewalk!" width="450pt" />
 <p class="caption">(\#fig:Q2a)The Bentley Mulsanne: $330k lets you park it on the sidewalk!</p>
 </div>
+
+Q3: Among 2021 vehicles from the `tidy_mpg` data frame, rank the highest-performing vehicle from each manufacturer in terms of fuel efficiency (`mpg`).  Pass the search result into a table using the `kable()` function.
+
+
+```r
+tidy_mpg %>%
+  filter(year == 2021) %>%
+  group_by(make) %>%
+  slice_max(mpg, n =1,  with_ties = FALSE) %>%
+  select(make, model, mpg) %>%
+  arrange(-mpg) %>%
+  kable(format = "html")
+```
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> make </th>
+   <th style="text-align:left;"> model </th>
+   <th style="text-align:right;"> mpg </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Tesla </td>
+   <td style="text-align:left;"> Model 3 Standard Range Plus RWD </td>
+   <td style="text-align:right;"> 150 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hyundai </td>
+   <td style="text-align:left;"> Ioniq Electric </td>
+   <td style="text-align:right;"> 145 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chevrolet </td>
+   <td style="text-align:left;"> Bolt EV </td>
+   <td style="text-align:right;"> 127 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Kandi </td>
+   <td style="text-align:left;"> K27 </td>
+   <td style="text-align:right;"> 127 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> BMW </td>
+   <td style="text-align:left;"> i3s </td>
+   <td style="text-align:right;"> 124 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Kia </td>
+   <td style="text-align:left;"> Niro Electric </td>
+   <td style="text-align:right;"> 123 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Nissan </td>
+   <td style="text-align:left;"> Leaf (40 kW-hr battery pack) </td>
+   <td style="text-align:right;"> 123 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MINI </td>
+   <td style="text-align:left;"> Cooper SE Hardtop 2 door </td>
+   <td style="text-align:right;"> 115 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ford </td>
+   <td style="text-align:left;"> Mustang Mach-E RWD California Route 1 </td>
+   <td style="text-align:right;"> 108 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Volkswagen </td>
+   <td style="text-align:left;"> ID.4 Pro </td>
+   <td style="text-align:right;"> 107 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Polestar </td>
+   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 96 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Volvo </td>
+   <td style="text-align:left;"> XC40 AWD BEV </td>
+   <td style="text-align:right;"> 85 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Porsche </td>
+   <td style="text-align:left;"> Taycan Perf Battery </td>
+   <td style="text-align:right;"> 84 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Jaguar </td>
+   <td style="text-align:left;"> I-Pace EV400 </td>
+   <td style="text-align:right;"> 80 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Audi </td>
+   <td style="text-align:left;"> e-tron </td>
+   <td style="text-align:right;"> 78 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Toyota </td>
+   <td style="text-align:left;"> Prius Eco </td>
+   <td style="text-align:right;"> 58 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Honda </td>
+   <td style="text-align:left;"> Insight </td>
+   <td style="text-align:right;"> 55 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lexus </td>
+   <td style="text-align:left;"> ES 300h </td>
+   <td style="text-align:right;"> 44 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mitsubishi </td>
+   <td style="text-align:left;"> Mirage </td>
+   <td style="text-align:right;"> 43 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mazda </td>
+   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 40 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mercedes-Benz </td>
+   <td style="text-align:left;"> A220 </td>
+   <td style="text-align:right;"> 36 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Subaru </td>
+   <td style="text-align:left;"> Impreza 4-Door </td>
+   <td style="text-align:right;"> 36 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Acura </td>
+   <td style="text-align:left;"> ILX </td>
+   <td style="text-align:right;"> 34 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cadillac </td>
+   <td style="text-align:left;"> CT4 </td>
+   <td style="text-align:right;"> 34 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lincoln </td>
+   <td style="text-align:left;"> Corsair AWD PHEV </td>
+   <td style="text-align:right;"> 34 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Alfa Romeo </td>
+   <td style="text-align:left;"> Giulia </td>
+   <td style="text-align:right;"> 33 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ram </td>
+   <td style="text-align:left;"> 1500 HFE 2WD </td>
+   <td style="text-align:right;"> 33 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Buick </td>
+   <td style="text-align:left;"> Encore GX FWD </td>
+   <td style="text-align:right;"> 32 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Genesis </td>
+   <td style="text-align:left;"> G80 RWD </td>
+   <td style="text-align:right;"> 32 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Jeep </td>
+   <td style="text-align:left;"> Renegade 2WD </td>
+   <td style="text-align:right;"> 32 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chrysler </td>
+   <td style="text-align:left;"> 300 </td>
+   <td style="text-align:right;"> 30 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Dodge </td>
+   <td style="text-align:left;"> Challenger </td>
+   <td style="text-align:right;"> 30 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fiat </td>
+   <td style="text-align:left;"> 500X AWD </td>
+   <td style="text-align:right;"> 30 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GMC </td>
+   <td style="text-align:left;"> Canyon 2WD </td>
+   <td style="text-align:right;"> 30 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Infiniti </td>
+   <td style="text-align:left;"> QX50 </td>
+   <td style="text-align:right;"> 29 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Land Rover </td>
+   <td style="text-align:left;"> Range Rover </td>
+   <td style="text-align:right;"> 28 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Karma </td>
+   <td style="text-align:left;"> GS-6 (21-inch wheels) </td>
+   <td style="text-align:right;"> 27 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Bentley </td>
+   <td style="text-align:left;"> Continental GT Convertible </td>
+   <td style="text-align:right;"> 26 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lotus </td>
+   <td style="text-align:left;"> Evora GT </td>
+   <td style="text-align:right;"> 26 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Maserati </td>
+   <td style="text-align:left;"> Ghibli </td>
+   <td style="text-align:right;"> 25 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Aston Martin </td>
+   <td style="text-align:left;"> Vantage V8 </td>
+   <td style="text-align:right;"> 24 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ferrari </td>
+   <td style="text-align:left;"> Portofino M </td>
+   <td style="text-align:right;"> 23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> McLaren Automotive </td>
+   <td style="text-align:left;"> GT </td>
+   <td style="text-align:right;"> 22 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Rolls-Royce </td>
+   <td style="text-align:left;"> Phantom </td>
+   <td style="text-align:right;"> 20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Roush Performance </td>
+   <td style="text-align:left;"> Mustang </td>
+   <td style="text-align:right;"> 19 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lamborghini </td>
+   <td style="text-align:left;"> Huracan </td>
+   <td style="text-align:right;"> 18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Bugatti </td>
+   <td style="text-align:left;"> Chiron </td>
+   <td style="text-align:right;"> 14 </td>
+  </tr>
+</tbody>
+</table>
 
 ## Chapter 7 Homework
 

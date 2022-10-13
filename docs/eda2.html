@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-10-12" />
+<meta name="date" content="2022-10-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -541,14 +541,14 @@ dependent (outcome/response) variables. Although related, the researcher’s
 purpose or “mode” affects the intention behind a plot:</p>
 <ul>
 <li><p><strong>Scientific Method:</strong> The experimenter manipulates the control variable (independent; on x-axis) and observes the changes in the response variable (dependent; y-axis).</p></li>
-<li><p><strong>Statistics:</strong> The independent variable (x-axis) is thought to have some influence or control over the dependent variable (y-axis).</p></li>
+<li><p><strong>Statistics:</strong> The independent variable (x-axis) is thought to have some predictive ability, correlation with, or control over the dependent variable (y-axis).</p></li>
 <li><p><strong>Exploratory Data Analysis:</strong> We throw two variables on a plot to investigate their relationship. We make a guess about which is the independent variable (x-axis) and which is the dependent variable (y-axis), and we hope that nobody calls us out if we got it wrong…</p></li>
 </ul>
 <div id="causality" class="section level3 hasAnchor" number="7.3.1">
 <h3><span class="header-section-number">7.3.1</span> Causality<a href="eda2.html#causality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>All this talk about dependent and independent variables is fundamentally rooted
 in the practice of <strong><em>causal inference</em></strong> reasoning, which is the ability to
-say that “action A <em>caused</em> outcome B”. Discovering—or proving—that one
+say that “action A <em>caused</em> outcome B”. Discovering—<em>or proving</em>—that one
 thing caused another to happen can be incredibly powerful. Proving causality
 leads to Nobel Prizes, creation of new laws and regulations, judgment of guilt
 or innocence in court, changing human behavior and convincing human minds, and,
@@ -571,14 +571,14 @@ two or more measures. The variables can move up or down together or be
 inversely related.
 </p>
 </div>
-<p>Below are four examples of bivariate data with differing degrees of
+<p>Below are four examples of bivariate data (shown in scatterplots) with differing degrees of
 correlation: perfect, strong, moderate, and none. These are qualitative terms,
 of course; what is “moderate” to one person may be poor and unacceptable to
 another. The qualitative strength of the correlation also depends on the
 research context.</p>
 <p>If you want to understand how to assess the strength of correlation
 quantitatively, you can explore the Pearson Correlation Coefficient (<strong><em>r</em></strong>)
-in the <a href="dist.html#pearson">Appendix</a>, which is used to quantify the degree of linear
+in the <a href="dist.html#pearson">Appendix</a>, which is used to quantify the degree of <em>linear</em>
 correlation between two variables.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:corr-example-1"></span>
 <img src="images/correlation_example_1.png" alt="Scatterplot examples showing bivariate data with varying degrees of correlation." width="700pt" />
@@ -589,7 +589,7 @@ Figure 7.1: Scatterplot examples showing bivariate data with varying degrees of 
 <p>In addition to the strength of the correlation, the sign and form of the
 correlation can vary, too:</p>
 <ul>
-<li><strong>positive correlation</strong>: the dependent variable <em>trends in the same direction</em> as the independent variable<br />
+<li><strong>positive correlation</strong>: the dependent variable <em>trends in the same direction</em> as the independent variable; when <code>y</code> increases, <code>x</code> increases, too.<br />
 </li>
 <li><strong>negative correlation</strong>: the dependent variable <em>decreases</em> when the independent variable <em>increases</em><br />
 </li>
@@ -621,8 +621,8 @@ process, the cause is partly or wholly responsible for the effect.
 relationship as a <em>causal</em> relationship between two variables. Shown below is a
 scatterplot that builds off the <code>mpg</code> dataset we first discussed in Chapter
 <a href="dataviz.html#dataviz">4</a>. Using the <code>mpg</code> dataframe, we will plot the relationship
-between the number of cylinders in an engine (<code>cyl</code>) (independent variable)
-and that vehicle’s fuel economy (<code>hwy</code>) (dependent variable).</p>
+between the number of cylinders in an engine (<code>cyl</code>; the independent variable)
+and that vehicle’s fuel economy (<code>hwy</code>; the dependent variable).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:corr-example-3"></span>
 <img src="07-multivar_eda_files/figure-html/corr-example-3-1.png" alt="Scatterplot of Engine Displacement vs. Fuel Economy" width="672" />
 <p class="caption">
@@ -678,8 +678,9 @@ haven’t discussed modeling yet but more on that <a href="model.html#model">lat
 <span id="cb247-8"><a href="eda2.html#cb247-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">model =</span> g1_model, </span>
 <span id="cb247-9"><a href="eda2.html#cb247-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb247-10"><a href="eda2.html#cb247-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Fuel Economy (mi/gal)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb247-11"><a href="eda2.html#cb247-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Vehicle Weight (x1000 lb)&quot;</span>)</span>
-<span id="cb247-12"><a href="eda2.html#cb247-12" aria-hidden="true" tabindex="-1"></a>g1</span></code></pre></div>
+<span id="cb247-11"><a href="eda2.html#cb247-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Vehicle Weight (x1000 lb)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb247-12"><a href="eda2.html#cb247-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>)</span>
+<span id="cb247-13"><a href="eda2.html#cb247-13" aria-hidden="true" tabindex="-1"></a>g1</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:facet-1"></span>
 <img src="07-multivar_eda_files/figure-html/facet-1-1.png" alt="Scatterplot of fuel economy vs. vehicle weight from the `mtcars` dataset." width="672" />
 <p class="caption">
@@ -719,8 +720,7 @@ Figure 7.5: Scatterplots of fuel economy vs. vehicle weight by number of cylind
 <p>Interestingly, but perhaps not surprising, we can see that the vehicles with
 different cylinder numbers tend to have different fuel efficiency, but, even
 within these facets, we still see a relationship between efficiency and vehicle
-weight. Note that the faceting call led to the fitting of three different
-linear models—one for each facet.</p>
+weight. Note that because the original <code>ggplot</code> object (<code>g1</code>) contained a linear model, the faceting call led to the creation of three (separate) linear models—one for each facet.</p>
 <p>Here are the same data in a plot that is faceted by rows instead of columns. Take note how <code>ggplot2::</code> allows you add the facet to the original plot object using a
 <code>+</code>, as in: <code>g1 + facet_grid(...)</code></p>
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="eda2.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="co"># facet previous plot by`cyl` in rows and retain labels</span></span>
@@ -753,9 +753,10 @@ insight as the facets above.</p>
 <span id="cb250-9"><a href="eda2.html#cb250-9" aria-hidden="true" tabindex="-1"></a>                           <span class="at">color =</span> cyl)) <span class="sc">+</span> </span>
 <span id="cb250-10"><a href="eda2.html#cb250-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb250-11"><a href="eda2.html#cb250-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Fuel Economy (mi/gal)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb250-12"><a href="eda2.html#cb250-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Vehicle Weight, (x1000 lb)&quot;</span>)</span>
-<span id="cb250-13"><a href="eda2.html#cb250-13" aria-hidden="true" tabindex="-1"></a><span class="co"># call plot</span></span>
-<span id="cb250-14"><a href="eda2.html#cb250-14" aria-hidden="true" tabindex="-1"></a>g3</span></code></pre></div>
+<span id="cb250-12"><a href="eda2.html#cb250-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Vehicle Weight (x1000 lb)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb250-13"><a href="eda2.html#cb250-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>)</span>
+<span id="cb250-14"><a href="eda2.html#cb250-14" aria-hidden="true" tabindex="-1"></a><span class="co"># call plot</span></span>
+<span id="cb250-15"><a href="eda2.html#cb250-15" aria-hidden="true" tabindex="-1"></a>g3</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:colorplot-1"></span>
 <img src="07-multivar_eda_files/figure-html/colorplot-1-1.png" alt="Vehicle fuel economy vs. weight and colored by number of engine cylinders (data from mtcars)" width="672" />
 <p class="caption">
@@ -785,11 +786,11 @@ both colors and symbols.</p>
 <span id="cb251-6"><a href="eda2.html#cb251-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">shape =</span> cyl)) <span class="sc">+</span> <span class="co"># distinguish by shape also!</span></span>
 <span id="cb251-7"><a href="eda2.html#cb251-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
 <span id="cb251-8"><a href="eda2.html#cb251-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Fuel Economy (mi/gal)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb251-9"><a href="eda2.html#cb251-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Vehicle Weight, (x1000 lb)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb251-9"><a href="eda2.html#cb251-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Vehicle Weight (x1000 lb)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb251-10"><a href="eda2.html#cb251-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;sandybrown&quot;</span>, <span class="co"># color-blind-friendly colors</span></span>
 <span id="cb251-11"><a href="eda2.html#cb251-11" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;orangered&quot;</span>, </span>
 <span id="cb251-12"><a href="eda2.html#cb251-12" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;steelblue2&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb251-13"><a href="eda2.html#cb251-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<span id="cb251-13"><a href="eda2.html#cb251-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:colorplot-2"></span>
 <img src="07-multivar_eda_files/figure-html/colorplot-2-1.png" alt="Vehicle fuel economy vs. weight and colored by number of engine cylinders (data from mtcars)" width="672" />
 <p class="caption">
@@ -799,7 +800,7 @@ Figure 7.8: Vehicle fuel economy vs. weight and colored by number of engine cyl
 <div class="rmdtip">
 <p>
 Whenever you use <strong>color</strong> to differentiate variables,
-use symbols, too.
+it’s a good idea to use symbols, too, if possible.
 </p>
 </div>
 </div>
@@ -1111,9 +1112,9 @@ or <code>fill =</code> as an extra aesthetic. All three plots are then laid out 
 <span id="cb274-35"><a href="eda2.html#cb274-35" aria-hidden="true" tabindex="-1"></a>                                              <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>, <span class="cn">NA</span>),</span>
 <span id="cb274-36"><a href="eda2.html#cb274-36" aria-hidden="true" tabindex="-1"></a>                                              <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">3</span>, <span class="cn">NA</span>)))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:tidy-mpg-plot"></span>
-<img src="07-multivar_eda_files/figure-html/tidy-mpg-plot-1.png" alt="Cumulative Distribution, Histogram, and Boxplots of 21st Centurty Vehicles." width="672" />
+<img src="07-multivar_eda_files/figure-html/tidy-mpg-plot-1.png" alt="Cumulative Distribution, Histogram, and Boxplots of 21st Centurty Vehicle Fuel Efficiency." width="672" />
 <p class="caption">
-Figure 7.9: Cumulative Distribution, Histogram, and Boxplots of 21st Centurty Vehicles.
+Figure 7.9: Cumulative Distribution, Histogram, and Boxplots of 21st Centurty Vehicle Fuel Efficiency.
 </p>
 </div>
 </div>
@@ -1134,9 +1135,11 @@ effect.</p>
 <span id="cb275-6"><a href="eda2.html#cb275-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>,</span>
 <span id="cb275-7"><a href="eda2.html#cb275-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">outlier.alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
 <span id="cb275-8"><a href="eda2.html#cb275-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
-<span id="cb275-9"><a href="eda2.html#cb275-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb275-10"><a href="eda2.html#cb275-10" aria-hidden="true" tabindex="-1"></a><span class="co"># call plot</span></span>
-<span id="cb275-11"><a href="eda2.html#cb275-11" aria-hidden="true" tabindex="-1"></a>e1</span></code></pre></div>
+<span id="cb275-9"><a href="eda2.html#cb275-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Combined Fuel Efficiency (mi/gal)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb275-10"><a href="eda2.html#cb275-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb275-11"><a href="eda2.html#cb275-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>)</span>
+<span id="cb275-12"><a href="eda2.html#cb275-12" aria-hidden="true" tabindex="-1"></a><span class="co"># call plot</span></span>
+<span id="cb275-13"><a href="eda2.html#cb275-13" aria-hidden="true" tabindex="-1"></a>e1</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fuel-econ-ts"></span>
 <img src="07-multivar_eda_files/figure-html/fuel-econ-ts-1.png" alt="Boxplots of fleet-wide fuel efficiency by year." width="672" />
 <p class="caption">
@@ -1175,6 +1178,7 @@ standards.</p>
 </div>
 <div id="density-plots" class="section level3 hasAnchor" number="7.5.7">
 <h3><span class="header-section-number">7.5.7</span> Density plots<a href="eda2.html#density-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong><em>density plot</em></strong> is akin to a <em>smoothed histogram</em>, where the y-axis depicts the frequency (or probability of occurrence) and the x-axis represents the magnitude of the observed variable. They are called though <code>ggplot2::geom_density</code> and <code>ggplot2::stat_density</code>. Density plots are useful when you have a lot of data (typically hundreds to thousands of observations) because they allow you to visualize the <strong>shape</strong> of a distribution - namely, it’s central tendency(ies), dispersion, and skew.</p>
 <p>Create a series of geom_density plots showing combined fuel economy <code>comb08</code>
 across all vehicles and years as a function of <code>fuel_type</code>. Break out the
 different <code>fuel_type</code> categories into facets (ncol = 3).</p>
@@ -1185,7 +1189,7 @@ different <code>fuel_type</code> categories into facets (ncol = 3).</p>
 <span id="cb277-5"><a href="eda2.html#cb277-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> fuel_type,</span>
 <span id="cb277-6"><a href="eda2.html#cb277-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb277-7"><a href="eda2.html#cb277-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
-<span id="cb277-8"><a href="eda2.html#cb277-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb277-8"><a href="eda2.html#cb277-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
 <span id="cb277-9"><a href="eda2.html#cb277-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
 <span id="cb277-10"><a href="eda2.html#cb277-10" aria-hidden="true" tabindex="-1"></a><span class="co"># call plot</span></span>
 <span id="cb277-11"><a href="eda2.html#cb277-11" aria-hidden="true" tabindex="-1"></a>g1</span></code></pre></div>
@@ -1203,27 +1207,30 @@ different <code>fuel_type</code> categories into facets (ncol = 3).</p>
 <span id="cb278-10"><a href="eda2.html#cb278-10" aria-hidden="true" tabindex="-1"></a><span class="co"># call plot</span></span>
 <span id="cb278-11"><a href="eda2.html#cb278-11" aria-hidden="true" tabindex="-1"></a>g2</span></code></pre></div>
 <p><img src="07-multivar_eda_files/figure-html/eda-fuel-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>I like these plots because they lead to more questions (and that’s the <em>point</em> of exploratory data analysis)! Why are some of the categories bimodal? Why do many natural gas vehicles tend to have the lowest fuel deficiency? Are any of these vehicles tested on multiple fuel types? What is the most fuel efficient vehicle sold today?</p>
 </div>
 <div id="more-multivariate-plotting" class="section level3 hasAnchor" number="7.5.8">
 <h3><span class="header-section-number">7.5.8</span> More multivariate plotting<a href="eda2.html#more-multivariate-plotting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Next, let’s examine the effect of vehicle class on combined fuel economy for a
-single year: 2020.</p>
+single year: 2020. Note, for the plot below, since <em>vehicle class</em> (<code>v_class</code>) is a <code>factor</code> type of variable, I can structure the plot to show <code>v_class</code> from lowest median efficiency to highest median efficiency (where the median is taken from each class based on the <code>highway_08</code> variable) using: <code>forcats::fct_reorder(.f = v_class, .x = highway, .fun = median)</code>.</p>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="eda2.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter to year 2020 and reorder factor levels </span></span>
 <span id="cb279-2"><a href="eda2.html#cb279-2" aria-hidden="true" tabindex="-1"></a>df_mpg<span class="fl">.2020</span> <span class="ot">&lt;-</span> df_mpg <span class="sc">%&gt;%</span></span>
 <span id="cb279-3"><a href="eda2.html#cb279-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb279-4"><a href="eda2.html#cb279-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">v_class =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(v_class, highway08, median))</span>
-<span id="cb279-5"><a href="eda2.html#cb279-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create plot of 2020 combined fuel economy</span></span>
-<span id="cb279-6"><a href="eda2.html#cb279-6" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> df_mpg<span class="fl">.2020</span>) <span class="sc">+</span> </span>
-<span id="cb279-7"><a href="eda2.html#cb279-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> highway08, </span>
-<span id="cb279-8"><a href="eda2.html#cb279-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">color =</span> v_class, </span>
-<span id="cb279-9"><a href="eda2.html#cb279-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> v_class)) <span class="sc">+</span> </span>
-<span id="cb279-10"><a href="eda2.html#cb279-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
-<span id="cb279-11"><a href="eda2.html#cb279-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb279-12"><a href="eda2.html#cb279-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
-<span id="cb279-13"><a href="eda2.html#cb279-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Highway Fuel Economy&quot;</span>) <span class="sc">+</span></span>
-<span id="cb279-14"><a href="eda2.html#cb279-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb279-15"><a href="eda2.html#cb279-15" aria-hidden="true" tabindex="-1"></a><span class="co"># call plot</span></span>
-<span id="cb279-16"><a href="eda2.html#cb279-16" aria-hidden="true" tabindex="-1"></a>g1</span></code></pre></div>
+<span id="cb279-4"><a href="eda2.html#cb279-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">v_class =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(<span class="at">.f =</span> v_class, </span>
+<span id="cb279-5"><a href="eda2.html#cb279-5" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">.x =</span> highway08, </span>
+<span id="cb279-6"><a href="eda2.html#cb279-6" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">.fun =</span> median))</span>
+<span id="cb279-7"><a href="eda2.html#cb279-7" aria-hidden="true" tabindex="-1"></a><span class="co"># create plot of 2020 combined fuel economy</span></span>
+<span id="cb279-8"><a href="eda2.html#cb279-8" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> df_mpg<span class="fl">.2020</span>) <span class="sc">+</span> </span>
+<span id="cb279-9"><a href="eda2.html#cb279-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> highway08, </span>
+<span id="cb279-10"><a href="eda2.html#cb279-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">color =</span> v_class, </span>
+<span id="cb279-11"><a href="eda2.html#cb279-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> v_class)) <span class="sc">+</span> </span>
+<span id="cb279-12"><a href="eda2.html#cb279-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb279-13"><a href="eda2.html#cb279-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb279-14"><a href="eda2.html#cb279-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb279-15"><a href="eda2.html#cb279-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Highway Fuel Economy&quot;</span>) <span class="sc">+</span></span>
+<span id="cb279-16"><a href="eda2.html#cb279-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb279-17"><a href="eda2.html#cb279-17" aria-hidden="true" tabindex="-1"></a><span class="co"># call plot</span></span>
+<span id="cb279-18"><a href="eda2.html#cb279-18" aria-hidden="true" tabindex="-1"></a>g1</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:v-class"></span>
 <img src="07-multivar_eda_files/figure-html/v-class-1.png" alt="Highway Fuel Economy for 2020 Vehicles by Type" width="672" />
 <p class="caption">
@@ -1267,6 +1274,548 @@ worst city fuel economy in 2019?</p>
 Figure 7.12: The Bentley Mulsanne: $330k lets you park it on the sidewalk!
 </p>
 </div>
+<p>Q3: Among 2021 vehicles from the <code>tidy_mpg</code> data frame, rank the highest-performing vehicle from each manufacturer in terms of fuel efficiency (<code>mpg</code>). Pass the search result into a table using the <code>kable()</code> function.</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="eda2.html#cb284-1" aria-hidden="true" tabindex="-1"></a>tidy_mpg <span class="sc">%&gt;%</span></span>
+<span id="cb284-2"><a href="eda2.html#cb284-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2021</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb284-3"><a href="eda2.html#cb284-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(make) <span class="sc">%&gt;%</span></span>
+<span id="cb284-4"><a href="eda2.html#cb284-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(mpg, <span class="at">n =</span><span class="dv">1</span>,  <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb284-5"><a href="eda2.html#cb284-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(make, model, mpg) <span class="sc">%&gt;%</span></span>
+<span id="cb284-6"><a href="eda2.html#cb284-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>mpg) <span class="sc">%&gt;%</span></span>
+<span id="cb284-7"><a href="eda2.html#cb284-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">format =</span> <span class="st">&quot;html&quot;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+make
+</th>
+<th style="text-align:left;">
+model
+</th>
+<th style="text-align:right;">
+mpg
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Tesla
+</td>
+<td style="text-align:left;">
+Model 3 Standard Range Plus RWD
+</td>
+<td style="text-align:right;">
+150
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hyundai
+</td>
+<td style="text-align:left;">
+Ioniq Electric
+</td>
+<td style="text-align:right;">
+145
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chevrolet
+</td>
+<td style="text-align:left;">
+Bolt EV
+</td>
+<td style="text-align:right;">
+127
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Kandi
+</td>
+<td style="text-align:left;">
+K27
+</td>
+<td style="text-align:right;">
+127
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BMW
+</td>
+<td style="text-align:left;">
+i3s
+</td>
+<td style="text-align:right;">
+124
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Kia
+</td>
+<td style="text-align:left;">
+Niro Electric
+</td>
+<td style="text-align:right;">
+123
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Nissan
+</td>
+<td style="text-align:left;">
+Leaf (40 kW-hr battery pack)
+</td>
+<td style="text-align:right;">
+123
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MINI
+</td>
+<td style="text-align:left;">
+Cooper SE Hardtop 2 door
+</td>
+<td style="text-align:right;">
+115
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ford
+</td>
+<td style="text-align:left;">
+Mustang Mach-E RWD California Route 1
+</td>
+<td style="text-align:right;">
+108
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Volkswagen
+</td>
+<td style="text-align:left;">
+ID.4 Pro
+</td>
+<td style="text-align:right;">
+107
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Polestar
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+96
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Volvo
+</td>
+<td style="text-align:left;">
+XC40 AWD BEV
+</td>
+<td style="text-align:right;">
+85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Porsche
+</td>
+<td style="text-align:left;">
+Taycan Perf Battery
+</td>
+<td style="text-align:right;">
+84
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Jaguar
+</td>
+<td style="text-align:left;">
+I-Pace EV400
+</td>
+<td style="text-align:right;">
+80
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Audi
+</td>
+<td style="text-align:left;">
+e-tron
+</td>
+<td style="text-align:right;">
+78
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Toyota
+</td>
+<td style="text-align:left;">
+Prius Eco
+</td>
+<td style="text-align:right;">
+58
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Honda
+</td>
+<td style="text-align:left;">
+Insight
+</td>
+<td style="text-align:right;">
+55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lexus
+</td>
+<td style="text-align:left;">
+ES 300h
+</td>
+<td style="text-align:right;">
+44
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mitsubishi
+</td>
+<td style="text-align:left;">
+Mirage
+</td>
+<td style="text-align:right;">
+43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mazda
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mercedes-Benz
+</td>
+<td style="text-align:left;">
+A220
+</td>
+<td style="text-align:right;">
+36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Subaru
+</td>
+<td style="text-align:left;">
+Impreza 4-Door
+</td>
+<td style="text-align:right;">
+36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Acura
+</td>
+<td style="text-align:left;">
+ILX
+</td>
+<td style="text-align:right;">
+34
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cadillac
+</td>
+<td style="text-align:left;">
+CT4
+</td>
+<td style="text-align:right;">
+34
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lincoln
+</td>
+<td style="text-align:left;">
+Corsair AWD PHEV
+</td>
+<td style="text-align:right;">
+34
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Alfa Romeo
+</td>
+<td style="text-align:left;">
+Giulia
+</td>
+<td style="text-align:right;">
+33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ram
+</td>
+<td style="text-align:left;">
+1500 HFE 2WD
+</td>
+<td style="text-align:right;">
+33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Buick
+</td>
+<td style="text-align:left;">
+Encore GX FWD
+</td>
+<td style="text-align:right;">
+32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Genesis
+</td>
+<td style="text-align:left;">
+G80 RWD
+</td>
+<td style="text-align:right;">
+32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Jeep
+</td>
+<td style="text-align:left;">
+Renegade 2WD
+</td>
+<td style="text-align:right;">
+32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chrysler
+</td>
+<td style="text-align:left;">
+300
+</td>
+<td style="text-align:right;">
+30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Dodge
+</td>
+<td style="text-align:left;">
+Challenger
+</td>
+<td style="text-align:right;">
+30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fiat
+</td>
+<td style="text-align:left;">
+500X AWD
+</td>
+<td style="text-align:right;">
+30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GMC
+</td>
+<td style="text-align:left;">
+Canyon 2WD
+</td>
+<td style="text-align:right;">
+30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Infiniti
+</td>
+<td style="text-align:left;">
+QX50
+</td>
+<td style="text-align:right;">
+29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Land Rover
+</td>
+<td style="text-align:left;">
+Range Rover
+</td>
+<td style="text-align:right;">
+28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Karma
+</td>
+<td style="text-align:left;">
+GS-6 (21-inch wheels)
+</td>
+<td style="text-align:right;">
+27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bentley
+</td>
+<td style="text-align:left;">
+Continental GT Convertible
+</td>
+<td style="text-align:right;">
+26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lotus
+</td>
+<td style="text-align:left;">
+Evora GT
+</td>
+<td style="text-align:right;">
+26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Maserati
+</td>
+<td style="text-align:left;">
+Ghibli
+</td>
+<td style="text-align:right;">
+25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aston Martin
+</td>
+<td style="text-align:left;">
+Vantage V8
+</td>
+<td style="text-align:right;">
+24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ferrari
+</td>
+<td style="text-align:left;">
+Portofino M
+</td>
+<td style="text-align:right;">
+23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+McLaren Automotive
+</td>
+<td style="text-align:left;">
+GT
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rolls-Royce
+</td>
+<td style="text-align:left;">
+Phantom
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Roush Performance
+</td>
+<td style="text-align:left;">
+Mustang
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lamborghini
+</td>
+<td style="text-align:left;">
+Huracan
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bugatti
+</td>
+<td style="text-align:left;">
+Chiron
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
