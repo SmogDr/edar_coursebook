@@ -854,12 +854,12 @@ g2
 
 <img src="07-multivar_eda_files/figure-html/eda-fuel-2-1.png" width="672" style="display: block; margin: auto;" />
 
-I like these plots because they lead to more questions (and that's the *point* of exploratory data analysis)!  Why are some of the categories bimodal? Why do many natural gas vehicles tend to have the lowest fuel deficiency?  Are any of these vehicles tested on multiple fuel types?  What is the most fuel efficient vehicle sold today?
+I like these plots because they lead to more questions (and that's the *point* of exploratory data analysis)!  Why are some of the categories bimodal? Why do many natural gas vehicles tend to have the lowest fuel efficiency?  Are any of these vehicles tested on multiple fuel types?  What is the most fuel efficient vehicle sold today?
 
 ### More multivariate plotting
 
 Next, let's examine the effect of vehicle class on combined fuel economy for a
-single year: 2020. Note, for the plot below, since *vehicle class* (`v_class`) is a `factor` type of variable, I can structure the plot to show `v_class` from lowest median efficiency to highest median efficiency (where the median is taken from each class based on the `highway_08` variable) using: `forcats::fct_reorder(.f = v_class, .x = highway, .fun = median)`.
+single year: 2020. Note, for the plot below, since *vehicle class* (`v_class`) is a `factor` type of variable, I can structure the plot to show `v_class` from lowest median efficiency to highest median efficiency (where the median is taken from each class based on the `highway_08` variable). This is accomplished with the `fct_reorder()` function from the `forcats::` package: `forcats::fct_reorder(.f = v_class, .x = highway, .fun = median)`.
 
 
 ```r
@@ -893,7 +893,7 @@ g1
 Finally, let's ask some simple questions and use some basic data wrangling to 
 get the answers.
 
-#### Question 1
+**Question 1**
 
 Among 4-cylinder vehicles with Front-Wheel Drive, what make/model has the best highway fuel economy in 2018?
 
@@ -915,7 +915,9 @@ df_mpg %>%
 ## 1 Hyundai Ioniq Blue Front-Wheel Drive  2018        59
 ```
   
-Q2: Among 8-cylinder vehicles with Rear-Wheel Drive, what make/model has the 
+**Question 2**
+
+Among 8-cylinder vehicles with Rear-Wheel Drive, what make/model has the 
 worst city fuel economy in 2019?
 
 
@@ -940,7 +942,9 @@ df_mpg %>%
 <p class="caption">(\#fig:Q2a)The Bentley Mulsanne: $330k lets you park it on the sidewalk!</p>
 </div>
 
-Q3: Among 2021 vehicles from the `tidy_mpg` data frame, rank the highest-performing vehicle from each manufacturer in terms of fuel efficiency (`mpg`).  Pass the search result into a table using the `kable()` function.
+**Question 3**
+
+Among 2021 vehicles from the `tidy_mpg` data frame, rank the highest-performing vehicle from each manufacturer in terms of fuel efficiency (`mpg`).  Pass the search result into a table using the `kable()` function.
 
 
 ```r
