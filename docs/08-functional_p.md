@@ -52,7 +52,7 @@ The pipe operator `%>%` is an ally in this endeavor because it allows you to
 pass an object (like a vector or data frame) through series of functions in serial order. The pipe function is also easier to follow (with your mind) because 
 it allows you to interpret the code as if you were reading instructions in a 
 "how-to" manual: 
-*"take this object, then do this, then do this, then do that"*. Without the `%>%`
+*"take this object, then do this, then do this, then do that"*. **Without** the `%>%`
 operator, we are forced to nest functions together or write long and verbose
 code that steps through treatments slowly (and somewhat painfully).  Looking at
 the code below should make clear which set is easier to comprehend:
@@ -77,7 +77,7 @@ daily_show_2000 <- daily_show %>%
   select(job, date, name)
 ```
 
-In the nested example above, we "see" the `dplyr::select()` function first, yet 
+In the nested example above, we "see" the `dplyr::select()` function first, 
 yet the arguments to this function show up last (at the end of the nested code).
 This separation between functions and their arguments only gets worse as the 
 degree of nesting increases. The piped code, however, produces the same result
@@ -212,8 +212,8 @@ for an introduction to environments and
 [here](https://adv-r.hadley.nz/environments.html){target="_blank"}
 for a more detailed tutorial.
 The take-home point is that a homemade function can exist within the global 
-environment and return values to the global environment, even if the objects 
-created within that function don't.
+environment and return values to the global environment, even if some of the objects 
+created within that function don't show up in the global environment.
 
 ### Example Function: "import.w.name"
 Oftentimes, you will have a list of files of the same type/structure
@@ -225,7 +225,8 @@ using functional programming. Let's create a function to *"import a file with*
 For this example, assume that your files represent data from a network of sensors, 
 where the name/ID assigned to each sensor is **included in its file name** but 
 *not in the file itself*. To give you an example of what we are working with,
-lets use `list.files()` to look at the file names and paths. For this exercise
+lets use `list.files()` to look at the file names and paths (*note: the you can find the* 
+*.zip file on Canvas*). For this exercise
 we show a short list of 8 files (4 each from two sensors) but one could imagine
 this list being hundreds of entries.*To Note: these are real data collected* 
 *using sensors from*
@@ -234,7 +235,7 @@ this list being hundreds of entries.*To Note: these are real data collected*
 *by our research group*
 *[here](https://doi.org/10.1016/j.atmosenv.2019.117067){target="_blank"} in 2019.*
 The "PA" in each file name stands for 
-[Purple Air](www.purpleair.com){target="_blank"}.
+[Purple Air](https://www2.purpleair.com/){target="_blank"}.
 
 
 ```r
@@ -252,7 +253,7 @@ list.files('./data/purpleair/', full.names=TRUE)
 ## [8] "./data/purpleair//PA020_20181025.csv"
 ```
 
-Thus, we wish to write a function that not only imports these files into a data
+Thus, we wish to write a function that not only imports these .csv files into a data
 frame but also extracts the part of the file name (i.e., PA019 and PA020) 
 as one of the data columns (otherwise, when the data were combined we might not know what data was associated with a given sensor!).  In this function we will also 
 include a step to clean up the newly created data frame with a call to 
@@ -270,9 +271,10 @@ import.w.name <- function(pathname) {
   df <- read_csv(pathname, col_names = TRUE)
   df <- df %>%
     # use stringr::str_extract & a regex to get sensor ID from file name
+    # regex translation: "look for a /, then extract all letters and numbers that follow until _"
     mutate(sensor_ID = str_extract(pathname, 
                                   "(?<=//)[:alnum:]+(?=_)")) %>%
-    # clean up the resultant data frame with dplyr::select
+    # return only a few salient variables to the resultant data frame using dplyr::select
     select(UTCDateTime, 
            current_temp_f, 
            current_humidity, 
@@ -329,7 +331,7 @@ functions are intended to *map* functions (i.e., to apply them) to individual el
 <p class="caption">(\#fig:map-anno1)The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input.</p>
 </div>
 
-As shown above in Figure \@ref(fig:map-anno1), the generic form of `map()`  always returns a `list` object as the output (thanks to Hadley Wickham for the [graphic](https://adv-r.hadley.nz/functionals.html#map){target="_blank"}). A  `list` is a generic vector that can contain multiple objects (other vectors, data frames, etc.). Indeed, a data frame (and a `tibble`) is a special kind of list: a data frame is a list of vectors (columns) of equal length. A data frame can contain different vector objects but those objects must be placed in separate columns and each column vector must be the same length (when all the columns are equal length that means that data frames are *rectangular* lists). A generic `list` does not need to be rectangular because generic list entries are more distinct. Further, a list can contain another list (like a set of small boxes that are nested within a larger box). Think of a `list` like a drawer organizer - it can contain lots of different objects, all of which might be related to another in some way or, at least, might be used together for some common purpose.   
+As shown above in Figure \@ref(fig:map-anno1), the generic form of `map()`  always returns a `list` object as the output (thanks to Hadley Wickham for the [graphic](https://adv-r.hadley.nz/functionals.html#map){target="_blank"}). A  `list` is a generic vector that can contain multiple objects (other vectors, data frames, etc.). Indeed, a data frame (and a `tibble`) is a special kind of list: a data frame is a list of vectors (columns) of equal length. A data frame can contain different vector objects but those objects must be placed in separate columns and each column vector must be the same length (when all the columns are equal length that means that data frames are *rectangular* lists). A generic `list` does not need to be rectangular because generic list entries are more distinct. Further, a list can contain another list (like a set of small boxes that are nested within a larger box). Think of a `list` like a drawer organizer - it can contain lots of different objects, all of which might be related to another in some way or, at least, might be used together for some common purpose. To review:   
 
    - A ***vector*** is a one-dimensional object where all the entries are the same type.  
    - A ***matrix*** is a two-dimensional (rectangular) object where all entries are the same type, but ordered into *rows* and *column* indices.
@@ -358,17 +360,17 @@ glimpse(my.list)
 ##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] "audi" "audi" "dodge" "land rover" ...
-##   ..$ model       : chr [1:7] "a6 quattro" "a4" "durango 4wd" "range rover" ...
-##   ..$ displ       : num [1:7] 2.8 2.8 5.9 4.4 5.9 1.8 2.7
-##   ..$ year        : int [1:7] 1999 1999 1999 2008 1999 2008 2008
-##   ..$ cyl         : int [1:7] 6 6 8 8 8 4 6
-##   ..$ trans       : chr [1:7] "auto(l5)" "auto(l5)" "auto(l4)" "auto(s6)" ...
-##   ..$ drv         : chr [1:7] "4" "f" "4" "4" ...
-##   ..$ cty         : int [1:7] 15 16 11 12 11 26 17
-##   ..$ hwy         : int [1:7] 24 26 15 18 15 35 24
+##   ..$ manufacturer: chr [1:7] "subaru" "chevrolet" "jeep" "hyundai" ...
+##   ..$ model       : chr [1:7] "forester awd" "corvette" "grand cherokee 4wd" "tiburon" ...
+##   ..$ displ       : num [1:7] 2.5 6.2 5.7 2 5.7 4.6 2.2
+##   ..$ year        : int [1:7] 2008 2008 2008 2008 1999 2008 1999
+##   ..$ cyl         : int [1:7] 4 8 8 4 8 8 4
+##   ..$ trans       : chr [1:7] "auto(l4)" "manual(m6)" "auto(l5)" "manual(m5)" ...
+##   ..$ drv         : chr [1:7] "4" "r" "4" "f" ...
+##   ..$ cty         : int [1:7] 18 16 13 20 11 13 21
+##   ..$ hwy         : int [1:7] 23 26 18 28 15 19 29
 ##   ..$ fl          : chr [1:7] "p" "p" "r" "r" ...
-##   ..$ class       : chr [1:7] "midsize" "compact" "suv" "suv" ...
+##   ..$ class       : chr [1:7] "suv" "2seater" "suv" "subcompact" ...
 ```
 
 Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 
@@ -453,6 +455,9 @@ Let's use `map_dfr()` to apply our function, `import.w.name()`, onto the vector 
 
 ```r
 file_list <- list.files('./data/purpleair/', full.names=TRUE)
+
+# map the import.w.name() function to all objects within `file_list` sequentially
+# and combining the result into a single data frame with row binding
 PA_data_merged <- map_dfr(file_list, import.w.name) 
 
 glimpse(PA_data_merged)
