@@ -225,8 +225,8 @@ using functional programming. Let's create a function to *"import a file with*
 For this example, assume that your files represent data from a network of sensors, 
 where the name/ID assigned to each sensor is **included in its file name** but 
 *not in the file itself*. To give you an example of what we are working with,
-lets use `list.files()` to look at the file names and paths (*note: the you can find the* 
-*.zip file on Canvas*). For this exercise
+let's use `list.files()` to look at the file names and paths (*note: you can find this* 
+*.zip file on our Canvas site*). For this exercise,
 we show a short list of 8 files (4 each from two sensors) but one could imagine
 this list being hundreds of entries.*To Note: these are real data collected* 
 *using sensors from*
@@ -360,17 +360,17 @@ glimpse(my.list)
 ##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] "subaru" "chevrolet" "jeep" "hyundai" ...
-##   ..$ model       : chr [1:7] "forester awd" "corvette" "grand cherokee 4wd" "tiburon" ...
-##   ..$ displ       : num [1:7] 2.5 6.2 5.7 2 5.7 4.6 2.2
-##   ..$ year        : int [1:7] 2008 2008 2008 2008 1999 2008 1999
-##   ..$ cyl         : int [1:7] 4 8 8 4 8 8 4
-##   ..$ trans       : chr [1:7] "auto(l4)" "manual(m6)" "auto(l5)" "manual(m5)" ...
-##   ..$ drv         : chr [1:7] "4" "r" "4" "f" ...
-##   ..$ cty         : int [1:7] 18 16 13 20 11 13 21
-##   ..$ hwy         : int [1:7] 23 26 18 28 15 19 29
-##   ..$ fl          : chr [1:7] "p" "p" "r" "r" ...
-##   ..$ class       : chr [1:7] "suv" "2seater" "suv" "subcompact" ...
+##   ..$ manufacturer: chr [1:7] "chevrolet" "toyota" "chevrolet" "volkswagen" ...
+##   ..$ model       : chr [1:7] "corvette" "4runner 4wd" "malibu" "passat" ...
+##   ..$ displ       : num [1:7] 5.7 3.4 3.1 1.8 4.7 3.8 3.3
+##   ..$ year        : int [1:7] 1999 1999 1999 1999 2008 1999 1999
+##   ..$ cyl         : int [1:7] 8 6 6 4 8 6 6
+##   ..$ trans       : chr [1:7] "auto(l4)" "auto(l4)" "auto(l4)" "manual(m5)" ...
+##   ..$ drv         : chr [1:7] "r" "4" "f" "f" ...
+##   ..$ cty         : int [1:7] 15 15 18 21 12 18 14
+##   ..$ hwy         : int [1:7] 23 19 26 29 16 26 17
+##   ..$ fl          : chr [1:7] "p" "r" "r" "p" ...
+##   ..$ class       : chr [1:7] "2seater" "suv" "midsize" "midsize" ...
 ```
 
 Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 
@@ -450,7 +450,7 @@ Working with lists is one of the mental hurdles to overcome when learning `map()
 |map_dfr()          |data frame (output by row-binding)    |
 |map_dfc()          |data frame (output by column-binding) |
 
-Let's use `map_dfr()` to apply our function, `import.w.name()`, onto the vector of file names and paths (`file_list`). The *"r"* in `map_dfr()` means that the resultant data frame output by `map_` will be created by binding rows together as the function moves down each index in the file list.  This is shown schematically in the figure below.
+Let's use `map_dfr()` to apply our function, `import.w.name()`, onto the vector of file names and paths (`file_list`). The *"r"* in `map_dfr()` means that the resultant data frame output by `map_` will be created by binding rows together as the function moves down each index in the file list.  This is shown schematically in Figure \@ref(fig:map-dfr-anno) below.
 
 
 ```r

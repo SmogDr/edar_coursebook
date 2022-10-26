@@ -219,8 +219,8 @@ using functional programming. Let's create a function to *"import a file with*
 For this example, assume that your files represent data from a network of sensors, 
 where the name/ID assigned to each sensor is **included in its file name** but 
 *not in the file itself*. To give you an example of what we are working with,
-lets use `list.files()` to look at the file names and paths (*note: the you can find the* 
-*.zip file on Canvas*). For this exercise
+let's use `list.files()` to look at the file names and paths (*note: you can find this* 
+*.zip file on our Canvas site*). For this exercise,
 we show a short list of 8 files (4 each from two sensors) but one could imagine
 this list being hundreds of entries.*To Note: these are real data collected* 
 *using sensors from*
@@ -379,7 +379,7 @@ knitr::kable(purrr_variants, col.names = c("`Purrr::` Function", "Object Type Re
 
 ```
 
-Let's use `map_dfr()` to apply our function, `import.w.name()`, onto the vector of file names and paths (`file_list`). The *"r"* in `map_dfr()` means that the resultant data frame output by `map_` will be created by binding rows together as the function moves down each index in the file list.  This is shown schematically in the figure below.
+Let's use `map_dfr()` to apply our function, `import.w.name()`, onto the vector of file names and paths (`file_list`). The *"r"* in `map_dfr()` means that the resultant data frame output by `map_` will be created by binding rows together as the function moves down each index in the file list.  This is shown schematically in Figure \@ref(fig:map-dfr-anno) below.
 
 ``` {r purrr-import, warning=FALSE, message=FALSE}
 file_list <- list.files('./data/purpleair/', full.names=TRUE)
