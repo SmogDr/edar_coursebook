@@ -8,7 +8,7 @@ This Chapter is designed around the following learning objectives. Upon completi
 - Define common approaches to data transformation  
 - Explain the differences between *centering*, *rescaling*, and *standardizing* univariate data. 
 - Stratify data into relevant groups for analysis
-- Discuss the risks and potential approaches to handling outliers
+- Discuss the risks and potential approaches to identifying and handling outliers
 
 
 ## Transformation
@@ -18,7 +18,7 @@ The phrase *"Data Transformation"* means different things in different fields so
 - taking the log, square root, or reciprocal of a variable;
 - some combination of these approaches.
 
-For example, your data are transformed whenever you convert temperature units from °F to °C, length units from inches to millimeters, or render a variable dimensionless (e.g., converting to units of percent, parts per million, or some other unitless value).  In addition to these "units transformations", we also conduct transformations to make the ***location*** and ***spread*** of data consistent, or to change the ***shape*** of a distribution of data (e.g., to reduce skewness or to linearize a variable). These latter approaches are often employed during multivariate analyses to help your variables "play nicely together" within the analytic framework you set forth. More on this to come.
+For example, your data are transformed whenever you convert temperature units from °F to °C, length units from inches to millimeters, or render a variable dimensionless (e.g., converting to units of percent, parts per million, or some other unitless value).  In addition to these "units transformations", we also conduct transformations to make the ***location*** and ***dispersion*** of data consistent, or to change the ***shape*** of a distribution of data (e.g., to reduce skewness or to linearize a variable). These latter approaches are often employed during multivariate analyses to help your variables "play nicely together" within the analytic framework you set forth. More on this to come.
 
 <div class="rmdnote">
 <p>There are two key facets to data transformation:
@@ -27,13 +27,13 @@ Whenever data are transformed, you must provide a good reason for doing
 so (hint: there are many good reasons and also a few bad ones).
 Furthermore, <strong>you must adequately document “how” and “why” the
 data were transformed</strong>, so that others can understand your work
-and reproduce your results if needed.</p>
+and reproduce your results, when needed.</p>
 </div>
 
 ### Centering
-Centering means ***to subtract (or sometimes add) a constant from all values*** in a vector.  The **constant** to be subtracted could be an estimate of the data's central tendency, like the mean or median (hence the term *center*-ing), or it could be some residual value that you want to remove from all observations.  If you subtract the mean from every value of a vector, then the new vector will have a mean of 0; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location.  Centering ***changes the location*** of a variable but ***spread stays the same***.
+Centering means ***to subtract (or sometimes add) a constant from all values*** in a vector.  The **constant** to be subtracted could be an estimate of the data's central tendency, like the mean or median (hence the term *center*-ing), or it could be some residual value that you want to remove from all observations.  If you subtract the mean from every value of a vector, then the new vector will have a mean of 0; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location.  Centering ***changes the location*** of a variable but ***dispersion (spread) stays the same***.
 
-In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to "background subtract" or "zero" a set of univariate observations.  If you have ever used a digital scale to measure the weight of an object, you've probably noticed that when you turn it on, the scale does not always read zero.  Most of the time the instrument has a way to "re-zero" itself prior to use, but this is not always the case.  If your scale shows a mass of 198 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 298 from all subsequent weights that you perform with this scale.  That subtraction is an example of a "centering" transformation. 
+In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to "background subtract" or "zero" a set of univariate observations.  If you have ever used a digital scale to measure the weight of an object, you've probably noticed that when you turn it on, the scale does not always read zero.  Most of the time the instrument has a way to "re-zero" itself prior to use, but this is not always the case.  If your scale shows a mass of 198 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 198 from all subsequent weights that you perform with this scale.  That subtraction is an example of a "centering" transformation. 
 
 
 
@@ -43,7 +43,7 @@ In engineering, the most common reason for centering data is not to subtract the
 </div>
 
 ### Rescaling
-**To rescale a variable means to divide (or multiply) all values by a constant**.  Whereas *centering* is an arithmetic transformation, the process of *rescaling* data is multiplicative.  Rescaling changes both the location and spread of the data.
+**To rescale a variable means to divide (or multiply) all values by a constant**.  Whereas *centering* is an arithmetic transformation, the process of *rescaling* data is multiplicative.  Rescaling can change both the location and spread of the data.
 
 Some reasons to rescale data include:  
 
@@ -68,8 +68,8 @@ There are many types of normalization operations; we will discuss a few examples
 ### Rate normalization
 To perform a rate normalization is **to divide one variable into another**, often to report something in terms of a rate.  
 
-  - Two cars can have the same range (how many miles they can travel on one tank of gas) but different rates of fuel efficiency (miles traveled per gallon)  
-  - Two countries can have the same GDI (*gross domestic income*; the sum of all  wages earned) but widely different rates of "per capita" income (GDI/total population size). 
+  - Two cars can have the same range (how many miles they can travel on one tank of gas) but different rates of fuel efficiency (miles traveled per gallon);  
+  - Two countries can have the same GDI (*gross domestic income*; the sum of all  wages earned) but widely different rates of "per capita" income (GDI/total population). 
 
 ### Standardizing
 Standardization is a special case of transformation/normalization where each value in a set of observations (or vector) is subtracted by some level (often the central tendency) and divided by the spread.  When working with normally distributed data, the standardization of variable $x_i$ into $z_i$ is:
@@ -93,16 +93,16 @@ If you would like to lean more about data transformations (and how to make your 
 ## Stratification
 **To stratify a sample means: to divide the sample into subsets (aka strata).** 
 
-Stratified analyses can be performed many ways; one particularly useful way is graphically, by creating a stratification plot.  A stratification plot is like any other visualization that you have created, except that the strata are identified (i.e., called out) through the use of color, lines, symbols, etc.  Let's use the following example to demonstrate:
+Stratified analyses can be performed many ways; one particularly useful way is graphically, by creating a stratification plot.  A stratification plot is like any other visualization that you have created, except that the strata are identified (i.e., called out) through the use of color, lines, symbols, facets, etc.  Let's use the following example to demonstrate:
 
 
-A manufacturing operation is investigating the production of an expensive titanium alloy, where a 25% increase in the production yield of the alloy  means the difference between profit and loss.  The materials group believes that feedstock purity should have an strong effect on the yield. For the past month, all three reactors at the plant have been producing alloys from Ti feedstock of varying purity. After one month, you decide to visualize the relationship between *process yield* and *sample purity* with a scatterplot, `geom_point()`.
+A manufacturing operation is investigating the production of an expensive titanium alloy, where a 25% increase in the production yield of the alloy means the difference between profit and loss.  The materials engineers believe that feedstock purity should have an effect on the yield. For the past month, all three reactors at the plant have been producing alloys from Ti feedstock of varying purity. After one month, you decide to visualize the relationship between *process yield* and *sample purity* with a scatterplot, `geom_point()`.
 
 <div class="figure" style="text-align: center">
 <img src="./images/unstratified.png" alt="Yield vs. Purity from the plant's three reactors over one month" width="500" />
 <p class="caption">(\#fig:stratify2)Yield vs. Purity from the plant's three reactors over one month</p>
 </div>
-Examination of Figure \@ref(fig:stratify2) reveals that, while there is considerable variation in the data, a clear relationship is not apparent between sample purity and process yield. Correlation analyses reveal a Pearson correlation coefficient of $r=$ -0.23, indicating a very low level of correlation between the two variables. However, it occurs to you that perhaps there is variation in results between the three different reactors in the plant.  Therefore, you decide to repeat this analysis ***stratifying the data by reactor type***.  In this case, you repeat the `ggplot()` call with an extra aesthetic of `color = reactor` in the scatterplot.
+Examination of Figure \@ref(fig:stratify2) reveals that, while there is considerable variation in the data, a clear relationship is not apparent between sample purity and process yield. Correlation analyses reveal a Pearson correlation coefficient of $r=$ -0.23, indicating a low level of correlation between the two variables. However, it occurs to you that perhaps there is variation in results between the three different reactors in the plant.  Therefore, you decide to repeat this analysis ***stratifying the data by reactor type***.  In this case, you repeat the `ggplot()` call with an extra aesthetic of `color = reactor` in the scatterplot.
 
 
 
@@ -117,19 +117,35 @@ strat.data %>%
   summarise("Pearson's r" = cor(yield2, purity),
             .groups = "keep") %>%
   kable(align = "c",
-        digits = 2)
+        digits = 2) %>%
+  kable_styling(full_width = FALSE)
 ```
 
-
-
-| reactor | Pearson's r |
-|:-------:|:-----------:|
-|    a    |    -0.90    |
-|    b    |    -0.90    |
-|    c    |    -0.92    |
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:center;"> reactor </th>
+   <th style="text-align:center;"> Pearson's r </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> a </td>
+   <td style="text-align:center;"> -0.90 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> b </td>
+   <td style="text-align:center;"> -0.90 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> c </td>
+   <td style="text-align:center;"> -0.92 </td>
+  </tr>
+</tbody>
+</table>
 Figure \@ref(fig:stratify-png) tells a very different story! Now we can see that two relationships are clearly evident.  
 
-  1. There is a definite inverse relationship between *sample purity* and the *process yield* (Pearson correlation coefficients are now ~ 0.9 for each) and  
+  1. There is a clear inverse relationship between *sample purity* and the *process yield* (Pearson correlation coefficients are now ~ 0.9 for each) and  
   2. For a given purity level, each reactor has a different output.  Clearly, there is something different about each of these reactors that merits further study...  
   
 Figure \@ref(fig:stratify-png) raises a subtle, but very important, point: **data often have hierarchy** and that hierarchy may be influential. In this case, only when we account for the hierarchy (the reactor that produced each sample), do we see an important relationship arise.
@@ -500,6 +516,56 @@ ggplot() +
 </div>
 
 The eyeball test of our fit looks pretty good, which suggests that our data is indeed log-normal (or at least is reasonably approximated by a lognormal distribution).  Question to ponder: *when you know that your data are lognormal, does that change your expectation for what might be defined as an outlier?*
+
+### Transform the Data  
+Now that we know that (1) these data are skewed (non-normal) and (2) likely log-normally distributed, let's see what happens when we *transform* these data. Figure \@ref(fig:salary-transform) appears much more symmetric (read:normal) following the log transform. 
+
+
+```r
+salary_ps2 <- salary_ps2 %>%
+  mutate(log.salary = log(salary))
+
+ggplot() +
+  geom_histogram(data = salary_ps2,
+                 aes(x = log.salary),
+                 color = "white",
+                 fill = "navy",
+                 bins = 20) +
+  ylab("Frequency") +
+  xlab("ln(salary)") +
+  theme_bw()
+```
+
+<div class="figure" style="text-align: center">
+<img src="09-transf_files/figure-html/salary-transform-1.png" alt="Histogram of Log-transformed Salary Data" width="672" />
+<p class="caption">(\#fig:salary-transform)Histogram of Log-transformed Salary Data</p>
+</div>
+
+When visualizing lognormal data, however, it's ofen a better idea to transform the axis (instead of transforming the data themselves).  This allows the viewer to "see" the units of measurement in their natural form, instead of forcing the viewer to exponentiate values in their head (hint: nobody likes to do this).  Therefore, we can *transform* our data visualization with a call to `scale_x_log10()` in `ggplot::`.  Transforming the x- or y-axis is common in data visualization, especially when your values span several orders of magnitude.
+
+
+```r
+salary_ps2 <- salary_ps2 %>%
+  mutate(log.salary = log(salary))
+
+ggplot() +
+  geom_histogram(data = salary_ps2,
+                 aes(x = salary),
+                 color = "white",
+                 fill = "navy",
+                 bins = 20) +
+  ylab("Frequency") +
+  xlab("Salary") +
+  # transform the axis, instead of the data (works well with lognormal data)
+  scale_x_log10(labels = scales::label_dollar(accuracy = 1, 
+                                              suffix = "k")) +
+  theme_bw()
+```
+
+<div class="figure" style="text-align: center">
+<img src="09-transf_files/figure-html/salary-transform2-1.png" alt="Histogram of Salary Data using a Log-10 X-axis" width="672" />
+<p class="caption">(\#fig:salary-transform2)Histogram of Salary Data using a Log-10 X-axis</p>
+</div>
 
 
 ## Ch-9 Homework

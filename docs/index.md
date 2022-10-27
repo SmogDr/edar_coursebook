@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens"
-date: "2022-10-26"
+date: "2022-10-27"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book

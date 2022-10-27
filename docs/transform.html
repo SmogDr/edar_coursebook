@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-10-26" />
+<meta name="date" content="2022-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -389,6 +389,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.6.3" data-path="transform.html"><a href="transform.html#rescale-and-censor-data"><i class="fa fa-check"></i><b>9.6.3</b> Rescale and Censor Data</a></li>
 <li class="chapter" data-level="9.6.4" data-path="transform.html"><a href="transform.html#logfit"><i class="fa fa-check"></i><b>9.6.4</b> Fit a Log-normal Distribution</a></li>
 <li class="chapter" data-level="9.6.5" data-path="transform.html"><a href="transform.html#plot-fitted-vs-actual-data"><i class="fa fa-check"></i><b>9.6.5</b> Plot Fitted vs Actual Data</a></li>
+<li class="chapter" data-level="9.6.6" data-path="transform.html"><a href="transform.html#transform-the-data"><i class="fa fa-check"></i><b>9.6.6</b> Transform the Data</a></li>
 </ul></li>
 <li class="chapter" data-level="9.7" data-path="transform.html"><a href="transform.html#ch-9-homework"><i class="fa fa-check"></i><b>9.7</b> Ch-9 Homework</a></li>
 </ul></li>
@@ -495,7 +496,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li>Explain the differences between <em>centering</em>, <em>rescaling</em>, and <em>standardizing</em> univariate data.</li>
 <li>Stratify data into relevant groups for analysis</li>
-<li>Discuss the risks and potential approaches to handling outliers</li>
+<li>Discuss the risks and potential approaches to identifying and handling outliers</li>
 </ul>
 </div>
 <div id="transformation" class="section level2 hasAnchor" number="9.2">
@@ -506,7 +507,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>taking the log, square root, or reciprocal of a variable;</li>
 <li>some combination of these approaches.</li>
 </ul>
-<p>For example, your data are transformed whenever you convert temperature units from °F to °C, length units from inches to millimeters, or render a variable dimensionless (e.g., converting to units of percent, parts per million, or some other unitless value). In addition to these “units transformations”, we also conduct transformations to make the <strong><em>location</em></strong> and <strong><em>spread</em></strong> of data consistent, or to change the <strong><em>shape</em></strong> of a distribution of data (e.g., to reduce skewness or to linearize a variable). These latter approaches are often employed during multivariate analyses to help your variables “play nicely together” within the analytic framework you set forth. More on this to come.</p>
+<p>For example, your data are transformed whenever you convert temperature units from °F to °C, length units from inches to millimeters, or render a variable dimensionless (e.g., converting to units of percent, parts per million, or some other unitless value). In addition to these “units transformations”, we also conduct transformations to make the <strong><em>location</em></strong> and <strong><em>dispersion</em></strong> of data consistent, or to change the <strong><em>shape</em></strong> of a distribution of data (e.g., to reduce skewness or to linearize a variable). These latter approaches are often employed during multivariate analyses to help your variables “play nicely together” within the analytic framework you set forth. More on this to come.</p>
 <div class="rmdnote">
 <p>
 There are two key facets to data transformation:
@@ -515,13 +516,13 @@ Whenever data are transformed, you must provide a good reason for doing
 so (hint: there are many good reasons and also a few bad ones).
 Furthermore, <strong>you must adequately document “how” and “why” the
 data were transformed</strong>, so that others can understand your work
-and reproduce your results if needed.
+and reproduce your results, when needed.
 </p>
 </div>
 <div id="centering" class="section level3 hasAnchor" number="9.2.1">
 <h3><span class="header-section-number">9.2.1</span> Centering<a href="transform.html#centering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Centering means <strong><em>to subtract (or sometimes add) a constant from all values</em></strong> in a vector. The <strong>constant</strong> to be subtracted could be an estimate of the data’s central tendency, like the mean or median (hence the term <em>center</em>-ing), or it could be some residual value that you want to remove from all observations. If you subtract the mean from every value of a vector, then the new vector will have a mean of 0; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location. Centering <strong><em>changes the location</em></strong> of a variable but <strong><em>spread stays the same</em></strong>.</p>
-<p>In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to “background subtract” or “zero” a set of univariate observations. If you have ever used a digital scale to measure the weight of an object, you’ve probably noticed that when you turn it on, the scale does not always read zero. Most of the time the instrument has a way to “re-zero” itself prior to use, but this is not always the case. If your scale shows a mass of 198 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 298 from all subsequent weights that you perform with this scale. That subtraction is an example of a “centering” transformation.</p>
+<p>Centering means <strong><em>to subtract (or sometimes add) a constant from all values</em></strong> in a vector. The <strong>constant</strong> to be subtracted could be an estimate of the data’s central tendency, like the mean or median (hence the term <em>center</em>-ing), or it could be some residual value that you want to remove from all observations. If you subtract the mean from every value of a vector, then the new vector will have a mean of 0; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location. Centering <strong><em>changes the location</em></strong> of a variable but <strong><em>dispersion (spread) stays the same</em></strong>.</p>
+<p>In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to “background subtract” or “zero” a set of univariate observations. If you have ever used a digital scale to measure the weight of an object, you’ve probably noticed that when you turn it on, the scale does not always read zero. Most of the time the instrument has a way to “re-zero” itself prior to use, but this is not always the case. If your scale shows a mass of 198 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 198 from all subsequent weights that you perform with this scale. That subtraction is an example of a “centering” transformation.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:centering-anno"></span>
 <img src="images/centering_anno.png" alt="Data are sometimes centered to correct spurious values" width="640" />
 <p class="caption">
@@ -531,7 +532,7 @@ Figure 9.1: Data are sometimes centered to correct spurious values
 </div>
 <div id="rescaling" class="section level3 hasAnchor" number="9.2.2">
 <h3><span class="header-section-number">9.2.2</span> Rescaling<a href="transform.html#rescaling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>To rescale a variable means to divide (or multiply) all values by a constant</strong>. Whereas <em>centering</em> is an arithmetic transformation, the process of <em>rescaling</em> data is multiplicative. Rescaling changes both the location and spread of the data.</p>
+<p><strong>To rescale a variable means to divide (or multiply) all values by a constant</strong>. Whereas <em>centering</em> is an arithmetic transformation, the process of <em>rescaling</em> data is multiplicative. Rescaling can change both the location and spread of the data.</p>
 <p>Some reasons to rescale data include:</p>
 <ul>
 <li>to show variables of different magnitudes together on the same axis of a plot;</li>
@@ -558,9 +559,9 @@ database” so that redundancies are eliminated.
 <h3><span class="header-section-number">9.3.1</span> Rate normalization<a href="transform.html#rate-normalization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To perform a rate normalization is <strong>to divide one variable into another</strong>, often to report something in terms of a rate.</p>
 <ul>
-<li>Two cars can have the same range (how many miles they can travel on one tank of gas) but different rates of fuel efficiency (miles traveled per gallon)<br />
+<li>Two cars can have the same range (how many miles they can travel on one tank of gas) but different rates of fuel efficiency (miles traveled per gallon);<br />
 </li>
-<li>Two countries can have the same GDI (<em>gross domestic income</em>; the sum of all wages earned) but widely different rates of “per capita” income (GDI/total population size).</li>
+<li>Two countries can have the same GDI (<em>gross domestic income</em>; the sum of all wages earned) but widely different rates of “per capita” income (GDI/total population).</li>
 </ul>
 </div>
 <div id="standardizing" class="section level3 hasAnchor" number="9.3.2">
@@ -584,15 +585,15 @@ Figure 9.2: The log(x) transform is often used to reduce skewness in a variable.
 <div id="stratification" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> Stratification<a href="transform.html#stratification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>To stratify a sample means: to divide the sample into subsets (aka strata).</strong></p>
-<p>Stratified analyses can be performed many ways; one particularly useful way is graphically, by creating a stratification plot. A stratification plot is like any other visualization that you have created, except that the strata are identified (i.e., called out) through the use of color, lines, symbols, etc. Let’s use the following example to demonstrate:</p>
-<p>A manufacturing operation is investigating the production of an expensive titanium alloy, where a 25% increase in the production yield of the alloy means the difference between profit and loss. The materials group believes that feedstock purity should have an strong effect on the yield. For the past month, all three reactors at the plant have been producing alloys from Ti feedstock of varying purity. After one month, you decide to visualize the relationship between <em>process yield</em> and <em>sample purity</em> with a scatterplot, <code>geom_point()</code>.</p>
+<p>Stratified analyses can be performed many ways; one particularly useful way is graphically, by creating a stratification plot. A stratification plot is like any other visualization that you have created, except that the strata are identified (i.e., called out) through the use of color, lines, symbols, facets, etc. Let’s use the following example to demonstrate:</p>
+<p>A manufacturing operation is investigating the production of an expensive titanium alloy, where a 25% increase in the production yield of the alloy means the difference between profit and loss. The materials engineers believe that feedstock purity should have an effect on the yield. For the past month, all three reactors at the plant have been producing alloys from Ti feedstock of varying purity. After one month, you decide to visualize the relationship between <em>process yield</em> and <em>sample purity</em> with a scatterplot, <code>geom_point()</code>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:stratify2"></span>
 <img src="images/unstratified.png" alt="Yield vs. Purity from the plant's three reactors over one month" width="500" />
 <p class="caption">
 Figure 9.3: Yield vs. Purity from the plant’s three reactors over one month
 </p>
 </div>
-<p>Examination of Figure <a href="transform.html#fig:stratify2">9.3</a> reveals that, while there is considerable variation in the data, a clear relationship is not apparent between sample purity and process yield. Correlation analyses reveal a Pearson correlation coefficient of <span class="math inline">\(r=\)</span> -0.23, indicating a very low level of correlation between the two variables. However, it occurs to you that perhaps there is variation in results between the three different reactors in the plant. Therefore, you decide to repeat this analysis <strong><em>stratifying the data by reactor type</em></strong>. In this case, you repeat the <code>ggplot()</code> call with an extra aesthetic of <code>color = reactor</code> in the scatterplot.</p>
+<p>Examination of Figure <a href="transform.html#fig:stratify2">9.3</a> reveals that, while there is considerable variation in the data, a clear relationship is not apparent between sample purity and process yield. Correlation analyses reveal a Pearson correlation coefficient of <span class="math inline">\(r=\)</span> -0.23, indicating a low level of correlation between the two variables. However, it occurs to you that perhaps there is variation in results between the three different reactors in the plant. Therefore, you decide to repeat this analysis <strong><em>stratifying the data by reactor type</em></strong>. In this case, you repeat the <code>ggplot()</code> call with an extra aesthetic of <code>color = reactor</code> in the scatterplot.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:stratify-png"></span>
 <img src="images/stratified.png" alt="Yield vs. Purity over one month, stratified by reactor type" width="500" />
 <p class="caption">
@@ -604,32 +605,49 @@ Figure 9.4: Yield vs. Purity over one month, stratified by reactor type
 <span id="cb317-3"><a href="transform.html#cb317-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">&quot;Pearson&#39;s r&quot;</span> <span class="ot">=</span> <span class="fu">cor</span>(yield2, purity),</span>
 <span id="cb317-4"><a href="transform.html#cb317-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;keep&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb317-5"><a href="transform.html#cb317-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">align =</span> <span class="st">&quot;c&quot;</span>,</span>
-<span id="cb317-6"><a href="transform.html#cb317-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
-<table>
+<span id="cb317-6"><a href="transform.html#cb317-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb317-7"><a href="transform.html#cb317-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th align="center">reactor</th>
-<th align="center">Pearson’s r</th>
+<tr>
+<th style="text-align:center;">
+reactor
+</th>
+<th style="text-align:center;">
+Pearson’s r
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="center">a</td>
-<td align="center">-0.90</td>
+<tr>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;">
+-0.90
+</td>
 </tr>
-<tr class="even">
-<td align="center">b</td>
-<td align="center">-0.90</td>
+<tr>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;">
+-0.90
+</td>
 </tr>
-<tr class="odd">
-<td align="center">c</td>
-<td align="center">-0.92</td>
+<tr>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;">
+-0.92
+</td>
 </tr>
 </tbody>
 </table>
 <p>Figure <a href="transform.html#fig:stratify-png">9.4</a> tells a very different story! Now we can see that two relationships are clearly evident.</p>
 <ol style="list-style-type: decimal">
-<li>There is a definite inverse relationship between <em>sample purity</em> and the <em>process yield</em> (Pearson correlation coefficients are now ~ 0.9 for each) and<br />
+<li>There is a clear inverse relationship between <em>sample purity</em> and the <em>process yield</em> (Pearson correlation coefficients are now ~ 0.9 for each) and<br />
 </li>
 <li>For a given purity level, each reactor has a different output. Clearly, there is something different about each of these reactors that merits further study…</li>
 </ol>
@@ -949,6 +967,50 @@ Figure 9.9: Salary Data Fitted by a Lognormal Distribution
 </p>
 </div>
 <p>The eyeball test of our fit looks pretty good, which suggests that our data is indeed log-normal (or at least is reasonably approximated by a lognormal distribution). Question to ponder: <em>when you know that your data are lognormal, does that change your expectation for what might be defined as an outlier?</em></p>
+</div>
+<div id="transform-the-data" class="section level3 hasAnchor" number="9.6.6">
+<h3><span class="header-section-number">9.6.6</span> Transform the Data<a href="transform.html#transform-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now that we know that (1) these data are skewed (non-normal) and (2) likely log-normally distributed, let’s see what happens when we <em>transform</em> these data. Figure <a href="transform.html#fig:salary-transform">9.10</a> appears much more symmetric (read:normal) following the log transform.</p>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="transform.html#cb334-1" aria-hidden="true" tabindex="-1"></a>salary_ps2 <span class="ot">&lt;-</span> salary_ps2 <span class="sc">%&gt;%</span></span>
+<span id="cb334-2"><a href="transform.html#cb334-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log.salary =</span> <span class="fu">log</span>(salary))</span>
+<span id="cb334-3"><a href="transform.html#cb334-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb334-4"><a href="transform.html#cb334-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb334-5"><a href="transform.html#cb334-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">data =</span> salary_ps2,</span>
+<span id="cb334-6"><a href="transform.html#cb334-6" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> log.salary),</span>
+<span id="cb334-7"><a href="transform.html#cb334-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb334-8"><a href="transform.html#cb334-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;navy&quot;</span>,</span>
+<span id="cb334-9"><a href="transform.html#cb334-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb334-10"><a href="transform.html#cb334-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb334-11"><a href="transform.html#cb334-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;ln(salary)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb334-12"><a href="transform.html#cb334-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:salary-transform"></span>
+<img src="09-transf_files/figure-html/salary-transform-1.png" alt="Histogram of Log-transformed Salary Data" width="672" />
+<p class="caption">
+Figure 9.10: Histogram of Log-transformed Salary Data
+</p>
+</div>
+<p>When visualizing lognormal data, however, it’s ofen a better idea to transform the axis (instead of transforming the data themselves). This allows the viewer to “see” the units of measurement in their natural form, instead of forcing the viewer to exponentiate values in their head (hint: nobody likes to do this). Therefore, we can <em>transform</em> our data visualization with a call to <code>scale_x_log10()</code> in <code>ggplot::</code>. Transforming the x- or y-axis is common in data visualization, especially when your values span several orders of magnitude.</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="transform.html#cb335-1" aria-hidden="true" tabindex="-1"></a>salary_ps2 <span class="ot">&lt;-</span> salary_ps2 <span class="sc">%&gt;%</span></span>
+<span id="cb335-2"><a href="transform.html#cb335-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log.salary =</span> <span class="fu">log</span>(salary))</span>
+<span id="cb335-3"><a href="transform.html#cb335-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb335-4"><a href="transform.html#cb335-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb335-5"><a href="transform.html#cb335-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">data =</span> salary_ps2,</span>
+<span id="cb335-6"><a href="transform.html#cb335-6" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> salary),</span>
+<span id="cb335-7"><a href="transform.html#cb335-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb335-8"><a href="transform.html#cb335-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;navy&quot;</span>,</span>
+<span id="cb335-9"><a href="transform.html#cb335-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb335-10"><a href="transform.html#cb335-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb335-11"><a href="transform.html#cb335-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Salary&quot;</span>) <span class="sc">+</span></span>
+<span id="cb335-12"><a href="transform.html#cb335-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># transform the axis, instead of the data (works well with lognormal data)</span></span>
+<span id="cb335-13"><a href="transform.html#cb335-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">accuracy =</span> <span class="dv">1</span>, </span>
+<span id="cb335-14"><a href="transform.html#cb335-14" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">suffix =</span> <span class="st">&quot;k&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb335-15"><a href="transform.html#cb335-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:salary-transform2"></span>
+<img src="09-transf_files/figure-html/salary-transform2-1.png" alt="Histogram of Salary Data using a Log-10 X-axis" width="672" />
+<p class="caption">
+Figure 9.11: Histogram of Salary Data using a Log-10 X-axis
+</p>
+</div>
 </div>
 </div>
 <div id="ch-9-homework" class="section level2 hasAnchor" number="9.7">
