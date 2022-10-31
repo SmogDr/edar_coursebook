@@ -12,13 +12,13 @@ This Chapter is designed around the following learning objectives. Upon completi
 
 
 ## Transformation
-The phrase *"Data Transformation"* means different things in different fields so we will define it here, in the statistical sense, as: ***applying one or more mathematical operations to a variable*** (or in our case, all elements of a numeric vector). You are undoubtedly familiar with data transformation, even if you haven't previously recognized it.  Some examples include:  
+The phrase *"Data Transformation"* means different things in different fields. We will define it here, in the statistical sense, as: ***applying one or more mathematical operations to a variable*** (or in our case, all elements of a numeric vector). You are undoubtedly familiar with data transformation, even if you haven't previously recognized it.  Some examples include:  
 
 - adding, subtracting, or multiplying a constant to all elements in a vector;
 - taking the log, square root, or reciprocal of a variable;
 - some combination of these approaches.
 
-For example, your data are transformed whenever you convert temperature units from °F to °C, length units from inches to millimeters, or render a variable dimensionless (e.g., converting to units of percent, parts per million, or some other unitless value).  In addition to these "units transformations", we also conduct transformations to make the ***location*** and ***dispersion*** of data consistent, or to change the ***shape*** of a distribution of data (e.g., to reduce skewness or to linearize a variable). These latter approaches are often employed during multivariate analyses to help your variables "play nicely together" within the analytic framework you set forth. More on this to come.
+For example, your data are transformed whenever you convert temperature units from °F to °C, length units from inches to millimeters, or render a variable dimensionless (e.g., converting to units of percent, parts per million, or some other unitless value).  In addition to these "units transformations", we also transfrom data to make their ***location*** and/or ***dispersion*** more consistent, or to change the ***shape*** of a distribution (e.g., to reduce skewness or to normalize residual values from a model). These latter approaches are often employed during multivariate analyses to help your variables "play nicely together" within the analytic framework you set forth. More on this to come in [Modeling](#model).
 
 <div class="rmdnote">
 <p>There are two key facets to data transformation:
@@ -31,9 +31,9 @@ and reproduce your results, when needed.</p>
 </div>
 
 ### Centering
-Centering means ***to subtract (or sometimes add) a constant from all values*** in a vector.  The **constant** to be subtracted could be an estimate of the data's central tendency, like the mean or median (hence the term *center*-ing), or it could be some residual value that you want to remove from all observations.  If you subtract the mean from every value of a vector, then the new vector will have a mean of 0; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location.  Centering ***changes the location*** of a variable but ***dispersion (spread) stays the same***.
+Centering means ***to subtract (or sometimes add) a constant from all values*** in a vector.  The **constant** to be subtracted could be an estimate of the data's central tendency, like the mean or median (hence the term *center*-ing), or it could be some residual value that you want to remove from all observations.  If you subtract the mean from every value of a vector, then the new vector will have a mean of zero; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location.  Centering ***changes the location*** of a variable but ***dispersion (spread) stays the same***.
 
-In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to "background subtract" or "zero" a set of univariate observations.  If you have ever used a digital scale to measure the weight of an object, you've probably noticed that when you turn it on, the scale does not always read zero.  Most of the time the instrument has a way to "re-zero" itself prior to use, but this is not always the case.  If your scale shows a mass of 198 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 198 from all subsequent weights that you perform with this scale.  That subtraction is an example of a "centering" transformation. 
+In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to *"background subtract"* (aka, *"zeroing"*) a set of univariate observations.  If you have ever used a digital scale to measure the weight of an object, you've probably noticed that when you turn it on, the scale does not always read zero.  Most of the time the instrument has a way to "re-zero" itself prior to use, but this is not always the case.  If your scale shows a mass of 198 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 198 from all subsequent weights that you perform with this scale.  That subtraction is an example of a "centering" transformation. 
 
 
 
@@ -53,30 +53,34 @@ Some reasons to rescale data include:
 - when you want to render a variable dimensionless (e.g., when converting to percentage units).
 
 ## Normalization and Standardization
-In a generic sense, to ***"normalize"*** a variable means: **to transform that variable so that it can be compared, evaluated, or comprehended more easily.**  Normalization often involves a combination of centering and rescaling operations that not only change the location and spread of the data, but also the *meaning* of data.  Normalization is performed all the time. 
+In a generic sense, to ***"normalize"*** a variable means: **to transform that variable so that it can be compared, evaluated, or comprehended more easily.**  Normalization often involves a combination of centering and rescaling operations that not only change the location and spread of the data, but also the *meaning* of data.  Normalization is just as common in engineering as it is in statistics, or any other scientific field. 
 
 <div class="rmdwarning">
 <p>Like <em>“transformation”</em>, the word “<em>normalization</em>” is
 defined differently in different fields, so be explicit when using this
 term in your work. To some, the word normalization means to “make a
 variable normally distributed”; to others, it means to “normalize a
-database” so that redundancies are eliminated.</p>
+database” so that redundancies are eliminated; and to some, it might
+just mean, to divide one variable into another to achieve some sort of
+“rate” metric.</p>
 </div>
 
 There are many types of normalization operations; we will discuss a few examples below.  
 
 ### Rate normalization
-To perform a rate normalization is **to divide one variable into another**, often to report something in terms of a rate.  
+To perform a rate normalization is **to divide one variable into another**, often to report a change in one variable relative to another (e.g., a rate or a derivative).  
 
-  - Two cars can have the same range (how many miles they can travel on one tank of gas) but different rates of fuel efficiency (miles traveled per gallon);  
-  - Two countries can have the same GDI (*gross domestic income*; the sum of all  wages earned) but widely different rates of "per capita" income (GDI/total population). 
+  - Two vehicles may have the same range (how many miles they can travel on one tank of gas) but different rates of fuel efficiency (miles traveled per gallon);  
+  - Two countries can have the same GDI (*gross domestic income*; the sum of all  wages earned) but widely different rates of "per capita" income (GDI/total population).  
+  - A person's **Body Mass Index** (BMI, kg/m^2^) is their mass (in kg) normalized by the square of their height (m^2^).
+  
 
 ### Standardizing
-Standardization is a special case of transformation/normalization where each value in a set of observations (or vector) is subtracted by some level (often the central tendency) and divided by the spread.  When working with normally distributed data, the standardization of variable $x_i$ into $z_i$ is:
+Standardization is a special case of transformation/normalization where each value in a set of observations (or vector) is subtracted by some constant (often the data's central tendency) and divided by the dispersion (often the standard deviation, IQR, or some other spread metric).  When working with normally distributed data, the standardization of variable $x_i$ into $z_i$ is:
 
 $$z_{i} = \frac{x_{i}-\overline{x}}{\sigma_{x}}$$
 
-where the mean and standard deviation of $x$ are $\overline{x}$ and $\sigma_{x}$, respectively. The *standardization* of a variable renders the mean to 0 and the standard deviation to 1.  This type of normalization is useful when you wish to study relationships between multiple variables, each with different scale. Note that standardization doesn't have to use the mean and standard deviation as the centering and normalizing variables, but those two are common.
+where the mean of $x$ is denoted $\overline{x}$ and standard deviation of $x$ is $\sigma_{x}$. The *standardization* of a variable renders the mean to 0 and the standard deviation to 1.  This type of normalization is useful when you wish to study relationships between multiple variables, each with different scale. Note that standardization doesn't have to use the mean and standard deviation as the centering and normalizing variables, but those two are common.
 
 ### Reducing Skewness
 Sometimes your data are *not normally distributed*, even though you want them to be. In that case you still have options.  Some transformations, like the log, square root, or inverse, will make the spread of the data symmetric and approximately Gaussian. These transformations are commonly used to meet the needs (read: underlying assumptions) of many statistical models. We discuss model assumptions (and their evaluation) in the [modeling chapter](#model).
@@ -91,12 +95,15 @@ Sometimes your data are *not normally distributed*, even though you want them to
 If you would like to lean more about data transformations (and how to make your data appear normally distributed), look up the ***Box-Cox method*** of power transformations. Lots of packages can run this method in R, such as `MASS::boxcox` and `EnvStats::boxcox`. And, yes, George Box is the same person that brought you the boxplot!
 
 ## Stratification
-**To stratify a sample means: to divide the sample into subsets (aka strata).** 
+<div class="rmdnote">
+<p><strong>To stratify a sample means: to divide the sample into subsets
+(aka strata).</strong></p>
+</div>
 
 Stratified analyses can be performed many ways; one particularly useful way is graphically, by creating a stratification plot.  A stratification plot is like any other visualization that you have created, except that the strata are identified (i.e., called out) through the use of color, lines, symbols, facets, etc.  Let's use the following example to demonstrate:
 
 
-A manufacturing operation is investigating the production of an expensive titanium alloy, where a 25% increase in the production yield of the alloy means the difference between profit and loss.  The materials engineers believe that feedstock purity should have an effect on the yield. For the past month, all three reactors at the plant have been producing alloys from Ti feedstock of varying purity. After one month, you decide to visualize the relationship between *process yield* and *sample purity* with a scatterplot, `geom_point()`.
+A manufacturing operation is investigating the production of an expensive titanium alloy, where a 25% increase in the production yield of the alloy means the difference between profit and loss.  The materials engineers believe that feedstock purity should have an effect on the yield. For the past month, three different reactors at the plant have been producing alloys from Ti feedstock of varying purity. After one month, you decide to visualize the relationship between *process yield* and *sample purity* with a scatterplot, `geom_point()`.
 
 <div class="figure" style="text-align: center">
 <img src="./images/unstratified.png" alt="Yield vs. Purity from the plant's three reactors over one month" width="500" />
@@ -161,7 +168,7 @@ define strata according to quantiles of GPA among the study body.</p>
 </div>
 
 ## Outliers and Censoring
-Have you ever heard the phrase ***"don't make the exception the rule"***? 
+Have you ever heard the phrase ***"don't let the exception become the rule"***? 
 
 I think this phrase means, *don't let your judgment be governed solely by outliers.*  Whether or not this is good advice probably depends on the situation, but I do think one should have the ability to detect ***when an outlier has leverage over a situation***. 
 
@@ -171,15 +178,15 @@ distance from other values in a random sample.</p>
 </div>
 
 ### Detecting Outliers {#outliers}
-Data visualization (like histograms, density plots, time-series, and boxplots) can be useful for detecting outliers, because such graphs make it clear that one or more observations *"don't seem to belong with the rest"*.  For example, let's create an artificial dataframe called `asthma.data`. Within this dataframe are two variables:  
+Data visualization (like histograms, density plots, time-series, and boxplots) can be useful for detecting outliers, because such graphs make it clear that one or more observations *"don't seem to belong with the rest"*.  For example, let's create an artificial data frame called `asthma.data`. Within this data frame are two variables:  
 
-  - `asthma.rate`: the percentage of kids with asthma in a given school district
+  - `asthma.prevalence`: the percentage of kids with asthma in a given school district
   - `black.carbon`: the concentration of airborne black carbon (a type of air pollutant generated by incomplete combustion, similar to what you see exhausted from a diesel truck) measured outside of a school at the center of each district.
 
 
 ```r
 asthma.data <- tibble(
-  asthma.rate = c(8, 6, 12, 18, 9, 
+  asthma.prevalence = c(8, 6, 12, 18, 9, 
                   8, 15, 14, 14, 10,
                   16, 9, 12, 15, 9),
   black.carbon = c(3.2, 2.5, 4.6, 6.1, 3.3, 
@@ -188,7 +195,7 @@ asthma.data <- tibble(
 )
 ```
 
-The plot below shows two boxplots: one depicts `asthma.rate` for the 15 school districts; the other depicts `black.carbon`. I've circled the apparent outlier. **Outliers are easy to see in boxplots because they fall outside the whiskers.**
+The plot below shows two boxplots: one depicts `asthma.prevalence` for the 15 school districts; the other depicts `black.carbon`. I've circled the apparent outlier. **Outliers are easy to see in boxplots because they fall outside the whiskers.**
 
 <div class="figure" style="text-align: center">
 <img src="09-transf_files/figure-html/outlier-1-1.png" alt="Boxplots for two sets of data; the one on the right has an outlier." width="500" />

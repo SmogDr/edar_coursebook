@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-10-27" />
+<meta name="date" content="2022-10-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -645,10 +645,10 @@ a “blank” for that instrument.
 </p>
 </div>
 <p>The LOD is typically defined as:</p>
-<p><span class="math display">\[LOD = 3\cdot \sigma_b\]</span>
-where <span class="math inline">\(\sigma_b\)</span> is the standard deviation of repeated measurements of an instrument blank. This calculation assumes that the instrument has a 1:1 response to increasing levels of analyte (i.e., the slope of the line between what’s measured and what is actually there is 1). The “3” in the equation above comes from the probability density function for the <a href="dist.html#normal_dist">normal distribution</a> - this equation implies that values above the LOD have a 99:1 chance of being correctly identified as above zero (i.e., three standard deviations away from a normal distribution centered at zero).</p>
+<p><span class="math display">\[LOD = \mu_b + 3\cdot \sigma_b\]</span>
+where <span class="math inline">\(\mu_b\)</span> is the mean and <span class="math inline">\(\sigma_b\)</span> is the standard deviation of repeated measurements of an instrument blank. This calculation assumes that the instrument has a 1:1 response to increasing levels of analyte (i.e., the slope of the line between what’s measured and what is actually there is 1). The “3” in the equation above comes from the probability density function for the <a href="dist.html#normal_dist">normal distribution</a> - this equation implies that values above the LOD have a 99:1 chance of being correctly identified as above zero (i.e., three standard deviations away from a normal distribution centered at <span class="math inline">\(\mu_b\)</span>).</p>
 <p>Along these lines, the limit of quantification, <em>LOQ</em>, is used as a threshold of confidence to indicate that, not only can you detect something (from nothing), but that you can <strong><em>quantify how much</em></strong>.</p>
-<p><span class="math display">\[LOQ = 5\cdot \sigma_b\]</span>
+<p><span class="math display">\[LOQ = \mu_b + 5\cdot \sigma_b\]</span>
 Note that some texts suggest the use of <span class="math inline">\(10\cdot \sigma_b\)</span> for establishing an LOQ threshold; I think that’s too conservative…</p>
 <div class="rmdnote">
 <p>
@@ -667,7 +667,7 @@ actual value.
 </div>
 <div id="precision" class="section level3 hasAnchor" number="10.3.3">
 <h3><span class="header-section-number">10.3.3</span> Precision<a href="measure.html#precision" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In measurement science the term <em>precision</em> means “repeatability” or “instrument variability”. A precise measurement (made by a single instrument) is one that provides the same (or nearly the same) answer each time you take the measurement. This assumes, of course, that the thing being measured remains unchanged. Human vision is something that suffers from imprecision, especially as you get older (your eyesight usually gets worse). Look at the image below quickly and try to decode the letters you see. If I asked you to identify this text quickly (in 10 seconds or less) once per day for a week, you might give me 7 different answers. That’s not a precise measurement.</p>
+<p>In measurement science the term <em>precision</em> means “repeatability” or “instrument variability”. A precise measurement device is one that provides the same (or nearly the same) answer each time you make the measurement. This assumes, of course, that the thing being measured remains unchanged. Human vision is something that suffers from imprecision, especially as you get older (your eyesight usually gets worse). Look at the image below quickly and try to decode the letters you see. If I asked you to identify this text quickly (in 10 seconds or less) once per day for a week, you might give me 7 different answers. That’s not a precise measurement.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:imprecise-1"></span>
 <img src="images/blurry_text.png" alt="Blurry vision is imprecise: repeated measures could lead to different answers" width="500" />
 <p class="caption">

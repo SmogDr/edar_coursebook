@@ -147,12 +147,12 @@ a “blank” for that instrument.</p>
 
 The LOD is typically defined as:
 
-$$LOD = 3\cdot \sigma_b$$
-where $\sigma_b$ is the standard deviation of repeated measurements of an instrument blank. This calculation assumes that the instrument has a 1:1 response to increasing levels of analyte (i.e., the slope of the line between what's measured and what is actually there is 1). The "3" in the equation above comes from the probability density function for the [normal distribution](#normal_dist) - this equation implies that values above the LOD have a 99:1 chance of being correctly identified as above zero (i.e., three standard deviations away from a normal distribution centered at zero).
+$$LOD = \mu_b + 3\cdot \sigma_b$$
+where $\mu_b$ is the mean and $\sigma_b$ is the standard deviation of repeated measurements of an instrument blank. This calculation assumes that the instrument has a 1:1 response to increasing levels of analyte (i.e., the slope of the line between what's measured and what is actually there is 1). The "3" in the equation above comes from the probability density function for the [normal distribution](#normal_dist) - this equation implies that values above the LOD have a 99:1 chance of being correctly identified as above zero (i.e., three standard deviations away from a normal distribution centered at $\mu_b$).
 
 Along these lines, the limit of quantification, *LOQ*, is used as a threshold of confidence to indicate that, not only can you detect something (from nothing), but that you can ***quantify how much***.
 
-$$LOQ = 5\cdot \sigma_b$$
+$$LOQ = \mu_b + 5\cdot \sigma_b$$
 Note that some texts suggest the use of $10\cdot \sigma_b$ for establishing an LOQ threshold; I think that's too conservative...
 
 <div class="rmdnote">
@@ -169,7 +169,7 @@ The LOD/LOQ concept is most often applied to an instrument's *minimum detectable
 Upper detection limits are typically obtained from instrument manufacturers (as opposed to experiment) because, while it's usually safe to repeatedly measure *blanks* for LOD/LOQ determinations, you run the risk of breaking the instrument if you overload it with signal!
 
 ### Precision {#precision}
-In measurement science the term *precision* means "repeatability" or "instrument variability".  A precise measurement (made by a single instrument) is one that provides the same (or nearly the same) answer each time you take the measurement. This assumes, of course, that the thing being measured remains unchanged. Human vision is something that suffers from imprecision, especially as you get older (your eyesight usually gets worse). Look at the image below quickly and try to decode the letters you see.  If I asked you to identify this text quickly (in 10 seconds or less) once per day for a week, you might give me 7 different answers.  That's not a precise measurement.
+In measurement science the term *precision* means "repeatability" or "instrument variability".  A precise measurement device is one that provides the same (or nearly the same) answer each time you make the measurement. This assumes, of course, that the thing being measured remains unchanged. Human vision is something that suffers from imprecision, especially as you get older (your eyesight usually gets worse). Look at the image below quickly and try to decode the letters you see.  If I asked you to identify this text quickly (in 10 seconds or less) once per day for a week, you might give me 7 different answers.  That's not a precise measurement.
 
 <div class="figure" style="text-align: center">
 <img src="./images/blurry_text.png" alt="Blurry vision is imprecise: repeated measures could lead to different answers" width="500" />
