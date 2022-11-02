@@ -96,8 +96,8 @@ If you would like to lean more about data transformations (and how to make your 
 
 ## Stratification
 <div class="rmdnote">
-<p><strong>To stratify a sample means: to divide the sample into subsets
-(aka strata).</strong></p>
+<p>To stratify a sample means: to divide the sample into subsets (aka
+groups based on strata).</p>
 </div>
 
 Stratified analyses can be performed many ways; one particularly useful way is graphically, by creating a stratification plot.  A stratification plot is like any other visualization that you have created, except that the strata are identified (i.e., called out) through the use of color, lines, symbols, facets, etc.  Let's use the following example to demonstrate:
@@ -112,6 +112,23 @@ A manufacturing operation is investigating the production of an expensive titani
 Examination of Figure \@ref(fig:stratify2) reveals that, while there is considerable variation in the data, a clear relationship is not apparent between sample purity and process yield. Correlation analyses reveal a Pearson correlation coefficient of $r=$ -0.23, indicating a low level of correlation between the two variables. However, it occurs to you that perhaps there is variation in results between the three different reactors in the plant.  Therefore, you decide to repeat this analysis ***stratifying the data by reactor type***.  In this case, you repeat the `ggplot()` call with an extra aesthetic of `color = reactor` in the scatterplot.
 
 
+```r
+stratified <- ggplot(data = strat.data,
+       aes(y = yield2, 
+           x = purity,
+           color = reactor,
+           stroke = 1)) +
+  geom_point(size = 2,
+             shape = 1) +
+  labs(color = "Reactor",
+       x = "Sample Purity",
+       y = "Process Yield, kg") +
+  theme_classic(base_size = 14) +
+  theme(legend.position = c(0.85, 0.8),
+        legend.box.background = element_rect(colour = "black")) 
+
+#ggsave("./images/stratified.png")
+```
 
 <div class="figure" style="text-align: center">
 <img src="./images/stratified.png" alt="Yield vs. Purity over one month, stratified by reactor type" width="500" />
@@ -124,11 +141,13 @@ strat.data %>%
   summarise("Pearson's r" = cor(yield2, purity),
             .groups = "keep") %>%
   kable(align = "c",
-        digits = 2) %>%
+        digits = 2,
+        caption = "Correlation between Sample Purity and Yield by Reactor") %>%
   kable_styling(full_width = FALSE)
 ```
 
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>(\#tab:stat-table)Correlation between Sample Purity and Yield by Reactor</caption>
  <thead>
   <tr>
    <th style="text-align:center;"> reactor </th>
@@ -195,7 +214,7 @@ asthma.data <- tibble(
 )
 ```
 
-The plot below shows two boxplots: one depicts `asthma.prevalence` for the 15 school districts; the other depicts `black.carbon`. I've circled the apparent outlier. **Outliers are easy to see in boxplots because they fall outside the whiskers.**
+Figure \@ref(fig:outlier-1) below contains two boxplots: one depicts `asthma.prevalence` for the 15 school districts, and the other depicts `black.carbon`. I've circled the apparent outlier. **Outliers are easy to see in boxplots because they fall outside the whiskers.**
 
 <div class="figure" style="text-align: center">
 <img src="09-transf_files/figure-html/outlier-1-1.png" alt="Boxplots for two sets of data; the one on the right has an outlier." width="500" />
@@ -208,8 +227,8 @@ Data visualization is *useful* for detecting outliers, but not definitive.  Inde
 
 This rule states that outliers are **any data points more than 1.5 times the inter-quartile range away from the upper and lower quartiles**.  This means data that are:  
 
-  - *greater than*: [0.75 quantile value] + 1.5*IQR
-  - *less than*: [0.25 quantile value] - 1.5*IQR
+  - *high outliers are greater than*: [0.75 quantile value] + 1.5*IQR
+  - *low outliers are less than*: [0.25 quantile value] - 1.5*IQR
   
 For the `black.carbon` data, we could calculate these thresholds with the following:
 
@@ -250,7 +269,7 @@ In the end, however, common sense and your contextual knowledge of the data are 
 ### Censoring outliers
 What should we do with outliers in our data? The answer depends on context (*are these life and death data we're dealing with or just the size of tomatoes from your garden?*) and on the questions you are asking. Here's an example:
 
-The black carbon boxplot (right side of \@ref(fig:outlier-1)) has a clear outlier that falls far outside of the rest of the data.  This might not seem like a big deal but take a look at what happens when we fit a regression line through the data <span style="color: orange;">with the outlier included</span> and <span style="color: blue;">without the outlier</span>. 
+The black carbon boxplot (right side of \@ref(fig:outlier-1)) has a clear outlier that falls far outside of the rest of the data.  This might not seem like a big deal but take a look at what happens when we (A) examine the correlation between these two variables and (B) fit a regression line through the data <span style="color: orange;">with the outlier included</span> or <span style="color: blue;">with the outlier excluded </span>. 
 
 <div class="figure" style="text-align: center">
 <img src="09-transf_files/figure-html/outlier-2-1.png" alt="Effect of an outlier on a linear model with n=15 data points." width="672" />

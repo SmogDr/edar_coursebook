@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-10-31" />
+<meta name="date" content="2022-11-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -704,23 +704,23 @@ Or, another way to say this is that the square root of mass is linearly related 
 <span class="math display">\[\sqrt{mass} \sim Circumference\]</span>
 <img src="images/cylinder_comic.png" width="552" style="display: block; margin: auto;" /></p>
 <p>Let’s transform <span class="math inline">\(mass \rightarrow \sqrt{mass}\)</span> and then examine the two scatterplots side by side.</p>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="model.html#cb342-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data_18) <span class="sc">+</span></span>
-<span id="cb342-2"><a href="model.html#cb342-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> waist, <span class="at">y =</span> mass),</span>
-<span id="cb342-3"><a href="model.html#cb342-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
-<span id="cb342-4"><a href="model.html#cb342-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;maroon4&quot;</span>) <span class="sc">+</span></span>
-<span id="cb342-5"><a href="model.html#cb342-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Mass, kg&quot;</span>) <span class="sc">+</span></span>
-<span id="cb342-6"><a href="model.html#cb342-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Waist Circumference, cm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb342-7"><a href="model.html#cb342-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
-<span id="cb342-8"><a href="model.html#cb342-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb342-9"><a href="model.html#cb342-9" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data_18) <span class="sc">+</span></span>
-<span id="cb342-10"><a href="model.html#cb342-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> waist, <span class="at">y =</span> sqrt_mass),</span>
-<span id="cb342-11"><a href="model.html#cb342-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
-<span id="cb342-12"><a href="model.html#cb342-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb342-13"><a href="model.html#cb342-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">sqrt</span>(mass))) <span class="sc">+</span></span>
-<span id="cb342-14"><a href="model.html#cb342-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Waist Circumference, cm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb342-15"><a href="model.html#cb342-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
-<span id="cb342-16"><a href="model.html#cb342-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb342-17"><a href="model.html#cb342-17" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="model.html#cb343-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data_18) <span class="sc">+</span></span>
+<span id="cb343-2"><a href="model.html#cb343-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> waist, <span class="at">y =</span> mass),</span>
+<span id="cb343-3"><a href="model.html#cb343-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
+<span id="cb343-4"><a href="model.html#cb343-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;maroon4&quot;</span>) <span class="sc">+</span></span>
+<span id="cb343-5"><a href="model.html#cb343-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Mass, kg&quot;</span>) <span class="sc">+</span></span>
+<span id="cb343-6"><a href="model.html#cb343-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Waist Circumference, cm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb343-7"><a href="model.html#cb343-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
+<span id="cb343-8"><a href="model.html#cb343-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb343-9"><a href="model.html#cb343-9" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data_18) <span class="sc">+</span></span>
+<span id="cb343-10"><a href="model.html#cb343-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> waist, <span class="at">y =</span> sqrt_mass),</span>
+<span id="cb343-11"><a href="model.html#cb343-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
+<span id="cb343-12"><a href="model.html#cb343-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb343-13"><a href="model.html#cb343-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">sqrt</span>(mass))) <span class="sc">+</span></span>
+<span id="cb343-14"><a href="model.html#cb343-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Waist Circumference, cm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb343-15"><a href="model.html#cb343-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
+<span id="cb343-16"><a href="model.html#cb343-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb343-17"><a href="model.html#cb343-17" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:model-compare"></span>
 <img src="11-model_files/figure-html/model-compare-1.png" alt="Side-by-side comparison of two model specifications. Does one look more linear than the other?" width="672" />
 <p class="caption">
@@ -729,7 +729,7 @@ Figure 11.4: Side-by-side comparison of two model specifications. Does one look 
 </div>
 <p>Looking at the right plot in Figure <a href="model.html#fig:model-compare">11.4</a>, where <span class="math inline">\(\sqrt(mass)\)</span> is plotted, helps make the slight curvature in the left-side plot more evident. Both plots appear “mostly” linear but the one on the right “looks better”, at least to me! Our process knowledge suggests that the model on the right is better specified. Let’s fit both models and find out!</p>
 <p>The NHANES data we use here is from 2017-2018 (saved as <code>bodysize.csv</code> and read into a data frame labeled: <code>data_18</code>). These data have been filtered to include adults only (<code>filter(age &gt; 18)</code>). The first few lines of data look like this:</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="model.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_18)</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="model.html#cb344-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_18)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 7
 ##      id  mass waist height gender   age sqrt_mass
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
@@ -742,9 +742,9 @@ Figure 11.4: Side-by-side comparison of two model specifications. Does one look 
 <div id="the-lm-function" class="section level3 hasAnchor" number="11.5.1">
 <h3><span class="header-section-number">11.5.1</span> The <code>lm()</code> function<a href="model.html#the-lm-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>lm()</code> function in R stands for <em>“linear model”</em> and will perform an OLS fit on any linear model you specify. The function requires two arguments: a <code>formula</code> (i.e., the model specification) and the <code>data</code> with which to fit that model. Formulas are specified as <code>y ~ x</code>, so our call to <code>lm()</code> looks like this for each model:</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="model.html#cb345-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mass <span class="sc">~</span> waist, <span class="at">data =</span> data_18)</span>
-<span id="cb345-2"><a href="model.html#cb345-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb345-3"><a href="model.html#cb345-3" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(sqrt_mass <span class="sc">~</span> waist, <span class="at">data =</span> data_18)</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="model.html#cb346-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mass <span class="sc">~</span> waist, <span class="at">data =</span> data_18)</span>
+<span id="cb346-2"><a href="model.html#cb346-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb346-3"><a href="model.html#cb346-3" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(sqrt_mass <span class="sc">~</span> waist, <span class="at">data =</span> data_18)</span></code></pre></div>
 <p>Now that we have stored each model as an object (<code>model1</code>, <code>model2</code>), so we can examine what they contain. The output of <code>lm()</code> is a list of class “lm”. If we type <code>view(model1)</code> the contents of the list become apparent.</p>
 <div class="figure"><span style="display:block;" id="fig:model1-list"></span>
 <img src="images/model1_list.png" alt="The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more." width="632" />
@@ -760,7 +760,7 @@ Figure 11.5: The <code>lm()</code> function provides a self-contained list of th
 </ul>
 <p>These are the primary outputs of the OLS fit; they define the line of “best fit” for which the SSE have been minimized.</p>
 <p>To examine the overall fit of the model, we can call the <code>summary()</code> function with the model object as an argument. Here is the summary for <code>model1</code>:</p>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="model.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="model.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mass ~ waist, data = data_18)
@@ -780,7 +780,7 @@ Figure 11.5: The <code>lm()</code> function provides a self-contained list of th
 ## Multiple R-squared:  0.8025, Adjusted R-squared:  0.8025 
 ## F-statistic: 2.102e+04 on 1 and 5173 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>and here is the summary for <code>model2</code>:</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="model.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="model.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = sqrt_mass ~ waist, data = data_18)
@@ -814,19 +814,19 @@ Figure 11.5: The <code>lm()</code> function provides a self-contained list of th
 </ul></li>
 <li>Option 3: And yet a third way would be to use <code>ggplot::stat_function()</code> where we explicitly specify the model its coefficients as a linear function in R. You can learn more about each of these approaches in the help section or by typing <code>?stat_function</code> into the Console.</li>
 </ul>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="model.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note how we can add layers to existing ggplot objects</span></span>
-<span id="cb350-2"><a href="model.html#cb350-2" aria-hidden="true" tabindex="-1"></a>p1<span class="fl">.2</span> <span class="ot">&lt;-</span> p1 <span class="sc">+</span> </span>
-<span id="cb350-3"><a href="model.html#cb350-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> data_18,</span>
-<span id="cb350-4"><a href="model.html#cb350-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">x =</span> waist, <span class="at">y =</span> mass),</span>
-<span id="cb350-5"><a href="model.html#cb350-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb350-6"><a href="model.html#cb350-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">formula =</span> <span class="st">&quot;y ~ x&quot;</span>,</span>
-<span id="cb350-7"><a href="model.html#cb350-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span>
-<span id="cb350-8"><a href="model.html#cb350-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb350-9"><a href="model.html#cb350-9" aria-hidden="true" tabindex="-1"></a>p2<span class="fl">.2</span> <span class="ot">&lt;-</span> p2 <span class="sc">+</span></span>
-<span id="cb350-10"><a href="model.html#cb350-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> model2<span class="sc">$</span>coefficients[[<span class="dv">1</span>]],</span>
-<span id="cb350-11"><a href="model.html#cb350-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">slope =</span> model2<span class="sc">$</span>coefficients[[<span class="dv">2</span>]])</span>
-<span id="cb350-12"><a href="model.html#cb350-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb350-13"><a href="model.html#cb350-13" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1<span class="fl">.2</span>, p2<span class="fl">.2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="model.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note how we can add layers to existing ggplot objects</span></span>
+<span id="cb351-2"><a href="model.html#cb351-2" aria-hidden="true" tabindex="-1"></a>p1<span class="fl">.2</span> <span class="ot">&lt;-</span> p1 <span class="sc">+</span> </span>
+<span id="cb351-3"><a href="model.html#cb351-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> data_18,</span>
+<span id="cb351-4"><a href="model.html#cb351-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">x =</span> waist, <span class="at">y =</span> mass),</span>
+<span id="cb351-5"><a href="model.html#cb351-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb351-6"><a href="model.html#cb351-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">formula =</span> <span class="st">&quot;y ~ x&quot;</span>,</span>
+<span id="cb351-7"><a href="model.html#cb351-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb351-8"><a href="model.html#cb351-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb351-9"><a href="model.html#cb351-9" aria-hidden="true" tabindex="-1"></a>p2<span class="fl">.2</span> <span class="ot">&lt;-</span> p2 <span class="sc">+</span></span>
+<span id="cb351-10"><a href="model.html#cb351-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> model2<span class="sc">$</span>coefficients[[<span class="dv">1</span>]],</span>
+<span id="cb351-11"><a href="model.html#cb351-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">slope =</span> model2<span class="sc">$</span>coefficients[[<span class="dv">2</span>]])</span>
+<span id="cb351-12"><a href="model.html#cb351-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb351-13"><a href="model.html#cb351-13" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1<span class="fl">.2</span>, p2<span class="fl">.2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:model-fits"></span>
 <img src="11-model_files/figure-html/model-fits-1.png" alt="There are many ways in R to overlay a linear fit onto a scatter plot" width="672" />
 <p class="caption">
@@ -846,29 +846,29 @@ This one is hard to answer (right now) but our process knowledge (the physics of
 This assumption is automatically valid because we have only one independent predictor variable in each model, ruling out any possibility of collinearity.</p>
 <p><strong>Assumption #4: The error term has a mean of zero.</strong><br />
 We can calculate this from our two model objects.</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="model.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(model1<span class="sc">$</span>residuals)</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="model.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(model1<span class="sc">$</span>residuals)</span></code></pre></div>
 <pre><code>## [1] 1.069649e-16</code></pre>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="model.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(model2<span class="sc">$</span>residuals)</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="model.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(model2<span class="sc">$</span>residuals)</span></code></pre></div>
 <pre><code>## [1] 5.099008e-18</code></pre>
 <p>Those are pretty small numbers. Check and check.</p>
 <p><strong>Assumption #5: The error term is normally distributed</strong><br />
 This assumption can be checked several ways, but my preference is to create a Q-Q plot about the residuals (the Q’s stand for <em>“quantile-quantile”</em>). A Q-Q plot is a scatterplot that relates the quantile values of your data against the quantiles of an “expected distribution” - in this case the <a href="dist.html#normal_dist">normal distribution</a>. If “your data” follow the shape of the “expected data” then both datasets can be said to follow the same distribution. Thus, when you plot residuals on a “normal Q-Q plot”, you are looking for your data to fall along a straight line through the center. The <code>{ggplot}</code> package allow you to create Q-Q plots using <code>geom_qq()</code> function, which creates the plot, and <code>geom_qq_line()</code>, which adds the “expected” line to aid your eye. The <code>{stats}</code> package in base R also allows you to do this with the <code>qqnorm()</code> and the <code>qqline()</code> functions.</p>
 <p>Here are the Q-Q plots for <code>model1</code> and <code>model2</code>.</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="model.html#cb355-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data  =</span> model1<span class="sc">$</span>model, <span class="fu">aes</span>(<span class="at">sample =</span> model1<span class="sc">$</span>residuals)) <span class="sc">+</span></span>
-<span id="cb355-2"><a href="model.html#cb355-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
-<span id="cb355-3"><a href="model.html#cb355-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;maroon4&quot;</span>) <span class="sc">+</span></span>
-<span id="cb355-4"><a href="model.html#cb355-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
-<span id="cb355-5"><a href="model.html#cb355-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Model 1: mass ~ waist&quot;</span>) <span class="sc">+</span></span>
-<span id="cb355-6"><a href="model.html#cb355-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb355-7"><a href="model.html#cb355-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb355-8"><a href="model.html#cb355-8" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data  =</span> model2<span class="sc">$</span>model, <span class="fu">aes</span>(<span class="at">sample =</span> model2<span class="sc">$</span>residuals)) <span class="sc">+</span></span>
-<span id="cb355-9"><a href="model.html#cb355-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
-<span id="cb355-10"><a href="model.html#cb355-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb355-11"><a href="model.html#cb355-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
-<span id="cb355-12"><a href="model.html#cb355-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Model 2: sqrt(mass) ~ waist&quot;</span>) <span class="sc">+</span></span>
-<span id="cb355-13"><a href="model.html#cb355-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb355-14"><a href="model.html#cb355-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb355-15"><a href="model.html#cb355-15" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p3, p4, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="model.html#cb356-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data  =</span> model1<span class="sc">$</span>model, <span class="fu">aes</span>(<span class="at">sample =</span> model1<span class="sc">$</span>residuals)) <span class="sc">+</span></span>
+<span id="cb356-2"><a href="model.html#cb356-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
+<span id="cb356-3"><a href="model.html#cb356-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;maroon4&quot;</span>) <span class="sc">+</span></span>
+<span id="cb356-4"><a href="model.html#cb356-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb356-5"><a href="model.html#cb356-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Model 1: mass ~ waist&quot;</span>) <span class="sc">+</span></span>
+<span id="cb356-6"><a href="model.html#cb356-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb356-7"><a href="model.html#cb356-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb356-8"><a href="model.html#cb356-8" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data  =</span> model2<span class="sc">$</span>model, <span class="fu">aes</span>(<span class="at">sample =</span> model2<span class="sc">$</span>residuals)) <span class="sc">+</span></span>
+<span id="cb356-9"><a href="model.html#cb356-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
+<span id="cb356-10"><a href="model.html#cb356-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb356-11"><a href="model.html#cb356-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb356-12"><a href="model.html#cb356-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Model 2: sqrt(mass) ~ waist&quot;</span>) <span class="sc">+</span></span>
+<span id="cb356-13"><a href="model.html#cb356-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb356-14"><a href="model.html#cb356-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb356-15"><a href="model.html#cb356-15" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p3, p4, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:qqplot"></span>
 <img src="11-model_files/figure-html/qqplot-1.png" alt="Q-Q plots of residuals for two linear models. Which set of residuals better approximates a normal distribution?" width="672" />
 <p class="caption">
@@ -878,23 +878,23 @@ Figure 11.7: Q-Q plots of residuals for two linear models. Which set of residual
 <p>Both models reasonable follow the expected quantile plots, although <code>model1</code> shows more deviation from normality at the upper tail. If I hadn’t seen <code>model2</code>, which looks nearly perfect, I probably would have said that <code>model1</code> was adequate. Advantage: <code>model2</code>.</p>
 <p><strong>Assumption #6: The error term is homoscedastic</strong><br />
 To evaluate this assumption, we create a <a href="eda2.html#scatt">scatterplot</a> of residuals vs. the fitted values, <span class="math inline">\(\hat{Y_{i}}\)</span>. Both of these data are contained in the model output lists.</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="model.html#cb356-1" aria-hidden="true" tabindex="-1"></a>p5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> model1<span class="sc">$</span>model) <span class="sc">+</span> </span>
-<span id="cb356-2"><a href="model.html#cb356-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> model1<span class="sc">$</span>fitted.values, <span class="at">y =</span>model1<span class="sc">$</span>residuals),</span>
-<span id="cb356-3"><a href="model.html#cb356-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.25</span>,</span>
-<span id="cb356-4"><a href="model.html#cb356-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;maroon3&quot;</span>) <span class="sc">+</span></span>
-<span id="cb356-5"><a href="model.html#cb356-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb356-6"><a href="model.html#cb356-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb356-7"><a href="model.html#cb356-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="fl">0.5</span>)</span>
-<span id="cb356-8"><a href="model.html#cb356-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb356-9"><a href="model.html#cb356-9" aria-hidden="true" tabindex="-1"></a>p6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> model2<span class="sc">$</span>model)<span class="sc">+</span> </span>
-<span id="cb356-10"><a href="model.html#cb356-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> model2<span class="sc">$</span>fitted.values, <span class="at">y =</span>model2<span class="sc">$</span>residuals),</span>
-<span id="cb356-11"><a href="model.html#cb356-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.25</span>,</span>
-<span id="cb356-12"><a href="model.html#cb356-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">color=</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb356-13"><a href="model.html#cb356-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb356-14"><a href="model.html#cb356-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb356-15"><a href="model.html#cb356-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="fl">0.5</span>)</span>
-<span id="cb356-16"><a href="model.html#cb356-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb356-17"><a href="model.html#cb356-17" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p5, p6, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="model.html#cb357-1" aria-hidden="true" tabindex="-1"></a>p5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> model1<span class="sc">$</span>model) <span class="sc">+</span> </span>
+<span id="cb357-2"><a href="model.html#cb357-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> model1<span class="sc">$</span>fitted.values, <span class="at">y =</span>model1<span class="sc">$</span>residuals),</span>
+<span id="cb357-3"><a href="model.html#cb357-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.25</span>,</span>
+<span id="cb357-4"><a href="model.html#cb357-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;maroon3&quot;</span>) <span class="sc">+</span></span>
+<span id="cb357-5"><a href="model.html#cb357-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb357-6"><a href="model.html#cb357-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb357-7"><a href="model.html#cb357-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="fl">0.5</span>)</span>
+<span id="cb357-8"><a href="model.html#cb357-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb357-9"><a href="model.html#cb357-9" aria-hidden="true" tabindex="-1"></a>p6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> model2<span class="sc">$</span>model)<span class="sc">+</span> </span>
+<span id="cb357-10"><a href="model.html#cb357-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> model2<span class="sc">$</span>fitted.values, <span class="at">y =</span>model2<span class="sc">$</span>residuals),</span>
+<span id="cb357-11"><a href="model.html#cb357-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.25</span>,</span>
+<span id="cb357-12"><a href="model.html#cb357-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">color=</span> <span class="st">&quot;royalblue2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb357-13"><a href="model.html#cb357-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb357-14"><a href="model.html#cb357-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb357-15"><a href="model.html#cb357-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="fl">0.5</span>)</span>
+<span id="cb357-16"><a href="model.html#cb357-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb357-17"><a href="model.html#cb357-17" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p5, p6, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:residual-plot"></span>
 <img src="11-model_files/figure-html/residual-plot-1.png" alt="Residuals vs. fitted values as a check for homoscedasticity." width="672" />
 <p class="caption">
@@ -904,16 +904,16 @@ Figure 11.8: Residuals vs. fitted values as a check for homoscedasticity.
 <p>Looking at these plots, the residuals don’t show major changes across the range of fitted values (for both plots) - this is a good outcome because it implies the residuals are homoscedastic. There are slight differences between the two models, however. For example, <code>model1</code> tends to have positive residuals at low and high values of <span class="math inline">\(\hat{Y_{i}}\)</span>, whereas, <code>model2</code> seems to have more constant error across the range of <span class="math inline">\(\hat{Y_{i}}\)</span>. Boring residuals are what you want. <em>Advantage: <code>model2</code>.</em></p>
 <p><strong>Assumption 7: No autocorrelation among residuals</strong>
 This assumption is evaluated by making a <a href="eda1.html#autocorr">partial autocorrelation plot</a> of your residuals. We will accomplish these plots using <code>pacf()</code> function from the <code>{stats}</code> package.</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="model.html#cb357-1" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">pacf</span>(model1<span class="sc">$</span>residuals, </span>
-<span id="cb357-2"><a href="model.html#cb357-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">main =</span> <span class="st">&quot;Model 1 Partial Autocorrelation Plot&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="model.html#cb358-1" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">pacf</span>(model1<span class="sc">$</span>residuals, </span>
+<span id="cb358-2"><a href="model.html#cb358-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">main =</span> <span class="st">&quot;Model 1 Partial Autocorrelation Plot&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:resid-autocorr-1"></span>
 <img src="11-model_files/figure-html/resid-autocorr-1.png" alt="Partial autocorrelation plots of residuals." width="672" />
 <p class="caption">
 Figure 11.9: Partial autocorrelation plots of residuals.
 </p>
 </div>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="model.html#cb358-1" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">pacf</span>(model2<span class="sc">$</span>residuals, </span>
-<span id="cb358-2"><a href="model.html#cb358-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">main =</span> <span class="st">&quot;Model 2 Partial Autocorrelation Plot&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="model.html#cb359-1" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">pacf</span>(model2<span class="sc">$</span>residuals, </span>
+<span id="cb359-2"><a href="model.html#cb359-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">main =</span> <span class="st">&quot;Model 2 Partial Autocorrelation Plot&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:resid-autocorr-2"></span>
 <img src="11-model_files/figure-html/resid-autocorr-2.png" alt="Partial autocorrelation plots of residuals." width="672" />
 <p class="caption">
@@ -923,13 +923,13 @@ Figure 11.10: Partial autocorrelation plots of residuals.
 <p>Neither plot shows a <em>strong</em> degree of autocorrelation, though both plots suggest that lag-5 autocorrelation is borderline significant (moreso for <code>model1</code>). Autocorrelation among the residuals suggests that your model is not correctly specified and these results suggest that <code>model2</code> is slightly better specified than <code>model1</code>. Perhaps something is missing from these models?</p>
 <p><strong>Assumption 8: Residuals are not correlated with predictor variables.</strong>
 This assumption can be evaluated through a correlation analysis. The <code>cor()</code> function from the <code>{stats}</code> package allows you to calculate correlation coefficients (e.g., Pearson, Spearman) among variables in a data frame. If you supply a data frame as an argument to <code>cor()</code> it will calculate correlations among all possible variable combinations. Otherwise, you can supply it with two vectors: <code>x =</code> and <code>y =</code>.</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="model.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="at">x =</span> model1<span class="sc">$</span>residuals, </span>
-<span id="cb359-2"><a href="model.html#cb359-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> model1<span class="sc">$</span>model[,<span class="dv">2</span>],</span>
-<span id="cb359-3"><a href="model.html#cb359-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="model.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="at">x =</span> model1<span class="sc">$</span>residuals, </span>
+<span id="cb360-2"><a href="model.html#cb360-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> model1<span class="sc">$</span>model[,<span class="dv">2</span>],</span>
+<span id="cb360-3"><a href="model.html#cb360-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span> )</span></code></pre></div>
 <pre><code>## [1] -6.945472e-17</code></pre>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="model.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="at">x =</span> model2<span class="sc">$</span>residuals, </span>
-<span id="cb361-2"><a href="model.html#cb361-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> model1<span class="sc">$</span>model[,<span class="dv">2</span>],</span>
-<span id="cb361-3"><a href="model.html#cb361-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="model.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="at">x =</span> model2<span class="sc">$</span>residuals, </span>
+<span id="cb362-2"><a href="model.html#cb362-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> model1<span class="sc">$</span>model[,<span class="dv">2</span>],</span>
+<span id="cb362-3"><a href="model.html#cb362-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span> )</span></code></pre></div>
 <pre><code>## [1] -7.949226e-17</code></pre>
 <p>The correlation coefficients are both nearly zero, so this last assumption is validated.</p>
 <p><strong><em>Which model is best?</em></strong>
@@ -1018,9 +1018,9 @@ depth is a term in atmospheric science that describes whether air pollution
 contributes to loss of visibility in the atmosphere (it is like a measure of
 haziness of the sky). We often experience high levels of AOD in Colorado when
 smoke from wildfires shows up (and that happens more often each year).</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="model.html#cb363-1" aria-hidden="true" tabindex="-1"></a>cal_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;./data/cal_aod.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb363-2"><a href="model.html#cb363-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb363-3"><a href="model.html#cb363-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cal_data)</span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="model.html#cb364-1" aria-hidden="true" tabindex="-1"></a>cal_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;./data/cal_aod.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb364-2"><a href="model.html#cb364-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb364-3"><a href="model.html#cb364-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cal_data)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ##   wave  time_r               amod aeronet
 ##   &lt;chr&gt; &lt;dttm&gt;              &lt;dbl&gt;   &lt;dbl&gt;
@@ -1031,12 +1031,12 @@ smoke from wildfires shows up (and that happens more often each year).</p>
 ## 5 440nm 2020-08-15 21:05:54 0.367   0.376
 ## 6 440nm 2020-08-15 21:20:54 0.355   0.346</code></pre>
 <p>Closer examination of the data indicates that we have two instruments (<code>amod</code> and <code>aeronet</code>) that are measuring the same quantity: <em>aerosol optical depth</em>. Thus, we have the same type of observation being reported in two different columns. This means we need to tidy this data frame!</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="model.html#cb365-1" aria-hidden="true" tabindex="-1"></a>tidy_cal <span class="ot">&lt;-</span> cal_data <span class="sc">%&gt;%</span></span>
-<span id="cb365-2"><a href="model.html#cb365-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;amod&quot;</span>, <span class="st">&quot;aeronet&quot;</span>), </span>
-<span id="cb365-3"><a href="model.html#cb365-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;instrument&quot;</span>, </span>
-<span id="cb365-4"><a href="model.html#cb365-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;aod&quot;</span>)</span>
-<span id="cb365-5"><a href="model.html#cb365-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb365-6"><a href="model.html#cb365-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tidy_cal)</span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="model.html#cb366-1" aria-hidden="true" tabindex="-1"></a>tidy_cal <span class="ot">&lt;-</span> cal_data <span class="sc">%&gt;%</span></span>
+<span id="cb366-2"><a href="model.html#cb366-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;amod&quot;</span>, <span class="st">&quot;aeronet&quot;</span>), </span>
+<span id="cb366-3"><a href="model.html#cb366-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;instrument&quot;</span>, </span>
+<span id="cb366-4"><a href="model.html#cb366-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;aod&quot;</span>)</span>
+<span id="cb366-5"><a href="model.html#cb366-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb366-6"><a href="model.html#cb366-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tidy_cal)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ##   wave  time_r              instrument   aod
 ##   &lt;chr&gt; &lt;dttm&gt;              &lt;chr&gt;      &lt;dbl&gt;
@@ -1054,11 +1054,11 @@ Figure 11.11: A 4-plot EDA of our AOD Calibration Data
 </p>
 </div>
 <p>Let’s fit a linear model between <code>aeronet</code> AOD as the independent variable and <code>amod</code> AOD as the dependent variable. Note that while we decided to <code>tidy</code> the data frame for making our EDA plots, we may not want tidy data for our calibration fit. That’s because, with calibration, we are treating the two AOD instruments as separate variables (i.e., <code>x</code> and <code>y</code>). Thus, we will call upon the non-tidy <code>cal_data</code> to specify a <code>y ~ x</code> formula in the <code>lm()</code> function below. And once we fit the model, we create a <code>summary()</code> object to examine fit statistics, coefficients, and confidence intervals.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="model.html#cb367-1" aria-hidden="true" tabindex="-1"></a>aod.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(amod <span class="sc">~</span> aeronet, <span class="at">data =</span> cal_data)</span>
-<span id="cb367-2"><a href="model.html#cb367-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb367-3"><a href="model.html#cb367-3" aria-hidden="true" tabindex="-1"></a>aod.summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(aod.fit)</span>
-<span id="cb367-4"><a href="model.html#cb367-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb367-5"><a href="model.html#cb367-5" aria-hidden="true" tabindex="-1"></a>aod.summary</span></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="model.html#cb368-1" aria-hidden="true" tabindex="-1"></a>aod.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(amod <span class="sc">~</span> aeronet, <span class="at">data =</span> cal_data)</span>
+<span id="cb368-2"><a href="model.html#cb368-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb368-3"><a href="model.html#cb368-3" aria-hidden="true" tabindex="-1"></a>aod.summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(aod.fit)</span>
+<span id="cb368-4"><a href="model.html#cb368-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb368-5"><a href="model.html#cb368-5" aria-hidden="true" tabindex="-1"></a>aod.summary</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = amod ~ aeronet, data = cal_data)
@@ -1078,17 +1078,17 @@ Figure 11.11: A 4-plot EDA of our AOD Calibration Data
 ## Multiple R-squared:  0.9775, Adjusted R-squared:  0.9772 
 ## F-statistic:  3345 on 1 and 77 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The fit itself can be visualized using <code>ggplot::geom_smooth()</code> with an argument of <code>method = "lm"</code>:</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="model.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> cal_data,</span>
-<span id="cb369-2"><a href="model.html#cb369-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> aeronet, <span class="at">y =</span> amod)) <span class="sc">+</span></span>
-<span id="cb369-3"><a href="model.html#cb369-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">formula =</span> y <span class="sc">~</span> x,</span>
-<span id="cb369-4"><a href="model.html#cb369-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb369-5"><a href="model.html#cb369-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb369-6"><a href="model.html#cb369-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>,</span>
-<span id="cb369-7"><a href="model.html#cb369-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb369-8"><a href="model.html#cb369-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Aeronet AOD&quot;</span>) <span class="sc">+</span></span>
-<span id="cb369-9"><a href="model.html#cb369-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;AMOD AOD&quot;</span>) <span class="sc">+</span></span>
-<span id="cb369-10"><a href="model.html#cb369-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
-<span id="cb369-11"><a href="model.html#cb369-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="model.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> cal_data,</span>
+<span id="cb370-2"><a href="model.html#cb370-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> aeronet, <span class="at">y =</span> amod)) <span class="sc">+</span></span>
+<span id="cb370-3"><a href="model.html#cb370-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">formula =</span> y <span class="sc">~</span> x,</span>
+<span id="cb370-4"><a href="model.html#cb370-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb370-5"><a href="model.html#cb370-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb370-6"><a href="model.html#cb370-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>,</span>
+<span id="cb370-7"><a href="model.html#cb370-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb370-8"><a href="model.html#cb370-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Aeronet AOD&quot;</span>) <span class="sc">+</span></span>
+<span id="cb370-9"><a href="model.html#cb370-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;AMOD AOD&quot;</span>) <span class="sc">+</span></span>
+<span id="cb370-10"><a href="model.html#cb370-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb370-11"><a href="model.html#cb370-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
 <p><img src="11-model_files/figure-html/aod-scatterplot-1.png" width="672" /></p>
 <p>Note the one outlier present in the scatterplot. Does this outlier influence the result of the calibration? How could you evaluate it?</p>
 </div>
