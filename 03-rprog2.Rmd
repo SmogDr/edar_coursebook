@@ -906,7 +906,7 @@ The `dplyr::` package features a number of mutate-join functions (e.g., `left_jo
   
 * `full_join()`: includes all rows in x or y.  
 
-Note that if your matching key (`by = `) does not produce unique row observations (for example, if you had two different `"John"` entries in a variable called `first.name` between both data frames) then R will create duplicate row entries that account for the possible combinations of the `John` observation in `x` with the `John` observation in `y`.  One way to check for this is to look at the `length()` of the resultant (merged) data frame.  In most cases, it should have the same length as the starting data frame, contingent on which mutate-join function you call.  Another way is to examine variables in the data frame using the `unique()` function.
+Note that if your matching key (`by = `) does not produce unique row observations (for example, if you had two different `"John"` entries in a variable called `first.name` between both data frames) then R will create duplicate row entries that account for the possible combinations of the `John` observation in `x` with the `John` observation in `y`.  One way to check for this is to look at the `length()` of the resultant (merged) data frame.  In most cases, it should have the same length as the starting data frame, contingent on which mutate-join function you call.  Another way is to look for duplicate observations in the data frame using the inverse `unique()`function on your key variable `!unique()` or the `duplicated()` function.
 
 ## Piping
 
