@@ -1012,6 +1012,49 @@ equal; and (2) Using <code>== NA</code> instead of <code>is.na</code> to
 check for missing observations.</p>
 </div>
 
+## Merging Data Frames Together
+
+Many data analysis exercises will require you to combine data from different sources into a single object.  Thus, it's worthwhile to understand how R can be used to merge together two or more data frames.
+
+Merging data frames is generally done in one of two ways, depending on *how those data frames are similar*: **row binding** or **column binding**. Below, I provide reference to `dplyr::` functions, but, as usual, there are base R functions (`rbind()` and `cbind()`) that work, too!
+
+### Row Binding
+
+*Row binding* can be performed whenever the two (or more) data frames have column variables in common.  Figure \@ref(fig:row-binding) shows this process graphically.  Since the `x` and `y` data frames have identical column variables, the rows of data (i.e., what's under the column names) can be "staked" on top of each other to create a single data frame.
+
+This is accomplished in the example using `dplyr::bind_rows(x, y)`. 
+
+<div class="figure" style="text-align: center">
+<img src="./images/bind_rows.png" alt="Row binding can occur when data frames x and y share the column variables." width="600pt" />
+<p class="caption">(\#fig:row-binding)Row binding can occur when data frames x and y share the column variables.</p>
+</div>
+Note that if the `x` and `y` data frames have column variables that are *not shared*, those variables will be carried forward but the observations will contain `NA`.  Therefore, you should always check your resultant data frame for completeness using functions like `complete.cases()` or a combination of `is.na()` with `sum()` or `which()`.
+
+### Column Binding (_join)
+
+Data frames can also be merged when row observations are shared, such that you end up merging column variables together from two objects. In this case, we would **join** the two data frames using a function like `dplyr::left_join()`. To do this, we must specify one or more variables that can uniquely identify row observations that are common between the two data frames.  Once the rows are "lined up", we can paste the new column variables into a combined data frame. This is shown schematically in Figure \@ref(fig:left-join) where the matching rows are specified using the argument `by = var_a` wihtin the join function. 
+
+
+```r
+# generic code for example; will not run
+new.dataframe <- left_join(x, y, by = var_a)
+```
+
+<div class="figure" style="text-align: center">
+<img src="./images/left_join.png" alt="Column binding, or joins can occur when data frames x and y share the same row observations." width="600pt" />
+<p class="caption">(\#fig:left-join)Column binding, or joins can occur when data frames x and y share the same row observations.</p>
+</div>
+
+The `dplyr::` package features a number of mutate-join functions (e.g., `left_join()`, `right_join()`, `inner_join()`) that add columns from data frame `y` to data frame `x`, once you specify how to match rows using `by = ` argument.
+  
+* `inner_join()`: includes all rows in x and y (regardless of whether they match).  
+  
+* `left_join()`: includes all rows in x (and only y rows if they match).
+  
+* `right_join()`: includes all rows in y.
+  
+* `full_join()`: includes all rows in x or y.  
+
 ## Piping
 
 So far, I've shown how to use these `dplyr` functions one at a time to clean up
