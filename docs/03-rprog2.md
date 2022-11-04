@@ -1012,7 +1012,7 @@ equal; and (2) Using <code>== NA</code> instead of <code>is.na</code> to
 check for missing observations.</p>
 </div>
 
-## Merging Data Frames Together
+## Merging Data Frames
 
 Many data analysis exercises will require you to combine data from different sources into a single object.  Thus, it's worthwhile to understand how R can be used to merge together two or more data frames.
 
@@ -1032,7 +1032,7 @@ Note that if the `x` and `y` data frames have column variables that are *not sha
 
 ### Column Binding (_join)
 
-Data frames can also be merged when row observations are shared, such that you end up merging column variables together from two objects. In this case, we would **join** the two data frames using a function like `dplyr::left_join()`. To do this, we must specify one or more variables that can uniquely identify row observations that are common between the two data frames.  Once the rows are "lined up", we can paste the new column variables into a combined data frame. This is shown schematically in Figure \@ref(fig:left-join) where the matching rows are specified using the argument `by = var_a` wihtin the join function. 
+Data frames can also be merged when row observations are shared, such that you end up merging column variables together from two objects. In this case, we would **join** the two data frames using a function like `dplyr::left_join()`. To do this, we must specify one or more variables that can uniquely identify row observations that are common between the two data frames.  Once the rows are "lined up", we can paste the new column variables into a combined data frame. This is shown schematically in Figure \@ref(fig:left-join) where the matching rows are specified using the argument `by = var_a` within the join function. 
 
 
 ```r
@@ -1045,7 +1045,7 @@ new.dataframe <- left_join(x, y, by = var_a)
 <p class="caption">(\#fig:left-join)Column binding, or joins can occur when data frames x and y share the same row observations.</p>
 </div>
 
-The `dplyr::` package features a number of mutate-join functions (e.g., `left_join()`, `right_join()`, `inner_join()`) that add columns from data frame `y` to data frame `x`, once you specify how to match rows using `by = ` argument.
+The `dplyr::` package features a number of mutate-join functions (e.g., `left_join()`, `right_join()`, `inner_join()`) that add columns from data frame `y` to data frame `x`, once you specify how to match rows using the `by = ` argument.
   
 * `inner_join()`: includes all rows in x and y (regardless of whether they match).  
   
@@ -1054,6 +1054,8 @@ The `dplyr::` package features a number of mutate-join functions (e.g., `left_jo
 * `right_join()`: includes all rows in y.
   
 * `full_join()`: includes all rows in x or y.  
+
+Note that if your matching key (`by = `) does not produce unique row observations (for example, if you had two different `"John"` entries in a variable called `first.name` between both data frames) then R will create duplicate row entries that account for the possible combinations of the `John` observation in `x` with the `John` observation in `y`.  One way to check for this is to look at the `length()` of the resultant (merged) data frame.  In most cases, it should have the same length as the starting data frame, contingent on which mutate-join function you call.  Another way is to examine variables in the data frame using the `unique()` function.
 
 ## Piping
 

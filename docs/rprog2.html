@@ -227,7 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.4" data-path="rprog2.html"><a href="rprog2.html#base-r-equivalents-to-dplyr-functions"><i class="fa fa-check"></i><b>3.5.4</b> Base R equivalents to <code>dplyr</code> functions</a></li>
 <li class="chapter" data-level="3.5.5" data-path="rprog2.html"><a href="rprog2.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>3.5.5</b> Filtering to certain rows</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="rprog2.html"><a href="rprog2.html#merging-data-frames-together"><i class="fa fa-check"></i><b>3.6</b> Merging Data Frames Together</a>
+<li class="chapter" data-level="3.6" data-path="rprog2.html"><a href="rprog2.html#merging-data-frames"><i class="fa fa-check"></i><b>3.6</b> Merging Data Frames</a>
 <ul>
 <li class="chapter" data-level="3.6.1" data-path="rprog2.html"><a href="rprog2.html#row-binding"><i class="fa fa-check"></i><b>3.6.1</b> Row Binding</a></li>
 <li class="chapter" data-level="3.6.2" data-path="rprog2.html"><a href="rprog2.html#column-binding-_join"><i class="fa fa-check"></i><b>3.6.2</b> Column Binding (_join)</a></li>
@@ -1443,8 +1443,8 @@ check for missing observations.
 </div>
 </div>
 </div>
-<div id="merging-data-frames-together" class="section level2 hasAnchor" number="3.6">
-<h2><span class="header-section-number">3.6</span> Merging Data Frames Together<a href="rprog2.html#merging-data-frames-together" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="merging-data-frames" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Merging Data Frames<a href="rprog2.html#merging-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Many data analysis exercises will require you to combine data from different sources into a single object. Thus, it’s worthwhile to understand how R can be used to merge together two or more data frames.</p>
 <p>Merging data frames is generally done in one of two ways, depending on <em>how those data frames are similar</em>: <strong>row binding</strong> or <strong>column binding</strong>. Below, I provide reference to <code>dplyr::</code> functions, but, as usual, there are base R functions (<code>rbind()</code> and <code>cbind()</code>) that work, too!</p>
 <div id="row-binding" class="section level3 hasAnchor" number="3.6.1">
@@ -1461,7 +1461,7 @@ Figure 3.2: Row binding can occur when data frames x and y share the column vari
 </div>
 <div id="column-binding-_join" class="section level3 hasAnchor" number="3.6.2">
 <h3><span class="header-section-number">3.6.2</span> Column Binding (_join)<a href="rprog2.html#column-binding-_join" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Data frames can also be merged when row observations are shared, such that you end up merging column variables together from two objects. In this case, we would <strong>join</strong> the two data frames using a function like <code>dplyr::left_join()</code>. To do this, we must specify one or more variables that can uniquely identify row observations that are common between the two data frames. Once the rows are “lined up”, we can paste the new column variables into a combined data frame. This is shown schematically in Figure <a href="rprog2.html#fig:left-join">3.3</a> where the matching rows are specified using the argument <code>by = var_a</code> wihtin the join function.</p>
+<p>Data frames can also be merged when row observations are shared, such that you end up merging column variables together from two objects. In this case, we would <strong>join</strong> the two data frames using a function like <code>dplyr::left_join()</code>. To do this, we must specify one or more variables that can uniquely identify row observations that are common between the two data frames. Once the rows are “lined up”, we can paste the new column variables into a combined data frame. This is shown schematically in Figure <a href="rprog2.html#fig:left-join">3.3</a> where the matching rows are specified using the argument <code>by = var_a</code> within the join function.</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="rprog2.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generic code for example; will not run</span></span>
 <span id="cb51-2"><a href="rprog2.html#cb51-2" aria-hidden="true" tabindex="-1"></a>new.dataframe <span class="ot">&lt;-</span> <span class="fu">left_join</span>(x, y, <span class="at">by =</span> var_a)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:left-join"></span>
@@ -1470,13 +1470,14 @@ Figure 3.2: Row binding can occur when data frames x and y share the column vari
 Figure 3.3: Column binding, or joins can occur when data frames x and y share the same row observations.
 </p>
 </div>
-<p>The <code>dplyr::</code> package features a number of mutate-join functions (e.g., <code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>) that add columns from data frame <code>y</code> to data frame <code>x</code>, once you specify how to match rows using <code>by =</code> argument.</p>
+<p>The <code>dplyr::</code> package features a number of mutate-join functions (e.g., <code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>) that add columns from data frame <code>y</code> to data frame <code>x</code>, once you specify how to match rows using the <code>by =</code> argument.</p>
 <ul>
 <li><p><code>inner_join()</code>: includes all rows in x and y (regardless of whether they match).</p></li>
 <li><p><code>left_join()</code>: includes all rows in x (and only y rows if they match).</p></li>
 <li><p><code>right_join()</code>: includes all rows in y.</p></li>
 <li><p><code>full_join()</code>: includes all rows in x or y.</p></li>
 </ul>
+<p>Note that if your matching key (<code>by =</code>) does not produce unique row observations (for example, if you had two different <code>"John"</code> entries in a variable called <code>first.name</code> between both data frames) then R will create duplicate row entries that account for the possible combinations of the <code>John</code> observation in <code>x</code> with the <code>John</code> observation in <code>y</code>. One way to check for this is to look at the <code>length()</code> of the resultant (merged) data frame. In most cases, it should have the same length as the starting data frame, contingent on which mutate-join function you call. Another way is to examine variables in the data frame using the <code>unique()</code> function.</p>
 </div>
 </div>
 <div id="piping" class="section level2 hasAnchor" number="3.7">
