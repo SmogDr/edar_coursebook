@@ -78,11 +78,11 @@ To collect a simple random sample, you need to ensure three things:
 
 How large of a sample size do you need to collect?  That depends on a lots of things:  
 
-1. what you want to do with the data (read: what conclusions/questions are you after?)  
-    - Are you estimating location and/or spread, are you comparing location/spread, or are you fitting a model?
-2. What are the risks/consequences of making incorrect conclusions?  
+1. what do you want to do with the data? (read: what conclusions/questions are you after?)  
+    - are you estimating location and/or spread, are you comparing location and/or spread, or are you fitting a model?
+2. what are the risks/consequences of making incorrect conclusions?  
     - Do you need 95% confidence in your answer, 99%, 99.999%?  
-3. How much variability do you expect to see in your data?   
+3. how much variability do you expect to see in your data?   
 
 These factors all work together to frame sample size considerations.  There are many ways to estimate sample size (too many for this course), so I will use only one here: sample size (n) for a t-test comparing two means:
 
@@ -90,8 +90,8 @@ These factors all work together to frame sample size considerations.  There are 
 
   - $\alpha$ represents the Type-1 error rate (1 - confidence level); 0.05 is typical  
   - $\beta$ represents the Type-2 error rate (1 - power); 0.2 is typical  
-  - $Z_{\alpha/2}$ represents the critical value of the [Normal distribution](#normal_dist) at $\alpha/2$  
-  - $Z_{\beta/2}$ represents the critical value of the [Normal distribution](#normal_dist) at $\beta/2$  
+  - $Z_{\alpha/2}$ represents the critical value of the standardized [Normal distribution](#normal_dist) at $\alpha/2$  
+  - $Z_{\beta/2}$ represents the critical value of the standardized [Normal distribution](#normal_dist) at $\beta/2$  
   - $\sigma^2$ is the population variance (you often need to guess/estimate $\sigma^2$)
   - $d$ is the difference (in means) that you are trying to detect  
 
@@ -103,12 +103,12 @@ These factors all work together to frame sample size considerations.  There are 
 Systematic sampling is often employed when simple random sampling is not feasible.  With systematic sampling, the population is first ordered according to a characteristic of interest (e.g., first to last, front to back, smallest to largest, youngest to oldest, etc.) and then samples are drawn at regular intervals from across the ordered range of values.  For example, if you wanted to know the opinions of marathoners at the finish line of a particular race, you might decide to randomly sample one person passing through the finish line every five minutes starting with the winner's group and ending with the last finisher.  The main disadvantage to systematic sampling is that your ordering scheme might introduce bias into the results.  For example, in the NBA's annual [3-point shooting contest](https://en.wikipedia.org/wiki/Three-Point_Contest){target="_blank"}, every 5th ball is worth extra points to the shooter; if we conducted systematic sampling of every 5th shot from start to finish, we would only select the shots worth extra points (i.e., the shots that the shooter cares the most about). 
 
 ### Stratified Sampling
-Stratified sampling is often used when (1) you know "something" (a priori) about the population that you want to sutdy (or at least account for in your sample) and (2) when that "something" can be mapped onto the population to form groups.  With stratified sampling, you break the population into strata (a fancy word for *groups*) and then sample randomly (in equal proportion) from within each strata. This technique is used because the strata are believed to be important relative to the the variables of interest. The strata can be time-based (e.g., the quality of parts produced during the morning, afternoon, and night shift at a factory), place-based (e.g., the quality of parts produced at assembly plant A, B, C), or based on other known characteristics.  For example, when people are the subject of study, strata are often formed about age groups, sex, income brackets, and educational attainment, to name a few. Stratified random sampling can be more tedious to conduct and is sometimes biased if not all of the subgroups within a population are identified. For example, a survey of the effects of housing on health (stratified into homeowners vs. renters) would ignore a key subgroup: those who are experiencing homelessness.
+Stratified sampling is often used when (1) you know "something" (a priori) about the population that you want to sutdy (or at least account for in your sample) and (2) when that "something" can be mapped onto the population to form groups.  With stratified sampling, you break the population into strata (a fancy word for *groups*) and then sample randomly (in equal proportion) from within each strata. This technique is used because the strata are believed to be important relative to the the variables of interest. The strata can be time-based (e.g., the quality of parts produced during the morning, afternoon, and night shift at a factory), place-based (e.g., the quality of parts produced at assembly plant A, B, C), or based on other known characteristics.  For example, when people are the focus of the study, strata are often formed about age groups, sex, income brackets, and educational attainment, to name a few. Stratified random sampling can be more tedious to conduct and is sometimes biased if not all of the subgroups within a population are identified. For example, a survey of the effects of housing on one's health that was stratified into *homeowners* vs. *renters* would ignore a key subgroup: those who are experiencing homelessness.
 
 ### Cluster Sampling
 Cluster sampling is often used to save on time and effort during a sampling campaign when it's possible to break the population into **similar groups**, or clusters. The population is divided into clusters (based on some grouping characteristic) and then a proportion of those clusters are fully sampled.  For example, if your company had 50 distribution centers across the country, and you wished to study some measure of process efficiency, then you might select 10 centers as clusters, and fully sample each.  
 
-Cluster sampling is considered less precise (i.e., more samples needed for a given question) than simple random sampling, but oftentimes its unfeasible or too costly to sample the whole population.  If cluster units are apparent, they can provide considerable cost savings.
+Cluster sampling is considered less precise (i.e., more samples needed for a given question) than simple random sampling, but oftentimes it's unfeasible or too costly to sample the whole population.  If cluster units are apparent, they can provide considerable cost savings.
 
 ```{block type = "rmdnote"}
 The important difference between ***stratified*** and ***cluster*** sampling is how each design defines the groups. With *stratified sampling*, the distinction between groups (i.e., how the data varies from one group to the next) is important; with *cluster sampling*, the distinction between groups should be one of convenience (and hopefully not meaningful as it relates to data variability). 
