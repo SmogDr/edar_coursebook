@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Getting and Cleaning Data | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Getting and Cleaning Data | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-11-02" />
+<meta name="date" content="2022-11-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -94,7 +94,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -107,7 +107,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -644,10 +644,10 @@ delimiter; however, you will need to specify the type of delimiter using the
 <p>For example, to read in the Ebola data data file, which is comma-delimited,
 you could either use <code>read_table()</code> with a <code>delim</code> argument specified or use
 <code>read_csv()</code>, in which case you don’t have to specify <code>delim</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rprog2.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;readr&quot;</span>)</span>
-<span id="cb3-2"><a href="rprog2.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The following two calls do the same thing</span></span>
-<span id="cb3-3"><a href="rprog2.html#cb3-3" aria-hidden="true" tabindex="-1"></a>ebola <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_delim</span>(<span class="at">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rprog2.html#cb4-1" aria-hidden="true" tabindex="-1"></a>ebola <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="rprog2.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;readr&quot;</span>)</span>
+<span id="cb112-2"><a href="rprog2.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The following two calls do the same thing</span></span>
+<span id="cb112-3"><a href="rprog2.html#cb112-3" aria-hidden="true" tabindex="-1"></a>ebola <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_delim</span>(<span class="at">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="rprog2.html#cb113-1" aria-hidden="true" tabindex="-1"></a>ebola <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 122 Columns: 18
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -891,7 +891,7 @@ will be one of the directories somewhere in your computer’s directory
 structure. At any time, you can figure out which directory R is working in by
 running the command <code>getwd()</code> (short for “get working directory”). For example,
 my R session is currently running in the following directory:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="rprog2.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="rprog2.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook&quot;</code></pre>
 <p>This means that, for my current R session, R is working in the
 <code>edar_coursebook</code> subdirectory of my <code>johnvolckens</code> directory (home directory).</p>
@@ -939,7 +939,7 @@ regardless of your current working directory, because it gives directions from
 the root. In other words, it will always be clear to R exactly what file you’re
 talking about. Here’s the code to use to read that file in using the
 <code>read.csv()</code> function with the file’s absolute pathname:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="rprog2.html#cb10-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="rprog2.html#cb119-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p>The <em>relative pathname</em>, on the other hand, gives R the directions for how to
 get to a directory or file from the current working directory. If the file or
 directory you’re looking for is pretty close to your current working directory
@@ -956,7 +956,7 @@ you’d need to look in the subdirectory <code>data</code>, where you could find
 <pre><code>&quot;data/daily_show_guests.csv&quot;</code></pre>
 <p>You can use this relative pathname to tell R where to find and read in the
 file:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="rprog2.html#cb12-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;data/daily_show_guests.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="rprog2.html#cb121-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;data/daily_show_guests.csv&quot;</span>)</span></code></pre></div>
 <p>While this pathname is much shorter than the absolute pathname, it is important to remember that if you are working in a different working directory, this relative pathname would no longer work.</p>
 <p>There are a few abbreviations that can be really useful for pathnames:</p>
 <table>
@@ -1050,11 +1050,11 @@ resulting vector will only be one element long for basic uses of <code>paste()</
 while the inputs will be several different character stings.) You separate all
 the different things you want to paste together using with commas in the
 function call. For example:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="rprog2.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="rprog2.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Sunday Monday Tuesday&quot;</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="rprog2.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="rprog2.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="rprog2.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="at">x =</span> <span class="fu">paste</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="rprog2.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="at">x =</span> <span class="fu">paste</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>The <code>paste()</code> function has an option called <code>sep =</code>. This tells R what you
 want to use to separate the values you’re pasting together in the output. The
@@ -1062,13 +1062,13 @@ default is for R to use a space, as shown in the example above. To change the
 separator, you can change this option, and you can put in just about anything
 you want. For example, if you wanted to paste all the values together without
 spaces, you could use <code>sep = ""</code>:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="rprog2.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="rprog2.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;SundayMondayTuesday&quot;</code></pre>
 <p>As a shortcut, instead of using the <code>sep = ""</code> option, you could achieve the
 same thing using the <code>paste0</code> function. This function is almost exactly like
 <code>paste</code>, but it defaults to <code>""</code> (i.e., no space) as the separator between
 values by default:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="rprog2.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="rprog2.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;SundayMondayTuesday&quot;</code></pre>
 <p>With pathnames, you will usually not want spaces. Therefore, you could think
 about using <code>paste0()</code> to write an object with the pathname you want to
@@ -1095,10 +1095,10 @@ secure webpage (i.e., one that starts with <code>https</code>), including GitHub
 Dropbox.</p>
 <p>For example, to read in data from this
 <a href="https://raw.githubusercontent.com/cmrivers/ebola/master/country_timeseries.csv" target="_blank">GitHub repository of Ebola data</a>, you can run:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="rprog2.html#cb28-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;https://raw.githubusercontent.com/cmrivers/&quot;</span>,</span>
-<span id="cb28-2"><a href="rprog2.html#cb28-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;ebola/master/country_timeseries.csv&quot;</span>)</span>
-<span id="cb28-3"><a href="rprog2.html#cb28-3" aria-hidden="true" tabindex="-1"></a>ebola <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> url)</span>
-<span id="cb28-4"><a href="rprog2.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(<span class="at">.data =</span> (dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">.data =</span> ebola, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)), <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="rprog2.html#cb137-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;https://raw.githubusercontent.com/cmrivers/&quot;</span>,</span>
+<span id="cb137-2"><a href="rprog2.html#cb137-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;ebola/master/country_timeseries.csv&quot;</span>)</span>
+<span id="cb137-3"><a href="rprog2.html#cb137-3" aria-hidden="true" tabindex="-1"></a>ebola <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> url)</span>
+<span id="cb137-4"><a href="rprog2.html#cb137-4" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(<span class="at">.data =</span> (dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">.data =</span> ebola, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)), <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 3
 ##   Date       Day Cases_Guinea
 ##   &lt;chr&gt;    &lt;dbl&gt;        &lt;dbl&gt;
@@ -1145,11 +1145,11 @@ examples in this section, I use example data listing guests to the Daily Show.
 To follow along with these examples, you’ll want to load that data, as well as
 load the <code>dplyr</code> package. Install it using <code>install.packages()</code> if you have not
 done so already.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="rprog2.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
-<span id="cb30-2"><a href="rprog2.html#cb30-2" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="rprog2.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb139-2"><a href="rprog2.html#cb139-2" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p>I’ve used this data in previous examples, but as a reminder, here’s what it
 looks like:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="rprog2.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> daily_show)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="rprog2.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> daily_show)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
 ##    YEAR GoogleKnowlege_Occupation Show    Group  Raw_Guest_List  
 ##   &lt;dbl&gt; &lt;chr&gt;                     &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;           
@@ -1171,26 +1171,26 @@ work with a column name that:</p>
 <p>You can check out the column names for a dataframe using the <code>colnames()</code>
 function, with the dataframe object as the argument. Several of the column
 names in <code>daily_show</code> have some of these issues:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="rprog2.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="at">x =</span> daily_show)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="rprog2.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="at">x =</span> daily_show)</span></code></pre></div>
 <pre><code>## [1] &quot;YEAR&quot;                      &quot;GoogleKnowlege_Occupation&quot;
 ## [3] &quot;Show&quot;                      &quot;Group&quot;                    
 ## [5] &quot;Raw_Guest_List&quot;</code></pre>
 <p>To rename these columns, use <code>rename()</code>. The basic syntax is:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="rprog2.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="do">## generic code; will not run</span></span>
-<span id="cb35-2"><a href="rprog2.html#cb35-2" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">.data =</span> dataframe,</span>
-<span id="cb35-3"><a href="rprog2.html#cb35-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">new_column_name_1 =</span> old_column_name_1,</span>
-<span id="cb35-4"><a href="rprog2.html#cb35-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">new_column_name_2 =</span> old_column_name_2)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="rprog2.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="do">## generic code; will not run</span></span>
+<span id="cb144-2"><a href="rprog2.html#cb144-2" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">.data =</span> dataframe,</span>
+<span id="cb144-3"><a href="rprog2.html#cb144-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">new_column_name_1 =</span> old_column_name_1,</span>
+<span id="cb144-4"><a href="rprog2.html#cb144-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">new_column_name_2 =</span> old_column_name_2)</span></code></pre></div>
 <p>The first argument is the dataframe for which you’d like to rename columns.
 Then you list each pair of new and old column names (in that order) for each
 of the columns you want to rename. To rename columns in the <code>daily_show</code> data
 using <code>rename()</code>, for example, you would run:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="rprog2.html#cb36-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">.data =</span> daily_show,</span>
-<span id="cb36-2"><a href="rprog2.html#cb36-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">year =</span> YEAR,</span>
-<span id="cb36-3"><a href="rprog2.html#cb36-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">job =</span> GoogleKnowlege_Occupation,</span>
-<span id="cb36-4"><a href="rprog2.html#cb36-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">date =</span> Show,</span>
-<span id="cb36-5"><a href="rprog2.html#cb36-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">category =</span> Group,</span>
-<span id="cb36-6"><a href="rprog2.html#cb36-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">guest_name =</span> Raw_Guest_List)</span>
-<span id="cb36-7"><a href="rprog2.html#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> daily_show, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="rprog2.html#cb145-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">.data =</span> daily_show,</span>
+<span id="cb145-2"><a href="rprog2.html#cb145-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">year =</span> YEAR,</span>
+<span id="cb145-3"><a href="rprog2.html#cb145-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">job =</span> GoogleKnowlege_Occupation,</span>
+<span id="cb145-4"><a href="rprog2.html#cb145-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">date =</span> Show,</span>
+<span id="cb145-5"><a href="rprog2.html#cb145-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">category =</span> Group,</span>
+<span id="cb145-6"><a href="rprog2.html#cb145-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">guest_name =</span> Raw_Guest_List)</span>
+<span id="cb145-7"><a href="rprog2.html#cb145-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> daily_show, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 5
 ##    year job                date    category guest_name     
 ##   &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;          
@@ -1228,13 +1228,13 @@ be <strong>explicit</strong> in your function calls.</p>
 <p>Next, you may want to select only some columns of the dataframe. You can use
 the <code>select()</code> function from <code>dplyr</code> to subset the dataframe to certain
 columns. The basic structure of this command is:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="rprog2.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="do">## generic code; will not run</span></span>
-<span id="cb38-2"><a href="rprog2.html#cb38-2" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">.data =</span> dataframe, column_name_1, column_name_2, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="rprog2.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="do">## generic code; will not run</span></span>
+<span id="cb147-2"><a href="rprog2.html#cb147-2" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">.data =</span> dataframe, column_name_1, column_name_2, ...)</span></code></pre></div>
 <p>In this call, you first specify the dataframe to use and then list all of the
 column names to include in the output dataframe, with commas between each
 column name. For example, to select all columns in <code>daily_show</code> except <code>year</code>
 (since that information is already included in <code>date</code>), run:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="rprog2.html#cb39-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">.data =</span> daily_show, job, date, category, guest_name)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="rprog2.html#cb148-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">.data =</span> daily_show, job, date, category, guest_name)</span></code></pre></div>
 <pre><code>## # A tibble: 2,693 × 4
 ##    job                date    category guest_name      
 ##    &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;           
@@ -1265,8 +1265,8 @@ as you’re figuring out how to write your code.
 example, we wanted all the columns except one. Instead of writing out all the
 columns we want, we can use <code>-</code> with only the columns we don’t want to
 save time (notice the object reassignment/override):</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="rprog2.html#cb41-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">.data =</span> daily_show, <span class="sc">-</span>year)</span>
-<span id="cb41-2"><a href="rprog2.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> daily_show, <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="rprog2.html#cb150-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">.data =</span> daily_show, <span class="sc">-</span>year)</span>
+<span id="cb150-2"><a href="rprog2.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> daily_show, <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 4
 ##   job                date    category guest_name     
 ##   &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;          
@@ -1278,14 +1278,14 @@ save time (notice the object reassignment/override):</p>
 <h3><span class="header-section-number">3.5.3</span> Add or change columns<a href="rprog2.html#add-or-change-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You can change a column or add a new column using the <code>mutate()</code> function from
 the <code>dplyr</code> package. That function has the syntax:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="rprog2.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generic code; will not run</span></span>
-<span id="cb43-2"><a href="rprog2.html#cb43-2" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">.data =</span> dataframe,</span>
-<span id="cb43-3"><a href="rprog2.html#cb43-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">changed_column =</span> <span class="cf">function</span>(changed_column),</span>
-<span id="cb43-4"><a href="rprog2.html#cb43-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">new_column =</span> <span class="cf">function</span>(other arguments))</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="rprog2.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generic code; will not run</span></span>
+<span id="cb152-2"><a href="rprog2.html#cb152-2" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">.data =</span> dataframe,</span>
+<span id="cb152-3"><a href="rprog2.html#cb152-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">changed_column =</span> <span class="cf">function</span>(changed_column),</span>
+<span id="cb152-4"><a href="rprog2.html#cb152-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">new_column =</span> <span class="cf">function</span>(other arguments))</span></code></pre></div>
 <p>For example, the <code>job</code> column in <code>daily_show</code> sometimes uses upper case and
 sometimes does not. This call uses the <code>unique()</code> function to list only unique
 values in this column:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="rprog2.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> <span class="fu">unique</span>(<span class="at">x =</span> daily_show<span class="sc">$</span>job), <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="rprog2.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> <span class="fu">unique</span>(<span class="at">x =</span> daily_show<span class="sc">$</span>job), <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##  [1] &quot;actor&quot;              &quot;Comedian&quot;           &quot;television actress&quot;
 ##  [4] &quot;film actress&quot;       &quot;Singer-lyricist&quot;    &quot;model&quot;             
 ##  [7] &quot;stand-up comedian&quot;  &quot;actress&quot;            &quot;comedian&quot;          
@@ -1293,9 +1293,9 @@ values in this column:</p>
 <p>To make all the observations in the <code>job</code> column lowercase, use the
 <code>str_to_lower()</code> function from the <code>stringr</code> package within a <code>mutate()</code>
 function:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="rprog2.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;stringr&quot;</span>)</span>
-<span id="cb46-2"><a href="rprog2.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">.data =</span> daily_show, </span>
-<span id="cb46-3"><a href="rprog2.html#cb46-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">job =</span> <span class="fu">str_to_lower</span>(<span class="at">string =</span> job))</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="rprog2.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;stringr&quot;</span>)</span>
+<span id="cb155-2"><a href="rprog2.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">.data =</span> daily_show, </span>
+<span id="cb155-3"><a href="rprog2.html#cb155-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">job =</span> <span class="fu">str_to_lower</span>(<span class="at">string =</span> job))</span></code></pre></div>
 <pre><code>## # A tibble: 2,693 × 4
 ##    job                date    category guest_name      
 ##    &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;           
@@ -1361,14 +1361,14 @@ might want to get a dataset with only the guests from 2015, or only guests who
 are scientists.</p>
 <p>You can use the <code>filter()</code> function from <code>dplyr</code> to filter a dataframe down to
 a subset of rows. The syntax is:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="rprog2.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="do">## generic code; will not run</span></span>
-<span id="cb48-2"><a href="rprog2.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(<span class="at">.data =</span> dataframe, logical expression)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="rprog2.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="do">## generic code; will not run</span></span>
+<span id="cb157-2"><a href="rprog2.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(<span class="at">.data =</span> dataframe, logical expression)</span></code></pre></div>
 <p>The <code>logical expression</code> in this call gives the condition that a row must meet
 to be included in the output data frame. For example, if you want to create a
 data frame that only includes guests who were scientists, you can run:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="rprog2.html#cb49-1" aria-hidden="true" tabindex="-1"></a>scientists <span class="ot">&lt;-</span> <span class="fu">filter</span>(<span class="at">.data =</span> daily_show, </span>
-<span id="cb49-2"><a href="rprog2.html#cb49-2" aria-hidden="true" tabindex="-1"></a>                     category <span class="sc">==</span> <span class="st">&quot;Science&quot;</span>)</span>
-<span id="cb49-3"><a href="rprog2.html#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> scientists)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="rprog2.html#cb158-1" aria-hidden="true" tabindex="-1"></a>scientists <span class="ot">&lt;-</span> <span class="fu">filter</span>(<span class="at">.data =</span> daily_show, </span>
+<span id="cb158-2"><a href="rprog2.html#cb158-2" aria-hidden="true" tabindex="-1"></a>                     category <span class="sc">==</span> <span class="st">&quot;Science&quot;</span>)</span>
+<span id="cb158-3"><a href="rprog2.html#cb158-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> scientists)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ##   job            date    category guest_name            
 ##   &lt;chr&gt;          &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;                 
@@ -1462,8 +1462,8 @@ Figure 3.2: Row binding can occur when data frames x and y share the column vari
 <div id="column-binding-_join" class="section level3 hasAnchor" number="3.6.2">
 <h3><span class="header-section-number">3.6.2</span> Column Binding (_join)<a href="rprog2.html#column-binding-_join" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Data frames can also be merged when row observations are shared, such that you end up merging column variables together from two objects. In this case, we would <strong>join</strong> the two data frames using a function like <code>dplyr::left_join()</code>. To do this, we must specify one or more variables that can uniquely identify row observations that are common between the two data frames. Once the rows are “lined up”, we can paste the new column variables into a combined data frame. This is shown schematically in Figure <a href="rprog2.html#fig:left-join">3.3</a> where the matching rows are specified using the argument <code>by = var_a</code> within the join function.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="rprog2.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generic code for example; will not run</span></span>
-<span id="cb51-2"><a href="rprog2.html#cb51-2" aria-hidden="true" tabindex="-1"></a>new.dataframe <span class="ot">&lt;-</span> <span class="fu">left_join</span>(x, y, <span class="at">by =</span> var_a)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="rprog2.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generic code for example; will not run</span></span>
+<span id="cb160-2"><a href="rprog2.html#cb160-2" aria-hidden="true" tabindex="-1"></a>new.dataframe <span class="ot">&lt;-</span> <span class="fu">left_join</span>(x, y, <span class="at">by =</span> var_a)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:left-join"></span>
 <img src="images/left_join.png" alt="Column binding, or joins can occur when data frames x and y share the same row observations." width="600pt" />
 <p class="caption">
@@ -1488,46 +1488,46 @@ trick called “piping” (with <code>%&gt;%</code>) that will let you complete 
 wrangling steps at once.</p>
 <p>If you look at the format of these <code>dplyr</code> functions, you’ll notice that they
 all take a dataframe as their first argument:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="rprog2.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generic code; will not run</span></span>
-<span id="cb52-2"><a href="rprog2.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(<span class="at">.data =</span> dataframe, </span>
-<span id="cb52-3"><a href="rprog2.html#cb52-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">new_column_name_1 =</span> old_column_name_1,</span>
-<span id="cb52-4"><a href="rprog2.html#cb52-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">new_column_name_2 =</span> old_column_name_2)</span>
-<span id="cb52-5"><a href="rprog2.html#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="at">.data =</span> dataframe, </span>
-<span id="cb52-6"><a href="rprog2.html#cb52-6" aria-hidden="true" tabindex="-1"></a>       column_name_1, column_name_2)</span>
-<span id="cb52-7"><a href="rprog2.html#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(<span class="at">.data =</span> dataframe, </span>
-<span id="cb52-8"><a href="rprog2.html#cb52-8" aria-hidden="true" tabindex="-1"></a>       logical expression)</span>
-<span id="cb52-9"><a href="rprog2.html#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">.data =</span> dataframe,</span>
-<span id="cb52-10"><a href="rprog2.html#cb52-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">changed_column =</span> <span class="cf">function</span>(changed_column),</span>
-<span id="cb52-11"><a href="rprog2.html#cb52-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">new_column =</span> <span class="cf">function</span>(other arguments))</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="rprog2.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generic code; will not run</span></span>
+<span id="cb161-2"><a href="rprog2.html#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(<span class="at">.data =</span> dataframe, </span>
+<span id="cb161-3"><a href="rprog2.html#cb161-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">new_column_name_1 =</span> old_column_name_1,</span>
+<span id="cb161-4"><a href="rprog2.html#cb161-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">new_column_name_2 =</span> old_column_name_2)</span>
+<span id="cb161-5"><a href="rprog2.html#cb161-5" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="at">.data =</span> dataframe, </span>
+<span id="cb161-6"><a href="rprog2.html#cb161-6" aria-hidden="true" tabindex="-1"></a>       column_name_1, column_name_2)</span>
+<span id="cb161-7"><a href="rprog2.html#cb161-7" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(<span class="at">.data =</span> dataframe, </span>
+<span id="cb161-8"><a href="rprog2.html#cb161-8" aria-hidden="true" tabindex="-1"></a>       logical expression)</span>
+<span id="cb161-9"><a href="rprog2.html#cb161-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">.data =</span> dataframe,</span>
+<span id="cb161-10"><a href="rprog2.html#cb161-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">changed_column =</span> <span class="cf">function</span>(changed_column),</span>
+<span id="cb161-11"><a href="rprog2.html#cb161-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">new_column =</span> <span class="cf">function</span>(other arguments))</span></code></pre></div>
 <p>Without piping, you have to reassign the dataframe object at each step of this
 cleaning if you want the changes saved in the object:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="rprog2.html#cb53-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>,</span>
-<span id="cb53-2"><a href="rprog2.html#cb53-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">skip =</span> <span class="dv">4</span>)</span>
-<span id="cb53-3"><a href="rprog2.html#cb53-3" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> <span class="fu">rename</span>(<span class="at">.data =</span> daily_show, </span>
-<span id="cb53-4"><a href="rprog2.html#cb53-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">job =</span> GoogleKnowlege_Occupation,</span>
-<span id="cb53-5"><a href="rprog2.html#cb53-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">date =</span> Show,</span>
-<span id="cb53-6"><a href="rprog2.html#cb53-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">category =</span> Group,</span>
-<span id="cb53-7"><a href="rprog2.html#cb53-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">guest_name =</span> Raw_Guest_List)</span>
-<span id="cb53-8"><a href="rprog2.html#cb53-8" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> <span class="fu">select</span>(<span class="at">.data =</span> daily_show, </span>
-<span id="cb53-9"><a href="rprog2.html#cb53-9" aria-hidden="true" tabindex="-1"></a>                     <span class="sc">-</span>YEAR) </span>
-<span id="cb53-10"><a href="rprog2.html#cb53-10" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> <span class="fu">mutate</span>(<span class="at">.data =</span> daily_show, </span>
-<span id="cb53-11"><a href="rprog2.html#cb53-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">job =</span> <span class="fu">str_to_lower</span>(job))</span>
-<span id="cb53-12"><a href="rprog2.html#cb53-12" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> <span class="fu">filter</span>(<span class="at">.data =</span> daily_show, </span>
-<span id="cb53-13"><a href="rprog2.html#cb53-13" aria-hidden="true" tabindex="-1"></a>                     category <span class="sc">==</span> <span class="st">&quot;Science&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="rprog2.html#cb162-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>,</span>
+<span id="cb162-2"><a href="rprog2.html#cb162-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">skip =</span> <span class="dv">4</span>)</span>
+<span id="cb162-3"><a href="rprog2.html#cb162-3" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> <span class="fu">rename</span>(<span class="at">.data =</span> daily_show, </span>
+<span id="cb162-4"><a href="rprog2.html#cb162-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">job =</span> GoogleKnowlege_Occupation,</span>
+<span id="cb162-5"><a href="rprog2.html#cb162-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">date =</span> Show,</span>
+<span id="cb162-6"><a href="rprog2.html#cb162-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">category =</span> Group,</span>
+<span id="cb162-7"><a href="rprog2.html#cb162-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">guest_name =</span> Raw_Guest_List)</span>
+<span id="cb162-8"><a href="rprog2.html#cb162-8" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> <span class="fu">select</span>(<span class="at">.data =</span> daily_show, </span>
+<span id="cb162-9"><a href="rprog2.html#cb162-9" aria-hidden="true" tabindex="-1"></a>                     <span class="sc">-</span>YEAR) </span>
+<span id="cb162-10"><a href="rprog2.html#cb162-10" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> <span class="fu">mutate</span>(<span class="at">.data =</span> daily_show, </span>
+<span id="cb162-11"><a href="rprog2.html#cb162-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">job =</span> <span class="fu">str_to_lower</span>(job))</span>
+<span id="cb162-12"><a href="rprog2.html#cb162-12" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> <span class="fu">filter</span>(<span class="at">.data =</span> daily_show, </span>
+<span id="cb162-13"><a href="rprog2.html#cb162-13" aria-hidden="true" tabindex="-1"></a>                     category <span class="sc">==</span> <span class="st">&quot;Science&quot;</span>)</span></code></pre></div>
 <p>Piping lets you streamline this process. It can be used with any function that
 inputs a dataframe (or vector) as its first argument. The <code>%&gt;%</code> operator <em>pipes</em>
 the object on the left-hand-side of the pipe (<code>%&gt;%</code>) into the function on the
 right-hand-side (immediately after the pipe). With piping, therefore, all of the
 data cleaning steps shown avove would look like:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="rprog2.html#cb54-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>,</span>
-<span id="cb54-2"><a href="rprog2.html#cb54-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">skip =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb54-3"><a href="rprog2.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">job =</span> GoogleKnowlege_Occupation,</span>
-<span id="cb54-4"><a href="rprog2.html#cb54-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">date =</span> Show,</span>
-<span id="cb54-5"><a href="rprog2.html#cb54-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">category =</span> Group,</span>
-<span id="cb54-6"><a href="rprog2.html#cb54-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">guest_name =</span> Raw_Guest_List) <span class="sc">%&gt;%</span></span>
-<span id="cb54-7"><a href="rprog2.html#cb54-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>YEAR) <span class="sc">%&gt;%</span></span>
-<span id="cb54-8"><a href="rprog2.html#cb54-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">job =</span> <span class="fu">str_to_lower</span>(job)) <span class="sc">%&gt;%</span></span>
-<span id="cb54-9"><a href="rprog2.html#cb54-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(category <span class="sc">==</span> <span class="st">&quot;Science&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="rprog2.html#cb163-1" aria-hidden="true" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>,</span>
+<span id="cb163-2"><a href="rprog2.html#cb163-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">skip =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb163-3"><a href="rprog2.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">job =</span> GoogleKnowlege_Occupation,</span>
+<span id="cb163-4"><a href="rprog2.html#cb163-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">date =</span> Show,</span>
+<span id="cb163-5"><a href="rprog2.html#cb163-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">category =</span> Group,</span>
+<span id="cb163-6"><a href="rprog2.html#cb163-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">guest_name =</span> Raw_Guest_List) <span class="sc">%&gt;%</span></span>
+<span id="cb163-7"><a href="rprog2.html#cb163-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>YEAR) <span class="sc">%&gt;%</span></span>
+<span id="cb163-8"><a href="rprog2.html#cb163-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">job =</span> <span class="fu">str_to_lower</span>(job)) <span class="sc">%&gt;%</span></span>
+<span id="cb163-9"><a href="rprog2.html#cb163-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(category <span class="sc">==</span> <span class="st">&quot;Science&quot;</span>)</span></code></pre></div>
 <p>Notice that, when piping a data frame, the first argument (name of the data
 frame) is excluded from all function calls that follow a pipe. This is because
 piping sends the dataframe from the last step into each of the following
@@ -1582,7 +1582,7 @@ markdown format, you need to install the <code>rmarkdown</code> package: <code>i
 <h3><span class="header-section-number">3.8.2</span> Header<a href="rprog2.html#header" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The R Markdown “header” section is where you specify details about the file being created. A markdown header contains <strong>YAML</strong> metadata, which stands for <a href="https://yaml.org/spec/1.2/spec.html#Introduction" target="_blank"><em>“YAML Ain’t Markup Language”</em></a>. The YAML (pronounced like “camel”) header is essentially a list of directives (referred to as “key:value” pairs) that help application software interpret the file. A YAML header can act simultaneously as a “configuration file”, a “log file”, and “translator file” - allowing one software program to read the output of another program. An example header with YAML metadata is shown below.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:YAML-1"></span>
-<img src="images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file." width="500" />
+<img src="images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file."  />
 <p class="caption">
 Figure 3.4: Example of a YAML header to render an R Markdown into an html file.
 </p>
@@ -1599,7 +1599,7 @@ encourage you to specify key directives like “author:”, “date:” and
 </div>
 <p>Sometimes, you will want to provide nested formatting directives in your markdown header. For example, you can specify the addition of a <strong><em>“table of contents”</em></strong> to your html output file that <strong><em>“floats”</em></strong> alongside the text. In that case, your YAML metadata would look like this:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:YAML-2"></span>
-<img src="images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents." width="497" />
+<img src="images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents."  />
 <p class="caption">
 Figure 3.5: Example R Markdown header with nested YAML directives to render an html file with a floating table of contents.
 </p>
@@ -1712,29 +1712,29 @@ the dataframe/tibble object. Examine the output. Make a commit.</p></li>
 <li><p>Push all queued commits to GitHub. PSA: Regularly follow this workflow of
 small, regular commits and intermittent pushes in everything you do in R.</p></li>
 </ol>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="rprog2.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. working directory</span></span>
-<span id="cb55-2"><a href="rprog2.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
-<span id="cb55-3"><a href="rprog2.html#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-4"><a href="rprog2.html#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. relative pathname </span></span>
-<span id="cb55-5"><a href="rprog2.html#cb55-5" aria-hidden="true" tabindex="-1"></a>ozone_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/ftc_o3.csv&quot;</span>)</span>
-<span id="cb55-6"><a href="rprog2.html#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-7"><a href="rprog2.html#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. absolute pathname - for illustration - not recommended usually</span></span>
-<span id="cb55-8"><a href="rprog2.html#cb55-8" aria-hidden="true" tabindex="-1"></a>ozone_abs_path <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">paste0</span>(<span class="st">&quot;/Users/johnvolckens/Documents/Teaching/DataSci&quot;</span>,</span>
-<span id="cb55-9"><a href="rprog2.html#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;/edar_coursebook/data/ftc_o3.csv&quot;</span>)</span>
-<span id="cb55-10"><a href="rprog2.html#cb55-10" aria-hidden="true" tabindex="-1"></a>ozone_abs_ex <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> ozone_abs_path)</span>
-<span id="cb55-11"><a href="rprog2.html#cb55-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-12"><a href="rprog2.html#cb55-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. possible functions for initial data view and check</span></span>
-<span id="cb55-13"><a href="rprog2.html#cb55-13" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">glimpse</span>(ozone_data)</span>
-<span id="cb55-14"><a href="rprog2.html#cb55-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ozone_data)</span>
-<span id="cb55-15"><a href="rprog2.html#cb55-15" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(ozone_data)</span>
-<span id="cb55-16"><a href="rprog2.html#cb55-16" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ozone_data)</span>
-<span id="cb55-17"><a href="rprog2.html#cb55-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ozone_data)</span>
-<span id="cb55-18"><a href="rprog2.html#cb55-18" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ozone_data)</span>
-<span id="cb55-19"><a href="rprog2.html#cb55-19" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(ozone_data)</span>
-<span id="cb55-20"><a href="rprog2.html#cb55-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(ozone_data)</span>
-<span id="cb55-21"><a href="rprog2.html#cb55-21" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(ozone_data)</span>
-<span id="cb55-22"><a href="rprog2.html#cb55-22" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ozone_data)</span>
-<span id="cb55-23"><a href="rprog2.html#cb55-23" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(ozone_data<span class="sc">$</span>[selected_colname]) <span class="co"># example structure; will not run</span></span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="rprog2.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. working directory</span></span>
+<span id="cb164-2"><a href="rprog2.html#cb164-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
+<span id="cb164-3"><a href="rprog2.html#cb164-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-4"><a href="rprog2.html#cb164-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. relative pathname </span></span>
+<span id="cb164-5"><a href="rprog2.html#cb164-5" aria-hidden="true" tabindex="-1"></a>ozone_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/ftc_o3.csv&quot;</span>)</span>
+<span id="cb164-6"><a href="rprog2.html#cb164-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-7"><a href="rprog2.html#cb164-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. absolute pathname - for illustration - not recommended usually</span></span>
+<span id="cb164-8"><a href="rprog2.html#cb164-8" aria-hidden="true" tabindex="-1"></a>ozone_abs_path <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">paste0</span>(<span class="st">&quot;/Users/johnvolckens/Documents/Teaching/DataSci&quot;</span>,</span>
+<span id="cb164-9"><a href="rprog2.html#cb164-9" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;/edar_coursebook/data/ftc_o3.csv&quot;</span>)</span>
+<span id="cb164-10"><a href="rprog2.html#cb164-10" aria-hidden="true" tabindex="-1"></a>ozone_abs_ex <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> ozone_abs_path)</span>
+<span id="cb164-11"><a href="rprog2.html#cb164-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-12"><a href="rprog2.html#cb164-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. possible functions for initial data view and check</span></span>
+<span id="cb164-13"><a href="rprog2.html#cb164-13" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">glimpse</span>(ozone_data)</span>
+<span id="cb164-14"><a href="rprog2.html#cb164-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ozone_data)</span>
+<span id="cb164-15"><a href="rprog2.html#cb164-15" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(ozone_data)</span>
+<span id="cb164-16"><a href="rprog2.html#cb164-16" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ozone_data)</span>
+<span id="cb164-17"><a href="rprog2.html#cb164-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ozone_data)</span>
+<span id="cb164-18"><a href="rprog2.html#cb164-18" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ozone_data)</span>
+<span id="cb164-19"><a href="rprog2.html#cb164-19" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(ozone_data)</span>
+<span id="cb164-20"><a href="rprog2.html#cb164-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(ozone_data)</span>
+<span id="cb164-21"><a href="rprog2.html#cb164-21" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(ozone_data)</span>
+<span id="cb164-22"><a href="rprog2.html#cb164-22" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ozone_data)</span>
+<span id="cb164-23"><a href="rprog2.html#cb164-23" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(ozone_data<span class="sc">$</span>[selected_colname]) <span class="co"># example structure; will not run</span></span></code></pre></div>
 </div>
 <div id="set-2-data-wrangling-and-piping" class="section level3 hasAnchor" number="3.9.2">
 <h3><span class="header-section-number">3.9.2</span> Set 2: Data wrangling and piping<a href="rprog2.html#set-2-data-wrangling-and-piping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1776,46 +1776,46 @@ conventions.</p></li>
 <li><p>Overwriting the <code>ozone_hourly</code> dataframe and using a different <code>dplyr</code> verb within a pipe, create a new column (<code>ozone_ppb</code>) by multiplying the “parts-per-million” values from <code>sample_measurement</code> by 1000.</p></li>
 <li><p><strong>Challenge</strong>: Generate a histogram of <code>sample_measurement</code>.</p></li>
 </ol>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="rprog2.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 0. set-up</span></span>
-<span id="cb56-2"><a href="rprog2.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="do">## rerun code from the first set of exercises</span></span>
-<span id="cb56-3"><a href="rprog2.html#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-4"><a href="rprog2.html#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. select variables and create new df</span></span>
-<span id="cb56-5"><a href="rprog2.html#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr) <span class="co"># original R package for pipe %&gt;%</span></span>
-<span id="cb56-6"><a href="rprog2.html#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># for verbs; also contains pipe</span></span>
-<span id="cb56-7"><a href="rprog2.html#cb56-7" aria-hidden="true" tabindex="-1"></a>ozone_hourly <span class="ot">&lt;-</span> ozone_data <span class="sc">%&gt;%</span> </span>
-<span id="cb56-8"><a href="rprog2.html#cb56-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(sample_measurement,</span>
-<span id="cb56-9"><a href="rprog2.html#cb56-9" aria-hidden="true" tabindex="-1"></a>                datetime) <span class="sc">%&gt;%</span> </span>
-<span id="cb56-10"><a href="rprog2.html#cb56-10" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>() </span>
-<span id="cb56-11"><a href="rprog2.html#cb56-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-12"><a href="rprog2.html#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. check df</span></span>
-<span id="cb56-13"><a href="rprog2.html#cb56-13" aria-hidden="true" tabindex="-1"></a><span class="do">## see example code from first set for possible initial viewing functions</span></span>
-<span id="cb56-14"><a href="rprog2.html#cb56-14" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(ozone_hourly<span class="sc">$</span>sample_measurement)</span>
-<span id="cb56-15"><a href="rprog2.html#cb56-15" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(ozone_hourly<span class="sc">$</span>sample_measurement)</span>
-<span id="cb56-16"><a href="rprog2.html#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(ozone_hourly<span class="sc">$</span>sample_measurement)</span>
-<span id="cb56-17"><a href="rprog2.html#cb56-17" aria-hidden="true" tabindex="-1"></a><span class="co"># manage missingness</span></span>
-<span id="cb56-18"><a href="rprog2.html#cb56-18" aria-hidden="true" tabindex="-1"></a>ozone_hourly <span class="ot">&lt;-</span> ozone_data <span class="sc">%&gt;%</span> </span>
-<span id="cb56-19"><a href="rprog2.html#cb56-19" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(sample_measurement,</span>
-<span id="cb56-20"><a href="rprog2.html#cb56-20" aria-hidden="true" tabindex="-1"></a>                datetime) <span class="sc">%&gt;%</span> </span>
-<span id="cb56-21"><a href="rprog2.html#cb56-21" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>() </span>
-<span id="cb56-22"><a href="rprog2.html#cb56-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-23"><a href="rprog2.html#cb56-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. missingness and summary</span></span>
-<span id="cb56-24"><a href="rprog2.html#cb56-24" aria-hidden="true" tabindex="-1"></a><span class="do">## 606 observations were lost due to missingness</span></span>
-<span id="cb56-25"><a href="rprog2.html#cb56-25" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ozone_hourly<span class="sc">$</span>sample_measurement)</span>
-<span id="cb56-26"><a href="rprog2.html#cb56-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-27"><a href="rprog2.html#cb56-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. filter ozone level</span></span>
-<span id="cb56-28"><a href="rprog2.html#cb56-28" aria-hidden="true" tabindex="-1"></a><span class="do">## without pipe</span></span>
-<span id="cb56-29"><a href="rprog2.html#cb56-29" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="at">.data =</span> ozone_data,</span>
-<span id="cb56-30"><a href="rprog2.html#cb56-30" aria-hidden="true" tabindex="-1"></a>              sample_measurement <span class="sc">&gt;</span> <span class="fl">0.070</span>)</span>
-<span id="cb56-31"><a href="rprog2.html#cb56-31" aria-hidden="true" tabindex="-1"></a><span class="do">## with pipe</span></span>
-<span id="cb56-32"><a href="rprog2.html#cb56-32" aria-hidden="true" tabindex="-1"></a>ozone_hourly <span class="sc">%&gt;%</span> </span>
-<span id="cb56-33"><a href="rprog2.html#cb56-33" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(sample_measurement <span class="sc">&gt;</span> <span class="fl">0.070</span>)</span>
-<span id="cb56-34"><a href="rprog2.html#cb56-34" aria-hidden="true" tabindex="-1"></a><span class="do">## save output from one of the above approaches</span></span>
-<span id="cb56-35"><a href="rprog2.html#cb56-35" aria-hidden="true" tabindex="-1"></a>high_ozone <span class="ot">&lt;-</span> ozone_hourly <span class="sc">%&gt;%</span> </span>
-<span id="cb56-36"><a href="rprog2.html#cb56-36" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(sample_measurement <span class="sc">&gt;</span> <span class="fl">0.070</span>)</span>
-<span id="cb56-37"><a href="rprog2.html#cb56-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-38"><a href="rprog2.html#cb56-38" aria-hidden="true" tabindex="-1"></a><span class="co"># create new column </span></span>
-<span id="cb56-39"><a href="rprog2.html#cb56-39" aria-hidden="true" tabindex="-1"></a>ozone_hourly <span class="ot">&lt;-</span> ozone_hourly <span class="sc">%&gt;%</span> </span>
-<span id="cb56-40"><a href="rprog2.html#cb56-40" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ozone_ppb =</span> sample_measurement<span class="sc">*</span><span class="dv">1000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="rprog2.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 0. set-up</span></span>
+<span id="cb165-2"><a href="rprog2.html#cb165-2" aria-hidden="true" tabindex="-1"></a><span class="do">## rerun code from the first set of exercises</span></span>
+<span id="cb165-3"><a href="rprog2.html#cb165-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-4"><a href="rprog2.html#cb165-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. select variables and create new df</span></span>
+<span id="cb165-5"><a href="rprog2.html#cb165-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr) <span class="co"># original R package for pipe %&gt;%</span></span>
+<span id="cb165-6"><a href="rprog2.html#cb165-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># for verbs; also contains pipe</span></span>
+<span id="cb165-7"><a href="rprog2.html#cb165-7" aria-hidden="true" tabindex="-1"></a>ozone_hourly <span class="ot">&lt;-</span> ozone_data <span class="sc">%&gt;%</span> </span>
+<span id="cb165-8"><a href="rprog2.html#cb165-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(sample_measurement,</span>
+<span id="cb165-9"><a href="rprog2.html#cb165-9" aria-hidden="true" tabindex="-1"></a>                datetime) <span class="sc">%&gt;%</span> </span>
+<span id="cb165-10"><a href="rprog2.html#cb165-10" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>() </span>
+<span id="cb165-11"><a href="rprog2.html#cb165-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-12"><a href="rprog2.html#cb165-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. check df</span></span>
+<span id="cb165-13"><a href="rprog2.html#cb165-13" aria-hidden="true" tabindex="-1"></a><span class="do">## see example code from first set for possible initial viewing functions</span></span>
+<span id="cb165-14"><a href="rprog2.html#cb165-14" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(ozone_hourly<span class="sc">$</span>sample_measurement)</span>
+<span id="cb165-15"><a href="rprog2.html#cb165-15" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(ozone_hourly<span class="sc">$</span>sample_measurement)</span>
+<span id="cb165-16"><a href="rprog2.html#cb165-16" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(ozone_hourly<span class="sc">$</span>sample_measurement)</span>
+<span id="cb165-17"><a href="rprog2.html#cb165-17" aria-hidden="true" tabindex="-1"></a><span class="co"># manage missingness</span></span>
+<span id="cb165-18"><a href="rprog2.html#cb165-18" aria-hidden="true" tabindex="-1"></a>ozone_hourly <span class="ot">&lt;-</span> ozone_data <span class="sc">%&gt;%</span> </span>
+<span id="cb165-19"><a href="rprog2.html#cb165-19" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(sample_measurement,</span>
+<span id="cb165-20"><a href="rprog2.html#cb165-20" aria-hidden="true" tabindex="-1"></a>                datetime) <span class="sc">%&gt;%</span> </span>
+<span id="cb165-21"><a href="rprog2.html#cb165-21" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>() </span>
+<span id="cb165-22"><a href="rprog2.html#cb165-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-23"><a href="rprog2.html#cb165-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. missingness and summary</span></span>
+<span id="cb165-24"><a href="rprog2.html#cb165-24" aria-hidden="true" tabindex="-1"></a><span class="do">## 606 observations were lost due to missingness</span></span>
+<span id="cb165-25"><a href="rprog2.html#cb165-25" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ozone_hourly<span class="sc">$</span>sample_measurement)</span>
+<span id="cb165-26"><a href="rprog2.html#cb165-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-27"><a href="rprog2.html#cb165-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. filter ozone level</span></span>
+<span id="cb165-28"><a href="rprog2.html#cb165-28" aria-hidden="true" tabindex="-1"></a><span class="do">## without pipe</span></span>
+<span id="cb165-29"><a href="rprog2.html#cb165-29" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="at">.data =</span> ozone_data,</span>
+<span id="cb165-30"><a href="rprog2.html#cb165-30" aria-hidden="true" tabindex="-1"></a>              sample_measurement <span class="sc">&gt;</span> <span class="fl">0.070</span>)</span>
+<span id="cb165-31"><a href="rprog2.html#cb165-31" aria-hidden="true" tabindex="-1"></a><span class="do">## with pipe</span></span>
+<span id="cb165-32"><a href="rprog2.html#cb165-32" aria-hidden="true" tabindex="-1"></a>ozone_hourly <span class="sc">%&gt;%</span> </span>
+<span id="cb165-33"><a href="rprog2.html#cb165-33" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(sample_measurement <span class="sc">&gt;</span> <span class="fl">0.070</span>)</span>
+<span id="cb165-34"><a href="rprog2.html#cb165-34" aria-hidden="true" tabindex="-1"></a><span class="do">## save output from one of the above approaches</span></span>
+<span id="cb165-35"><a href="rprog2.html#cb165-35" aria-hidden="true" tabindex="-1"></a>high_ozone <span class="ot">&lt;-</span> ozone_hourly <span class="sc">%&gt;%</span> </span>
+<span id="cb165-36"><a href="rprog2.html#cb165-36" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(sample_measurement <span class="sc">&gt;</span> <span class="fl">0.070</span>)</span>
+<span id="cb165-37"><a href="rprog2.html#cb165-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-38"><a href="rprog2.html#cb165-38" aria-hidden="true" tabindex="-1"></a><span class="co"># create new column </span></span>
+<span id="cb165-39"><a href="rprog2.html#cb165-39" aria-hidden="true" tabindex="-1"></a>ozone_hourly <span class="ot">&lt;-</span> ozone_hourly <span class="sc">%&gt;%</span> </span>
+<span id="cb165-40"><a href="rprog2.html#cb165-40" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ozone_ppb =</span> sample_measurement<span class="sc">*</span><span class="dv">1000</span>)</span></code></pre></div>
 </div>
 <div id="set-3-r-markdown" class="section level3 hasAnchor" number="3.9.3">
 <h3><span class="header-section-number">3.9.3</span> Set 3: R Markdown<a href="rprog2.html#set-3-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>

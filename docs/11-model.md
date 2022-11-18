@@ -27,8 +27,7 @@ completing this chapter, you should be able to:
 - Develop and fit linear models to continuous, bi-variate data
 - Evaluate the assumptions of linear regression with visual diagnostics
 - Apply transformation techniques to meet linear model assumptions
-- Describe the process of parameter estimation using ordinary and weighted least squares
-- Estimate probability density functions for univariate distributions 
+- Describe the process of parameter estimation using ordinary least squares
 
 ## Process Modeling
 Figure \@ref(fig:model-1) below provides a general process diagram for modeling ([adapted from the NIST Handbook on Statistics](https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd41.htm){target="_blank"}); 
@@ -74,7 +73,7 @@ where:
 The OLS approach is straightforward: select model parameters ($\beta_{0}$, $\beta_{1}$) so that the model produces as little error as possible. With OLS, the model error is expressed as a *sum-of-squares error* (SSE; explained below). Graphically, this is shown in Figure \@ref(fig:OLS-anno), where the solid blue circles represent the data ($X_{i}, Y_{i}$). The grey line represents the "best fit" line that gives the smallest SSE possible. The model ***residuals*** (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the "best-fit line". The optimization algorithm is executed with matrix algebra, although the paramaters for simple linear regression between two variables, $X,Y,$, are easily calculated - see [here](#OLS).
 
 <div class="figure">
-<img src="./images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals" width="632" />
+<img src="./images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals"  />
 <p class="caption">(\#fig:OLS-anno)Graphical depiction for an OLS regression fit to minimize the sum of squared residuals</p>
 </div>
 
@@ -171,7 +170,7 @@ Thus, substituting one equation into another, we arrive at the conclusion that m
 $$mass \sim Circumference^{2}$$
 Or, another way to say this is that the square root of mass is linearly related to body circumference.
 $$\sqrt{mass} \sim Circumference$$
-<img src="./images/cylinder_comic.png" width="552" style="display: block; margin: auto;" />
+<img src="./images/cylinder_comic.png" style="display: block; margin: auto;" />
 
 Let's transform $mass \rightarrow \sqrt{mass}$ and then examine the two scatterplots side by side.
 
@@ -235,7 +234,7 @@ model2 <- lm(sqrt_mass ~ waist, data = data_18)
 Now that we have stored each model as an object (`model1`, `model2`), so we can examine what they contain. The output of `lm()` is a list of class "lm".  If we type `view(model1)` the contents of the list become apparent.
 
 <div class="figure">
-<img src="./images/model1_list.png" alt="The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more." width="632" />
+<img src="./images/model1_list.png" alt="The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more."  />
 <p class="caption">(\#fig:model1-list)The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more.</p>
 </div>
 As you can see, there is a wealth of information contained in the `lm()` object. The first list entry contains the model parameter estimates (`model1$coefficients`) in rank order:  
@@ -263,8 +262,8 @@ summary(model1)
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) -34.369905   0.816491  -42.09   <2e-16 ***
-## waist         1.164666   0.008034  144.98   <2e-16 ***
+## (Intercept) -34.369905   0.816491   -42.1   <2e-16 ***
+## waist         1.164666   0.008034   145.0   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -361,7 +360,7 @@ mean(model1$residuals)
 ```
 
 ```
-## [1] 1.069649e-16
+## [1] -2.557267e-16
 ```
 
 ```r
@@ -369,7 +368,7 @@ mean(model2$residuals)
 ```
 
 ```
-## [1] 5.099008e-18
+## [1] 8.484893e-18
 ```
 Those are pretty small numbers.  Check and check.
 
@@ -471,7 +470,7 @@ cor(x = model1$residuals,
 ```
 
 ```
-## [1] -6.945472e-17
+## [1] -5.463964e-17
 ```
 
 ```r
@@ -481,7 +480,7 @@ cor(x = model2$residuals,
 ```
 
 ```
-## [1] -7.949226e-17
+## [1] -2.743429e-17
 ```
 
 The correlation coefficients are both nearly zero, so this last assumption is validated.
@@ -606,7 +605,7 @@ Before we begin our calibration, let's examine the data using EDA techniques. We
 
 
 <div class="figure" style="text-align: center">
-<img src="./images/aod_eda_4plot.png" alt="A 4-plot EDA of our AOD Calibration Data" width="1050" />
+<img src="./images/aod_eda_4plot.png" alt="A 4-plot EDA of our AOD Calibration Data"  />
 <p class="caption">(\#fig:aod-eda-4plot)A 4-plot EDA of our AOD Calibration Data</p>
 </div>
 
@@ -650,7 +649,7 @@ ggplot(data = cal_data,
        aes(x = aeronet, y = amod)) +
   geom_smooth(formula = y ~ x,
               method = "lm",
-              size = 0.5) +
+              linewidth = 0.5) +
   geom_point(alpha = 0.25,
              size = 2) +
   xlab("Aeronet AOD") +
@@ -661,7 +660,7 @@ ggplot(data = cal_data,
 
 <img src="11-model_files/figure-html/aod-scatterplot-1.png" width="672" />
 
-Note the one outlier present in the scatterplot.  Does this outlier influence the result of the calibration?  How could you evaluate it?
+Note the one outlier present in the scatterplot.  Does this outlier influence the result of the calibration?  How could you evaluate that question?
 
 ## Ch-11 Homework
 This homework will give you experience with fitting OLS linear models and testing model assumptions.  

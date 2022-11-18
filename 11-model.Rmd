@@ -32,8 +32,7 @@ completing this chapter, you should be able to:
 - Develop and fit linear models to continuous, bi-variate data
 - Evaluate the assumptions of linear regression with visual diagnostics
 - Apply transformation techniques to meet linear model assumptions
-- Describe the process of parameter estimation using ordinary and weighted least squares
-- Estimate probability density functions for univariate distributions 
+- Describe the process of parameter estimation using ordinary least squares
 
 ## Process Modeling
 Figure \@ref(fig:model-1) below provides a general process diagram for modeling ([adapted from the NIST Handbook on Statistics](https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd41.htm){target="_blank"}); 
@@ -575,7 +574,7 @@ ggplot(data = cal_data,
        aes(x = aeronet, y = amod)) +
   geom_smooth(formula = y ~ x,
               method = "lm",
-              size = 0.5) +
+              linewidth = 0.5) +
   geom_point(alpha = 0.25,
              size = 2) +
   xlab("Aeronet AOD") +
@@ -585,7 +584,7 @@ ggplot(data = cal_data,
 
 ```
 
-Note the one outlier present in the scatterplot.  Does this outlier influence the result of the calibration?  How could you evaluate it?
+Note the one outlier present in the scatterplot.  Does this outlier influence the result of the calibration?  How could you evaluate that question?
 
 ## Ch-11 Homework
 This homework will give you experience with fitting OLS linear models and testing model assumptions.  
