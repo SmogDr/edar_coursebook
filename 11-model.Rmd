@@ -77,32 +77,32 @@ where:
     $X$ = the independent variable (i.e., the predictor variable)   
     $\epsilon$ = the error term (i.e., what is left over; what the model doesn't explain about $Y$)   
 
-The OLS approach is straightforward: select model parameters ($\beta_{0}$, $\beta_{1}$) so that the model produces as little error as possible. With OLS, the model error is expressed as a *sum-of-squares error* (SSE; explained below). Graphically, this is shown in Figure \@ref(fig:OLS-anno), where the solid blue circles represent the data ($X_{i}, Y_{i}$). The grey line represents the "best fit" line that gives the smallest SSE possible. The model ***residuals*** (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the "best-fit line". The optimization algorithm is executed with matrix algebra, although the paramaters for simple linear regression between two variables, $X,Y,$, are easily calculated - see [here](#OLS).
+The OLS approach is straightforward: select model parameters ($\beta_{0}$, $\beta_{1}$) so that the model produces as little error as possible. With OLS, the overall model error is expressed as the sum of each redisual value squares: a *sum-of-squares error* (SSE; explained below). Graphically, this is shown in Figure \@ref(fig:OLS-anno), where the solid blue circles represent the data ($X_{i}, Y_{i}$). The grey line represents the "best fit" line that gives the smallest SSE possible. The model ***residuals*** (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the "best-fit line". The optimization algorithm is executed with matrix algebra, although the paramaters for simple linear regression between two variables, $X,Y,$ are easily calculated - see [here](#OLS).
 
 ``` {r OLS-anno, echo=FALSE, fig.cap="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals"}
 knitr::include_graphics("./images/OLS_anno.png")
 ```
 
-The Y values *predicted* by the model are denoted as $\hat{Y_{i}}$ (we say "Y hat").  Mathematically, each residual ($\hat{\epsilon}$) is defined as:
+The Y values *predicted* by the model are denoted as $\hat{Y_{i}}$ (we say "Y hat").  Mathematically, each residual ($\hat{\epsilon}_i$) is defined as:
 
 $$\hat{\epsilon_{i}} = Y_{i} - \hat{Y_{i}}$$
 where:  
 
     $\hat{\epsilon_{i}}$ is the residual for each (i^th^) observation  
-    $Y_{i}$ represents each (i^th^) observation of the dependent variable, $Y$  
+    $Y_{i}$ represents the i^th^ observation of the dependent variable, $Y$  
     $\hat{Y_{i}}$ represent the *predicted value* of $Y_{i}$ for each data point:  $\hat{Y_{i}} = \beta_{0} + \beta_{1}\cdot X_{i}$  
 
-We use *vertical distance* to define residuals because we are trying to predict the $Y$ values, so we care only about how far away (in $Y$ space) our predictors, $\hat{Y_{i}}$, are relative to "true" $Y_{i}$ data. Another way to say this is that OLS *assumes* that our $X_{i}$'s are perfect observations ($X$ is assumed to be measured without error).
+We use *vertical distance* to define residuals because we are trying to predict the $Y$ values, so we care only about how far away (in $Y$ space) our predictors, $\hat{Y_{i}}$, are relative to "true" $Y_{i}$ data. Another way to say this is that OLS *assumes* that our $X_{i}$'s are perfect observations ($X$ is assumed to be measured/known without error).
 
-The sum of squares error (SSE) is then: $$SSE = \sum_{i = 1}^{n} \left(\hat{\epsilon_{i}}\right)^{2}$$ 
+The error sum of squares (SSE) is then: $$SSE = \sum_{i = 1}^{n} \left(\hat{\epsilon_{i}}\right)^{2}$$ 
 for all $n$ observations in the data set. The SSE is a really useful term; it represents the overall variance in the $Y$-data that ***wasn't*** explained by the model. Good models explain variance in your data, because variance means: changes in your data.
 
-The overall model fit, $R^{2}$, is closely related to the SSE term.  Once you have SSE, you calculate the *total sum of squares* (TSS) as: 
+The *total sum of squares* (TSS) as: 
 $$TSS = \sum_{i = 1}^{n} \left(Y_{i} - \overline{Y} \right)^2$$ 
-where $\bar{Y}$ is the mean of the observed $Y$ data.  
-
-The $R^{2}$ (the square of the [Pearson Correlation Coefficeint](#pearson)) is calculated from their ratio:
+where $\bar{Y}$ is the mean of the observed $Y$ data. The SSE and the TSS will allow you to evaluate the overall model fit ($R^{2}$ - also called the model *Coefficient of Determination*), which is calculated from their ratio:
 $$R^2 = 1- \left(\frac{SSE}{TSS}\right)$$
+Note that for OLS regression with a single predictor (one $X$ variable), the Coefficient of Determination ($R^{2}$) is identical to the square of the [Pearson Correlation Coefficient](#pearson)). 
+
 The *total sum of squares* represents a measure of all of the variability in the data; the *residual sum of squares* represents a measure of the variability that remains *after the linear model has been applied*. Thus, **the $R^{2}$ term represents the proportion of variability (variance) in your data that was explained by the linear model**.
 
 ``` {block, type="rmdnote"}
@@ -119,7 +119,7 @@ Now that you have an idea "how" OLS works, let's talk about the assumptions of O
       * *How to check*: It's easy to tell if your model is linear in the coefficients by just looking at it, since this is a structural requirement. If the $\beta$-terms show up in non-arithmetic ways (e.g., $\cos(\beta_{1})\cdot X^{\beta_{2}}$) then you are developing a *non-linear* model (signifying that it's time to take a statistics course).  
       * *Why you care*: You model will not run (at least not correctly) if not set up correctly. Attempting to fit an OLS linear fit on a non-linear model is bad news.
 (2) **The model is correctly specified.**  
-    * This assumption speaks to the actual variables included in the model and their form. How many independent variables are needed and to what power do you raise each (if not to the first power)? Is the function $Y = f(X_{1},X_{2})$ appropriate or is $log(Y) = f(X_{1}^{2})$ or $Y = f(\frac{X_{1}}{X_{2}^{2}})$?  
+    * This assumption speaks to the actual variables included in the model and their form. How many independent variables are needed and to what power do you raise each (if not to the first power)? Is the function $Y = f(X_{1},X_{2})$ best modeled as $log(Y) = \beta_{1}\cdot{X_{1}} + \beta_{2}\cdot{X_{2}} $ or $Y = \beta_{1}\cdot{X_{1}^{2}} + \beta_{2}\cdot{X_{2}^{3}}$?  
       * *How to check*: This is a tough assumption to evaluate in advance. The best way to specify the model correctly is through a combination of (1) checking the other assumptions, (2) using your experience/process knowledge to inform the model design, (3) conducting an exploratory data analysis to inform your thinking and (4) following an established model selection procedure (this last one *also* suggests that you to take a formal class on statistics).
       * *Why you care*: If the model is not specified correctly it might perform poorly under validation, or, it might suggest that a variable is not important, when in fact it is!  
 (3) **No collinearity between predictor variables.** 
@@ -137,7 +137,7 @@ The **error term** (4) has a **mean of zero**, is (5) **normally distributed**, 
       * *Why you care*: if $\overline{\epsilon} \neq 0$, or if $\overline{\epsilon}$ is not very close to zero, then something has gone seriously wrong with your model implementation.  
 (5) **Residuals are normally distributed.**  
     * The general opinion among statisticians is that non-normal residuals are not a deal-breaker for your model. Non-normal residuals will affect your ability to generate confidence intervals about your estimates, but the estimates themselves should still be "BLUE", which stands for *"Best Linear Unbiased Estimator"*.  
-      * *How to check*: create a [Q-Q plot](#qq.plot) about your residuals.  
+      * *How to check*: create a [Q-Q plot](#qqplot) about your residuals.  
       * *Why you care*: violation of the normality assumption can affect the precision of your estimates.  
 (6) **Residuals are homoscedstic (not heteroscedastic).**  
     * The term *"homoscedastic"* means to **have equal variance**.  In the case of residuals, we want to see that their magnitude remains relatively constant as the dependent variable increases, $Y$.  

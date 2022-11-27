@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-11-18" />
+<meta name="date" content="2022-11-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -565,28 +565,28 @@ where:</p>
     <span class="math inline">\(\beta_{1}\)</span> = the slope parameter (to be <em>fit</em> by the OLS model)<br />
     <span class="math inline">\(X\)</span> = the independent variable (i.e., the predictor variable)<br />
     <span class="math inline">\(\epsilon\)</span> = the error term (i.e., what is left over; what the model doesn’t explain about <span class="math inline">\(Y\)</span>)</p>
-<p>The OLS approach is straightforward: select model parameters (<span class="math inline">\(\beta_{0}\)</span>, <span class="math inline">\(\beta_{1}\)</span>) so that the model produces as little error as possible. With OLS, the model error is expressed as a <em>sum-of-squares error</em> (SSE; explained below). Graphically, this is shown in Figure <a href="model.html#fig:OLS-anno">11.2</a>, where the solid blue circles represent the data (<span class="math inline">\(X_{i}, Y_{i}\)</span>). The grey line represents the “best fit” line that gives the smallest SSE possible. The model <strong><em>residuals</em></strong> (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the “best-fit line”. The optimization algorithm is executed with matrix algebra, although the paramaters for simple linear regression between two variables, <span class="math inline">\(X,Y,\)</span>, are easily calculated - see <a href="dist.html#OLS">here</a>.</p>
+<p>The OLS approach is straightforward: select model parameters (<span class="math inline">\(\beta_{0}\)</span>, <span class="math inline">\(\beta_{1}\)</span>) so that the model produces as little error as possible. With OLS, the overall model error is expressed as the sum of each redisual value squares: a <em>sum-of-squares error</em> (SSE; explained below). Graphically, this is shown in Figure <a href="model.html#fig:OLS-anno">11.2</a>, where the solid blue circles represent the data (<span class="math inline">\(X_{i}, Y_{i}\)</span>). The grey line represents the “best fit” line that gives the smallest SSE possible. The model <strong><em>residuals</em></strong> (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the “best-fit line”. The optimization algorithm is executed with matrix algebra, although the paramaters for simple linear regression between two variables, <span class="math inline">\(X,Y,\)</span> are easily calculated - see <a href="dist.html#OLS">here</a>.</p>
 <div class="figure"><span style="display:block;" id="fig:OLS-anno"></span>
 <img src="images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals"  />
 <p class="caption">
 Figure 11.2: Graphical depiction for an OLS regression fit to minimize the sum of squared residuals
 </p>
 </div>
-<p>The Y values <em>predicted</em> by the model are denoted as <span class="math inline">\(\hat{Y_{i}}\)</span> (we say “Y hat”). Mathematically, each residual (<span class="math inline">\(\hat{\epsilon}\)</span>) is defined as:</p>
+<p>The Y values <em>predicted</em> by the model are denoted as <span class="math inline">\(\hat{Y_{i}}\)</span> (we say “Y hat”). Mathematically, each residual (<span class="math inline">\(\hat{\epsilon}_i\)</span>) is defined as:</p>
 <p><span class="math display">\[\hat{\epsilon_{i}} = Y_{i} - \hat{Y_{i}}\]</span>
 where:</p>
 <p>    <span class="math inline">\(\hat{\epsilon_{i}}\)</span> is the residual for each (i<sup>th</sup>) observation<br />
-    <span class="math inline">\(Y_{i}\)</span> represents each (i<sup>th</sup>) observation of the dependent variable, <span class="math inline">\(Y\)</span><br />
+    <span class="math inline">\(Y_{i}\)</span> represents the i<sup>th</sup> observation of the dependent variable, <span class="math inline">\(Y\)</span><br />
     <span class="math inline">\(\hat{Y_{i}}\)</span> represent the <em>predicted value</em> of <span class="math inline">\(Y_{i}\)</span> for each data point: <span class="math inline">\(\hat{Y_{i}} = \beta_{0} + \beta_{1}\cdot X_{i}\)</span></p>
-<p>We use <em>vertical distance</em> to define residuals because we are trying to predict the <span class="math inline">\(Y\)</span> values, so we care only about how far away (in <span class="math inline">\(Y\)</span> space) our predictors, <span class="math inline">\(\hat{Y_{i}}\)</span>, are relative to “true” <span class="math inline">\(Y_{i}\)</span> data. Another way to say this is that OLS <em>assumes</em> that our <span class="math inline">\(X_{i}\)</span>’s are perfect observations (<span class="math inline">\(X\)</span> is assumed to be measured without error).</p>
-<p>The sum of squares error (SSE) is then: <span class="math display">\[SSE = \sum_{i = 1}^{n} \left(\hat{\epsilon_{i}}\right)^{2}\]</span>
+<p>We use <em>vertical distance</em> to define residuals because we are trying to predict the <span class="math inline">\(Y\)</span> values, so we care only about how far away (in <span class="math inline">\(Y\)</span> space) our predictors, <span class="math inline">\(\hat{Y_{i}}\)</span>, are relative to “true” <span class="math inline">\(Y_{i}\)</span> data. Another way to say this is that OLS <em>assumes</em> that our <span class="math inline">\(X_{i}\)</span>’s are perfect observations (<span class="math inline">\(X\)</span> is assumed to be measured/known without error).</p>
+<p>The error sum of squares (SSE) is then: <span class="math display">\[SSE = \sum_{i = 1}^{n} \left(\hat{\epsilon_{i}}\right)^{2}\]</span>
 for all <span class="math inline">\(n\)</span> observations in the data set. The SSE is a really useful term; it represents the overall variance in the <span class="math inline">\(Y\)</span>-data that <strong><em>wasn’t</em></strong> explained by the model. Good models explain variance in your data, because variance means: changes in your data.</p>
-<p>The overall model fit, <span class="math inline">\(R^{2}\)</span>, is closely related to the SSE term. Once you have SSE, you calculate the <em>total sum of squares</em> (TSS) as:
+<p>The <em>total sum of squares</em> (TSS) as:
 <span class="math display">\[TSS = \sum_{i = 1}^{n} \left(Y_{i} - \overline{Y} \right)^2\]</span>
-where <span class="math inline">\(\bar{Y}\)</span> is the mean of the observed <span class="math inline">\(Y\)</span> data.</p>
-<p>The <span class="math inline">\(R^{2}\)</span> (the square of the <a href="dist.html#pearson">Pearson Correlation Coefficeint</a>) is calculated from their ratio:
+where <span class="math inline">\(\bar{Y}\)</span> is the mean of the observed <span class="math inline">\(Y\)</span> data. The SSE and the TSS will allow you to evaluate the overall model fit (<span class="math inline">\(R^{2}\)</span> - also called the model <em>Coefficient of Determination</em>), which is calculated from their ratio:
 <span class="math display">\[R^2 = 1- \left(\frac{SSE}{TSS}\right)\]</span>
-The <em>total sum of squares</em> represents a measure of all of the variability in the data; the <em>residual sum of squares</em> represents a measure of the variability that remains <em>after the linear model has been applied</em>. Thus, <strong>the <span class="math inline">\(R^{2}\)</span> term represents the proportion of variability (variance) in your data that was explained by the linear model</strong>.</p>
+Note that for OLS regression with a single predictor (one <span class="math inline">\(X\)</span> variable), the Coefficient of Determination (<span class="math inline">\(R^{2}\)</span>) is identical to the square of the <a href="dist.html#pearson">Pearson Correlation Coefficient</a>).</p>
+<p>The <em>total sum of squares</em> represents a measure of all of the variability in the data; the <em>residual sum of squares</em> represents a measure of the variability that remains <em>after the linear model has been applied</em>. Thus, <strong>the <span class="math inline">\(R^{2}\)</span> term represents the proportion of variability (variance) in your data that was explained by the linear model</strong>.</p>
 <div class="rmdnote">
 <p>
 The terms “residual sum of squares” and “error sum of squares” are
@@ -611,7 +611,7 @@ same thing.
 </ul></li>
 <li><strong>The model is correctly specified.</strong>
 <ul>
-<li>This assumption speaks to the actual variables included in the model and their form. How many independent variables are needed and to what power do you raise each (if not to the first power)? Is the function <span class="math inline">\(Y = f(X_{1},X_{2})\)</span> appropriate or is <span class="math inline">\(log(Y) = f(X_{1}^{2})\)</span> or <span class="math inline">\(Y = f(\frac{X_{1}}{X_{2}^{2}})\)</span>?
+<li>This assumption speaks to the actual variables included in the model and their form. How many independent variables are needed and to what power do you raise each (if not to the first power)? Is the function <span class="math inline">\(Y = f(X_{1},X_{2})\)</span> best modeled as $log(Y) = <em>{1} + </em>{2} $ or <span class="math inline">\(Y = \beta_{1}\cdot{X_{1}^{2}} + \beta_{2}\cdot{X_{2}^{3}}\)</span>?
 <ul>
 <li><em>How to check</em>: This is a tough assumption to evaluate in advance. The best way to specify the model correctly is through a combination of (1) checking the other assumptions, (2) using your experience/process knowledge to inform the model design, (3) conducting an exploratory data analysis to inform your thinking and (4) following an established model selection procedure (this last one <em>also</em> suggests that you to take a formal class on statistics).</li>
 <li><em>Why you care</em>: If the model is not specified correctly it might perform poorly under validation, or, it might suggest that a variable is not important, when in fact it is!<br />
@@ -646,7 +646,7 @@ same thing.
 <ul>
 <li>The general opinion among statisticians is that non-normal residuals are not a deal-breaker for your model. Non-normal residuals will affect your ability to generate confidence intervals about your estimates, but the estimates themselves should still be “BLUE”, which stands for <em>“Best Linear Unbiased Estimator”</em>.
 <ul>
-<li><em>How to check</em>: create a <a href="#qq.plot">Q-Q plot</a> about your residuals.<br />
+<li><em>How to check</em>: create a <a href="#qqplot">Q-Q plot</a> about your residuals.<br />
 </li>
 <li><em>Why you care</em>: violation of the normality assumption can affect the precision of your estimates.<br />
 </li>
