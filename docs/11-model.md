@@ -91,11 +91,11 @@ We use *vertical distance* to define residuals because we are trying to predict 
 The error sum of squares (SSE) is then: $$SSE = \sum_{i = 1}^{n} \left(\hat{\epsilon_{i}}\right)^{2}$$ 
 for all $n$ observations in the data set. The SSE is a really useful term; it represents the overall variance in the $Y$-data that ***wasn't*** explained by the model. Good models explain variance in your data, because variance means: changes in your data.
 
-The *total sum of squares* (TSS) as: 
+The *total sum of squares* (TSS) represents a measure of all the variability in the data: 
 $$TSS = \sum_{i = 1}^{n} \left(Y_{i} - \overline{Y} \right)^2$$ 
 where $\bar{Y}$ is the mean of the observed $Y$ data. The SSE and the TSS will allow you to evaluate the overall model fit ($R^{2}$ - also called the model *Coefficient of Determination*), which is calculated from their ratio:
 $$R^2 = 1- \left(\frac{SSE}{TSS}\right)$$
-Note that for OLS regression with a single predictor (one $X$ variable), the Coefficient of Determination ($R^{2}$) is identical to the square of the [Pearson Correlation Coefficient](#pearson)). 
+Note that for OLS regression with a single predictor (one $X$ variable), the Coefficient of Determination ($R^{2}$) is identical to the square of the [Pearson Correlation Coefficient](#pearson). 
 
 The *total sum of squares* represents a measure of all of the variability in the data; the *residual sum of squares* represents a measure of the variability that remains *after the linear model has been applied*. Thus, **the $R^{2}$ term represents the proportion of variability (variance) in your data that was explained by the linear model**.
 
@@ -533,12 +533,16 @@ The following steps are needed to calibrate an instrument that reports continuou
       - If you wish to establish or evaluate figures of merit like 
     *[dynamic range](#dynamic)* or *linearity* of your measurement method, you 
     likely need a more comprehensive calibration dataset.  
+      - If the data are easy to obtain, a larger sample size is always better. 
+      In other words, if it takes a few seconds or under a minute to collect a 
+      single data point - don't stop at 6 levels; make it 60!  This is especially true 
+      if the calibration is non-linear.
   3. **Collect the calibration data.**  This step is relatively straightforward.
     Set up an experiment so that you can take the required number of 
     measurements with your instrument.  
-      - Note that a *randomized* sampling strategy is preferred.  
+      - Note that a *randomized* measurement strategy is preferred.  
   4. **Create a calibration curve.**  Fit a linear model between the instrument
-    being calibrated (x-axis) and your reference data (y-axis). Check model 
+    being calibrated (y-axis) and your reference data (x-axis). Check model 
     assumptions.  
   5. **Evaluate method performance.** Decide on whether your instrument is 
     biased.  
@@ -641,7 +645,7 @@ aod.summary
 ## F-statistic:  3345 on 1 and 77 DF,  p-value: < 2.2e-16
 ```
 
-The fit itself can be visualized using `ggplot::geom_smooth()` with an argument of `method = "lm"`:
+The fit itself can be visualized using `ggplot2::geom_smooth()` with an argument of `method = "lm"`. Note also, that we can also add fit statistics to the plot by indexing list entries from the `aod.summary` list within a call to `ggplot2::annotate("text")`. This is useful because, if you change your model/fit, your text results will automatically update within the figure.
 
 
 ```r
@@ -654,6 +658,12 @@ ggplot(data = cal_data,
              size = 2) +
   xlab("Aeronet AOD") +
   ylab("AMOD AOD") +
+  annotate("text", x = 0.5, y = 1.5, 
+           label = paste("Y = ", 
+                         round(aod.summary$coefficients[[2,1]], 2),
+                         "X + ", round(aod.summary$coefficients[[1,1]], 2),
+                         "\n R^2 = ",
+                         round(aod.summary$r.squared, 3))) +
   coord_fixed() +
   theme_bw(base_size = 12)
 ```

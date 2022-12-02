@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2022-11-27" />
+<meta name="date" content="2022-12-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -581,11 +581,11 @@ where:</p>
 <p>We use <em>vertical distance</em> to define residuals because we are trying to predict the <span class="math inline">\(Y\)</span> values, so we care only about how far away (in <span class="math inline">\(Y\)</span> space) our predictors, <span class="math inline">\(\hat{Y_{i}}\)</span>, are relative to “true” <span class="math inline">\(Y_{i}\)</span> data. Another way to say this is that OLS <em>assumes</em> that our <span class="math inline">\(X_{i}\)</span>’s are perfect observations (<span class="math inline">\(X\)</span> is assumed to be measured/known without error).</p>
 <p>The error sum of squares (SSE) is then: <span class="math display">\[SSE = \sum_{i = 1}^{n} \left(\hat{\epsilon_{i}}\right)^{2}\]</span>
 for all <span class="math inline">\(n\)</span> observations in the data set. The SSE is a really useful term; it represents the overall variance in the <span class="math inline">\(Y\)</span>-data that <strong><em>wasn’t</em></strong> explained by the model. Good models explain variance in your data, because variance means: changes in your data.</p>
-<p>The <em>total sum of squares</em> (TSS) as:
+<p>The <em>total sum of squares</em> (TSS) represents a measure of all the variability in the data:
 <span class="math display">\[TSS = \sum_{i = 1}^{n} \left(Y_{i} - \overline{Y} \right)^2\]</span>
 where <span class="math inline">\(\bar{Y}\)</span> is the mean of the observed <span class="math inline">\(Y\)</span> data. The SSE and the TSS will allow you to evaluate the overall model fit (<span class="math inline">\(R^{2}\)</span> - also called the model <em>Coefficient of Determination</em>), which is calculated from their ratio:
 <span class="math display">\[R^2 = 1- \left(\frac{SSE}{TSS}\right)\]</span>
-Note that for OLS regression with a single predictor (one <span class="math inline">\(X\)</span> variable), the Coefficient of Determination (<span class="math inline">\(R^{2}\)</span>) is identical to the square of the <a href="dist.html#pearson">Pearson Correlation Coefficient</a>).</p>
+Note that for OLS regression with a single predictor (one <span class="math inline">\(X\)</span> variable), the Coefficient of Determination (<span class="math inline">\(R^{2}\)</span>) is identical to the square of the <a href="dist.html#pearson">Pearson Correlation Coefficient</a>.</p>
 <p>The <em>total sum of squares</em> represents a measure of all of the variability in the data; the <em>residual sum of squares</em> represents a measure of the variability that remains <em>after the linear model has been applied</em>. Thus, <strong>the <span class="math inline">\(R^{2}\)</span> term represents the proportion of variability (variance) in your data that was explained by the linear model</strong>.</p>
 <div class="rmdnote">
 <p>
@@ -991,16 +991,20 @@ with a 6-point calibration, would give you 20 data points.</li>
 <em><a href="measure.html#dynamic">dynamic range</a></em> or <em>linearity</em> of your measurement method, you
 likely need a more comprehensive calibration dataset.<br />
 </li>
+<li>If the data are easy to obtain, a larger sample size is always better.
+In other words, if it takes a few seconds or under a minute to collect a
+single data point - don’t stop at 6 levels; make it 60! This is especially true
+if the calibration is non-linear.</li>
 </ul></li>
 <li><strong>Collect the calibration data.</strong> This step is relatively straightforward.
 Set up an experiment so that you can take the required number of
 measurements with your instrument.
 <ul>
-<li>Note that a <em>randomized</em> sampling strategy is preferred.<br />
+<li>Note that a <em>randomized</em> measurement strategy is preferred.<br />
 </li>
 </ul></li>
 <li><strong>Create a calibration curve.</strong> Fit a linear model between the instrument
-being calibrated (x-axis) and your reference data (y-axis). Check model
+being calibrated (y-axis) and your reference data (x-axis). Check model
 assumptions.<br />
 </li>
 <li><strong>Evaluate method performance.</strong> Decide on whether your instrument is
@@ -1081,7 +1085,7 @@ Figure 11.11: A 4-plot EDA of our AOD Calibration Data
 ## Residual standard error: 0.08844 on 77 degrees of freedom
 ## Multiple R-squared:  0.9775, Adjusted R-squared:  0.9772 
 ## F-statistic:  3345 on 1 and 77 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>The fit itself can be visualized using <code>ggplot::geom_smooth()</code> with an argument of <code>method = "lm"</code>:</p>
+<p>The fit itself can be visualized using <code>ggplot2::geom_smooth()</code> with an argument of <code>method = "lm"</code>. Note also, that we can also add fit statistics to the plot by indexing list entries from the <code>aod.summary</code> list within a call to <code>ggplot2::annotate("text")</code>. This is useful because, if you change your model/fit, your text results will automatically update within the figure.</p>
 <div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="model.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> cal_data,</span>
 <span id="cb371-2"><a href="model.html#cb371-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> aeronet, <span class="at">y =</span> amod)) <span class="sc">+</span></span>
 <span id="cb371-3"><a href="model.html#cb371-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">formula =</span> y <span class="sc">~</span> x,</span>
@@ -1091,8 +1095,14 @@ Figure 11.11: A 4-plot EDA of our AOD Calibration Data
 <span id="cb371-7"><a href="model.html#cb371-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb371-8"><a href="model.html#cb371-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Aeronet AOD&quot;</span>) <span class="sc">+</span></span>
 <span id="cb371-9"><a href="model.html#cb371-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;AMOD AOD&quot;</span>) <span class="sc">+</span></span>
-<span id="cb371-10"><a href="model.html#cb371-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
-<span id="cb371-11"><a href="model.html#cb371-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
+<span id="cb371-10"><a href="model.html#cb371-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">1.5</span>, </span>
+<span id="cb371-11"><a href="model.html#cb371-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;Y = &quot;</span>, </span>
+<span id="cb371-12"><a href="model.html#cb371-12" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">round</span>(aod.summary<span class="sc">$</span>coefficients[[<span class="dv">2</span>,<span class="dv">1</span>]], <span class="dv">2</span>),</span>
+<span id="cb371-13"><a href="model.html#cb371-13" aria-hidden="true" tabindex="-1"></a>                         <span class="st">&quot;X + &quot;</span>, <span class="fu">round</span>(aod.summary<span class="sc">$</span>coefficients[[<span class="dv">1</span>,<span class="dv">1</span>]], <span class="dv">2</span>),</span>
+<span id="cb371-14"><a href="model.html#cb371-14" aria-hidden="true" tabindex="-1"></a>                         <span class="st">&quot;</span><span class="sc">\n</span><span class="st"> R^2 = &quot;</span>,</span>
+<span id="cb371-15"><a href="model.html#cb371-15" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">round</span>(aod.summary<span class="sc">$</span>r.squared, <span class="dv">3</span>))) <span class="sc">+</span></span>
+<span id="cb371-16"><a href="model.html#cb371-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb371-17"><a href="model.html#cb371-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
 <p><img src="11-model_files/figure-html/aod-scatterplot-1.png" width="672" /></p>
 <p>Note the one outlier present in the scatterplot. Does this outlier influence the result of the calibration? How could you evaluate that question?</p>
 </div>

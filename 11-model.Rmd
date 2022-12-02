@@ -526,9 +526,9 @@ p7 <- ggplot(data = tidy_cal) +
   theme(legend.position = c(0.2, 0.7))
 
 p8 <- ggplot(data = tidy_cal) +
-  geom_freqpoly(aes(x = aod, color = instrument),
+  geom_histogram(aes(x = aod, fill = instrument),
                  position = "dodge") +
-  scale_color_manual(values = c("navy", "magenta")) + 
+  scale_fill_manual(values = c("navy", "magenta")) + 
   xlab("AOD Value") +
   theme_bw(base_size = 12) +
   theme(legend.position = c(0.45, 0.7))
@@ -570,7 +570,7 @@ aod.summary
 
 ```
 
-The fit itself can be visualized using `ggplot::geom_smooth()` with an argument of `method = "lm"`:
+The fit itself can be visualized using `ggplot2::geom_smooth()` with an argument of `method = "lm"`. Note also, that we can also add fit statistics to the plot by indexing list entries from the `aod.summary` list within a call to `ggplot2::annotate("text")`. This is useful because, if you change your model/fit, your text results will automatically update within the figure.
 
 ```{r aod-scatterplot}
 
@@ -583,6 +583,12 @@ ggplot(data = cal_data,
              size = 2) +
   xlab("Aeronet AOD") +
   ylab("AMOD AOD") +
+  annotate("text", x = 0.5, y = 1.5, 
+           label = paste("Y = ", 
+                         round(aod.summary$coefficients[[2,1]], 2),
+                         "X + ", round(aod.summary$coefficients[[1,1]], 2),
+                         "\n R^2 = ",
+                         round(aod.summary$r.squared, 3))) +
   coord_fixed() +
   theme_bw(base_size = 12)
 
