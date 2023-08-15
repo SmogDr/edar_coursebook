@@ -292,7 +292,7 @@ getRversion()
 ```
 
 ```
-## [1] '4.2.2'
+## [1] '4.3.1'
 ```
 
 Some functions will accept multiple arguments. For example, the `print()`
@@ -888,7 +888,6 @@ citation(package = "phonenumber")
 ```
 
 ```
-## 
 ## To cite package 'phonenumber' in publications use:
 ## 
 ##   Myles S (2021). _phonenumber: Convert Letters to Numbers and Back as

@@ -298,15 +298,14 @@ head(PA_data_1)
 
 ```
 ## # A tibble: 6 × 6
-##   UTCDateTime          current_temp_f current_humidity pressure pm2_5_…¹ senso…²
-##   <chr>                         <dbl>            <dbl>    <dbl>    <dbl> <chr>  
-## 1 2018/10/22T17:52:21z             90               12     852.     2.45 PA019  
-## 2 2018/10/22T17:53:41z             86               13     852.     3.43 PA019  
-## 3 2018/10/22T17:55:01z             87               13     852.     2.76 PA019  
-## 4 2018/10/22T17:56:49z             87               13     852.     2    PA019  
-## 5 2018/10/22T17:58:08z             87               13     852.     1.82 PA019  
-## 6 2018/10/22T17:59:28z             87               13     852.     1.98 PA019  
-## # … with abbreviated variable names ¹​pm2_5_atm, ²​sensor_ID
+##   UTCDateTime       current_temp_f current_humidity pressure pm2_5_atm sensor_ID
+##   <chr>                      <dbl>            <dbl>    <dbl>     <dbl> <chr>    
+## 1 2018/10/22T17:52…             90               12     852.      2.45 PA019    
+## 2 2018/10/22T17:53…             86               13     852.      3.43 PA019    
+## 3 2018/10/22T17:55…             87               13     852.      2.76 PA019    
+## 4 2018/10/22T17:56…             87               13     852.      2    PA019    
+## 5 2018/10/22T17:58…             87               13     852.      1.82 PA019    
+## 6 2018/10/22T17:59…             87               13     852.      1.98 PA019
 ```
 
 The `import.w.name()` function is useful, but not versatile; 
@@ -327,7 +326,7 @@ The `map_` family of functions are the core of the `purrr` package. These
 functions are intended to *map* functions (i.e., to apply them) to individual elements in a vector (or data frames); the `map_` functions are similar to functions like `lapply()` and `vapply()` from base R (but more versatile). *"Mapping"* a function onto a vector is a common theme of functional programming. To illustrate how the `map_` functions work, its best to visualize the process first.
 
 <div class="figure" style="text-align: center">
-<img src="./images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input."  />
+<img src="./images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input." width="632" />
 <p class="caption">(\#fig:map-anno1)The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input.</p>
 </div>
 
@@ -360,17 +359,17 @@ glimpse(my.list)
 ##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] "dodge" "toyota" "audi" "volkswagen" ...
-##   ..$ model       : chr [1:7] "ram 1500 pickup 4wd" "4runner 4wd" "a4 quattro" "jetta" ...
-##   ..$ displ       : num [1:7] 5.9 4.7 1.8 2.5 4 2 3.6
-##   ..$ year        : int [1:7] 1999 2008 1999 2008 1999 2008 2008
-##   ..$ cyl         : int [1:7] 8 8 4 5 6 4 6
-##   ..$ trans       : chr [1:7] "auto(l4)" "auto(l5)" "manual(m5)" "manual(m5)" ...
-##   ..$ drv         : chr [1:7] "4" "4" "4" "f" ...
-##   ..$ cty         : int [1:7] 11 14 18 21 14 20 17
-##   ..$ hwy         : int [1:7] 15 17 26 29 17 28 26
-##   ..$ fl          : chr [1:7] "r" "r" "p" "r" ...
-##   ..$ class       : chr [1:7] "pickup" "suv" "compact" "compact" ...
+##   ..$ manufacturer: chr [1:7] "volkswagen" "audi" "subaru" "volkswagen" ...
+##   ..$ model       : chr [1:7] "jetta" "a4" "impreza awd" "gti" ...
+##   ..$ displ       : num [1:7] 1.9 2.8 2.5 2 5.3 2 2
+##   ..$ year        : int [1:7] 1999 1999 2008 2008 2008 2008 2008
+##   ..$ cyl         : int [1:7] 4 6 4 4 8 4 4
+##   ..$ trans       : chr [1:7] "manual(m5)" "auto(l5)" "manual(m5)" "auto(s6)" ...
+##   ..$ drv         : chr [1:7] "f" "f" "4" "f" ...
+##   ..$ cty         : int [1:7] 33 16 20 22 16 19 20
+##   ..$ hwy         : int [1:7] 44 26 27 29 25 27 28
+##   ..$ fl          : chr [1:7] "d" "p" "r" "p" ...
+##   ..$ class       : chr [1:7] "compact" "compact" "compact" "compact" ...
 ```
 
 Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 
@@ -475,7 +474,7 @@ glimpse(PA_data_merged)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="./images/map_dfr_anno.png" alt="Example: using `map_dfr()` to import a file list using a custom function"  />
+<img src="./images/map_dfr_anno.png" alt="Example: using `map_dfr()` to import a file list using a custom function" width="632" />
 <p class="caption">(\#fig:map-dfr-anno)Example: using `map_dfr()` to import a file list using a custom function</p>
 </div>
 

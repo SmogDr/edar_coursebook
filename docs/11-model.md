@@ -73,7 +73,7 @@ where:
 The OLS approach is straightforward: select model parameters ($\beta_{0}$, $\beta_{1}$) so that the model produces as little error as possible. With OLS, the overall model error is expressed as the sum of each redisual value squares: a *sum-of-squares error* (SSE; explained below). Graphically, this is shown in Figure \@ref(fig:OLS-anno), where the solid blue circles represent the data ($X_{i}, Y_{i}$). The grey line represents the "best fit" line that gives the smallest SSE possible. The model ***residuals*** (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the "best-fit line". The optimization algorithm is executed with matrix algebra, although the paramaters for simple linear regression between two variables, $X,Y,$ are easily calculated - see [here](#OLS).
 
 <div class="figure">
-<img src="./images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals"  />
+<img src="./images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals" width="632" />
 <p class="caption">(\#fig:OLS-anno)Graphical depiction for an OLS regression fit to minimize the sum of squared residuals</p>
 </div>
 
@@ -170,7 +170,7 @@ Thus, substituting one equation into another, we arrive at the conclusion that m
 $$mass \sim Circumference^{2}$$
 Or, another way to say this is that the square root of mass is linearly related to body circumference.
 $$\sqrt{mass} \sim Circumference$$
-<img src="./images/cylinder_comic.png" style="display: block; margin: auto;" />
+<img src="./images/cylinder_comic.png" width="552" style="display: block; margin: auto;" />
 
 Let's transform $mass \rightarrow \sqrt{mass}$ and then examine the two scatterplots side by side.
 
@@ -234,7 +234,7 @@ model2 <- lm(sqrt_mass ~ waist, data = data_18)
 Now that we have stored each model as an object (`model1`, `model2`), so we can examine what they contain. The output of `lm()` is a list of class "lm".  If we type `view(model1)` the contents of the list become apparent.
 
 <div class="figure">
-<img src="./images/model1_list.png" alt="The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more."  />
+<img src="./images/model1_list.png" alt="The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more." width="632" />
 <p class="caption">(\#fig:model1-list)The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more.</p>
 </div>
 As you can see, there is a wealth of information contained in the `lm()` object. The first list entry contains the model parameter estimates (`model1$coefficients`) in rank order:  
@@ -360,7 +360,7 @@ mean(model1$residuals)
 ```
 
 ```
-## [1] -2.557267e-16
+## [1] -1.338704e-17
 ```
 
 ```r
@@ -368,7 +368,7 @@ mean(model2$residuals)
 ```
 
 ```
-## [1] 8.484893e-18
+## [1] 4.612521e-19
 ```
 Those are pretty small numbers.  Check and check.
 
@@ -470,7 +470,7 @@ cor(x = model1$residuals,
 ```
 
 ```
-## [1] -5.463964e-17
+## [1] 9.023795e-18
 ```
 
 ```r
@@ -480,7 +480,7 @@ cor(x = model2$residuals,
 ```
 
 ```
-## [1] -2.743429e-17
+## [1] 4.738305e-17
 ```
 
 The correlation coefficients are both nearly zero, so this last assumption is validated.
@@ -609,7 +609,7 @@ Before we begin our calibration, let's examine the data using EDA techniques. We
 
 
 <div class="figure" style="text-align: center">
-<img src="./images/aod_eda_4plot.png" alt="A 4-plot EDA of our AOD Calibration Data"  />
+<img src="./images/aod_eda_4plot.png" alt="A 4-plot EDA of our AOD Calibration Data" width="1050" />
 <p class="caption">(\#fig:aod-eda-4plot)A 4-plot EDA of our AOD Calibration Data</p>
 </div>
 

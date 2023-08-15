@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens"
-date: "2022-12-02"
+date: "2023-08-15"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
@@ -13,14 +13,16 @@ description: "This is an undergraduate technical elective course for mechanical 
 
 
 ```
-## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
-## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
-## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-## ✔ readr   2.1.3      ✔ forcats 0.5.2 
+## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ## 
 ## Attaching package: 'kableExtra'
 ## 
@@ -134,7 +136,7 @@ The following guidance regarding R/RStudio and Git/GitHub draws heavily on
 [Jenny Bryan](https://jennybryan.org/){target="_blank"}'s book, [Happy Git with R](https://happygitwithr.com/){target="_blank"}, and her related
 [paper](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1399928){target="_blank"} on
 version control. I sprinkled in some suggestions from others. If you would like
-to gain more background on basic Git and GitHub, take a look at [these slides](https://uncoast-unconf.github.io/uu-2019-day-zero/01-git-github-cornucopia/git-github-cornucopia.html#1){target="_blank"} from [Dr. Amelia McNamara](https://twitter.com/AmeliaMN){target="_blank"}.  
+to gain more background on basic Git and GitHub, take a look at [these slides](https://uncoast-unconf.github.io/uu-2019-day-zero/01-git-github-cornucopia/git-github-cornucopia.html#1){target="_blank"} developed by [Dr. Amelia McNamara](https://vis.social/@amelia){target="_blank"}.  
 
 ### Install R and RStudio
 
