@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens"
-date: "2023-08-15"
+date: "2023-08-21"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
@@ -140,7 +140,7 @@ to gain more background on basic Git and GitHub, take a look at [these slides](h
 
 ### Install R and RStudio
 
-1. Download and install the pre-compiled binary of the most recent version (4.2+) of [R](https://cran.r-project.org){target="_blank"} appropriate for your machine's 
+1. Download and install the pre-compiled binary of the most recent version (4.3+) of [R](https://cran.r-project.org){target="_blank"} appropriate for your machine's 
 operating system
 2. Download and install the most recent, preview version of [RStudio](https://rstudio.com/products/rstudio/download/#download){target="_blank"};
 then, navigate to RStudio > Preferences to *NOT* "Restore .RData into workspace 
@@ -170,8 +170,7 @@ tinytex::install_tinytex()
 
 ### Install Git and create a GitHub account
 
-1. Install [Git](https://git-scm.com/downloads){target="_blank"}. See [here](https://happygitwithr.com/install-git.html){target="_blank"} and [here](https://rstats.wtf/set-up-an-r-dev-environment.html){target="_blank"}
-for OS-specific installation instructions. For Mac users, you need to install 
+1. Install [Git](https://git-scm.com/downloads){target="_blank"}. See [here](https://happygitwithr.com/install-git.html){target="_blank"} for OS-specific installation instructions. For Mac users, you need to install 
 *parts of* 
 [Xcode for Mac OS](https://thecoatlessprofessor.com/programming/cpp/r-compiler-tools-for-rcpp-on-macos/){target="_blank"} and 
 [other things](https://mac.R-project.org/tools/){target="_blank"}). For R 4.0+, 
@@ -215,7 +214,7 @@ system.
 [instructions](https://happygitwithr.com/new-github-first.html){target="_blank"}
 *exactly* with the following additions: 
 - Give your GitHub username to the Instructor, so you can be added to our 
-[GitHub Organization](https://github.com/MECH476-FA22){target="_blank"}
+[GitHub Organization](https://github.com/MECH476-FA23){target="_blank"}
 - Work with the Instructor to create a *private* repository within the organization, labeled *[YourLastName]-MECH476*
 - Confirm connection between your R Project and the GitHub repository, make subfolders (`data`, `code`, `figs`) within your `[YourLastName]-MECH476` folder on your local drive, and push them up to GitHub; this supports a 
 [project-oriented workflow](https://uncoast-unconf.github.io/uu-2019-day-zero/02-project-workflows/workflow.html#13){target="_blank"}
@@ -239,23 +238,23 @@ functional" is good enough!
 
 Once you have successfully installed and connected R/RStudio and Git/GitHub, 
 **open an issue** on YOUR private repository within the 
-[GitHub Organization](https://github.com/MECH476-FA22){target="_blank"}. 
-Mention/assign @SmogDr to let me know everything is working 
+[GitHub Organization](https://github.com/MECH476-FA23){target="_blank"}. 
+Mention/assign `SmogDr` to let me know everything is working 
 properly, or to request more help.
 
 Then, in the 
-[public repository](https://github.com/MECH476-FA22){target="_blank"} for
+[public repository](https://github.com/MECH476-FA23){target="_blank"} for
 class-related questions and discussion, **open another issue**. You can ask a
 question, share any course-related concerns, or post a brief comment about what
 you hope to gain from this course. Remember to mention/assign
-@SmogDr, so that I am alerted to your post. 
+`SmogDr`, so that I am alerted to your post. 
 
 
 ### Asking for help (properly)
 
 All questions regarding technology and code should be directed to the Teaching
 Assistant via GitHub Issues on 
-[this repository](https://github.com/MECH476-FA22/questions){target="_blank"}. 
+[this repository](https://github.com/MECH476-FA23/questions){target="_blank"}. 
 If the question requires you to include full code, please consider using the 
 R package to generate reproducible examples: `reprex`. Please watch this
 [tutorial](https://reprex.tidyverse.org/articles/articles/learn-reprex.html){target="_blank"}
@@ -307,8 +306,8 @@ There are a number of other useful books available on general R programming,
 including:
 
 - [R for Dummies](https://colostate-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=01COLSU_ALMA51267598310003361&context=L&vid=01COLSU&lang=en_US&search_scope=Everything&adaptor=Local%20Search%20Engine&tab=default_tab&query=any,contains,r%20for%20dummies&sortby=rank&offset=0){target="_blank"}
-- [R Cookbook](https://colostate-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=01COLSU_ALMA21203304500003361&context=L&vid=01COLSU&lang=en_US&search_scope=Everything&adaptor=Local%20Search%20Engine&tab=default_tab&query=any,contains,r%20cookbook&sortby=rank&offset=0){target="_blank"}
-- [R Graphics Cookbook](http://www.amazon.com/R-Graphics-Cookbook-Winston-Chang/dp/1449316956/ref=sr_1_1?ie=UTF8&qid=1440997472&sr=8-1&keywords=r+graphics+cookbook){target="_blank"}
+- [R Cookbook](https://rc2e.com){target="_blank"}
+- [R Graphics Cookbook](https://r-graphics.org){target="_blank"}
 - [Roger Peng's Leanpub books](https://leanpub.com/u/rdpeng){target="_blank"}
 - Various books on [bookdown.org](https://bookdown.org/){target="_blank"}
 
@@ -328,5 +327,5 @@ discussions. I would also like to acknowledge
 [John Tukey](http://rsbm.royalsocietypublishing.org/content/49/537.full.pdf+html){target="_blank"},
 one of the pioneers of exploratory data analysis, and the creators of the 
 [NIST Engineering Statistics Handbook](https://doi.org/10.18434/M32189){target="_blank"}, 
-from which I have drawn many techniques. Kathleen Wendt `@Wendtke`, the one and only TA for this course, also contributed 
+from which I have drawn many techniques. Kathleen Wendt `@Wendtke`, the original TA for this course, also contributed 
 a tremendous amount of effort to the original course setup and execution in 2020.  Thank you!
