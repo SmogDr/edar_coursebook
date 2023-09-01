@@ -936,14 +936,14 @@ aforementioned collaborative issue, but I will include some details here
 nonetheless. <em>Absolute pathnames</em> give the full directions to a directory or
 file, starting all the way at the root directory. For example, the
 <code>daily_show_guests.csv</code> file in the <code>data</code> directory has the absolute pathname:</p>
-<pre><code>&quot;/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv&quot;</code></pre>
+<pre><code>&quot;/Users/johnvolckens/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv&quot;</code></pre>
 <p>You can use this absolute pathname to read this file in using any of the
 <code>readr</code> functions to read in data. This absolute pathname will <em>always</em> work,
 regardless of your current working directory, because it gives directions from
 the root. In other words, it will always be clear to R exactly what file you’re
 talking about. Here’s the code to use to read that file in using the
 <code>read.csv()</code> function with the file’s absolute pathname:</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="rprog2.html#cb119-1" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="rprog2.html#cb119-1" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;/Users/johnvolckens/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p>The <em>relative pathname</em>, on the other hand, gives R the directions for how to
 get to a directory or file from the current working directory. If the file or
 directory you’re looking for is pretty close to your current working directory

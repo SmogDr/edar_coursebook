@@ -424,7 +424,7 @@ file, starting all the way at the root directory. For example, the
 `daily_show_guests.csv` file in the `data` directory has the absolute pathname:
 
 ```
-"/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv"
+"/Users/johnvolckens/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv"
 ```
 
 You can use this absolute pathname to read this file in using any of the
@@ -436,7 +436,7 @@ talking about. Here's the code to use to read that file in using the
 
 
 ```r
-daily_show <- readr::read_csv(file = "/Users/johnvolckens/Documents/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv", skip = 4)
+daily_show <- readr::read_csv(file = "/Users/johnvolckens/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv", skip = 4)
 ```
 
 The *relative pathname*, on the other hand, gives R the directions for how to
