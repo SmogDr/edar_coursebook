@@ -1204,7 +1204,7 @@ gives a different observation. In this case, our unit of observation is a Hunger
 first name, residential district, and whether they're still alive after the first book/film. Notice that the number of elements in
 each of the columns must be the same in this dataframe, but that the different
 columns can have different classes of data (e.g., character vectors for
-`first_name` and `last_name`; logical value of TRUE or FALSE for `alive`).
+`name`; logical value of TRUE or FALSE for `survived`).
 
 <div class="figure" style="text-align: center">
 <img src="figures/example_dataframe_labeled.jpg" alt="The elements of a dataframe: columns, rows, and column names." width="600pt" />
