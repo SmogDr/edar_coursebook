@@ -502,7 +502,7 @@ The `../` tells R to look one directory up from the working directory (the
 directory that is one level above the current directory is also known as the 
 **parent directory**), which in this case is to `RCourseFall2015`, and then 
 down within that directory to `Week2_Aug31`, then to `example_data`, and then 
-to look wihtin that directory for the file `heat_mort.csv`.
+to look within that directory for the file `heat_mort.csv`.
 
 The relative pathname to read this file while R is working in the `CourseTest`
 directory would be:
@@ -1124,7 +1124,8 @@ daily_show <- readr::read_csv(file = "data/daily_show_guests.csv",
 Notice that, when piping a data frame, the first argument (name of the data 
 frame) is excluded from all function calls that follow a pipe. This is because 
 piping sends the dataframe from the last step into each of the following 
-functions as the dataframe argument. Remember: Order matters in a data wrangling pipeline. For example, if you removea a column in an early line of code in the 
+functions as the dataframe argument. Remember: Order matters in a data wrangling 
+pipeline. For example, if you remove a column in an early line of code in the 
 pipeline but then reference that column name later, R will throw an error. 
 You can use selective highlighting to run one line at a time to see how the 
 dataframe changes in real-time as you move through successive pipes.
@@ -1216,7 +1217,7 @@ provided by RStudio.
 
 ### Code Chunks
 
-Code chunks are the places where you write and execute R code.  A code chunk is initiated with 3 back ticks ```` ``` ````, followed by a set of *braces* \{ \}, or curly brackets, wihtin which you can name the chunk and specify `chunk options`.  The chunk options tell the `knitr` package (the package that renders an R markdown into an output style) how you want that chunk to run and what to do with the output. A list of chunk options can be found [here](https://yihui.org/knitr/options/){target="_blank"}.  An example markdown is shown below:
+Code chunks are the places where you write and execute R code.  A code chunk is initiated with 3 back ticks ```` ``` ````, followed by a set of *braces* \{ \}, or curly brackets, within which you can name the chunk and specify `chunk options`.  The chunk options tell the `knitr` package (the package that renders an R markdown into an output style) how you want that chunk to run and what to do with the output. A list of chunk options can be found [here](https://yihui.org/knitr/options/){target="_blank"}.  An example markdown is shown below:
 
 <div class="figure" style="text-align: center">
 <img src="./images/markdown_anno.png" alt="Example R Markdown showing header, text, and code chunks." width="1000" />

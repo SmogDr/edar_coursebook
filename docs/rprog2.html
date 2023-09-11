@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2023-09-01" />
+<meta name="date" content="2023-09-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1004,7 +1004,7 @@ in this case is:</p>
 directory that is one level above the current directory is also known as the
 <strong>parent directory</strong>), which in this case is to <code>RCourseFall2015</code>, and then
 down within that directory to <code>Week2_Aug31</code>, then to <code>example_data</code>, and then
-to look wihtin that directory for the file <code>heat_mort.csv</code>.</p>
+to look within that directory for the file <code>heat_mort.csv</code>.</p>
 <p>The relative pathname to read this file while R is working in the <code>CourseTest</code>
 directory would be:</p>
 <pre><code>heat_mort &lt;- read_csv(&quot;../Week2_Aug31/example_data/heat_mort.csv&quot;)</code></pre>
@@ -1535,7 +1535,8 @@ data cleaning steps shown avove would look like:</p>
 <p>Notice that, when piping a data frame, the first argument (name of the data
 frame) is excluded from all function calls that follow a pipe. This is because
 piping sends the dataframe from the last step into each of the following
-functions as the dataframe argument. Remember: Order matters in a data wrangling pipeline. For example, if you removea a column in an early line of code in the
+functions as the dataframe argument. Remember: Order matters in a data wrangling
+pipeline. For example, if you remove a column in an early line of code in the
 pipeline but then reference that column name later, R will throw an error.
 You can use selective highlighting to run one line at a time to see how the
 dataframe changes in real-time as you move through successive pipes.</p>
@@ -1655,7 +1656,7 @@ provided by RStudio.</p>
 </div>
 <div id="code-chunks" class="section level3 hasAnchor" number="3.8.4">
 <h3><span class="header-section-number">3.8.4</span> Code Chunks<a href="rprog2.html#code-chunks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Code chunks are the places where you write and execute R code. A code chunk is initiated with 3 back ticks <code>```</code>, followed by a set of <em>braces</em> { }, or curly brackets, wihtin which you can name the chunk and specify <code>chunk options</code>. The chunk options tell the <code>knitr</code> package (the package that renders an R markdown into an output style) how you want that chunk to run and what to do with the output. A list of chunk options can be found <a href="https://yihui.org/knitr/options/" target="_blank">here</a>. An example markdown is shown below:</p>
+<p>Code chunks are the places where you write and execute R code. A code chunk is initiated with 3 back ticks <code>```</code>, followed by a set of <em>braces</em> { }, or curly brackets, within which you can name the chunk and specify <code>chunk options</code>. The chunk options tell the <code>knitr</code> package (the package that renders an R markdown into an output style) how you want that chunk to run and what to do with the output. A list of chunk options can be found <a href="https://yihui.org/knitr/options/" target="_blank">here</a>. An example markdown is shown below:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:markdown-1"></span>
 <img src="images/markdown_anno.png" alt="Example R Markdown showing header, text, and code chunks." width="1000" />
 <p class="caption">
