@@ -1227,7 +1227,7 @@ Code chunks are the places where you write and execute R code.  A code chunk is 
 Once your markdown is complete, you can *render* it into an output file (e.g., html, pdf, doc, rtf) using the `knitr` package, which interprets your YAML header and "knits" the markdown sections into the desired format.  Here is the same markdown rendered into an html document using the `knit` button.
 
 <div class="figure" style="text-align: center">
-<img src="./images/markdown_render.png" alt="Example R Markdown when &quot;rendered&quot; into an html document." width="700" />
+<img src="./images/markdown_render.png" alt="Example R Markdown when "rendered" into an html document." width="700" />
 <p class="caption">(\#fig:markdown-2)Example R Markdown when "rendered" into an html document.</p>
 </div>
 

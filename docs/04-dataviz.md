@@ -521,7 +521,7 @@ ggplot2::ggplot() +
              alpha = 0.6,
              size = 2) +
   # second geom layer (line)
-  geom_abline(xintercept = 0,
+  geom_abline(intercept = 0,
               slope = 1, 
               color = "grey",
               linetype = "dashed") +
