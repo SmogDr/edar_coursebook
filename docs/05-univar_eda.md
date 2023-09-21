@@ -590,8 +590,8 @@ as mode, median, and mean do not agree with each other. According to Figure
 type of location measure.
 
 <div class="figure" style="text-align: center">
-<img src="./images/hist_anno_3.png" alt="Describing the spread of skewed data with a "standard deviation" can lead to confusion and trouble: in this case, the existence of physically impossible values." width="700pt" />
-<p class="caption">(\#fig:skew-hist-anno-2)Describing the spread of skewed data with a "standard deviation" can lead to confusion and trouble: in this case, the existence of physically impossible values.</p>
+<img src="./images/hist_anno_3.png" alt="Describing the spread of skewed data with a simple standard deviation can lead to confusion and trouble: in this case, the existence of physically impossible values." width="700pt" />
+<p class="caption">(\#fig:skew-hist-anno-2)Describing the spread of skewed data with a simple standard deviation can lead to confusion and trouble: in this case, the existence of physically impossible values.</p>
 </div>
 
 Another, potentially more troubling, outcome of skewed data is that certain
