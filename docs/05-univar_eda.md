@@ -882,6 +882,5 @@ For example, here is a "3-plot" for the ME Salary data originally shown in Figur
 ## Chapter 5 Homework 
 
 You will continue to work with the ozone measurement data introduced in the 
-previous chapters. Download the R Markdown template from Canvas. This homework
-assignment is due at the start of the class when we begin Chapter 6. Your work
-will be considered late if the latest knit occurs after the deadline.
+previous chapters. Download the R Markdown template from our Github page to 
+get started. 
