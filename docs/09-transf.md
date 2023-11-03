@@ -135,6 +135,7 @@ stratified <- ggplot(data = strat.data,
 <p class="caption">(\#fig:stratify-png)Yield vs. Purity over one month, stratified by reactor type</p>
 </div>
 
+
 ```r
 strat.data %>%
   group_by(reactor) %>%

@@ -73,7 +73,7 @@ where:
 The OLS approach is straightforward: select model parameters ($\beta_{0}$, $\beta_{1}$) so that the model produces as little error as possible. With OLS, the overall model error is expressed as the sum of each redisual value squares: a *sum-of-squares error* (SSE; explained below). Graphically, this is shown in Figure \@ref(fig:OLS-anno), where the solid blue circles represent the data ($X_{i}, Y_{i}$). The grey line represents the "best fit" line that gives the smallest SSE possible. The model ***residuals*** (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the "best-fit line". The optimization algorithm is executed with matrix algebra, although the paramaters for simple linear regression between two variables, $X,Y,$ are easily calculated - see [here](#OLS).
 
 <div class="figure">
-<img src="./images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals" width="632" />
+<img src="./images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals" width="2126" />
 <p class="caption">(\#fig:OLS-anno)Graphical depiction for an OLS regression fit to minimize the sum of squared residuals</p>
 </div>
 
