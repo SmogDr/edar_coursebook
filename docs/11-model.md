@@ -125,7 +125,7 @@ Now that you have an idea "how" OLS works, let's talk about the assumptions of O
 
 #### Back-end assumptions:  
 
-The **error term** (4) has a **mean of zero**, is (5) **normally distributed**, (6) **homoscedastic**, and has (7) **no autocorrelation** or (8) **correlation with predictor (independent) variables**.  There's a lot riding on that little error term, $\epsilon$!.
+The **error term** (4) has a **mean of zero**, is (5) **normally distributed**, (6) **homoscedastic**, and it has (7) **no autocorrelation** and (8) no **correlation with predictor (independent) variables**.  There's a lot riding on that little error term, $\epsilon$!
 
 (4) **Mean of residuals is zero**.  
     * The first requirement for a mean of zero ($\overline{\epsilon} = 0$) will be fulfilled if the model is set up and the OLS algorithm is implemented correctly.  
@@ -138,7 +138,7 @@ The **error term** (4) has a **mean of zero**, is (5) **normally distributed**, 
 (6) **Residuals are homoscedstic (not heteroscedastic).**  
     * The term *"homoscedastic"* means to **have equal variance**.  In the case of residuals, we want to see that their magnitude remains relatively constant as the dependent variable increases, $Y$.  
       * *How to check*: create a [scatterplot](#scatt) of residuals (y-axis) vs. the fitted values, $\hat{Y_{i}}$ (x-axis; yes, I know that sounds weird to plot the Y-variable on the x-axis...). The residuals should appear evenly scattered in both directions about zero with no apparent change in magnitude as the Y variable increases.  
-      * *Why you care*: Heteroscedasticity (one of my favorite "don't I sound smart?" words) can affect the precision of your estimates and can also inflate your confidence in your results (read: you might think you are on to something when actually, you aren't). If your residuals are heteroscedastic, consider applying a [transformation](#transform) to your dependent variable to normalize the error variance. The BoxCox method one of my favorites.  
+      * *Why you care*: Heteroscedasticity (one of my favorite "don't I sound smart?" words) can affect the precision of your estimates and can also inflate your confidence in your results (read: you might think you are on to something when actually, you aren't). If your residuals are heteroscedastic, consider applying a [transformation](#transform) to your dependent variable to normalize the error variance. The BoxCox method is one of my favorites.  
 (7) **No residual autocorrelation.**  
     * Autocorrelation among residuals is a strong indicator that your model is not correctly specified.  
       * *How to check*: Create [autocorrelation and partial autocorrelation](#autocorr) plots for your residuals. Perform a Durbin-Watson test.  
@@ -149,7 +149,7 @@ The **error term** (4) has a **mean of zero**, is (5) **normally distributed**, 
       * *Why you care*: Correlation between residuals and independent variables is a strong indicator that your model is not correctly specified. You can do better!
 
 ## Example: OLS Linear Regression
-Let's conduct a simple linear regression with two variables that we know are correlated: a person's waist size and their weight. We will use data collected by the US Centers for Disease Control as part of the [National Health and Nutrition Examination Survey (NHANES)](https://www.cdc.gov/nchs/nhanes/about_nhanes.htm){target="_blank"}
+Let's conduct a simple linear regression with two variables that we suspect are related: a person's waist size and their weight. We will use data collected by the US Centers for Disease Control as part of the [National Health and Nutrition Examination Survey (NHANES)](https://www.cdc.gov/nchs/nhanes/about_nhanes.htm){target="_blank"}
 - a detailed annual survey of ~5,000 people living in the US.
 
 
@@ -166,8 +166,8 @@ Human beings are mostly water, so we can assume that density is a constant from 
 $$mass = \rho\cdot Area \cdot Height$$
 However, we are modeling mass against waist circumference (not area), so our process knowledge tells us that waist size and body mass should NOT follow a linear relationship.
 $$Area = \frac{Circumference^{2}}{2\pi}$$
-Thus, substituting one equation into another, we arrive at the conclusion that mass should be proportional to the square of waist size.
-$$mass \sim Circumference^{2}$$
+Thus, substituting one equation into another, we arrive at the conclusion that mass should be related to the square of waist size (circumference).
+$$mass = \rho\cdot \frac{Circumference^{2}}{2\pi}\cdot height$$
 Or, another way to say this is that the square root of mass is linearly related to body circumference.
 $$\sqrt{mass} \sim Circumference$$
 <img src="./images/cylinder_comic.png" width="552" style="display: block; margin: auto;" />
