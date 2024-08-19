@@ -256,7 +256,7 @@ following descriptive statistics:
 
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>(\#tab:quant-desc-table)Quantiles and descriptive statistics for `hwy` fuel efficiency from ggplot::mpg$hwy</caption>
+<caption>(\#tab:quant-desc-table)(\#tab:quant-desc-table)Quantiles and descriptive statistics for `hwy` fuel efficiency from ggplot::mpg$hwy</caption>
  <thead>
   <tr>
    <th style="text-align:center;"> Quantile </th>

@@ -161,49 +161,19 @@ use for a geom in the "Aesthetics" section of the geom's helpfile (e.g.,
 `?geom_bar`). Required aesthetics are often shown **in bold** in this section of 
 the helpfile. You can also view a concise summary of aesthetic specification by typing `vignette("ggplot2-specs")` into the R console. Common plot aesthetics you might want to specify include: 
 
-<table>
-<caption>(\#tab:aes-table)Common Plot Aesthetics</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Code </th>
-   <th style="text-align:left;"> Description </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> `x` </td>
-   <td style="text-align:left;"> Variable to plot on x-axis </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> `y` </td>
-   <td style="text-align:left;"> Variable to plot on y-axis </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> `shape` </td>
-   <td style="text-align:left;"> Shape of the element being plotted </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> `color` </td>
-   <td style="text-align:left;"> Color of border of elements </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> `fill` </td>
-   <td style="text-align:left;"> Color of inside of elements </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> `size` </td>
-   <td style="text-align:left;"> Size of the element </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> `alpha` </td>
-   <td style="text-align:left;"> Transparency (1: opaque; 0: transparent) </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> `linetype` </td>
-   <td style="text-align:left;"> Type of line (e.g., solid, dashed) </td>
-  </tr>
-</tbody>
-</table>
+
+Table: (\#tab:aes-table)Common Plot Aesthetics
+
+|Code       |Description                              |
+|:----------|:----------------------------------------|
+|`x`        |Variable to plot on x-axis               |
+|`y`        |Variable to plot on y-axis               |
+|`shape`    |Shape of the element being plotted       |
+|`color`    |Color of border of elements              |
+|`fill`     |Color of inside of elements              |
+|`size`     |Size of the element                      |
+|`alpha`    |Transparency (1: opaque; 0: transparent) |
+|`linetype` |Type of line (e.g., solid, dashed)       |
 
 
 
@@ -213,33 +183,15 @@ When creating plots, you'll often want to add more than one `geom` to the plot.
 You can add these with `+` after the `ggplot()` statement to initialize the
 `ggplot2` object. Some of the most common geoms are:
 
-<table>
-<caption>(\#tab:geom-table)A Few Basic Geom Types</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Plot type </th>
-   <th style="text-align:left;"> ggplot2 function </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Histogram (1 numeric variable) </td>
-   <td style="text-align:left;"> `geom_histogram()` </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Scatterplot (2 numeric variables) </td>
-   <td style="text-align:left;"> `geom_point()` </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Boxplot (1 numeric variable, possibly 1 factor variable) </td>
-   <td style="text-align:left;"> `geom_boxplot()` </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Line graph (2 numeric variables) </td>
-   <td style="text-align:left;"> `geom_line()` </td>
-  </tr>
-</tbody>
-</table>
+
+Table: (\#tab:geom-table)A Few Basic Geom Types
+
+|Plot type                                                |ggplot2 function   |
+|:--------------------------------------------------------|:------------------|
+|Histogram (1 numeric variable)                           |`geom_histogram()` |
+|Scatterplot (2 numeric variables)                        |`geom_point()`     |
+|Boxplot (1 numeric variable, possibly 1 factor variable) |`geom_boxplot()`   |
+|Line graph (2 numeric variables)                         |`geom_line()`      |
 
 <div class="rmdwarning">
 <p>A common error when writing <code>ggplot2</code> code is to put the
@@ -356,33 +308,15 @@ documentation:
 There are many scale elements that you can add onto a `ggplot2` object using
 `+`. A few that are used very frequently are: 
 
-<table>
-<caption>(\#tab:scale-elements)Common Scale Elements</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Element </th>
-   <th style="text-align:left;"> Description </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> `ggtitle()` </td>
-   <td style="text-align:left;"> Plot title </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> `xlab()`, `ylab()` </td>
-   <td style="text-align:left;"> Labels for x- and y-axis </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> `xlim()`, `ylim()` </td>
-   <td style="text-align:left;"> Limits of x- and y-axis </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> `scale_x_log10()` </td>
-   <td style="text-align:left;"> Log scale of x-axis </td>
-  </tr>
-</tbody>
-</table>
+
+Table: (\#tab:scale-elements)Common Scale Elements
+
+|Element            |Description              |
+|:------------------|:------------------------|
+|`ggtitle()`        |Plot title               |
+|`xlab()`, `ylab()` |Labels for x- and y-axis |
+|`xlim()`, `ylim()` |Limits of x- and y-axis  |
+|`scale_x_log10()`  |Log scale of x-axis      |
 
 *Note*: There is also a separate R package called `scales`, which has various
 function options to automatically detect and show breaks and labels for axes

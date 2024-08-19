@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Data Visualization with ggplot2 | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Data Visualization with ggplot2 | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2023-11-06" />
+<meta name="date" content="2024-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -58,7 +58,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -636,83 +636,45 @@ use for a geom in the “Aesthetics” section of the geom’s helpfile (e.g.,
 <code>?geom_bar</code>). Required aesthetics are often shown <strong>in bold</strong> in this section of
 the helpfile. You can also view a concise summary of aesthetic specification by typing <code>vignette("ggplot2-specs")</code> into the R console. Common plot aesthetics you might want to specify include:</p>
 <table>
-<caption>
-<span id="tab:aes-table">Table 4.1: </span>Common Plot Aesthetics
-</caption>
+<caption><span id="tab:aes-table">Table 4.1: </span>Common Plot Aesthetics</caption>
 <thead>
-<tr>
-<th style="text-align:left;">
-Code
-</th>
-<th style="text-align:left;">
-Description
-</th>
+<tr class="header">
+<th align="left">Code</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-<code>x</code>
-</td>
-<td style="text-align:left;">
-Variable to plot on x-axis
-</td>
+<tr class="odd">
+<td align="left"><code>x</code></td>
+<td align="left">Variable to plot on x-axis</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<code>y</code>
-</td>
-<td style="text-align:left;">
-Variable to plot on y-axis
-</td>
+<tr class="even">
+<td align="left"><code>y</code></td>
+<td align="left">Variable to plot on y-axis</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<code>shape</code>
-</td>
-<td style="text-align:left;">
-Shape of the element being plotted
-</td>
+<tr class="odd">
+<td align="left"><code>shape</code></td>
+<td align="left">Shape of the element being plotted</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<code>color</code>
-</td>
-<td style="text-align:left;">
-Color of border of elements
-</td>
+<tr class="even">
+<td align="left"><code>color</code></td>
+<td align="left">Color of border of elements</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<code>fill</code>
-</td>
-<td style="text-align:left;">
-Color of inside of elements
-</td>
+<tr class="odd">
+<td align="left"><code>fill</code></td>
+<td align="left">Color of inside of elements</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<code>size</code>
-</td>
-<td style="text-align:left;">
-Size of the element
-</td>
+<tr class="even">
+<td align="left"><code>size</code></td>
+<td align="left">Size of the element</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<code>alpha</code>
-</td>
-<td style="text-align:left;">
-Transparency (1: opaque; 0: transparent)
-</td>
+<tr class="odd">
+<td align="left"><code>alpha</code></td>
+<td align="left">Transparency (1: opaque; 0: transparent)</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<code>linetype</code>
-</td>
-<td style="text-align:left;">
-Type of line (e.g., solid, dashed)
-</td>
+<tr class="even">
+<td align="left"><code>linetype</code></td>
+<td align="left">Type of line (e.g., solid, dashed)</td>
 </tr>
 </tbody>
 </table>
@@ -723,51 +685,33 @@ Type of line (e.g., solid, dashed)
 You can add these with <code>+</code> after the <code>ggplot()</code> statement to initialize the
 <code>ggplot2</code> object. Some of the most common geoms are:</p>
 <table>
-<caption>
-<span id="tab:geom-table">Table 4.2: </span>A Few Basic Geom Types
-</caption>
+<caption><span id="tab:geom-table">Table 4.2: </span>A Few Basic Geom Types</caption>
+<colgroup>
+<col width="75%" />
+<col width="25%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left;">
-Plot type
-</th>
-<th style="text-align:left;">
-ggplot2 function
-</th>
+<tr class="header">
+<th align="left">Plot type</th>
+<th align="left">ggplot2 function</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Histogram (1 numeric variable)
-</td>
-<td style="text-align:left;">
-<code>geom_histogram()</code>
-</td>
+<tr class="odd">
+<td align="left">Histogram (1 numeric variable)</td>
+<td align="left"><code>geom_histogram()</code></td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Scatterplot (2 numeric variables)
-</td>
-<td style="text-align:left;">
-<code>geom_point()</code>
-</td>
+<tr class="even">
+<td align="left">Scatterplot (2 numeric variables)</td>
+<td align="left"><code>geom_point()</code></td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Boxplot (1 numeric variable, possibly 1 factor variable)
-</td>
-<td style="text-align:left;">
-<code>geom_boxplot()</code>
-</td>
+<tr class="odd">
+<td align="left">Boxplot (1 numeric variable, possibly 1 factor variable)</td>
+<td align="left"><code>geom_boxplot()</code></td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Line graph (2 numeric variables)
-</td>
-<td style="text-align:left;">
-<code>geom_line()</code>
-</td>
+<tr class="even">
+<td align="left">Line graph (2 numeric variables)</td>
+<td align="left"><code>geom_line()</code></td>
 </tr>
 </tbody>
 </table>
@@ -877,51 +821,29 @@ documentation:</p>
 <p>There are many scale elements that you can add onto a <code>ggplot2</code> object using
 <code>+</code>. A few that are used very frequently are:</p>
 <table>
-<caption>
-<span id="tab:scale-elements">Table 4.3: </span>Common Scale Elements
-</caption>
+<caption><span id="tab:scale-elements">Table 4.3: </span>Common Scale Elements</caption>
 <thead>
-<tr>
-<th style="text-align:left;">
-Element
-</th>
-<th style="text-align:left;">
-Description
-</th>
+<tr class="header">
+<th align="left">Element</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-<code>ggtitle()</code>
-</td>
-<td style="text-align:left;">
-Plot title
-</td>
+<tr class="odd">
+<td align="left"><code>ggtitle()</code></td>
+<td align="left">Plot title</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<code>xlab()</code>, <code>ylab()</code>
-</td>
-<td style="text-align:left;">
-Labels for x- and y-axis
-</td>
+<tr class="even">
+<td align="left"><code>xlab()</code>, <code>ylab()</code></td>
+<td align="left">Labels for x- and y-axis</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<code>xlim()</code>, <code>ylim()</code>
-</td>
-<td style="text-align:left;">
-Limits of x- and y-axis
-</td>
+<tr class="odd">
+<td align="left"><code>xlim()</code>, <code>ylim()</code></td>
+<td align="left">Limits of x- and y-axis</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<code>scale_x_log10()</code>
-</td>
-<td style="text-align:left;">
-Log scale of x-axis
-</td>
+<tr class="even">
+<td align="left"><code>scale_x_log10()</code></td>
+<td align="left">Log scale of x-axis</td>
 </tr>
 </tbody>
 </table>

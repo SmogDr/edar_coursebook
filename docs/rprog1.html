@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 The R Programming Environment | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 The R Programming Environment | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2023-11-06" />
+<meta name="date" content="2024-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -58,7 +58,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -747,7 +747,7 @@ the <code>print()</code> function. Note that the formal argument never changes.<
 <p>Some functions do not require any arguments. For example, the <code>getRversion()</code>
 function will print out the version of R you are using.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="rprog1.html#cb12-1" tabindex="-1"></a><span class="fu">getRversion</span>()</span></code></pre></div>
-<pre><code>## [1] &#39;4.3.1&#39;</code></pre>
+<pre><code>## [1] &#39;4.4.0&#39;</code></pre>
 <p>Some functions will accept multiple arguments. For example, the <code>print()</code>
 function allows you to specify whether the output should include quotation
 marks, using the <code>quote</code> formal argument:</p>
@@ -894,7 +894,7 @@ RStudio keyboard shortcuts, go to the “Help” tab in RStudio and select
 <p>If you try to assign an object to a name that doesn’t follow the “hard” rules,
 you’ll get an error. For example, all of these expressions will give you an
 error:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="rprog1.html#cb36-1" tabindex="-1"></a>1message <span class="ot">&lt;-</span> <span class="st">&quot;Hello world&quot;</span></span>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="rprog1.html#cb36-1" tabindex="-1"></a><span class="dv">1</span>message <span class="ot">&lt;-</span> <span class="st">&quot;Hello world&quot;</span></span>
 <span id="cb36-2"><a href="rprog1.html#cb36-2" tabindex="-1"></a>_message <span class="ot">&lt;-</span> <span class="st">&quot;Hello world&quot;</span></span>
 <span id="cb36-3"><a href="rprog1.html#cb36-3" tabindex="-1"></a>message<span class="sc">!</span> <span class="er">&lt;</span><span class="sc">-</span> <span class="st">&quot;Hello world&quot;</span></span></code></pre></div>
 <p>In addition to these fixed rules, there are also some guidelines for naming
@@ -1420,8 +1420,8 @@ makes it so great.
 <p>To create a dataframe, you can use the <code>tibble()</code> function from the <code>tibble</code>
 package. The general format for using <code>tibble()</code> is:</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="rprog1.html#cb79-1" tabindex="-1"></a><span class="do">## generic code; will not run</span></span>
-<span id="cb79-2"><a href="rprog1.html#cb79-2" tabindex="-1"></a>[name of object] <span class="ot">&lt;-</span> <span class="fu">tibble</span>([1st column name] <span class="ot">=</span> [1st column content],</span>
-<span id="cb79-3"><a href="rprog1.html#cb79-3" tabindex="-1"></a>                           [2nd column name] <span class="ot">=</span> [2nd column content])</span></code></pre></div>
+<span id="cb79-2"><a href="rprog1.html#cb79-2" tabindex="-1"></a>[name of object] <span class="ot">&lt;-</span> <span class="fu">tibble</span>([<span class="dv">1</span>st column name] <span class="ot">=</span> [<span class="dv">1</span>st column content],</span>
+<span id="cb79-3"><a href="rprog1.html#cb79-3" tabindex="-1"></a>                           [<span class="dv">2</span>nd column name] <span class="ot">=</span> [<span class="dv">2</span>nd column content])</span></code></pre></div>
 <p>with an equals sign between the column name and column content for each column,
 and commas between each of the columns. Here is an example of the code used to
 create the <em>Hunger Games</em> <code>tibble</code> dataframe shown above:</p>

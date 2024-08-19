@@ -38,7 +38,7 @@ In engineering, the most common reason for centering data is not to subtract the
 
 
 <div class="figure" style="text-align: center">
-<img src="./images/centering_anno.png" alt="Data are sometimes centered to correct spurious values" width="640" />
+<img src="./images/centering_anno.png" alt="Data are sometimes centered to correct spurious values"  />
 <p class="caption">(\#fig:centering-anno)Data are sometimes centered to correct spurious values</p>
 </div>
 
@@ -88,7 +88,7 @@ Sometimes your data are *not normally distributed*, even though you want them to
 
 
 <div class="figure" style="text-align: center">
-<img src="./images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable." width="640" />
+<img src="./images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable."  />
 <p class="caption">(\#fig:reduce-skew2)The log(x) transform is often used to reduce skewness in a variable.</p>
 </div>
 
@@ -126,7 +126,18 @@ stratified <- ggplot(data = strat.data,
   theme_classic(base_size = 14) +
   theme(legend.position = c(0.85, 0.8),
         legend.box.background = element_rect(colour = "black")) 
+```
 
+```
+## Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
+## 3.5.0.
+## ℹ Please use the `legend.position.inside` argument of `theme()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+```
+
+```r
 #ggsave("./images/stratified.png")
 ```
 
@@ -148,7 +159,7 @@ strat.data %>%
 ```
 
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>(\#tab:stat-table)Correlation between Sample Purity and Yield by Reactor</caption>
+<caption>(\#tab:stat-table)(\#tab:stat-table)Correlation between Sample Purity and Yield by Reactor</caption>
  <thead>
   <tr>
    <th style="text-align:center;"> reactor </th>

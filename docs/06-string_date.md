@@ -97,7 +97,7 @@ and the `stringr` package. We will also introduce the concept of
 **regular expressions** as a means to perform more advanced string
 manipulation.
 
-<img src="./images/parse_comic.png" width="1000" style="display: block; margin: auto;" />
+<img src="./images/parse_comic.png" style="display: block; margin: auto;" />
 
 ### String detect, match, subset
 
@@ -185,28 +185,12 @@ for **<u>G</u>lobal <u>R</u>egular <u>E</u>xpression <u>P</u>attern** (more on
 functions, therefore, you will encounter them in the wild, so it's worth
 knowing about them.
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> stringr_funcs </th>
-   <th style="text-align:left;"> base_funcs </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> str_detect(x, pattern) </td>
-   <td style="text-align:left;"> grepl(pattern, x) </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> str_match(x, pattern) </td>
-   <td style="text-align:left;"> regexec(pattern, x) + regmatches() </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> str_subset(x, pattern) </td>
-   <td style="text-align:left;"> grep(pattern, x, value = TRUE) </td>
-  </tr>
-</tbody>
-</table>
+
+|stringr_funcs          |base_funcs                         |
+|:----------------------|:----------------------------------|
+|str_detect(x, pattern) |grepl(pattern, x)                  |
+|str_match(x, pattern)  |regexec(pattern, x) + regmatches() |
+|str_subset(x, pattern) |grep(pattern, x, value = TRUE)     |
 
 ### Regular Expressions
 
@@ -248,58 +232,19 @@ the use of a `\`, you have to identify it within a string as `\\`.   The table
 below shows some basic regex syntax and how they would be implemented as a
 search pattern in R.
 
-<table>
-<caption>(\#tab:regex-1)Basic Regex Search Syntax and Example Implementation in R</caption>
- <thead>
-  <tr>
-   <th style="text-align:center;"> Regex syntax </th>
-   <th style="text-align:center;"> String to be matched </th>
-   <th style="text-align:center;"> Example in R </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:center;"> \\d </td>
-   <td style="text-align:center;"> Any numeric digit </td>
-   <td style="text-align:center;"> &quot;\\\\d&quot; or &quot;[:digit:]&quot; </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> [abc] </td>
-   <td style="text-align:center;"> matches a, b, or c </td>
-   <td style="text-align:center;"> &quot;[abc]&quot; </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> [a-z] </td>
-   <td style="text-align:center;"> matches every character between a and z </td>
-   <td style="text-align:center;"> &quot;[a-z]&quot; </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> [^abc] </td>
-   <td style="text-align:center;"> matches anything except a, b, or c </td>
-   <td style="text-align:center;"> &quot;[^abc]&quot; </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> (abc) </td>
-   <td style="text-align:center;"> creates a &quot;capture group&quot; whereby abc must occur together </td>
-   <td style="text-align:center;"> &quot;(abc)&quot; </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> ^b </td>
-   <td style="text-align:center;"> starts with: look for &quot;b&quot; at the start of a string </td>
-   <td style="text-align:center;"> &quot;\^b&quot; </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> b$ </td>
-   <td style="text-align:center;"> ends with: look for &quot;b&quot; at the end of a string </td>
-   <td style="text-align:center;"> &quot;b\$&quot; </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> a|b </td>
-   <td style="text-align:center;"> match a or b </td>
-   <td style="text-align:center;"> &quot;a|b&quot; </td>
-  </tr>
-</tbody>
-</table>
+
+Table: (\#tab:regex-1)Basic Regex Search Syntax and Example Implementation in R
+
+| Regex syntax |                   String to be matched                    |      Example in R      |
+|:------------:|:---------------------------------------------------------:|:----------------------:|
+|     \\d      |                     Any numeric digit                     | "\\\\d" or "[:digit:]" |
+|    [abc]     |                    matches a, b, or c                     |        "[abc]"         |
+|    [a-z]     |          matches every character between a and z          |        "[a-z]"         |
+|    [^abc]    |            matches anything except a, b, or c             |        "[^abc]"        |
+|    (abc)     | creates a "capture group" whereby abc must occur together |        "(abc)"         |
+|      ^b      |    starts with: look for "b" at the start of a string     |         "\^b"          |
+|      b$      |      ends with: look for "b" at the end of a string       |         "b\$"          |
+|   a&#124;b   |                       match a or b                        |       "a&#124;b"       |
 
 **Regex** sequences have seemingly no end of sophistication and nuance; you
 could spend dozens of hours learning to use them and hundreds more learning to
@@ -418,7 +363,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2023-11-06 09:54:36 MST"
+## [1] "2024-08-19 11:20:43 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -434,12 +379,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1699289677
+## [1] 1724088043
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 53.8841222 years.  
+365d/yr] => 54.6704732 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -447,7 +392,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2023-11-06 09:54:36.869438.
+format: 2024-08-19 11:20:43.135457.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -455,7 +400,12 @@ have little difficulty recognizing the following date-time objects as
 equivalent but, for some computer programs, not so much:
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>(\#tab:date-times-1)Date-time objects come in different forms</caption>
+<caption>(\#tab:date-times-1)(\#tab:date-times-1)Date-time objects come in different forms</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;">  </th>
+  </tr>
+ </thead>
 <tbody>
   <tr>
    <td style="text-align:left;"> 12/1/99 8:46 PM </td>
@@ -571,7 +521,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1699289677
+## [1] 1724088043
 ```
 
 
@@ -582,17 +532,17 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 36.9
-##  $ min   : int 54
-##  $ hour  : int 9
-##  $ mday  : int 6
-##  $ mon   : int 10
-##  $ year  : int 123
+##  $ sec   : num 43.2
+##  $ min   : int 20
+##  $ hour  : int 11
+##  $ mday  : int 19
+##  $ mon   : int 7
+##  $ year  : int 124
 ##  $ wday  : int 1
-##  $ yday  : int 309
-##  $ isdst : int 0
-##  $ zone  : chr "MST"
-##  $ gmtoff: int -25200
+##  $ yday  : int 231
+##  $ isdst : int 1
+##  $ zone  : chr "MDT"
+##  $ gmtoff: int -21600
 ##  - attr(*, "tzone")= chr [1:3] "" "MST" "MDT"
 ##  - attr(*, "balanced")= logi TRUE
 ```
@@ -631,7 +581,7 @@ Here are a few base R functions for working with date-time objects that are
 worth knowing:
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>(\#tab:base-r-times)Basic Date-time functions</caption>
+<caption>(\#tab:base-r-times)(\#tab:base-r-times)Basic Date-time functions</caption>
  <thead>
   <tr>
    <th style="text-align:left;"> {base} R Function </th>
@@ -949,7 +899,7 @@ different exams (Exam1, Exam2, Exam3) that represent a variable (Exam_# or
 Exam_type), that is not represented with a column.
 
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>(\#tab:grades-untidy)An Untidy Table of Exam Scores.</caption>
+<caption>(\#tab:grades-untidy)(\#tab:grades-untidy)An Untidy Table of Exam Scores.</caption>
  <thead>
   <tr>
    <th style="text-align:left;"> Name </th>
@@ -985,7 +935,7 @@ called `Exam` and move all the scores into a new column vector named `Scores`.
 This effectively makes the data "long" rather than "wide".
 
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>(\#tab:grades-tidy)A Tidy Table of Exam Scores</caption>
+<caption>(\#tab:grades-tidy)(\#tab:grades-tidy)A Tidy Table of Exam Scores</caption>
  <thead>
   <tr>
    <th style="text-align:left;"> Name </th>
@@ -1106,7 +1056,7 @@ tidygrades <- tidyr::pivot_longer(data = grades_untidy,
 ```
 
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>(\#tab:grades-tab3)Pivot longer applied to untidy data</caption>
+<caption>(\#tab:grades-tab3)(\#tab:grades-tab3)Pivot longer applied to untidy data</caption>
  <thead>
   <tr>
    <th style="text-align:left;"> Name </th>

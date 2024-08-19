@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens"
-date: "2023-11-06"
+date: "2024-08-19"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
@@ -14,10 +14,10 @@ description: "This is an undergraduate technical elective course for mechanical 
 
 ```
 ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.3     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
 ## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
@@ -140,7 +140,7 @@ to gain more background on basic Git and GitHub, take a look at [these slides](h
 
 ### Install R and RStudio
 
-1. Download and install the pre-compiled binary of the most recent version (4.3+) of [R](https://cran.r-project.org){target="_blank"} appropriate for your machine's 
+1. Download and install the pre-compiled binary of the most recent version (4.4+) of [R](https://cran.r-project.org){target="_blank"} appropriate for your machine's 
 operating system
 2. Download and install the most recent, preview version of [RStudio](https://rstudio.com/products/rstudio/download/#download){target="_blank"};
 then, navigate in RStudio to Tools > Global Options to *NOT* "Restore .RData into workspace 

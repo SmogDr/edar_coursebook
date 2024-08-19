@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Strings, Dates, and Tidying | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Strings, Dates, and Tidying | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2023-11-06" />
+<meta name="date" content="2024-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -58,7 +58,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -580,7 +580,7 @@ your posts, each one as a string. You can learn a lot about a person
 and the <code>stringr</code> package. We will also introduce the concept of
 <strong>regular expressions</strong> as a means to perform more advanced string
 manipulation.</p>
-<p><img src="images/parse_comic.png" width="1000" style="display: block; margin: auto;" /></p>
+<p><img src="images/parse_comic.png" style="display: block; margin: auto;" /></p>
 <div id="string-detect-match-subset" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> String detect, match, subset<a href="rprog3.html#string-detect-match-subset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One of the simplest string operations is to search whether a string contains a
@@ -632,39 +632,23 @@ functions, therefore, you will encounter them in the wild, so it’s worth
 knowing about them.</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-stringr_funcs
-</th>
-<th style="text-align:left;">
-base_funcs
-</th>
+<tr class="header">
+<th align="left">stringr_funcs</th>
+<th align="left">base_funcs</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-str_detect(x, pattern)
-</td>
-<td style="text-align:left;">
-grepl(pattern, x)
-</td>
+<tr class="odd">
+<td align="left">str_detect(x, pattern)</td>
+<td align="left">grepl(pattern, x)</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-str_match(x, pattern)
-</td>
-<td style="text-align:left;">
-regexec(pattern, x) + regmatches()
-</td>
+<tr class="even">
+<td align="left">str_match(x, pattern)</td>
+<td align="left">regexec(pattern, x) + regmatches()</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-str_subset(x, pattern)
-</td>
-<td style="text-align:left;">
-grep(pattern, x, value = TRUE)
-</td>
+<tr class="odd">
+<td align="left">str_subset(x, pattern)</td>
+<td align="left">grep(pattern, x, value = TRUE)</td>
 </tr>
 </tbody>
 </table>
@@ -725,110 +709,59 @@ the use of a <code>\</code>, you have to identify it within a string as <code>\\
 below shows some basic regex syntax and how they would be implemented as a
 search pattern in R.</p>
 <table>
-<caption>
-<span id="tab:regex-1">Table 6.1: </span>Basic Regex Search Syntax and Example Implementation in R
-</caption>
+<caption><span id="tab:regex-1">Table 6.1: </span>Basic Regex Search Syntax and Example Implementation in R</caption>
+<colgroup>
+<col width="14%" />
+<col width="60%" />
+<col width="24%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:center;">
-Regex syntax
-</th>
-<th style="text-align:center;">
-String to be matched
-</th>
-<th style="text-align:center;">
-Example in R
-</th>
+<tr class="header">
+<th align="center">Regex syntax</th>
+<th align="center">String to be matched</th>
+<th align="center">Example in R</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center;">
-\d
-</td>
-<td style="text-align:center;">
-Any numeric digit
-</td>
-<td style="text-align:center;">
-"\\d" or "[:digit:]"
-</td>
+<tr class="odd">
+<td align="center">\d</td>
+<td align="center">Any numeric digit</td>
+<td align="center">“\\d” or “[:digit:]”</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-[abc]
-</td>
-<td style="text-align:center;">
-matches a, b, or c
-</td>
-<td style="text-align:center;">
-"[abc]"
-</td>
+<tr class="even">
+<td align="center">[abc]</td>
+<td align="center">matches a, b, or c</td>
+<td align="center">“[abc]”</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-[a-z]
-</td>
-<td style="text-align:center;">
-matches every character between a and z
-</td>
-<td style="text-align:center;">
-"[a-z]"
-</td>
+<tr class="odd">
+<td align="center">[a-z]</td>
+<td align="center">matches every character between a and z</td>
+<td align="center">“[a-z]”</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-[^abc]
-</td>
-<td style="text-align:center;">
-matches anything except a, b, or c
-</td>
-<td style="text-align:center;">
-"[^abc]"
-</td>
+<tr class="even">
+<td align="center">[^abc]</td>
+<td align="center">matches anything except a, b, or c</td>
+<td align="center">“[^abc]”</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-(abc)
-</td>
-<td style="text-align:center;">
-creates a "capture group" whereby abc must occur together
-</td>
-<td style="text-align:center;">
-"(abc)"
-</td>
+<tr class="odd">
+<td align="center">(abc)</td>
+<td align="center">creates a “capture group” whereby abc must occur together</td>
+<td align="center">“(abc)”</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-^b
-</td>
-<td style="text-align:center;">
-starts with: look for "b" at the start of a string
-</td>
-<td style="text-align:center;">
-"^b"
-</td>
+<tr class="even">
+<td align="center">^b</td>
+<td align="center">starts with: look for “b” at the start of a string</td>
+<td align="center">“^b”</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-b$
-</td>
-<td style="text-align:center;">
-ends with: look for "b" at the end of a string
-</td>
-<td style="text-align:center;">
-"b$"
-</td>
+<tr class="odd">
+<td align="center">b$</td>
+<td align="center">ends with: look for “b” at the end of a string</td>
+<td align="center">“b$”</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-a|b
-</td>
-<td style="text-align:center;">
-match a or b
-</td>
-<td style="text-align:center;">
-"a|b"
-</td>
+<tr class="even">
+<td align="center">a|b</td>
+<td align="center">match a or b</td>
+<td align="center">“a|b”</td>
 </tr>
 </tbody>
 </table>
@@ -927,7 +860,7 @@ date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time”
 by calling the <code>Sys.time()</code> function.</p>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="rprog3.html#cb206-1" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2023-11-06 09:54:36 MST&quot;</code></pre>
+<pre><code>## [1] &quot;2024-08-19 11:20:43 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and timezone used by my computer
 (<em>whenever I last ran this code in <code>bookdown</code></em>). If you want to see how this
 time is stored in R internally, you can use <code>unclass()</code>, which returns an
@@ -935,25 +868,31 @@ object value with its class attributes removed. When we wrap <code>unclass()</co
 around <code>Sys.time()</code>, we will see the number of seconds that have occurred
 between the epoch of 1/1/1970 and right now:</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="rprog3.html#cb208-1" tabindex="-1"></a><span class="fu">unclass</span>(<span class="fu">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1699289677</code></pre>
+<pre><code>## [1] 1724088043</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
 Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span>
-365d/yr] =&gt; 53.8841222 years.</p>
+365d/yr] =&gt; 54.6704732 years.</p>
 <p>This calculation ignores leap years, but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3 hasAnchor" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats<a href="rprog3.html#date-time-formats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Note that the <code>Sys.time()</code> function provided the date in a
 <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong>
-format: 2023-11-06 09:54:36.869438.</p>
+format: 2024-08-19 11:20:43.135457.</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
 have little difficulty recognizing the following date-time objects as
 equivalent but, for some computer programs, not so much:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:date-times-1">Table 6.2: </span>Date-time objects come in different forms
+<span id="tab:date-times-1">Table 6.2: </span><span id="tab:date-times-1">Table 6.3: </span>Date-time objects come in different forms
 </caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
@@ -1100,21 +1039,21 @@ classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and 
 attributes.</p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="rprog3.html#cb212-1" tabindex="-1"></a>time_now_ct <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="fu">Sys.time</span>())</span>
 <span id="cb212-2"><a href="rprog3.html#cb212-2" tabindex="-1"></a><span class="fu">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1699289677</code></pre>
+<pre><code>## [1] 1724088043</code></pre>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="rprog3.html#cb214-1" tabindex="-1"></a>time_now_lt <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(<span class="fu">Sys.time</span>())</span>
 <span id="cb214-2"><a href="rprog3.html#cb214-2" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 36.9
-##  $ min   : int 54
-##  $ hour  : int 9
-##  $ mday  : int 6
-##  $ mon   : int 10
-##  $ year  : int 123
+##  $ sec   : num 43.2
+##  $ min   : int 20
+##  $ hour  : int 11
+##  $ mday  : int 19
+##  $ mon   : int 7
+##  $ year  : int 124
 ##  $ wday  : int 1
-##  $ yday  : int 309
-##  $ isdst : int 0
-##  $ zone  : chr &quot;MST&quot;
-##  $ gmtoff: int -25200
+##  $ yday  : int 231
+##  $ isdst : int 1
+##  $ zone  : chr &quot;MDT&quot;
+##  $ gmtoff: int -21600
 ##  - attr(*, &quot;tzone&quot;)= chr [1:3] &quot;&quot; &quot;MST&quot; &quot;MDT&quot;
 ##  - attr(*, &quot;balanced&quot;)= logi TRUE</code></pre>
 <p>It’s easy to see why the <code>POSIXct</code> object class is more computationally
@@ -1150,7 +1089,7 @@ punishment, I invite you to read the R Documentation with <code>?strptime</code>
 worth knowing:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:base-r-times">Table 6.3: </span>Basic Date-time functions
+<span id="tab:base-r-times">Table 6.4: </span><span id="tab:base-r-times">Table 6.5: </span>Basic Date-time functions
 </caption>
 <thead>
 <tr>
@@ -1469,15 +1408,15 @@ In fact, most of the dataframes that we have used so far follow this convention.
 The trick is to note that some column variables might look <em>independent</em> from
 one another, when, in fact, the columns represent a single variable broken out
 by some hierarchical, or nesting, structure.</p>
-<p>For example, the (untidy) table below (<a href="rprog3.html#tab:grades-untidy">6.4</a>) shows exam
-grades for three students. Table <a href="rprog3.html#tab:grades-untidy">6.4</a> is untidy because
+<p>For example, the (untidy) table below (<a href="rprog3.html#tab:grades-untidy">6.6</a>) shows exam
+grades for three students. Table <a href="rprog3.html#tab:grades-untidy">6.6</a> is untidy because
 the variable depicting the exam score shows up in three different columns.<br />
 Another way to characterize the <em>untidiness</em> of this table is that we have three
 different exams (Exam1, Exam2, Exam3) that represent a variable (Exam_# or
 Exam_type), that is not represented with a column.</p>
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:grades-untidy">Table 6.4: </span>An Untidy Table of Exam Scores.
+<span id="tab:grades-untidy">Table 6.6: </span><span id="tab:grades-untidy">Table 6.7: </span>An Untidy Table of Exam Scores.
 </caption>
 <thead>
 <tr>
@@ -1540,12 +1479,12 @@ Hermione
 </tr>
 </tbody>
 </table>
-<p>Thus, to tidy table <a href="rprog3.html#tab:grades-untidy">6.4</a>, we need to create a variable
+<p>Thus, to tidy table <a href="rprog3.html#tab:grades-untidy">6.6</a>, we need to create a variable
 called <code>Exam</code> and move all the scores into a new column vector named <code>Scores</code>.
 This effectively makes the data “long” rather than “wide”.</p>
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:grades-tidy">Table 6.5: </span>A Tidy Table of Exam Scores
+<span id="tab:grades-tidy">Table 6.8: </span><span id="tab:grades-tidy">Table 6.9: </span>A Tidy Table of Exam Scores
 </caption>
 <thead>
 <tr>
@@ -1692,7 +1631,7 @@ the other column contains the <code>values_to =</code> data.
 </li>
 </ul>
 </div>
-<p>In the case of Table <a href="rprog3.html#tab:grades-untidy">6.4</a>, we are using <code>cols =</code> to combine
+<p>In the case of Table <a href="rprog3.html#tab:grades-untidy">6.6</a>, we are using <code>cols =</code> to combine
 <code>Exam1_Score</code>, <code>Exam2_Score</code> and <code>Exam3_Score</code> into a a column of
 <code>names_to = "Exam"</code> and the data represented in those three columns gets moved
 into a column of <code>values_to = "Scores"</code>. We also add a call to <code>dplyr::mutate()</code>
@@ -1726,7 +1665,7 @@ then replace that entry with a 2; else, if the vector contains a string that mat
 <span id="cb233-16"><a href="rprog3.html#cb233-16" tabindex="-1"></a>  ))</span></code></pre></div>
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:grades-tab3">Table 6.6: </span>Pivot longer applied to untidy data
+<span id="tab:grades-tab3">Table 6.10: </span><span id="tab:grades-tab3">Table 6.11: </span>Pivot longer applied to untidy data
 </caption>
 <thead>
 <tr>
