@@ -30,7 +30,7 @@ R is well-poised to support the elimination of "for-loops" because R is a
 execute this code:
 
 
-```r
+``` r
 evens <- seq(from = 2, to = 20, by = 2)  
 evens_squared <- evens^2
 ```
@@ -38,7 +38,7 @@ evens_squared <- evens^2
 with code like this:
 
 
-```r
+``` r
 evens_squared <- for( i in length(evens)){  
   evens_squared <- evens[i] * evens[i] 
 }
@@ -58,7 +58,7 @@ code that steps through treatments slowly (and somewhat painfully).  Looking at
 the code below should make clear which set is easier to comprehend:
 
 
-```r
+``` r
 #nested code
 daily_show_2000 <- select(filter(rename(daily_show, 
                                           year = YEAR, 
@@ -100,7 +100,7 @@ functions.
 The syntax for function generation is relatively straight forward:
 
 
-```r
+``` r
 #example code; will not run
 
 function_name <- function(argument1, argument2, ...) {
@@ -130,7 +130,7 @@ value `y`, and the return `y` as output. Note that all the *"action"* for `my_me
 happens within the curly braces `{ }` that follow the function assignment. 
 
 
-```r
+``` r
 my_mean <- function(x) {
      y <- sum(x) / length(x) 
      return(y)
@@ -156,7 +156,7 @@ calling `my_mean` in several locations (over and over), you might have a hard
 time debugging it...
 
 
-```r
+``` r
 my_mean(c(1, 2, 3, 4, 5, NA))
 ```
 
@@ -171,7 +171,7 @@ present.  This function uses `if else` logic to handle the `na.rm = TRUE`
 argument, since this argument can only have one of two values.
 
 
-```r
+``` r
 my_mean2 <- function(x, na.rm = TRUE) {
   if (na.rm == FALSE) {
     y <- sum(x) / length(x)
@@ -187,7 +187,7 @@ Now, when we pass a vector containing `NAs` to `my_mean2`, we get a numeric
 result.
 
 
-```r
+``` r
 my_mean2(c(1:5,NA), na.rm = TRUE)
 ```
 
@@ -238,7 +238,7 @@ The "PA" in each file name stands for
 [Purple Air](https://www2.purpleair.com/){target="_blank"}.
 
 
-```r
+``` r
 list.files('./data/purpleair/', full.names=TRUE)
 ```
 
@@ -261,7 +261,7 @@ include a step to clean up the newly created data frame with a call to
 files are .csv, we can leverage `readr::read_csv`
 
 
-```r
+``` r
 # create an object that tracks the file names and file paths
 file_list <- list.files('./data/purpleair/', full.names=TRUE)
 
@@ -290,7 +290,7 @@ After sourcing this function, we can test it out on the first entry of our list
 of files.  *We specify the first entry with a subset to* `file_list[1]`.
 
 
-```r
+``` r
 PA_data_1 <- import.w.name(file_list[1])
 
 head(PA_data_1)
@@ -340,7 +340,7 @@ As shown above in Figure \@ref(fig:map-anno1), the generic form of `map()`  alwa
 To illustrate the versatility of lists, let's create one that contains a numeric vector, a matrix, and a data frame.
 
 
-```r
+``` r
 my.chr.vector <- c("Harry", "Ron", "Hermione", "Draco")
 
 my.num.matrix <- matrix(data = 1:20, nrow=5)
@@ -359,23 +359,23 @@ glimpse(my.list)
 ##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] "chevrolet" "dodge" "audi" "honda" ...
-##   ..$ model       : chr [1:7] "corvette" "caravan 2wd" "a4" "civic" ...
-##   ..$ displ       : num [1:7] 7 3.3 2.8 2 3.5 2.5 3.3
-##   ..$ year        : int [1:7] 2008 2008 1999 2008 2008 2008 1999
-##   ..$ cyl         : int [1:7] 8 6 6 4 6 4 6
-##   ..$ trans       : chr [1:7] "manual(m6)" "auto(l4)" "manual(m5)" "manual(m6)" ...
-##   ..$ drv         : chr [1:7] "r" "f" "f" "f" ...
-##   ..$ cty         : int [1:7] 15 17 18 21 19 19 15
-##   ..$ hwy         : int [1:7] 24 24 26 29 25 25 17
-##   ..$ fl          : chr [1:7] "p" "r" "p" "p" ...
-##   ..$ class       : chr [1:7] "2seater" "minivan" "compact" "subcompact" ...
+##   ..$ manufacturer: chr [1:7] "volkswagen" "nissan" "chevrolet" "volkswagen" ...
+##   ..$ model       : chr [1:7] "jetta" "altima" "k1500 tahoe 4wd" "gti" ...
+##   ..$ displ       : num [1:7] 2 2.4 5.3 2 3.8 5.3 4.2
+##   ..$ year        : int [1:7] 2008 1999 2008 1999 1999 2008 1999
+##   ..$ cyl         : int [1:7] 4 4 8 4 6 8 6
+##   ..$ trans       : chr [1:7] "manual(m6)" "auto(l4)" "auto(l4)" "manual(m5)" ...
+##   ..$ drv         : chr [1:7] "f" "f" "4" "f" ...
+##   ..$ cty         : int [1:7] 21 19 11 21 15 14 14
+##   ..$ hwy         : int [1:7] 29 27 14 29 21 20 17
+##   ..$ fl          : chr [1:7] "p" "r" "e" "r" ...
+##   ..$ class       : chr [1:7] "compact" "compact" "suv" "compact" ...
 ```
 
 Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 
 
 
-```r
+``` r
 my.list[1]
 ```
 
@@ -387,7 +387,7 @@ my.list[1]
 Note that *"single bracket"* indexing returns a "list element" of class: `list`.
 
 
-```r
+``` r
 class(my.list[1])
 ```
 
@@ -398,7 +398,7 @@ class(my.list[1])
 If you want access to the vector contents of the list element, you can use the `$` symbol to access the contents of each list entry, or, you can use *"double bracket"* indexing, `[[ ]]`:
 
 
-```r
+``` r
 my.list$entry_1
 ```
 
@@ -406,7 +406,7 @@ my.list$entry_1
 ## [1] "Harry"    "Ron"      "Hermione" "Draco"
 ```
 
-```r
+``` r
 class(my.list$entry_1)
 ```
 
@@ -415,7 +415,7 @@ class(my.list$entry_1)
 ```
 
 
-```r
+``` r
 my.list[[2]]
 ```
 
@@ -428,7 +428,7 @@ my.list[[2]]
 ## [5,]    5   10   15   20
 ```
 
-```r
+``` r
 class(my.list[[2]])
 ```
 
@@ -452,7 +452,7 @@ Working with lists is one of the mental hurdles to overcome when learning `map()
 Let's use `map_dfr()` to apply our function, `import.w.name()`, onto the vector of file names and paths (`file_list`). The *"r"* in `map_dfr()` means that the resultant data frame output by `map_` will be created by binding rows together as the function moves down each index in the file list.  This is shown schematically in Figure \@ref(fig:map-dfr-anno) below.
 
 
-```r
+``` r
 file_list <- list.files('./data/purpleair/', full.names=TRUE)
 
 # map the import.w.name() function to all objects within `file_list` sequentially

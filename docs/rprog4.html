@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Functional Programming | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Functional Programming | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2024-08-19" />
+<meta name="date" content="2024-08-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -228,8 +228,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.1" data-path="rprog2.html"><a href="rprog2.html#renaming-columns"><i class="fa fa-check"></i><b>3.5.1</b> Renaming columns</a></li>
 <li class="chapter" data-level="3.5.2" data-path="rprog2.html"><a href="rprog2.html#selecting-columns"><i class="fa fa-check"></i><b>3.5.2</b> Selecting columns</a></li>
 <li class="chapter" data-level="3.5.3" data-path="rprog2.html"><a href="rprog2.html#add-or-change-columns"><i class="fa fa-check"></i><b>3.5.3</b> Add or change columns</a></li>
-<li class="chapter" data-level="3.5.4" data-path="rprog2.html"><a href="rprog2.html#base-r-equivalents-to-dplyr-functions"><i class="fa fa-check"></i><b>3.5.4</b> Base R equivalents to <code>dplyr</code> functions</a></li>
-<li class="chapter" data-level="3.5.5" data-path="rprog2.html"><a href="rprog2.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>3.5.5</b> Filtering to certain rows</a></li>
+<li class="chapter" data-level="3.5.4" data-path="rprog2.html"><a href="rprog2.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>3.5.4</b> Filtering to certain rows</a></li>
+<li class="chapter" data-level="3.5.5" data-path="rprog2.html"><a href="rprog2.html#base-r-equivalents-to-dplyr-functions"><i class="fa fa-check"></i><b>3.5.5</b> Base R equivalents to <code>dplyr</code> functions</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="rprog2.html"><a href="rprog2.html#merging-data-frames"><i class="fa fa-check"></i><b>3.6</b> Merging Data Frames</a>
 <ul>
@@ -778,17 +778,17 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 ##  $ entry_1: chr [1:4] &quot;Harry&quot; &quot;Ron&quot; &quot;Hermione&quot; &quot;Draco&quot;
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] &quot;chevrolet&quot; &quot;dodge&quot; &quot;audi&quot; &quot;honda&quot; ...
-##   ..$ model       : chr [1:7] &quot;corvette&quot; &quot;caravan 2wd&quot; &quot;a4&quot; &quot;civic&quot; ...
-##   ..$ displ       : num [1:7] 7 3.3 2.8 2 3.5 2.5 3.3
-##   ..$ year        : int [1:7] 2008 2008 1999 2008 2008 2008 1999
-##   ..$ cyl         : int [1:7] 8 6 6 4 6 4 6
-##   ..$ trans       : chr [1:7] &quot;manual(m6)&quot; &quot;auto(l4)&quot; &quot;manual(m5)&quot; &quot;manual(m6)&quot; ...
-##   ..$ drv         : chr [1:7] &quot;r&quot; &quot;f&quot; &quot;f&quot; &quot;f&quot; ...
-##   ..$ cty         : int [1:7] 15 17 18 21 19 19 15
-##   ..$ hwy         : int [1:7] 24 24 26 29 25 25 17
-##   ..$ fl          : chr [1:7] &quot;p&quot; &quot;r&quot; &quot;p&quot; &quot;p&quot; ...
-##   ..$ class       : chr [1:7] &quot;2seater&quot; &quot;minivan&quot; &quot;compact&quot; &quot;subcompact&quot; ...</code></pre>
+##   ..$ manufacturer: chr [1:7] &quot;volkswagen&quot; &quot;nissan&quot; &quot;chevrolet&quot; &quot;volkswagen&quot; ...
+##   ..$ model       : chr [1:7] &quot;jetta&quot; &quot;altima&quot; &quot;k1500 tahoe 4wd&quot; &quot;gti&quot; ...
+##   ..$ displ       : num [1:7] 2 2.4 5.3 2 3.8 5.3 4.2
+##   ..$ year        : int [1:7] 2008 1999 2008 1999 1999 2008 1999
+##   ..$ cyl         : int [1:7] 4 4 8 4 6 8 6
+##   ..$ trans       : chr [1:7] &quot;manual(m6)&quot; &quot;auto(l4)&quot; &quot;auto(l4)&quot; &quot;manual(m5)&quot; ...
+##   ..$ drv         : chr [1:7] &quot;f&quot; &quot;f&quot; &quot;4&quot; &quot;f&quot; ...
+##   ..$ cty         : int [1:7] 21 19 11 21 15 14 14
+##   ..$ hwy         : int [1:7] 29 27 14 29 21 20 17
+##   ..$ fl          : chr [1:7] &quot;p&quot; &quot;r&quot; &quot;e&quot; &quot;r&quot; ...
+##   ..$ class       : chr [1:7] &quot;compact&quot; &quot;compact&quot; &quot;suv&quot; &quot;compact&quot; ...</code></pre>
 <p>Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, <code>[ ]</code>, a list element is returned.</p>
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="rprog4.html#cb304-1" tabindex="-1"></a>my.list[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## $entry_1

@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens"
-date: "2024-08-19"
+date: "2024-08-30"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
@@ -150,7 +150,7 @@ might not know what this means yet)
 versions and update the R packages with the following code:
 
 
-```r
+``` r
 # if you've previously installed R and RStudio, also update your R packages 
 update.packages(ask = FALSE, checkBuilt = TRUE)
 ```
@@ -161,7 +161,7 @@ Console, if you have never installed LaTex. More installation guidance can be fo
 [here](https://bookdown.org/yihui/rmarkdown/installation.html){target="_blank"}. 
 
 
-```r
+``` r
 # install R package
 install.packages("tinytex")
 # install LaTex "ingredients"
@@ -181,7 +181,7 @@ this process is easier, as R now uses
 3. [Introduce](https://happygitwithr.com/hello-git.html){target="_blank"} yourself to Git in RStudio with the following code in the Console. Provide your given name, not your user name, and the email address you used in creating your GitHub account. These commands return nothing, but you can check that it worked with `git config --global --list` in the [shell](https://happygitwithr.com/shell.html){target="_blank"}. 
 
 
-```r
+``` r
 # install `usethis` R package if needed (do this exactly once):
 ## install.packages("usethis")
 

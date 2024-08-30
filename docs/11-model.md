@@ -175,7 +175,7 @@ $$\sqrt{mass} \sim Circumference$$
 Let's transform $mass \rightarrow \sqrt{mass}$ and then examine the two scatterplots side by side.
 
 
-```r
+``` r
 p1 <- ggplot(data = data_18) +
   geom_point(aes(x = waist, y = mass),
              alpha = 0.1,
@@ -205,7 +205,7 @@ Looking at the right plot in Figure \@ref(fig:model-compare), where $\sqrt(mass)
 The NHANES data we use here is from 2017-2018 (saved as `bodysize.csv` and read into a data frame labeled: `data_18`). These data have been filtered to include adults only (`filter(age > 18)`).  The first few lines of data look like this:
 
 
-```r
+``` r
 head(data_18)
 ```
 
@@ -225,7 +225,7 @@ head(data_18)
 The `lm()` function in R stands for *"linear model"* and will perform an OLS fit on any linear model you specify. The function requires two arguments: a `formula` (i.e., the model specification) and the `data` with which to fit that model. Formulas are specified as `y ~ x`, so our call to `lm()` looks like this for each model:
 
 
-```r
+``` r
 model1 <- lm(mass ~ waist, data = data_18)
 
 model2 <- lm(sqrt_mass ~ waist, data = data_18)
@@ -247,7 +247,7 @@ These are the primary outputs of the OLS fit; they define the line of "best fit"
 To examine the overall fit of the model, we can call the `summary()` function with the model object as an argument.  Here is the summary for `model1`:
 
 
-```r
+``` r
 summary(model1)
 ```
 
@@ -275,7 +275,7 @@ summary(model1)
 and here is the summary for `model2`:
 
 
-```r
+``` r
 summary(model2)
 ```
 
@@ -316,7 +316,7 @@ We can overlay the model fits onto our scatter plots in many ways:
 - Option 3: And yet a third way would be to use `ggplot::stat_function()` where we explicitly specify the model its coefficients as a linear function in R. You can learn more about each of these approaches in the help section or by typing `?stat_function` into the Console.
 
 
-```r
+``` r
 # note how we can add layers to existing ggplot objects
 p1.2 <- p1 + 
   geom_smooth(data = data_18,
@@ -355,7 +355,7 @@ In this section, we will run through our list of [OLS assumptions](#OLS_assum) f
   We can calculate this from our two model objects.
   
 
-```r
+``` r
 mean(model1$residuals)
 ```
 
@@ -363,7 +363,7 @@ mean(model1$residuals)
 ## [1] -1.338704e-17
 ```
 
-```r
+``` r
 mean(model2$residuals)
 ```
 
@@ -378,7 +378,7 @@ This assumption can be checked several ways, but my preference is to create a Q-
 Here are the Q-Q plots for `model1` and `model2`.
 
 
-```r
+``` r
 p3 <- ggplot(data  = model1$model, aes(sample = model1$residuals)) +
   geom_qq(alpha = 0.1,
           color = "maroon4") +
@@ -407,7 +407,7 @@ Both models reasonable follow the expected quantile plots, although `model1` sho
 To evaluate this assumption, we create a [scatterplot](#scatt) of residuals vs. the fitted values, $\hat{Y_{i}}$.  Both of these data are contained in the model output lists.
 
 
-```r
+``` r
 p5 <- ggplot(data = model1$model) + 
   geom_point(aes(x = model1$fitted.values, y =model1$residuals),
              alpha = 0.25,
@@ -438,7 +438,7 @@ Looking at these plots, the residuals don't show major changes across the range 
 This assumption is evaluated by making a [partial autocorrelation plot](#autocorr) of your residuals. We will accomplish these plots using `pacf()` function from the `{stats}` package.
 
 
-```r
+``` r
 stats::pacf(model1$residuals, 
             main = "Model 1 Partial Autocorrelation Plot")
 ```
@@ -448,7 +448,7 @@ stats::pacf(model1$residuals,
 <p class="caption">(\#fig:resid-autocorr-1)Partial autocorrelation plots of residuals.</p>
 </div>
 
-```r
+``` r
 stats::pacf(model2$residuals, 
             main = "Model 2 Partial Autocorrelation Plot")
 ```
@@ -463,7 +463,7 @@ Neither plot shows a *strong* degree of autocorrelation, though both plots sugge
 This assumption can be evaluated through a correlation analysis. The `cor()` function from the `{stats}` package allows you to calculate correlation coefficients (e.g., Pearson, Spearman) among variables in a data frame. If you supply a data frame as an argument to `cor()` it will calculate correlations among all possible variable combinations.  Otherwise, you can supply it with two vectors: `x = ` and `y = `.
 
 
-```r
+``` r
 cor(x = model1$residuals, 
     y = model1$model[,2],
     method = "pearson" )
@@ -473,7 +473,7 @@ cor(x = model1$residuals,
 ## [1] 9.023795e-18
 ```
 
-```r
+``` r
 cor(x = model2$residuals, 
     y = model1$model[,2],
     method = "pearson" )
@@ -563,7 +563,7 @@ haziness of the sky).  We often experience high levels of AOD in Colorado when
 smoke from wildfires shows up (and that happens more often each year).
 
 
-```r
+``` r
 cal_data <- read_csv(file = "./data/cal_aod.csv", col_names = TRUE)
 
 head(cal_data)
@@ -584,7 +584,7 @@ head(cal_data)
 Closer examination of the data indicates that we have two instruments (`amod` and `aeronet`) that are measuring the same quantity: *aerosol optical depth*.  Thus, we have the same type of observation being reported in two different columns.  This means we need to tidy this data frame!
 
 
-```r
+``` r
 tidy_cal <- cal_data %>%
   pivot_longer(cols = c("amod", "aeronet"), 
                names_to = "instrument", 
@@ -616,7 +616,7 @@ Before we begin our calibration, let's examine the data using EDA techniques. We
 Let's fit a linear model between `aeronet` AOD as the independent variable and `amod` AOD as the dependent variable.  Note that while we decided to `tidy` the data frame for making our EDA plots, we may not want tidy data for our calibration fit. That's because, with calibration, we are treating the two AOD instruments as separate variables (i.e., `x` and `y`). Thus, we will call upon the non-tidy `cal_data` to specify a `y ~ x` formula in the `lm()` function below. And once we fit the model, we create a `summary()` object to examine fit statistics, coefficients, and confidence intervals.
 
 
-```r
+``` r
 aod.fit <- lm(amod ~ aeronet, data = cal_data)
 
 aod.summary <- summary(aod.fit)
@@ -648,7 +648,7 @@ aod.summary
 The fit itself can be visualized using `ggplot2::geom_smooth()` with an argument of `method = "lm"`. Note also, that we can also add fit statistics to the plot by indexing list entries from the `aod.summary` list within a call to `ggplot2::annotate("text")`. This is useful because, if you change your model/fit, your text results will automatically update within the figure.
 
 
-```r
+``` r
 ggplot(data = cal_data,
        aes(x = aeronet, y = amod)) +
   geom_smooth(formula = y ~ x,

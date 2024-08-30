@@ -151,14 +151,14 @@ you could either use `read_table()` with a `delim` argument specified or use
 `read_csv()`, in which case you don't have to specify `delim`:
 
 
-```r
+``` r
 library(package = "readr")
 # The following two calls do the same thing
 ebola <- readr::read_delim(file = "data/country_timeseries.csv", delim = ",")
 ```
 
 
-```r
+``` r
 ebola <- readr::read_csv(file = "data/country_timeseries.csv")
 ```
 
@@ -371,7 +371,7 @@ running the command `getwd()` (short for "get working directory"). For example,
 my R session is currently running in the following directory:
 
 
-```r
+``` r
 getwd()
 ```
 
@@ -435,7 +435,7 @@ talking about. Here's the code to use to read that file in using the
 `read.csv()` function with the file's absolute pathname:
 
 
-```r
+``` r
 daily_show <- readr::read_csv(file = "/Users/johnvolckens/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv", skip = 4)
 ```
 
@@ -462,7 +462,7 @@ You can use this relative pathname to tell R where to find and read in the
 file:
 
 
-```r
+``` r
 daily_show <- readr::read_csv("data/daily_show_guests.csv")
 ```
 
@@ -565,7 +565,7 @@ the different things you want to paste together using with commas in the
 function call. For example:
 
 
-```r
+``` r
 paste("Sunday", "Monday", "Tuesday")
 ```
 
@@ -573,7 +573,7 @@ paste("Sunday", "Monday", "Tuesday")
 ## [1] "Sunday Monday Tuesday"
 ```
 
-```r
+``` r
 length(x = c("Sunday", "Monday", "Tuesday"))
 ```
 
@@ -581,7 +581,7 @@ length(x = c("Sunday", "Monday", "Tuesday"))
 ## [1] 3
 ```
 
-```r
+``` r
 length(x = paste("Sunday", "Monday", "Tuesday"))
 ```
 
@@ -597,7 +597,7 @@ you want. For example, if you wanted to paste all the values together without
 spaces, you could use `sep = ""`:
 
 
-```r
+``` r
 paste("Sunday", "Monday", "Tuesday", sep = "")
 ```
 
@@ -611,7 +611,7 @@ same thing using the `paste0` function. This function is almost exactly like
 values by default:
 
 
-```r
+``` r
 paste0("Sunday", "Monday", "Tuesday")
 ```
 
@@ -652,7 +652,7 @@ For example, to read in data from this
 [GitHub repository of Ebola data](https://raw.githubusercontent.com/cmrivers/ebola/master/country_timeseries.csv){target="_blank"}, you can run:
 
 
-```r
+``` r
 url <- paste0("https://raw.githubusercontent.com/cmrivers/",
               "ebola/master/country_timeseries.csv")
 ebola <- readr::read_csv(file = url)
@@ -691,7 +691,7 @@ load the `dplyr` package. Install it using `install.packages()` if you have not
 done so already.
 
 
-```r
+``` r
 library("dplyr")
 daily_show <- readr::read_csv(file = "data/daily_show_guests.csv", skip = 4)
 ```
@@ -700,7 +700,7 @@ I've used this data in previous examples, but as a reminder, here's what it
 looks like: 
 
 
-```r
+``` r
 head(x = daily_show)
 ```
 
@@ -730,7 +730,7 @@ function, with the dataframe object as the argument. Several of the column
 names in `daily_show` have some of these issues:
 
 
-```r
+``` r
 colnames(x = daily_show)
 ```
 
@@ -743,7 +743,7 @@ colnames(x = daily_show)
 To rename these columns, use `rename()`. The basic syntax is:
 
 
-```r
+``` r
 ## generic code; will not run
 dplyr::rename(.data = dataframe,
               new_column_name_1 = old_column_name_1,
@@ -756,7 +756,7 @@ of the columns you want to rename. To rename columns in the `daily_show` data
 using `rename()`, for example, you would run:
 
 
-```r
+``` r
 daily_show <- dplyr::rename(.data = daily_show,
                             year = YEAR,
                             job = GoogleKnowlege_Occupation,
@@ -807,7 +807,7 @@ the `select()` function from `dplyr` to subset the dataframe to certain
 columns. The basic structure of this command is:
 
 
-```r
+``` r
 ## generic code; will not run
 dplyr::select(.data = dataframe, column_name_1, column_name_2, ...)
 ```
@@ -818,7 +818,7 @@ column name. For example, to select all columns in `daily_show` except `year`
 (since that information is already included in `date`), run:
 
 
-```r
+``` r
 dplyr::select(.data = daily_show, job, date, category, guest_name)
 ```
 
@@ -856,7 +856,7 @@ columns we want, we can use `-` with only the columns we don't want to
 save time (notice the object reassignment/override):
 
 
-```r
+``` r
 daily_show <- dplyr::select(.data = daily_show, -year)
 head(x = daily_show, n = 3)
 ```
@@ -876,7 +876,7 @@ You can change a column or add a new column using the `mutate()` function from
 the `dplyr` package. That function has the syntax:
 
 
-```r
+``` r
 # generic code; will not run
 dplyr::mutate(.data = dataframe,
               changed_column = function(changed_column),
@@ -888,7 +888,7 @@ sometimes does not. This call uses the `unique()` function to list only unique
 values in this column:
 
 
-```r
+``` r
 head(x = unique(x = daily_show$job), n = 10)
 ```
 
@@ -904,7 +904,7 @@ To make all the observations in the `job` column lowercase, use the
 function: 
 
 
-```r
+``` r
 library(package = "stringr")
 mutate(.data = daily_show, 
        job = str_to_lower(string = job))
@@ -930,27 +930,6 @@ mutate(.data = daily_show,
 We will take a deeper dive into strings and the `stringr` package 
 [later on](#rprog3).
 
-### Base R equivalents to `dplyr` functions
-
-Just so you know, all of these `dplyr` functions have alternatives, either
-functions or processes, in base R:
-
-
-|`dplyr`    |Base R equivalent                   |
-|:----------|:-----------------------------------|
-|`rename()` |Reassign `colnames()`               |
-|`select()` |Square bracket indexing             |
-|`filter()` |`subset()`                          |
-|`mutate()` |Use `$` to change or create columns |
-|`slice()`  |`subset()` with logical expression  |
-
-You will see these alternatives used in older code examples. Some of these
-functions have variants specific to particular data wrangling needs. For
-example, under `slice()`, there are others such as `slice_max()` and
-`slice_min()`, which extract the top and bottom values, respectively, from a
-dataset based on user input in the required arguments, including `n` and
-`order_by`. 
-
 ### Filtering to certain rows
 
 Next, you might want to filter the dataset to certain rows. For example, you
@@ -961,7 +940,7 @@ You can use the `filter()` function from `dplyr` to filter a dataframe down to
 a subset of rows. The syntax is:
 
 
-```r
+``` r
 ## generic code; will not run
 filter(.data = dataframe, logical expression)
 ```
@@ -971,7 +950,7 @@ to be included in the output data frame. For example, if you want to create a
 data frame that only includes guests who were scientists, you can run:
 
 
-```r
+``` r
 scientists <- filter(.data = daily_show, 
                      category == "Science")
 head(x = scientists)
@@ -1012,6 +991,27 @@ equal; and (2) Using <code>== NA</code> instead of <code>is.na</code> to
 check for missing observations.</p>
 </div>
 
+### Base R equivalents to `dplyr` functions
+
+Just so you know, all of these `dplyr` functions have alternatives, either
+functions or processes, in base R:
+
+
+|`dplyr`    |Base R equivalent                   |
+|:----------|:-----------------------------------|
+|`rename()` |Reassign `colnames()`               |
+|`select()` |Square bracket indexing             |
+|`filter()` |`subset()`                          |
+|`mutate()` |Use `$` to change or create columns |
+|`slice()`  |`subset()` with logical expression  |
+
+You will see these alternatives used in older code examples. Some of these
+functions have variants specific to particular data wrangling needs. For
+example, under `slice()`, there are others such as `slice_max()` and
+`slice_min()`, which extract the top and bottom values, respectively, from a
+dataset based on user input in the required arguments, including `n` and
+`order_by`. 
+
 ## Merging Data Frames
 
 Many data analysis exercises will require you to combine data from different sources into a single object.  Thus, it's worthwhile to understand how R can be used to merge together two or more data frames.
@@ -1035,7 +1035,7 @@ Note that if the `x` and `y` data frames have column variables that are *not sha
 Data frames can also be merged when row observations are shared, such that you end up merging column variables together from two objects. In this case, we would **join** the two data frames using a function like `dplyr::left_join()`. To do this, we must specify one or more variables that can uniquely identify row observations that are common between the two data frames.  Once the rows are "lined up", we can paste the new column variables into a combined data frame. This is shown schematically in Figure \@ref(fig:left-join) where the matching rows are specified using the argument `by = var_a` within the join function. 
 
 
-```r
+``` r
 # generic code for example; will not run
 new.dataframe <- left_join(x, y, by = var_a)
 ```
@@ -1068,7 +1068,7 @@ If you look at the format of these `dplyr` functions, you'll notice that they
 all take a dataframe as their first argument:
 
 
-```r
+``` r
 # generic code; will not run
 rename(.data = dataframe, 
        new_column_name_1 = old_column_name_1,
@@ -1086,7 +1086,7 @@ Without piping, you have to reassign the dataframe object at each step of this
 cleaning if you want the changes saved in the object:
 
 
-```r
+``` r
 daily_show <-read_csv(file = "data/daily_show_guests.csv",
                       skip = 4)
 daily_show <- rename(.data = daily_show, 
@@ -1109,7 +1109,7 @@ right-hand-side (immediately after the pipe). With piping, therefore, all of the
 data cleaning steps shown avove would look like:
 
 
-```r
+``` r
 daily_show <- readr::read_csv(file = "data/daily_show_guests.csv",
                               skip = 4) %>%
   dplyr::rename(job = GoogleKnowlege_Occupation,
@@ -1283,7 +1283,7 @@ the dataframe/tibble object. Examine the output. Make a commit.
 small, regular commits and intermittent pushes in everything you do in R.
 
 
-```r
+``` r
 # 1. working directory
 getwd()
 
@@ -1356,7 +1356,7 @@ conventions.
 6. **Challenge**: Generate a histogram of `sample_measurement`.
 
 
-```r
+``` r
 # 0. set-up
 ## rerun code from the first set of exercises
 

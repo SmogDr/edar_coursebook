@@ -225,7 +225,7 @@ R):
 In general, function calls in R take the following structure: 
 
 
-```r
+``` r
 # generic code (this won't run)
 function_name(formal_argument_1 = named_argument_1, 
               formal_argument_2 = named_argument_2,
@@ -244,7 +244,7 @@ result of running `print()` or `show()` on the object that is output by the
 function call. Here is an example of this structure: 
 
 
-```r
+``` r
 print(x = "Hello, world!")
 ```
 
@@ -267,7 +267,7 @@ you can use change the named argument value to print different messages with
 the `print()` function. Note that the formal argument never changes.
 
 
-```r
+``` r
 print(x = "Hello, world!")
 ```
 
@@ -275,7 +275,7 @@ print(x = "Hello, world!")
 ## [1] "Hello, world!"
 ```
 
-```r
+``` r
 print(x = "Hi, Fort Collins!")
 ```
 
@@ -287,12 +287,12 @@ Some functions do not require any arguments. For example, the `getRversion()`
 function will print out the version of R you are using.
 
 
-```r
+``` r
 getRversion()
 ```
 
 ```
-## [1] '4.4.0'
+## [1] '4.4.1'
 ```
 
 Some functions will accept multiple arguments. For example, the `print()`
@@ -300,7 +300,7 @@ function allows you to specify whether the output should include quotation
 marks, using the `quote` formal argument: 
 
 
-```r
+``` r
 print(x = "Hello world", quote = TRUE)
 ```
 
@@ -308,7 +308,7 @@ print(x = "Hello world", quote = TRUE)
 ## [1] "Hello world"
 ```
 
-```r
+``` r
 print(x = "Hello world", quote = FALSE)
 ```
 
@@ -324,7 +324,7 @@ call the function, R will respond with an error. For example, `x` is a
 function without it, you'll get an error: 
 
 
-```r
+``` r
 print()
 ```
 
@@ -343,7 +343,7 @@ it should use `quote = TRUE`. That's why the following two calls give the same
 result: 
 
 
-```r
+``` r
 print(x = "Hello, world!", quote = TRUE)
 ```
 
@@ -351,7 +351,7 @@ print(x = "Hello, world!", quote = TRUE)
 ## [1] "Hello, world!"
 ```
 
-```r
+``` r
 print(x = "Hello, world!")
 ```
 
@@ -372,7 +372,7 @@ you calculate the mean (average) of a group of numbers. To find out more about
 this function, at the console type:
 
 
-```r
+``` r
 ?mean
 ```
 
@@ -392,7 +392,7 @@ function name, they usually go *between* two arguments. One common example is
 the `+` operator:
 
 
-```r
+``` r
 2 + 3
 ```
 
@@ -428,7 +428,7 @@ you've created on the right hand side of the `<-` and saves it as an object
 with the name you put on the left hand side of the `<-`:
 
 
-```r
+``` r
 # generic code-- this will not work
 [object name] <- [object]
 ```
@@ -437,7 +437,7 @@ For example, if I just type `"Hello, world!"`, R will print it back to me, but
 it won't save it anywhere for me to use later:
 
 
-```r
+``` r
 "Hello, world!"
 ```
 
@@ -452,7 +452,7 @@ this object using the name `message`, for example in a function call to the
 `print()` function:
 
 
-```r
+``` r
 message <- "Hello, world!"
 print(x = message)
 ```
@@ -479,7 +479,7 @@ Here are examples of these strategies:
 1. Enter the object's name at the prompt and press return:
 
 
-```r
+``` r
 message
 ```
 
@@ -490,7 +490,7 @@ message
 2. Call the `ls()` function:
 
 
-```r
+``` r
 ls()
 ```
 
@@ -532,7 +532,7 @@ you'll get an error. For example, all of these expressions will give you an
 error:
 
 
-```r
+``` r
 1message <- "Hello world"
 _message <- "Hello world"
 message! <- "Hello world"
@@ -582,7 +582,7 @@ to do it is to assign the output from the first function call to a name and
 then use that name for the next call. For example:
 
 
-```r
+``` r
 message <- paste("Hello", "world")
 print(x = message)
 ```
@@ -596,7 +596,7 @@ objects can be overwritten by assigning new content to the same object name.
 For example: 
 
 
-```r
+``` r
 a <- 1:10
 b <- LETTERS [1:3]
 a
@@ -606,7 +606,7 @@ a
 ##  [1]  1  2  3  4  5  6  7  8  9 10
 ```
 
-```r
+``` r
 b
 ```
 
@@ -614,7 +614,7 @@ b
 ## [1] "A" "B" "C"
 ```
 
-```r
+``` r
 a <- b
 a
 ```
@@ -627,7 +627,7 @@ To create an R expression you can "nest" one function call inside another
 function call. For example:
 
 
-```r
+``` r
 print(x = paste("Hello", "world"))
 ```
 
@@ -691,7 +691,7 @@ example, to run all of the code in a file named "MyFile.R" that is saved in
 your current working directory, run:
 
 
-```r
+``` r
 source("MyFile.R")
 ```
 
@@ -727,7 +727,7 @@ you're doing in that line of the code. R will skip any part of the code from
 the hash symbol on. For example:
 
 
-```r
+``` r
 "Print this" # But not this, it's a comment.
 ```
 
@@ -806,7 +806,7 @@ CRAN, you can install the package to your computer using the
 `install.packages()` function:
 
 
-```r
+``` r
 install.packages(pkgs = "phonenumber")
 ```
 
@@ -832,7 +832,7 @@ You can load a package in an R session using the `library()` function, with the
 package name inside the parentheses.
 
 
-```r
+``` r
 library(package = "phonenumber")
 ```
 
@@ -852,7 +852,7 @@ use this function, you will get an error. Once you've loaded `phonenumber`
 using the `library()` function, you can use this function in your R session:
 
 
-```r
+``` r
 fedex_number <- "GoFedEx"
 letterToNumber(value = fedex_number)
 ```
@@ -883,7 +883,7 @@ if it implements a nonstandard algorithm or method. You can use the
 package:
 
 
-```r
+``` r
 citation(package = "phonenumber")
 ```
 
@@ -933,7 +933,7 @@ To determine which vignettes are available for a package, you can use the
 option:
 
 
-```r
+``` r
 vignette(package = "phonenumber")
 ```
 
@@ -944,7 +944,7 @@ Once you know the name of the vignette you would like to open, you can also use
 `vignette()` to open it:
 
 
-```r
+``` r
 vignette(topic = "phonenumber")
 ```
 
@@ -952,7 +952,7 @@ To access the helpfile for any function within a package you've loaded, you can
 use `?` followed by the function's name, but note the lack of `()`:
 
 
-```r
+``` r
 ?letterToNumber
 ```
 
@@ -1012,7 +1012,7 @@ create the vector shown in Figure \@ref(fig:vector-example), you
 can run:
 
 
-```r
+``` r
 c("Katniss", "Peeta", "Rue")
 ```
 
@@ -1024,7 +1024,7 @@ If you want to use that object later, you can assign it an object name in the
 expression: 
 
 
-```r
+``` r
 main_characters <- c("Katniss", "Peeta", "Rue")
 print(x = main_characters)
 ```
@@ -1046,7 +1046,7 @@ If you create a numeric vector, you should not put the values in quotation
 marks:
 
 
-```r
+``` r
 district <- c(12, 12, 11)
 ```
 
@@ -1054,7 +1054,7 @@ If you mix classes when you create the vector, R will coerce all the elements
 to most generic class of the included elements:
 
 
-```r
+``` r
 mixed_classes <- c(1, 3, "five")
 mixed_classes
 ```
@@ -1068,7 +1068,7 @@ were put in a vector with a value with the character data type. You can use the
 `class()` function to determine the class of an object: 
 
 
-```r
+``` r
 class(x = mixed_classes)
 ```
 
@@ -1080,7 +1080,7 @@ A vector's *length* is the number of elements in the vector. You can use the
 `length()` function to determine a vector's length:
 
 
-```r
+``` r
 length(x = mixed_classes)
 ```
 
@@ -1096,7 +1096,7 @@ locations of the element you want to extract. For example, to extract the
 second element of the `main_characters` vector, you can run:
 
 
-```r
+``` r
 main_characters[2] # Get the second value
 ```
 
@@ -1110,7 +1110,7 @@ and pass that in the square brackets. For example, to extract the first and
 third elements of the `main_characters` vector, you can run:
 
 
-```r
+``` r
 main_characters[c(1, 3)] # Get first and third values
 ```
 
@@ -1124,7 +1124,7 @@ value after `:`, going by units of 1. For example, if you want to create a list
 of the numbers between 1 and 10, you can run: 
 
 
-```r
+``` r
 1:10
 ```
 
@@ -1136,7 +1136,7 @@ If you want to extract the first two values from the `main_characters` vector,
 you can use the `:` operator: 
 
 
-```r
+``` r
 main_characters[1:2] # Get the first two values
 ```
 
@@ -1233,7 +1233,7 @@ To create a dataframe, you can use the `tibble()` function from the `tibble`
 package. The general format for using `tibble()` is:
 
 
-```r
+``` r
 ## generic code; will not run
 [name of object] <- tibble([1st column name] = [1st column content],
                            [2nd column name] = [2nd column content])
@@ -1244,7 +1244,7 @@ and commas between each of the columns. Here is an example of the code used to
 create the *Hunger Games* `tibble` dataframe shown above:
 
 
-```r
+``` r
 library(package = "tibble")
 hg_data <- tibble(first_name = c("Katniss", "Peeta", "Rue"),
                   district = c(12, 12, 11),
@@ -1265,7 +1265,7 @@ You can also create a dataframe by sticking together vectors you already have
 saved as R objects. For example:
 
 
-```r
+``` r
 hg_data <- tibble(first_name = main_characters,
                   district = district,
                   survived = c(TRUE, TRUE, FALSE))
@@ -1307,7 +1307,7 @@ code:
 
 
 
-```r
+``` r
 library(package = "readr")
 daily_show <- read_csv(file = "daily_show_guests.csv",
                        skip = 4)
@@ -1322,7 +1322,7 @@ You can use the functions `dim()`, `nrow()`, and `ncol()` to figure out the
 dimensions (i.e., number of rows and columns) of a dataframe:
 
 
-```r
+``` r
 dim(x = daily_show)
 ```
 
@@ -1330,7 +1330,7 @@ dim(x = daily_show)
 ## [1] 2693    5
 ```
 
-```r
+``` r
 nrow(x = daily_show)
 ```
 
@@ -1338,7 +1338,7 @@ nrow(x = daily_show)
 ## [1] 2693
 ```
 
-```r
+``` r
 ncol(x = daily_show)
 ```
 
@@ -1355,7 +1355,7 @@ For example, you can explore the data we just pulled in on the *Daily Show*
 with: 
 
 
-```r
+``` r
 str(object = daily_show)
 ```
 
@@ -1377,7 +1377,7 @@ str(object = daily_show)
 ##  - attr(*, "problems")=<externalptr>
 ```
 
-```r
+``` r
 summary(object = daily_show)
 ```
 
@@ -1406,7 +1406,7 @@ their *position* (i.e., based on row or column number). For example, if you
 wanted to get the first two rows of the `hg_data` dataframe, you could run:
 
 
-```r
+``` r
 library(package = "dplyr")
 slice(.data = hg_data, c(1:2))
 ```
@@ -1422,7 +1422,7 @@ slice(.data = hg_data, c(1:2))
 If you wanted to get the first and third columns, you could run: 
 
 
-```r
+``` r
 select(.data = hg_data, c(1, 3))
 ```
 
@@ -1439,7 +1439,7 @@ You can compose calls from both functions. For example, you could extract the
 values in the first and third columns of the first two rows with: 
 
 
-```r
+``` r
 select(.data = slice(.data = hg_data, c(1:2)), c(1, 3))
 ```
 
@@ -1458,7 +1458,7 @@ leave the corresponding spot blank. Here are two examples of using
 square-bracket indexing to pull a subset of the `hg_data` dataframe:
 
 
-```r
+``` r
 hg_data[1:2, 2] # First two rows, second column
 ```
 
@@ -1470,7 +1470,7 @@ hg_data[1:2, 2] # First two rows, second column
 ## 2       12
 ```
 
-```r
+``` r
 hg_data[3, ] # Last row, all columns
 ```
 
@@ -1506,7 +1506,7 @@ working with dataframes.</p>
 0. Working directory
 
 
-```r
+``` r
 # confirm working directory is in high-level folder of R project
 base::getwd()
 ```
@@ -1514,7 +1514,7 @@ base::getwd()
 1. Session information 
 
 
-```r
+``` r
 # identify R version and base R packages
 utils::sessionInfo()
 ```
@@ -1522,7 +1522,7 @@ utils::sessionInfo()
 2. Helpfiles
 
 
-```r
+``` r
 # call main helpfile for whole base R package
 ?stats
 # use function from Details section to call list of functions
@@ -1534,7 +1534,7 @@ base::library(help = "stats")
 3. Object assignment
 
 
-```r
+``` r
 # load and view mtcars data
 mtcars
 # assign data as object in environment
@@ -1564,7 +1564,7 @@ numeric.
 4. Data wrangling
 
 
-```r
+``` r
 # install.packages("dplyr") if needed in the console
 # load `dplyr`, saving the command in your R script
 library(dplyr)

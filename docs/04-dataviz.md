@@ -29,7 +29,7 @@ If you don't already have `ggplot2` installed, you'll need to install it. You
 then need to load the package in your current session of R:
 
 
-```r
+``` r
 # install ggplot2 package (done once per R/RStudio installation)
 install.packages("ggplot2")  
 # load ggplot2 in current R session
@@ -74,7 +74,7 @@ Outside of a pipeline, you can use the following conventions to initialize a
 `ggplot2` object:
 
 
-```r
+``` r
 ## generic code; will not run
 object <- ggplot(data = my_dataframe, aes(x = data_column_1, y = data_column_2))
 ```
@@ -114,7 +114,7 @@ According to `?mpg`:
 > "This dataset contains a subset of the fuel economy data that the EPA makes available on [http://fueleconomy.gov](http://fueleconomy.gov){target="_blank"}. It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car."
 
 
-```r
+``` r
 # use ggplot() to map the data and a single aesthetic (variable = class)
 ggplot(data = mpg, aes(x = class)) + 
   geom_bar() # call to a specific geom to plot the mapped data
@@ -133,7 +133,7 @@ with colors pertaining to `drv` (i.e., to show the counts within each vehicle
 class colored colored by `drv`).
 
 
-```r
+``` r
 # call to ggplot to map the data and a single aesthetic
 ggplot(data = mpg, aes(x = class, fill = drv)) +
   geom_bar()  # call to a specific geom to plot the mapped data
@@ -219,7 +219,7 @@ the same (identical) plot as shown in Figure \@ref(fig:mpg-fill). Try it for
 yourself.
 
 
-```r
+``` r
 # call to ggplot() with aes() specified in main call
 ggplot(data = mpg, aes(x = class, fill = drv)) +
 geom_bar()
@@ -253,7 +253,7 @@ example, see what happens when two different `fill` mappings are specified at
 different points in the call:
 
 
-```r
+``` r
 # call to ggplot where one `fill` overrides another
 ggplot(data = mpg, aes(x = class, fill = drv)) +
   geom_bar(fill = "darkgreen")
@@ -343,7 +343,7 @@ could type `unique(mpg$class)` or, if you want to see a quantitative summary,
 you could pipe together the following:
 
 
-```r
+``` r
 # quantitative summary in pipe
 mpg %>% 
   dplyr::filter(year == 2008) %>%
@@ -366,7 +366,7 @@ mpg %>%
 ```
 
 
-```r
+``` r
 # alternative
 mpg %>% 
   dplyr::filter(year == 2008) %>% 
@@ -374,7 +374,7 @@ mpg %>%
 ```
 
 
-```r
+``` r
 # load required R packages
 library(dplyr) # for data wrangling and manipulation
 library(ggplot2) # for data visualization
@@ -445,7 +445,7 @@ Finally, we clean up the plot by:
   `theme_minimal()`.
 
 
-```r
+``` r
 # call to ggplot, note that data and aesthetics are called in first geom layer
 ggplot2::ggplot() +
   # first geom layer (jitter)
@@ -507,7 +507,7 @@ calls for `color = ` in each layer. The final part of the call in
 lines, which are neither necessary nor visually appealing.
 
 
-```r
+``` r
 # use dplyr to create a summary subset from the `mpg` dataframe
 mpg_subset <- mpg %>%
   dplyr::filter(class == "suv", year == 2008) %>%
@@ -562,7 +562,7 @@ Chapter 3 (i.e., meaningful words; lowercase; underscore as separator).
 **In the following example, `plot1` does not follow proper naming conventions!**
 
 
-```r
+``` r
 # create a ggplot object called "plot1"
 plot1 <- ggplot(data = mpg, aes(x = class)) +
   geom_bar()
@@ -581,7 +581,7 @@ specify parameters including image resolution (`dpi = 300`), image type
 (`device = png()`), and image `height`, `width` and `units` of measurement. 
 
 
-```r
+``` r
 # create a ggplot object called "plot1"
 plot1 <- ggplot(data = mpg, aes(x = class)) +
   geom_bar()

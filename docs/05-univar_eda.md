@@ -216,7 +216,7 @@ chosen. With that in mind, you can probably guess what the quartiles will look
 like, given a sufficiently large sample...
 
 
-```r
+``` r
 # "set seed" to generate the same results each time
 set.seed(1)
 # create uniform distribution
@@ -326,7 +326,7 @@ function. Note that the second half of the code chunk below shows how to
 calculate quantiles manually.  
 
 
-```r
+``` r
 # "set seed" to generate the same results each time
 set.seed(2) 
 # create normal distribution
@@ -340,7 +340,7 @@ quantile(norm_dist, probs = seq(0, 1, 0.1)) %>% round(0)
 ##    9   32   38   43   46   51   54   59   64   71   95
 ```
 
-```r
+``` r
 # manual method for calculating quantiles; start with norms_dist values
 norm_manual <- tibble::tibble(
   sample_data = norm_dist) %>%
@@ -415,7 +415,7 @@ temperature data that follow a normal distribution. For this plot, I calculated
 the `unit_quantiles` manually to show you how this can be done:  
 
 
-```r
+``` r
 # randomly sample two variables from normal distributions with `rnorm()`
 normal_data <- tibble::tibble(a = rnorm(n=1000, mean = 15, sd = 5),
                               b = rnorm(n=1000, mean = 10, sd = 3))
@@ -473,7 +473,7 @@ values on the plot.
 
 
 
-```r
+``` r
 # create cumulative fractions 
 ordered_salaries <- raw_salaries %>%
   dplyr::select(salary) %>%
@@ -485,7 +485,7 @@ ordered_salaries <- raw_salaries %>%
 ```
 
 
-```r
+``` r
 # alternate method if you don't want to calculate cumulative fractions
 ordered_salaries %>% 
   ggplot2::ggplot(mapping = aes(x = salary)) +
@@ -700,7 +700,7 @@ of the raw data. The ability to layer geoms is one of the many strengths of the
 `ggplot2` package.
 
 
-```r
+``` r
 ggplot(data = noaa_temp,
        mapping = aes(x = temp_hr_f, 
                      y = location, 
@@ -812,7 +812,7 @@ the y-axis represents the Pearson correlation coefficient and the x-axis
 represents time lags for the basic unit of time in which the data are arranged.
 
 
-```r
+``` r
 # subset data to contain only measures from Hawaii
 noaa_temp_hi <- noaa_temp %>% 
   dplyr::filter(location == "Hawaii")
@@ -848,7 +848,7 @@ accounting for autocorrelation for all previous lags.
 The partial autocorrelation plot can help you decide: *how far out in time should I go in order to assume that measurement (x~i~) is independent from (x~i+n~)?*
 
 
-```r
+``` r
 # create partial autocorrelation plot
 stats::pacf(noaa_temp_hi$temp_hr_f,
             main = " ",

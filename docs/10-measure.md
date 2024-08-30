@@ -180,7 +180,7 @@ Different authorities have varying opinions about the *best* way to quantify pre
 In the case of a temperature sensor, we might boil a large pot of water and repeatedly measure the temperature with a single probe (here in Fort Collins, Colorado, water boils at ~ 94 °C).  Those measurements are shown below:
 
 
-```r
+``` r
 temperatures <- tibble( data_seq = seq(from = 1,
                                        to = 25,
                                        by =1),
@@ -200,7 +200,7 @@ sd(temperatures$data_temp) %>% round(2)
 Let's create a 4-plot of those data to visualize basic characteristics.
 
 
-```r
+``` r
 p1 <- ggplot(data = temperatures) +
   geom_line(aes(x=data_seq, y=data_temp),
             color = "grey") +
@@ -257,7 +257,7 @@ Precision is often reported in relative terms, too, as a percentage about the lo
 The number of **significant figures** you report should always reflect what you believe to be the precision of your data. The danger here is that R, like most computer programs, will report many significant figures because it has no idea as to the context of the data.  See, for example:
 
 
-```r
+``` r
 sd(temperatures$data_temp)
 ```
 
@@ -324,7 +324,7 @@ $$U_{A+B+C} = \sqrt{\left({\sigma_{a}}\right)^2+\left(\sigma_{b}\right)^2+\left(
 For example, imagine that you are weighing three components that are intended to comprise an assembled part.  Each component $A, B, C$ has been repeatedly weighed 5 times. Thus, you can report a mean and standard deviation for each.
 
 
-```r
+``` r
 weights <- tibble(
   A = c(1200, 1250, 1210, 1180, 1200),
   B = c(220, 230, 220, 210, 230),

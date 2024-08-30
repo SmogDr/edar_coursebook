@@ -40,7 +40,7 @@ vectors; they often show up in data analysis in one of two ways:
   `class()` or `typeof()` functions.
     
 
-```r
+``` r
 # examples of vectorized string data
 names_respond <- c("Ahmed", 
                    "Josh", 
@@ -112,7 +112,7 @@ end with a specific function name. A full list of functions is provided
 1. **`str_detect()`** returns a vector of logical values (TRUE/FALSE) indicating whether the pattern was detected within each string searched. The function takes two arguments, the `string` to be searched and the `pattern` for which to search. Let's search for the pattern `"Josh"` in the character vector of strings, `names_respond`, that we created above:
   
 
-```r
+``` r
 stringr::str_detect(string = names_respond, 
                     pattern = "Josh")
 ```
@@ -129,7 +129,7 @@ the `str_detect()` search, we will get the cumulative number of matches to
 `"Josh"` from within our data.
 
 
-```r
+``` r
 stringr::str_detect(string = names_respond, 
            pattern = "Josh") %>%
   sum()
@@ -144,7 +144,7 @@ string data! For example, we can now calculate the proportion of `"Josh"`
 entries within our sample:
 
 
-```r
+``` r
 stringr::str_detect(string = names_respond, 
                     pattern = "Josh") %>%
   sum() / length(names_respond)
@@ -157,7 +157,7 @@ stringr::str_detect(string = names_respond,
 2. **`str_extract()`** takes the same arguments as `str_detect()` but returns a vector of the matched values (by string index). By "matched values", I mean only the portion of the string for which the search created a match.
 
 
-```r
+``` r
 stringr::str_extract(string = names_respond, 
                      pattern = "Jo")
 ```
@@ -169,7 +169,7 @@ stringr::str_extract(string = names_respond,
 3. **`str_subset()`** returns only the entries that were matched (i.e., if a match was detected, then the entire string that was matched is returned). If we subset our short list of names to the pattern of letters `"li"`, we get:
 
 
-```r
+``` r
 stringr::str_subset(string = names_respond, 
            pattern = "li")
 ```
@@ -269,7 +269,7 @@ is *not* included in the output.
 the form of a `list`.
   
 
-```r
+``` r
 stringr::str_split(string = names_respond, pattern = "t")
 ```
 
@@ -308,7 +308,7 @@ the `q1_responses` strings with a question mark.  Both `.` and `?` are
 back-slashes `\\`.
   
 
-```r
+``` r
 stringr::str_replace(string = q1_responses,
                      pattern = "\\.",
                      replacement = "\\?")
@@ -358,12 +358,12 @@ To see a date-time object, you can tell R to give you the current "System Time"
 by calling the `Sys.time()` function.
 
 
-```r
+``` r
 Sys.time()
 ```
 
 ```
-## [1] "2024-08-19 11:20:43 MDT"
+## [1] "2024-08-30 12:55:28 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -374,17 +374,17 @@ around `Sys.time()`, we will see the number of seconds that have occurred
 between the epoch of 1/1/1970 and right now:
 
 
-```r
+``` r
 unclass(Sys.time())
 ```
 
 ```
-## [1] 1724088043
+## [1] 1725044128
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 54.6704732 years.  
+365d/yr] => 54.7007905 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -392,7 +392,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2024-08-19 11:20:43.135457.
+format: 2024-08-30 12:55:28.003989.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -500,7 +500,7 @@ To discover the class of a vector (including a column in a dataframe---remember
 each column can be thought of as a vector), you can use `class()`:
 
 
-```r
+``` r
 class(Sys.time())
 ```
 
@@ -515,31 +515,31 @@ classes using `as.POSIXct` and `as.POSIXlt` functions and then examine their
 attributes.
 
 
-```r
+``` r
 time_now_ct <- as.POSIXct(Sys.time())
 unclass(time_now_ct)
 ```
 
 ```
-## [1] 1724088043
+## [1] 1725044128
 ```
 
 
-```r
+``` r
 time_now_lt <- as.POSIXlt(Sys.time())
 str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 ```
 
 ```
 ## List of 11
-##  $ sec   : num 43.2
-##  $ min   : int 20
-##  $ hour  : int 11
-##  $ mday  : int 19
+##  $ sec   : num 28.1
+##  $ min   : int 55
+##  $ hour  : int 12
+##  $ mday  : int 30
 ##  $ mon   : int 7
 ##  $ year  : int 124
-##  $ wday  : int 1
-##  $ yday  : int 231
+##  $ wday  : int 5
+##  $ yday  : int 242
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
@@ -642,7 +642,7 @@ with simplicity and ease; the `lubridate` parsing functions are designed as
 * If a character vector is written in "**d**ay-**m**onth-**y**ear" format (e.g., `"18-Dec-2020"`), then the `lubridate` function to convert that vector is `dmy()`.  Try it out:
 
 
-```r
+``` r
 # create a character vector
 date_old <- "2020-Dec-18"
 
@@ -654,7 +654,7 @@ class(date_old)
 ## [1] "character"
 ```
 
-```r
+``` r
 # convert it to a `Date` class with `ymd()`
 date_new <- lubridate::ymd(date_old)
 
@@ -671,7 +671,7 @@ happens when I feed the following set of wacky character vectors into that
 same `lubridate` parsing function, `ymd()`:
 
 
-```r
+``` r
 messy_dates <- c("2020------Dec the 12",
                  "20.-.12.-.12",
                  "2020aaa12aaa12",
@@ -754,7 +754,7 @@ To convert the `date` column in the `daily_show` data into a Date class, you can
 run:
 
 
-```r
+``` r
 library(package = "lubridate")
 
 # check the class of the 'date' column before mutating it
@@ -765,7 +765,7 @@ class(x = daily_show$date)
 ## [1] "character"
 ```
 
-```r
+``` r
 daily_show <- mutate(.data = daily_show,
                      date = mdy(date))
 head(x = daily_show, n = 3)
@@ -780,7 +780,7 @@ head(x = daily_show, n = 3)
 ## 3  1999 television actress 1999-01-13 Acting   Tracey Ullman
 ```
 
-```r
+``` r
 # check the class of the 'date' column after mutating it
 class(x = daily_show$date) 
 ```
@@ -794,7 +794,7 @@ date, calculate the range of dates, and calculate the total number of days the
 dataset covers:
 
 
-```r
+``` r
 # report the min and max dates
 range(daily_show$date)
 
@@ -806,7 +806,7 @@ We could have used these to transform the date in `daily_show`, using the
 following pipe chain: 
 
 
-```r
+``` r
 daily_show <- readr::read_csv(file = "data/daily_show_guests.csv",
                               skip = 4) %>%
   dplyr::rename(job = GoogleKnowlege_Occupation,
@@ -843,7 +843,7 @@ For example, we could use `wday()` to create a new column with the weekday of
 each show: 
 
 
-```r
+``` r
 daily_show %>% 
   dplyr::mutate(show_day = lubridate::wday(x = date,
                                            label = TRUE)) %>%
@@ -1036,7 +1036,7 @@ instruction.  In plain speak, the function reads:
 then replace that entry with a 2; else, if the vector contains a string that matches "Exam_3_Score", then replace that entry with a 3.
 
 
-```r
+``` r
 grades_untidy <- tibble::tibble(
   Name = c("Harry", "Ron", "Hermione"),
   Exam1_Score = c(85, 81, 95),
@@ -1139,7 +1139,7 @@ Create a pipeline that
 - retains all variables **except** `url`, `created_at`, and `bioguide_id`
 
 
-```r
+``` r
 # pipeline to import, filter, manipulate datetime vars, select vars 
 tweets_co <- readr::read_csv("data/senators.csv") %>% 
   dplyr::filter(state == "CO") %>% # filter to Colorado senators
@@ -1156,7 +1156,7 @@ tweets_co <- readr::read_csv("data/senators.csv") %>%
 1. Which Colorado senators are included in the data? 
 
 
-```r
+``` r
 # find unique strings within user variable
 # if you convert to factor, you can also find `levels()`
 unique(tweets_co$user) 
@@ -1169,7 +1169,7 @@ unique(tweets_co$user)
 2. Which Colorado Senator tweets the most?
 
 
-```r
+``` r
 # compare number of tweets by senator; remember to always ungroup grouped data!
 tweets_co %>% 
   dplyr::group_by(user) %>% 
@@ -1193,7 +1193,7 @@ that contains new time-date variables based on the (a) total time and (b) weeks
 since data collection started. 
 
 
-```r
+``` r
 # create new time-based variables
 tweets_co_wk <- tweets_co %>% 
   dplyr::mutate(time_since = as.duration(date - min(date)), # create duration variable, time since first datum
@@ -1204,7 +1204,7 @@ tweets_co_wk <- tweets_co %>%
 ```
 
 
-```r
+``` r
 # plot time series of tweets per week per senator since 2011
 ggplot2::ggplot(data = tweets_co_wk, 
        mapping = aes(x = week, y = n, color = user)) +
@@ -1221,7 +1221,7 @@ ggplot2::ggplot(data = tweets_co_wk,
 We arbitrarily selected "weekly number of tweets" by each senator and it's possible that tweet volume in a prior week correlate with tweet volume in a subsequent week (i.e., autocorrelation).  This calls for an autocorrelation plot! We'll create one for Senator Gardner.
 
 
-```r
+``` r
 # create a data frame with only Gardner's tweets
 tweets_gardner <- tweets_co_wk %>%
   filter(user == "SenCoryGardner")
@@ -1242,7 +1242,7 @@ U", "Rams", etc. You will need to use a few `dplyr` functions, one `lubridate`
 function, and one `stringr` function within the pipeline.
 
 
-```r
+``` r
 # determine number of csu-related tweets by senator per year
 tweets_co %>%
   dplyr::group_by(user, lubridate::year(date)) %>%
@@ -1272,7 +1272,7 @@ will need to use another `stringr` function. You can use the same text strings
 as before.
 
 
-```r
+``` r
 # extract csu-related tweet content
 stringr::str_subset(tweets_co$text, 
                     "CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu")
@@ -1307,7 +1307,7 @@ similar approach to Question 7, with strings related to CU, such as "Buffs" or
 "University of Colorado".
 
 
-```r
+``` r
 # number of cu-related tweets by senator per year
 tweets_co %>%
   dplyr::group_by(user, lubridate::year(date)) %>%

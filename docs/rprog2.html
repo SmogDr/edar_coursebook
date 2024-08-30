@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Getting and Cleaning Data | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Getting and Cleaning Data | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2024-08-19" />
+<meta name="date" content="2024-08-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -228,8 +228,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.1" data-path="rprog2.html"><a href="rprog2.html#renaming-columns"><i class="fa fa-check"></i><b>3.5.1</b> Renaming columns</a></li>
 <li class="chapter" data-level="3.5.2" data-path="rprog2.html"><a href="rprog2.html#selecting-columns"><i class="fa fa-check"></i><b>3.5.2</b> Selecting columns</a></li>
 <li class="chapter" data-level="3.5.3" data-path="rprog2.html"><a href="rprog2.html#add-or-change-columns"><i class="fa fa-check"></i><b>3.5.3</b> Add or change columns</a></li>
-<li class="chapter" data-level="3.5.4" data-path="rprog2.html"><a href="rprog2.html#base-r-equivalents-to-dplyr-functions"><i class="fa fa-check"></i><b>3.5.4</b> Base R equivalents to <code>dplyr</code> functions</a></li>
-<li class="chapter" data-level="3.5.5" data-path="rprog2.html"><a href="rprog2.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>3.5.5</b> Filtering to certain rows</a></li>
+<li class="chapter" data-level="3.5.4" data-path="rprog2.html"><a href="rprog2.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>3.5.4</b> Filtering to certain rows</a></li>
+<li class="chapter" data-level="3.5.5" data-path="rprog2.html"><a href="rprog2.html#base-r-equivalents-to-dplyr-functions"><i class="fa fa-check"></i><b>3.5.5</b> Base R equivalents to <code>dplyr</code> functions</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="rprog2.html"><a href="rprog2.html#merging-data-frames"><i class="fa fa-check"></i><b>3.6</b> Merging Data Frames</a>
 <ul>
@@ -1317,49 +1317,8 @@ function:</p>
 <p>We will take a deeper dive into strings and the <code>stringr</code> package
 <a href="rprog3.html#rprog3">later on</a>.</p>
 </div>
-<div id="base-r-equivalents-to-dplyr-functions" class="section level3 hasAnchor" number="3.5.4">
-<h3><span class="header-section-number">3.5.4</span> Base R equivalents to <code>dplyr</code> functions<a href="rprog2.html#base-r-equivalents-to-dplyr-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Just so you know, all of these <code>dplyr</code> functions have alternatives, either
-functions or processes, in base R:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left"><code>dplyr</code></th>
-<th align="left">Base R equivalent</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>rename()</code></td>
-<td align="left">Reassign <code>colnames()</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>select()</code></td>
-<td align="left">Square bracket indexing</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>filter()</code></td>
-<td align="left"><code>subset()</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>mutate()</code></td>
-<td align="left">Use <code>$</code> to change or create columns</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>slice()</code></td>
-<td align="left"><code>subset()</code> with logical expression</td>
-</tr>
-</tbody>
-</table>
-<p>You will see these alternatives used in older code examples. Some of these
-functions have variants specific to particular data wrangling needs. For
-example, under <code>slice()</code>, there are others such as <code>slice_max()</code> and
-<code>slice_min()</code>, which extract the top and bottom values, respectively, from a
-dataset based on user input in the required arguments, including <code>n</code> and
-<code>order_by</code>.</p>
-</div>
-<div id="filtering-to-certain-rows" class="section level3 hasAnchor" number="3.5.5">
-<h3><span class="header-section-number">3.5.5</span> Filtering to certain rows<a href="rprog2.html#filtering-to-certain-rows" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="filtering-to-certain-rows" class="section level3 hasAnchor" number="3.5.4">
+<h3><span class="header-section-number">3.5.4</span> Filtering to certain rows<a href="rprog2.html#filtering-to-certain-rows" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Next, you might want to filter the dataset to certain rows. For example, you
 might want to get a dataset with only the guests from 2015, or only guests who
 are scientists.</p>
@@ -1445,6 +1404,47 @@ equal; and (2) Using <code>== NA</code> instead of <code>is.na</code> to
 check for missing observations.
 </p>
 </div>
+</div>
+<div id="base-r-equivalents-to-dplyr-functions" class="section level3 hasAnchor" number="3.5.5">
+<h3><span class="header-section-number">3.5.5</span> Base R equivalents to <code>dplyr</code> functions<a href="rprog2.html#base-r-equivalents-to-dplyr-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Just so you know, all of these <code>dplyr</code> functions have alternatives, either
+functions or processes, in base R:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><code>dplyr</code></th>
+<th align="left">Base R equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>rename()</code></td>
+<td align="left">Reassign <code>colnames()</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>select()</code></td>
+<td align="left">Square bracket indexing</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>filter()</code></td>
+<td align="left"><code>subset()</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>mutate()</code></td>
+<td align="left">Use <code>$</code> to change or create columns</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>slice()</code></td>
+<td align="left"><code>subset()</code> with logical expression</td>
+</tr>
+</tbody>
+</table>
+<p>You will see these alternatives used in older code examples. Some of these
+functions have variants specific to particular data wrangling needs. For
+example, under <code>slice()</code>, there are others such as <code>slice_max()</code> and
+<code>slice_min()</code>, which extract the top and bottom values, respectively, from a
+dataset based on user input in the required arguments, including <code>n</code> and
+<code>order_by</code>.</p>
 </div>
 </div>
 <div id="merging-data-frames" class="section level2 hasAnchor" number="3.6">

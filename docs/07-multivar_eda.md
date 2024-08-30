@@ -186,7 +186,7 @@ these data (`mpg` vs. `wt`) and fit a linear model through the data. (Note: we
 haven't discussed modeling yet but more on that [later](#model)).
 
 
-```r
+``` r
 # fit a linear model; the ~ means we are modeling mpg as "y" and wt as "x"
 g1_model <- lm(mpg ~ wt, data = mtcars)
 # create a plot, assign it to an object named `g1`
@@ -230,7 +230,7 @@ In this case, seeing the plots in columns seems fine, so we would add
 `facet_grid(cols = vars(cyl)` to the `ggplot` object `g1` as follows:
 
 
-```r
+``` r
 # facet previous plot by `cyl` columns and retain labels
 g1 + facet_grid(cols = vars(cyl),
                 labeller = label_both) # label each panel w/ variable name & value
@@ -250,7 +250,7 @@ Here are the same data in a plot that is faceted by rows instead of columns. Tak
 `+`, as in: `g1 + facet_grid(...)`
 
 
-```r
+``` r
 # facet previous plot by`cyl` in rows and retain labels
 g1 + facet_grid(rows = vars(cyl),
                 labeller = label_both)
@@ -273,7 +273,7 @@ different colors. The addition of color provides us with the same level of
 insight as the facets above.
 
 
-```r
+``` r
 # instruct R to treat the `cyl` variable as a factor with discrete levels
 # this, in turn, tells ggplot2 to assign discrete colors to each level
 # `cyl` as a factor with four levels
@@ -312,7 +312,7 @@ with color blindness and, better yet, differentiates the `cyl` variable with
 both colors and symbols.
 
 
-```r
+``` r
 # recreate previous plot with color-blind-friendly colors and shapes
 ggplot2::ggplot(data = mtcars,
                 mapping = aes(x = wt,
@@ -397,7 +397,7 @@ learn more. Essentially, `tidyselect::all_of()` tells `dplyr::select()` to
 expect a character vector of column names to retain in the datset.
 
 
-```r
+``` r
 # create a vector of var names to retain 
 vars_needed <- c("id",
                  "make",
@@ -435,7 +435,7 @@ following our naming guidelines discussed in earlier chapters, and to filter
 the data to retain only vehicles made after the year 2000.
 
 
-```r
+``` r
 # identify the columns that we want to convert to a factor
 vars_factr <- c("make", "drive", "trany", "VClass", "fuelType1")
 # overwrite existing df
@@ -459,7 +459,7 @@ rm(vars_needed, vars_factr)
 Begin as we always do, by simply looking at some of the data.
 
 
-```r
+``` r
 # examine first five rows of df
 head(df_mpg)
 ```
@@ -481,7 +481,7 @@ Next, let's take a look at some of the factor levels. There are lots of ways
 to do this in R, but the `levels()` function is the most straightforward.
 
 
-```r
+``` r
 # print a character vector of levels for the drive variable in df_mpg
 levels(df_mpg$drive) 
 ```
@@ -494,7 +494,7 @@ levels(df_mpg$drive)
 ```
 
 
-```r
+``` r
 # print a character vector of levels for the fuel_type variable in df_mpg
 levels(df_mpg$fuel_type) 
 ```
@@ -505,7 +505,7 @@ levels(df_mpg$fuel_type)
 ```
 
 
-```r
+``` r
 # print a character vector of levels for the v_class variable in df_mpg
 levels(df_mpg$v_class) 
 ```
@@ -535,7 +535,7 @@ levels(df_mpg$v_class)
 Next, let's see whether this dataframe contains missing data (`NA`s).  
 
 
-```r
+``` r
 # count instances of missing values within df_mpg
 sum(is.na(df_mpg))
 ```
@@ -544,7 +544,7 @@ sum(is.na(df_mpg))
 ## [1] 752
 ```
 
-```r
+``` r
 # note this can work as a pipe, too
 # df_mpg %>% is.na() %>% sum()
 ```
@@ -563,7 +563,7 @@ contain `NA`s. Let's create a subset of `df_mpg` that only contains rows with
 `NA` present.
 
 
-```r
+``` r
 # return a df of rows with missing values
 df_mpg %>%
   filter(!complete.cases(.))
@@ -602,7 +602,7 @@ exclude from certain analyses later...
 We use `.` as a [*placeholder argument*](https://magrittr.tidyverse.org/reference/pipe.html#arguments) when more than one function is nested within a single section of pipe (`%>%`).  The `complete.cases()` function requires an argument to run, so we must tell it to operate on the same dataframe on which `filter()` operates. The `.` accomplishes this need for an argument.  In other words, these three lines of code are equivalent:  
 
 
-```r
+``` r
 df_mpg %>% filter(!complete.cases(.))
 
 df_mpg %>% filter(!complete.cases(df_mpg))
@@ -613,7 +613,7 @@ filter(df_mpg, !complete.cases(df_mpg))
 ***Note:*** the `.` only works as a placeholder argument within a `%>%` call. The following code will throw an error because there is no pipe present:
 
 
-```r
+``` r
 #this code will throw an error
 filter(df_mpg, !complete.cases(.))  
 ```
@@ -630,7 +630,7 @@ the developers will eventually encourage users to transition to using
 on the topic.
 
 
-```r
+``` r
 # filter the df for rows where any of the observations contain NA
 df_mpg %>% 
   dplyr::filter_all(dplyr::any_vars(is.na(.)))
@@ -659,7 +659,7 @@ df_mpg %>%
 Note: In [Chapter 8](#rprog4), you will learn to "map" the `sum()` and `is.na()` functions to each column of the data frame using `map_dfc` from the `purrr` package, which is designed to apply one ore more functions across columns of a data frame. This approach is the recommended way and I show it mainly as a preview of things to come in [Chapter 8](#rprog4).
 
 
-```r
+``` r
 # preview of code we will learn in Chapter 8
 df_mpg %>% purrr::map_dfc(~sum(is.na(.)))
 ```
@@ -675,7 +675,7 @@ which represent city, highway and combined fuel economy estimates. Note that
 different columns. We'll fix that with `tidyr::pivot_longer()`.
 
 
-```r
+``` r
 # before visualizing the data, convert to tidy format
 tidy_mpg <- df_mpg %>%
   # choose simple names
@@ -699,7 +699,7 @@ or `fill = ` as an extra aesthetic. All three plots are then laid out using
 `gridExtra::grid.arrange()`. 
 
 
-```r
+``` r
 # create cumulative distribution function plot
 ecdf <- ggplot2::ggplot(data = tidy_mpg, 
                         mapping = aes(x = mpg, 
@@ -753,7 +753,7 @@ variation expected, and outliers will be made more transparent to soften their
 effect.
 
 
-```r
+``` r
 # create time series plot 
 e1 <- ggplot2::ggplot(data = df_mpg, 
                       mapping = aes(x = year, 
@@ -783,7 +783,7 @@ terms of miles per gallon, or "mpg", across the "fleet" of available vehicles.
 Let's load a .csv file named `cafe` and look at the requirements by year.
 
 
-```r
+``` r
 # import data
 cafe <- read_csv("./data/CAFE_stds.csv", col_names = c("year", "mpg_avg"), skip = 1)
 # plot cafe data
@@ -818,7 +818,7 @@ across all vehicles and years as a function of `fuel_type`. Break out the
 different `fuel_type` categories into facets (ncol = 3).
 
 
-```r
+``` r
 # density plot of combined fuel economy by fuel type with facets
 g1 <- ggplot2::ggplot(data = df_mpg) +
   geom_density(aes(x = comb08, # notice the different location option for x aes
@@ -837,7 +837,7 @@ g1
 Now show the same plot without facets.
 
 
-```r
+``` r
 # density plot of combined fuel economy by fuel type without facets
 g2 <- ggplot2::ggplot(data = df_mpg, 
                       mapping = aes(x = comb08)) + # now x aes is here 
@@ -861,7 +861,7 @@ Next, let's examine the effect of vehicle class on combined fuel economy for a
 single year: 2020. Note, for the plot below, since *vehicle class* (`v_class`) is a `factor` type of variable, I can structure the plot to show `v_class` from lowest median efficiency to highest median efficiency (where the median is taken from each class based on the `highway_08` variable). This is accomplished with the `fct_reorder()` function from the `forcats::` package: `forcats::fct_reorder(.f = v_class, .x = highway, .fun = median)`.
 
 
-```r
+``` r
 # filter to year 2020 and reorder factor levels 
 df_mpg.2020 <- df_mpg %>%
   dplyr::filter(year == 2020) %>%
@@ -897,7 +897,7 @@ get the answers.
 Among 4-cylinder vehicles with Front-Wheel Drive, what make/model has the best highway fuel economy in 2018?
 
 
-```r
+``` r
 df_mpg %>%
   dplyr::filter(cyl == 4, 
                 drive == "Front-Wheel Drive", 
@@ -920,7 +920,7 @@ Among 8-cylinder vehicles with Rear-Wheel Drive, what make/model has the
 worst city fuel economy in 2019?
 
 
-```r
+``` r
 df_mpg %>%
   dplyr::filter(cyl == 8,
                 drive == "Rear-Wheel Drive",
@@ -946,7 +946,7 @@ df_mpg %>%
 Among 2021 vehicles from the `tidy_mpg` data frame, rank the highest-performing vehicle from each manufacturer in terms of fuel efficiency (`mpg`).  Pass the search result into a table using the `kable()` function.
 
 
-```r
+``` r
 tidy_mpg %>%
   filter(year == 2021) %>%
   group_by(make) %>%
