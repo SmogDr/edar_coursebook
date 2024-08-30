@@ -793,33 +793,6 @@ mutate(.data = daily_show,
 We will take a deeper dive into strings and the `stringr` package 
 [later on](#rprog3).
 
-### Base R equivalents to `dplyr` functions
-
-Just so you know, all of these `dplyr` functions have alternatives, either
-functions or processes, in base R:
-
-```{r dplyr-vs-base, echo=FALSE}
-dplyr_vs_base <- data.frame(dplyr = c("`rename()`",
-                                      "`select()`",
-                                      "`filter()`",
-                                      "`mutate()`",
-                                      "`slice()`"),
-                            base = c("Reassign `colnames()`",
-                                     "Square bracket indexing",
-                                     "`subset()`",
-                                     "Use `$` to change or create columns",
-                                     "`subset()` with logical expression"))
-knitr::kable(dplyr_vs_base, col.names = c("`dplyr`", 
-                                          "Base R equivalent"))
-```
-
-You will see these alternatives used in older code examples. Some of these
-functions have variants specific to particular data wrangling needs. For
-example, under `slice()`, there are others such as `slice_max()` and
-`slice_min()`, which extract the top and bottom values, respectively, from a
-dataset based on user input in the required arguments, including `n` and
-`order_by`. 
-
 ### Filtering to certain rows
 
 Next, you might want to filter the dataset to certain rows. For example, you
@@ -865,6 +838,33 @@ Two common mistakes with logical operators are: (1) Using `=` instead of `==` to
 check if two values are equal; and (2) Using `== NA` instead of `is.na` to
 check for missing observations.
 ```
+
+### Base R equivalents to `dplyr` functions
+
+Just so you know, all of these `dplyr` functions have alternatives, either
+functions or processes, in base R:
+
+```{r dplyr-vs-base, echo=FALSE}
+dplyr_vs_base <- data.frame(dplyr = c("`rename()`",
+                                      "`select()`",
+                                      "`filter()`",
+                                      "`mutate()`",
+                                      "`slice()`"),
+                            base = c("Reassign `colnames()`",
+                                     "Square bracket indexing",
+                                     "`subset()`",
+                                     "Use `$` to change or create columns",
+                                     "`subset()` with logical expression"))
+knitr::kable(dplyr_vs_base, col.names = c("`dplyr`", 
+                                          "Base R equivalent"))
+```
+
+You will see these alternatives used in older code examples. Some of these
+functions have variants specific to particular data wrangling needs. For
+example, under `slice()`, there are others such as `slice_max()` and
+`slice_min()`, which extract the top and bottom values, respectively, from a
+dataset based on user input in the required arguments, including `n` and
+`order_by`. 
 
 ## Merging Data Frames
 
