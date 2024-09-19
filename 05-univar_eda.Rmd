@@ -592,9 +592,10 @@ sample_norm <- tibble::tibble(data = rnorm(10000,
 sample_norm %>% 
   ggplot2::ggplot(mapping = aes(x = data)) +
   geom_histogram(bins = 30,
-                 fill = "white",
-                 color = "darkgrey") +
+                 fill = "lightgreen",
+                 color = "white") +
   theme_minimal() +
+  xlab("data values (binned)") +
   theme(text = element_text(size=20))
 
 ggsave("./images/hist_norm.png", dpi = 150)
@@ -628,10 +629,11 @@ skew_norm <- dplyr::bind_rows(sample_lognorm, outliers)
 skew_norm %>% 
   ggplot2::ggplot(mapping = aes(x = data)) +
   geom_histogram(bins = 50,
-                 fill = "white",
-                 color = "darkgrey") +
+                 fill = "lightgreen",
+                 color = "black") +
   xlim(1, 400) +
   theme_minimal() +
+  xlab("data values (binned)") +
   theme(text = element_text(size = 28)) 
   
 ggsave("images/skew_hist_2.png",
@@ -742,12 +744,15 @@ the console:
 ``` {r boxplot, echo=FALSE, include=FALSE, warning=FALSE, message=FALSE, fig.width=2, fig.height=4, units="cm"}
 normal_data %>% 
   ggplot2::ggplot(mapping = aes(y = b, x = 1)) + 
-  geom_boxplot(outlier.shape = NA, width = 0.25) +
+  geom_boxplot(outlier.shape = NA, 
+               width = 0.25,
+               fill = "lightgreen") +
   xlab("Data Name") +
   ylab("Data Values") +
   xlim(c(0.5, 1.5)) +
+  ylim(c(0, 15)) +
   theme_classic() +
-  theme(text = element_text(size=15),
+  theme(text = element_text(size=14),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank())
 
@@ -790,11 +795,11 @@ of the raw data. The ability to layer geoms is one of the many strengths of the
 
 ``` {r noaa-box-2, fig.cap="Boxplots of hourly temperatures in CO and HI for July, 2010"}
 ggplot(data = noaa_temp,
-       mapping = aes(x = temp_hr_f, 
-                     y = location, 
+       mapping = aes(y = temp_hr_f, 
+                     x = location, 
                      fill = location)) +
-  geom_boxplot() +
-  geom_jitter(height = 0.25,
+  geom_boxplot(width = 0.55) +
+  geom_jitter(width = 0.25,
               alpha = 0.2,
               shape = "circle filled",
               color = "black") +

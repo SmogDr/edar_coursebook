@@ -702,11 +702,11 @@ of the raw data. The ability to layer geoms is one of the many strengths of the
 
 ``` r
 ggplot(data = noaa_temp,
-       mapping = aes(x = temp_hr_f, 
-                     y = location, 
+       mapping = aes(y = temp_hr_f, 
+                     x = location, 
                      fill = location)) +
-  geom_boxplot() +
-  geom_jitter(height = 0.25,
+  geom_boxplot(width = 0.55) +
+  geom_jitter(width = 0.25,
               alpha = 0.2,
               shape = "circle filled",
               color = "black") +
