@@ -934,7 +934,8 @@ noaa_temp_hi <- noaa_temp %>%
 stats::acf(noaa_temp_hi$temp_hr_f,
            main = " " ,
            xlab = "Lag (hours)",
-           ylab = "Correlation coefficient") 
+           ylab = "Correlation coefficient",
+           lwd = 2) 
 ```
 
 The plot suggests a **fairly strong level of autocorrelation** in these
@@ -963,7 +964,8 @@ The partial autocorrelation plot can help you decide: *how far out in time shoul
 stats::pacf(noaa_temp_hi$temp_hr_f,
             main = " ",
             xlab = "Lag (hours)",
-            ylab = "Partial Correlation Coefficient") 
+            ylab = "Partial Correlation Coefficient",
+            lwd = 2) 
 ```
 
 In this case, after a 2-hr lag, the data loses most autocorrelation, except for
@@ -1009,7 +1011,7 @@ plot.1<-ordered_salaries %>%
 
 plot.2 <- ggplot(data = ordered_salaries,
                 mapping = aes(x = salary, y = "ME Grads")) +
-  geom_boxplot(alpha = 0.15,
+  geom_boxplot(alpha = 0.4,
                fill = "blue") +
   ylab("") +
   xlab("") +
@@ -1024,7 +1026,7 @@ plot.2 <- ggplot(data = ordered_salaries,
 
 plot.3 <- ggplot(data = ordered_salaries,
                 mapping = aes(x = salary)) +
-  geom_histogram(alpha = 0.15,
+  geom_histogram(alpha = 0.4,
                fill = "blue",
                bins = 40,
                color = "black") +

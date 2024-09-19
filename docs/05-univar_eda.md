@@ -821,7 +821,8 @@ noaa_temp_hi <- noaa_temp %>%
 stats::acf(noaa_temp_hi$temp_hr_f,
            main = " " ,
            xlab = "Lag (hours)",
-           ylab = "Correlation coefficient") 
+           ylab = "Correlation coefficient",
+           lwd = 2) 
 ```
 
 <img src="05-univar_eda_files/figure-html/acf-plot-1.png" width="672" />
@@ -853,7 +854,8 @@ The partial autocorrelation plot can help you decide: *how far out in time shoul
 stats::pacf(noaa_temp_hi$temp_hr_f,
             main = " ",
             xlab = "Lag (hours)",
-            ylab = "Partial Correlation Coefficient") 
+            ylab = "Partial Correlation Coefficient",
+            lwd = 2) 
 ```
 
 <img src="05-univar_eda_files/figure-html/pacf-plot-1.png" width="672" />
