@@ -249,9 +249,9 @@ Table: (\#tab:regex-1)Basic Regex Search Syntax and Example Implementation in R
 **Regex** sequences have seemingly no end of sophistication and nuance; you
 could spend dozens of hours learning to use them and hundreds more learning to
 master them. We will only introduce basic concepts here.  More in-depth
-introductions to regex syntax and usage can be found on [Hadley Wickham's R course](http://r4ds.had.co.nz/strings.html){target="_blank"}, 
+introductions to regex syntax and usage can be found on [Hadley Wickham's R course](https://r4ds.hadley.nz/strings.html){target="_blank"}, 
 on the `stringr` 
-[cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/strings.pdf){target="_blank"} 
+[cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/strings.pdf){target="_blank"} 
 developed by RStudio, and through practice with, my personal favorite, a game
 of [Regex Golf](https://alf.nu/RegexGolf){target="_blank"}.
 
@@ -363,7 +363,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2024-09-19 17:39:09 MDT"
+## [1] "2024-09-25 08:14:05 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -379,12 +379,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1726789149
+## [1] 1727273645
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 54.7561247 years.  
+365d/yr] => 54.771488 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -392,7 +392,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2024-09-19 17:39:09.468205.
+format: 2024-09-25 08:14:05.478535.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -521,7 +521,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1726789150
+## [1] 1727273646
 ```
 
 
@@ -532,14 +532,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 9.52
-##  $ min   : int 39
-##  $ hour  : int 17
-##  $ mday  : int 19
+##  $ sec   : num 5.53
+##  $ min   : int 14
+##  $ hour  : int 8
+##  $ mday  : int 25
 ##  $ mon   : int 8
 ##  $ year  : int 124
-##  $ wday  : int 4
-##  $ yday  : int 262
+##  $ wday  : int 3
+##  $ yday  : int 268
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
@@ -867,7 +867,8 @@ daily_show %>%
 computer’s operating system by default—or UTC, or GMT. You need to be
 careful when working with dates and times to either specify the time
 zone or convince yourself the default behavior works for your
-application.</p>
+application. To see or set your computer’s time zone, use the
+<code>Sys.timezone()</code> function from <code>{base}</code>.</p>
 </div>
 
 ## Tidy Data
