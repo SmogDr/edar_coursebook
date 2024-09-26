@@ -363,7 +363,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2024-09-25 08:14:05 MDT"
+## [1] "2024-09-26 13:30:26 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -379,12 +379,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1727273645
+## [1] 1727379027
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 54.771488 years.  
+365d/yr] => 54.7748296 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -392,7 +392,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2024-09-25 08:14:05.478535.
+format: 2024-09-26 13:30:26.546867.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -521,7 +521,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1727273646
+## [1] 1727379027
 ```
 
 
@@ -532,14 +532,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 5.53
-##  $ min   : int 14
-##  $ hour  : int 8
-##  $ mday  : int 25
+##  $ sec   : num 26.6
+##  $ min   : int 30
+##  $ hour  : int 13
+##  $ mday  : int 26
 ##  $ mon   : int 8
 ##  $ year  : int 124
-##  $ wday  : int 3
-##  $ yday  : int 268
+##  $ wday  : int 4
+##  $ yday  : int 269
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
@@ -556,7 +556,7 @@ As my father used to say: clear as mud?
 
 Oftentimes, when data is read into R, there are column elements that contain 
 date and time information. These dates and times are often interpreted by R 
-as *character* vectors, which means they have lost their relational attributes 
+as *character* vectors, which means they have lost their relational attributes. 
 For example, you cannot subtract "Monday 08:00" from "Wednesday 12:00" and get 
 "2 days 4 hours". If we want to analyze dates and times in a relational way, 
 we need to instruct R to recognize these as date-time objects (i.e., as either 
