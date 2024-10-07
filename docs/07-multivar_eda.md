@@ -872,13 +872,13 @@ single year: 2023. Note, for the plot below, since *vehicle class* (`v_class`) i
 
 
 ``` r
-# filter to year 2024 and reorder factor levels 
+# filter to year 2023 and reorder factor levels 
 df_mpg.2023 <- df_mpg %>%
   dplyr::filter(year == 2023) %>%
   dplyr::mutate(v_class = forcats::fct_reorder(.f = v_class, 
                                                .x = highway08, 
                                                .fun = median))
-# create plot of 2024 combined fuel economy
+# create plot of 2023 combined fuel economy
 g1 <- ggplot2::ggplot(data = df_mpg.2023) + 
   geom_boxplot(aes(x = highway08, 
                    color = v_class, 

@@ -833,13 +833,13 @@ Next, let's examine the effect of vehicle class on combined fuel economy for a
 single year: 2023. Note, for the plot below, since *vehicle class* (`v_class`) is a `factor` type of variable, I can structure the plot to show `v_class` from lowest median efficiency to highest median efficiency (where the median is taken from each class based on the `highway_08` variable). This is accomplished with the `fct_reorder()` function from the `forcats::` package: `forcats::fct_reorder(.f = v_class, .x = highway, .fun = median)`.
 
 ```{r v-class, fig.cap="Highway Fuel Economy for 2023 Vehicles by Type", fig.align="center"}
-# filter to year 2024 and reorder factor levels 
+# filter to year 2023 and reorder factor levels 
 df_mpg.2023 <- df_mpg %>%
   dplyr::filter(year == 2023) %>%
   dplyr::mutate(v_class = forcats::fct_reorder(.f = v_class, 
                                                .x = highway08, 
                                                .fun = median))
-# create plot of 2024 combined fuel economy
+# create plot of 2023 combined fuel economy
 g1 <- ggplot2::ggplot(data = df_mpg.2023) + 
   geom_boxplot(aes(x = highway08, 
                    color = v_class, 
