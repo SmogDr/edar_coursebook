@@ -868,18 +868,18 @@ I like these plots because they lead to more questions (and that's the *point* o
 ### More multivariate plotting
 
 Next, let's examine the effect of vehicle class on combined fuel economy for a
-single year: 2020. Note, for the plot below, since *vehicle class* (`v_class`) is a `factor` type of variable, I can structure the plot to show `v_class` from lowest median efficiency to highest median efficiency (where the median is taken from each class based on the `highway_08` variable). This is accomplished with the `fct_reorder()` function from the `forcats::` package: `forcats::fct_reorder(.f = v_class, .x = highway, .fun = median)`.
+single year: 2023. Note, for the plot below, since *vehicle class* (`v_class`) is a `factor` type of variable, I can structure the plot to show `v_class` from lowest median efficiency to highest median efficiency (where the median is taken from each class based on the `highway_08` variable). This is accomplished with the `fct_reorder()` function from the `forcats::` package: `forcats::fct_reorder(.f = v_class, .x = highway, .fun = median)`.
 
 
 ``` r
-# filter to year 2020 and reorder factor levels 
-df_mpg.2020 <- df_mpg %>%
-  dplyr::filter(year == 2020) %>%
+# filter to year 2024 and reorder factor levels 
+df_mpg.2023 <- df_mpg %>%
+  dplyr::filter(year == 2023) %>%
   dplyr::mutate(v_class = forcats::fct_reorder(.f = v_class, 
                                                .x = highway08, 
                                                .fun = median))
-# create plot of 2020 combined fuel economy
-g1 <- ggplot2::ggplot(data = df_mpg.2020) + 
+# create plot of 2024 combined fuel economy
+g1 <- ggplot2::ggplot(data = df_mpg.2023) + 
   geom_boxplot(aes(x = highway08, 
                    color = v_class, 
                    y = v_class)) + 
@@ -893,8 +893,8 @@ g1
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-multivar_eda_files/figure-html/v-class-1.png" alt="Highway Fuel Economy for 2020 Vehicles by Type" width="672" />
-<p class="caption">(\#fig:v-class)Highway Fuel Economy for 2020 Vehicles by Type</p>
+<img src="07-multivar_eda_files/figure-html/v-class-1.png" alt="Highway Fuel Economy for 2023 Vehicles by Type" width="672" />
+<p class="caption">(\#fig:v-class)Highway Fuel Economy for 2023 Vehicles by Type</p>
 </div>
 
 ### Practice questions

@@ -1230,15 +1230,15 @@ different <code>fuel_type</code> categories into facets (ncol = 3).</p>
 <div id="more-multivariate-plotting" class="section level3 hasAnchor" number="7.5.8">
 <h3><span class="header-section-number">7.5.8</span> More multivariate plotting<a href="eda2.html#more-multivariate-plotting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Next, let’s examine the effect of vehicle class on combined fuel economy for a
-single year: 2020. Note, for the plot below, since <em>vehicle class</em> (<code>v_class</code>) is a <code>factor</code> type of variable, I can structure the plot to show <code>v_class</code> from lowest median efficiency to highest median efficiency (where the median is taken from each class based on the <code>highway_08</code> variable). This is accomplished with the <code>fct_reorder()</code> function from the <code>forcats::</code> package: <code>forcats::fct_reorder(.f = v_class, .x = highway, .fun = median)</code>.</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="eda2.html#cb280-1" tabindex="-1"></a><span class="co"># filter to year 2020 and reorder factor levels </span></span>
-<span id="cb280-2"><a href="eda2.html#cb280-2" tabindex="-1"></a>df_mpg<span class="fl">.2020</span> <span class="ot">&lt;-</span> df_mpg <span class="sc">%&gt;%</span></span>
-<span id="cb280-3"><a href="eda2.html#cb280-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span></span>
+single year: 2023. Note, for the plot below, since <em>vehicle class</em> (<code>v_class</code>) is a <code>factor</code> type of variable, I can structure the plot to show <code>v_class</code> from lowest median efficiency to highest median efficiency (where the median is taken from each class based on the <code>highway_08</code> variable). This is accomplished with the <code>fct_reorder()</code> function from the <code>forcats::</code> package: <code>forcats::fct_reorder(.f = v_class, .x = highway, .fun = median)</code>.</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="eda2.html#cb280-1" tabindex="-1"></a><span class="co"># filter to year 2024 and reorder factor levels </span></span>
+<span id="cb280-2"><a href="eda2.html#cb280-2" tabindex="-1"></a>df_mpg<span class="fl">.2023</span> <span class="ot">&lt;-</span> df_mpg <span class="sc">%&gt;%</span></span>
+<span id="cb280-3"><a href="eda2.html#cb280-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2023</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb280-4"><a href="eda2.html#cb280-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">v_class =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(<span class="at">.f =</span> v_class, </span>
 <span id="cb280-5"><a href="eda2.html#cb280-5" tabindex="-1"></a>                                               <span class="at">.x =</span> highway08, </span>
 <span id="cb280-6"><a href="eda2.html#cb280-6" tabindex="-1"></a>                                               <span class="at">.fun =</span> median))</span>
-<span id="cb280-7"><a href="eda2.html#cb280-7" tabindex="-1"></a><span class="co"># create plot of 2020 combined fuel economy</span></span>
-<span id="cb280-8"><a href="eda2.html#cb280-8" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> df_mpg<span class="fl">.2020</span>) <span class="sc">+</span> </span>
+<span id="cb280-7"><a href="eda2.html#cb280-7" tabindex="-1"></a><span class="co"># create plot of 2024 combined fuel economy</span></span>
+<span id="cb280-8"><a href="eda2.html#cb280-8" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> df_mpg<span class="fl">.2023</span>) <span class="sc">+</span> </span>
 <span id="cb280-9"><a href="eda2.html#cb280-9" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> highway08, </span>
 <span id="cb280-10"><a href="eda2.html#cb280-10" tabindex="-1"></a>                   <span class="at">color =</span> v_class, </span>
 <span id="cb280-11"><a href="eda2.html#cb280-11" tabindex="-1"></a>                   <span class="at">y =</span> v_class)) <span class="sc">+</span> </span>
@@ -1250,9 +1250,9 @@ single year: 2020. Note, for the plot below, since <em>vehicle class</em> (<code
 <span id="cb280-17"><a href="eda2.html#cb280-17" tabindex="-1"></a><span class="co"># call plot</span></span>
 <span id="cb280-18"><a href="eda2.html#cb280-18" tabindex="-1"></a>g1</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:v-class"></span>
-<img src="07-multivar_eda_files/figure-html/v-class-1.png" alt="Highway Fuel Economy for 2020 Vehicles by Type" width="672" />
+<img src="07-multivar_eda_files/figure-html/v-class-1.png" alt="Highway Fuel Economy for 2023 Vehicles by Type" width="672" />
 <p class="caption">
-Figure 7.11: Highway Fuel Economy for 2020 Vehicles by Type
+Figure 7.11: Highway Fuel Economy for 2023 Vehicles by Type
 </p>
 </div>
 </div>
