@@ -362,7 +362,7 @@ file into a .csv and use `readr` to read that .csv into a dataframe named
 `raw_data`. 
 
 
-```r
+``` r
 # create an empty temporary object to hold the zipped data
 temp <- base::tempfile()
 # download the file into temp object
@@ -502,8 +502,9 @@ levels(df_mpg$fuel_type)
 ```
 
 ```
-## [1] "Diesel"            "Electricity"       "Midgrade Gasoline"
-## [4] "Natural Gas"       "Premium Gasoline"  "Regular Gasoline"
+## [1] "Diesel"            "Electricity"       "Hydrogen"         
+## [4] "Midgrade Gasoline" "Natural Gas"       "Premium Gasoline" 
+## [7] "Regular Gasoline"
 ```
 
 
@@ -543,7 +544,7 @@ sum(is.na(df_mpg))
 ```
 
 ```
-## [1] 752
+## [1] 1916
 ```
 
 ``` r
@@ -552,7 +553,7 @@ sum(is.na(df_mpg))
 ```
 
 With a dataframe of this size, we shouldn't be surprised that there are 
-752 `NA` values present. The next question is: where do
+1916 `NA` values present. The next question is: where do
 these `NA` values show up? There are several ways to answer this question;
 here, we will use the `stats::complete.cases()` function with a
 `dplyr::filter()` search. 
@@ -572,7 +573,7 @@ df_mpg %>%
 ```
 
 ```
-## # A tibble: 370 × 13
+## # A tibble: 952 × 13
 ##       id make   model      year   cyl displ drive tran  v_class fuel_type comb08
 ##    <dbl> <fct>  <chr>     <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
 ##  1 16423 Nissan Altra EV   2000    NA    NA <NA>  <NA>  Midsiz… Electric…     85
@@ -585,7 +586,7 @@ df_mpg %>%
 ##  8 18291 Ford   Explorer…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     39
 ##  9 19296 Toyota RAV4 EV    2003    NA    NA 2-Wh… <NA>  Sport … Electric…     78
 ## 10 30965 Ford   Ranger P…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
-## # ℹ 360 more rows
+## # ℹ 942 more rows
 ## # ℹ 2 more variables: highway08 <dbl>, city08 <dbl>
 ```
 
@@ -629,17 +630,24 @@ and `tidyr` verbs.
 have been **superseded**, which means new updates are not being made to them, and
 the developers will eventually encourage users to transition to using
 `dplyr::across()`. If you are interested, take a look at [this discussion thread](https://community.rstudio.com/t/using-filter-with-across-to-keep-all-rows-of-a-data-frame-that-include-a-missing-value-for-any-variable/68442)
-on the topic.
+on the topic.  You can also type `vignette("colwise")` into the console to introduce
+yourself to the `across()` function.  In the code below, I provide examples of the
+*superseded* code and the more current (updated) code.  
 
 
 ``` r
-# filter the df for rows where any of the observations contain NA
-df_mpg %>% 
-  dplyr::filter_all(dplyr::any_vars(is.na(.)))
+# (superseded) filter the df for rows where any of the observations contain NA
+# df_mpg %>% 
+#  dplyr::filter_all(dplyr::any_vars(is.na(.)))
+
+# (updated) example to filter the df for rows containing NA 
+df_mpg %>%
+  filter(if_any(.cols = everything(), 
+                .fns = ~ is.na(.x)))
 ```
 
 ```
-## # A tibble: 370 × 13
+## # A tibble: 952 × 13
 ##       id make   model      year   cyl displ drive tran  v_class fuel_type comb08
 ##    <dbl> <fct>  <chr>     <dbl> <dbl> <dbl> <fct> <fct> <fct>   <fct>      <dbl>
 ##  1 16423 Nissan Altra EV   2000    NA    NA <NA>  <NA>  Midsiz… Electric…     85
@@ -652,7 +660,7 @@ df_mpg %>%
 ##  8 18291 Ford   Explorer…  2002    NA    NA 2-Wh… <NA>  Sport … Electric…     39
 ##  9 19296 Toyota RAV4 EV    2003    NA    NA 2-Wh… <NA>  Sport … Electric…     78
 ## 10 30965 Ford   Ranger P…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
-## # ℹ 360 more rows
+## # ℹ 942 more rows
 ## # ℹ 2 more variables: highway08 <dbl>, city08 <dbl>
 ```
 
@@ -763,7 +771,7 @@ e1 <- ggplot2::ggplot(data = df_mpg,
   geom_boxplot(aes(group = year),
                fill = "skyblue",
                outlier.alpha = 0.1) +
-  scale_y_log10(limits = c(10,100)) +
+  scale_y_log10(limits = c(10,150)) +
   ylab("Combined Fuel Efficiency (mi/gal)") +
   xlab("") +
   theme_bw(base_size = 14)
@@ -1044,13 +1052,13 @@ tidy_mpg %>%
   </tr>
   <tr>
    <td style="text-align:left;"> Toyota </td>
-   <td style="text-align:left;"> Prius Eco </td>
-   <td style="text-align:right;"> 58 </td>
+   <td style="text-align:left;"> Mirai XLE </td>
+   <td style="text-align:right;"> 76 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Honda </td>
-   <td style="text-align:left;"> Insight </td>
-   <td style="text-align:right;"> 55 </td>
+   <td style="text-align:left;"> Clarity FCV </td>
+   <td style="text-align:right;"> 68 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Lexus </td>

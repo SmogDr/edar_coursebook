@@ -445,7 +445,7 @@ using `download.file()` from base R. We will then `unzip()` (base R) the temp
 file into a .csv and use `readr` to read that .csv into a dataframe named
 `raw_data`. 
 
-```{r load-data, message=FALSE, cache=TRUE, warning=FALSE}
+```{r load-data, message=FALSE, cache=FALSE, warning=FALSE}
 # create an empty temporary object to hold the zipped data
 temp <- base::tempfile()
 # download the file into temp object
@@ -633,12 +633,20 @@ and `tidyr` verbs.
 have been **superseded**, which means new updates are not being made to them, and
 the developers will eventually encourage users to transition to using
 `dplyr::across()`. If you are interested, take a look at [this discussion thread](https://community.rstudio.com/t/using-filter-with-across-to-keep-all-rows-of-a-data-frame-that-include-a-missing-value-for-any-variable/68442)
-on the topic.
+on the topic.  You can also type `vignette("colwise")` into the console to introduce
+yourself to the `across()` function.  In the code below, I provide examples of the
+*superseded* code and the more current (updated) code.  
 
 ```{r df-mpg-desc-6}
-# filter the df for rows where any of the observations contain NA
-df_mpg %>% 
-  dplyr::filter_all(dplyr::any_vars(is.na(.)))
+# (superseded) filter the df for rows where any of the observations contain NA
+# df_mpg %>% 
+#  dplyr::filter_all(dplyr::any_vars(is.na(.)))
+
+# (updated) example to filter the df for rows containing NA 
+df_mpg %>%
+  filter(if_any(.cols = everything(), 
+                .fns = ~ is.na(.x)))
+
 ```
 
 #### Example 3: Missing Data
@@ -739,7 +747,7 @@ e1 <- ggplot2::ggplot(data = df_mpg,
   geom_boxplot(aes(group = year),
                fill = "skyblue",
                outlier.alpha = 0.1) +
-  scale_y_log10(limits = c(10,100)) +
+  scale_y_log10(limits = c(10,150)) +
   ylab("Combined Fuel Efficiency (mi/gal)") +
   xlab("") +
   theme_bw(base_size = 14)

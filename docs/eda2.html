@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2024-10-04" />
+<meta name="date" content="2024-10-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -941,8 +941,9 @@ to do this in R, but the <code>levels()</code> function is the most straightforw
 ## [7] &quot;Rear-Wheel Drive&quot;</code></pre>
 <div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="eda2.html#cb260-1" tabindex="-1"></a><span class="co"># print a character vector of levels for the fuel_type variable in df_mpg</span></span>
 <span id="cb260-2"><a href="eda2.html#cb260-2" tabindex="-1"></a><span class="fu">levels</span>(df_mpg<span class="sc">$</span>fuel_type) </span></code></pre></div>
-<pre><code>## [1] &quot;Diesel&quot;            &quot;Electricity&quot;       &quot;Midgrade Gasoline&quot;
-## [4] &quot;Natural Gas&quot;       &quot;Premium Gasoline&quot;  &quot;Regular Gasoline&quot;</code></pre>
+<pre><code>## [1] &quot;Diesel&quot;            &quot;Electricity&quot;       &quot;Hydrogen&quot;         
+## [4] &quot;Midgrade Gasoline&quot; &quot;Natural Gas&quot;       &quot;Premium Gasoline&quot; 
+## [7] &quot;Regular Gasoline&quot;</code></pre>
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="eda2.html#cb262-1" tabindex="-1"></a><span class="co"># print a character vector of levels for the v_class variable in df_mpg</span></span>
 <span id="cb262-2"><a href="eda2.html#cb262-2" tabindex="-1"></a><span class="fu">levels</span>(df_mpg<span class="sc">$</span>v_class) </span></code></pre></div>
 <pre><code>##  [1] &quot;Compact Cars&quot;                       &quot;Large Cars&quot;                        
@@ -968,11 +969,11 @@ to do this in R, but the <code>levels()</code> function is the most straightforw
 <p>Next, let’s see whether this dataframe contains missing data (<code>NA</code>s).</p>
 <div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="eda2.html#cb264-1" tabindex="-1"></a><span class="co"># count instances of missing values within df_mpg</span></span>
 <span id="cb264-2"><a href="eda2.html#cb264-2" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(df_mpg))</span></code></pre></div>
-<pre><code>## [1] 752</code></pre>
+<pre><code>## [1] 1916</code></pre>
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="eda2.html#cb266-1" tabindex="-1"></a><span class="co"># note this can work as a pipe, too</span></span>
 <span id="cb266-2"><a href="eda2.html#cb266-2" tabindex="-1"></a><span class="co"># df_mpg %&gt;% is.na() %&gt;% sum()</span></span></code></pre></div>
 <p>With a dataframe of this size, we shouldn’t be surprised that there are
-752 <code>NA</code> values present. The next question is: where do
+1916 <code>NA</code> values present. The next question is: where do
 these <code>NA</code> values show up? There are several ways to answer this question;
 here, we will use the <code>stats::complete.cases()</code> function with a
 <code>dplyr::filter()</code> search.</p>
@@ -986,7 +987,7 @@ contain <code>NA</code>s. Let’s create a subset of <code>df_mpg</code> that on
 <div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="eda2.html#cb267-1" tabindex="-1"></a><span class="co"># return a df of rows with missing values</span></span>
 <span id="cb267-2"><a href="eda2.html#cb267-2" tabindex="-1"></a>df_mpg <span class="sc">%&gt;%</span></span>
 <span id="cb267-3"><a href="eda2.html#cb267-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">complete.cases</span>(.))</span></code></pre></div>
-<pre><code>## # A tibble: 370 × 13
+<pre><code>## # A tibble: 952 × 13
 ##       id make   model      year   cyl displ drive tran  v_class fuel_type comb08
 ##    &lt;dbl&gt; &lt;fct&gt;  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;      &lt;dbl&gt;
 ##  1 16423 Nissan Altra EV   2000    NA    NA &lt;NA&gt;  &lt;NA&gt;  Midsiz… Electric…     85
@@ -999,7 +1000,7 @@ contain <code>NA</code>s. Let’s create a subset of <code>df_mpg</code> that on
 ##  8 18291 Ford   Explorer…  2002    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     39
 ##  9 19296 Toyota RAV4 EV    2003    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     78
 ## 10 30965 Ford   Ranger P…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
-## # ℹ 360 more rows
+## # ℹ 942 more rows
 ## # ℹ 2 more variables: highway08 &lt;dbl&gt;, city08 &lt;dbl&gt;</code></pre>
 <p>Here, we discover that most of the the <code>NA</code> values are in the <code>cyl</code>, <code>displ</code>,
 and <code>tran</code>, columns. Further, we see that <strong>all</strong> of these vehicles have a
@@ -1029,11 +1030,18 @@ and <code>tidyr</code> verbs.<br />
 have been <strong>superseded</strong>, which means new updates are not being made to them, and
 the developers will eventually encourage users to transition to using
 <code>dplyr::across()</code>. If you are interested, take a look at <a href="https://community.rstudio.com/t/using-filter-with-across-to-keep-all-rows-of-a-data-frame-that-include-a-missing-value-for-any-variable/68442">this discussion thread</a>
-on the topic.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="eda2.html#cb271-1" tabindex="-1"></a><span class="co"># filter the df for rows where any of the observations contain NA</span></span>
-<span id="cb271-2"><a href="eda2.html#cb271-2" tabindex="-1"></a>df_mpg <span class="sc">%&gt;%</span> </span>
-<span id="cb271-3"><a href="eda2.html#cb271-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter_all</span>(dplyr<span class="sc">::</span><span class="fu">any_vars</span>(<span class="fu">is.na</span>(.)))</span></code></pre></div>
-<pre><code>## # A tibble: 370 × 13
+on the topic. You can also type <code>vignette("colwise")</code> into the console to introduce
+yourself to the <code>across()</code> function. In the code below, I provide examples of the
+<em>superseded</em> code and the more current (updated) code.</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="eda2.html#cb271-1" tabindex="-1"></a><span class="co"># (superseded) filter the df for rows where any of the observations contain NA</span></span>
+<span id="cb271-2"><a href="eda2.html#cb271-2" tabindex="-1"></a><span class="co"># df_mpg %&gt;% </span></span>
+<span id="cb271-3"><a href="eda2.html#cb271-3" tabindex="-1"></a><span class="co">#  dplyr::filter_all(dplyr::any_vars(is.na(.)))</span></span>
+<span id="cb271-4"><a href="eda2.html#cb271-4" tabindex="-1"></a></span>
+<span id="cb271-5"><a href="eda2.html#cb271-5" tabindex="-1"></a><span class="co"># (updated) example to filter the df for rows containing NA </span></span>
+<span id="cb271-6"><a href="eda2.html#cb271-6" tabindex="-1"></a>df_mpg <span class="sc">%&gt;%</span></span>
+<span id="cb271-7"><a href="eda2.html#cb271-7" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">if_any</span>(<span class="at">.cols =</span> <span class="fu">everything</span>(), </span>
+<span id="cb271-8"><a href="eda2.html#cb271-8" tabindex="-1"></a>                <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">is.na</span>(.x)))</span></code></pre></div>
+<pre><code>## # A tibble: 952 × 13
 ##       id make   model      year   cyl displ drive tran  v_class fuel_type comb08
 ##    &lt;dbl&gt; &lt;fct&gt;  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;      &lt;dbl&gt;
 ##  1 16423 Nissan Altra EV   2000    NA    NA &lt;NA&gt;  &lt;NA&gt;  Midsiz… Electric…     85
@@ -1046,7 +1054,7 @@ on the topic.</p>
 ##  8 18291 Ford   Explorer…  2002    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     39
 ##  9 19296 Toyota RAV4 EV    2003    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     78
 ## 10 30965 Ford   Ranger P…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
-## # ℹ 360 more rows
+## # ℹ 942 more rows
 ## # ℹ 2 more variables: highway08 &lt;dbl&gt;, city08 &lt;dbl&gt;</code></pre>
 </div>
 <div id="example-3-missing-data" class="section level4 hasAnchor" number="7.5.4.3">
@@ -1144,7 +1152,7 @@ effect.</p>
 <span id="cb276-5"><a href="eda2.html#cb276-5" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">group =</span> year),</span>
 <span id="cb276-6"><a href="eda2.html#cb276-6" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>,</span>
 <span id="cb276-7"><a href="eda2.html#cb276-7" tabindex="-1"></a>               <span class="at">outlier.alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb276-8"><a href="eda2.html#cb276-8" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb276-8"><a href="eda2.html#cb276-8" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">150</span>)) <span class="sc">+</span></span>
 <span id="cb276-9"><a href="eda2.html#cb276-9" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Combined Fuel Efficiency (mi/gal)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb276-10"><a href="eda2.html#cb276-10" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
 <span id="cb276-11"><a href="eda2.html#cb276-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>)</span>
@@ -1478,10 +1486,10 @@ e-tron
 Toyota
 </td>
 <td style="text-align:left;">
-Prius Eco
+Mirai XLE
 </td>
 <td style="text-align:right;">
-58
+76
 </td>
 </tr>
 <tr>
@@ -1489,10 +1497,10 @@ Prius Eco
 Honda
 </td>
 <td style="text-align:left;">
-Insight
+Clarity FCV
 </td>
 <td style="text-align:right;">
-55
+68
 </td>
 </tr>
 <tr>
