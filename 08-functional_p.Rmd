@@ -44,10 +44,9 @@ evens_squared <- evens^2
 with code like this:
 
 ```{r for-loop-code, eval=FALSE}
-evens_squared <- for( i in length(evens)){  
-  evens_squared <- evens[i] * evens[i] 
+for( i in seq(1, length(evens))){  
+  evens_squared[i] <- evens[i] * evens[i] 
 }
-
 ```
 
 The top code performs the `squared` operator across each entry in the 

@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2024-10-07" />
+<meta name="date" content="2024-10-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -520,8 +520,8 @@ execute this code:</p>
 <div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="rprog4.html#cb286-1" tabindex="-1"></a>evens <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)  </span>
 <span id="cb286-2"><a href="rprog4.html#cb286-2" tabindex="-1"></a>evens_squared <span class="ot">&lt;-</span> evens<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <p>with code like this:</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="rprog4.html#cb287-1" tabindex="-1"></a>evens_squared <span class="ot">&lt;-</span> <span class="cf">for</span>( i <span class="cf">in</span> <span class="fu">length</span>(evens)){  </span>
-<span id="cb287-2"><a href="rprog4.html#cb287-2" tabindex="-1"></a>  evens_squared <span class="ot">&lt;-</span> evens[i] <span class="sc">*</span> evens[i] </span>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="rprog4.html#cb287-1" tabindex="-1"></a><span class="cf">for</span>( i <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">length</span>(evens))){  </span>
+<span id="cb287-2"><a href="rprog4.html#cb287-2" tabindex="-1"></a>  evens_squared[i] <span class="ot">&lt;-</span> evens[i] <span class="sc">*</span> evens[i] </span>
 <span id="cb287-3"><a href="rprog4.html#cb287-3" tabindex="-1"></a>}</span></code></pre></div>
 <p>The top code performs the <code>squared</code> operator across each entry in the
 vector, one after another. The bottom set uses a for-loop to accomplish the
@@ -778,17 +778,17 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 ##  $ entry_1: chr [1:4] &quot;Harry&quot; &quot;Ron&quot; &quot;Hermione&quot; &quot;Draco&quot;
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] &quot;land rover&quot; &quot;mercury&quot; &quot;dodge&quot; &quot;audi&quot; ...
-##   ..$ model       : chr [1:7] &quot;range rover&quot; &quot;mountaineer 4wd&quot; &quot;caravan 2wd&quot; &quot;a4 quattro&quot; ...
-##   ..$ displ       : num [1:7] 4 4.6 4 2.8 1.6 4.6 4.6
-##   ..$ year        : int [1:7] 1999 2008 2008 1999 1999 1999 1999
-##   ..$ cyl         : int [1:7] 8 8 6 6 4 8 8
-##   ..$ trans       : chr [1:7] &quot;auto(l4)&quot; &quot;auto(l6)&quot; &quot;auto(l6)&quot; &quot;manual(m5)&quot; ...
-##   ..$ drv         : chr [1:7] &quot;4&quot; &quot;4&quot; &quot;f&quot; &quot;4&quot; ...
-##   ..$ cty         : int [1:7] 11 13 16 17 24 11 11
-##   ..$ hwy         : int [1:7] 15 19 23 25 32 15 17
-##   ..$ fl          : chr [1:7] &quot;p&quot; &quot;r&quot; &quot;r&quot; &quot;p&quot; ...
-##   ..$ class       : chr [1:7] &quot;suv&quot; &quot;suv&quot; &quot;minivan&quot; &quot;compact&quot; ...</code></pre>
+##   ..$ manufacturer: chr [1:7] &quot;audi&quot; &quot;volkswagen&quot; &quot;toyota&quot; &quot;nissan&quot; ...
+##   ..$ model       : chr [1:7] &quot;a6 quattro&quot; &quot;jetta&quot; &quot;4runner 4wd&quot; &quot;altima&quot; ...
+##   ..$ displ       : num [1:7] 3.1 2 2.7 2.4 3.6 3.6 1.6
+##   ..$ year        : int [1:7] 2008 1999 1999 1999 2008 2008 1999
+##   ..$ cyl         : int [1:7] 6 4 4 4 6 6 4
+##   ..$ trans       : chr [1:7] &quot;auto(s6)&quot; &quot;auto(l4)&quot; &quot;manual(m5)&quot; &quot;manual(m5)&quot; ...
+##   ..$ drv         : chr [1:7] &quot;4&quot; &quot;f&quot; &quot;4&quot; &quot;f&quot; ...
+##   ..$ cty         : int [1:7] 17 19 15 21 17 17 25
+##   ..$ hwy         : int [1:7] 25 26 20 29 26 26 32
+##   ..$ fl          : chr [1:7] &quot;p&quot; &quot;r&quot; &quot;r&quot; &quot;r&quot; ...
+##   ..$ class       : chr [1:7] &quot;midsize&quot; &quot;compact&quot; &quot;suv&quot; &quot;compact&quot; ...</code></pre>
 <p>Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, <code>[ ]</code>, a list element is returned.</p>
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="rprog4.html#cb304-1" tabindex="-1"></a>my.list[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## $entry_1
