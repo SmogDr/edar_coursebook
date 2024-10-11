@@ -238,7 +238,8 @@ Thus, we wish to write a function that not only imports these .csv files into a 
 frame but also extracts the part of the file name (i.e., PA019 and PA020) 
 as one of the data columns (otherwise, when the data were combined we might not know what data was associated with a given sensor!).  In this function we will also 
 include a step to clean up the newly created data frame with a call to 
-`dplyr::select()` to retain only a few variables of interest.  Seeing that these
+`dplyr::select()` to retain only a few variables of interest and `lubridate::ymd()`
+to create a date-time object.  Seeing that these
 files are .csv, we can leverage `readr::read_csv`
 
 ``` {r import-file-name, warning=FALSE, message=FALSE}
@@ -253,9 +254,11 @@ import.w.name <- function(pathname) {
     # use stringr::str_extract & a regex to get sensor ID from file name
     # regex translation: "look for a /, then extract all letters and numbers that follow until _"
     mutate(sensor_ID = str_extract(pathname, 
-                                  "(?<=//)[:alnum:]+(?=_)")) %>%
+                                  "(?<=//)[:alnum:]+(?=_)"),
+    # convert Date & Time variable to POSIXct with lubridate
+           datetime = lubridate::ymd_hms(UTCDateTime)) %>%
     # return only a few salient variables to the resultant data frame using dplyr::select
-    select(UTCDateTime, 
+    select(datetime, 
            current_temp_f, 
            current_humidity, 
            pressure,
@@ -264,6 +267,7 @@ import.w.name <- function(pathname) {
     na.omit() # remove NA values, which happens when sensor goes offline
   return(df)
 }
+
 ```
 
 After sourcing this function, we can test it out on the first entry of our list
@@ -285,8 +289,7 @@ file so that you can call upon them when needed: `source(import.w.name.R)`
 ## The `purrr::` package
 The `purrr::` package was designed specifically with functional programming in mind.
 Similar to the discussion of *vectorized operations* above, `purrr::` was created
-to help you apply functions to vectors in a way that is easy to implement and 
-easy to "read".
+to help you apply functions to vectors (and data frames) in a way that is easy to implement and easy to "read".
 
 ### Function Mapping
 The `map_` family of functions are the core of the `purrr` package. These 

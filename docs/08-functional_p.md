@@ -257,7 +257,8 @@ Thus, we wish to write a function that not only imports these .csv files into a 
 frame but also extracts the part of the file name (i.e., PA019 and PA020) 
 as one of the data columns (otherwise, when the data were combined we might not know what data was associated with a given sensor!).  In this function we will also 
 include a step to clean up the newly created data frame with a call to 
-`dplyr::select()` to retain only a few variables of interest.  Seeing that these
+`dplyr::select()` to retain only a few variables of interest and `lubridate::ymd()`
+to create a date-time object.  Seeing that these
 files are .csv, we can leverage `readr::read_csv`
 
 
@@ -273,9 +274,11 @@ import.w.name <- function(pathname) {
     # use stringr::str_extract & a regex to get sensor ID from file name
     # regex translation: "look for a /, then extract all letters and numbers that follow until _"
     mutate(sensor_ID = str_extract(pathname, 
-                                  "(?<=//)[:alnum:]+(?=_)")) %>%
+                                  "(?<=//)[:alnum:]+(?=_)"),
+    # convert Date & Time variable to POSIXct with lubridate
+           datetime = lubridate::ymd_hms(UTCDateTime)) %>%
     # return only a few salient variables to the resultant data frame using dplyr::select
-    select(UTCDateTime, 
+    select(datetime, 
            current_temp_f, 
            current_humidity, 
            pressure,
@@ -298,14 +301,15 @@ head(PA_data_1)
 
 ```
 ## # A tibble: 6 × 6
-##   UTCDateTime       current_temp_f current_humidity pressure pm2_5_atm sensor_ID
-##   <chr>                      <dbl>            <dbl>    <dbl>     <dbl> <chr>    
-## 1 2018/10/22T17:52…             90               12     852.      2.45 PA019    
-## 2 2018/10/22T17:53…             86               13     852.      3.43 PA019    
-## 3 2018/10/22T17:55…             87               13     852.      2.76 PA019    
-## 4 2018/10/22T17:56…             87               13     852.      2    PA019    
-## 5 2018/10/22T17:58…             87               13     852.      1.82 PA019    
-## 6 2018/10/22T17:59…             87               13     852.      1.98 PA019
+##   datetime            current_temp_f current_humidity pressure pm2_5_atm
+##   <dttm>                       <dbl>            <dbl>    <dbl>     <dbl>
+## 1 2018-10-22 17:52:21             90               12     852.      2.45
+## 2 2018-10-22 17:53:41             86               13     852.      3.43
+## 3 2018-10-22 17:55:01             87               13     852.      2.76
+## 4 2018-10-22 17:56:49             87               13     852.      2   
+## 5 2018-10-22 17:58:08             87               13     852.      1.82
+## 6 2018-10-22 17:59:28             87               13     852.      1.98
+## # ℹ 1 more variable: sensor_ID <chr>
 ```
 
 The `import.w.name()` function is useful, but not versatile; 
@@ -318,8 +322,7 @@ file so that you can call upon them when needed: `source(import.w.name.R)`
 ## The `purrr::` package
 The `purrr::` package was designed specifically with functional programming in mind.
 Similar to the discussion of *vectorized operations* above, `purrr::` was created
-to help you apply functions to vectors in a way that is easy to implement and 
-easy to "read".
+to help you apply functions to vectors (and data frames) in a way that is easy to implement and easy to "read".
 
 ### Function Mapping
 The `map_` family of functions are the core of the `purrr` package. These 
@@ -359,17 +362,17 @@ glimpse(my.list)
 ##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] "audi" "volkswagen" "toyota" "nissan" ...
-##   ..$ model       : chr [1:7] "a6 quattro" "jetta" "4runner 4wd" "altima" ...
-##   ..$ displ       : num [1:7] 3.1 2 2.7 2.4 3.6 3.6 1.6
-##   ..$ year        : int [1:7] 2008 1999 1999 1999 2008 2008 1999
-##   ..$ cyl         : int [1:7] 6 4 4 4 6 6 4
-##   ..$ trans       : chr [1:7] "auto(s6)" "auto(l4)" "manual(m5)" "manual(m5)" ...
-##   ..$ drv         : chr [1:7] "4" "f" "4" "f" ...
-##   ..$ cty         : int [1:7] 17 19 15 21 17 17 25
-##   ..$ hwy         : int [1:7] 25 26 20 29 26 26 32
-##   ..$ fl          : chr [1:7] "p" "r" "r" "r" ...
-##   ..$ class       : chr [1:7] "midsize" "compact" "suv" "compact" ...
+##   ..$ manufacturer: chr [1:7] "ford" "dodge" "chevrolet" "ford" ...
+##   ..$ model       : chr [1:7] "f150 pickup 4wd" "caravan 2wd" "malibu" "f150 pickup 4wd" ...
+##   ..$ displ       : num [1:7] 4.6 3.3 3.1 4.6 2.5 3 5.9
+##   ..$ year        : int [1:7] 2008 1999 1999 1999 2008 1999 1999
+##   ..$ cyl         : int [1:7] 8 6 6 8 4 6 8
+##   ..$ trans       : chr [1:7] "auto(l4)" "auto(l4)" "auto(l4)" "auto(l4)" ...
+##   ..$ drv         : chr [1:7] "4" "f" "f" "4" ...
+##   ..$ cty         : int [1:7] 13 16 18 13 18 18 11
+##   ..$ hwy         : int [1:7] 17 22 26 16 23 26 15
+##   ..$ fl          : chr [1:7] "r" "r" "r" "r" ...
+##   ..$ class       : chr [1:7] "pickup" "minivan" "midsize" "pickup" ...
 ```
 
 Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 
@@ -463,9 +466,9 @@ glimpse(PA_data_merged)
 ```
 
 ```
-## Rows: 6,374
+## Rows: 6,371
 ## Columns: 6
-## $ UTCDateTime      <chr> "2018/10/22T17:52:21z", "2018/10/22T17:53:41z", "2018…
+## $ datetime         <dttm> 2018-10-22 17:52:21, 2018-10-22 17:53:41, 2018-10-22…
 ## $ current_temp_f   <dbl> 90, 86, 87, 87, 87, 87, 86, 86, 86, 86, 86, 86, 86, 8…
 ## $ current_humidity <dbl> 12, 13, 13, 13, 13, 13, 12, 13, 13, 13, 13, 13, 13, 1…
 ## $ pressure         <dbl> 851.66, 851.68, 851.56, 851.59, 851.54, 851.57, 851.5…
