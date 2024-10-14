@@ -465,6 +465,27 @@ knitr::kable(tidy_select_2, col.names = c("Symbol", "Explanation", "Example (`mp
 
 ```
 
+### Examples `dplyr::across()`
+Perform unit conversions:  
+```{r metric-units-mpg}
+# convert the cty and hwy variables in the mpg data frame to km/l
+mutate(mpg, across(ends_with("y"), # select cty and hwy
+                   .fns = ~0.425*.x, # unit conversion m/gal to km/l
+                   .names = "km_per_liter_{.col}")) %>% # how to name new columns
+  # select first 2 cols and those containing strings indicated
+  select(1:2 | contains("year") | contains("km")) %>% 
+  slice_sample(n=5)
+
+```
+
+Summarizing the data range for only the numeric vectors:  
+
+```{r summarise-numerics, warning=FALSE}
+# show the ranges of all numeric vectors in the mpg data frame
+mpg %>%
+  summarise(across(where(is.numeric), .fns = range))
+
+```
 ## Homework 
 This homework will give you practice at writing functions, mapping functions, and cleaning/plotting data. To begin, download the PurpleAir data files from Canvas. Note: the data are contained in a .zip file, which you can unzip on your computer or using R!
 

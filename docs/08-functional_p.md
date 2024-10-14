@@ -362,17 +362,17 @@ glimpse(my.list)
 ##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] "jeep" "toyota" "chevrolet" "ford" ...
-##   ..$ model       : chr [1:7] "grand cherokee 4wd" "camry solara" "malibu" "f150 pickup 4wd" ...
-##   ..$ displ       : num [1:7] 6.1 3 3.6 5.4 3.5 4.7 4.7
-##   ..$ year        : int [1:7] 2008 1999 2008 2008 2008 2008 2008
-##   ..$ cyl         : int [1:7] 8 6 6 8 6 8 8
-##   ..$ trans       : chr [1:7] "auto(l5)" "auto(l4)" "auto(s6)" "auto(l4)" ...
-##   ..$ drv         : chr [1:7] "4" "f" "f" "4" ...
-##   ..$ cty         : int [1:7] 11 18 17 13 19 12 9
-##   ..$ hwy         : int [1:7] 14 26 26 17 26 16 12
-##   ..$ fl          : chr [1:7] "p" "r" "r" "r" ...
-##   ..$ class       : chr [1:7] "suv" "compact" "midsize" "pickup" ...
+##   ..$ manufacturer: chr [1:7] "dodge" "lincoln" "toyota" "toyota" ...
+##   ..$ model       : chr [1:7] "durango 4wd" "navigator 2wd" "toyota tacoma 4wd" "camry" ...
+##   ..$ displ       : num [1:7] 5.9 5.4 2.7 2.4 1.6 6.2 5.2
+##   ..$ year        : int [1:7] 1999 1999 1999 2008 1999 2008 1999
+##   ..$ cyl         : int [1:7] 8 8 4 4 4 8 8
+##   ..$ trans       : chr [1:7] "auto(l4)" "auto(l4)" "manual(m5)" "auto(l5)" ...
+##   ..$ drv         : chr [1:7] "4" "r" "4" "f" ...
+##   ..$ cty         : int [1:7] 11 11 15 21 25 16 11
+##   ..$ hwy         : int [1:7] 15 16 20 31 32 26 15
+##   ..$ fl          : chr [1:7] "r" "p" "r" "r" ...
+##   ..$ class       : chr [1:7] "suv" "suv" "pickup" "midsize" ...
 ```
 
 Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 
@@ -549,6 +549,46 @@ There are also helper symbols that can be used (an in conjunction with the helpe
 |&#124; |for selecting the union of two sets of variables        |where(is.numeric) &#124; starts("m") |
 |c()    |for combining selections                                |!c(Make, hwy)                        |
 
+### Examples `dplyr::across()`
+Perform unit conversions:  
+
+``` r
+# convert the cty and hwy variables in the mpg data frame to km/l
+mutate(mpg, across(ends_with("y"), # select cty and hwy
+                   .fns = ~0.425*.x, # unit conversion m/gal to km/l
+                   .names = "km_per_liter_{.col}")) %>% # how to name new columns
+  # select first 2 cols and those containing strings indicated
+  select(1:2 | contains("year") | contains("km")) %>% 
+  slice_sample(n=5)
+```
+
+```
+## # A tibble: 5 × 5
+##   manufacturer model                year km_per_liter_cty km_per_liter_hwy
+##   <chr>        <chr>               <int>            <dbl>            <dbl>
+## 1 toyota       toyota tacoma 4wd    1999             6.38              8.5
+## 2 honda        civic                1999            10.2              13.6
+## 3 honda        civic                1999            10.6              13.6
+## 4 dodge        ram 1500 pickup 4wd  1999             4.68              6.8
+## 5 toyota       toyota tacoma 4wd    2008             6.8               8.5
+```
+
+Summarizing the data range for only the numeric vectors:  
+
+
+``` r
+# show the ranges of all numeric vectors in the mpg data frame
+mpg %>%
+  summarise(across(where(is.numeric), .fns = range))
+```
+
+```
+## # A tibble: 2 × 5
+##   displ  year   cyl   cty   hwy
+##   <dbl> <int> <int> <int> <int>
+## 1   1.6  1999     4     9    12
+## 2   7    2008     8    35    44
+```
 ## Homework 
 This homework will give you practice at writing functions, mapping functions, and cleaning/plotting data. To begin, download the PurpleAir data files from Canvas. Note: the data are contained in a .zip file, which you can unzip on your computer or using R!
 
