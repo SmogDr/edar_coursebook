@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2024-10-11" />
+<meta name="date" content="2024-10-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -369,7 +369,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.4.1" data-path="rprog4.html"><a href="rprog4.html#function-mapping"><i class="fa fa-check"></i><b>8.4.1</b> Function Mapping</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.5</b> Homework</a></li>
+<li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#applying-functions-to-multiple-columns-dplyracross"><i class="fa fa-check"></i><b>8.5</b> Applying functions to multiple columns: <code>dplyr::across()</code></a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="rprog4.html"><a href="rprog4.html#using-tidy-select-syntax-to-select-columns"><i class="fa fa-check"></i><b>8.5.1</b> Using <code>&lt;tidy-select&gt;</code> syntax to select columns</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.6</b> Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a>
 <ul>
@@ -781,17 +785,17 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 ##  $ entry_1: chr [1:4] &quot;Harry&quot; &quot;Ron&quot; &quot;Hermione&quot; &quot;Draco&quot;
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] &quot;ford&quot; &quot;dodge&quot; &quot;chevrolet&quot; &quot;ford&quot; ...
-##   ..$ model       : chr [1:7] &quot;f150 pickup 4wd&quot; &quot;caravan 2wd&quot; &quot;malibu&quot; &quot;f150 pickup 4wd&quot; ...
-##   ..$ displ       : num [1:7] 4.6 3.3 3.1 4.6 2.5 3 5.9
-##   ..$ year        : int [1:7] 2008 1999 1999 1999 2008 1999 1999
-##   ..$ cyl         : int [1:7] 8 6 6 8 4 6 8
-##   ..$ trans       : chr [1:7] &quot;auto(l4)&quot; &quot;auto(l4)&quot; &quot;auto(l4)&quot; &quot;auto(l4)&quot; ...
+##   ..$ manufacturer: chr [1:7] &quot;jeep&quot; &quot;toyota&quot; &quot;chevrolet&quot; &quot;ford&quot; ...
+##   ..$ model       : chr [1:7] &quot;grand cherokee 4wd&quot; &quot;camry solara&quot; &quot;malibu&quot; &quot;f150 pickup 4wd&quot; ...
+##   ..$ displ       : num [1:7] 6.1 3 3.6 5.4 3.5 4.7 4.7
+##   ..$ year        : int [1:7] 2008 1999 2008 2008 2008 2008 2008
+##   ..$ cyl         : int [1:7] 8 6 6 8 6 8 8
+##   ..$ trans       : chr [1:7] &quot;auto(l5)&quot; &quot;auto(l4)&quot; &quot;auto(s6)&quot; &quot;auto(l4)&quot; ...
 ##   ..$ drv         : chr [1:7] &quot;4&quot; &quot;f&quot; &quot;f&quot; &quot;4&quot; ...
-##   ..$ cty         : int [1:7] 13 16 18 13 18 18 11
-##   ..$ hwy         : int [1:7] 17 22 26 16 23 26 15
-##   ..$ fl          : chr [1:7] &quot;r&quot; &quot;r&quot; &quot;r&quot; &quot;r&quot; ...
-##   ..$ class       : chr [1:7] &quot;pickup&quot; &quot;minivan&quot; &quot;midsize&quot; &quot;pickup&quot; ...</code></pre>
+##   ..$ cty         : int [1:7] 11 18 17 13 19 12 9
+##   ..$ hwy         : int [1:7] 14 26 26 17 26 16 12
+##   ..$ fl          : chr [1:7] &quot;p&quot; &quot;r&quot; &quot;r&quot; &quot;r&quot; ...
+##   ..$ class       : chr [1:7] &quot;suv&quot; &quot;compact&quot; &quot;midsize&quot; &quot;pickup&quot; ...</code></pre>
 <p>Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, <code>[ ]</code>, a list element is returned.</p>
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="rprog4.html#cb304-1" tabindex="-1"></a>my.list[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## $entry_1
@@ -876,8 +880,145 @@ Figure 8.2: Example: using <code>map_dfr()</code> to import a file list using a 
 </div>
 </div>
 </div>
-<div id="homework" class="section level2 hasAnchor" number="8.5">
-<h2><span class="header-section-number">8.5</span> Homework<a href="rprog4.html#homework" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="applying-functions-to-multiple-columns-dplyracross" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Applying functions to multiple columns: <code>dplyr::across()</code><a href="rprog4.html#applying-functions-to-multiple-columns-dplyracross" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are many instances where you will want to apply a function to several columns in a data frame, often in conjunction with <code>mutate()</code> or <code>summarise()</code>. The <code>across()</code> function helps you do this efficiently, by applying a function <em>across</em> various column variables in a data frame.</p>
+<p>The <code>across()</code> function has two required arguments: the column variables being treated (<code>.cols =</code>) and the function(s) being applied to those columns (<code>.fns =</code>). For example, if you wanted to change the <code>cyl</code>, <code>drv</code>, and <code>class</code> variables in the <code>mpg</code> data frame to factors, you could use:</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="rprog4.html#cb318-1" tabindex="-1"></a>mpg_facts <span class="ot">&lt;-</span> <span class="fu">mutate</span>(mpg, <span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">c</span>(cyl, drv, class),</span>
+<span id="cb318-2"><a href="rprog4.html#cb318-2" tabindex="-1"></a>                                <span class="at">.fns =</span> factor))</span></code></pre></div>
+<p>Before providing more examples of <code>across()</code>, it’s worth taking a tangent to discuss more efficient ways to select multiple columns beyong using <code>c()</code>.</p>
+<div id="using-tidy-select-syntax-to-select-columns" class="section level3 hasAnchor" number="8.5.1">
+<h3><span class="header-section-number">8.5.1</span> Using <code>&lt;tidy-select&gt;</code> syntax to select columns<a href="rprog4.html#using-tidy-select-syntax-to-select-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Many of the <code>dplyr::</code> functions support <em>Tidy Selection</em> as a means to choose certain column variables when operating on a data frame. For example, maybe you want to choose only columns whose names start with a common prefix (<code>starts_with()</code>) or whose names contain a common string (<code>contains()</code>). The <code>&lt;tidy-select&gt;</code> helpers provide syntax for efficiently specifying your <code>.cols =</code> argument in R. These helpers, shown below, can be used as column/variable selection arguments whenever you see the text <code>&lt;tidy-select&gt;</code> in the function’s help file.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Helper
+</th>
+<th style="text-align:left;">
+Explanation
+</th>
+<th style="text-align:left;">
+Example
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+everything()
+</td>
+<td style="text-align:left;width: 6cm; ">
+Matches all variables
+</td>
+<td style="text-align:left;">
+rename_with(mpg, .cols = everything(), .fn = toupper))
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+starts_with()
+</td>
+<td style="text-align:left;width: 6cm; ">
+Starts with a prefix
+</td>
+<td style="text-align:left;">
+select(mpg, starts_with(“c”))
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ends_with()
+</td>
+<td style="text-align:left;width: 6cm; ">
+Ends with a suffix
+</td>
+<td style="text-align:left;">
+mutate(mpg, across(ends_with(“y”), .fns = ~0.425*.x, .names = “km_per_liter_{.col}”))
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+contains()
+</td>
+<td style="text-align:left;width: 6cm; ">
+Contains a literal string
+</td>
+<td style="text-align:left;">
+summarise(mpg, across(contains(“y”), .fns = mean, .names = “mean_{.col}”))
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+matches()
+</td>
+<td style="text-align:left;width: 6cm; ">
+Matches a regular expression
+</td>
+<td style="text-align:left;">
+rename_with(mpg, .cols = matches(“y$”), .fn = toupper)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+where()
+</td>
+<td style="text-align:left;width: 6cm; ">
+Selects variables if function returns TRUE
+</td>
+<td style="text-align:left;">
+select(mpg, where(is.numeric))
+</td>
+</tr>
+</tbody>
+</table>
+<p>There are also helper symbols that can be used (an in conjunction with the helper verbs above) to make selections. For example, if you wanted to keep all columns <em>except</em> for those containing <code>logical</code> vectors, you could use <code>select(data = .x, !where(is.logical))</code>. These symbols are outlined in the table below. For further reference, see this <a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html">help page</a>.</p>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="56%" />
+<col width="37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Symbol</th>
+<th align="left">Explanation</th>
+<th align="left">Example (<code>mpg</code> dataframe)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">:</td>
+<td align="left">for selecting a range of consecutive columns</td>
+<td align="left">model:year</td>
+</tr>
+<tr class="even">
+<td align="left">!</td>
+<td align="left">for taking the complement of a set of variables</td>
+<td align="left">!where(is.numeric)</td>
+</tr>
+<tr class="odd">
+<td align="left">&amp;</td>
+<td align="left">for selecting the intersection of two sets of variables</td>
+<td align="left">where(is.numeric) &amp; contains(“y”)</td>
+</tr>
+<tr class="even">
+<td align="left">|</td>
+<td align="left">for selecting the union of two sets of variables</td>
+<td align="left">where(is.numeric) | starts(“m”)</td>
+</tr>
+<tr class="odd">
+<td align="left">c()</td>
+<td align="left">for combining selections</td>
+<td align="left">!c(Make, hwy)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="homework" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Homework<a href="rprog4.html#homework" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This homework will give you practice at writing functions, mapping functions, and cleaning/plotting data. To begin, download the PurpleAir data files from Canvas. Note: the data are contained in a .zip file, which you can unzip on your computer or using R!</p>
 
 </div>

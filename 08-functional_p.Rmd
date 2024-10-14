@@ -13,6 +13,7 @@ library(lubridate)    # for working with date-times
 library(knitr)
 library(bookdown)
 library(scales)
+library(kableExtra)
 ```
 
 ## Ch. 8 Objectives
@@ -399,6 +400,70 @@ knitr::include_graphics("./images/map_dfr_anno.png")
 
 ```
 
+## Applying functions to multiple columns: `dplyr::across()`
+There are many instances where you will want to apply a function to several columns in a data frame, often in conjunction with `mutate()` or `summarise()`. The `across()` function helps you do this efficiently, by applying a function *across* various column variables in a data frame.
+
+The `across()` function has two required arguments: the column variables being treated (`.cols = `) and the function(s) being applied to those columns (`.fns = `). For example, if you wanted to change the `cyl`, `drv`, and `class` variables in the `mpg` data frame to factors, you could use:
+
+```{r mpg-factors}
+mpg_facts <- mutate(mpg, across(.cols = c(cyl, drv, class),
+                                .fns = factor))
+```
+
+Before providing more examples of `across()`, it's worth taking a tangent to discuss more efficient ways to select multiple columns beyong using `c()`.
+
+### Using `<tidy-select>` syntax to select columns
+Many of the `dplyr::` functions support *Tidy Selection* as a means to choose certain column variables when operating on a data frame. For example, maybe you want to choose only columns whose names start with a common prefix (`starts_with()`) or whose names contain a common string (`contains()`).  The `<tidy-select>` helpers provide syntax for efficiently specifying your `.cols = ` argument in R.  These helpers, shown below, can be used as column/variable selection arguments whenever you see the text `<tidy-select>` in the function's help file.
+
+```{r tidy-select, echo = FALSE}
+tidy_select_1 <- data.frame(
+  helpers = c("everything()",
+              "starts_with()",
+              "ends_with()",
+              "contains()",
+              "matches()",
+              "where()"),
+  meaning = c("Matches all variables",
+              "Starts with a prefix",
+              "Ends with a suffix",
+              "Contains a literal string",
+              "Matches a regular expression",
+              "Selects variables if function returns TRUE"),
+  example = c("rename_with(mpg, .cols = everything(), .fn = toupper))",
+              "select(mpg, starts_with(\"c\"))",
+              "mutate(mpg, across(ends_with(\"y\"), .fns = ~0.425*.x, .names = \"km_per_liter_{.col}\"))",
+              "summarise(mpg, across(contains(\"y\"), .fns = mean, .names = \"mean_{.col}\"))",
+              "rename_with(mpg, .cols = matches(\"y$\"), .fn = toupper)",
+              "select(mpg, where(is.numeric))")
+              
+)
+
+
+
+knitr::kable(tidy_select_1, col.names = c("Helper", "Explanation", "Example")) %>%
+  column_spec(2, width = "6cm")
+```
+There are also helper symbols that can be used (an in conjunction with the helper verbs above) to make selections.  For example, if you wanted to keep all columns *except* for those containing `logical` vectors, you could use `select(data = .x, !where(is.logical))`.  These symbols are outlined in the table below.  For further reference, see this [help page](https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html). 
+
+```{r tidy-select2, echo = FALSE}
+tidy_select_2 <- tibble(
+  symbol = c(":", "!", "&", "|", "c()"),
+  meaning = c("for selecting a range of consecutive columns",
+              "for taking the complement of a set of variables",
+              "for selecting the intersection of two sets of variables",
+              "for selecting the union of two sets of variables",
+              "for combining selections"),
+  example = c("model:year", 
+              "!where(is.numeric)",
+              "where(is.numeric) & contains(\"y\")",
+              "where(is.numeric) | starts(\"m\")",
+              "!c(Make, hwy)")
+)
+
+knitr::kable(tidy_select_2, col.names = c("Symbol", "Explanation", "Example (`mpg` dataframe)"))
+
+
+```
 
 ## Homework 
 This homework will give you practice at writing functions, mapping functions, and cleaning/plotting data. To begin, download the PurpleAir data files from Canvas. Note: the data are contained in a .zip file, which you can unzip on your computer or using R!

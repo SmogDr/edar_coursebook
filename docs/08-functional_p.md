@@ -362,17 +362,17 @@ glimpse(my.list)
 ##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] "ford" "dodge" "chevrolet" "ford" ...
-##   ..$ model       : chr [1:7] "f150 pickup 4wd" "caravan 2wd" "malibu" "f150 pickup 4wd" ...
-##   ..$ displ       : num [1:7] 4.6 3.3 3.1 4.6 2.5 3 5.9
-##   ..$ year        : int [1:7] 2008 1999 1999 1999 2008 1999 1999
-##   ..$ cyl         : int [1:7] 8 6 6 8 4 6 8
-##   ..$ trans       : chr [1:7] "auto(l4)" "auto(l4)" "auto(l4)" "auto(l4)" ...
+##   ..$ manufacturer: chr [1:7] "jeep" "toyota" "chevrolet" "ford" ...
+##   ..$ model       : chr [1:7] "grand cherokee 4wd" "camry solara" "malibu" "f150 pickup 4wd" ...
+##   ..$ displ       : num [1:7] 6.1 3 3.6 5.4 3.5 4.7 4.7
+##   ..$ year        : int [1:7] 2008 1999 2008 2008 2008 2008 2008
+##   ..$ cyl         : int [1:7] 8 6 6 8 6 8 8
+##   ..$ trans       : chr [1:7] "auto(l5)" "auto(l4)" "auto(s6)" "auto(l4)" ...
 ##   ..$ drv         : chr [1:7] "4" "f" "f" "4" ...
-##   ..$ cty         : int [1:7] 13 16 18 13 18 18 11
-##   ..$ hwy         : int [1:7] 17 22 26 16 23 26 15
-##   ..$ fl          : chr [1:7] "r" "r" "r" "r" ...
-##   ..$ class       : chr [1:7] "pickup" "minivan" "midsize" "pickup" ...
+##   ..$ cty         : int [1:7] 11 18 17 13 19 12 9
+##   ..$ hwy         : int [1:7] 14 26 26 17 26 16 12
+##   ..$ fl          : chr [1:7] "p" "r" "r" "r" ...
+##   ..$ class       : chr [1:7] "suv" "compact" "midsize" "pickup" ...
 ```
 
 Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 
@@ -481,6 +481,73 @@ glimpse(PA_data_merged)
 <p class="caption">(\#fig:map-dfr-anno)Example: using `map_dfr()` to import a file list using a custom function</p>
 </div>
 
+## Applying functions to multiple columns: `dplyr::across()`
+There are many instances where you will want to apply a function to several columns in a data frame, often in conjunction with `mutate()` or `summarise()`. The `across()` function helps you do this efficiently, by applying a function *across* various column variables in a data frame.
+
+The `across()` function has two required arguments: the column variables being treated (`.cols = `) and the function(s) being applied to those columns (`.fns = `). For example, if you wanted to change the `cyl`, `drv`, and `class` variables in the `mpg` data frame to factors, you could use:
+
+
+``` r
+mpg_facts <- mutate(mpg, across(.cols = c(cyl, drv, class),
+                                .fns = factor))
+```
+
+Before providing more examples of `across()`, it's worth taking a tangent to discuss more efficient ways to select multiple columns beyong using `c()`.
+
+### Using `<tidy-select>` syntax to select columns
+Many of the `dplyr::` functions support *Tidy Selection* as a means to choose certain column variables when operating on a data frame. For example, maybe you want to choose only columns whose names start with a common prefix (`starts_with()`) or whose names contain a common string (`contains()`).  The `<tidy-select>` helpers provide syntax for efficiently specifying your `.cols = ` argument in R.  These helpers, shown below, can be used as column/variable selection arguments whenever you see the text `<tidy-select>` in the function's help file.
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Helper </th>
+   <th style="text-align:left;"> Explanation </th>
+   <th style="text-align:left;"> Example </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> everything() </td>
+   <td style="text-align:left;width: 6cm; "> Matches all variables </td>
+   <td style="text-align:left;"> rename_with(mpg, .cols = everything(), .fn = toupper)) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> starts_with() </td>
+   <td style="text-align:left;width: 6cm; "> Starts with a prefix </td>
+   <td style="text-align:left;"> select(mpg, starts_with("c")) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ends_with() </td>
+   <td style="text-align:left;width: 6cm; "> Ends with a suffix </td>
+   <td style="text-align:left;"> mutate(mpg, across(ends_with("y"), .fns = ~0.425*.x, .names = "km_per_liter_{.col}")) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> contains() </td>
+   <td style="text-align:left;width: 6cm; "> Contains a literal string </td>
+   <td style="text-align:left;"> summarise(mpg, across(contains("y"), .fns = mean, .names = "mean_{.col}")) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> matches() </td>
+   <td style="text-align:left;width: 6cm; "> Matches a regular expression </td>
+   <td style="text-align:left;"> rename_with(mpg, .cols = matches("y$"), .fn = toupper) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> where() </td>
+   <td style="text-align:left;width: 6cm; "> Selects variables if function returns TRUE </td>
+   <td style="text-align:left;"> select(mpg, where(is.numeric)) </td>
+  </tr>
+</tbody>
+</table>
+There are also helper symbols that can be used (an in conjunction with the helper verbs above) to make selections.  For example, if you wanted to keep all columns *except* for those containing `logical` vectors, you could use `select(data = .x, !where(is.logical))`.  These symbols are outlined in the table below.  For further reference, see this [help page](https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html). 
+
+
+|Symbol |Explanation                                             |Example (`mpg` dataframe)            |
+|:------|:-------------------------------------------------------|:------------------------------------|
+|:      |for selecting a range of consecutive columns            |model:year                           |
+|!      |for taking the complement of a set of variables         |!where(is.numeric)                   |
+|&      |for selecting the intersection of two sets of variables |where(is.numeric) & contains("y")    |
+|&#124; |for selecting the union of two sets of variables        |where(is.numeric) &#124; starts("m") |
+|c()    |for combining selections                                |!c(Make, hwy)                        |
 
 ## Homework 
 This homework will give you practice at writing functions, mapping functions, and cleaning/plotting data. To begin, download the PurpleAir data files from Canvas. Note: the data are contained in a .zip file, which you can unzip on your computer or using R!

@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2024-10-11" />
+<meta name="date" content="2024-10-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -369,7 +369,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.4.1" data-path="rprog4.html"><a href="rprog4.html#function-mapping"><i class="fa fa-check"></i><b>8.4.1</b> Function Mapping</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.5</b> Homework</a></li>
+<li class="chapter" data-level="8.5" data-path="rprog4.html"><a href="rprog4.html#applying-functions-to-multiple-columns-dplyracross"><i class="fa fa-check"></i><b>8.5</b> Applying functions to multiple columns: <code>dplyr::across()</code></a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="rprog4.html"><a href="rprog4.html#using-tidy-select-syntax-to-select-columns"><i class="fa fa-check"></i><b>8.5.1</b> Using <code>&lt;tidy-select&gt;</code> syntax to select columns</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.6</b> Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>9</b> Transformations and Other Tricks</a>
 <ul>
@@ -860,7 +864,7 @@ date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time”
 by calling the <code>Sys.time()</code> function.</p>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="rprog3.html#cb206-1" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2024-10-11 09:53:40 MDT&quot;</code></pre>
+<pre><code>## [1] &quot;2024-10-14 11:12:45 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and timezone used by my computer
 (<em>whenever I last ran this code in <code>bookdown</code></em>). If you want to see how this
 time is stored in R internally, you can use <code>unclass()</code>, which returns an
@@ -868,17 +872,17 @@ object value with its class attributes removed. When we wrap <code>unclass()</co
 around <code>Sys.time()</code>, we will see the number of seconds that have occurred
 between the epoch of 1/1/1970 and right now:</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="rprog3.html#cb208-1" tabindex="-1"></a><span class="fu">unclass</span>(<span class="fu">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1728662021</code></pre>
+<pre><code>## [1] 1728925966</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
 Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span>
-365d/yr] =&gt; 54.8155131 years.</p>
+365d/yr] =&gt; 54.8238827 years.</p>
 <p>This calculation ignores leap years, but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3 hasAnchor" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats<a href="rprog3.html#date-time-formats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Note that the <code>Sys.time()</code> function provided the date in a
 <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong>
-format: 2024-10-11 09:53:40.835745.</p>
+format: 2024-10-14 11:12:45.882239.</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
 have little difficulty recognizing the following date-time objects as
@@ -1039,18 +1043,18 @@ classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and 
 attributes.</p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="rprog3.html#cb212-1" tabindex="-1"></a>time_now_ct <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="fu">Sys.time</span>())</span>
 <span id="cb212-2"><a href="rprog3.html#cb212-2" tabindex="-1"></a><span class="fu">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1728662021</code></pre>
+<pre><code>## [1] 1728925966</code></pre>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="rprog3.html#cb214-1" tabindex="-1"></a>time_now_lt <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(<span class="fu">Sys.time</span>())</span>
 <span id="cb214-2"><a href="rprog3.html#cb214-2" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 40.9
-##  $ min   : int 53
-##  $ hour  : int 9
-##  $ mday  : int 11
+##  $ sec   : num 45.9
+##  $ min   : int 12
+##  $ hour  : int 11
+##  $ mday  : int 14
 ##  $ mon   : int 9
 ##  $ year  : int 124
-##  $ wday  : int 5
-##  $ yday  : int 284
+##  $ wday  : int 1
+##  $ yday  : int 287
 ##  $ isdst : int 1
 ##  $ zone  : chr &quot;MDT&quot;
 ##  $ gmtoff: int -21600
