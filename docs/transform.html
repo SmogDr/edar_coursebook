@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2024-10-14" />
+<meta name="date" content="2024-10-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -628,29 +628,24 @@ Figure 9.3: Yield vs. Purity from the plant’s three reactors over one month
 <span id="cb323-9"><a href="transform.html#cb323-9" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Sample Purity&quot;</span>,</span>
 <span id="cb323-10"><a href="transform.html#cb323-10" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Process Yield, kg&quot;</span>) <span class="sc">+</span></span>
 <span id="cb323-11"><a href="transform.html#cb323-11" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
-<span id="cb323-12"><a href="transform.html#cb323-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.85</span>, <span class="fl">0.8</span>),</span>
-<span id="cb323-13"><a href="transform.html#cb323-13" tabindex="-1"></a>        <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>)) </span></code></pre></div>
-<pre><code>## Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
-## 3.5.0.
-## ℹ Please use the `legend.position.inside` argument of `theme()` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="transform.html#cb325-1" tabindex="-1"></a><span class="co">#ggsave(&quot;./images/stratified.png&quot;)</span></span></code></pre></div>
+<span id="cb323-12"><a href="transform.html#cb323-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position.inside =</span> <span class="fu">c</span>(<span class="fl">0.85</span>, <span class="fl">0.8</span>),</span>
+<span id="cb323-13"><a href="transform.html#cb323-13" tabindex="-1"></a>        <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>)) </span>
+<span id="cb323-14"><a href="transform.html#cb323-14" tabindex="-1"></a></span>
+<span id="cb323-15"><a href="transform.html#cb323-15" tabindex="-1"></a><span class="co">#ggsave(&quot;./images/stratified.png&quot;)</span></span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:stratify-png"></span>
 <img src="images/stratified.png" alt="Yield vs. Purity over one month, stratified by reactor type" width="500" />
 <p class="caption">
 Figure 9.4: Yield vs. Purity over one month, stratified by reactor type
 </p>
 </div>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="transform.html#cb326-1" tabindex="-1"></a>strat.data <span class="sc">%&gt;%</span></span>
-<span id="cb326-2"><a href="transform.html#cb326-2" tabindex="-1"></a>  <span class="fu">group_by</span>(reactor) <span class="sc">%&gt;%</span></span>
-<span id="cb326-3"><a href="transform.html#cb326-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">&quot;Pearson&#39;s r&quot;</span> <span class="ot">=</span> <span class="fu">cor</span>(yield2, purity),</span>
-<span id="cb326-4"><a href="transform.html#cb326-4" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;keep&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb326-5"><a href="transform.html#cb326-5" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">align =</span> <span class="st">&quot;c&quot;</span>,</span>
-<span id="cb326-6"><a href="transform.html#cb326-6" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">2</span>,</span>
-<span id="cb326-7"><a href="transform.html#cb326-7" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">&quot;Correlation between Sample Purity and Yield by Reactor&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb326-8"><a href="transform.html#cb326-8" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="transform.html#cb324-1" tabindex="-1"></a>strat.data <span class="sc">%&gt;%</span></span>
+<span id="cb324-2"><a href="transform.html#cb324-2" tabindex="-1"></a>  <span class="fu">group_by</span>(reactor) <span class="sc">%&gt;%</span></span>
+<span id="cb324-3"><a href="transform.html#cb324-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">&quot;Pearson&#39;s r&quot;</span> <span class="ot">=</span> <span class="fu">cor</span>(yield2, purity),</span>
+<span id="cb324-4"><a href="transform.html#cb324-4" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;keep&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb324-5"><a href="transform.html#cb324-5" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">align =</span> <span class="st">&quot;c&quot;</span>,</span>
+<span id="cb324-6"><a href="transform.html#cb324-6" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">2</span>,</span>
+<span id="cb324-7"><a href="transform.html#cb324-7" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">&quot;Correlation between Sample Purity and Yield by Reactor&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb324-8"><a href="transform.html#cb324-8" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:stat-table">Table 9.1: </span><span id="tab:stat-table">Table 9.2: </span>Correlation between Sample Purity and Yield by Reactor
@@ -728,14 +723,14 @@ distance from other values in a random sample.
 <li><code>asthma.prevalence</code>: the percentage of kids with asthma in a given school district</li>
 <li><code>black.carbon</code>: the concentration of airborne black carbon (a type of air pollutant generated by incomplete combustion, similar to what you see exhausted from a diesel truck) measured outside of a school at the center of each district.</li>
 </ul>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="transform.html#cb327-1" tabindex="-1"></a>asthma.data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb327-2"><a href="transform.html#cb327-2" tabindex="-1"></a>  <span class="at">asthma.prevalence =</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">9</span>, </span>
-<span id="cb327-3"><a href="transform.html#cb327-3" tabindex="-1"></a>                  <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">10</span>,</span>
-<span id="cb327-4"><a href="transform.html#cb327-4" tabindex="-1"></a>                  <span class="dv">16</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">9</span>),</span>
-<span id="cb327-5"><a href="transform.html#cb327-5" tabindex="-1"></a>  <span class="at">black.carbon =</span> <span class="fu">c</span>(<span class="fl">3.2</span>, <span class="fl">2.5</span>, <span class="fl">4.6</span>, <span class="fl">6.1</span>, <span class="fl">3.3</span>, </span>
-<span id="cb327-6"><a href="transform.html#cb327-6" tabindex="-1"></a>                   <span class="fl">3.1</span>, <span class="fl">6.1</span>, <span class="fl">5.3</span>, <span class="fl">4.5</span>, <span class="fl">3.3</span>, </span>
-<span id="cb327-7"><a href="transform.html#cb327-7" tabindex="-1"></a>                   <span class="fl">6.4</span>, <span class="fl">3.7</span>, <span class="fl">5.1</span>, <span class="fl">6.8</span>, <span class="dv">12</span>)</span>
-<span id="cb327-8"><a href="transform.html#cb327-8" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="transform.html#cb325-1" tabindex="-1"></a>asthma.data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb325-2"><a href="transform.html#cb325-2" tabindex="-1"></a>  <span class="at">asthma.prevalence =</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">9</span>, </span>
+<span id="cb325-3"><a href="transform.html#cb325-3" tabindex="-1"></a>                  <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">10</span>,</span>
+<span id="cb325-4"><a href="transform.html#cb325-4" tabindex="-1"></a>                  <span class="dv">16</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">9</span>),</span>
+<span id="cb325-5"><a href="transform.html#cb325-5" tabindex="-1"></a>  <span class="at">black.carbon =</span> <span class="fu">c</span>(<span class="fl">3.2</span>, <span class="fl">2.5</span>, <span class="fl">4.6</span>, <span class="fl">6.1</span>, <span class="fl">3.3</span>, </span>
+<span id="cb325-6"><a href="transform.html#cb325-6" tabindex="-1"></a>                   <span class="fl">3.1</span>, <span class="fl">6.1</span>, <span class="fl">5.3</span>, <span class="fl">4.5</span>, <span class="fl">3.3</span>, </span>
+<span id="cb325-7"><a href="transform.html#cb325-7" tabindex="-1"></a>                   <span class="fl">6.4</span>, <span class="fl">3.7</span>, <span class="fl">5.1</span>, <span class="fl">6.8</span>, <span class="dv">12</span>)</span>
+<span id="cb325-8"><a href="transform.html#cb325-8" tabindex="-1"></a>)</span></code></pre></div>
 <p>Figure <a href="transform.html#fig:outlier-1">9.5</a> below contains two boxplots: one depicts <code>asthma.prevalence</code> for the 15 school districts, and the other depicts <code>black.carbon</code>. I’ve circled the apparent outlier. <strong>Outliers are easy to see in boxplots because they fall outside the whiskers.</strong></p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:outlier-1"></span>
 <img src="09-transf_files/figure-html/outlier-1-1.png" alt="Boxplots for two sets of data; the one on the right has an outlier." width="500" />
@@ -751,19 +746,19 @@ Figure 9.5: Boxplots for two sets of data; the one on the right has an outlier.
 <li><em>low outliers are less than</em>: [0.25 quantile value] - 1.5*IQR</li>
 </ul>
 <p>For the <code>black.carbon</code> data, we could calculate these thresholds with the following:</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="transform.html#cb328-1" tabindex="-1"></a>upper <span class="ot">&lt;-</span> <span class="fu">quantile</span>(<span class="at">x =</span> asthma.data<span class="sc">$</span>black.carbon,</span>
-<span id="cb328-2"><a href="transform.html#cb328-2" tabindex="-1"></a>                  <span class="at">probs =</span> <span class="fl">0.75</span>,</span>
-<span id="cb328-3"><a href="transform.html#cb328-3" tabindex="-1"></a>                  <span class="at">names =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb328-4"><a href="transform.html#cb328-4" tabindex="-1"></a>  <span class="fl">1.5</span><span class="sc">*</span><span class="fu">IQR</span>(<span class="at">x =</span> asthma.data<span class="sc">$</span>black.carbon)</span>
-<span id="cb328-5"><a href="transform.html#cb328-5" tabindex="-1"></a></span>
-<span id="cb328-6"><a href="transform.html#cb328-6" tabindex="-1"></a>lower <span class="ot">&lt;-</span> <span class="fu">quantile</span>(<span class="at">x =</span> asthma.data<span class="sc">$</span>black.carbon,</span>
-<span id="cb328-7"><a href="transform.html#cb328-7" tabindex="-1"></a>                  <span class="at">probs =</span> <span class="fl">0.25</span>,</span>
-<span id="cb328-8"><a href="transform.html#cb328-8" tabindex="-1"></a>                  <span class="at">names =</span> <span class="cn">FALSE</span>) <span class="sc">-</span> </span>
-<span id="cb328-9"><a href="transform.html#cb328-9" tabindex="-1"></a>  <span class="fl">1.5</span><span class="sc">*</span><span class="fu">IQR</span>(<span class="at">x =</span> asthma.data<span class="sc">$</span>black.carbon)</span>
-<span id="cb328-10"><a href="transform.html#cb328-10" tabindex="-1"></a></span>
-<span id="cb328-11"><a href="transform.html#cb328-11" tabindex="-1"></a>upper</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="transform.html#cb326-1" tabindex="-1"></a>upper <span class="ot">&lt;-</span> <span class="fu">quantile</span>(<span class="at">x =</span> asthma.data<span class="sc">$</span>black.carbon,</span>
+<span id="cb326-2"><a href="transform.html#cb326-2" tabindex="-1"></a>                  <span class="at">probs =</span> <span class="fl">0.75</span>,</span>
+<span id="cb326-3"><a href="transform.html#cb326-3" tabindex="-1"></a>                  <span class="at">names =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb326-4"><a href="transform.html#cb326-4" tabindex="-1"></a>  <span class="fl">1.5</span><span class="sc">*</span><span class="fu">IQR</span>(<span class="at">x =</span> asthma.data<span class="sc">$</span>black.carbon)</span>
+<span id="cb326-5"><a href="transform.html#cb326-5" tabindex="-1"></a></span>
+<span id="cb326-6"><a href="transform.html#cb326-6" tabindex="-1"></a>lower <span class="ot">&lt;-</span> <span class="fu">quantile</span>(<span class="at">x =</span> asthma.data<span class="sc">$</span>black.carbon,</span>
+<span id="cb326-7"><a href="transform.html#cb326-7" tabindex="-1"></a>                  <span class="at">probs =</span> <span class="fl">0.25</span>,</span>
+<span id="cb326-8"><a href="transform.html#cb326-8" tabindex="-1"></a>                  <span class="at">names =</span> <span class="cn">FALSE</span>) <span class="sc">-</span> </span>
+<span id="cb326-9"><a href="transform.html#cb326-9" tabindex="-1"></a>  <span class="fl">1.5</span><span class="sc">*</span><span class="fu">IQR</span>(<span class="at">x =</span> asthma.data<span class="sc">$</span>black.carbon)</span>
+<span id="cb326-10"><a href="transform.html#cb326-10" tabindex="-1"></a></span>
+<span id="cb326-11"><a href="transform.html#cb326-11" tabindex="-1"></a>upper</span></code></pre></div>
 <pre><code>## [1] 10.3</code></pre>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="transform.html#cb330-1" tabindex="-1"></a>lower</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="transform.html#cb328-1" tabindex="-1"></a>lower</span></code></pre></div>
 <pre><code>## [1] -0.9</code></pre>
 <p>Interestingly, this rule suggests that outliers on the lower end need to be negative. Is that even possible for air pollution concentrations? (hint: NO) Other statistical approaches for detecting outliers include:</p>
 <ul>
@@ -805,9 +800,9 @@ setting yourself up for disaster.
 <div id="salary-data-for-poly-sci-majors" class="section level3 hasAnchor" number="9.6.1">
 <h3><span class="header-section-number">9.6.1</span> Salary Data for Poly Sci Majors<a href="transform.html#salary-data-for-poly-sci-majors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s read in the file and peek at the contents:</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="transform.html#cb332-1" tabindex="-1"></a>salary_ps <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;./data/salary_ch9.csv&quot;</span>)</span>
-<span id="cb332-2"><a href="transform.html#cb332-2" tabindex="-1"></a></span>
-<span id="cb332-3"><a href="transform.html#cb332-3" tabindex="-1"></a><span class="fu">head</span>(salary_ps)</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="transform.html#cb330-1" tabindex="-1"></a>salary_ps <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;./data/salary_ch9.csv&quot;</span>)</span>
+<span id="cb330-2"><a href="transform.html#cb330-2" tabindex="-1"></a></span>
+<span id="cb330-3"><a href="transform.html#cb330-3" tabindex="-1"></a><span class="fu">head</span>(salary_ps)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   salary sex   major   
 ##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   
@@ -818,15 +813,15 @@ setting yourself up for disaster.
 ## 5  60000 M     Poly Sci
 ## 6 200000 M     Poly Sci</code></pre>
 <p>We can see that we have <code>salary</code> information, <code>sex</code> (<em>Male</em> or <em>Female</em> respondent), and <code>major</code> (all of which are Poly Sci). Let’s calculate some basic descriptive statistics grouped by respondent sex.</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="transform.html#cb334-1" tabindex="-1"></a>salary_ps <span class="sc">%&gt;%</span></span>
-<span id="cb334-2"><a href="transform.html#cb334-2" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
-<span id="cb334-3"><a href="transform.html#cb334-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">median =</span> <span class="fu">median</span>(salary),</span>
-<span id="cb334-4"><a href="transform.html#cb334-4" tabindex="-1"></a>          <span class="at">mean =</span> <span class="fu">mean</span>(salary),</span>
-<span id="cb334-5"><a href="transform.html#cb334-5" tabindex="-1"></a>          <span class="at">min =</span> <span class="fu">min</span>(salary),</span>
-<span id="cb334-6"><a href="transform.html#cb334-6" tabindex="-1"></a>          <span class="at">max =</span> <span class="fu">max</span>(salary),</span>
-<span id="cb334-7"><a href="transform.html#cb334-7" tabindex="-1"></a>          <span class="at">IQR =</span> <span class="fu">IQR</span>(salary),</span>
-<span id="cb334-8"><a href="transform.html#cb334-8" tabindex="-1"></a>          <span class="at">.groups =</span> <span class="st">&quot;keep&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb334-9"><a href="transform.html#cb334-9" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="transform.html#cb332-1" tabindex="-1"></a>salary_ps <span class="sc">%&gt;%</span></span>
+<span id="cb332-2"><a href="transform.html#cb332-2" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb332-3"><a href="transform.html#cb332-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">median =</span> <span class="fu">median</span>(salary),</span>
+<span id="cb332-4"><a href="transform.html#cb332-4" tabindex="-1"></a>          <span class="at">mean =</span> <span class="fu">mean</span>(salary),</span>
+<span id="cb332-5"><a href="transform.html#cb332-5" tabindex="-1"></a>          <span class="at">min =</span> <span class="fu">min</span>(salary),</span>
+<span id="cb332-6"><a href="transform.html#cb332-6" tabindex="-1"></a>          <span class="at">max =</span> <span class="fu">max</span>(salary),</span>
+<span id="cb332-7"><a href="transform.html#cb332-7" tabindex="-1"></a>          <span class="at">IQR =</span> <span class="fu">IQR</span>(salary),</span>
+<span id="cb332-8"><a href="transform.html#cb332-8" tabindex="-1"></a>          <span class="at">.groups =</span> <span class="st">&quot;keep&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb332-9"><a href="transform.html#cb332-9" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 6
 ##   sex   median    mean   min     max   IQR
 ##   &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -843,35 +838,40 @@ setting yourself up for disaster.
 <div id="univariate-data-visualization-1" class="section level3 hasAnchor" number="9.6.2">
 <h3><span class="header-section-number">9.6.2</span> Univariate Data Visualization<a href="transform.html#univariate-data-visualization-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s visualize these data with some basic EDA plots:</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="transform.html#cb336-1" tabindex="-1"></a><span class="co">#create EDA plots</span></span>
-<span id="cb336-2"><a href="transform.html#cb336-2" tabindex="-1"></a>box1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps,</span>
-<span id="cb336-3"><a href="transform.html#cb336-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> sex,</span>
-<span id="cb336-4"><a href="transform.html#cb336-4" tabindex="-1"></a>           <span class="at">x =</span> salary,</span>
-<span id="cb336-5"><a href="transform.html#cb336-5" tabindex="-1"></a>           <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
-<span id="cb336-6"><a href="transform.html#cb336-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb336-7"><a href="transform.html#cb336-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>())<span class="sc">+</span></span>
-<span id="cb336-8"><a href="transform.html#cb336-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb336-9"><a href="transform.html#cb336-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb336-10"><a href="transform.html#cb336-10" tabindex="-1"></a></span>
-<span id="cb336-11"><a href="transform.html#cb336-11" tabindex="-1"></a>hist1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps,</span>
-<span id="cb336-12"><a href="transform.html#cb336-12" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
-<span id="cb336-13"><a href="transform.html#cb336-13" tabindex="-1"></a>           <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
-<span id="cb336-14"><a href="transform.html#cb336-14" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb336-15"><a href="transform.html#cb336-15" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
-<span id="cb336-16"><a href="transform.html#cb336-16" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
-<span id="cb336-17"><a href="transform.html#cb336-17" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb336-18"><a href="transform.html#cb336-18" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
-<span id="cb336-19"><a href="transform.html#cb336-19" tabindex="-1"></a></span>
-<span id="cb336-20"><a href="transform.html#cb336-20" tabindex="-1"></a>cdf1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps,</span>
-<span id="cb336-21"><a href="transform.html#cb336-21" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
-<span id="cb336-22"><a href="transform.html#cb336-22" tabindex="-1"></a>           <span class="at">color =</span> sex)) <span class="sc">+</span></span>
-<span id="cb336-23"><a href="transform.html#cb336-23" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>() <span class="sc">+</span></span>
-<span id="cb336-24"><a href="transform.html#cb336-24" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
-<span id="cb336-25"><a href="transform.html#cb336-25" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb336-26"><a href="transform.html#cb336-26" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="sc">+</span></span>
-<span id="cb336-27"><a href="transform.html#cb336-27" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
-<span id="cb336-28"><a href="transform.html#cb336-28" tabindex="-1"></a></span>
-<span id="cb336-29"><a href="transform.html#cb336-29" tabindex="-1"></a><span class="fu">grid.arrange</span>(box1, hist1, cdf1, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="transform.html#cb334-1" tabindex="-1"></a><span class="co">#create EDA plots</span></span>
+<span id="cb334-2"><a href="transform.html#cb334-2" tabindex="-1"></a>box1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps,</span>
+<span id="cb334-3"><a href="transform.html#cb334-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> sex,</span>
+<span id="cb334-4"><a href="transform.html#cb334-4" tabindex="-1"></a>           <span class="at">x =</span> salary,</span>
+<span id="cb334-5"><a href="transform.html#cb334-5" tabindex="-1"></a>           <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb334-6"><a href="transform.html#cb334-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb334-7"><a href="transform.html#cb334-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>())<span class="sc">+</span></span>
+<span id="cb334-8"><a href="transform.html#cb334-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb334-9"><a href="transform.html#cb334-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb334-10"><a href="transform.html#cb334-10" tabindex="-1"></a></span>
+<span id="cb334-11"><a href="transform.html#cb334-11" tabindex="-1"></a>hist1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps,</span>
+<span id="cb334-12"><a href="transform.html#cb334-12" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
+<span id="cb334-13"><a href="transform.html#cb334-13" tabindex="-1"></a>           <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb334-14"><a href="transform.html#cb334-14" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb334-15"><a href="transform.html#cb334-15" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb334-16"><a href="transform.html#cb334-16" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
+<span id="cb334-17"><a href="transform.html#cb334-17" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb334-18"><a href="transform.html#cb334-18" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span></code></pre></div>
+<pre><code>## Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
+## 3.5.0.
+## ℹ Please use the `legend.position.inside` argument of `theme()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="transform.html#cb336-1" tabindex="-1"></a>cdf1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps,</span>
+<span id="cb336-2"><a href="transform.html#cb336-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
+<span id="cb336-3"><a href="transform.html#cb336-3" tabindex="-1"></a>           <span class="at">color =</span> sex)) <span class="sc">+</span></span>
+<span id="cb336-4"><a href="transform.html#cb336-4" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>() <span class="sc">+</span></span>
+<span id="cb336-5"><a href="transform.html#cb336-5" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
+<span id="cb336-6"><a href="transform.html#cb336-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb336-7"><a href="transform.html#cb336-7" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="sc">+</span></span>
+<span id="cb336-8"><a href="transform.html#cb336-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
+<span id="cb336-9"><a href="transform.html#cb336-9" tabindex="-1"></a></span>
+<span id="cb336-10"><a href="transform.html#cb336-10" tabindex="-1"></a><span class="fu">grid.arrange</span>(box1, hist1, cdf1, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:salary-ps-plots"></span>
 <img src="09-transf_files/figure-html/salary-ps-plots-1.png" alt="Annual Salaries ($1000s) Reported by Poly Sci Majors" width="672" />
 <p class="caption">

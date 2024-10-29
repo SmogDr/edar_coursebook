@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2024-10-14" />
+<meta name="date" content="2024-10-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -786,17 +786,17 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 ##  $ entry_1: chr [1:4] &quot;Harry&quot; &quot;Ron&quot; &quot;Hermione&quot; &quot;Draco&quot;
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] &quot;dodge&quot; &quot;lincoln&quot; &quot;toyota&quot; &quot;toyota&quot; ...
-##   ..$ model       : chr [1:7] &quot;durango 4wd&quot; &quot;navigator 2wd&quot; &quot;toyota tacoma 4wd&quot; &quot;camry&quot; ...
-##   ..$ displ       : num [1:7] 5.9 5.4 2.7 2.4 1.6 6.2 5.2
-##   ..$ year        : int [1:7] 1999 1999 1999 2008 1999 2008 1999
-##   ..$ cyl         : int [1:7] 8 8 4 4 4 8 8
-##   ..$ trans       : chr [1:7] &quot;auto(l4)&quot; &quot;auto(l4)&quot; &quot;manual(m5)&quot; &quot;auto(l5)&quot; ...
-##   ..$ drv         : chr [1:7] &quot;4&quot; &quot;r&quot; &quot;4&quot; &quot;f&quot; ...
-##   ..$ cty         : int [1:7] 11 11 15 21 25 16 11
-##   ..$ hwy         : int [1:7] 15 16 20 31 32 26 15
-##   ..$ fl          : chr [1:7] &quot;r&quot; &quot;p&quot; &quot;r&quot; &quot;r&quot; ...
-##   ..$ class       : chr [1:7] &quot;suv&quot; &quot;suv&quot; &quot;pickup&quot; &quot;midsize&quot; ...</code></pre>
+##   ..$ manufacturer: chr [1:7] &quot;subaru&quot; &quot;audi&quot; &quot;chevrolet&quot; &quot;volkswagen&quot; ...
+##   ..$ model       : chr [1:7] &quot;impreza awd&quot; &quot;a4 quattro&quot; &quot;c1500 suburban 2wd&quot; &quot;jetta&quot; ...
+##   ..$ displ       : num [1:7] 2.5 2.8 5.3 2.8 1.9 4 4
+##   ..$ year        : int [1:7] 2008 1999 2008 1999 1999 1999 2008
+##   ..$ cyl         : int [1:7] 4 6 8 6 4 6 6
+##   ..$ trans       : chr [1:7] &quot;auto(s4)&quot; &quot;auto(l5)&quot; &quot;auto(l4)&quot; &quot;manual(m5)&quot; ...
+##   ..$ drv         : chr [1:7] &quot;4&quot; &quot;4&quot; &quot;r&quot; &quot;f&quot; ...
+##   ..$ cty         : int [1:7] 20 15 11 17 33 14 16
+##   ..$ hwy         : int [1:7] 27 25 15 24 44 17 20
+##   ..$ fl          : chr [1:7] &quot;r&quot; &quot;p&quot; &quot;e&quot; &quot;r&quot; ...
+##   ..$ class       : chr [1:7] &quot;compact&quot; &quot;compact&quot; &quot;suv&quot; &quot;compact&quot; ...</code></pre>
 <p>Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, <code>[ ]</code>, a list element is returned.</p>
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="rprog4.html#cb304-1" tabindex="-1"></a>my.list[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## $entry_1
@@ -1028,13 +1028,13 @@ select(mpg, where(is.numeric))
 <span id="cb319-6"><a href="rprog4.html#cb319-6" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> <span class="sc">|</span> <span class="fu">contains</span>(<span class="st">&quot;year&quot;</span>) <span class="sc">|</span> <span class="fu">contains</span>(<span class="st">&quot;km&quot;</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb319-7"><a href="rprog4.html#cb319-7" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 5
-##   manufacturer model                year km_per_liter_cty km_per_liter_hwy
-##   &lt;chr&gt;        &lt;chr&gt;               &lt;int&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-## 1 toyota       toyota tacoma 4wd    1999             6.38              8.5
-## 2 honda        civic                1999            10.2              13.6
-## 3 honda        civic                1999            10.6              13.6
-## 4 dodge        ram 1500 pickup 4wd  1999             4.68              6.8
-## 5 toyota       toyota tacoma 4wd    2008             6.8               8.5</code></pre>
+##   manufacturer model           year km_per_liter_cty km_per_liter_hwy
+##   &lt;chr&gt;        &lt;chr&gt;          &lt;int&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 subaru       impreza awd     2008             8.5             10.6 
+## 2 dodge        caravan 2wd     1999             6.38             8.92
+## 3 nissan       pathfinder 4wd  2008             5.95             8.5 
+## 4 nissan       pathfinder 4wd  1999             6.38             7.22
+## 5 toyota       camry solara    1999             8.92            12.3</code></pre>
 <p>Summarizing the data range for only the numeric vectors:</p>
 <div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="rprog4.html#cb321-1" tabindex="-1"></a><span class="co"># show the ranges of all numeric vectors in the mpg data frame</span></span>
 <span id="cb321-2"><a href="rprog4.html#cb321-2" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>

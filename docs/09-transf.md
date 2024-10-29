@@ -124,20 +124,9 @@ stratified <- ggplot(data = strat.data,
        x = "Sample Purity",
        y = "Process Yield, kg") +
   theme_classic(base_size = 14) +
-  theme(legend.position = c(0.85, 0.8),
+  theme(legend.position.inside = c(0.85, 0.8),
         legend.box.background = element_rect(colour = "black")) 
-```
 
-```
-## Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
-## 3.5.0.
-## ℹ Please use the `legend.position.inside` argument of `theme()` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.
-```
-
-``` r
 #ggsave("./images/stratified.png")
 ```
 
@@ -376,7 +365,18 @@ hist1 <- ggplot(data = salary_ps,
   scale_x_continuous(labels = scales::label_dollar()) +
   theme_bw() +
   theme(legend.position = c(0.75, 0.5))
+```
 
+```
+## Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
+## 3.5.0.
+## ℹ Please use the `legend.position.inside` argument of `theme()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+```
+
+``` r
 cdf1 <- ggplot(data = salary_ps,
        aes(x = salary,
            color = sex)) +
