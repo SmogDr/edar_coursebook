@@ -362,17 +362,17 @@ glimpse(my.list)
 ##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] "subaru" "audi" "chevrolet" "volkswagen" ...
-##   ..$ model       : chr [1:7] "impreza awd" "a4 quattro" "c1500 suburban 2wd" "jetta" ...
-##   ..$ displ       : num [1:7] 2.5 2.8 5.3 2.8 1.9 4 4
-##   ..$ year        : int [1:7] 2008 1999 2008 1999 1999 1999 2008
-##   ..$ cyl         : int [1:7] 4 6 8 6 4 6 6
-##   ..$ trans       : chr [1:7] "auto(s4)" "auto(l5)" "auto(l4)" "manual(m5)" ...
-##   ..$ drv         : chr [1:7] "4" "4" "r" "f" ...
-##   ..$ cty         : int [1:7] 20 15 11 17 33 14 16
-##   ..$ hwy         : int [1:7] 27 25 15 24 44 17 20
-##   ..$ fl          : chr [1:7] "r" "p" "e" "r" ...
-##   ..$ class       : chr [1:7] "compact" "compact" "suv" "compact" ...
+##   ..$ manufacturer: chr [1:7] "dodge" "subaru" "dodge" "hyundai" ...
+##   ..$ model       : chr [1:7] "dakota pickup 4wd" "forester awd" "dakota pickup 4wd" "sonata" ...
+##   ..$ displ       : num [1:7] 4.7 2.5 5.2 3.3 2.5 4 4.6
+##   ..$ year        : int [1:7] 2008 2008 1999 2008 2008 2008 1999
+##   ..$ cyl         : int [1:7] 8 4 8 6 4 6 8
+##   ..$ trans       : chr [1:7] "auto(l5)" "auto(l4)" "manual(m5)" "auto(l5)" ...
+##   ..$ drv         : chr [1:7] "4" "4" "4" "f" ...
+##   ..$ cty         : int [1:7] 14 18 11 19 19 16 15
+##   ..$ hwy         : int [1:7] 19 23 17 28 25 20 22
+##   ..$ fl          : chr [1:7] "r" "p" "r" "r" ...
+##   ..$ class       : chr [1:7] "pickup" "suv" "pickup" "midsize" ...
 ```
 
 Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 
@@ -564,13 +564,13 @@ mutate(mpg, across(ends_with("y"), # select cty and hwy
 
 ```
 ## # A tibble: 5 × 5
-##   manufacturer model           year km_per_liter_cty km_per_liter_hwy
-##   <chr>        <chr>          <int>            <dbl>            <dbl>
-## 1 subaru       impreza awd     2008             8.5             10.6 
-## 2 dodge        caravan 2wd     1999             6.38             8.92
-## 3 nissan       pathfinder 4wd  2008             5.95             8.5 
-## 4 nissan       pathfinder 4wd  1999             6.38             7.22
-## 5 toyota       camry solara    1999             8.92            12.3
+##   manufacturer model                year km_per_liter_cty km_per_liter_hwy
+##   <chr>        <chr>               <int>            <dbl>            <dbl>
+## 1 audi         a4                   2008             8.92            12.8 
+## 2 toyota       corolla              2008            11.0             14.9 
+## 3 ford         mustang              2008             6.8             10.2 
+## 4 dodge        durango 4wd          2008             3.82             5.1 
+## 5 dodge        ram 1500 pickup 4wd  1999             4.68             6.38
 ```
 
 Summarizing the data range for only the numeric vectors:  

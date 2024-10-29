@@ -384,7 +384,7 @@ cdf1 <- ggplot(data = salary_ps,
   scale_x_continuous(labels = scales::label_dollar()) +
   theme_bw() +
   ylab("Quantile") +
-  theme(legend.position = c(0.75, 0.5))
+  theme(legend.position.inside = c(0.75, 0.5))
 
 grid.arrange(box1, hist1, cdf1, nrow = 2, ncol = 2)
 ```
