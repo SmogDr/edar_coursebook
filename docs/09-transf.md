@@ -444,7 +444,7 @@ hist2 <- ggplot(data = salary_ps2,
                  bins = 50) +
   scale_x_continuous(labels = scales::label_dollar(suffix = "k")) +
   theme_bw() +
-  theme(legend.position = c(0.75, 0.5))
+  theme(legend.position.inside = c(0.75, 0.5))
 
 cdf2 <- ggplot(data = salary_ps2,
        aes(x = salary,
@@ -453,7 +453,7 @@ cdf2 <- ggplot(data = salary_ps2,
   scale_x_continuous(labels = scales::label_dollar(suffix = "k")) +
   theme_bw() +
   ylab("Quantile") +
-  theme(legend.position = c(0.75, 0.5))
+  theme(legend.position.inside = c(0.75, 0.5))
 
 grid.arrange(box2, hist2, cdf2, nrow = 2, ncol = 2)
 ```
