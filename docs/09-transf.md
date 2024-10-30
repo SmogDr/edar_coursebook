@@ -364,19 +364,8 @@ hist1 <- ggplot(data = salary_ps,
                  bins = 50) +
   scale_x_continuous(labels = scales::label_dollar()) +
   theme_bw() +
-  theme(legend.position = c(0.75, 0.5))
-```
+  theme(legend.position.inside = c(0.75, 0.5))
 
-```
-## Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
-## 3.5.0.
-## ℹ Please use the `legend.position.inside` argument of `theme()` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.
-```
-
-``` r
 cdf1 <- ggplot(data = salary_ps,
        aes(x = salary,
            color = sex)) +

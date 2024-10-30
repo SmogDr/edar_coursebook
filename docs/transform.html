@@ -855,23 +855,18 @@ setting yourself up for disaster.
 <span id="cb334-15"><a href="transform.html#cb334-15" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
 <span id="cb334-16"><a href="transform.html#cb334-16" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
 <span id="cb334-17"><a href="transform.html#cb334-17" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb334-18"><a href="transform.html#cb334-18" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span></code></pre></div>
-<pre><code>## Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
-## 3.5.0.
-## ℹ Please use the `legend.position.inside` argument of `theme()` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="transform.html#cb336-1" tabindex="-1"></a>cdf1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps,</span>
-<span id="cb336-2"><a href="transform.html#cb336-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
-<span id="cb336-3"><a href="transform.html#cb336-3" tabindex="-1"></a>           <span class="at">color =</span> sex)) <span class="sc">+</span></span>
-<span id="cb336-4"><a href="transform.html#cb336-4" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>() <span class="sc">+</span></span>
-<span id="cb336-5"><a href="transform.html#cb336-5" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
-<span id="cb336-6"><a href="transform.html#cb336-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb336-7"><a href="transform.html#cb336-7" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="sc">+</span></span>
-<span id="cb336-8"><a href="transform.html#cb336-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position.inside =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
-<span id="cb336-9"><a href="transform.html#cb336-9" tabindex="-1"></a></span>
-<span id="cb336-10"><a href="transform.html#cb336-10" tabindex="-1"></a><span class="fu">grid.arrange</span>(box1, hist1, cdf1, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<span id="cb334-18"><a href="transform.html#cb334-18" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position.inside =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
+<span id="cb334-19"><a href="transform.html#cb334-19" tabindex="-1"></a></span>
+<span id="cb334-20"><a href="transform.html#cb334-20" tabindex="-1"></a>cdf1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps,</span>
+<span id="cb334-21"><a href="transform.html#cb334-21" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
+<span id="cb334-22"><a href="transform.html#cb334-22" tabindex="-1"></a>           <span class="at">color =</span> sex)) <span class="sc">+</span></span>
+<span id="cb334-23"><a href="transform.html#cb334-23" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>() <span class="sc">+</span></span>
+<span id="cb334-24"><a href="transform.html#cb334-24" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
+<span id="cb334-25"><a href="transform.html#cb334-25" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb334-26"><a href="transform.html#cb334-26" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="sc">+</span></span>
+<span id="cb334-27"><a href="transform.html#cb334-27" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position.inside =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
+<span id="cb334-28"><a href="transform.html#cb334-28" tabindex="-1"></a></span>
+<span id="cb334-29"><a href="transform.html#cb334-29" tabindex="-1"></a><span class="fu">grid.arrange</span>(box1, hist1, cdf1, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:salary-ps-plots"></span>
 <img src="09-transf_files/figure-html/salary-ps-plots-1.png" alt="Annual Salaries ($1000s) Reported by Poly Sci Majors" width="672" />
 <p class="caption">
@@ -898,41 +893,41 @@ univariate salary distribution), it is unlikely that these censoring
 actions have a strong effect on the outcome.
 </p>
 </div>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="transform.html#cb337-1" tabindex="-1"></a><span class="co">#rescale and censor the salary data</span></span>
-<span id="cb337-2"><a href="transform.html#cb337-2" tabindex="-1"></a>salary_ps2 <span class="ot">&lt;-</span> salary_ps <span class="sc">%&gt;%</span></span>
-<span id="cb337-3"><a href="transform.html#cb337-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">salary =</span> salary<span class="sc">/</span><span class="dv">1000</span>) <span class="sc">%&gt;%</span> <span class="co">#convert to thousands of $</span></span>
-<span id="cb337-4"><a href="transform.html#cb337-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(salary <span class="sc">&lt;</span> <span class="dv">500</span>, <span class="co">#censor high outliers</span></span>
-<span id="cb337-5"><a href="transform.html#cb337-5" tabindex="-1"></a>                salary <span class="sc">&gt;</span> <span class="dv">10</span>)  <span class="co">#censor low outliers</span></span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="transform.html#cb335-1" tabindex="-1"></a><span class="co">#rescale and censor the salary data</span></span>
+<span id="cb335-2"><a href="transform.html#cb335-2" tabindex="-1"></a>salary_ps2 <span class="ot">&lt;-</span> salary_ps <span class="sc">%&gt;%</span></span>
+<span id="cb335-3"><a href="transform.html#cb335-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">salary =</span> salary<span class="sc">/</span><span class="dv">1000</span>) <span class="sc">%&gt;%</span> <span class="co">#convert to thousands of $</span></span>
+<span id="cb335-4"><a href="transform.html#cb335-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(salary <span class="sc">&lt;</span> <span class="dv">500</span>, <span class="co">#censor high outliers</span></span>
+<span id="cb335-5"><a href="transform.html#cb335-5" tabindex="-1"></a>                salary <span class="sc">&gt;</span> <span class="dv">10</span>)  <span class="co">#censor low outliers</span></span></code></pre></div>
 <p>Let’s recreate the EDA plots from Figure <a href="transform.html#fig:salary-ps-plots">9.7</a> using the transformed and censored data.</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="transform.html#cb338-1" tabindex="-1"></a><span class="co">#recreate EDA plots</span></span>
-<span id="cb338-2"><a href="transform.html#cb338-2" tabindex="-1"></a>box2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps2,</span>
-<span id="cb338-3"><a href="transform.html#cb338-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> sex,</span>
-<span id="cb338-4"><a href="transform.html#cb338-4" tabindex="-1"></a>           <span class="at">x =</span> salary,</span>
-<span id="cb338-5"><a href="transform.html#cb338-5" tabindex="-1"></a>           <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
-<span id="cb338-6"><a href="transform.html#cb338-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb338-7"><a href="transform.html#cb338-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">&quot;k&quot;</span>))<span class="sc">+</span></span>
-<span id="cb338-8"><a href="transform.html#cb338-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb338-9"><a href="transform.html#cb338-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb338-10"><a href="transform.html#cb338-10" tabindex="-1"></a></span>
-<span id="cb338-11"><a href="transform.html#cb338-11" tabindex="-1"></a>hist2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps2,</span>
-<span id="cb338-12"><a href="transform.html#cb338-12" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
-<span id="cb338-13"><a href="transform.html#cb338-13" tabindex="-1"></a>           <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
-<span id="cb338-14"><a href="transform.html#cb338-14" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb338-15"><a href="transform.html#cb338-15" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
-<span id="cb338-16"><a href="transform.html#cb338-16" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">&quot;k&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb338-17"><a href="transform.html#cb338-17" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb338-18"><a href="transform.html#cb338-18" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position.inside =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
-<span id="cb338-19"><a href="transform.html#cb338-19" tabindex="-1"></a></span>
-<span id="cb338-20"><a href="transform.html#cb338-20" tabindex="-1"></a>cdf2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps2,</span>
-<span id="cb338-21"><a href="transform.html#cb338-21" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
-<span id="cb338-22"><a href="transform.html#cb338-22" tabindex="-1"></a>           <span class="at">color =</span> sex)) <span class="sc">+</span></span>
-<span id="cb338-23"><a href="transform.html#cb338-23" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>() <span class="sc">+</span></span>
-<span id="cb338-24"><a href="transform.html#cb338-24" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">&quot;k&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb338-25"><a href="transform.html#cb338-25" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb338-26"><a href="transform.html#cb338-26" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="sc">+</span></span>
-<span id="cb338-27"><a href="transform.html#cb338-27" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position.inside =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
-<span id="cb338-28"><a href="transform.html#cb338-28" tabindex="-1"></a></span>
-<span id="cb338-29"><a href="transform.html#cb338-29" tabindex="-1"></a><span class="fu">grid.arrange</span>(box2, hist2, cdf2, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="transform.html#cb336-1" tabindex="-1"></a><span class="co">#recreate EDA plots</span></span>
+<span id="cb336-2"><a href="transform.html#cb336-2" tabindex="-1"></a>box2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps2,</span>
+<span id="cb336-3"><a href="transform.html#cb336-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> sex,</span>
+<span id="cb336-4"><a href="transform.html#cb336-4" tabindex="-1"></a>           <span class="at">x =</span> salary,</span>
+<span id="cb336-5"><a href="transform.html#cb336-5" tabindex="-1"></a>           <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb336-6"><a href="transform.html#cb336-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb336-7"><a href="transform.html#cb336-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">&quot;k&quot;</span>))<span class="sc">+</span></span>
+<span id="cb336-8"><a href="transform.html#cb336-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb336-9"><a href="transform.html#cb336-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb336-10"><a href="transform.html#cb336-10" tabindex="-1"></a></span>
+<span id="cb336-11"><a href="transform.html#cb336-11" tabindex="-1"></a>hist2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps2,</span>
+<span id="cb336-12"><a href="transform.html#cb336-12" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
+<span id="cb336-13"><a href="transform.html#cb336-13" tabindex="-1"></a>           <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb336-14"><a href="transform.html#cb336-14" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb336-15"><a href="transform.html#cb336-15" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb336-16"><a href="transform.html#cb336-16" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">&quot;k&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb336-17"><a href="transform.html#cb336-17" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb336-18"><a href="transform.html#cb336-18" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position.inside =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
+<span id="cb336-19"><a href="transform.html#cb336-19" tabindex="-1"></a></span>
+<span id="cb336-20"><a href="transform.html#cb336-20" tabindex="-1"></a>cdf2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps2,</span>
+<span id="cb336-21"><a href="transform.html#cb336-21" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
+<span id="cb336-22"><a href="transform.html#cb336-22" tabindex="-1"></a>           <span class="at">color =</span> sex)) <span class="sc">+</span></span>
+<span id="cb336-23"><a href="transform.html#cb336-23" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>() <span class="sc">+</span></span>
+<span id="cb336-24"><a href="transform.html#cb336-24" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">&quot;k&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb336-25"><a href="transform.html#cb336-25" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb336-26"><a href="transform.html#cb336-26" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Quantile&quot;</span>) <span class="sc">+</span></span>
+<span id="cb336-27"><a href="transform.html#cb336-27" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position.inside =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.5</span>))</span>
+<span id="cb336-28"><a href="transform.html#cb336-28" tabindex="-1"></a></span>
+<span id="cb336-29"><a href="transform.html#cb336-29" tabindex="-1"></a><span class="fu">grid.arrange</span>(box2, hist2, cdf2, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:salary-ps2-plots"></span>
 <img src="09-transf_files/figure-html/salary-ps2-plots-1.png" alt="2017 Annual Salaries ($1000s) Reported by Poly Sci Majors" width="672" />
 <p class="caption">
@@ -944,10 +939,10 @@ Figure 9.8: 2017 Annual Salaries ($1000s) Reported by Poly Sci Majors
 <div id="logfit" class="section level3 hasAnchor" number="9.6.4">
 <h3><span class="header-section-number">9.6.4</span> Fit a Log-normal Distribution<a href="transform.html#logfit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Next, let’s examine whether our salary data can be approximated with a log-normal distribution. There is a function in the <code>MASS::</code> package called <code>fitdistr()</code> that uses <a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation"><em>Maximum Likelihood Estimation</em></a> theory (MLE), to estimate density function parameters for various reference distributions. The <code>fitdistr()</code> function requires a numeric vector of observed values, <code>x =</code> the data to be fit, and a “named” reference distribution to be modeled, <code>densfun = "log-normal"</code>.</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="transform.html#cb339-1" tabindex="-1"></a>fit.lnorm <span class="ot">&lt;-</span> <span class="fu">fitdistr</span>(salary_ps2<span class="sc">$</span>salary, <span class="at">densfun =</span> <span class="st">&quot;log-normal&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="transform.html#cb337-1" tabindex="-1"></a>fit.lnorm <span class="ot">&lt;-</span> <span class="fu">fitdistr</span>(salary_ps2<span class="sc">$</span>salary, <span class="at">densfun =</span> <span class="st">&quot;log-normal&quot;</span>)</span></code></pre></div>
 <p>The output of <code>MASS::fitdistr()</code> is a <code>list</code>, with the first entry containing the fit parameters for the log-normal distribution (<code>meanlog</code> and <code>sdlog</code>).</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="transform.html#cb340-1" tabindex="-1"></a>fit.lnorm<span class="sc">$</span>estimate <span class="sc">%&gt;%</span></span>
-<span id="cb340-2"><a href="transform.html#cb340-2" tabindex="-1"></a>  <span class="fu">round</span>(., <span class="dv">2</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="transform.html#cb338-1" tabindex="-1"></a>fit.lnorm<span class="sc">$</span>estimate <span class="sc">%&gt;%</span></span>
+<span id="cb338-2"><a href="transform.html#cb338-2" tabindex="-1"></a>  <span class="fu">round</span>(., <span class="dv">2</span>) </span></code></pre></div>
 <pre><code>## meanlog   sdlog 
 ##    4.32    0.67</code></pre>
 <p>These two estimates represent the mean and standard deviation of the data <em>after</em> taking the log of each observation:</p>
@@ -989,25 +984,25 @@ quantile divided by the 0.16 quantile.
 <li><code>meanlog =</code> the estimated mean of the logged data (<span class="math inline">\(\hat{\mu}=\)</span> 4.32)</li>
 <li><code>sdlog =</code> the standard devation of the logged data (<span class="math inline">\(\hat{\sigma_g}=\)</span> 0.67)</li>
 </ul>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="transform.html#cb342-1" tabindex="-1"></a>sal_simulate <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rlnorm</span>(<span class="at">n =</span> <span class="fu">length</span>(salary_ps2<span class="sc">$</span>salary),</span>
-<span id="cb342-2"><a href="transform.html#cb342-2" tabindex="-1"></a>                                 <span class="at">meanlog =</span> fit.lnorm<span class="sc">$</span>estimate[[<span class="dv">1</span>]],</span>
-<span id="cb342-3"><a href="transform.html#cb342-3" tabindex="-1"></a>                                 <span class="at">sdlog =</span> fit.lnorm<span class="sc">$</span>estimate[[<span class="dv">2</span>]]))</span>
-<span id="cb342-4"><a href="transform.html#cb342-4" tabindex="-1"></a></span>
-<span id="cb342-5"><a href="transform.html#cb342-5" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb342-6"><a href="transform.html#cb342-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">data =</span> salary_ps2,</span>
-<span id="cb342-7"><a href="transform.html#cb342-7" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
-<span id="cb342-8"><a href="transform.html#cb342-8" tabindex="-1"></a>                     <span class="at">y =</span> ..density..),</span>
-<span id="cb342-9"><a href="transform.html#cb342-9" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb342-10"><a href="transform.html#cb342-10" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;navy&quot;</span>,</span>
-<span id="cb342-11"><a href="transform.html#cb342-11" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">35</span>) <span class="sc">+</span></span>
-<span id="cb342-12"><a href="transform.html#cb342-12" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">data =</span> sal_simulate,</span>
-<span id="cb342-13"><a href="transform.html#cb342-13" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> x),</span>
-<span id="cb342-14"><a href="transform.html#cb342-14" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;darkorange1&quot;</span>,</span>
-<span id="cb342-15"><a href="transform.html#cb342-15" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb342-16"><a href="transform.html#cb342-16" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability Density&quot;</span>) <span class="sc">+</span></span>
-<span id="cb342-17"><a href="transform.html#cb342-17" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">&quot;k&quot;</span>),</span>
-<span id="cb342-18"><a href="transform.html#cb342-18" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">500</span>)) <span class="sc">+</span></span>
-<span id="cb342-19"><a href="transform.html#cb342-19" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="transform.html#cb340-1" tabindex="-1"></a>sal_simulate <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rlnorm</span>(<span class="at">n =</span> <span class="fu">length</span>(salary_ps2<span class="sc">$</span>salary),</span>
+<span id="cb340-2"><a href="transform.html#cb340-2" tabindex="-1"></a>                                 <span class="at">meanlog =</span> fit.lnorm<span class="sc">$</span>estimate[[<span class="dv">1</span>]],</span>
+<span id="cb340-3"><a href="transform.html#cb340-3" tabindex="-1"></a>                                 <span class="at">sdlog =</span> fit.lnorm<span class="sc">$</span>estimate[[<span class="dv">2</span>]]))</span>
+<span id="cb340-4"><a href="transform.html#cb340-4" tabindex="-1"></a></span>
+<span id="cb340-5"><a href="transform.html#cb340-5" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb340-6"><a href="transform.html#cb340-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">data =</span> salary_ps2,</span>
+<span id="cb340-7"><a href="transform.html#cb340-7" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
+<span id="cb340-8"><a href="transform.html#cb340-8" tabindex="-1"></a>                     <span class="at">y =</span> ..density..),</span>
+<span id="cb340-9"><a href="transform.html#cb340-9" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb340-10"><a href="transform.html#cb340-10" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;navy&quot;</span>,</span>
+<span id="cb340-11"><a href="transform.html#cb340-11" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">35</span>) <span class="sc">+</span></span>
+<span id="cb340-12"><a href="transform.html#cb340-12" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">data =</span> sal_simulate,</span>
+<span id="cb340-13"><a href="transform.html#cb340-13" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> x),</span>
+<span id="cb340-14"><a href="transform.html#cb340-14" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;darkorange1&quot;</span>,</span>
+<span id="cb340-15"><a href="transform.html#cb340-15" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb340-16"><a href="transform.html#cb340-16" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability Density&quot;</span>) <span class="sc">+</span></span>
+<span id="cb340-17"><a href="transform.html#cb340-17" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">&quot;k&quot;</span>),</span>
+<span id="cb340-18"><a href="transform.html#cb340-18" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">500</span>)) <span class="sc">+</span></span>
+<span id="cb340-19"><a href="transform.html#cb340-19" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:log-salary"></span>
 <img src="09-transf_files/figure-html/log-salary-1.png" alt="Salary Data Fitted by a Lognormal Distribution" width="672" />
 <p class="caption">
@@ -1019,18 +1014,18 @@ Figure 9.9: Salary Data Fitted by a Lognormal Distribution
 <div id="transform-the-data" class="section level3 hasAnchor" number="9.6.6">
 <h3><span class="header-section-number">9.6.6</span> Transform the Data<a href="transform.html#transform-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now that we know that (1) these data are skewed (non-normal) and (2) likely log-normally distributed, let’s see what happens when we <em>transform</em> these data. Figure <a href="transform.html#fig:salary-transform">9.10</a> appears much more symmetric (read:normal) following the log transform.</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="transform.html#cb343-1" tabindex="-1"></a>salary_ps2 <span class="ot">&lt;-</span> salary_ps2 <span class="sc">%&gt;%</span></span>
-<span id="cb343-2"><a href="transform.html#cb343-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log.salary =</span> <span class="fu">log</span>(salary))</span>
-<span id="cb343-3"><a href="transform.html#cb343-3" tabindex="-1"></a></span>
-<span id="cb343-4"><a href="transform.html#cb343-4" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb343-5"><a href="transform.html#cb343-5" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">data =</span> salary_ps2,</span>
-<span id="cb343-6"><a href="transform.html#cb343-6" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> log.salary),</span>
-<span id="cb343-7"><a href="transform.html#cb343-7" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb343-8"><a href="transform.html#cb343-8" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;navy&quot;</span>,</span>
-<span id="cb343-9"><a href="transform.html#cb343-9" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb343-10"><a href="transform.html#cb343-10" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
-<span id="cb343-11"><a href="transform.html#cb343-11" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;ln(salary)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb343-12"><a href="transform.html#cb343-12" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="transform.html#cb341-1" tabindex="-1"></a>salary_ps2 <span class="ot">&lt;-</span> salary_ps2 <span class="sc">%&gt;%</span></span>
+<span id="cb341-2"><a href="transform.html#cb341-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log.salary =</span> <span class="fu">log</span>(salary))</span>
+<span id="cb341-3"><a href="transform.html#cb341-3" tabindex="-1"></a></span>
+<span id="cb341-4"><a href="transform.html#cb341-4" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb341-5"><a href="transform.html#cb341-5" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">data =</span> salary_ps2,</span>
+<span id="cb341-6"><a href="transform.html#cb341-6" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> log.salary),</span>
+<span id="cb341-7"><a href="transform.html#cb341-7" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb341-8"><a href="transform.html#cb341-8" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;navy&quot;</span>,</span>
+<span id="cb341-9"><a href="transform.html#cb341-9" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb341-10"><a href="transform.html#cb341-10" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb341-11"><a href="transform.html#cb341-11" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;ln(salary)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb341-12"><a href="transform.html#cb341-12" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:salary-transform"></span>
 <img src="09-transf_files/figure-html/salary-transform-1.png" alt="Histogram of Log-transformed Salary Data" width="672" />
 <p class="caption">
@@ -1038,21 +1033,21 @@ Figure 9.10: Histogram of Log-transformed Salary Data
 </p>
 </div>
 <p>When visualizing lognormal data, however, it’s ofen a better idea to transform the axis (instead of transforming the data themselves). This allows the viewer to “see” the units of measurement in their natural form, instead of forcing the viewer to exponentiate values in their head (hint: nobody likes to do this). Therefore, we can <em>transform</em> our data visualization with a call to <code>scale_x_log10()</code> in <code>ggplot::</code>. Transforming the x- or y-axis is common in data visualization, especially when your values span several orders of magnitude.</p>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="transform.html#cb344-1" tabindex="-1"></a>salary_ps2 <span class="ot">&lt;-</span> salary_ps2 <span class="sc">%&gt;%</span></span>
-<span id="cb344-2"><a href="transform.html#cb344-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log.salary =</span> <span class="fu">log</span>(salary))</span>
-<span id="cb344-3"><a href="transform.html#cb344-3" tabindex="-1"></a></span>
-<span id="cb344-4"><a href="transform.html#cb344-4" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb344-5"><a href="transform.html#cb344-5" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">data =</span> salary_ps2,</span>
-<span id="cb344-6"><a href="transform.html#cb344-6" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> salary),</span>
-<span id="cb344-7"><a href="transform.html#cb344-7" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb344-8"><a href="transform.html#cb344-8" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;navy&quot;</span>,</span>
-<span id="cb344-9"><a href="transform.html#cb344-9" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb344-10"><a href="transform.html#cb344-10" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
-<span id="cb344-11"><a href="transform.html#cb344-11" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Salary&quot;</span>) <span class="sc">+</span></span>
-<span id="cb344-12"><a href="transform.html#cb344-12" tabindex="-1"></a>  <span class="co"># transform the axis, instead of the data (works well with lognormal data)</span></span>
-<span id="cb344-13"><a href="transform.html#cb344-13" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">accuracy =</span> <span class="dv">1</span>, </span>
-<span id="cb344-14"><a href="transform.html#cb344-14" tabindex="-1"></a>                                              <span class="at">suffix =</span> <span class="st">&quot;k&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb344-15"><a href="transform.html#cb344-15" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="transform.html#cb342-1" tabindex="-1"></a>salary_ps2 <span class="ot">&lt;-</span> salary_ps2 <span class="sc">%&gt;%</span></span>
+<span id="cb342-2"><a href="transform.html#cb342-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log.salary =</span> <span class="fu">log</span>(salary))</span>
+<span id="cb342-3"><a href="transform.html#cb342-3" tabindex="-1"></a></span>
+<span id="cb342-4"><a href="transform.html#cb342-4" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb342-5"><a href="transform.html#cb342-5" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">data =</span> salary_ps2,</span>
+<span id="cb342-6"><a href="transform.html#cb342-6" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> salary),</span>
+<span id="cb342-7"><a href="transform.html#cb342-7" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb342-8"><a href="transform.html#cb342-8" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;navy&quot;</span>,</span>
+<span id="cb342-9"><a href="transform.html#cb342-9" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb342-10"><a href="transform.html#cb342-10" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb342-11"><a href="transform.html#cb342-11" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Salary&quot;</span>) <span class="sc">+</span></span>
+<span id="cb342-12"><a href="transform.html#cb342-12" tabindex="-1"></a>  <span class="co"># transform the axis, instead of the data (works well with lognormal data)</span></span>
+<span id="cb342-13"><a href="transform.html#cb342-13" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">accuracy =</span> <span class="dv">1</span>, </span>
+<span id="cb342-14"><a href="transform.html#cb342-14" tabindex="-1"></a>                                              <span class="at">suffix =</span> <span class="st">&quot;k&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb342-15"><a href="transform.html#cb342-15" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:salary-transform2"></span>
 <img src="09-transf_files/figure-html/salary-transform2-1.png" alt="Histogram of Salary Data using a Log-10 X-axis" width="672" />
 <p class="caption">
