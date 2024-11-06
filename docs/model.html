@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Modeling | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Modeling | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2024-10-30" />
+<meta name="date" content="2024-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -574,7 +574,7 @@ where:</p>
     <span class="math inline">\(\beta_{1}\)</span> = the slope parameter (to be <em>fit</em> by the OLS model)<br />
     <span class="math inline">\(X\)</span> = the independent variable (i.e., the predictor variable)<br />
     <span class="math inline">\(\epsilon\)</span> = the error term (i.e., what is left over; what the model doesn’t explain about <span class="math inline">\(Y\)</span>)</p>
-<p>The OLS approach is straightforward: select model parameters (<span class="math inline">\(\beta_{0}\)</span>, <span class="math inline">\(\beta_{1}\)</span>) so that the model produces as little error as possible. With OLS, the overall model error is expressed as the sum of each redisual value squares: a <em>sum-of-squares error</em> (SSE; explained below). Graphically, this is shown in Figure <a href="model.html#fig:OLS-anno">11.2</a>, where the solid blue circles represent the data (<span class="math inline">\(X_{i}, Y_{i}\)</span>). The grey line represents the “best fit” line that gives the smallest SSE possible. The model <strong><em>residuals</em></strong> (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the “best-fit line”. The optimization algorithm is executed with matrix algebra, although the paramaters for simple linear regression between two variables, <span class="math inline">\(X,Y,\)</span> are easily calculated - see <a href="dist.html#OLS">here</a>.</p>
+<p>The OLS approach is straightforward: select model parameters (<span class="math inline">\(\beta_{0}\)</span>, <span class="math inline">\(\beta_{1}\)</span>) so that the model produces as little error as possible. With OLS, the overall model error is expressed as the sum of each residual value squared: a <em>sum-of-squares error</em> (SSE; explained below). Graphically, this is shown in Figure <a href="model.html#fig:OLS-anno">11.2</a>, where the solid blue circles represent the data (<span class="math inline">\(X_{i}, Y_{i}\)</span>). The grey line represents the “best fit” line that gives the smallest SSE possible. The model <strong><em>residuals</em></strong> (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the “best-fit line”. The optimization algorithm that sets the slope and intercept to minimize the sum of squares error is executed with matrix algebra, although the paramaters for simple linear regression between two variables, <span class="math inline">\(X,Y,\)</span> are easily calculated - see <a href="dist.html#OLS">here</a>.</p>
 <div class="figure"><span style="display:block;" id="fig:OLS-anno"></span>
 <img src="images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals"  />
 <p class="caption">
