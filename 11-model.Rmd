@@ -108,9 +108,55 @@ The *total sum of squares* represents a measure of all of the variability in the
 ``` {block, type="rmdnote"}
 The terms "residual sum of squares" and "error sum of squares" are interchangeable; you will see them both in the wild and they mean the same thing. 
 ```
+### Quick OLS Example {#OLS_example} 
+Let's take a quick look at an OLS example and how to interpret the results.  Here is a scatterplot showing average life expectancy in various countries of the world vs. educational attainment (years spent in school) for men over the age of 25. Data source: [Gapminder](https://www.gapminder.org/tools/#$model$markers$bubble$encoding$x$data$concept=mean_years_in_school_men_25_years_and_older&source=sg&space@=geo&=time;;&scale$domain:null&zoomed:null&type:null;;&frame$value=2009;;;;;&chart-type=bubbles&url=v2).  
+
+The <span style="color: skyblue;">**blue line**</span> depicts the result of an OLS linear model between these variables (i.e., the regression of average life expectancy on average years spent in school for a country's population).
+
+```{r OLS-life, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="Average Life Expectancy vs. Educational Attainment for Men over 25 in Counties in 2009"}
+
+life_edu <- read_csv("./data/lex_educ_lm.csv")
+
+ggplot(data = life_edu,
+       aes(y = lex,
+           x = education)) +
+  geom_point(alpha = 0.35,
+             size = 3) +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              color = "skyblue") +
+  xlab("Average Educational Attainment (years in school)") +
+  ylab("Average Life Expectancy (years)") +
+  scale_x_continuous(breaks = c(2,4,6,8,10,12,14), minor_breaks = seq(0,20,1)) +
+  theme(aspect.ratio = 1) +
+  theme_bw(base_size = 14)
+```
+There are multiple ways to run a regression model in R. The most common is to use the `lm()` function from `stats::`.  This function requires you to specify the model using a `formula = ` argument, followed by a `data =` argument that references a data frame.  The `formula =` argument uses *tilde notation* to set the `Y` and `X` variables according the following nomenclature:
+$$Y=X$$
+<center>`formula = dependent variable ~ independent variable` </center> 
+  <br/>
+where the `~` represents the equals sign (this is because the `=` sign is reserved for assigning arguments in R, not specifying formulas).  For the plot shown above, we can create a `linear model object` called `my_model` using the following code where `lex` is the column variable denoting life expectancy (in years) and `education` is the column variable denoting educational attainment (in years of school).
+
+```{r, model-example-statement}
+my_model <- lm(formula = lex ~ education, data = life_edu)
+```
+
+The `lm()` function returns a a `list` as output. This list contains all the inputs (the data, the model) and outputs from the regression model.  We will examine the list components later. For now, a simple way to examine the model results is to summarize them with a `summary()` function call.  Even this summary function contains a lot of results! For now, just focus on the `Estimate` for each of the `Coefficients:` specified below.  These coefficients represent the $\beta_{0}$ and $\beta_{1}$ terms that were estimated by the OLS regression.
+
+```{r, model-example-summary}
+
+summary(my_model)
+
+```
+
+Interpreting these coefficients is straightforward. Looking the `Coefficients:` table, the $\beta_{0}$ coefficient is the number listed next to `(Intercept)` and the $\beta_{1}$ coefficient (the slope term) is number listed next to the variable name `education`.  Mathematically, this means that the model predicts that 0 years of education results in an average lifespan of 55.2 years ($\beta_{0}$) for a country's population, and each additional year of education extends the average lifespan of a country's population by 1.77 years ($\beta_{1}$).  Other parts of the table provide the model $R^2$ and quantiles of `Residuals`, aka the model error ($\hat{\epsilon_{i}}$).
+
+Note that because these data are *country-wide* averages, they represent predictions for populations, not individuals.  If you assume that your life will be extended by 1.77 years for each year you spend in school, you are falling prey to the [ecological fallacy](https://en.wikipedia.org/wiki/Ecological_fallacy) whereby conclusions about individuals are inferred from data on groups. 
+
+Looking across the `Coefficients:` table, we can also see that the uncertainty for each of these coefficients has been estimated, via the `Std. Error` column (short for *Standard Error* and sometimes shown as *se* or *s.e.*).  Whereas the *standard deviation* is an estimate of spread for univariate data, the *standard error* is an estimate of spread (read: precision) for the model coefficients calculated here (i.e., how variable are the estimates for ($\beta_{0}$) and ($\beta_{1}$). 
 
 ### OLS Assumptions and Diagnostics {#OLS_assum}
-Now that you have an idea "how" OLS works, let's talk about the assumptions of OLS linear models. I will break the assumptions of OLS linear regression into two groups: front-end and back-end. The front-end assumptions are ones that apply to the model and the data at the outset. Most of the front-end assumptions can be tested before you fit the model.  The back-end assumptions are ones that you test *after* the model has been built - these assumptions apply to the error term ($\epsilon$). I will write them out here and provide a brief explanation of how to evaluate each (and why you should care about doing so).
+Now that you have an idea *how* OLS works and *what* it provides, let's talk about the assumptions of OLS linear models. I will break the assumptions of OLS linear regression into two groups: front-end and back-end. The front-end assumptions are ones that apply to the model and the data at the outset. Most of the front-end assumptions can be tested <ins>before you fit the model</ins>.  The back-end assumptions are ones that you test <ins>after</ins> the model has been built - these assumptions apply to the error term ($\epsilon$). I list each assumption below and provide a brief explanation of how to evaluate them (and why you should care about doing so).
 
 #### Front-end assumptions:  
 
@@ -152,7 +198,7 @@ The **error term** (4) has a **mean of zero**, is (5) **normally distributed**, 
       * *How to check*: Conduct a correlation analysis on your residuals and independent variables, create [scatterplots](#scatter) to investigate the nature of the correlation (when present).  
       * *Why you care*: Correlation between residuals and independent variables is a strong indicator that your model is not correctly specified. You can do better!
 
-## Example: OLS Linear Regression
+## In-Depth Example: OLS Linear Regression
 Let's conduct a simple linear regression with two variables that we suspect are related: a person's waist size and their weight. We will use data collected by the US Centers for Disease Control as part of the [National Health and Nutrition Examination Survey (NHANES)](https://www.cdc.gov/nchs/nhanes/about_nhanes.htm){target="_blank"}
 - a detailed annual survey of ~5,000 people living in the US.
 
@@ -192,10 +238,11 @@ Before we begin let's "look" at the data and apply some process knowledge. A sca
 ``` {r model1, echo=FALSE, warning=FALSE, fig.cap="Scatterplot of body mass (kg) vs. waist circumfrence (cm) for US adults.", out.width="500", fig.align="center"}
 p1 <- ggplot(data = data_18) +
   geom_point(aes(x = waist, y = mass),
-             alpha = 0.1) + 
+             alpha = 0.1,
+             size = 2) + 
   xlab("Waist circumference, cm") +
   ylab("Body Mass, kg") +
-  theme_classic(base_size = 13) 
+  theme_classic(base_size = 14) 
 
 p1
 ```
@@ -244,13 +291,13 @@ head(data_18)
 ```
 
 ### The `lm()` function
-The `lm()` function in R stands for *"linear model"* and will perform an OLS fit on any linear model you specify. The function requires two arguments: a `formula` (i.e., the model specification) and the `data` with which to fit that model. Formulas are specified as `y ~ x`, so our call to `lm()` looks like this for each model:
+As shown above, the `lm()` function in R stands for *"linear model"* and will perform an OLS fit on any linear model you specify. The function requires two arguments: a `formula` (i.e., the model specification) and the `data` with which to fit that model. Formulas are specified as `y ~ x`, so our call to `lm()` looks like this for each model:
 
 ``` {r call-linear-model}
 
-model1 <- lm(mass ~ waist, data = data_18)
+model1 <- lm(formula = mass ~ waist, data = data_18)
 
-model2 <- lm(sqrt_mass ~ waist, data = data_18)
+model2 <- lm(formula = sqrt_mass ~ waist, data = data_18)
 
 ```
 
@@ -420,6 +467,10 @@ The correlation coefficients are both nearly zero, so this last assumption is va
 
 ***Which model is best?***
 Both models explained ~80% of the variance in our dependent variable. Based on our process knowledge and the fit diagnostics, we can conclude that `model2` is better specified than `model1`.  In examining our process knowledge and the residuals, however, we cannot help but wonder if a better model exists out there to predict body mass based on measurement variables? 
+
+``` {block, type="rmdnote"}
+R has a quick and easy way to explore model fits by calling `plot()` and using your model object as the argument.  Try it out!
+```
 
 ## Calibration {#calibration}
 Calibration is a common technique in science and engineering used to aid 
