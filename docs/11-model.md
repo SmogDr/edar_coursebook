@@ -124,7 +124,7 @@ where the `~` represents the equals sign (this is because the `=` sign is reserv
 my_model <- lm(formula = lex ~ education, data = life_edu)
 ```
 
-The `lm()` function returns a a `list` as output. This list contains all the inputs (the data, the model) and outputs from the regression model.  We will examine the list components later. For now, a simple way to examine the model results is to summarize them with a `summary()` function call.  Even this summary function contains a lot of results! For now, just focus on the `Estimate` for each of the `Coefficients:` specified below.  These coefficients represent the $\beta_{0}$ and $\beta_{1}$ terms that were estimated by the OLS regression.
+The `lm()` function returns a `list` as output. This list contains all the inputs (the data, the model) and outputs from the regression model.  We will examine the list components later. For now, a simple way to examine the model results is to summarize them with a `summary()` function call.  Even this summary function contains a lot of results! For now, just focus on the `Estimate` for each of the `Coefficients:` specified below.  These coefficients represent the $\beta_{0}$ and $\beta_{1}$ terms that were estimated by the OLS regression.
 
 
 ``` r
