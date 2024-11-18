@@ -712,7 +712,7 @@ ggplot(data = cal_data,
        aes(x = aeronet, y = amod)) +
   geom_smooth(formula = y ~ x,
               method = "lm",
-              linewidth = 0.5) +
+              linewidth = 0.75) +
   geom_point(alpha = 0.25,
              size = 2) +
   xlab("Aeronet AOD") +
