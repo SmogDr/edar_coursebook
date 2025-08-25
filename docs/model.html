@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Modeling | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Modeling | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2024-11-18" />
+<meta name="date" content="2025-08-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -577,7 +577,7 @@ where:</p>
     <span class="math inline">\(\epsilon\)</span> = the error term (i.e., what is left over; what the model doesn’t explain about <span class="math inline">\(Y\)</span>)</p>
 <p>The OLS approach is straightforward: select model parameters (<span class="math inline">\(\beta_{0}\)</span>, <span class="math inline">\(\beta_{1}\)</span>) so that the model produces as little error as possible. With OLS, the overall model error is expressed as the sum of each residual value squared: a <em>sum-of-squares error</em> (SSE; explained below). Graphically, this is shown in Figure <a href="model.html#fig:OLS-anno">11.2</a>, where the solid blue circles represent the data (<span class="math inline">\(X_{i}, Y_{i}\)</span>). The grey line represents the “best fit” line that gives the smallest SSE possible. The model <strong><em>residuals</em></strong> (what are used to calculate the SSE) are denoted by vertical lines connecting the data points to the “best-fit line”. The optimization algorithm that sets the slope and intercept to minimize the sum of squares error is executed with matrix algebra, although the paramaters for simple linear regression between two variables, <span class="math inline">\(X,Y,\)</span> are easily calculated - see <a href="dist.html#OLS">here</a>.</p>
 <div class="figure"><span style="display:block;" id="fig:OLS-anno"></span>
-<img src="images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals"  />
+<img src="images/OLS_anno.png" alt="Graphical depiction for an OLS regression fit to minimize the sum of squared residuals" width="2126" />
 <p class="caption">
 Figure 11.2: Graphical depiction for an OLS regression fit to minimize the sum of squared residuals
 </p>
@@ -758,7 +758,7 @@ Thus, substituting one equation into another, we arrive at the conclusion that m
 <span class="math display">\[mass = \rho\cdot \frac{Circumference^{2}}{2\pi}\cdot height\]</span>
 Or, another way to say this is that the square root of mass is linearly related to body circumference.
 <span class="math display">\[\sqrt{mass} \sim Circumference\]</span>
-<img src="images/cylinder_comic.png" style="display: block; margin: auto;" /></p>
+<img src="images/cylinder_comic.png" width="552" style="display: block; margin: auto;" /></p>
 <p>Let’s transform <span class="math inline">\(mass \rightarrow \sqrt{mass}\)</span> and then examine the two scatterplots side by side.</p>
 <div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="model.html#cb352-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data_18) <span class="sc">+</span></span>
 <span id="cb352-2"><a href="model.html#cb352-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> waist, <span class="at">y =</span> mass),</span>
@@ -803,7 +803,7 @@ Figure 11.5: Side-by-side comparison of two model specifications. Does one look 
 <span id="cb355-3"><a href="model.html#cb355-3" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> sqrt_mass <span class="sc">~</span> waist, <span class="at">data =</span> data_18)</span></code></pre></div>
 <p>Now that we have stored each model as an object (<code>model1</code>, <code>model2</code>), so we can examine what they contain. The output of <code>lm()</code> is a list of class “lm”. If we type <code>view(model1)</code> the contents of the list become apparent.</p>
 <div class="figure"><span style="display:block;" id="fig:model1-list"></span>
-<img src="images/model1_list.png" alt="The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more."  />
+<img src="images/model1_list.png" alt="The `lm()` function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more." width="632" />
 <p class="caption">
 Figure 11.6: The <code>lm()</code> function provides a self-contained list of the model, data frame, parameter estimates, residuals, and more.
 </p>
@@ -1115,7 +1115,7 @@ smoke from wildfires shows up (and that happens more often each year).</p>
 ## 6 440nm 2020-08-15 20:35:54 aeronet    0.394</code></pre>
 <p>Before we begin our calibration, let’s examine the data using EDA techniques. We know that the <code>amod</code> column represents the instrument to be calibrated and the <code>aeronet</code> instrument represent the standard reference.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:aod-eda-4plot"></span>
-<img src="images/aod_eda_4plot.png" alt="A 4-plot EDA of our AOD Calibration Data"  />
+<img src="images/aod_eda_4plot.png" alt="A 4-plot EDA of our AOD Calibration Data" width="1050" />
 <p class="caption">
 Figure 11.12: A 4-plot EDA of our AOD Calibration Data
 </p>
@@ -1192,42 +1192,42 @@ Figure 11.12: A 4-plot EDA of our AOD Calibration Data
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "section"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
 });
 });
 </script>

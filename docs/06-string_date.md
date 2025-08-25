@@ -97,7 +97,7 @@ and the `stringr` package. We will also introduce the concept of
 **regular expressions** as a means to perform more advanced string
 manipulation.
 
-<img src="./images/parse_comic.png" style="display: block; margin: auto;" />
+<img src="./images/parse_comic.png" width="1000" style="display: block; margin: auto;" />
 
 ### String detect, match, subset
 
@@ -363,7 +363,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2024-11-18 10:23:25 MST"
+## [1] "2025-08-25 11:02:32 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -379,12 +379,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1731950605
+## [1] 1756141352
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 54.9197934 years.  
+365d/yr] => 55.686877 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -392,7 +392,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2024-11-18 10:23:25.348365.
+format: 2025-08-25 11:02:32.47977.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -521,7 +521,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1731950605
+## [1] 1756141353
 ```
 
 
@@ -532,17 +532,17 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 25.4
-##  $ min   : int 23
-##  $ hour  : int 10
-##  $ mday  : int 18
-##  $ mon   : int 10
-##  $ year  : int 124
+##  $ sec   : num 32.5
+##  $ min   : int 2
+##  $ hour  : int 11
+##  $ mday  : int 25
+##  $ mon   : int 7
+##  $ year  : int 125
 ##  $ wday  : int 1
-##  $ yday  : int 322
-##  $ isdst : int 0
-##  $ zone  : chr "MST"
-##  $ gmtoff: int -25200
+##  $ yday  : int 236
+##  $ isdst : int 1
+##  $ zone  : chr "MDT"
+##  $ gmtoff: int -21600
 ##  - attr(*, "tzone")= chr [1:3] "" "MST" "MDT"
 ##  - attr(*, "balanced")= logi TRUE
 ```

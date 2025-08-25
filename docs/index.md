@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens"
-date: "2024-11-18"
+date: "2025-08-25"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
@@ -17,8 +17,8 @@ description: "This is an undergraduate technical elective course for mechanical 
 ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
 ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-## ✔ purrr     1.0.2     
+## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.4     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -93,11 +93,11 @@ Course grades will be determined by the following three components:
 <tbody>
   <tr>
    <td style="text-align:center;"> Exams </td>
-   <td style="text-align:center;"> 60 </td>
+   <td style="text-align:center;"> 65 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> Quizzes </td>
-   <td style="text-align:center;"> 15 </td>
+   <td style="text-align:center;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> Assignments </td>

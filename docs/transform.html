@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Transformations and Other Tricks | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Transformations and Other Tricks | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2024-11-18" />
+<meta name="date" content="2025-08-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -539,7 +539,7 @@ and reproduce your results, when needed.
 <p>Centering means <strong><em>to subtract (or sometimes add) a constant from all values</em></strong> in a vector. The <strong>constant</strong> to be subtracted could be an estimate of the data’s central tendency, like the mean or median (hence the term <em>center</em>-ing), or it could be some residual value that you want to remove from all observations. If you subtract the mean from every value of a vector, then the new vector will have a mean of zero; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location. Centering <strong><em>changes the location</em></strong> of a variable but <strong><em>dispersion (spread) stays the same</em></strong>.</p>
 <p>In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to <em>“background subtract”</em> (aka, <em>“zeroing”</em>) a set of univariate observations. If you have ever used a digital scale to measure the weight of an object, you’ve probably noticed that when you turn it on, the scale does not always read zero. Most of the time the instrument has a way to “re-zero” itself prior to use, but this is not always the case. If your scale shows a mass of 198 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 198 from all subsequent weights that you perform with this scale. That subtraction is an example of a “centering” transformation.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:centering-anno"></span>
-<img src="images/centering_anno.png" alt="Data are sometimes centered to correct spurious values"  />
+<img src="images/centering_anno.png" alt="Data are sometimes centered to correct spurious values" width="640" />
 <p class="caption">
 Figure 9.1: Data are sometimes centered to correct spurious values
 </p>
@@ -593,7 +593,7 @@ just mean, to divide one variable into another to achieve some sort of
 <h3><span class="header-section-number">9.3.3</span> Reducing Skewness<a href="transform.html#reducing-skewness" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Sometimes your data are <em>not normally distributed</em>, even though you want them to be. In that case you still have options. Some transformations, like the log, square root, or inverse, will make the spread of the data symmetric and approximately Gaussian. These transformations are commonly used to meet the needs (read: underlying assumptions) of many statistical models. We discuss model assumptions (and their evaluation) in the <a href="model.html#model">modeling chapter</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:reduce-skew2"></span>
-<img src="images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable."  />
+<img src="images/reduce_skew_anno.png" alt="The log(x) transform is often used to reduce skewness in a variable." width="640" />
 <p class="caption">
 Figure 9.2: The log(x) transform is often used to reduce skewness in a variable.
 </p>
@@ -1083,42 +1083,42 @@ Figure 9.11: Histogram of Salary Data using a Log-10 X-axis
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "section"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
 });
 });
 </script>
