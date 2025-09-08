@@ -783,8 +783,8 @@ when to use quotation marks. One way to think about this, which is a bit
 of an oversimplification but can help as you’re learning, is to assume
 that anytime you’re using a <code>dplyr</code> function, every column in
 the dataframe you’re working with has been loaded to your R session as
-its own object, which means you don’t need to use parentheses—most of
-the time.</p>
+its own object, which means you don’t need to use quotes—most of the
+time.</p>
 </div>
 
 If you have been paying close attention to the code snippets, you may have 

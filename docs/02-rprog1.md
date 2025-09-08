@@ -292,7 +292,7 @@ getRversion()
 ```
 
 ```
-## [1] '4.4.3'
+## [1] '4.5.1'
 ```
 
 Some functions will accept multiple arguments. For example, the `print()`
@@ -891,8 +891,9 @@ citation(package = "phonenumber")
 ## To cite package 'phonenumber' in publications use:
 ## 
 ##   Myles S (2021). _phonenumber: Convert Letters to Numbers and Back as
-##   on a Telephone Keypad_. R package version 0.2.3,
-##   <https://CRAN.R-project.org/package=phonenumber>.
+##   on a Telephone Keypad_. doi:10.32614/CRAN.package.phonenumber
+##   <https://doi.org/10.32614/CRAN.package.phonenumber>, R package
+##   version 0.2.3, <https://CRAN.R-project.org/package=phonenumber>.
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -902,6 +903,7 @@ citation(package = "phonenumber")
 ##     year = {2021},
 ##     note = {R package version 0.2.3},
 ##     url = {https://CRAN.R-project.org/package=phonenumber},
+##     doi = {10.32614/CRAN.package.phonenumber},
 ##   }
 ```
 

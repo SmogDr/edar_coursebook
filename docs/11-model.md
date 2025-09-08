@@ -523,7 +523,7 @@ cor(x = model1$residuals,
 ```
 
 ```
-## [1] 9.023795e-18
+## [1] 9.065418e-18
 ```
 
 ``` r
@@ -533,7 +533,7 @@ cor(x = model2$residuals,
 ```
 
 ```
-## [1] 4.738305e-17
+## [1] 4.738724e-17
 ```
 
 The correlation coefficients are both nearly zero, so this last assumption is validated.

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Modeling | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Modeling | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2025-08-25" />
+<meta name="date" content="2025-09-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -982,11 +982,11 @@ This assumption can be evaluated through a correlation analysis. The <code>cor()
 <div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="model.html#cb369-1" tabindex="-1"></a><span class="fu">cor</span>(<span class="at">x =</span> model1<span class="sc">$</span>residuals, </span>
 <span id="cb369-2"><a href="model.html#cb369-2" tabindex="-1"></a>    <span class="at">y =</span> model1<span class="sc">$</span>model[,<span class="dv">2</span>],</span>
 <span id="cb369-3"><a href="model.html#cb369-3" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span> )</span></code></pre></div>
-<pre><code>## [1] 9.023795e-18</code></pre>
+<pre><code>## [1] 9.065418e-18</code></pre>
 <div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="model.html#cb371-1" tabindex="-1"></a><span class="fu">cor</span>(<span class="at">x =</span> model2<span class="sc">$</span>residuals, </span>
 <span id="cb371-2"><a href="model.html#cb371-2" tabindex="-1"></a>    <span class="at">y =</span> model1<span class="sc">$</span>model[,<span class="dv">2</span>],</span>
 <span id="cb371-3"><a href="model.html#cb371-3" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span> )</span></code></pre></div>
-<pre><code>## [1] 4.738305e-17</code></pre>
+<pre><code>## [1] 4.738724e-17</code></pre>
 <p>The correlation coefficients are both nearly zero, so this last assumption is validated.</p>
 <p><strong><em>Which model is best?</em></strong>
 Both models explained ~80% of the variance in our dependent variable. Based on our process knowledge and the fit diagnostics, we can conclude that <code>model2</code> is better specified than <code>model1</code>. In examining our process knowledge and the residuals, however, we cannot help but wonder if a better model exists out there to predict body mass based on measurement variables?</p>
