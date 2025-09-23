@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2025-09-08" />
+<meta name="date" content="2025-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -57,8 +57,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -68,7 +69,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -503,120 +504,137 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="eda1" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Univariate Data Exploration<a href="eda1.html#eda1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <blockquote>
-<p><span style="color: blue;"> “Exploratory data analysis is graphical detective work.” - John Tukey </span></p>
+<p><span style="color: blue;">“Exploratory data analysis is graphical detective work.” - John
+Tukey</span></p>
 </blockquote>
-<p>Exploratory Data Analysis (also known as EDA) is largely a visual technique
-based on the human trait of <strong>pattern recognition</strong>. The purpose of EDA is
-simple: learn about your data by visualizing it.</p>
-<p><em>Why is Exploratory Data Analysis (EDA) useful?</em> Because getting to know a
-dataset is a key step towards making sense of it, and EDA is a great way to
-familiarize oneself with a data set. EDA is fast, efficient, and intuitive.</p>
-<p>Think of the word <strong>“Exploratory”</strong> in terms of <strong>“Hypothesis-Building”</strong>. In
-other words, modeling and statistical inference testing should come <em>after</em>
-EDA. You can use EDA to jump-start ideas on <em>“what do I do with my data?”</em>!</p>
+<p>Exploratory Data Analysis (also known as EDA) is largely a visual
+technique based on the human trait of <strong>pattern recognition</strong>. The
+purpose of EDA is simple: learn about your data by visualizing it.</p>
+<p><em>Why is Exploratory Data Analysis (EDA) useful?</em> Because getting to know
+a dataset is a key step towards making sense of it, and EDA is a great
+way to familiarize oneself with a data set. EDA is fast, efficient, and
+intuitive.</p>
+<p>Think of the word <strong>“Exploratory”</strong> in terms of
+<strong>“Hypothesis-Building”</strong>. In other words, modeling and statistical
+inference testing should come <em>after</em> EDA. You can use EDA to jump-start
+ideas on <em>“what do I do with my data?”</em>!</p>
 <blockquote>
-<p><span style="color: blue;"> “Perfect data are boring. Flawed data, on the other hand, are interesting and mysterious. Perfect data don’t get asked out on a second date.” - John Volckens </span></p>
+<p><span style="color: blue;">“Perfect data are boring. Flawed data, on the other hand, are
+interesting and mysterious. Perfect data don’t get asked out on a
+second date.” - John Volckens</span></p>
 </blockquote>
 <div id="ch.-5-objectives" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Ch. 5 Objectives<a href="eda1.html#ch.-5-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This chapter is designed around the following learning objectives. Upon
 completing this Chapter, you should be able to:</p>
 <ul>
-<li>Define and interpret the location, dispersion, and shape of univariate data distributions</li>
-<li>Calculate quantiles and basic descriptive statistics for univariate data</li>
-<li>Create a cumulative distribution plot and extract quantile information from it</li>
+<li>Define and interpret the location, dispersion, and shape of
+univariate data distributions</li>
+<li>Calculate quantiles and basic descriptive statistics for univariate
+data</li>
+<li>Create a cumulative distribution plot and extract quantile
+information from it</li>
 <li>Create and interpret data from a histogram</li>
 <li>Create and interpret data from a boxplot</li>
 <li>Describe the differences between and the strengths/weaknesess of
 summary and enumerative plots</li>
-<li>Define skewness and its effect on measures of spread and central tendency in qualitative terms</li>
-<li>Create a time-series plot and identify shifts in location and dispersion</li>
+<li>Define skewness and its effect on measures of spread and central
+tendency in qualitative terms</li>
+<li>Create a time-series plot and identify shifts in location and
+dispersion</li>
 <li>Define autocorrelation, quantitatively and qualitatively</li>
-<li>Identify time lags where autocorrelation is significant, using autocorrelation and partial autocorrelation plots</li>
+<li>Identify time lags where autocorrelation is significant, using
+autocorrelation and partial autocorrelation plots</li>
 </ul>
 </div>
 <div id="univar" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Univariate Data<a href="eda1.html#univar" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><em>Univariate</em> means that “only one variable” is being considered. Just like medical
-doctors, statisticians enjoy the use fancy words to describe basic things.</p>
-<p><em>Univariate data analyses</em> describe ways to discover features about a single
-variable or quantity. While simple, univariate analyses are a great starting
-point for EDA because they allow us to isolate a variable for inspection. The
-variation in diameter of a mass-produced component, pollutant concentration in
-the atmosphere, or the rate of a beating heart are all examples of things we
-might examine in a univariate sense. This is, of course, a potentially risky
-procedure because, as engineers, we are taught about <em>mechanisms</em> and
-<em>dependencies</em> that imply that variable A is inextricably linked to variable B
-through some physical process. That’s OK to admit. Univariate analyses are
-still useful. Trust me for now, or skip ahead to <a href="eda2.html#eda2">multivariate analyses</a> or <a href="model.html#model">modeling</a>—your
-choice.</p>
+<p><em>Univariate</em> means that “only one variable” is being considered. Just
+like medical doctors, statisticians enjoy the use fancy words to
+describe basic things.</p>
+<p><em>Univariate data analyses</em> describe ways to discover features about a
+single variable or quantity. While simple, univariate analyses are a
+great starting point for EDA because they allow us to isolate a variable
+for inspection. The variation in diameter of a mass-produced component,
+pollutant concentration in the atmosphere, or the rate of a beating
+heart are all examples of things we might examine in a univariate sense.
+This is, of course, a potentially risky procedure because, as engineers,
+we are taught about <em>mechanisms</em> and <em>dependencies</em> that imply that
+variable A is inextricably linked to variable B through some physical
+process. That’s OK to admit. Univariate analyses are still useful. Trust
+me for now, or skip ahead to <a href="eda2.html#eda2">multivariate analyses</a> or
+<a href="model.html#model">modeling</a>—your choice.</p>
 <div id="location-dispersion-and-shape" class="section level3 hasAnchor" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Location, Dispersion, and Shape<a href="eda1.html#location-dispersion-and-shape" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Univariate EDA often begins with an attempt to discover three important
-properties about an observed variable: its location, dispersion, and shape.
-Once you define these properties (the “what”), you can begin to probe the
-underlying causes for these properties (the “how” and “why”). Discovering “how”
-and “why” of a variable’s location, dispersion, and shape might sound simple,
-and yet, answering such questions often represents the pinnacle of scientific
-discovery; they give out Nobel Prizes for that stuff! Let’s start with “what”
-(location, dispersion, and shape) and build from there.</p>
+properties about an observed variable: its location, dispersion, and
+shape. Once you define these properties (the “what”), you can begin to
+probe the underlying causes for these properties (the “how” and “why”).
+Discovering “how” and “why” of a variable’s location, dispersion, and
+shape might sound simple, and yet, answering such questions often
+represents the pinnacle of scientific discovery; they give out Nobel
+Prizes for that stuff! Let’s start with “what” (location, dispersion,
+and shape) and build from there.</p>
 <div id="location" class="section level4 hasAnchor" number="5.2.1.1">
 <h4><span class="header-section-number">5.2.1.1</span> Location<a href="eda1.html#location" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The location of univariate data means: where do the values or
-observations fall? Do the values tend to be large or small, based on what you
-know about the variable? Do the observations have a <em>central tendency</em> - a
-region where values are more likely to show up?</p>
+observations fall? Do the values tend to be large or small, based on
+what you know about the variable? Do the observations have a <em>central
+tendency</em> - a region where values are more likely to show up?</p>
 </div>
 <div id="dispersion" class="section level4 hasAnchor" number="5.2.1.2">
 <h4><span class="header-section-number">5.2.1.2</span> Dispersion<a href="eda1.html#dispersion" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The dispersion of the data refers to its variability. Are the values tightly
-bound in a small range, or do they vary widely from one observation to the
-next? Note that the phrase “varies widely” is contextual. The variation in the
-cost of an ice cream cone from one location to the next might look small to
-you, but could mean the difference between joy and sorrow for a 10-year-old
-with only $1.50 in their pocket.</p>
+<p>The dispersion of the data refers to its variability. Are the values
+tightly bound in a small range, or do they vary widely from one
+observation to the next? Note that the phrase “varies widely” is
+contextual. The variation in the cost of an ice cream cone from one
+location to the next might look small to you, but could mean the
+difference between joy and sorrow for a 10-year-old with only $5 in
+their pocket.</p>
 </div>
 <div id="shape" class="section level4 hasAnchor" number="5.2.1.3">
 <h4><span class="header-section-number">5.2.1.3</span> Shape<a href="eda1.html#shape" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The shape of the distribution is actually a combination of location and
-dispersion but with some mathematical nuance. Knowing the shape of your data
-distribution means that you have insight into its
-<em>probability density function</em>. Once you know a distribution’s shape, you can
-model it. And if you can model the distribution, you can begin to make
-inferences about it (e.g., extrapolations, predictions). More on this later in
-<a href="model.html#model">Modeling</a>.</p>
-<p>The shape of a distribution of data is often categorized based on whether it
-follows that of a <a href="dist.html#dist">reference distribution</a>, of which there are
-many types. You can think of reference distributions like species of living
-organisms; there are lots out there, but once you categorize one, you can
-likely predict its behavior. In other words, if the shape of your data matches
-a reference distribution, most of your modeling work is already done! Examples
-of reference distributions include the uniform distribution, normal
-distribution, and the lognormal distribution. More on different types of
-reference distributions <a href="dist.html#dist">here</a>.</p>
+dispersion but with some mathematical nuance. Knowing the shape of your
+data distribution means that you have insight into its <em>probability
+density function</em>. Once you know a distribution’s shape, you can model
+it. And if you can model the distribution, you can begin to make
+inferences about it (e.g., extrapolations, predictions). More on this
+later in <a href="model.html#model">Modeling</a>.</p>
+<p>The shape of a distribution of data is often categorized based on
+whether it follows that of a <a href="dist.html#dist">reference distribution</a>, of which
+there are many types. You can think of reference distributions like
+species of living organisms; there are lots out there, but once you
+categorize one, you can likely predict its behavior. In other words, if
+the shape of your data matches a reference distribution, most of your
+modeling work is already done! Examples of reference distributions
+include the uniform distribution, normal distribution, and the lognormal
+distribution. More on different types of reference distributions
+<a href="dist.html#dist">here</a>.</p>
 <div id="example-location-and-dispersion" class="section level5 hasAnchor" number="5.2.1.3.1">
 <h5><span class="header-section-number">5.2.1.3.1</span> Example: Location and Dispersion<a href="eda1.html#example-location-and-dispersion" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>Let’s plan a camping trip. Our trip is purely hypothetical, so let’s not worry
-about costs, logistics, or other important factors. For this exercise, we only
-care about comfort while outdoors. When I think of being comfortable
-outdoors, the first thing that comes to mind is <strong>temperature</strong>: Did I bring
-the proper clothing?</p>
-<p>We will consider going camping in two lovely spots: the forest preserves along
-the Na Pali coast in Kauai, Hawaii or the sunny hiking and climbing region
-around Jack’s Canyon in southwest Colorado. Let’s examine the location and
-dispersion of hourly temperatures in these two regions for the month of July,
-2010. We can access this information from the
-<a href="https://www.ncdc.noaa.gov/cdo-web/search">NOAA Climate Data Center</a>
-that provides weather data for these two regions. Once we know the <em>location</em>
-and <em>dispersion</em> of these data, we can decide what clothes to bring.</p>
-<p>In Figure <a href="eda1.html#fig:noaa-temp-plot">5.1</a>, I use <code>geom_jitter()</code> to plot the hourly
-temperatures measured at these two regions for July 2010. For this plot, we
-define three aesthetics:</p>
+<p>Let’s plan a camping trip. Our trip is purely hypothetical, so let’s not
+worry about costs, logistics, or other important factors. For this
+exercise, we only care about comfort while outdoors. When I think of
+being comfortable outdoors, the first thing that comes to mind is
+<strong>temperature</strong>: Did I bring the proper clothing?</p>
+<p>We will consider going camping in two lovely spots: the forest preserves
+along the Na Pali coast in Kauai, Hawaii or the sunny hiking and
+climbing region around Jack’s Canyon in southwest Colorado. Let’s
+examine the location and dispersion of hourly temperatures in these two
+regions for the month of July, 2010. We can access this information from
+the <a href="https://www.ncdc.noaa.gov/cdo-web/search">NOAA Climate Data Center</a>
+that provides weather data for these two regions. Once we know the
+<em>location</em> and <em>dispersion</em> of these data, we can decide what clothes to
+bring.</p>
+<p>In Figure <a href="eda1.html#fig:noaa-temp-plot">5.1</a>, I use <code>geom_jitter()</code> to plot the
+hourly temperatures measured at these two regions for July 2010. For
+this plot, we define three aesthetics:</p>
 <ul>
 <li><code>y =</code> location</li>
 <li><code>x =</code> temperature</li>
-<li><code>color =</code> location (not necessary for the plot, but the color between
-variables can be helpful)</li>
+<li><code>color =</code> location (not necessary for the plot, but the color
+between variables can be helpful)</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:noaa-temp-plot"></span>
 <img src="images/NOAA_temps.png" alt="Hourly temperature levels in Colorado and Hawaii for the month of July, 2010." width="700pt" />
@@ -624,26 +642,26 @@ variables can be helpful)</li>
 Figure 5.1: Hourly temperature levels in Colorado and Hawaii for the month of July, 2010.
 </p>
 </div>
-<p>First, if we are picking spots to go camping, both locations have daily average
-temperatures that seem very pleasant. The average is about
-78.9 <span class="math inline">\(^\circ\)</span>F in Colorado and
-78.6 <span class="math inline">\(^\circ\)</span>F in Hawaii. When we
-calculate an average value, we are creating an indicator of a variable’s
-<em>location</em> (in this case the <em>central tendency</em>). But if we look at the
-<em>dispersion</em> of temperature observations
-(i.e., how the temperatures vary across the month), we can make an important
-distinction: the range of observed temperature values in Hawaii is fairly
-narrow, whereas the range in Colorado spans from 64.4
-to 91.8 <span class="math inline">\(^\circ\)</span>F!</p>
-<p>The conclusion to be drawn here is that the <strong><em>central tendencies</em></strong> of hourly
-temperature are nearly identical between Hawaii and Colorado, but the
-<strong><em>dispersion</em></strong> of the temperature data suggests that you might want to pack
-more layers to be comfortable in Colorado. See Figure
+<p>First, if we are picking spots to go camping, both locations have daily
+average temperatures that seem very pleasant. The average is about
+78.9 <span class="math inline">\(^\circ\)</span>F in Colorado
+and 78.6 <span class="math inline">\(^\circ\)</span>F in
+Hawaii. When we calculate an average value, we are creating an indicator
+of a variable’s <em>location</em> (in this case the <em>central tendency</em>). But if
+we look at the <em>dispersion</em> of temperature observations (i.e., how the
+temperatures vary across the month), we can make an important
+distinction: the range of observed temperature values in Hawaii is
+fairly narrow, whereas the range in Colorado spans from
+64.4 to 91.8 <span class="math inline">\(^\circ\)</span>F!</p>
+<p>The conclusion to be drawn here is that the <strong><em>central tendencies</em></strong> of
+hourly temperature are nearly identical between Hawaii and Colorado, but
+the <strong><em>dispersion</em></strong> of the temperature data suggests that you might
+want to pack more layers to be comfortable in Colorado. See Figure
 <a href="eda1.html#fig:noaa-temp-anno">5.2</a>.</p>
-<p>You will discover that there are many ways to communicate location (e.g.,
-<code>mode()</code>, <code>mean()</code>, <code>median()</code>) and dispersion (e.g., <code>range()</code>, interquartile
-range <code>IQR()</code>, and standard deviation <code>sd()</code>). We will discuss several such
-descriptors in this course.</p>
+<p>You will discover that there are many ways to communicate location
+(e.g., <code>mode()</code>, <code>mean()</code>, <code>median()</code>) and dispersion (e.g., <code>range()</code>,
+interquartile range <code>IQR()</code>, and standard deviation <code>sd()</code>). We will
+discuss several such descriptors in this course.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:noaa-temp-anno"></span>
 <img src="images/NOAA_temps_annotate.png" alt="The temperature data from Hawaii and Colorado have similar locations (central tendencies) but differing dispersion (spread)." width="700pt" />
 <p class="caption">
@@ -656,49 +674,52 @@ Figure 5.2: The temperature data from Hawaii and Colorado have similar locations
 </div>
 <div id="quantile" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Quantiles<a href="eda1.html#quantile" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s assume you have a sample of univariate data. A good starting point for
-exploring these data is to break them into <em>quantiles</em> and extract some basic
-information. Quantiles allow you to see things like the start, middle, and end
-rather quickly because the first step of quantile calculation is to sort your
-data from smallest to largest value.</p>
+<p>Let’s assume you have a sample of univariate data. A good starting point
+for exploring these data is to break them into <em>quantiles</em> and extract
+some basic information. Quantiles allow you to see things like the
+start, middle, and end rather quickly because the first step of quantile
+calculation is to sort your data from smallest to largest value.</p>
 <div class="rmdtip">
 <p>
 A “quantile” represents a fractional portion of an ordered,
 univariate distribution.
 </p>
 </div>
-<p>Quantiles break a set of observations into similarly sized
-“chunks”, wherein each chunk represents an equal fraction of the total
-distribution, from start to finish. If you line your data up from smallest to
-largest and then slice that list into sections, you have created a set of
-quantiles. For example, when a distribution is broken into 10 equal chunks, or
-<em>deciles</em>, the first quantile (the 10<sup>th</sup>% or the 0.1 fraction) represents the
-value that bounds the lower 10% of the observed data; the second quantile (0.2
-fraction) represents the 20<sup>th</sup>% value for the observed data, and so on.</p>
-<p>There are two important aspects about quantiles to remember:
-(1) <strong>each quantile is defined only by its upper-end value</strong>;
-and (2) <strong>quantiles are defined after</strong>
-<strong>the data have been rank-ordered from lowest to highest value</strong>.</p>
+<p>Quantiles break a set of observations into similarly sized “chunks”,
+wherein each chunk represents an equal fraction of the total
+distribution, from start to finish. If you line your data up from
+smallest to largest and then slice that list into sections, you have
+created a set of quantiles. For example, when a distribution is broken
+into 10 equal chunks, or <em>deciles</em>, the first quantile (the 10<sup>th</sup>% or
+the 0.1 fraction) represents the value that bounds the lower 10% of the
+observed data; the second quantile (0.2 fraction) represents the 20<sup>th</sup>%
+value for the observed data, and so on.</p>
+<p>There are two important aspects about quantiles to remember: (1) <strong>each
+quantile is defined only by its upper-end value</strong>; and (2) <strong>quantiles
+are defined after</strong> <strong>the data have been rank-ordered from lowest to
+highest value</strong>.</p>
 <p>Quantiles are often used to communicate <strong>descriptive statistics</strong> for
 univariate data.</p>
 <p>The two most extreme quantiles define the <strong><em>range</em></strong>:</p>
 <ul>
 <li><p>Minimum,<code>min()</code>: the 0% or lowest value; the zeroth quantile</p></li>
-<li><p>Maximum,<code>max()</code>: the 100<sup>th</sup> percentile (or 1.0 in fractional terms); the highest value observed; the n<sup>th</sup> quantile</p></li>
+<li><p>Maximum,<code>max()</code>: the 100<sup>th</sup> percentile (or 1.0 in fractional
+terms); the highest value observed; the n<sup>th</sup> quantile</p></li>
 </ul>
-<p>If you break a distribution into quarters, you have created <em>quartiles</em>. We
-calculate quantiles using <code>stats::quantile()</code>, which comes loaded with
-base R. This function takes a numeric vector <code>x =</code> as a formal argument and, by
-default, returns quartiles (including min and max) for the data. If you want to
-extract specific quantile values, you can specify them with the optional
-<code>probs =</code> argument (default: <code>probs = seq(from = 0, to = 1, by = 0.25)</code>).</p>
-<p>Let’s
-generate a sample of random numbers between 0 and 100 and break the resulting
-data into <strong><em>quartiles</em></strong>. A random number generator, using the R function <code>runif()</code>,
-will create a <a href="dist.html#unif_dist">uniform distribution</a> across the sample range
-provided because all values within that range have equal probability of being
-chosen. With that in mind, you can probably guess what the quartiles will look
-like, given a sufficiently large sample…</p>
+<p>If you break a distribution into quarters, you have created <em>quartiles</em>.
+We calculate quantiles using <code>stats::quantile()</code>, which comes loaded
+with base R. This function takes a numeric vector <code>x =</code> as a formal
+argument and, by default, returns quartiles (including min and max) for
+the data. If you want to extract specific quantile values, you can
+specify them with the optional <code>probs =</code> argument (default:
+<code>probs = seq(from = 0, to = 1, by = 0.25)</code>).</p>
+<p>Let’s generate a sample of random numbers between 0 and 100 and break
+the resulting data into <strong><em>quartiles</em></strong>. A random number generator,
+using the R function <code>runif()</code>, will create a <a href="dist.html#unif_dist">uniform
+distribution</a> across the sample range provided because all
+values within that range have equal probability of being chosen. With
+that in mind, you can probably guess what the quartiles will look like,
+given a sufficiently large sample…</p>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="eda1.html#cb180-1" tabindex="-1"></a><span class="co"># &quot;set seed&quot; to generate the same results each time</span></span>
 <span id="cb180-2"><a href="eda1.html#cb180-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb180-3"><a href="eda1.html#cb180-3" tabindex="-1"></a><span class="co"># create uniform distribution</span></span>
@@ -716,20 +737,28 @@ Figure 5.3: Quartiles estimated from n=1000 samples of a uniform distribution be
 </p>
 </div>
 <p>As expected, the 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>, and 4<sup>th</sup> quartiles from a uniform
-distribution between 0 and 100 fall into predictable chunks of approximately
-25, 50, 75, and 100.</p>
+distribution between 0 and 100 fall into predictable chunks of
+approximately 25, 50, 75, and 100.</p>
 <ul>
-<li><p>The first, or lower, quartile contains the lower 25% of the distribution. In quantile terms, we define this quartile by its upper value, which occurs at the 25<sup>th</sup> percentile (or the 0.25 quantile).</p></li>
-<li><p>The second quartile contains the 25<sup>th</sup> to the 50<sup>th</sup> percentile values of the data. But, remember, that we define this quartile at the upper end of that range: the 0.5 quantile. Note the 0.5 quantile also represents the <strong><em>median</em></strong> of the distribution.</p></li>
-<li><p>The third quartile contains data for the 50<sup>th</sup> to the 75<sup>th</sup> percentile values (0.5 to 0.75 quantiles).</p></li>
-<li><p>The fourth quartile contains the upper 25% of the distribution: 0.75 to 1.0 quantiles.</p></li>
+<li><p>The first, or lower, quartile contains the lower 25% of the
+distribution. In quantile terms, we define this quartile by its
+upper value, which occurs at the 25<sup>th</sup> percentile (or the 0.25
+quantile).</p></li>
+<li><p>The second quartile contains the 25<sup>th</sup> to the 50<sup>th</sup> percentile
+values of the data. But, remember, that we define this quartile at
+the upper end of that range: the 0.5 quantile. Note the 0.5 quantile
+also represents the <strong><em>median</em></strong> of the distribution.</p></li>
+<li><p>The third quartile contains data for the 50<sup>th</sup> to the 75<sup>th</sup>
+percentile values (0.5 to 0.75 quantiles).</p></li>
+<li><p>The fourth quartile contains the upper 25% of the distribution: 0.75
+to 1.0 quantiles.</p></li>
 </ul>
 <div id="descriptive-statistics" class="section level3 hasAnchor" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Descriptive Statistics<a href="eda1.html#descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Quantiles allow us to calculate several important descriptive statistics for
-univariate data. For example, quartile calculations for highway fuel
-effeciencies from the <code>mpg</code> dataset allows us to report the
-following descriptive statistics:</p>
+<p>Quantiles allow us to calculate several important descriptive statistics
+for univariate data. For example, quartile calculations for highway fuel
+effeciencies from the <code>mpg</code> dataset allows us to report the following
+descriptive statistics:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:quant-desc-table">Table 5.1: </span><span id="tab:quant-desc-table">Table 5.2: </span>Quantiles and descriptive statistics for <code>hwy</code> fuel efficiency from ggplot::mpg$hwy
@@ -816,29 +845,30 @@ IQR
 </tr>
 </tbody>
 </table>
-<p>A couple notes: You might wonder why I didn’t include <em>summary statistics</em> like
-the <code>mean()</code> or standard deviation, <code>sd()</code>, in this list. I like using these
-descriptors, but their use implies that one knows the type or “shape” of the
-distribution being described (e.g., normal, log-normal, bi-modal).
-Use of descriptors like mean and standard deviation are very useful when applied
-properly but can be misleading when the distribution is skewed
-(more on that later).</p>
+<p>A couple notes: You might wonder why I didn’t include <em>summary
+statistics</em> like the <code>mean()</code> or standard deviation, <code>sd()</code>, in this
+list. I like using these descriptors, but their use implies that one
+knows the type or “shape” of the distribution being described (e.g.,
+normal, log-normal, bi-modal). Use of descriptors like mean and standard
+deviation are very useful when applied properly but can be misleading
+when the distribution is skewed (more on that later).</p>
 <p>Quantile descriptors, on the other hand, are agnostic to the type of
 distribution they describe. For example, the median is ALWAYS at the 0.5
-quantile, or 50<sup>th</sup> percentile, regardless of the shape of the distribution.</p>
+quantile, or 50<sup>th</sup> percentile, regardless of the shape of the
+distribution.</p>
 <p>The last descriptor in Table <a href="eda1.html#tab:quant-desc-table">5.1</a> is the
-<em>interquartile range</em>, or IQR for short.
-The IQR describes the spread of the data and communicates the range of values
-needed to go from the 25<sup>th</sup>% to the 75<sup>th</sup>% of the distribution. The IQR spans
-the “middle part” of the distribution. The IQR is similar in concept to a
-standard deviation but makes no assumptions about the type or shape of the
-distribution in question. You can calculate an IQR by subtracting the 0.75
-quantile from the 0.25 quantile, or by using <code>stats::IQR()</code>.</p>
-<p>Now let’s create quantiles from a <a href="dist.html#normal_dist"><em>normal distribution</em></a> of data
-with a mean of 50 and standard deviation of 15. We’ll start by randomly sampling
-1000 values, using <code>rnorm()</code>, and then arranging them with the <code>quanitle()</code>
-function. Note that the second half of the code chunk below shows how to
-calculate quantiles manually.</p>
+<em>interquartile range</em>, or IQR for short. The IQR describes the spread of
+the data and communicates the range of values needed to go from the
+25<sup>th</sup>% to the 75<sup>th</sup>% of the distribution. The IQR spans the “middle
+part” of the distribution. The IQR is similar in concept to a standard
+deviation but makes no assumptions about the type or shape of the
+distribution in question. You can calculate an IQR by subtracting the
+0.75 quantile from the 0.25 quantile, or by using <code>stats::IQR()</code>.</p>
+<p>Now let’s create quantiles from a <a href="dist.html#normal_dist"><em>normal distribution</em></a>
+of data with a mean of 50 and standard deviation of 15. We’ll start by
+randomly sampling 1000 values, using <code>rnorm()</code>, and then arranging them
+with the <code>quanitle()</code> function. Note that the second half of the code
+chunk below shows how to calculate quantiles manually.</p>
 <div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="eda1.html#cb181-1" tabindex="-1"></a><span class="co"># &quot;set seed&quot; to generate the same results each time</span></span>
 <span id="cb181-2"><a href="eda1.html#cb181-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>) </span>
 <span id="cb181-3"><a href="eda1.html#cb181-3" tabindex="-1"></a><span class="co"># create normal distribution</span></span>
@@ -864,53 +894,58 @@ calculate quantiles manually.</p>
 <span id="cb183-15"><a href="eda1.html#cb183-15" tabindex="-1"></a>normal_data_deciles <span class="ot">&lt;-</span> norm_manual <span class="sc">%&gt;%</span> </span>
 <span id="cb183-16"><a href="eda1.html#cb183-16" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cum_frac <span class="sc">%in%</span> deciles) </span>
 <span id="cb183-17"><a href="eda1.html#cb183-17" tabindex="-1"></a><span class="co"># %in% means: return whatever &quot;matches&quot; between these two vectors</span></span></code></pre></div>
-<p>Normal distributions are more complicated than uniform distributions, and it’s
-hard to get a lot out of the decile summary when shown in tabular format. This
-brings us to my favorite part of exploratory data analysis: data visualization.</p>
+<p>Normal distributions are more complicated than uniform distributions,
+and it’s hard to get a lot out of the decile summary when shown in
+tabular format. This brings us to my favorite part of exploratory data
+analysis: data visualization.</p>
 </div>
 </div>
 <div id="univariate-data-visualization" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Univariate Data Visualization<a href="eda1.html#univariate-data-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Data visualization is a powerful technique for exploring data. Visualizing
-univariate data is the <strong>first step</strong> in getting to know your data, once they
-have been imported and wrangled.</p>
-<p>Below, I introduce formal approaches to visualizing the location, dispersion,
-and shape of univariate data. Later, we will explore relationships between two
-or more variables in <a href="eda2.html#eda2">multivariate data analyses</a>. The techniques shown
-below are simple, powerful, and often underutilized.</p>
+<p>Data visualization is a powerful technique for exploring data.
+Visualizing univariate data is the <strong>first step</strong> in getting to know
+your data, once they have been imported and wrangled.</p>
+<p>Below, I introduce formal approaches to visualizing the location,
+dispersion, and shape of univariate data. Later, we will explore
+relationships between two or more variables in <a href="eda2.html#eda2">multivariate data
+analyses</a>. The techniques shown below are simple, powerful, and
+often underutilized.</p>
 <div id="summary-vs.-enumerative-plots" class="section level3 hasAnchor" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Summary vs. Enumerative Plots<a href="eda1.html#summary-vs.-enumerative-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Univariate data visualizations can be broken down into two categories:
-summary plots and enumerative plots. A <strong>summary plot</strong> shows you the data
-summarized in some way; a data analysis or manipulation happens prior
-generating a summary plot. <strong>Enumerative</strong> is a fancy word meaning “to name or
-show” all of the data without modification. Enumerative plots visualize all the
-data in a single plot. There are strengths and weaknesses to both:</p>
+summary plots and enumerative plots. A <strong>summary plot</strong> shows you the
+data summarized in some way; a data analysis or manipulation happens
+prior generating a summary plot. <strong>Enumerative</strong> is a fancy word meaning
+“to name or show” all of the data without modification. Enumerative
+plots visualize all the data in a single plot. There are strengths and
+weaknesses to both:</p>
 <ul>
 <li>Summary plots
 <ul>
 <li>Strengths: Easy to read; easy to see the “main points”.</li>
 <li>Weaknesses: Don’t show all of the data; only show you a summary.
-You are more likely to miss nuances or special features when looking at
-a summary plot.</li>
+You are more likely to miss nuances or special features when
+looking at a summary plot.</li>
 </ul></li>
 <li>Enumerative plots
 <ul>
-<li>Strengths: Show <em>all</em> of the data without manipulation. This is considered
-a strength because many analysts like to see raw data; <em>“the data don’t lie!”</em></li>
-<li>Weaknesses: Can take more time and energy to understand. Sometimes more data
-mean more work for your brain.</li>
+<li>Strengths: Show <em>all</em> of the data without manipulation. This is
+considered a strength because many analysts like to see raw
+data; <em>“the data don’t lie!”</em></li>
+<li>Weaknesses: Can take more time and energy to understand.
+Sometimes more data mean more work for your brain.</li>
 </ul></li>
 </ul>
 </div>
 <div id="cumulative-distribution-plot" class="section level3 hasAnchor" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> Cumulative Distribution Plot<a href="eda1.html#cumulative-distribution-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A cumulative distribution plot is an enumerative plot that lays out the raw
-quantiles, typically on the y-axis, against the observed data on the x-axis.
-Because these plots show all the data, each observation gets assigned a unit
-quantile; if there are 100 data points in a sample, each datum represents 1% of
-the total, or a quantile of 0.01 . Thus, quantiles are shown on the y-axis, and
-the x-axis shows the observed data, ordered from smallest to largest value.</p>
+<p>A cumulative distribution plot is an enumerative plot that lays out the
+raw quantiles, typically on the y-axis, against the observed data on the
+x-axis. Because these plots show all the data, each observation gets
+assigned a unit quantile; if there are 100 data points in a sample, each
+datum represents 1% of the total, or a quantile of 0.01 . Thus,
+quantiles are shown on the y-axis, and the x-axis shows the observed
+data, ordered from smallest to largest value.</p>
 <div class="rmdnote">
 <p>
 The cumulative distribution plot shows the rolling fraction (or
@@ -919,8 +954,9 @@ x-axis values of that data.
 </p>
 </div>
 <p>An annotated cumulative distribution plot is shown below for a sample of
-temperature data that follow a normal distribution. For this plot, I calculated
-the <code>unit_quantiles</code> manually to show you how this can be done:</p>
+temperature data that follow a normal distribution. For this plot, I
+calculated the <code>unit_quantiles</code> manually to show you how this can be
+done:</p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="eda1.html#cb184-1" tabindex="-1"></a><span class="co"># randomly sample two variables from normal distributions with `rnorm()`</span></span>
 <span id="cb184-2"><a href="eda1.html#cb184-2" tabindex="-1"></a>normal_data <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">a =</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="dv">5</span>),</span>
 <span id="cb184-3"><a href="eda1.html#cb184-3" tabindex="-1"></a>                              <span class="at">b =</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">3</span>))</span>
@@ -938,42 +974,47 @@ Figure 5.4: Annotated Cumulative Distribution Plot for Normally-Distributed Temp
 </p>
 </div>
 <p>As you can see, there is a lot of information contained in a cumulative
-distribution plot! We can see the range (minimum to maximum), median (0.5
-quantile), and any other percentile values for the distribution. We can quickly
-pick out any value and find out what fraction of the data are below it. For
-example, picking out the quantile of 0.9 on the y-axis shows that 90% of the
-observed temperature values are below 21 <span class="math inline">\(^\circ\)</span>C. In fact, most of the basic
-descriptive statistics can be accessed on a cumulative distribution plot:</p>
+distribution plot! We can see the range (minimum to maximum), median
+(0.5 quantile), and any other percentile values for the distribution. We
+can quickly pick out any value and find out what fraction of the data
+are below it. For example, picking out the quantile of 0.9 on the y-axis
+shows that 90% of the observed temperature values are below 21
+<span class="math inline">\(^\circ\)</span>C. In fact, most of the basic descriptive statistics can be
+accessed on a cumulative distribution plot:</p>
 <ul>
-<li><strong>range</strong>: minimum and maximum values at quantile 0 and 1.0, respectively<br />
+<li><strong>range</strong>: minimum and maximum values at quantile 0 and 1.0,
+respectively<br />
 </li>
 <li><strong>median</strong>: x-axis value at quantile 0.5<br />
 </li>
-<li><strong>25<sup>th</sup> and 75<sup>th</sup> percentiles</strong> (or quartiles): x-axis values at quantile 0.25 and 0.75, respectively<br />
+<li><strong>25<sup>th</sup> and 75<sup>th</sup> percentiles</strong> (or quartiles): x-axis values at
+quantile 0.25 and 0.75, respectively<br />
 </li>
-<li><strong>interquartile range</strong> (IQR): x-axis distance between quantiles 0.25 and 0.75</li>
+<li><strong>interquartile range</strong> (IQR): x-axis distance between quantiles
+0.25 and 0.75</li>
 </ul>
-<p>Cumulative distribution plots also reveal details about the dispersion of the
-observed data, and, more subtly, about the nature or shape of underlying data
-distribution. For example, in the temperature example above (Figure
-<a href="eda1.html#fig:norm-cdf-plot">5.4</a>), the curve has geometric <em>symmetry</em> about the median;
-this symmetry indicates that the dispersion of the data is equal as you move
-away from the median in either direction.</p>
+<p>Cumulative distribution plots also reveal details about the dispersion
+of the observed data, and, more subtly, about the nature or shape of
+underlying data distribution. For example, in the temperature example
+above (Figure <a href="eda1.html#fig:norm-cdf-plot">5.4</a>), the curve has geometric
+<em>symmetry</em> about the median; this symmetry indicates that the dispersion
+of the data is equal as you move away from the median in either
+direction.</p>
 <div id="example-cumulative-distribution-plot" class="section level4 hasAnchor" number="5.4.2.1">
 <h4><span class="header-section-number">5.4.2.1</span> Example: Cumulative Distribution Plot<a href="eda1.html#example-cumulative-distribution-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The <code>ggplot2</code> package can create cumulative distribution plots with different
-<code>geom</code> options:</p>
+<p>The <code>ggplot2</code> package can create cumulative distribution plots with
+different <code>geom</code> options:</p>
 <ul>
 <li><code>geom_step(aes(x = your_univariate_data), stat = "ecdf")</code><br />
 </li>
 <li><code>stat_ecdf(aes(x = your_univariate_data))</code></li>
 </ul>
 <p>In the example below, we create a cumulative distribution plot of annual
-salaries reported by individuals with a degree in Mechanical Engineering in the
-United States. These data come from the
-<a href="https://www.nsf.gov/statistics/srvygrads/">NSF Survey of College Graduates</a>.
-I’ve also taken the liberty of identifying the minimum, maximum, and quartile
-values on the plot.</p>
+salaries reported by individuals with a degree in Mechanical Engineering
+in the United States. These data come from the <a href="https://www.nsf.gov/statistics/srvygrads/">NSF Survey of College
+Graduates</a>. I’ve also taken
+the liberty of identifying the minimum, maximum, and quartile values on
+the plot.</p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="eda1.html#cb185-1" tabindex="-1"></a><span class="co"># create cumulative fractions </span></span>
 <span id="cb185-2"><a href="eda1.html#cb185-2" tabindex="-1"></a>ordered_salaries <span class="ot">&lt;-</span> raw_salaries <span class="sc">%&gt;%</span></span>
 <span id="cb185-3"><a href="eda1.html#cb185-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(salary) <span class="sc">%&gt;%</span></span>
@@ -1014,37 +1055,45 @@ values on the plot.</p>
 Figure 5.5: Annual Salaries (2017) for US Graduates (all ages) with a Mechanical Engineering Degree
 </p>
 </div>
-<p>The good news is that if you can survive the undergraduate grind in Mechanical
-Engineering, you have a reasonable chance of making a great living wage.
-The median salary is $
-96,000. Note this is for graduates of all ages across the country in
-the year 2017. Don’t expect that kind of paycheck on your first day on the job!</p>
-<p>Look at the “tails” of the curve in Figure <a href="eda1.html#fig:cdf-me-salaries">5.5</a>; the shape
-of the curves on either side of the median are not symmetrical. One tail looks longer than the other. This <em>lack of symmetry</em> means that the data are <em>skewed</em>. Why is that? We will
-explore skewed data at several points in this course and discuss some of the
+<p>The good news is that if you can survive the undergraduate grind in
+Mechanical Engineering, you have a reasonable chance of making a great
+living wage. The median salary is $
+96,000.
+Note this is for graduates of all ages across the country in the year
+2017. Don’t expect that kind of paycheck on your first day on the job!</p>
+<p>Look at the “tails” of the curve in Figure <a href="eda1.html#fig:cdf-me-salaries">5.5</a>;
+the shape of the curves on either side of the median are not
+symmetrical. One tail looks longer than the other. This <em>lack of
+symmetry</em> means that the data are <em>skewed</em>. Why is that? We will explore
+skewed data at several points in this course and discuss some of the
 mechanisms that cause data to be skewed.</p>
 </div>
 </div>
 <div id="hist" class="section level3 hasAnchor" number="5.4.3">
 <h3><span class="header-section-number">5.4.3</span> Histogram<a href="eda1.html#hist" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A histogram is a summary plot of counts, or frequency of observations, as a
-function of magnitude, or levels. Histograms are useful because they allow you
-to visualize the spread and shape of your data as a distribution. A histogram
-can tell you several important things about a variable:</p>
+<p>A histogram is a summary plot of counts, or frequency of observations,
+as a function of magnitude, or levels. Histograms are useful because
+they allow you to visualize the spread and shape of your data as a
+distribution. A histogram can tell you several important things about a
+variable:</p>
 <ul>
 <li>The location or central tendency: <em>what’s the most common value?</em></li>
-<li>The approximate range of the data: <em>what are the maximum and minimum values?</em></li>
+<li>The approximate range of the data: <em>what are the maximum and minimum
+values?</em></li>
 <li>The dispersion: <em>how spread out are the data?</em></li>
-<li>The nature of the distribution: <em>do the data appear normally distributed or skewed?</em></li>
-<li>The presence or absence of outliers in the data: <em>what are those observations doing way out there?</em></li>
+<li>The nature of the distribution: <em>do the data appear normally
+distributed or skewed?</em></li>
+<li>The presence or absence of outliers in the data: <em>what are those
+observations doing way out there?</em></li>
 </ul>
-<p>Below is a basic histogram that I’ve annotated to show some key features. This
-histogram was created by sampling a normal distribution <code>rnorm()</code>. I created
-the plot using <code>geom_histogram()</code>, which requires only an <code>x =</code> aesthetic to
-run.</p>
-<p>Examination of this histogram quickly reveals a lot about the underlying data.
-For example, the central tendency is located around a value of ~30 and the
-majority of the data appear to fall between a range of 20 - 40.</p>
+<p>Below is a basic histogram that I’ve annotated to show some key
+features. This histogram was created by sampling a normal distribution
+<code>rnorm()</code>. I created the plot using <code>geom_histogram()</code>, which requires
+only an <code>x =</code> aesthetic to run.</p>
+<p>Examination of this histogram quickly reveals a lot about the underlying
+data. For example, the central tendency is located around a value of
+~30 and the majority of the data appear to fall between a range of 20 -
+40.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:hist-anno-1"></span>
 <img src="images/hist_anno_1.png" alt="A histogram is a plot of counts, or frequency of observations, as a function of magnitude, or levels, of univariate data." width="700pt" />
 <p class="caption">
@@ -1053,110 +1102,123 @@ Figure 5.6: A histogram is a plot of counts, or frequency of observations, as a 
 </div>
 <div id="what-to-look-for-in-a-histogram" class="section level4 hasAnchor" number="5.4.3.1">
 <h4><span class="header-section-number">5.4.3.1</span> What to look for in a histogram?<a href="eda1.html#what-to-look-for-in-a-histogram" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>In addition to being able to “see” key data descriptors such as mean, range,
-and spread, a histogram also allows one (a) to get a feel for <strong><em>skewness</em></strong>,
-that is whether the distribution is symmetric about the central tendency, (b)
-to see <strong><em>outliers</em></strong>, and (c) to visualize other potential interesting
-features in the dataset.</p>
+<p>In addition to being able to “see” key data descriptors such as mean,
+range, and spread, a histogram also allows one (a) to get a feel for
+<strong><em>skewness</em></strong>, that is whether the distribution is symmetric about the
+central tendency, (b) to see <strong><em>outliers</em></strong>, and (c) to visualize other
+potential interesting features in the dataset.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:skew-hist-anno"></span>
 <img src="images/hist_anno_2.png" alt="A histogram depicting a skewed distribution." width="700pt" />
 <p class="caption">
 Figure 5.7: A histogram depicting a skewed distribution.
 </p>
 </div>
-<p>Figure <a href="eda1.html#fig:skew-hist-anno">5.7</a> depicts just such a skewed distribution.
-Examination of Figure <a href="eda1.html#fig:skew-hist-anno">5.7</a> also reveals the presence of
-potential outliers in the data: the apparent spike in observations around <code>x =</code>
-200. Outliers are interesting features and should neither be ignored nor
-deleted outright. Outliers exist for some reason, and usually only through
-detective work or mechanistic knowledge can you elucidate their source. We will
-delve into managing outliers in <a href="transform.html#outliers">Chapter 9</a>; for now, it’s enough to know that they exist and may warrant attention.</p>
-<p>In Figure <a href="eda1.html#fig:skew-hist-anno">5.7</a>, the central tendency is evident, but the
-spread of the data is not symmetrical about that central tendency. One outcome
-of skewed data is that traditional location measures of central tendency such
-as mode, median, and mean do not agree with each other. According to Figure
-<a href="eda1.html#fig:skew-hist-anno">5.7</a>, the central tendency calculations differ based on
-type of location measure.</p>
+<p>Figure <a href="eda1.html#fig:skew-hist-anno">5.7</a> depicts just such a skewed
+distribution. Examination of Figure <a href="eda1.html#fig:skew-hist-anno">5.7</a> also
+reveals the presence of potential outliers in the data: the apparent
+spike in observations around <code>x =</code> 200. Outliers are interesting
+features and should neither be ignored nor deleted outright. Outliers
+exist for some reason, and usually only through detective work or
+mechanistic knowledge can you elucidate their source. We will delve into
+managing outliers in <a href="transform.html#outliers">Chapter 9</a>; for now, it’s enough to
+know that they exist and may warrant attention.</p>
+<p>In Figure <a href="eda1.html#fig:skew-hist-anno">5.7</a>, the central tendency is evident,
+but the spread of the data is not symmetrical about that central
+tendency. One outcome of skewed data is that traditional location
+measures of central tendency such as mode, median, and mean do not agree
+with each other. According to Figure <a href="eda1.html#fig:skew-hist-anno">5.7</a>, the
+central tendency calculations differ based on type of location measure.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:skew-hist-anno-2"></span>
 <img src="images/hist_anno_3.png" alt="Describing the spread of skewed data with a simple standard deviation can lead to confusion and trouble: in this case, the existence of physically impossible values." width="700pt" />
 <p class="caption">
 Figure 5.8: Describing the spread of skewed data with a simple standard deviation can lead to confusion and trouble: in this case, the existence of physically impossible values.
 </p>
 </div>
-<p>Another, potentially more troubling, outcome of skewed data is that certain
-measures of the spread of the data such as the standard deviation can lead to
-misleading conclusions. For example, if we calculate and extend “one standard
-deviation” to the mean of the data in Figure <a href="eda1.html#fig:skew-hist-anno-2">5.8</a>, this
-would imply the existence of negative values (87 - 113 = -26), which is often
-impossible in the case of physical measurements. This is a common mistake in
-data analysis: the application of “normal” descriptors like mean and standard
-deviation to “non-normal” data.</p>
-<p>Skewed distributions can be more challenging to handle because they are less
-predictable than normal distributions. That said, statisticians have figured
-out how to model just about any type of distribution, so don’t fret. In any
-case, we can always rely on quantile calculations for descriptors such as
-median and IQR because those descriptors do not make assumptions about the
-shape of the distribution.</p>
+<p>Another, potentially more troubling, outcome of skewed data is that
+certain measures of the spread of the data such as the standard
+deviation can lead to misleading conclusions. For example, if we
+calculate and extend “one standard deviation” to the mean of the data in
+Figure <a href="eda1.html#fig:skew-hist-anno-2">5.8</a>, this would imply the existence of
+negative values (87 - 113 = -26), which is often impossible in the case
+of physical measurements. This is a common mistake in data analysis: the
+application of “normal” descriptors like mean and standard deviation to
+“non-normal” data.</p>
+<p>Skewed distributions can be more challenging to handle because they are
+less predictable than normal distributions. That said, statisticians
+have figured out how to model just about any type of distribution, so
+don’t fret. In any case, we can always rely on quantile calculations for
+descriptors such as median and IQR because those descriptors do not make
+assumptions about the shape of the distribution.</p>
 </div>
 <div id="skew" class="section level4 hasAnchor" number="5.4.3.2">
 <h4><span class="header-section-number">5.4.3.2</span> What causes skewed histograms?<a href="eda1.html#skew" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>I want to spend some time thinking about mechanisms that cause variability in
-an observation. These mechanisms are often responsible for whether a set of
-observations appears normally distributed or skewed. We will focus on two types
-of distributions for now: <a href="dist.html#normal_dist">normal</a> and
-<a href="dist.html#log_normal_dist">log-normal</a> data. Many other types of data distributions
-exist in the real world.</p>
-<p>A general “rule of thumb” is that <em>additive</em> variability tends to produce
-normally distributed data, whereas mechanisms that cause <em>multiplicative</em>
-variability tend to produce skewed data—often log-normal, as seen in Figure
-<a href="eda1.html#fig:skew-hist-anno-2">5.8</a>). By “additive”, I mean that variable <code>x</code> tends to
-vary in a “plus/minus” sense about its central tendency. Examples of additive
-variability include the distribution of heights measured in a sample of 3<sup>rd</sup>
-graders or the variability in the mass of a 3D-printed part produced 100 times
-by the same machine.</p>
+<p>I want to spend some time thinking about mechanisms that cause
+variability in an observation. These mechanisms are often responsible
+for whether a set of observations appears normally distributed or
+skewed. We will focus on two types of distributions for now:
+<a href="dist.html#normal_dist">normal</a> and <a href="dist.html#log_normal_dist">log-normal</a> data. Many
+other types of data distributions exist in the real world.</p>
+<p>A general “rule of thumb” is that <em>additive</em> variability tends to
+produce normally distributed data, whereas mechanisms that cause
+<em>multiplicative</em> variability tend to produce skewed data—often
+log-normal, as seen in Figure <a href="eda1.html#fig:skew-hist-anno-2">5.8</a>). By
+“additive”, I mean that variable <code>x</code> tends to vary in a “plus/minus”
+sense about its central tendency. Examples of additive variability
+include the distribution of heights measured in a sample of 3<sup>rd</sup>
+graders or the variability in the mass of a 3D-printed part produced 100
+times by the same machine.</p>
 <p>Multiplicative (or log-normal) variability arises when the mechanism(s)
-controlling the variation of <code>x</code> are multipliers (or divisors) of <code>x</code>. Many
-real-world phenomena create multiplicative variability in observed data: the
-strength of a WiFi signal at different locations within a building, the
-magnitude of earthquakes measured at a given position on the Earth’s surface,
-the size of rocks found in a section of a riverbed, or the size of particles
-found in air. All of these phenomena tend to be governed by multiplicative
-factors. In other words, all of these observations are controlled by mechanisms
-that suggest <span class="math inline">\(x = a * b * c\)</span> not <span class="math inline">\(x = a\cdot b\cdot c\)</span>. Explicit examples of
-multiplicative variability and how it leads to log-normal data are provided
-<a href="dist.html#log_normal_dist">here</a>.</p>
+controlling the variation of <code>x</code> are multipliers (or divisors) of <code>x</code>.
+Many real-world phenomena create multiplicative variability in observed
+data: the strength of a WiFi signal at different locations within a
+building, the magnitude of earthquakes measured at a given position on
+the Earth’s surface, the size of rocks found in a section of a riverbed,
+or the size of particles found in air. All of these phenomena tend to be
+governed by multiplicative factors. In other words, all of these
+observations are controlled by mechanisms that suggest <span class="math inline">\(x = a * b * c\)</span>
+not <span class="math inline">\(x = a + b + c\)</span>. Explicit examples of multiplicative variability and
+how it leads to log-normal data are provided <a href="dist.html#log_normal_dist">here</a>.</p>
 </div>
 <div id="pdf" class="section level4 hasAnchor" number="5.4.3.3">
 <h4><span class="header-section-number">5.4.3.3</span> Probability Density Function<a href="eda1.html#pdf" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The histogram is really an attempt to visualize the <strong>probability density function</strong>
-(pdf) for a distribution of univariate data. The pdf is a mathematical
-representation of the likelihood of sampling a given value from the distribution,
-assuming a random draw. Unlike the histogram (which bins data into groups), the
-pdf is a continuous function that can be solved at any datum. A pdf can be
-expressed empirically (as a numeric approximation) or as an exact analytic
-equation (in the case normal, lognormal, and other <em>known</em> distributional forms).</p>
+<p>The histogram is really an attempt to visualize the <strong>probability
+density function</strong> (pdf) for a distribution of univariate data. The pdf
+is a mathematical representation of the likelihood of sampling a given
+value from the distribution, assuming a random draw. Unlike the
+histogram (which bins data into groups), the pdf is a continuous
+function that can be solved at any datum. A pdf can be expressed
+empirically (as a numeric approximation) or as an exact analytic
+equation (in the case normal, lognormal, and other <em>known</em>
+distributional forms).</p>
 </div>
 </div>
 <div id="box" class="section level3 hasAnchor" number="5.4.4">
 <h3><span class="header-section-number">5.4.4</span> Boxplot<a href="eda1.html#box" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The boxplot is summary plot that allows one to view a distribution by its
-quartiles (Figure <a href="eda1.html#fig:boxplot-anno">5.9</a>). The “box” in a boxplot consists of
-three parallel lines, usually oriented vertically, connected on their sides to
-form a box. The outer box lines, also called the “hinges”, represent the 0.25
-and 0.75 quantiles, and the inner line represents the 0.5 quantile, or median.
-Thus, the height of the box depicts the inter-quartile range of the data.</p>
-<p>Boxplots are often drawn with lines extending out from each end of the box
-called “whiskers”. These whisker lines vary in their representation. For some
-plots, the whiskers represent either the maximum and minimum values,
-respectively, or a distance of <span class="math inline">\(1.5\cdot IQR\)</span> if either the maximum or minimum
-value are larger than <span class="math inline">\(1.5\cdot IQR\)</span>. Other times the whiskers represent the 0.9
-or 0.95 quantiles or <span class="math inline">\(\frac{1.58\cdot IQR}{\sqrt(2)}\)</span>. Because of these variations,
-it’s best to define the whiskers for the viewer either in the text or the
-Figure caption.</p>
-<p>Here is the R definition from the help file when you type <code>?geom_boxplot</code> into
-the console:</p>
+<p>The boxplot is summary plot that allows one to view a distribution by
+its quartiles (Figure <a href="eda1.html#fig:boxplot-anno">5.9</a>). The “box” in a boxplot
+consists of three parallel lines, usually oriented vertically, connected
+on their sides to form a box. The outer box lines, also called the
+“hinges”, represent the 0.25 and 0.75 quantiles, and the inner line
+represents the 0.5 quantile, or median. Thus, the height of the box
+depicts the inter-quartile range of the data.</p>
+<p>Boxplots are often drawn with lines extending out from each end of the
+box called “whiskers”. These whisker lines vary in their representation.
+For some plots, the whiskers represent either the maximum and minimum
+values, respectively, or a distance of <span class="math inline">\(1.5\cdot IQR\)</span> if either the
+maximum or minimum value are larger than <span class="math inline">\(1.5\cdot IQR\)</span>. Other times the
+whiskers represent the 0.9 or 0.95 quantiles or
+<span class="math inline">\(\frac{1.58\cdot IQR}{\sqrt(2)}\)</span>. Because of these variations, it’s best
+to define the whiskers for the viewer either in the text or the Figure
+caption.</p>
+<p>Here is the R definition from the help file when you type
+<code>?geom_boxplot</code> into the console:</p>
 <blockquote>
-<p>The upper whisker extends from the hinge to the largest value no further than 1.5 * IQR from the hinge (where IQR is the inter-quartile range, or distance between the first and third quartiles). The lower whisker extends from the hinge to the smallest value at most 1.5 * IQR of the hinge. Data beyond the end of the whiskers are called “outlying” points and are plotted individually.</p>
+<p>The upper whisker extends from the hinge to the largest value no
+further than 1.5 * IQR from the hinge (where IQR is the
+inter-quartile range, or distance between the first and third
+quartiles). The lower whisker extends from the hinge to the smallest
+value at most 1.5 * IQR of the hinge. Data beyond the end of the
+whiskers are called “outlying” points and are plotted individually.</p>
 </blockquote>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:boxplot-anno"></span>
 <img src="images/boxplot_1_anno.png" alt="A generic boxplot. The box lines represent the lower, middle, and upper quartiles, respectively. The whiskers represent 1.5*IQR in each direction." width="700pt" />
@@ -1164,25 +1226,27 @@ the console:</p>
 Figure 5.9: A generic boxplot. The box lines represent the lower, middle, and upper quartiles, respectively. The whiskers represent 1.5*IQR in each direction.
 </p>
 </div>
-<p>Boxplots <em>can be created</em> for a single univariate distribution, as shown in
-Figure <a href="eda1.html#fig:boxplot-anno">5.9</a>, but the strength of the boxplot really comes
-from drawing several together, so that one univariate distribution can be
-compared to another. In my opinion, single boxplots are quite boring by
-themselves, and the same information presented by a boxplot is just as easy to
-get from a cumulative distribution plot. Nonetheless, I think it’s faster to
-view quartiles and the IQR on the boxplot, so a plot with multiple boxplots has
-advantages. For example, let’s look at the data from Figure <a href="eda1.html#fig:noaa-temp-plot">5.1</a> as two boxplots.</p>
+<p>Boxplots <em>can be created</em> for a single univariate distribution, as shown
+in Figure <a href="eda1.html#fig:boxplot-anno">5.9</a>, but the strength of the boxplot
+really comes from drawing several together, so that one univariate
+distribution can be compared to another. In my opinion, single boxplots
+are quite boring by themselves, and the same information presented by a
+boxplot is just as easy to get from a cumulative distribution plot.
+Nonetheless, I think it’s faster to view quartiles and the IQR on the
+boxplot, so a plot with multiple boxplots has advantages. For example,
+let’s look at the data from Figure <a href="eda1.html#fig:noaa-temp-plot">5.1</a> as two
+boxplots.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:temp-boxplot"></span>
 <img src="05-univar_eda_files/figure-html/temp-boxplot-1.png" alt="Boxplots of hourly temperatures in CO and HI for July, 2010. Whiskers represent 1.5*IQR." width="500" />
 <p class="caption">
 Figure 5.10: Boxplots of hourly temperatures in CO and HI for July, 2010. Whiskers represent 1.5*IQR.
 </p>
 </div>
-<p>Sometimes, it’s helpful to combine enumerative and summary plots together. For
-example, we can add a Boxplot layer to Figure <a href="eda1.html#fig:noaa-temp-plot">5.1</a> so that
-we can visualize quartiles in addition to the location, dispersion, and shape
-of the raw data. The ability to layer geoms is one of the many strengths of the
-<code>ggplot2</code> package.</p>
+<p>Sometimes, it’s helpful to combine enumerative and summary plots
+together. For example, we can add a Boxplot layer to Figure
+<a href="eda1.html#fig:noaa-temp-plot">5.1</a> so that we can visualize quartiles in addition
+to the location, dispersion, and shape of the raw data. The ability to
+layer geoms is one of the many strengths of the <code>ggplot2</code> package.</p>
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="eda1.html#cb187-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> noaa_temp,</span>
 <span id="cb187-2"><a href="eda1.html#cb187-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> temp_hr_f, </span>
 <span id="cb187-3"><a href="eda1.html#cb187-3" tabindex="-1"></a>                     <span class="at">x =</span> location, </span>
@@ -1204,14 +1268,17 @@ Figure 5.11: Boxplots of hourly temperatures in CO and HI for July, 2010
 </div>
 <div id="time_series" class="section level3 hasAnchor" number="5.4.5">
 <h3><span class="header-section-number">5.4.5</span> Time-Series Plot<a href="eda1.html#time_series" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The time-series plot (also called a “run sequence” plot) is something you have
-undoubtedly seen before. This plot, typically shown as an enumerative plot,
-depicts the value of a variable on the y-axis plotted in the sequence that the
-observations were made on the x-axis, often shown as units of time. A
-time-series plot allows you to do several things:</p>
+<p>The time-series plot (also called a “run sequence” plot) is something
+you have undoubtedly seen before. This plot, typically shown as an
+enumerative plot, depicts the value of a variable on the y-axis plotted
+in the sequence that the observations were made on the x-axis, often
+shown as units of time. A time-series plot allows you to do several
+things:</p>
 <ul>
-<li>Identify shifts in “location” of the variable: <em>when and by how much do values change over time?</em></li>
-<li>Identify shifts in “variation” of the variable: <em>does the data get more/less noisy over time?</em></li>
+<li>Identify shifts in “location” of the variable: <em>when and by how much
+do values change over time?</em></li>
+<li>Identify shifts in “variation” of the variable: <em>does the data get
+more/less noisy over time?</em></li>
 <li>Identify (potential) outliers and when they occurred</li>
 <li>Identify the <strong>timing</strong> of events!</li>
 </ul>
@@ -1226,14 +1293,16 @@ Figure 5.12: Time series of hourly temperature measurements in Kauai, Hawaii for
 </div>
 <p><strong>What can we see in these data?</strong> Here are some quick conclusions:</p>
 <ol style="list-style-type: decimal">
-<li><p>The temperature appears to rise and fall in a predictable pattern each day—duh!</p></li>
-<li><p>Over the course of the month, we can see a gradual increase in daily mean temperature.</p></li>
+<li><p>The temperature appears to rise and fall in a predictable pattern
+each day—duh!</p></li>
+<li><p>Over the course of the month, we can see a gradual increase in daily
+mean temperature.</p></li>
 </ol>
-<p>Neither of these conclusions are groundbreaking, but they both allude to an
-important outcome: there are patterns to be seen in these data! None of those
-patterns were evident in the cumulative distribution or histogram plots. If we
-zoom in on just the first 5 days of the month, we see the daily temperature
-patterns in more detail.</p>
+<p>Neither of these conclusions are groundbreaking, but they both allude to
+an important outcome: there are patterns to be seen in these data! None
+of those patterns were evident in the cumulative distribution or
+histogram plots. If we zoom in on just the first 5 days of the month, we
+see the daily temperature patterns in more detail.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:noaa-hi-week"></span>
 <img src="images/noaa_hi_week.png" alt="Time series of hourly temperature measurements in Kauai, Hawaii for July 1-5, 2010." width="700pt" />
 <p class="caption">
@@ -1243,31 +1312,34 @@ Figure 5.13: Time series of hourly temperature measurements in Kauai, Hawaii for
 </div>
 <div id="autocorr" class="section level3 hasAnchor" number="5.4.6">
 <h3><span class="header-section-number">5.4.6</span> Autocorrelation Plot<a href="eda1.html#autocorr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Autocorrelation, or serial correlation, means <em>correlated with oneself across
-time</em>. Autocorrelation is a concept that suggests “whatever is happening in
-this moment is still likely to be happening in the next moment.” Lots of things
-are autocorrelated: your mood right now is likely related to your mood 15
-minutes from now (or 15 minutes ago). The weather outside at 08:00 on a given
-day is a good predictor of the weather outside an hour later at 09:00, or two
-hours later at 10:00, and so on, but less so in fourteen days hence.</p>
-<p>Almost all physical phenomena have a degree of autocorrelation and that’s
-important because if a datapoint at time <span class="math inline">\(i\)</span> is correlated with time <span class="math inline">\(i + 1\)</span>,
-then those two datapoints are NOT independent. Yet, many statistical tests
-assume that the underlying data ARE independent from one another! Thus,
-autocorrelation can pose a problem when we want to make inferences using data
-collected over a span of time. Fortunately, we have ways of detecting the
-presence and relative strength of autocorrelation with a simple exploratory
-plot.</p>
+<p>Autocorrelation, or serial correlation, means <em>correlated with oneself
+across time</em>. Autocorrelation is a concept that suggests “whatever is
+happening in this moment is still likely to be happening in the next
+moment.” Lots of things are autocorrelated: your mood right now is
+likely related to your mood 15 minutes from now (or 15 minutes ago). The
+weather outside at 08:00 on a given day is a good predictor of the
+weather outside an hour later at 09:00, or two hours later at 10:00, and
+so on, but less so in fourteen days hence.</p>
+<p>Almost all physical phenomena have a degree of autocorrelation and
+that’s important because if a datapoint at time <span class="math inline">\(i\)</span> is correlated with
+time <span class="math inline">\(i + 1\)</span>, then those two datapoints are NOT independent. Yet, many
+statistical tests assume that the underlying data ARE independent from
+one another! Thus, autocorrelation can pose a problem when we want to
+make inferences using data collected over a span of time. Fortunately,
+we have ways of detecting the presence and relative strength of
+autocorrelation with a simple exploratory plot.</p>
 <p>The autocorrelation plot is a summary plot that gives the Pearson
-correlation coefficient (<em>r</em>) between all measurements (x<sub>i</sub>) and their lags
-(x<sub>i+n</sub>), where <em>x</em> represents an observation and <em>i</em> represents a point in
-time. You can learn more about correlation coefficients (and how to calculate
-them) from the <code>cor()</code> function: type <code>?cor</code> into the console.</p>
+correlation coefficient (<em>r</em>) between all measurements (x<sub>i</sub>) and their
+lags (x<sub>i+n</sub>), where <em>x</em> represents an observation and <em>i</em> represents a
+point in time. You can learn more about correlation coefficients (and
+how to calculate them) from the <code>cor()</code> function: type <code>?cor</code> into the
+console.</p>
 <p>An autocorrelation plot can help answer the following questions:</p>
 <ul>
 <li>Are the data correlated with each other over time?
 <ul>
-<li>Note: if the answer is <em>yes</em>, then your data are <em>not necessarily independent measures</em>.</li>
+<li>Note: if the answer is <em>yes</em>, then your data are <em>not
+necessarily independent measures</em>.</li>
 </ul></li>
 <li>Are there patterns (periodicity) to discover?
 <ul>
@@ -1281,17 +1353,19 @@ them) from the <code>cor()</code> function: type <code>?cor</code> into the cons
 </ul></li>
 </ul>
 <p>Let’s examine the Hawaii temperature data shown in Figures
-<a href="eda1.html#fig:noaa-temp-plot">5.1</a> and <a href="eda1.html#fig:noaa-hi-time">5.12</a> using an autocorrelation
-plot. The <code>ggplot2</code> package doesn’t have explicit geoms for autocorrelation
-plots (<em>sigh</em>), but there are simple alternatives.</p>
+<a href="eda1.html#fig:noaa-temp-plot">5.1</a> and <a href="eda1.html#fig:noaa-hi-time">5.12</a> using an
+autocorrelation plot. The <code>ggplot2</code> package doesn’t have explicit geoms
+for autocorrelation plots (<em>sigh</em>), but there are simple alternatives.</p>
 <ul>
 <li>The <code>acf()</code> function from the <code>stats</code> package (base R)</li>
-<li>The <code>ggAcf()</code> function in the <code>forecast</code> package (requires a time-series object <code>ts</code>)</li>
+<li>The <code>ggAcf()</code> function in the <code>forecast</code> package (requires a
+time-series object <code>ts</code>)</li>
 </ul>
-<p>Both of these functions calculate autocorrelation lags and plot them through
-time, wherein each unit of time represents the duration of a single lag. Here,
-the y-axis represents the Pearson correlation coefficient and the x-axis
-represents time lags for the basic unit of time in which the data are arranged.</p>
+<p>Both of these functions calculate autocorrelation lags and plot them
+through time, wherein each unit of time represents the duration of a
+single lag. Here, the y-axis represents the Pearson correlation
+coefficient and the x-axis represents time lags for the basic unit of
+time in which the data are arranged.</p>
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="eda1.html#cb188-1" tabindex="-1"></a><span class="co"># subset data to contain only measures from Hawaii</span></span>
 <span id="cb188-2"><a href="eda1.html#cb188-2" tabindex="-1"></a>noaa_temp_hi <span class="ot">&lt;-</span> noaa_temp <span class="sc">%&gt;%</span> </span>
 <span id="cb188-3"><a href="eda1.html#cb188-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">&quot;Hawaii&quot;</span>)</span>
@@ -1304,25 +1378,31 @@ represents time lags for the basic unit of time in which the data are arranged.<
 <span id="cb188-10"><a href="eda1.html#cb188-10" tabindex="-1"></a>           <span class="at">lwd =</span> <span class="dv">2</span>) </span></code></pre></div>
 <p><img src="05-univar_eda_files/figure-html/acf-plot-1.png" width="672" /></p>
 <p>The plot suggests a <strong>fairly strong level of autocorrelation</strong> in these
-temperature data. We should not be surprised, especially after seeing the time
-series shown in Figures <a href="eda1.html#fig:noaa-hi-time">5.12</a> and <a href="eda1.html#fig:noaa-hi-week">5.13</a>.
-Can you explain why the Pearson correlation coefficient is negative at a 12-hr
-lag? Why does the coefficient trend back upwards to nearly perfect correlation
-at 24-hr lags?</p>
+temperature data. We should not be surprised, especially after seeing
+the time series shown in Figures <a href="eda1.html#fig:noaa-hi-time">5.12</a> and
+<a href="eda1.html#fig:noaa-hi-week">5.13</a>. Can you explain why the Pearson correlation
+coefficient is negative at a 12-hr lag? Why does the coefficient trend
+back upwards to nearly perfect correlation at 24-hr lags?</p>
 <p>Other notes about autocorrelation plots:</p>
 <ul>
-<li>Bars above the blue horizontal lines indicate that autocorrelation is worth attention.</li>
-<li>One important implication of autocorrelated data is that the data wihtin a given lag duration are not independent.<br />
+<li>Bars above the blue horizontal lines indicate that autocorrelation
+is worth attention.</li>
+<li>One important implication of autocorrelated data is that the data
+wihtin a given lag duration are not independent.<br />
 </li>
-<li>This <em>lack of independence</em> violates the assumptions of many modeling approaches. This is potentially bad.</li>
+<li>This <em>lack of independence</em> violates the assumptions of many
+modeling approaches. This is potentially bad.</li>
 </ul>
 </div>
 <div id="partial-autocorrelation-plot" class="section level3 hasAnchor" number="5.4.7">
 <h3><span class="header-section-number">5.4.7</span> Partial Autocorrelation Plot<a href="eda1.html#partial-autocorrelation-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The partial autocorrelation plot is a summary plot that gives the correlation
-coefficient (<em>r</em>) between all timepoints (x<sub>i</sub>) and their lags (x<sub>i+n</sub>) after
-accounting for autocorrelation for all previous lags.</p>
-<p>The partial autocorrelation plot can help you decide: <em>how far out in time should I go in order to assume that measurement (x<sub>i</sub>) is independent from (x<sub>i+n</sub>)?</em></p>
+<p>The partial autocorrelation plot is a summary plot that gives the
+correlation coefficient (<em>r</em>) between all timepoints (x<sub>i</sub>) and their
+lags (x<sub>i+n</sub>) after accounting for autocorrelation for all previous
+lags.</p>
+<p>The partial autocorrelation plot can help you decide: <em>how far out in
+time should I go in order to assume that measurement (x<sub>i</sub>) is
+independent from (x<sub>i+n</sub>)?</em></p>
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="eda1.html#cb189-1" tabindex="-1"></a><span class="co"># create partial autocorrelation plot</span></span>
 <span id="cb189-2"><a href="eda1.html#cb189-2" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">pacf</span>(noaa_temp_hi<span class="sc">$</span>temp_hr_f,</span>
 <span id="cb189-3"><a href="eda1.html#cb189-3" tabindex="-1"></a>            <span class="at">main =</span> <span class="st">&quot; &quot;</span>,</span>
@@ -1330,21 +1410,24 @@ accounting for autocorrelation for all previous lags.</p>
 <span id="cb189-5"><a href="eda1.html#cb189-5" tabindex="-1"></a>            <span class="at">ylab =</span> <span class="st">&quot;Partial Correlation Coefficient&quot;</span>,</span>
 <span id="cb189-6"><a href="eda1.html#cb189-6" tabindex="-1"></a>            <span class="at">lwd =</span> <span class="dv">2</span>) </span></code></pre></div>
 <p><img src="05-univar_eda_files/figure-html/pacf-plot-1.png" width="672" /></p>
-<p>In this case, after a 2-hr lag, the data loses most autocorrelation, except for
-some periodicity around 12- and 24-hr lags.</p>
+<p>In this case, after a 2-hr lag, the data loses most autocorrelation,
+except for some periodicity around 12- and 24-hr lags.</p>
 </div>
 </div>
 <div id="exploring-data" class="section level2 hasAnchor" number="5.5">
 <h2><span class="header-section-number">5.5</span> Exploring Data<a href="eda1.html#exploring-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The whole point of this chapter comes down to this: when you have new,
-unfamiliar data, the best thing to do is to explore that data graphically.
-Create a panel of plots from available candidates: histogram, cumulative distribution, time-series, boxplot, autocorrelation.
-Together, these plots allow you to see basic
-features and extract important descriptors such as central tendency, spread,
-shape, and quantiles. EDA plots also frequently lead to more questions; the
-answers to which will bring you even closer to understanding what the data are
-trying to tell you. Let your eyes do the listening at first.</p>
-<p>For example, here is a “3-plot” for the ME Salary data originally shown in Figure <a href="eda1.html#fig:cdf-me-salaries">5.5</a>:</p>
+unfamiliar data, the best thing to do is to explore that data
+graphically. Create a panel of plots from available candidates:
+histogram, cumulative distribution, time-series, boxplot,
+autocorrelation. Together, these plots allow you to see basic features
+and extract important descriptors such as central tendency, spread,
+shape, and quantiles. EDA plots also frequently lead to more questions;
+the answers to which will bring you even closer to understanding what
+the data are trying to tell you. Let your eyes do the listening at
+first.</p>
+<p>For example, here is a “3-plot” for the ME Salary data originally shown
+in Figure <a href="eda1.html#fig:cdf-me-salaries">5.5</a>:</p>
 <div class="figure"><span style="display:block;" id="fig:3-plot-noaa"></span>
 <img src="05-univar_eda_files/figure-html/3-plot-noaa-1.png" alt="EDA Plots of Annual Salaries among Mech Eng Graduates" width="672" />
 <p class="caption">
@@ -1354,9 +1437,9 @@ Figure 5.14: EDA Plots of Annual Salaries among Mech Eng Graduates
 </div>
 <div id="chapter-5-homework" class="section level2 hasAnchor" number="5.6">
 <h2><span class="header-section-number">5.6</span> Chapter 5 Homework<a href="eda1.html#chapter-5-homework" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You will continue to work with the ozone measurement data introduced in the
-previous chapters. Download the R Markdown template from our Github page to
-get started.</p>
+<p>You will continue to work with the ozone measurement data introduced in
+the previous chapters. Download the R Markdown template from our Github
+page to get started.</p>
 
 </div>
 </div>

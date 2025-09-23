@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2025-09-08" />
+<meta name="date" content="2025-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -57,8 +57,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -68,7 +69,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -866,7 +867,7 @@ date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time”
 by calling the <code>Sys.time()</code> function.</p>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="rprog3.html#cb206-1" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2025-09-08 11:38:01 MDT&quot;</code></pre>
+<pre><code>## [1] &quot;2025-09-23 11:13:54 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and timezone used by my computer
 (<em>whenever I last ran this code in <code>bookdown</code></em>). If you want to see how this
 time is stored in R internally, you can use <code>unclass()</code>, which returns an
@@ -874,17 +875,17 @@ object value with its class attributes removed. When we wrap <code>unclass()</co
 around <code>Sys.time()</code>, we will see the number of seconds that have occurred
 between the epoch of 1/1/1970 and right now:</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="rprog3.html#cb208-1" tabindex="-1"></a><span class="fu">unclass</span>(<span class="fu">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1757353081</code></pre>
+<pre><code>## [1] 1758647634</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
 Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span>
-365d/yr] =&gt; 55.7253006 years.</p>
+365d/yr] =&gt; 55.7663507 years.</p>
 <p>This calculation ignores leap years, but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3 hasAnchor" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats<a href="rprog3.html#date-time-formats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Note that the <code>Sys.time()</code> function provided the date in a
 <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong>
-format: 2025-09-08 11:38:01.288798.</p>
+format: 2025-09-23 11:13:54.104598.</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
 have little difficulty recognizing the following date-time objects as
@@ -1045,18 +1046,18 @@ classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and 
 attributes.</p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="rprog3.html#cb212-1" tabindex="-1"></a>time_now_ct <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="fu">Sys.time</span>())</span>
 <span id="cb212-2"><a href="rprog3.html#cb212-2" tabindex="-1"></a><span class="fu">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1757353081</code></pre>
+<pre><code>## [1] 1758647634</code></pre>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="rprog3.html#cb214-1" tabindex="-1"></a>time_now_lt <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(<span class="fu">Sys.time</span>())</span>
 <span id="cb214-2"><a href="rprog3.html#cb214-2" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 1.34
-##  $ min   : int 38
+##  $ sec   : num 54.2
+##  $ min   : int 13
 ##  $ hour  : int 11
-##  $ mday  : int 8
+##  $ mday  : int 23
 ##  $ mon   : int 8
 ##  $ year  : int 125
-##  $ wday  : int 1
-##  $ yday  : int 250
+##  $ wday  : int 2
+##  $ yday  : int 265
 ##  $ isdst : int 1
 ##  $ zone  : chr &quot;MDT&quot;
 ##  $ gmtoff: int -21600
