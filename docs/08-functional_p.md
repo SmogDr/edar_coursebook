@@ -362,17 +362,17 @@ glimpse(my.list)
 ##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] "land rover" "toyota" "honda" "land rover" ...
-##   ..$ model       : chr [1:7] "range rover" "4runner 4wd" "civic" "range rover" ...
-##   ..$ displ       : num [1:7] 4.6 3.4 1.6 4.2 5.2 3.8 2
-##   ..$ year        : int [1:7] 1999 1999 1999 2008 1999 1999 2008
-##   ..$ cyl         : int [1:7] 8 6 4 8 8 6 4
-##   ..$ trans       : chr [1:7] "auto(l4)" "manual(m5)" "manual(m5)" "auto(s6)" ...
-##   ..$ drv         : chr [1:7] "4" "4" "f" "4" ...
-##   ..$ cty         : int [1:7] 11 15 28 12 11 18 20
-##   ..$ hwy         : int [1:7] 15 17 33 18 16 25 27
-##   ..$ fl          : chr [1:7] "p" "r" "r" "r" ...
-##   ..$ class       : chr [1:7] "suv" "suv" "subcompact" "suv" ...
+##   ..$ manufacturer: chr [1:7] "dodge" "volkswagen" "volkswagen" "chevrolet" ...
+##   ..$ model       : chr [1:7] "durango 4wd" "new beetle" "new beetle" "corvette" ...
+##   ..$ displ       : num [1:7] 4.7 2.5 2 6.2 5.7 3 3.8
+##   ..$ year        : int [1:7] 2008 2008 1999 2008 2008 1999 1999
+##   ..$ cyl         : int [1:7] 8 5 4 8 8 6 6
+##   ..$ trans       : chr [1:7] "auto(l5)" "manual(m5)" "auto(l4)" "manual(m6)" ...
+##   ..$ drv         : chr [1:7] "4" "f" "f" "r" ...
+##   ..$ cty         : int [1:7] 13 20 19 16 13 17 15
+##   ..$ hwy         : int [1:7] 17 28 26 26 18 24 22
+##   ..$ fl          : chr [1:7] "r" "r" "r" "p" ...
+##   ..$ class       : chr [1:7] "suv" "subcompact" "subcompact" "2seater" ...
 ```
 
 Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 
@@ -514,22 +514,22 @@ Many of the `dplyr::` functions support *Tidy Selection* as a means to choose ce
   <tr>
    <td style="text-align:left;"> starts_with() </td>
    <td style="text-align:left;width: 6cm; "> Starts with a prefix </td>
-   <td style="text-align:left;"> select(mpg, starts_with("c")) </td>
+   <td style="text-align:left;"> select(mpg, starts_with('c')) </td>
   </tr>
   <tr>
    <td style="text-align:left;"> ends_with() </td>
    <td style="text-align:left;width: 6cm; "> Ends with a suffix </td>
-   <td style="text-align:left;"> mutate(mpg, across(ends_with("y"), .fns = ~0.425*.x, .names = "km_per_liter_{.col}")) </td>
+   <td style="text-align:left;"> mutate(mpg, across(ends_with('y'), .fns = ~0.425*.x, .names = 'km_per_liter_{.col}')) </td>
   </tr>
   <tr>
    <td style="text-align:left;"> contains() </td>
    <td style="text-align:left;width: 6cm; "> Contains a literal string </td>
-   <td style="text-align:left;"> summarise(mpg, across(contains("y"), .fns = mean, .names = "mean_{.col}")) </td>
+   <td style="text-align:left;"> summarise(mpg, across(contains('y'), .fns = mean, .names = 'mean_{.col}')) </td>
   </tr>
   <tr>
    <td style="text-align:left;"> matches() </td>
    <td style="text-align:left;width: 6cm; "> Matches a regular expression </td>
-   <td style="text-align:left;"> rename_with(mpg, .cols = matches("y$"), .fn = toupper) </td>
+   <td style="text-align:left;"> rename_with(mpg, .cols = matches('y$'), .fn = toupper) </td>
   </tr>
   <tr>
    <td style="text-align:left;"> where() </td>
@@ -541,13 +541,13 @@ Many of the `dplyr::` functions support *Tidy Selection* as a means to choose ce
 There are also helper symbols that can be used (an in conjunction with the helper verbs above) to make selections.  For example, if you wanted to keep all columns *except* for those containing `logical` vectors, you could use `select(data = .x, !where(is.logical))`.  These symbols are outlined in the table below.  For further reference, see this [help page](https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html). 
 
 
-|Symbol |Explanation                                             |Example (`mpg` dataframe)            |
-|:------|:-------------------------------------------------------|:------------------------------------|
-|:      |for selecting a range of consecutive columns            |model:year                           |
-|!      |for taking the complement of a set of variables         |!where(is.numeric)                   |
-|&      |for selecting the intersection of two sets of variables |where(is.numeric) & contains("y")    |
-|&#124; |for selecting the union of two sets of variables        |where(is.numeric) &#124; starts("m") |
-|c()    |for combining selections                                |!c(Make, hwy)                        |
+|Symbol |Explanation                                             |Example (`mpg` dataframe)                 |
+|:------|:-------------------------------------------------------|:-----------------------------------------|
+|:      |for selecting a range of consecutive columns            |model:year                                |
+|!      |for taking the complement of a set of variables         |!where(is.numeric)                        |
+|&      |for selecting the intersection of two sets of variables |where(is.numeric) & contains("y")         |
+|&#124; |for selecting the union of two sets of variables        |where(is.numeric) &#124; starts_with("m") |
+|c()    |for combining selections                                |!c(Make, hwy)                             |
 
 ### Examples `dplyr::across()`
 Perform unit conversions:  
@@ -564,13 +564,13 @@ mutate(mpg, across(ends_with("y"), # select cty and hwy
 
 ```
 ## # A tibble: 5 × 5
-##   manufacturer model        year km_per_liter_cty km_per_liter_hwy
-##   <chr>        <chr>       <int>            <dbl>            <dbl>
-## 1 pontiac      grand prix   2008             7.65             11.9
-## 2 audi         a4 quattro   2008             8.5              11.9
-## 3 ford         mustang      2008             6.8              10.2
-## 4 hyundai      sonata       1999             7.65             11.5
-## 5 subaru       impreza awd  2008             8.07             10.6
+##   manufacturer model              year km_per_liter_cty km_per_liter_hwy
+##   <chr>        <chr>             <int>            <dbl>            <dbl>
+## 1 dodge        dakota pickup 4wd  2008             6.38             8.07
+## 2 volkswagen   jetta              1999             8.07            11.0 
+## 3 hyundai      sonata             2008             8.92            13.2 
+## 4 toyota       4runner 4wd        1999             6.8              8.5 
+## 5 nissan       pathfinder 4wd     1999             6.38             7.22
 ```
 
 Summarizing the data range for only the numeric vectors:  
@@ -589,6 +589,38 @@ mpg %>%
 ## 1   1.6  1999     4     9    12
 ## 2   7    2008     8    35    44
 ```
+
+### Anonymous Functions
+Sometimes, we want to do some *pre-processing* of our data before a summary call.  In the case below, we summarize (by count) the number of `NA` values in a data frame for each column of the data frame (this is a great quality control check for new data).  To do this, we apply the `is.na()` function to each entry, then sum them up by row (because `is.na` returns logical `TRUE/FALSE` objects that equate to 1 or 0, respectively).  
+
+We can get `across()` to achieve this by creating a custom one-time function as shown in the code below.  Such custom functions are known as **anonymous functions** because they doesn't have an assigned function name. See example below, where we define a quick, one-time function as the `.fns =` argument in `across()`:
+
+``` r
+# sum up the number of NAs by column in a data frame
+# create a custom function within the across() function
+# note that everything() is a tidyselect verb from above
+mpg %>%
+  summarise(across(everything(), 
+                   .fns = function(x) sum(is.na(x))))
+```
+
+```
+## # A tibble: 1 × 11
+##   manufacturer model displ  year   cyl trans   drv   cty   hwy    fl class
+##          <int> <int> <int> <int> <int> <int> <int> <int> <int> <int> <int>
+## 1            0     0     0     0     0     0     0     0     0     0     0
+```
+Anonymous functions are useful once you get used to the idea of *"creating a function within a function"*.  They are common when you only need to use a function once. You will often see them written in their shorthand form (using the `~` symbol and `.x`) as shown below. Essentially, the `~` symbol tells R to expect either a function with multiple arguments or a chain of functions (i.e., some pre-processing of the data).  The `.x` is a placeholder for the argument of your function.
+
+
+``` r
+# sum up the number of NAs by column in a data frame
+# this code is equivalent to the one above
+# the ~ and .x are shorthand for an anonymous function call
+mpg %>%
+  summarise(across(everything(), ~ sum(is.na(.x))))
+```
+
 ## Homework 
 This homework will give you practice at writing functions, mapping functions, and cleaning/plotting data. To begin, download the PurpleAir data files from Canvas. Note: the data are contained in a .zip file, which you can unzip on your computer or using R!
 

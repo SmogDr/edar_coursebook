@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2025-09-23" />
+<meta name="date" content="2025-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -374,6 +374,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.5.1" data-path="rprog4.html"><a href="rprog4.html#using-tidy-select-syntax-to-select-columns"><i class="fa fa-check"></i><b>8.5.1</b> Using <code>&lt;tidy-select&gt;</code> syntax to select columns</a></li>
 <li class="chapter" data-level="8.5.2" data-path="rprog4.html"><a href="rprog4.html#examples-dplyracross"><i class="fa fa-check"></i><b>8.5.2</b> Examples <code>dplyr::across()</code></a></li>
+<li class="chapter" data-level="8.5.3" data-path="rprog4.html"><a href="rprog4.html#anonymous-functions"><i class="fa fa-check"></i><b>8.5.3</b> Anonymous Functions</a></li>
 </ul></li>
 <li class="chapter" data-level="8.6" data-path="rprog4.html"><a href="rprog4.html#homework"><i class="fa fa-check"></i><b>8.6</b> Homework</a></li>
 </ul></li>
@@ -976,11 +977,11 @@ to do this in R, but the <code>levels()</code> function is the most straightforw
 <p>Next, let’s see whether this dataframe contains missing data (<code>NA</code>s).</p>
 <div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="eda2.html#cb264-1" tabindex="-1"></a><span class="co"># count instances of missing values within df_mpg</span></span>
 <span id="cb264-2"><a href="eda2.html#cb264-2" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(df_mpg))</span></code></pre></div>
-<pre><code>## [1] 2302</code></pre>
+<pre><code>## [1] 2686</code></pre>
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="eda2.html#cb266-1" tabindex="-1"></a><span class="co"># note this can work as a pipe, too</span></span>
 <span id="cb266-2"><a href="eda2.html#cb266-2" tabindex="-1"></a><span class="co"># df_mpg %&gt;% is.na() %&gt;% sum()</span></span></code></pre></div>
 <p>With a dataframe of this size, we shouldn’t be surprised that there are
-2302 <code>NA</code> values present. The next question is: where do
+2686 <code>NA</code> values present. The next question is: where do
 these <code>NA</code> values show up? There are several ways to answer this question;
 here, we will use the <code>stats::complete.cases()</code> function with a
 <code>dplyr::filter()</code> search.</p>
@@ -994,7 +995,7 @@ contain <code>NA</code>s. Let’s create a subset of <code>df_mpg</code> that on
 <div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="eda2.html#cb267-1" tabindex="-1"></a><span class="co"># return a df of rows with missing values</span></span>
 <span id="cb267-2"><a href="eda2.html#cb267-2" tabindex="-1"></a>df_mpg <span class="sc">%&gt;%</span></span>
 <span id="cb267-3"><a href="eda2.html#cb267-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">complete.cases</span>(.))</span></code></pre></div>
-<pre><code>## # A tibble: 1,145 × 13
+<pre><code>## # A tibble: 1,337 × 13
 ##       id make   model      year   cyl displ drive tran  v_class fuel_type comb08
 ##    &lt;dbl&gt; &lt;fct&gt;  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;      &lt;dbl&gt;
 ##  1 16423 Nissan Altra EV   2000    NA    NA &lt;NA&gt;  &lt;NA&gt;  Midsiz… Electric…     85
@@ -1007,7 +1008,7 @@ contain <code>NA</code>s. Let’s create a subset of <code>df_mpg</code> that on
 ##  8 18291 Ford   Explorer…  2002    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     39
 ##  9 19296 Toyota RAV4 EV    2003    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     78
 ## 10 30965 Ford   Ranger P…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
-## # ℹ 1,135 more rows
+## # ℹ 1,327 more rows
 ## # ℹ 2 more variables: highway08 &lt;dbl&gt;, city08 &lt;dbl&gt;</code></pre>
 <p>Here, we discover that most of the the <code>NA</code> values are in the <code>cyl</code>, <code>displ</code>,
 and <code>tran</code>, columns. Further, we see that <strong>all</strong> of these vehicles have a
@@ -1048,7 +1049,7 @@ yourself to the <code>across()</code> function. In the code below, I provide exa
 <span id="cb271-6"><a href="eda2.html#cb271-6" tabindex="-1"></a>df_mpg <span class="sc">%&gt;%</span></span>
 <span id="cb271-7"><a href="eda2.html#cb271-7" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">if_any</span>(<span class="at">.cols =</span> <span class="fu">everything</span>(), </span>
 <span id="cb271-8"><a href="eda2.html#cb271-8" tabindex="-1"></a>                <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">is.na</span>(.x)))</span></code></pre></div>
-<pre><code>## # A tibble: 1,145 × 13
+<pre><code>## # A tibble: 1,337 × 13
 ##       id make   model      year   cyl displ drive tran  v_class fuel_type comb08
 ##    &lt;dbl&gt; &lt;fct&gt;  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;      &lt;dbl&gt;
 ##  1 16423 Nissan Altra EV   2000    NA    NA &lt;NA&gt;  &lt;NA&gt;  Midsiz… Electric…     85
@@ -1061,7 +1062,7 @@ yourself to the <code>across()</code> function. In the code below, I provide exa
 ##  8 18291 Ford   Explorer…  2002    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     39
 ##  9 19296 Toyota RAV4 EV    2003    NA    NA 2-Wh… &lt;NA&gt;  Sport … Electric…     78
 ## 10 30965 Ford   Ranger P…  2001    NA    NA 2-Wh… Auto… Standa… Electric…     58
-## # ℹ 1,135 more rows
+## # ℹ 1,327 more rows
 ## # ℹ 2 more variables: highway08 &lt;dbl&gt;, city08 &lt;dbl&gt;</code></pre>
 </div>
 <div id="example-3-missing-data" class="section level4 hasAnchor" number="7.5.4.3">

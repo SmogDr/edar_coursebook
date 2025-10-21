@@ -430,10 +430,10 @@ tidy_select_1 <- data.frame(
               "Matches a regular expression",
               "Selects variables if function returns TRUE"),
   example = c("rename_with(mpg, .cols = everything(), .fn = toupper))",
-              "select(mpg, starts_with(\"c\"))",
-              "mutate(mpg, across(ends_with(\"y\"), .fns = ~0.425*.x, .names = \"km_per_liter_{.col}\"))",
-              "summarise(mpg, across(contains(\"y\"), .fns = mean, .names = \"mean_{.col}\"))",
-              "rename_with(mpg, .cols = matches(\"y$\"), .fn = toupper)",
+              "select(mpg, starts_with(\'c\'))",
+              "mutate(mpg, across(ends_with(\'y\'), .fns = ~0.425*.x, .names = \'km_per_liter_{.col}\'))",
+              "summarise(mpg, across(contains(\'y\'), .fns = mean, .names = \'mean_{.col}\'))",
+              "rename_with(mpg, .cols = matches(\'y$\'), .fn = toupper)",
               "select(mpg, where(is.numeric))")
               
 )
@@ -456,7 +456,7 @@ tidy_select_2 <- tibble(
   example = c("model:year", 
               "!where(is.numeric)",
               "where(is.numeric) & contains(\"y\")",
-              "where(is.numeric) | starts(\"m\")",
+              "where(is.numeric) | starts_with(\"m\")",
               "!c(Make, hwy)")
 )
 
@@ -486,6 +486,30 @@ mpg %>%
   summarise(across(where(is.numeric), .fns = range))
 
 ```
+
+### Anonymous Functions
+Sometimes, we want to do some *pre-processing* of our data before a summary call.  In the case below, we summarize (by count) the number of `NA` values in a data frame for each column of the data frame (this is a great quality control check for new data).  To do this, we apply the `is.na()` function to each entry, then sum them up by row (because `is.na` returns logical `TRUE/FALSE` objects that equate to 1 or 0, respectively).  
+
+We can get `across()` to achieve this by creating a custom one-time function as shown in the code below.  Such custom functions are known as **anonymous functions** because they doesn't have an assigned function name. See example below, where we define a quick, one-time function as the `.fns =` argument in `across()`:
+```{r count-NA, warning=FALSE}
+# sum up the number of NAs by column in a data frame
+# create a custom function within the across() function
+# note that everything() is a tidyselect verb from above
+mpg %>%
+  summarise(across(everything(), 
+                   .fns = function(x) sum(is.na(x))))
+```
+Anonymous functions are useful once you get used to the idea of *"creating a function within a function"*.  They are common when you only need to use a function once. You will often see them written in their shorthand form (using the `~` symbol and `.x`) as shown below. Essentially, the `~` symbol tells R to expect either a function with multiple arguments or a chain of functions (i.e., some pre-processing of the data).  The `.x` is a placeholder for the argument of your function.
+
+```{r count-NA2, eval=FALSE}
+# sum up the number of NAs by column in a data frame
+# this code is equivalent to the one above
+# the ~ and .x are shorthand for an anonymous function call
+mpg %>%
+  summarise(across(everything(), ~ sum(is.na(.x))))
+
+```
+
 ## Homework 
 This homework will give you practice at writing functions, mapping functions, and cleaning/plotting data. To begin, download the PurpleAir data files from Canvas. Note: the data are contained in a .zip file, which you can unzip on your computer or using R!
 
