@@ -362,17 +362,17 @@ glimpse(my.list)
 ##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] "dodge" "volkswagen" "volkswagen" "chevrolet" ...
-##   ..$ model       : chr [1:7] "durango 4wd" "new beetle" "new beetle" "corvette" ...
-##   ..$ displ       : num [1:7] 4.7 2.5 2 6.2 5.7 3 3.8
-##   ..$ year        : int [1:7] 2008 2008 1999 2008 2008 1999 1999
-##   ..$ cyl         : int [1:7] 8 5 4 8 8 6 6
-##   ..$ trans       : chr [1:7] "auto(l5)" "manual(m5)" "auto(l4)" "manual(m6)" ...
-##   ..$ drv         : chr [1:7] "4" "f" "f" "r" ...
-##   ..$ cty         : int [1:7] 13 20 19 16 13 17 15
-##   ..$ hwy         : int [1:7] 17 28 26 26 18 24 22
-##   ..$ fl          : chr [1:7] "r" "r" "r" "p" ...
-##   ..$ class       : chr [1:7] "suv" "subcompact" "subcompact" "2seater" ...
+##   ..$ manufacturer: chr [1:7] "audi" "volkswagen" "mercury" "honda" ...
+##   ..$ model       : chr [1:7] "a4" "gti" "mountaineer 4wd" "civic" ...
+##   ..$ displ       : num [1:7] 1.8 2 4.6 1.6 5.2 5.2 2
+##   ..$ year        : int [1:7] 1999 2008 2008 1999 1999 1999 2008
+##   ..$ cyl         : int [1:7] 4 4 8 4 8 8 4
+##   ..$ trans       : chr [1:7] "auto(l5)" "auto(s6)" "auto(l6)" "auto(l4)" ...
+##   ..$ drv         : chr [1:7] "f" "f" "4" "f" ...
+##   ..$ cty         : int [1:7] 18 22 13 24 11 11 21
+##   ..$ hwy         : int [1:7] 29 29 19 32 16 17 29
+##   ..$ fl          : chr [1:7] "p" "p" "r" "r" ...
+##   ..$ class       : chr [1:7] "compact" "compact" "suv" "subcompact" ...
 ```
 
 Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 
@@ -536,6 +536,11 @@ Many of the `dplyr::` functions support *Tidy Selection* as a means to choose ce
    <td style="text-align:left;width: 6cm; "> Selects variables if function returns TRUE </td>
    <td style="text-align:left;"> select(mpg, where(is.numeric)) </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> if_any() </td>
+   <td style="text-align:left;width: 6cm; "> Filters rows if function returns TRUE </td>
+   <td style="text-align:left;"> filter(if_any(everything(), is.character)) </td>
+  </tr>
 </tbody>
 </table>
 There are also helper symbols that can be used (an in conjunction with the helper verbs above) to make selections.  For example, if you wanted to keep all columns *except* for those containing `logical` vectors, you could use `select(data = .x, !where(is.logical))`.  These symbols are outlined in the table below.  For further reference, see this [help page](https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html). 
@@ -566,11 +571,11 @@ mutate(mpg, across(ends_with("y"), # select cty and hwy
 ## # A tibble: 5 × 5
 ##   manufacturer model              year km_per_liter_cty km_per_liter_hwy
 ##   <chr>        <chr>             <int>            <dbl>            <dbl>
-## 1 dodge        dakota pickup 4wd  2008             6.38             8.07
-## 2 volkswagen   jetta              1999             8.07            11.0 
-## 3 hyundai      sonata             2008             8.92            13.2 
-## 4 toyota       4runner 4wd        1999             6.8              8.5 
-## 5 nissan       pathfinder 4wd     1999             6.38             7.22
+## 1 ford         explorer 4wd       1999             5.52             7.22
+## 2 ford         expedition 2wd     1999             4.68             7.22
+## 3 volkswagen   jetta              1999             7.22            10.2 
+## 4 land rover   range rover        1999             4.68             6.38
+## 5 dodge        dakota pickup 4wd  2008             5.95             8.07
 ```
 
 Summarizing the data range for only the numeric vectors:  

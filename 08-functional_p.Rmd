@@ -422,19 +422,22 @@ tidy_select_1 <- data.frame(
               "ends_with()",
               "contains()",
               "matches()",
-              "where()"),
+              "where()",
+              "if_any()"),
   meaning = c("Matches all variables",
               "Starts with a prefix",
               "Ends with a suffix",
               "Contains a literal string",
               "Matches a regular expression",
-              "Selects variables if function returns TRUE"),
+              "Selects variables if function returns TRUE",
+              "Filters rows if function returns TRUE"),
   example = c("rename_with(mpg, .cols = everything(), .fn = toupper))",
               "select(mpg, starts_with(\'c\'))",
               "mutate(mpg, across(ends_with(\'y\'), .fns = ~0.425*.x, .names = \'km_per_liter_{.col}\'))",
               "summarise(mpg, across(contains(\'y\'), .fns = mean, .names = \'mean_{.col}\'))",
               "rename_with(mpg, .cols = matches(\'y$\'), .fn = toupper)",
-              "select(mpg, where(is.numeric))")
+              "select(mpg, where(is.numeric))",
+              "filter(if_any(everything(), is.character))")
               
 )
 
