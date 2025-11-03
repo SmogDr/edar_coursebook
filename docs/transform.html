@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2025-10-22" />
+<meta name="date" content="2025-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -835,7 +835,7 @@ setting yourself up for disaster.
 <li>Poly Sci majors identifying as male make higher median/mean salaries than those identifying as female;<br />
 </li>
 <li>The mean salary is higher than the median salary in both cases (note that for perfectly <em>normal</em> distributions the mean and mean are equivalent);</li>
-<li>The max salary is the same for both genders and is 10x higher than the median. With a <code>min()</code> of 0 for both genders, this implies some level of skewness in these data.</li>
+<li>The max salary is the same for both sexes and is 10x higher than the median. With a <code>min()</code> of 0 for both sexes, this implies some level of skewness in these data.</li>
 </ul>
 </div>
 <div id="univariate-data-visualization-1" class="section level3 hasAnchor" number="9.6.2">
@@ -994,7 +994,7 @@ quantile divided by the 0.16 quantile.
 <span id="cb343-5"><a href="transform.html#cb343-5" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb343-6"><a href="transform.html#cb343-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">data =</span> salary_ps2,</span>
 <span id="cb343-7"><a href="transform.html#cb343-7" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> salary,</span>
-<span id="cb343-8"><a href="transform.html#cb343-8" tabindex="-1"></a>                     <span class="at">y =</span> ..density..),</span>
+<span id="cb343-8"><a href="transform.html#cb343-8" tabindex="-1"></a>                     <span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
 <span id="cb343-9"><a href="transform.html#cb343-9" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
 <span id="cb343-10"><a href="transform.html#cb343-10" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;navy&quot;</span>,</span>
 <span id="cb343-11"><a href="transform.html#cb343-11" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">35</span>) <span class="sc">+</span></span>

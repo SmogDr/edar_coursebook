@@ -362,17 +362,17 @@ glimpse(my.list)
 ##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] "audi" "volkswagen" "mercury" "honda" ...
-##   ..$ model       : chr [1:7] "a4" "gti" "mountaineer 4wd" "civic" ...
-##   ..$ displ       : num [1:7] 1.8 2 4.6 1.6 5.2 5.2 2
-##   ..$ year        : int [1:7] 1999 2008 2008 1999 1999 1999 2008
-##   ..$ cyl         : int [1:7] 4 4 8 4 8 8 4
-##   ..$ trans       : chr [1:7] "auto(l5)" "auto(s6)" "auto(l6)" "auto(l4)" ...
-##   ..$ drv         : chr [1:7] "f" "f" "4" "f" ...
-##   ..$ cty         : int [1:7] 18 22 13 24 11 11 21
-##   ..$ hwy         : int [1:7] 29 29 19 32 16 17 29
-##   ..$ fl          : chr [1:7] "p" "p" "r" "r" ...
-##   ..$ class       : chr [1:7] "compact" "compact" "suv" "subcompact" ...
+##   ..$ manufacturer: chr [1:7] "ford" "toyota" "toyota" "dodge" ...
+##   ..$ model       : chr [1:7] "f150 pickup 4wd" "corolla" "corolla" "caravan 2wd" ...
+##   ..$ displ       : num [1:7] 5.4 1.8 1.8 3.8 4.7 2 5.4
+##   ..$ year        : int [1:7] 1999 1999 2008 1999 2008 2008 1999
+##   ..$ cyl         : int [1:7] 8 4 4 6 8 4 8
+##   ..$ trans       : chr [1:7] "auto(l4)" "auto(l3)" "auto(l4)" "auto(l4)" ...
+##   ..$ drv         : chr [1:7] "4" "f" "f" "f" ...
+##   ..$ cty         : int [1:7] 11 24 26 15 13 21 11
+##   ..$ hwy         : int [1:7] 15 30 35 22 17 29 16
+##   ..$ fl          : chr [1:7] "r" "r" "r" "r" ...
+##   ..$ class       : chr [1:7] "pickup" "compact" "compact" "minivan" ...
 ```
 
 Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 
@@ -569,13 +569,13 @@ mutate(mpg, across(ends_with("y"), # select cty and hwy
 
 ```
 ## # A tibble: 5 × 5
-##   manufacturer model              year km_per_liter_cty km_per_liter_hwy
-##   <chr>        <chr>             <int>            <dbl>            <dbl>
-## 1 ford         explorer 4wd       1999             5.52             7.22
-## 2 ford         expedition 2wd     1999             4.68             7.22
-## 3 volkswagen   jetta              1999             7.22            10.2 
-## 4 land rover   range rover        1999             4.68             6.38
-## 5 dodge        dakota pickup 4wd  2008             5.95             8.07
+##   manufacturer model         year km_per_liter_cty km_per_liter_hwy
+##   <chr>        <chr>        <int>            <dbl>            <dbl>
+## 1 ford         explorer 4wd  1999             6.38             8.07
+## 2 hyundai      sonata        2008             8.92            13.2 
+## 3 volkswagen   passat        1999             6.8             11.0 
+## 4 dodge        caravan 2wd   1999             7.22            10.2 
+## 5 hyundai      sonata        1999             7.65            11.0
 ```
 
 Summarizing the data range for only the numeric vectors:  

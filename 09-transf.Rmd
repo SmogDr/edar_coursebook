@@ -404,7 +404,7 @@ These descriptive statistics allow some quick insight into the data:
 
   - Poly Sci majors identifying as male make higher median/mean salaries than those identifying as female;  
   - The mean salary is higher than the median salary in both cases (note that for perfectly *normal* distributions the mean and mean are equivalent);
-  - The max salary is the same for both genders and is 10x higher than the median.  With a `min()` of 0 for both genders, this implies some level of skewness in these data.  
+  - The max salary is the same for both sexes and is 10x higher than the median.  With a `min()` of 0 for both sexes, this implies some level of skewness in these data.  
 
 ### Univariate Data Visualization  
 Let's visualize these data with some basic EDA plots:
@@ -557,7 +557,7 @@ sal_simulate <- tibble(x = rlnorm(n = length(salary_ps2$salary),
 ggplot() +
   geom_histogram(data = salary_ps2,
                  aes(x = salary,
-                     y = ..density..),
+                     y = after_stat(density)),
                  color = "white",
                  fill = "navy",
                  bins = 35) +

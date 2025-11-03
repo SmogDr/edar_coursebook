@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2025-10-22" />
+<meta name="date" content="2025-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -789,17 +789,17 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 ##  $ entry_1: chr [1:4] &quot;Harry&quot; &quot;Ron&quot; &quot;Hermione&quot; &quot;Draco&quot;
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] &quot;audi&quot; &quot;volkswagen&quot; &quot;mercury&quot; &quot;honda&quot; ...
-##   ..$ model       : chr [1:7] &quot;a4&quot; &quot;gti&quot; &quot;mountaineer 4wd&quot; &quot;civic&quot; ...
-##   ..$ displ       : num [1:7] 1.8 2 4.6 1.6 5.2 5.2 2
-##   ..$ year        : int [1:7] 1999 2008 2008 1999 1999 1999 2008
-##   ..$ cyl         : int [1:7] 4 4 8 4 8 8 4
-##   ..$ trans       : chr [1:7] &quot;auto(l5)&quot; &quot;auto(s6)&quot; &quot;auto(l6)&quot; &quot;auto(l4)&quot; ...
-##   ..$ drv         : chr [1:7] &quot;f&quot; &quot;f&quot; &quot;4&quot; &quot;f&quot; ...
-##   ..$ cty         : int [1:7] 18 22 13 24 11 11 21
-##   ..$ hwy         : int [1:7] 29 29 19 32 16 17 29
-##   ..$ fl          : chr [1:7] &quot;p&quot; &quot;p&quot; &quot;r&quot; &quot;r&quot; ...
-##   ..$ class       : chr [1:7] &quot;compact&quot; &quot;compact&quot; &quot;suv&quot; &quot;subcompact&quot; ...</code></pre>
+##   ..$ manufacturer: chr [1:7] &quot;ford&quot; &quot;toyota&quot; &quot;toyota&quot; &quot;dodge&quot; ...
+##   ..$ model       : chr [1:7] &quot;f150 pickup 4wd&quot; &quot;corolla&quot; &quot;corolla&quot; &quot;caravan 2wd&quot; ...
+##   ..$ displ       : num [1:7] 5.4 1.8 1.8 3.8 4.7 2 5.4
+##   ..$ year        : int [1:7] 1999 1999 2008 1999 2008 2008 1999
+##   ..$ cyl         : int [1:7] 8 4 4 6 8 4 8
+##   ..$ trans       : chr [1:7] &quot;auto(l4)&quot; &quot;auto(l3)&quot; &quot;auto(l4)&quot; &quot;auto(l4)&quot; ...
+##   ..$ drv         : chr [1:7] &quot;4&quot; &quot;f&quot; &quot;f&quot; &quot;f&quot; ...
+##   ..$ cty         : int [1:7] 11 24 26 15 13 21 11
+##   ..$ hwy         : int [1:7] 15 30 35 22 17 29 16
+##   ..$ fl          : chr [1:7] &quot;r&quot; &quot;r&quot; &quot;r&quot; &quot;r&quot; ...
+##   ..$ class       : chr [1:7] &quot;pickup&quot; &quot;compact&quot; &quot;compact&quot; &quot;minivan&quot; ...</code></pre>
 <p>Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, <code>[ ]</code>, a list element is returned.</p>
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="rprog4.html#cb304-1" tabindex="-1"></a>my.list[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## $entry_1
@@ -1042,13 +1042,13 @@ filter(if_any(everything(), is.character))
 <span id="cb319-6"><a href="rprog4.html#cb319-6" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> <span class="sc">|</span> <span class="fu">contains</span>(<span class="st">&quot;year&quot;</span>) <span class="sc">|</span> <span class="fu">contains</span>(<span class="st">&quot;km&quot;</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb319-7"><a href="rprog4.html#cb319-7" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 5
-##   manufacturer model              year km_per_liter_cty km_per_liter_hwy
-##   &lt;chr&gt;        &lt;chr&gt;             &lt;int&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-## 1 ford         explorer 4wd       1999             5.52             7.22
-## 2 ford         expedition 2wd     1999             4.68             7.22
-## 3 volkswagen   jetta              1999             7.22            10.2 
-## 4 land rover   range rover        1999             4.68             6.38
-## 5 dodge        dakota pickup 4wd  2008             5.95             8.07</code></pre>
+##   manufacturer model         year km_per_liter_cty km_per_liter_hwy
+##   &lt;chr&gt;        &lt;chr&gt;        &lt;int&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 ford         explorer 4wd  1999             6.38             8.07
+## 2 hyundai      sonata        2008             8.92            13.2 
+## 3 volkswagen   passat        1999             6.8             11.0 
+## 4 dodge        caravan 2wd   1999             7.22            10.2 
+## 5 hyundai      sonata        1999             7.65            11.0</code></pre>
 <p>Summarizing the data range for only the numeric vectors:</p>
 <div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="rprog4.html#cb321-1" tabindex="-1"></a><span class="co"># show the ranges of all numeric vectors in the mpg data frame</span></span>
 <span id="cb321-2"><a href="rprog4.html#cb321-2" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
