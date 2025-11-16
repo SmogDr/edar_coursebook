@@ -97,7 +97,7 @@ and the `stringr` package. We will also introduce the concept of
 **regular expressions** as a means to perform more advanced string
 manipulation.
 
-<img src="./images/parse_comic.png" width="1000" style="display: block; margin: auto;" />
+<img src="./images/parse_comic.png" style="display: block; margin: auto;" />
 
 ### String detect, match, subset
 
@@ -363,7 +363,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2025-11-05 10:37:02 MST"
+## [1] "2025-11-16 07:58:32 MST"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -379,12 +379,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1762364223
+## [1] 1763305112
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 55.8842029 years.  
+365d/yr] => 55.9140383 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -392,7 +392,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2025-11-05 10:37:02.80064.
+format: 2025-11-16 07:58:32.424072.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -521,7 +521,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1762364223
+## [1] 1763305112
 ```
 
 
@@ -532,14 +532,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 2.85
-##  $ min   : int 37
-##  $ hour  : int 10
-##  $ mday  : int 5
+##  $ sec   : num 32.5
+##  $ min   : int 58
+##  $ hour  : int 7
+##  $ mday  : int 16
 ##  $ mon   : int 10
 ##  $ year  : int 125
-##  $ wday  : int 3
-##  $ yday  : int 308
+##  $ wday  : int 0
+##  $ yday  : int 319
 ##  $ isdst : int 0
 ##  $ zone  : chr "MST"
 ##  $ gmtoff: int -25200
@@ -1280,26 +1280,26 @@ stringr::str_subset(tweets_co$text,
 ```
 
 ```
-##  [1] "RT @CSUAgSci: .@SenBennetCO &amp; @SenCoryGardner announce $500K @usda grant to @ColoradoStateU to study Farm to School program https://t.co/kb��_"
-##  [2] "Best of luck to @CSUMensBball in #NIT first round against South Dakota State! #GoRams"                                                             
-##  [3] "CSU-led study shows risks for CO if we don't tackle climate change. Risks worsen the longer we wait. It's time to act http://t.co/Nlz4pmj8D6"      
-##  [4] "Congrats to @CSUPFootball on tonight's #NCAAD2 championship win! Great game and even better season. #BackthePack"                                  
-##  [5] "Just wrapped up day 1 of our #COinnovation tour w/ visit to @CSUenergy engines lab. Day 2 in #GrandJunction tomorrow. http://t.co/2Yt5c09Tn3"      
-##  [6] "Here's my #MarchMadness bracket. How do your picks compare? We'll be rooting for you @CUBuffsMBB and @CSUMensBball! https://t.co/4DCdvryOjb"       
-##  [7] "Good luck to @CSUMensBball against Murray State this morning. #MarchMadness #CSUNCAA"                                                              
-##  [8] "Good luck @cubuffs, @CSUFootball and @UNCOFOOTBALL this season. #gobuffs #Rams #BearNation"                                                        
-##  [9] "RT @NewsCPR: .@SenCoryGardner on @CSUPoliSci's John Straayer: \"thanks for being that life-changing spark\"\r https://t.co/LM3CghawTa #copolit��_" 
-## [10] "I visited the @CSUEnergy Powerhouse Energy Campus w/ @ColoradoStateU President Franks to learn more about CSU's cut��_ https://t.co/uTE7M7v7VN"    
-## [11] "Met with @ColoradoStateU Chancellor Frank &amp; Vice Chancellor Parsons. My staffers who are fellow Rams joined! https://t.co/bF7LArS9Bw"          
-## [12] "Congrats to @CSUWomensBball on capturing another Mountain West title &amp; being ranked #22 in the country. Go Rams! https://t.co/wawv4CNZLs"      
-## [13] "Appreciate Coach Bobo &amp; @CSUFootball backing @CoachToCureMD today. Great cause! #TackleDuchenne!"                                              
-## [14] "Nothing beats #AgDay at @ColoradoStateU! Always great being with fellow ram handlers at a @CSUFootball game. http://t.co/v32OhG1Kej"               
-## [15] "@mitchellbyars @RepJaredPolis There is nothing more stylish than a @ColoradoStateU Rams shirt!"                                                    
-## [16] "Great to be back in Ft Collins at my alma mater @ColoradoStateU. Thanks @CSUTonyFrank for the hospitality, &amp; go Rams http://t.co/zdIcrsgSdL"   
-## [17] "Great day to be at the @NationalWestern on CSU Day! And thanks to @BoydPolhamus for the introduction! #NWSS2015 http://t.co/fc46YhoUXg"            
-## [18] "Go @CSUfootball! #CSURams #BringBackTheBoot Win the #BorderWar"                                                                                    
-## [19] "@RepMarthaRoby I'm proud to be a #CSURam  @CSUFootball"                                                                                            
-## [20] "Go @CSUFootball!!!@UA_Athletics: Happy #RollTide Friday! RT if you're ready for @AlabamaFTBL vs. Colorado State! #CSUvsBAMA"                       
+##  [1] "RT @CSUAgSci: .@SenBennetCO &amp; @SenCoryGardner announce $500K @usda grant to @ColoradoStateU to study Farm to School program https://t.co/kb\xe4\xf3_"
+##  [2] "Best of luck to @CSUMensBball in #NIT first round against South Dakota State! #GoRams"                                                                   
+##  [3] "CSU-led study shows risks for CO if we don't tackle climate change. Risks worsen the longer we wait. It's time to act http://t.co/Nlz4pmj8D6"            
+##  [4] "Congrats to @CSUPFootball on tonight's #NCAAD2 championship win! Great game and even better season. #BackthePack"                                        
+##  [5] "Just wrapped up day 1 of our #COinnovation tour w/ visit to @CSUenergy engines lab. Day 2 in #GrandJunction tomorrow. http://t.co/2Yt5c09Tn3"            
+##  [6] "Here's my #MarchMadness bracket. How do your picks compare? We'll be rooting for you @CUBuffsMBB and @CSUMensBball! https://t.co/4DCdvryOjb"             
+##  [7] "Good luck to @CSUMensBball against Murray State this morning. #MarchMadness #CSUNCAA"                                                                    
+##  [8] "Good luck @cubuffs, @CSUFootball and @UNCOFOOTBALL this season. #gobuffs #Rams #BearNation"                                                              
+##  [9] "RT @NewsCPR: .@SenCoryGardner on @CSUPoliSci's John Straayer: \"thanks for being that life-changing spark\"\r https://t.co/LM3CghawTa #copolit\xe4\xf3_" 
+## [10] "I visited the @CSUEnergy Powerhouse Energy Campus w/ @ColoradoStateU President Franks to learn more about CSU's cut\xe4\xf3_ https://t.co/uTE7M7v7VN"    
+## [11] "Met with @ColoradoStateU Chancellor Frank &amp; Vice Chancellor Parsons. My staffers who are fellow Rams joined! https://t.co/bF7LArS9Bw"                
+## [12] "Congrats to @CSUWomensBball on capturing another Mountain West title &amp; being ranked #22 in the country. Go Rams! https://t.co/wawv4CNZLs"            
+## [13] "Appreciate Coach Bobo &amp; @CSUFootball backing @CoachToCureMD today. Great cause! #TackleDuchenne!"                                                    
+## [14] "Nothing beats #AgDay at @ColoradoStateU! Always great being with fellow ram handlers at a @CSUFootball game. http://t.co/v32OhG1Kej"                     
+## [15] "@mitchellbyars @RepJaredPolis There is nothing more stylish than a @ColoradoStateU Rams shirt!"                                                          
+## [16] "Great to be back in Ft Collins at my alma mater @ColoradoStateU. Thanks @CSUTonyFrank for the hospitality, &amp; go Rams http://t.co/zdIcrsgSdL"         
+## [17] "Great day to be at the @NationalWestern on CSU Day! And thanks to @BoydPolhamus for the introduction! #NWSS2015 http://t.co/fc46YhoUXg"                  
+## [18] "Go @CSUfootball! #CSURams #BringBackTheBoot Win the #BorderWar"                                                                                          
+## [19] "@RepMarthaRoby I'm proud to be a #CSURam  @CSUFootball"                                                                                                  
+## [20] "Go @CSUFootball!!!@UA_Athletics: Happy #RollTide Friday! RT if you're ready for @AlabamaFTBL vs. Colorado State! #CSUvsBAMA"                             
 ## [21] "#GoRams! #RMShowdown. @CSUfootball: #BeatTheBuffs. -cg"
 ```
 

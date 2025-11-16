@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens"
-date: "2025-11-05"
+date: "2025-11-16"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
@@ -15,10 +15,10 @@ description: "This is an undergraduate technical elective course for mechanical 
 ```
 ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
-## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-## ✔ ggplot2   3.5.2     ✔ tibble    3.3.0
+## ✔ forcats   1.0.1     ✔ stringr   1.6.0
+## ✔ ggplot2   4.0.0     ✔ tibble    3.3.0
 ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-## ✔ purrr     1.1.0     
+## ✔ purrr     1.2.0     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -175,7 +175,7 @@ tinytex::install_tinytex()
 [Xcode for Mac OS](https://thecoatlessprofessor.com/programming/cpp/r-compiler-tools-for-rcpp-on-macos/){target="_blank"} and 
 [other things](https://mac.R-project.org/tools/){target="_blank"}). For R 4.0+, 
 this process is easier, as R now uses 
-[Apple Xcode 10.1 and GNU Fortran 8.2](https://github.com/fxcoudert/gfortran-for-macOS/releases){target="_blank"}. 
+[Apple Xcode 16.2 and GNU Fortran 14.2](https://github.com/fxcoudert/gfortran-for-macOS/releases){target="_blank"}. 
 
 2. Create a [GitHub](https://github.com){target="_blank"} account. Pick a good [user name](https://happygitwithr.com/github-acct.html){target="_blank"}! 
 3. [Introduce](https://happygitwithr.com/hello-git.html){target="_blank"} yourself to Git in RStudio with the following code in the Console. Provide your given name, not your user name, and the email address you used in creating your GitHub account. These commands return nothing, but you can check that it worked with `git config --global --list` in the [shell](https://happygitwithr.com/shell.html){target="_blank"}. 
