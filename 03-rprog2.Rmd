@@ -26,7 +26,7 @@ file format
 - Define a logical operator and know the R syntax for common logical operators
 - Apply logical operators in conjunction with `dplyr`'s `filter()` function to
 create subsets of a dataframe based on logical conditions 
-- Apply a sequence of `dplyr` functions to a dataframe using piping (`%>%`)
+- Apply a sequence of `dplyr` functions to a dataframe using piping (`|>`)
 - Create R Markdown documents and describe their basic content and function
 
 ## Overview
@@ -910,83 +910,241 @@ Note that if your matching key (`by = `) does not produce unique row observation
 
 ## Piping
 
-So far, I've shown how to use these `dplyr` functions one at a time to clean up
-the data, reassigning the dataframe object at each step; however, there's a
-trick called "piping" (with `%>%`) that will let you complete multiple data
-wrangling steps at once.
+So far, we've shown how to use `dplyr` functions one at a time to clean and
+modify data. Often, however, we want to perform several data-wrangling steps
+in sequence.
 
-If you look at the format of these `dplyr` functions, you'll notice that they
-all take a dataframe as their first argument:
+The native R pipe operator, `|>`, provides a convenient way to connect those
+steps.
+
+If you look at the format of common `dplyr` functions, you'll notice that
+they generally take a data frame as their first argument:
 
 ```{r dplyr-generic, eval=FALSE}
 # generic code; will not run
-rename(.data = dataframe, 
-       new_column_name_1 = old_column_name_1,
-       new_column_name_2 = old_column_name_2)
-select(.data = dataframe, 
-       column_name_1, column_name_2)
-filter(.data = dataframe, 
-       logical expression)
-mutate(.data = dataframe,
-       changed_column = function(changed_column),
-       new_column = function(other arguments))
+
+rename(
+  .data = dataframe,
+  new_column_name_1 = old_column_name_1,
+  new_column_name_2 = old_column_name_2
+)
+
+select(
+  .data = dataframe,
+  column_name_1,
+  column_name_2
+)
+
+filter(
+  .data = dataframe,
+  logical_expression
+)
+
+mutate(
+  .data = dataframe,
+  changed_column = function(changed_column),
+  new_column = function(other_arguments)
+)
 ```
 
-Without piping, you have to reassign the dataframe object at each step of this
-cleaning if you want the changes saved in the object:
+Without piping, you may repeatedly reassign the data-frame object as each
+step is completed:
 
 ```{r daily-sep-clean, eval=FALSE, message=FALSE}
-daily_show <-read_csv(file = "data/daily_show_guests.csv",
-                      skip = 4)
-daily_show <- rename(.data = daily_show, 
-                     job = GoogleKnowlege_Occupation,
-                     date = Show,
-                     category = Group,
-                     guest_name = Raw_Guest_List)
-daily_show <- select(.data = daily_show, 
-                     -YEAR) 
-daily_show <- mutate(.data = daily_show, 
-                     job = str_to_lower(job))
-daily_show <- filter(.data = daily_show, 
-                     category == "Science")
+
+daily_show <- read_csv(
+  file = "data/daily_show_guests.csv",
+  skip = 4
+)
+
+daily_show <- rename(
+  .data = daily_show,
+  job = GoogleKnowlege_Occupation,
+  date = Show,
+  category = Group,
+  guest_name = Raw_Guest_List
+)
+
+daily_show <- select(
+  .data = daily_show,
+  -YEAR
+)
+
+daily_show <- mutate(
+  .data = daily_show,
+  job = str_to_lower(job)
+)
+
+daily_show <- filter(
+  .data = daily_show,
+  category == "Science"
+)
 ```
 
-Piping lets you streamline this process. It can be used with any function that
-inputs a dataframe (or vector) as its first argument. The `%>%` operator *pipes* 
-the object on the left-hand-side of the pipe (`%>%`) into the function on the 
-right-hand-side (immediately after the pipe). With piping, therefore, all of the
-data cleaning steps shown avove would look like:
+This works, but the same object must be repeatedly named and reassigned.
+
+### The pipe supplies the first argument
+
+The native pipe `|>` takes the result on its left and supplies it as the
+first argument to the function on its right.
+
+For example:
+
+```r
+filter(daily_show, category == "Science")
+```
+
+can also be written as:
+
+```r
+daily_show |>
+  filter(category == "Science")
+```
+
+These two expressions do the same thing. You can think of the pipe as
+performing this substitution:
+
+```text
+daily_show |> filter(category == "Science")
+      ↓
+filter(daily_show, category == "Science")
+```
+
+Because the pipe supplies the data frame automatically, we do not need to
+repeat the data-frame name inside `filter()`.
+
+This same pattern works with the other `dplyr` functions because they also
+take the data frame as their first argument.
+
+For example:
+
+```r
+select(daily_show, job, category)
+```
+
+can be written as:
+
+```r
+daily_show |>
+  select(job, category)
+```
+
+### Combining several steps
+
+The real utility of the pipe becomes apparent when several operations are
+performed in sequence.
+
+The separate cleaning steps above can be written as one pipeline:
 
 ```{r daily-pipe-clean, message=FALSE}
-daily_show <- readr::read_csv(file = "data/daily_show_guests.csv",
-                              skip = 4) %>%
-  dplyr::rename(job = GoogleKnowlege_Occupation,
-                date = Show,
-                category = Group,
-                guest_name = Raw_Guest_List) %>%
-  dplyr::select(-YEAR) %>%
-  dplyr::mutate(job = str_to_lower(job)) %>%
-  dplyr::filter(category == "Science")
+
+daily_show <- readr::read_csv(
+  file = "data/daily_show_guests.csv",
+  skip = 4
+) |>
+  dplyr::rename(
+    job = GoogleKnowlege_Occupation,
+    date = Show,
+    category = Group,
+    guest_name = Raw_Guest_List
+  ) |>
+  dplyr::select(-YEAR) |>
+  dplyr::mutate(
+    job = stringr::str_to_lower(job)
+  ) |>
+  dplyr::filter(
+    category == "Science"
+  )
 ```
 
-Notice that, when piping a data frame, the first argument (name of the data 
-frame) is excluded from all function calls that follow a pipe. This is because 
-piping sends the dataframe from the last step into each of the following 
-functions as the dataframe argument. Remember: Order matters in a data wrangling 
-pipeline. For example, if you remove a column in an early line of code in the 
-pipeline but then reference that column name later, R will throw an error. 
-You can use selective highlighting to run one line at a time to see how the 
-dataframe changes in real-time as you move through successive pipes.
+Read the pipeline from top to bottom:
 
-``` {block, type='rmdnote'}
-Piping with `%>%` should only be used when you want to perform succesive data
-wrangling steps on a **single object**. Each pipe operation should be followed
-by a new line, as shown above. Creating a new line after each pipe step aids 
-readability of the pipe, since each new action occurs on a new line
-of code. Also, if a single pipe function contains multiple arguments, consider 
-putting each argument on a separate line, too (also shown in the code snippet 
-above).
+1. Read the data.
+2. Rename several variables.
+3. Remove the `YEAR` variable.
+4. Convert `job` to lowercase.
+5. Retain only observations in the `"Science"` category.
+
+The result of each step becomes the first argument to the next function.
+
+Conceptually:
+
+```text
+read_csv()
+    |
+    v
+rename()
+    |
+    v
+select()
+    |
+    v
+mutate()
+    |
+    v
+filter()
+    |
+    v
+daily_show
 ```
+
+Notice that the first argument—the data frame—is omitted from the functions
+that follow a pipe. The pipe supplies the result of the previous step as that
+argument automatically.
+
+For now, think of the pipe as a way to make code read in the same order that
+you think through an analysis. As your analyses become more complex, this
+becomes extremely powerful: you can connect many data-processing steps into
+one clear, readable workflow without repeatedly naming intermediate objects
+or nesting functions inside one another.
+
+### Order matters
+
+The order of operations in a pipeline matters.
+
+For example, if you remove a variable using `select()` and then try to use
+that variable later in the pipeline, R will return an error because the
+variable no longer exists in the object being passed forward.
+
+When learning to build pipelines, it can be helpful to run the code one step
+at a time and inspect how the data frame changes after each operation.
+
+### Formatting pipelines
+
+R generally does not require a new line after each pipe, but putting each
+operation on its own line makes pipelines much easier to read.
+
+Prefer:
+
+```r
+daily_show |>
+  filter(category == "Science") |>
+  select(job, guest_name)
+```
+
+over:
+
+```r
+daily_show |> filter(category == "Science") |> select(job, guest_name)
+```
+
+Both work, but the first is easier to read and debug.
+
+If a function contains several arguments, placing those arguments on separate
+lines can also improve readability.
+
+### Pipe keyboard shortcut
+
+RStudio provides a keyboard shortcut for inserting a pipe:
+
+* **Mac:** `Shift + Command + M`
+* **Windows:** `Ctrl + Shift + M`
+
+In current versions of RStudio, this shortcut can be configured to insert
+the native R pipe `|>`.
+
+If the shortcut inserts `|>` instead, go to **Tools → Global Options →
+Code → Editing** and select **Use native pipe operator, `|>`**.
 
 ## Markdowns
 
@@ -1196,7 +1354,7 @@ peruse Hadley Wickham's
 open. Open R script you used for the first set of exercises. Rerun the code to
 populate your environment, i.e., load and view the data.
 
-1. Using `dplyr::select()` and the pipe (`%>%`), select the
+1. Using `dplyr::select()` and the pipe (`|>`), select the
 `sample_measurement`, `units_of_measure`, and `datetime` and assign the
 resulting dataframe/tibble to an object called `ozone_hourly`. Remember to load
 (and install, if needed) the related R packages! _What are some of the R packages that contain the pipe? There are many, and you have been introduced to at least one._
@@ -1228,11 +1386,10 @@ conventions.
 ## rerun code from the first set of exercises
 
 # 1. select variables and create new df
-library(magrittr) # original R package for pipe %>%
 library(dplyr) # for verbs; also contains pipe
-ozone_hourly <- ozone_data %>% 
+ozone_hourly <- ozone_data |> 
   dplyr::select(sample_measurement,
-                datetime) %>% 
+                datetime) |> 
   tidyr::drop_na() 
 
 # 2. check df
@@ -1241,9 +1398,9 @@ range(ozone_hourly$sample_measurement)
 min(ozone_hourly$sample_measurement)
 max(ozone_hourly$sample_measurement)
 # manage missingness
-ozone_hourly <- ozone_data %>% 
+ozone_hourly <- ozone_data |> 
   dplyr::select(sample_measurement,
-                datetime) %>% 
+                datetime) |> 
   tidyr::drop_na() 
 
 # 3. missingness and summary
@@ -1255,14 +1412,14 @@ summary(ozone_hourly$sample_measurement)
 dplyr::filter(.data = ozone_data,
               sample_measurement > 0.070)
 ## with pipe
-ozone_hourly %>% 
+ozone_hourly |> 
   dplyr::filter(sample_measurement > 0.070)
 ## save output from one of the above approaches
-high_ozone <- ozone_hourly %>% 
+high_ozone <- ozone_hourly |> 
   dplyr::filter(sample_measurement > 0.070)
 
 # create new column 
-ozone_hourly <- ozone_hourly %>% 
+ozone_hourly <- ozone_hourly |> 
   dplyr::mutate(ozone_ppb = sample_measurement*1000)
 ```
 
