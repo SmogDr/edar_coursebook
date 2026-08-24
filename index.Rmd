@@ -144,6 +144,47 @@ install.packages("tinytex")
 tinytex::install_tinytex()
 ```
 
+### Install the EDAR interactive tutorials
+
+This course includes interactive R tutorials that allow you to practice R programming directly within RStudio. The tutorials are distributed in an R package called `edarlearn`.
+
+You only need to install `edarlearn` once, although you may need to reinstall it later if the course tutorials are updated.
+
+First, install the `remotes` package if you do not already have it:
+
+```{r eval=FALSE}
+install.packages("remotes")
+```
+
+Then install the course-tested version of the EDAR tutorial package directly from GitHub:
+
+```{r eval=FALSE}
+remotes::install_github("SmogDr/edarlearn@v0.1.0")
+```
+
+The tutorials can be launched directly from RStudio. In the upper-right pane, select the **Tutorial** tab. You should see tutorials from the `edarlearn` package, including:
+
+- **Working in R**
+- **Working with Data**
+
+Select **Start Tutorial** to begin.
+
+Your progress and entered code are saved automatically, so you can stop a tutorial and return to it later. To erase your saved work and restart an entire tutorial, use **Start Over** at the bottom of the tutorial navigation panel.
+
+If the **Tutorial** tab is not visible, you can also launch the tutorials from the Console:
+
+```{r eval=FALSE}
+learnr::run_tutorial("working-in-r", package = "edarlearn")
+```
+
+or:
+
+```{r eval=FALSE}
+learnr::run_tutorial("working-with-data", package = "edarlearn")
+```
+
+If you are asked to update the tutorials later in the semester, you will be given a new installation command.
+
 ### Install Git and create a GitHub account
 
 1. Install [Git](https://git-scm.com/downloads){target="_blank"}. See [here](https://happygitwithr.com/install-git.html){target="_blank"} for OS-specific installation instructions. For Mac users, you need to install 
@@ -251,6 +292,7 @@ This coursebook includes:
 - Links to the slides presented in class for each topic
 - In-course exercises, typically including links to the data used in the
 exercise
+- Interactive R tutorials that reinforce foundational programming and data-analysis skills 
 - Homework assignments
 - Appendix of [reference distributions](#dist)
 - A list of vocabulary and concepts that should be mastered for each quiz
