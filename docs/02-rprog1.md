@@ -292,7 +292,7 @@ getRversion()
 ```
 
 ```
-## [1] '4.5.2'
+## [1] '4.5.3'
 ```
 
 Some functions will accept multiple arguments. For example, the `print()`
@@ -1578,49 +1578,33 @@ There are six vehicles in `mtcars_data` with MPG above 25.
 
 ## Chapter 2 Homework
 
-During the next few class periods and for homework, you will complete ten
-lessons in [`swirl`](https://swirlstats.com/){target="_blank"}, an R package for learning R
-**in** R, written by Roger Peng, Brooke Anderson, and Sean Kross. Each lesson
-might take 10-15 minutes.
+Complete the **Working in R** interactive tutorial from the `edarlearn` package.
 
-In a text file, record the lesson names and a very brief description of what
-you learned from each. Save this file in your local R Project in the 
-appropriate directory (e.g., `/homework`) and commit/push the file with regular
-updates to your private GitHub repository. 
+In RStudio, open the **Tutorial** tab and select:
 
-Follow the steps [here](https://swirlstats.com/students.html){target="_blank"}
-to install, load,
-and start `swirl`. When you are prompted to install a course, you can load "R
-Programming," which covers material related to the recent class lectures. If
-you are already familiar with this content, feel free to select a different
-course such as "Exploratory Data Analysis."
+**edarlearn → Working in R → Start Tutorial**
 
-Please complete the following `swirl` lessons: 
+The tutorial reinforces the core concepts from this chapter, including:
 
-- Module 1: Basic Building Blocks
-- Module 2: Workspace and Files
-- Module 3: Sequences of Numbers
-- Module 4: Vectors
-- Module 5: Missing Values
-- Module 6: Subsetting Vectors
-- Module 7: Matrices and Data Frames
-- Module 8: Logic
-- Module 9: Functions
-- Module 12: Looking at Data
+- submitting expressions to R,
+- objects and assignment,
+- numeric and character vectors,
+- indexing,
+- data frames,
+- functions and arguments,
+- finding R help,
+- installing and loading packages, and
+- using R scripts to preserve reproducible code.
 
-`swirl` lessons have a mix of base R and `tidyverse` approaches, so don't be 
-alarmed or discouraged if you see some unfamiliar techniques or concepts. If
-you are interested in learning more about something from `swirl`, Google is a
-great place to start. We will cover a lot of the material later in the class.
+Work through the exercises and check your answers as you proceed. Your progress is saved automatically if you need to stop and return later.
 
-### Special `swirl` commands
+If you want to repeat the tutorial from the beginning, use **Start Over** at the bottom of the tutorial navigation panel.
 
-In the `swirl` environment, knowing about the following commands will be
-helpful:
+If the tutorial does not appear in RStudio's Tutorial pane, you can launch it from the Console:
 
-- The prompt `...` indicates you should press enter to continue in the lesson.
-- `skip()`: skip current question
-- `play()`: temporarily exit `swirl`
-- `nxt()`: return to `swirl` after `play()`ing around in the console
-- `main()`: return to `swirl`'s main menu
-- `bye()` or "escape" key: exit `swirl`
+
+``` r
+learnr::run_tutorial("working-in-r", package = "edarlearn")
+```
+
+**Completion of the tutorial constitutes the Chapter 2 homework assignment.**

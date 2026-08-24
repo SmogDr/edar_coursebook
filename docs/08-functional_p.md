@@ -329,7 +329,7 @@ The `map_` family of functions are the core of the `purrr` package. These
 functions are intended to *map* functions (i.e., to apply them) to individual elements in a vector (or data frames); the `map_` functions are similar to functions like `lapply()` and `vapply()` from base R (but more versatile). *"Mapping"* a function onto a vector is a common theme of functional programming. To illustrate how the `map_` functions work, its best to visualize the process first.
 
 <div class="figure" style="text-align: center">
-<img src="./images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input."  />
+<img src="./images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input." width="632" />
 <p class="caption">(\#fig:map-anno1)The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input.</p>
 </div>
 
@@ -362,17 +362,17 @@ glimpse(my.list)
 ##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] "ford" "honda" "dodge" "honda" ...
-##   ..$ model       : chr [1:7] "explorer 4wd" "civic" "dakota pickup 4wd" "civic" ...
-##   ..$ displ       : num [1:7] 4.6 1.6 4.7 1.6 3.7 3.8 5.3
-##   ..$ year        : int [1:7] 2008 1999 2008 1999 2008 1999 2008
-##   ..$ cyl         : int [1:7] 8 4 8 4 6 6 8
-##   ..$ trans       : chr [1:7] "auto(l6)" "manual(m5)" "auto(l5)" "manual(m5)" ...
+##   ..$ manufacturer: chr [1:7] "dodge" "honda" "chevrolet" "volkswagen" ...
+##   ..$ model       : chr [1:7] "durango 4wd" "civic" "k1500 tahoe 4wd" "gti" ...
+##   ..$ displ       : num [1:7] 5.7 1.6 5.3 2 4 4.7 4
+##   ..$ year        : int [1:7] 2008 1999 2008 1999 1999 2008 2008
+##   ..$ cyl         : int [1:7] 8 4 8 4 6 8 6
+##   ..$ trans       : chr [1:7] "auto(l5)" "manual(m5)" "auto(l4)" "auto(l4)" ...
 ##   ..$ drv         : chr [1:7] "4" "f" "4" "f" ...
-##   ..$ cty         : int [1:7] 13 28 14 25 15 16 16
-##   ..$ hwy         : int [1:7] 19 33 19 32 19 26 25
-##   ..$ fl          : chr [1:7] "r" "r" "r" "r" ...
-##   ..$ class       : chr [1:7] "suv" "subcompact" "pickup" "subcompact" ...
+##   ..$ cty         : int [1:7] 13 25 11 19 14 9 16
+##   ..$ hwy         : int [1:7] 18 32 14 26 17 12 20
+##   ..$ fl          : chr [1:7] "r" "r" "e" "r" ...
+##   ..$ class       : chr [1:7] "suv" "subcompact" "suv" "compact" ...
 ```
 
 Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 
@@ -477,7 +477,7 @@ glimpse(PA_data_merged)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="./images/map_dfr_anno.png" alt="Example: using `map_dfr()` to import a file list using a custom function"  />
+<img src="./images/map_dfr_anno.png" alt="Example: using `map_dfr()` to import a file list using a custom function" width="632" />
 <p class="caption">(\#fig:map-dfr-anno)Example: using `map_dfr()` to import a file list using a custom function</p>
 </div>
 
@@ -569,13 +569,13 @@ mutate(mpg, across(ends_with("y"), # select cty and hwy
 
 ```
 ## # A tibble: 5 × 5
-##   manufacturer model              year km_per_liter_cty km_per_liter_hwy
-##   <chr>        <chr>             <int>            <dbl>            <dbl>
-## 1 honda        civic              1999            11.9             14.0 
-## 2 volkswagen   jetta              1999             8.07            11.0 
-## 3 ford         explorer 4wd       2008             5.52             8.07
-## 4 toyota       toyota tacoma 4wd  1999             6.38             8.07
-## 5 toyota       camry solara       1999             8.92            11.5
+##   manufacturer model       year km_per_liter_cty km_per_liter_hwy
+##   <chr>        <chr>      <int>            <dbl>            <dbl>
+## 1 volkswagen   jetta       1999             6.8              9.78
+## 2 honda        civic       1999            10.2             13.6 
+## 3 audi         a6 quattro  2008             6.8              9.78
+## 4 nissan       maxima      2008             8.07            10.6 
+## 5 chevrolet    corvette    1999             6.8             11.0
 ```
 
 Summarizing the data range for only the numeric vectors:  
