@@ -1,7 +1,7 @@
 --- 
 title: "Engineering Data Analysis in R"
 author: "John Volckens"
-date: "2026-08-23"
+date: "2026-08-24"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
 documentclass: book
@@ -185,7 +185,7 @@ Then install the course-tested version of the EDAR tutorial package directly fro
 
 
 ``` r
-remotes::install_github("SmogDr/edarlearn@v0.1.0")
+remotes::install_github("SmogDr/edarlearn@v0.1.1")
 ```
 
 The tutorials can be launched directly from RStudio. In the upper-right pane, select the **Tutorial** tab. You should see tutorials from the `edarlearn` package, including:
@@ -193,7 +193,7 @@ The tutorials can be launched directly from RStudio. In the upper-right pane, se
 - **Working in R**
 - **Working with Data**
 
-Select **Start Tutorial** to begin.
+Select **Start Tutorial** to begin (note that you can resize the tutorial window if needed!).
 
 Your progress and entered code are saved automatically, so you can stop a tutorial and return to it later. To erase your saved work and restart an entire tutorial, use **Start Over** at the bottom of the tutorial navigation panel.
 
