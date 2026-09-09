@@ -223,7 +223,7 @@ Thus, substituting one equation into another, we arrive at the conclusion that m
 $$mass = \rho\cdot \frac{Circumference^{2}}{2\pi}\cdot height$$
 Or, another way to say this is that the square root of mass is linearly related to body circumference.
 $$\sqrt{mass} \sim Circumference$$
-<img src="./images/cylinder_comic.png" width="552" style="display: block; margin: auto;" />
+<img src="./images/cylinder_comic.png" alt="" width="552" style="display: block; margin: auto;" />
 
 Let's transform $mass \rightarrow \sqrt{mass}$ and then examine the two scatterplots side by side.
 
@@ -727,7 +727,7 @@ ggplot(data = cal_data,
   theme_bw(base_size = 12)
 ```
 
-<img src="11-model_files/figure-html/aod-scatterplot-1.png" width="672" />
+<img src="11-model_files/figure-html/aod-scatterplot-1.png" alt="" width="672" />
 
 Note the one outlier present in the scatterplot.  Does this outlier influence the result of the calibration?  How could you evaluate that question?
 

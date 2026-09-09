@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Strings, Dates, and Tidying | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Strings, Dates, and Tidying | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2026-08-24" />
+<meta name="date" content="2026-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -594,7 +594,7 @@ your posts, each one as a string. You can learn a lot about a person
 and the <code>stringr</code> package. We will also introduce the concept of
 <strong>regular expressions</strong> as a means to perform more advanced string
 manipulation.</p>
-<p><img src="images/parse_comic.png" width="1000" style="display: block; margin: auto;" /></p>
+<p><img src="images/parse_comic.png" alt="" width="1000" style="display: block; margin: auto;" /></p>
 <div id="string-detect-match-subset" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> String detect, match, subset<a href="rprog3.html#string-detect-match-subset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One of the simplest string operations is to search whether a string contains a
@@ -874,7 +874,7 @@ date-times before 1/1/1970; it just treats them as negative values!</p>
 <p>To see a date-time object, you can tell R to give you the current “System Time”
 by calling the <code>Sys.time()</code> function.</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="rprog3.html#cb220-1" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2026-08-24 22:31:53 MDT&quot;</code></pre>
+<pre><code>## [1] &quot;2026-09-09 09:52:22 MDT&quot;</code></pre>
 <p>As you can see, we got back the date, time, and timezone used by my computer
 (<em>whenever I last ran this code in <code>bookdown</code></em>). If you want to see how this
 time is stored in R internally, you can use <code>unclass()</code>, which returns an
@@ -882,17 +882,17 @@ object value with its class attributes removed. When we wrap <code>unclass()</co
 around <code>Sys.time()</code>, we will see the number of seconds that have occurred
 between the epoch of 1/1/1970 and right now:</p>
 <div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="rprog3.html#cb222-1" tabindex="-1"></a><span class="fu">unclass</span>(<span class="fu">Sys.time</span>())</span></code></pre></div>
-<pre><code>## [1] 1787632313</code></pre>
+<pre><code>## [1] 1788969142</code></pre>
 <p>That’s a lot of seconds. How many years is that?<br />
 Just divide that number by [60s/min <span class="math inline">\(\cdot\)</span> 60min/hr <span class="math inline">\(\cdot\)</span> 24hr/d <span class="math inline">\(\cdot\)</span>
-365d/yr] =&gt; 56.6854488 years.</p>
+365d/yr] =&gt; 56.7278394 years.</p>
 <p>This calculation ignores leap years, but you get the point…</p>
 </div>
 <div id="date-time-formats" class="section level3 hasAnchor" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Date-time formats<a href="rprog3.html#date-time-formats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Note that the <code>Sys.time()</code> function provided the date in a
 <strong><em>“year-month-day”</em></strong> format and the time in an <strong><em>“hour-minute-second”</em></strong>
-format: 2026-08-24 22:31:53.205804.</p>
+format: 2026-09-09 09:52:22.230606.</p>
 <p>Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
 have little difficulty recognizing the following date-time objects as
@@ -1053,18 +1053,18 @@ classes using <code>as.POSIXct</code> and <code>as.POSIXlt</code> functions and 
 attributes.</p>
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="rprog3.html#cb226-1" tabindex="-1"></a>time_now_ct <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="fu">Sys.time</span>())</span>
 <span id="cb226-2"><a href="rprog3.html#cb226-2" tabindex="-1"></a><span class="fu">unclass</span>(time_now_ct)</span></code></pre></div>
-<pre><code>## [1] 1787632313</code></pre>
+<pre><code>## [1] 1788969142</code></pre>
 <div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="rprog3.html#cb228-1" tabindex="-1"></a>time_now_lt <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(<span class="fu">Sys.time</span>())</span>
 <span id="cb228-2"><a href="rprog3.html#cb228-2" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">unclass</span>(time_now_lt)) <span class="co"># the `str()` function makes the output more compact</span></span></code></pre></div>
 <pre><code>## List of 11
-##  $ sec   : num 53.3
-##  $ min   : int 31
-##  $ hour  : int 22
-##  $ mday  : int 24
-##  $ mon   : int 7
+##  $ sec   : num 22.3
+##  $ min   : int 52
+##  $ hour  : int 9
+##  $ mday  : int 9
+##  $ mon   : int 8
 ##  $ year  : int 126
-##  $ wday  : int 1
-##  $ yday  : int 235
+##  $ wday  : int 3
+##  $ yday  : int 251
 ##  $ isdst : int 1
 ##  $ zone  : chr &quot;MDT&quot;
 ##  $ gmtoff: int -21600
@@ -1876,7 +1876,7 @@ since data collection started.</p>
 <span id="cb254-5"><a href="rprog3.html#cb254-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb254-6"><a href="rprog3.html#cb254-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of tweets per week by Colorado senator since 2011&quot;</span>,</span>
 <span id="cb254-7"><a href="rprog3.html#cb254-7" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Gardner joined Twitter later but tweets more (and cyclically)&quot;</span>)</span></code></pre></div>
-<p><img src="06-string_date_files/figure-html/tweet-time-series-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="06-string_date_files/figure-html/tweet-time-series-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="are-tweets-correlated-in-time" class="section level3 hasAnchor" number="6.6.4">
 <h3><span class="header-section-number">6.6.4</span> Are tweets correlated in time?<a href="rprog3.html#are-tweets-correlated-in-time" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1887,7 +1887,7 @@ since data collection started.</p>
 <span id="cb255-4"><a href="rprog3.html#cb255-4" tabindex="-1"></a></span>
 <span id="cb255-5"><a href="rprog3.html#cb255-5" tabindex="-1"></a><span class="co"># create a partial autocorrelation plot of tweets by week</span></span>
 <span id="cb255-6"><a href="rprog3.html#cb255-6" tabindex="-1"></a><span class="fu">pacf</span>(tweets_gardner<span class="sc">$</span>n, <span class="at">lag.max =</span> <span class="dv">60</span>)  <span class="co">#go out more than 52 weeks to see annual correlation</span></span></code></pre></div>
-<p><img src="06-string_date_files/figure-html/tweet-pacf-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="06-string_date_files/figure-html/tweet-pacf-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>It appears, as one might expect, that tweets are correlated in time. Most of the correlation happens in the first three lags, so maybe these data would be better suited for a monthly average…</p>
 </div>
 <div id="set-4-csu-vs.-cu" class="section level3 hasAnchor" number="6.6.5">

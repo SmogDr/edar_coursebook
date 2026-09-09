@@ -812,7 +812,7 @@ cafe.plot <- ggplot2::ggplot(data = cafe,
 cafe.plot 
 ```
 
-<img src="07-multivar_eda_files/figure-html/CAFE-stds-1.png" width="672" style="display: block; margin: auto;" />
+<img src="07-multivar_eda_files/figure-html/CAFE-stds-1.png" alt="" width="672" style="display: block; margin: auto;" />
 
 This is a nice 
 [explanatory story](https://www.edmunds.com/fuel-economy/faq-new-corporate-average-fuel-economy-standards.html) 
@@ -842,7 +842,7 @@ g1 <- ggplot2::ggplot(data = df_mpg) +
 g1
 ```
 
-<img src="07-multivar_eda_files/figure-html/eda-fuel-1-1.png" width="672" style="display: block; margin: auto;" />
+<img src="07-multivar_eda_files/figure-html/eda-fuel-1-1.png" alt="" width="672" style="display: block; margin: auto;" />
 
 Now show the same plot without facets.
 
@@ -861,7 +861,7 @@ g2 <- ggplot2::ggplot(data = df_mpg,
 g2
 ```
 
-<img src="07-multivar_eda_files/figure-html/eda-fuel-2-1.png" width="672" style="display: block; margin: auto;" />
+<img src="07-multivar_eda_files/figure-html/eda-fuel-2-1.png" alt="" width="672" style="display: block; margin: auto;" />
 
 I like these plots because they lead to more questions (and that's the *point* of exploratory data analysis)!  Why are some of the categories bimodal? Why do many natural gas vehicles tend to have the lowest fuel efficiency?  Are any of these vehicles tested on multiple fuel types?  What is the most fuel efficient vehicle sold today?
 

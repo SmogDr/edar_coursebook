@@ -234,7 +234,7 @@ p4 <- ggAcf(x = temperatures$data_temp) +
 grid.arrange(p1, p2, p3, p4)
 ```
 
-<img src="10-measure_files/figure-html/plot-temperature-data-1.png" width="672" />
+<img src="10-measure_files/figure-html/plot-temperature-data-1.png" alt="" width="672" />
   
 Examination of the 4-plot reveals:  
 

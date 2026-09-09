@@ -292,7 +292,7 @@ getRversion()
 ```
 
 ```
-## [1] '4.5.3'
+## [1] '4.6.1'
 ```
 
 Some functions will accept multiple arguments. For example, the `print()`
@@ -892,7 +892,7 @@ citation(package = "phonenumber")
 ## 
 ##   Myles S (2021). _phonenumber: Convert Letters to Numbers and Back as
 ##   on a Telephone Keypad_. doi:10.32614/CRAN.package.phonenumber
-##   <https://doi.org/10.32614/CRAN.package.phonenumber>, R package
+##   <https://doi.org/10.32614/CRAN.package.phonenumber>. R package
 ##   version 0.2.3, <https://CRAN.R-project.org/package=phonenumber>.
 ## 
 ## A BibTeX entry for LaTeX users is
@@ -1376,7 +1376,7 @@ str(object = daily_show)
 ##   ..   Group = col_character(),
 ##   ..   Raw_Guest_List = col_character()
 ##   .. )
-##  - attr(*, "problems")=<externalptr>
+##  - attr(*, "problems")=<pointer: 0x842ce2e80>
 ```
 
 ``` r
@@ -1384,19 +1384,19 @@ summary(object = daily_show)
 ```
 
 ```
-##       YEAR      GoogleKnowlege_Occupation     Show              Group          
-##  Min.   :1999   Length:2693               Length:2693        Length:2693       
-##  1st Qu.:2003   Class :character          Class :character   Class :character  
-##  Median :2007   Mode  :character          Mode  :character   Mode  :character  
-##  Mean   :2007                                                                  
-##  3rd Qu.:2011                                                                  
-##  Max.   :2015                                                                  
-##  Raw_Guest_List    
-##  Length:2693       
-##  Class :character  
-##  Mode  :character  
-##                    
-##                    
+##       YEAR      GoogleKnowlege_Occupation        Show            Group     
+##  Min.   :1999   Length   :2693            Length   :2693   Length   :2693  
+##  1st Qu.:2003   N.unique : 398            N.unique :2639   N.unique :  17  
+##  Median :2007   N.blank  :   0            N.blank  :   0   N.blank  :   0  
+##  Mean   :2007   Min.nchar:   1            Min.nchar:   6   Min.nchar:   4  
+##  3rd Qu.:2011   Max.nchar:  66            Max.nchar:   8   Max.nchar:  14  
+##  Max.   :2015   NAs      :  26                             NAs      :  31  
+##    Raw_Guest_List
+##  Length   :2693  
+##  N.unique :1669  
+##  N.blank  :   0  
+##  Min.nchar:   3  
+##  Max.nchar:  72  
 ## 
 ```
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Modeling | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Modeling | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2026-08-24" />
+<meta name="date" content="2026-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -766,7 +766,7 @@ Thus, substituting one equation into another, we arrive at the conclusion that m
 <span class="math display">\[mass = \rho\cdot \frac{Circumference^{2}}{2\pi}\cdot height\]</span>
 Or, another way to say this is that the square root of mass is linearly related to body circumference.
 <span class="math display">\[\sqrt{mass} \sim Circumference\]</span>
-<img src="images/cylinder_comic.png" width="552" style="display: block; margin: auto;" /></p>
+<img src="images/cylinder_comic.png" alt="" width="552" style="display: block; margin: auto;" /></p>
 <p>Let’s transform <span class="math inline">\(mass \rightarrow \sqrt{mass}\)</span> and then examine the two scatterplots side by side.</p>
 <div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="model.html#cb369-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data_18) <span class="sc">+</span></span>
 <span id="cb369-2"><a href="model.html#cb369-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> waist, <span class="at">y =</span> mass),</span>
@@ -1170,7 +1170,7 @@ Figure 11.12: A 4-plot EDA of our AOD Calibration Data
 <span id="cb396-15"><a href="model.html#cb396-15" tabindex="-1"></a>                         <span class="fu">round</span>(aod.summary<span class="sc">$</span>r.squared, <span class="dv">3</span>))) <span class="sc">+</span></span>
 <span id="cb396-16"><a href="model.html#cb396-16" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
 <span id="cb396-17"><a href="model.html#cb396-17" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
-<p><img src="11-model_files/figure-html/aod-scatterplot-1.png" width="672" /></p>
+<p><img src="11-model_files/figure-html/aod-scatterplot-1.png" alt="" width="672" /></p>
 <p>Note the one outlier present in the scatterplot. Does this outlier influence the result of the calibration? How could you evaluate that question?</p>
 </div>
 </div>

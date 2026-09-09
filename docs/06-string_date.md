@@ -97,7 +97,7 @@ and the `stringr` package. We will also introduce the concept of
 **regular expressions** as a means to perform more advanced string
 manipulation.
 
-<img src="./images/parse_comic.png" width="1000" style="display: block; margin: auto;" />
+<img src="./images/parse_comic.png" alt="" width="1000" style="display: block; margin: auto;" />
 
 ### String detect, match, subset
 
@@ -363,7 +363,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2026-08-24 22:31:53 MDT"
+## [1] "2026-09-09 09:52:22 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -379,12 +379,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1787632313
+## [1] 1788969142
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 56.6854488 years.  
+365d/yr] => 56.7278394 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -392,7 +392,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2026-08-24 22:31:53.205804.
+format: 2026-09-09 09:52:22.230606.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -521,7 +521,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1787632313
+## [1] 1788969142
 ```
 
 
@@ -532,14 +532,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 53.3
-##  $ min   : int 31
-##  $ hour  : int 22
-##  $ mday  : int 24
-##  $ mon   : int 7
+##  $ sec   : num 22.3
+##  $ min   : int 52
+##  $ hour  : int 9
+##  $ mday  : int 9
+##  $ mon   : int 8
 ##  $ year  : int 126
-##  $ wday  : int 1
-##  $ yday  : int 235
+##  $ wday  : int 3
+##  $ yday  : int 251
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
@@ -1215,7 +1215,7 @@ ggplot2::ggplot(data = tweets_co_wk,
        subtitle = "Gardner joined Twitter later but tweets more (and cyclically)")
 ```
 
-<img src="06-string_date_files/figure-html/tweet-time-series-1.png" width="672" style="display: block; margin: auto;" />
+<img src="06-string_date_files/figure-html/tweet-time-series-1.png" alt="" width="672" style="display: block; margin: auto;" />
 
 ### Are tweets correlated in time?
 
@@ -1231,7 +1231,7 @@ tweets_gardner <- tweets_co_wk %>%
 pacf(tweets_gardner$n, lag.max = 60)  #go out more than 52 weeks to see annual correlation
 ```
 
-<img src="06-string_date_files/figure-html/tweet-pacf-1.png" width="672" style="display: block; margin: auto;" />
+<img src="06-string_date_files/figure-html/tweet-pacf-1.png" alt="" width="672" style="display: block; margin: auto;" />
 
 It appears, as one might expect, that tweets are correlated in time.  Most of the correlation happens in the first three lags, so maybe these data would be better suited for a monthly average...
 

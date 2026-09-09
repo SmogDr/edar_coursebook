@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Multivariate Data Exploration | Engineering Data Analysis in R</title>
   <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Multivariate Data Exploration | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2026-08-24" />
+<meta name="date" content="2026-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1201,7 +1201,7 @@ Let’s load a .csv file named <code>cafe</code> and look at the requirements by
 <span id="cb291-14"><a href="eda2.html#cb291-14" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">&quot;Federal Combined Average Fuel Economy (CAFE) Standards&quot;</span>)</span>
 <span id="cb291-15"><a href="eda2.html#cb291-15" tabindex="-1"></a><span class="co"># call cafe plot</span></span>
 <span id="cb291-16"><a href="eda2.html#cb291-16" tabindex="-1"></a>cafe.plot </span></code></pre></div>
-<p><img src="07-multivar_eda_files/figure-html/CAFE-stds-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="07-multivar_eda_files/figure-html/CAFE-stds-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>This is a nice
 <a href="https://www.edmunds.com/fuel-economy/faq-new-corporate-average-fuel-economy-standards.html">explanatory story</a>
 of why the average fuel economy numbers don’t match well to the published CAFE
@@ -1225,7 +1225,7 @@ different <code>fuel_type</code> categories into facets (ncol = 3).</p>
 <span id="cb292-9"><a href="eda2.html#cb292-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
 <span id="cb292-10"><a href="eda2.html#cb292-10" tabindex="-1"></a><span class="co"># call plot</span></span>
 <span id="cb292-11"><a href="eda2.html#cb292-11" tabindex="-1"></a>g1</span></code></pre></div>
-<p><img src="07-multivar_eda_files/figure-html/eda-fuel-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="07-multivar_eda_files/figure-html/eda-fuel-1-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>Now show the same plot without facets.</p>
 <div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="eda2.html#cb293-1" tabindex="-1"></a><span class="co"># density plot of combined fuel economy by fuel type without facets</span></span>
 <span id="cb293-2"><a href="eda2.html#cb293-2" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> df_mpg, </span>
@@ -1238,7 +1238,7 @@ different <code>fuel_type</code> categories into facets (ncol = 3).</p>
 <span id="cb293-9"><a href="eda2.html#cb293-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span>
 <span id="cb293-10"><a href="eda2.html#cb293-10" tabindex="-1"></a><span class="co"># call plot</span></span>
 <span id="cb293-11"><a href="eda2.html#cb293-11" tabindex="-1"></a>g2</span></code></pre></div>
-<p><img src="07-multivar_eda_files/figure-html/eda-fuel-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="07-multivar_eda_files/figure-html/eda-fuel-2-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>I like these plots because they lead to more questions (and that’s the <em>point</em> of exploratory data analysis)! Why are some of the categories bimodal? Why do many natural gas vehicles tend to have the lowest fuel efficiency? Are any of these vehicles tested on multiple fuel types? What is the most fuel efficient vehicle sold today?</p>
 </div>
 <div id="more-multivariate-plotting" class="section level3 hasAnchor" number="7.5.8">
