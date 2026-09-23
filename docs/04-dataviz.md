@@ -347,9 +347,9 @@ you could pipe together the following:
 # quantitative summary in pipe
 mpg %>% 
   dplyr::filter(year == 2008) %>%
-  dplyr::group_by(class) %>%
-  dplyr::tally() %>% 
-  dplyr::ungroup()
+  dplyr::group_by(class) %>% # this allow successive operations to be performed "by group"
+  dplyr::tally() %>% # this counts the number of unique observations on grouped data
+  dplyr::ungroup() # this removes grouping attention so that future functions no longer happen "by group"
 ```
 
 ```
@@ -370,7 +370,8 @@ mpg %>%
 # alternative
 mpg %>% 
   dplyr::filter(year == 2008) %>% 
-  dplyr::count(class)
+  dplyr::count(class) # this function counts the unique values of a variable
+  # count() is the same as group_by() |> tally()
 ```
 
 
@@ -399,7 +400,7 @@ opinion, this plot has a few drawbacks:
 * If you were paying close attention, the sum of the `tally()` function above
   reported over 100 different entries (117 to be precise), but the plot above
   shows only about 50 data points... Why? (Hint: if you look at the `mpg` 
-  data, the fuel economies are rounded to the nearest mile per gallon.) 
+  data, the fuel economies [`cty` and `hwy`] are rounded to the nearest mile per gallon because they are coded as an `integer` class.) 
   * We will address this issue with `geom_jitter()` below.  
 * The limits of the x- and y-axes are not equal, which distorts the relationship 
 a bit.  
@@ -570,9 +571,9 @@ plot1 <- ggplot(data = mpg, aes(x = class)) +
 
 <div class="rmdnote">
 <p>When you create and store a <code>ggplot()</code> object, the plot
-itself will be created and stored but not returned as output.If you want
-to “see” the plot, just enter its name into the console or script, and
-it will appear in the Viewer pane.</p>
+itself will be created and stored but not returned as output. If you
+want to “see” the plot, just enter its name into the console or script,
+and it will appear in the Viewer pane.</p>
 </div>
 
 You can also save `ggplot2` plots as image files to a local directory using the
@@ -608,14 +609,14 @@ starting there because (1) it is created and maintained by the `ggplot2`
 developers (and, thus, is authoritative) and (2) the reference page contains
 all the function calls in an organized list, for which you can conduct a
 'control/command F' search. You can also print this RStudio `ggplot2` 
-[cheat sheet](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf){target="_blank"}
+[cheat sheet](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf){target="_blank"}
 to reference while coding.
 
 If you would like some hands-on training in `ggplot2`, look for tutorials or
 webinars like 
 [this one](https://www.youtube.com/watch?v=umDKP7ofHKk&feature=youtu.be){target="_blank"}
 from Dr. Samantha Tyner, the creator and maintainer
-of `geomnet`, a `ggplot2` extension. Speaking of which, the R community has
+of `geomnet`, a `ggplot2` extension or this [more recent one](https://www.youtube.com/watch?v=IWXcw6NHM6E){target="_blank"}. Speaking of which, the R community has
 created a large number of `ggplot2` extensions for different data visualization
 needs. If you are thinking about a custom `ggplot` style, it probably
 already exists! Before building your own (which is sometimes necessary and/or

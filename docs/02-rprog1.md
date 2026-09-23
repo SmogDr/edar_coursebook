@@ -1376,7 +1376,7 @@ str(object = daily_show)
 ##   ..   Group = col_character(),
 ##   ..   Raw_Guest_List = col_character()
 ##   .. )
-##  - attr(*, "problems")=<pointer: 0x842ce2e80>
+##  - attr(*, "problems")=<pointer: 0xb86d60240>
 ```
 
 ``` r

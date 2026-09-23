@@ -40,7 +40,13 @@ the "middle part" of the distribution of $x$ and is calculated with `IQR()`.
 The units of $\hat{\sigma_{x}}$ are the same as $x$, so we can interpret the standard deviation as a measure of **dispersion** about the **mean**.  Thus, we often see $\bar{x}\pm\hat{\sigma_{x}}$ reported for a univariate distribution.
 
 <div class="rmdnote">
-<p>Note: the “hat” symbol, <span class="math inline">\(\hat{}\)</span>, over the <span class="math inline">\(\sigma\)</span> denotes that we are <em>estimating</em> the standard deviation based on a sample of <span class="math inline">\(x_{i}\)</span> values. Statisticians created these hats to remind us that measurements (aka: samples, observations) are only estimates of a true population value. More on samples and populations <a href="#sample">here</a>.</p>
+<p>Note: the “hat” symbol, <span class="math inline">\(\hat{}\)</span>,
+over the <span class="math inline">\(\sigma\)</span> denotes that we are
+<em>estimating</em> the standard deviation based on a sample of <span
+class="math inline">\(x_{i}\)</span> values. Statisticians created these
+hats to remind us that measurements (aka: samples, observations) are
+only estimates of a true population value. More on samples and
+populations <a href="#sample">here</a>.</p>
 </div>
 
 
@@ -53,7 +59,11 @@ The units of $\hat{\sigma_{x}}$ are the same as $x$, so we can interpret the sta
 ***dispersion?*** <br> *Answer*: Because when we are taking the sum, $\sum_{i=1}^n$, if we didn't calculate squares then the positive and negative deviations would cancel each other out and mislead our estimate of dispersion.
 
 <div class="rmdwarning">
-<p>The mean and standard deviation are fine measures of central tendency and dispersion when you have data that (approximately) follow a normal distribution. When data are skewed, the <code>mean()</code> and <code>sd()</code> can lead to unexpected results. See <a href="#skew">Figure 5.8</a>, as an example.</p>
+<p>The mean and standard deviation are fine measures of central tendency
+and dispersion when you have data that (approximately) follow a normal
+distribution. When data are skewed, the <code>mean()</code> and
+<code>sd()</code> can lead to unexpected results. See <a
+href="#skew">Figure 5.8</a>, as an example.</p>
 </div>
  
 
@@ -63,7 +73,7 @@ The uniform distribution describes a situation where all obervations have an equ
 Below, we create a [probability density function](#pdf)  for the first roll of a six-sided die; this is a *discrete uniform distribition* since we only allow integers to occur.  A uniform distribution is appropriate here because any of the numbers between 1 and 6 has equal probability of being rolled.  Notice the shape of the histogram...flat.
 
 
-```r
+``` r
 #create a uniform distribition for the first roll of a 6-sided die
 six_sided <- tibble(
   rolls = ceiling(runif(10e4, min=1, max=7))
@@ -119,7 +129,7 @@ Unlike the uniform distribution, the normal distribution is not specified by a r
 
 A ***standard*** deviation for a normal distribution relates the *spread* of the data about the mean (and *median*, since they are one-in-the-same for normal data). Since we often care about the probability of occurrence for some value, whether it be a more probable value close to the mean or an extreme value close to one of the tails, the standard deviation helps tell us precisely what the odds are for getting that value, given a random sample. We use the `pnorm()` function to estimate these probabilities. The `pnorm()` function returns the probability of returning a value less than the value indicated for a given mean and standard deviation. For example, from plot in Figure \@ref(fig:normal2) where $\mu=50$ and $\sigma=10$, the probability of sampling a value of 70 or less is:
 
-```r
+``` r
 pnorm(q = 70, mean = 50, sd =10) %>%
   round(., 3)
 ```
@@ -130,7 +140,7 @@ pnorm(q = 70, mean = 50, sd =10) %>%
 
 The probability of sampling a value of greater than 70 is given when we set the argument `lower.tail = FALSE`. 
 
-```r
+``` r
 pnorm(q = 70, mean = 50, sd =10, lower.tail = FALSE) %>%
   round(., 3)
 ```
@@ -164,7 +174,7 @@ Multiplicative variation is what gives rise to a "log-normal" distribution: a sp
 Let's create two normal distributions for variables `a` and `b`:  
 
 
-```r
+``` r
 #create two variables that are normally distributed
 normal_data <- tibble(a = rnorm(n=1000, mean = 15, sd = 5),
                       b = rnorm(n=1000, mean = 10, sd = 3))
@@ -173,7 +183,7 @@ normal_data <- tibble(a = rnorm(n=1000, mean = 15, sd = 5),
 Individually, we know that these data are normally distributed (because we created them that way), but what does the distribution look like if we add these two variables together?
 
 
-```r
+``` r
 #add those variables together and you get a normal distribution
 normal_data %>% 
   mutate(c = a + b) -> normal_data
@@ -195,7 +205,7 @@ ggplot2::ggplot(data = normal_data) +
 
 What happens, however, if we randomly sample values from one or more normal distributions and multiply them together?  
 
-```r
+``` r
 #multiply together three normal variables
 normal_data %>% 
   mutate(d = sample(a*b*c, 1000)) -> log_data
@@ -234,7 +244,14 @@ $$\hat{\mu} = \frac{\sum_{i=1}^{n}ln(x_{i})}{n}$$
 
  $$\hat{\sigma} = \sqrt {\frac{\sum_{i=1}^{n}(ln(x_{i})-\hat{\mu})^2}{n-1}}$$
 <div class="rmdnote">
-<p>Note that <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> are dimensionless because they exist in log space. We normally want to communicate these variables in the same units as they exist. For that reason, we define a <strong>geometric mean</strong> as <span class="math inline">\(e^{\hat{\mu}}\)</span> and a <strong>geometric standard deviation</strong> or GSD as <span class="math inline">\(e^\hat{\sigma}\)</span>.</p>
+<p>Note that <span class="math inline">\(\mu\)</span> and <span
+class="math inline">\(\sigma\)</span> are dimensionless because they
+exist in log space. We normally want to communicate these variables in
+the same units as they exist. For that reason, we define a
+<strong>geometric mean</strong> as <span
+class="math inline">\(e^{\hat{\mu}}\)</span> and a <strong>geometric
+standard deviation</strong> or GSD as <span
+class="math inline">\(e^\hat{\sigma}\)</span>.</p>
 </div>
 
 Let's take a look at a series of lognormal distributions where $\mu$ is held constant at 0 (if $\mu=0$ then $e^\mu=1$) and $\sigma$ is varied from 0.4 to 1.1 (which means that GSD will vary from 1.5 to 3).
@@ -251,7 +268,19 @@ A key characteristic of lognormal distributions is that they are *left-skewed*, 
 </div>
 
 <div class="rmdnote">
-<p>The terms <em>meanlog</em> and <em>sdlog</em> represent log-space values (i.e., the data have been log transformed) - these unitless terms are used in R functions like rlnorm() and qlnorm(). The term <em>geometric mean</em> is presented in the units of the data (read: it’s the easiest to comprehend). The <em>geometric standard deviation</em> (GSD) is also unitless but different from <em>sdlog</em>. The <strong>GSD is a ratio of quantiles</strong>: it represents the ratio of data values at quantiles that are separated by a standard deviation: <span class="math inline">\(GSD = \frac{q_{84}}{q_{50}}\)</span> (the 0.84 quantile divided by the 0.5 quantile). GSD can also be calculated in the other direction, <span class="math inline">\(GSD = \frac{q_{50}}{q_{16}}\)</span>, the 0.5 quantile divided by the 0.16 quantile.</p>
+<p>The terms <em>meanlog</em> and <em>sdlog</em> represent log-space
+values (i.e., the data have been log transformed) - these unitless terms
+are used in R functions like rlnorm() and qlnorm(). The term
+<em>geometric mean</em> is presented in the units of the data (read:
+it’s the easiest to comprehend). The <em>geometric standard
+deviation</em> (GSD) is also unitless but different from <em>sdlog</em>.
+The <strong>GSD is a ratio of quantiles</strong>: it represents the
+ratio of data values at quantiles that are separated by a standard
+deviation: <span class="math inline">\(GSD =
+\frac{q_{84}}{q_{50}}\)</span> (the 0.84 quantile divided by the 0.5
+quantile). GSD can also be calculated in the other direction, <span
+class="math inline">\(GSD = \frac{q_{50}}{q_{16}}\)</span>, the 0.5
+quantile divided by the 0.16 quantile.</p>
 </div>
 ## Pearson Correlation Coefficient {#pearson}
 The Pearson correlation coefficient, ***r***, is a quantitative descriptor of the degree of **linear correlation** between two variables (let's call them $x$ and $y$).  
@@ -302,7 +331,7 @@ $$r = \frac{\sum_{i=1}^{n}(x_{i} - \bar{x})\cdot(y_{i} - \bar{y}) } {\sqrt {\sum
 You can calculate **r** using the `cor()` function and supplying `x` and `y` as arguments.  For example:
 
 
-```r
+``` r
 set.seed(9)
 x <- 1:100
 y <- x + runif(n = 100, min = -25, max = 25)
@@ -317,7 +346,7 @@ cor(x, y)
 Also note that **r** is **not** an appropriate indicator of **non-linear correlation**. For example, in the example that follows, `y` is perfectly represented as `x^4`, but the Pearson correlation coefficient between these variables is not 1!
 
 
-```r
+``` r
 set.seed(10)
 x <- 1:100
 y <- x^4 

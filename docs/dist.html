@@ -23,7 +23,7 @@
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2026-09-09" />
+<meta name="date" content="2026-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -544,7 +544,12 @@ the “middle part” of the distribution of <span class="math inline">\(x\)</sp
 <p>The units of <span class="math inline">\(\hat{\sigma_{x}}\)</span> are the same as <span class="math inline">\(x\)</span>, so we can interpret the standard deviation as a measure of <strong>dispersion</strong> about the <strong>mean</strong>. Thus, we often see <span class="math inline">\(\bar{x}\pm\hat{\sigma_{x}}\)</span> reported for a univariate distribution.</p>
 <div class="rmdnote">
 <p>
-Note: the “hat” symbol, <span class="math inline"><span class="math inline">\(\hat{}\)</span></span>, over the <span class="math inline"><span class="math inline">\(\sigma\)</span></span> denotes that we are <em>estimating</em> the standard deviation based on a sample of <span class="math inline"><span class="math inline">\(x_{i}\)</span></span> values. Statisticians created these hats to remind us that measurements (aka: samples, observations) are only estimates of a true population value. More on samples and populations <a href="measure.html#sample">here</a>.
+Note: the “hat” symbol, <span class="math inline"><span class="math inline">\(\hat{}\)</span></span>,
+over the <span class="math inline"><span class="math inline">\(\sigma\)</span></span> denotes that we are
+<em>estimating</em> the standard deviation based on a sample of <span class="math inline"><span class="math inline">\(x_{i}\)</span></span> values. Statisticians created these
+hats to remind us that measurements (aka: samples, observations) are
+only estimates of a true population value. More on samples and
+populations <a href="measure.html#sample">here</a>.
 </p>
 </div>
 <ul>
@@ -556,7 +561,11 @@ is also the square of the <em>standard deviation</em>. Variance is calculated in
 <strong><em>dispersion?</em></strong> <br> <em>Answer</em>: Because when we are taking the sum, <span class="math inline">\(\sum_{i=1}^n\)</span>, if we didn’t calculate squares then the positive and negative deviations would cancel each other out and mislead our estimate of dispersion.</p>
 <div class="rmdwarning">
 <p>
-The mean and standard deviation are fine measures of central tendency and dispersion when you have data that (approximately) follow a normal distribution. When data are skewed, the <code>mean()</code> and <code>sd()</code> can lead to unexpected results. See <a href="eda1.html#skew">Figure 5.8</a>, as an example.
+The mean and standard deviation are fine measures of central tendency
+and dispersion when you have data that (approximately) follow a normal
+distribution. When data are skewed, the <code>mean()</code> and
+<code>sd()</code> can lead to unexpected results. See <a
+href="#skew">Figure 5.8</a>, as an example.
 </p>
 </div>
 </div>
@@ -705,7 +714,11 @@ that suggest <span class="math inline">\(x = a\cdot b\cdot c\)</span> not <span 
 <span class="math display">\[\hat{\sigma} = \sqrt {\frac{\sum_{i=1}^{n}(ln(x_{i})-\hat{\mu})^2}{n-1}}\]</span>
 <div class="rmdnote">
 <p>
-Note that <span class="math inline"><span class="math inline">\(\mu\)</span></span> and <span class="math inline"><span class="math inline">\(\sigma\)</span></span> are dimensionless because they exist in log space. We normally want to communicate these variables in the same units as they exist. For that reason, we define a <strong>geometric mean</strong> as <span class="math inline"><span class="math inline">\(e^{\hat{\mu}}\)</span></span> and a <strong>geometric standard deviation</strong> or GSD as <span class="math inline"><span class="math inline">\(e^\hat{\sigma}\)</span></span>.
+Note that <span class="math inline"><span class="math inline">\(\mu\)</span></span> and <span class="math inline"><span class="math inline">\(\sigma\)</span></span> are dimensionless because they
+exist in log space. We normally want to communicate these variables in
+the same units as they exist. For that reason, we define a
+<strong>geometric mean</strong> as <span class="math inline"><span class="math inline">\(e^{\hat{\mu}}\)</span></span> and a <strong>geometric
+standard deviation</strong> or GSD as <span class="math inline"><span class="math inline">\(e^\hat{\sigma}\)</span></span>.
 </p>
 </div>
 <p>Let’s take a look at a series of lognormal distributions where <span class="math inline">\(\mu\)</span> is held constant at 0 (if <span class="math inline">\(\mu=0\)</span> then <span class="math inline">\(e^\mu=1\)</span>) and <span class="math inline">\(\sigma\)</span> is varied from 0.4 to 1.1 (which means that GSD will vary from 1.5 to 3).</p>
@@ -724,7 +737,18 @@ Figure 12.9: Lognormal Distributions look “normal” when plotted on a log sca
 </div>
 <div class="rmdnote">
 <p>
-The terms <em>meanlog</em> and <em>sdlog</em> represent log-space values (i.e., the data have been log transformed) - these unitless terms are used in R functions like rlnorm() and qlnorm(). The term <em>geometric mean</em> is presented in the units of the data (read: it’s the easiest to comprehend). The <em>geometric standard deviation</em> (GSD) is also unitless but different from <em>sdlog</em>. The <strong>GSD is a ratio of quantiles</strong>: it represents the ratio of data values at quantiles that are separated by a standard deviation: <span class="math inline"><span class="math inline">\(GSD = \frac{q_{84}}{q_{50}}\)</span></span> (the 0.84 quantile divided by the 0.5 quantile). GSD can also be calculated in the other direction, <span class="math inline"><span class="math inline">\(GSD = \frac{q_{50}}{q_{16}}\)</span></span>, the 0.5 quantile divided by the 0.16 quantile.
+The terms <em>meanlog</em> and <em>sdlog</em> represent log-space
+values (i.e., the data have been log transformed) - these unitless terms
+are used in R functions like rlnorm() and qlnorm(). The term
+<em>geometric mean</em> is presented in the units of the data (read:
+it’s the easiest to comprehend). The <em>geometric standard
+deviation</em> (GSD) is also unitless but different from <em>sdlog</em>.
+The <strong>GSD is a ratio of quantiles</strong>: it represents the
+ratio of data values at quantiles that are separated by a standard
+deviation: <span class="math inline"><span class="math inline">\(GSD =
+\frac{q_{84}}{q_{50}}\)</span></span> (the 0.84 quantile divided by the 0.5
+quantile). GSD can also be calculated in the other direction, <span class="math inline"><span class="math inline">\(GSD = \frac{q_{50}}{q_{16}}\)</span></span>, the 0.5
+quantile divided by the 0.16 quantile.
 </p>
 </div>
 </div>
