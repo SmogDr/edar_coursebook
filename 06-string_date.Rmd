@@ -132,7 +132,7 @@ the `str_detect()` search, we will get the cumulative number of matches to
 
 ```{r string-2a}
 stringr::str_detect(string = names_respond, 
-           pattern = "Josh") %>%
+           pattern = "Josh") |>
   sum()
 ```
 
@@ -142,7 +142,7 @@ entries within our sample:
 
 ```{r string-2b}
 stringr::str_detect(string = names_respond, 
-                    pattern = "Josh") %>%
+                    pattern = "Josh") |>
   sum() / length(names_respond)
 ```
 
@@ -361,7 +361,7 @@ date_time <- tibble::tibble(examples = c("12/1/99 8:46 PM",
                                          "1-Dec-1999 20:46 UTC",
                                          "December 1st, 1999, 20:46:00"))
 knitr::kable(date_time, col.names = NULL,
-             caption = "Date-time objects come in different forms") %>%
+             caption = "Date-time objects come in different forms") |>
   kableExtra::kable_styling(full_width = F,  bootstrap_options = "striped")
 ```
 
@@ -418,11 +418,11 @@ vect_classes <- tibble::tibble(classes = c("`character`",
                                             "\"2010-01-01\" [underlying number: 14,610]",
                                             "TRUE, FALSE",
                                             "\"2020-06-23 11:05:20 MDT\""))
-knitr::kable(vect_classes, col.names = c("Class", "Example")) %>%
+knitr::kable(vect_classes, col.names = c("Class", "Example")) |>
   kable_styling(full_width = F,  bootstrap_options = "basic")
 ```
 
-To discover the class of a vector (including a column in a dataframe---remember
+To discover the class of a vector (including a column in a data frame---remember
 each column can be thought of as a vector), you can use `class()`:
 
 ```{r date-1, warning = FALSE}
@@ -502,7 +502,7 @@ base_r_times <- tibble::tibble(functions = c("Sys.Date()",
 knitr::kable(base_r_times, col.names = c("{base} R Function",
                                          "Value Returned",
                                          "Example"),
-             caption = "Basic Date-time functions") %>%
+             caption = "Basic Date-time functions")  |>
   kableExtra::kable_styling(full_width = F,  bootstrap_options = "striped")
 ```
 
@@ -569,7 +569,7 @@ lubridate_parsers <- tibble::tibble(functions = c("`ymd()`",
                                     )
 
 knitr::kable(lubridate_parsers, 
-             col.names = c("Parsing Function", "Format to Convert")) %>%
+             col.names = c("Parsing Function", "Format to Convert")) |>
   kableExtra::kable_styling(full_width = F,  bootstrap_options = "basic")
 ```
 
@@ -588,7 +588,7 @@ lubridate_parsers2 <- tibble::tibble(functions = c("`ymd_h()`",
                                      )
 
 knitr::kable(lubridate_parsers2, 
-             col.names = c("Parsing Function", "Format to Convert")) %>%
+             col.names = c("Parsing Function", "Format to Convert")) |>
   kableExtra::kable_styling(full_width = F,  bootstrap_options = "basic")
 ```
 
@@ -632,13 +632,13 @@ following pipe chain:
 
 ```{r message=FALSE}
 daily_show <- readr::read_csv(file = "data/daily_show_guests.csv",
-                              skip = 4) %>%
+                              skip = 4) |>
   dplyr::rename(job = GoogleKnowlege_Occupation,
                 date = Show,
                 category = Group,
-                guest_name = Raw_Guest_List) %>%
-  dplyr::select(-YEAR) %>%
-  dplyr::mutate(date = lubridate::mdy(date)) %>%
+                guest_name = Raw_Guest_List) |>
+  dplyr::select(-YEAR) |>
+  dplyr::mutate(date = lubridate::mdy(date)) |>
   dplyr::filter(category == "Science")
 
 # show first two rows of dataframe
@@ -659,10 +659,10 @@ For example, we could use `wday()` to create a new column with the weekday of
 each show: 
 
 ```{r}
-daily_show %>% 
+daily_show |> 
   dplyr::mutate(show_day = lubridate::wday(x = date,
-                                           label = TRUE)) %>%
-  dplyr::select(date, show_day, guest_name) %>%
+                                           label = TRUE)) |>
+  dplyr::select(date, show_day, guest_name) |>
   dplyr::slice(1:5)
 ```
 
@@ -787,7 +787,7 @@ grades_untidy <- tibble::tibble(
 tidygrades <- tidyr::pivot_longer(data = grades_untidy,
                                   cols = Exam1_Score:Exam3_Score,
                                   names_to = "Exam",
-                                  values_to = "Scores") %>%
+                                  values_to = "Scores") |>
   dplyr::mutate(Exam = dplyr::case_when(
     Exam == "Exam1_Score" ~ 1,
     Exam == "Exam2_Score" ~ 2,
@@ -831,13 +831,13 @@ Create a pipeline that
 
 ```{r tweet-data, message=FALSE}
 # pipeline to import, filter, manipulate datetime vars, select vars 
-tweets_co <- readr::read_csv("data/senators.csv") %>% 
-  dplyr::filter(state == "CO") %>% # filter to Colorado senators
+tweets_co <- readr::read_csv("data/senators.csv") |> 
+  dplyr::filter(state == "CO") |> # filter to Colorado senators
   dplyr::mutate(date = lubridate::mdy_hm(created_at), # convert timestamp to datetime object
          hour_co = lubridate::hour(lubridate::with_tz(date, # convert timestamp to datetime object 
                                                       tzone = "America/Denver")), # and add timezone label
          month = lubridate::month(date), # create var of month from timestamp
-         week = lubridate::week(date)) %>% # create var of week from timestamp
+         week = lubridate::week(date)) |> # create var of week from timestamp
   dplyr::select(-(c(url, created_at, bioguide_id))) # retain all vars except 3
 ```
 
@@ -855,9 +855,9 @@ unique(tweets_co$user)
 
 ```{r tweet-count}
 # compare number of tweets by senator; remember to always ungroup grouped data!
-tweets_co %>% 
-  dplyr::group_by(user) %>% 
-  dplyr::tally() %>% 
+tweets_co |> 
+  dplyr::group_by(user) |> 
+  dplyr::tally() |> 
   dplyr::ungroup()
 ```
 
@@ -870,11 +870,11 @@ since data collection started.
 
 ```{r time-vars}
 # create new time-based variables
-tweets_co_wk <- tweets_co %>% 
+tweets_co_wk <- tweets_co |> 
   dplyr::mutate(time_since = as.duration(date - min(date)), # create duration variable, time since first datum
-         week = round(as.numeric(time_since, "weeks"), 0)) %>% # duration rounded to nearest cumulative "weeks"
-  dplyr::group_by(user, week) %>% # by week per user
-  dplyr::tally() %>% # tweet count 
+         week = round(as.numeric(time_since, "weeks"), 0)) |> # duration rounded to nearest cumulative "weeks"
+  dplyr::group_by(user, week) |> # by week per user
+  dplyr::tally() |> # tweet count 
   dplyr::ungroup() # remember to ungroup grouped data
 ```
 
@@ -894,7 +894,7 @@ We arbitrarily selected "weekly number of tweets" by each senator and it's possi
 
 ```{r tweet-pacf}
 # create a data frame with only Gardner's tweets
-tweets_gardner <- tweets_co_wk %>%
+tweets_gardner <- tweets_co_wk |>
   filter(user == "SenCoryGardner")
 
 # create a partial autocorrelation plot of tweets by week
@@ -912,10 +912,10 @@ function, and one `stringr` function within the pipeline.
 
 ```{r tweet-csu}
 # determine number of csu-related tweets by senator per year
-tweets_co %>%
-  dplyr::group_by(user, lubridate::year(date)) %>%
-  dplyr::filter(stringr::str_detect(text, "CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu")) %>%
-  dplyr::tally() %>% 
+tweets_co |>
+  dplyr::group_by(user, lubridate::year(date)) |>
+  dplyr::filter(stringr::str_detect(text, "CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu")) |>
+  dplyr::tally() |> 
   dplyr::ungroup()
 ```
 
@@ -935,12 +935,12 @@ similar approach to Question 7, with strings related to CU, such as "Buffs" or
 
 ```{r tweet-cu}
 # number of cu-related tweets by senator per year
-tweets_co %>%
-  dplyr::group_by(user, lubridate::year(date)) %>%
-  dplyr::filter(year(date) >= 2013) %>%
+tweets_co |>
+  dplyr::group_by(user, lubridate::year(date)) |>
+  dplyr::filter(year(date) >= 2013) |>
   dplyr::filter(stringr::str_detect(text, 
-                                    "CU|Buffs|buffs|University of Colorado")) %>%
-  dplyr::tally() %>% 
+                                    "CU|Buffs|buffs|University of Colorado")) |>
+  dplyr::tally() |> 
   dplyr::ungroup()
 ```
 

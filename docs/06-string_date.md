@@ -131,7 +131,7 @@ the `str_detect()` search, we will get the cumulative number of matches to
 
 ``` r
 stringr::str_detect(string = names_respond, 
-           pattern = "Josh") %>%
+           pattern = "Josh") |>
   sum()
 ```
 
@@ -146,7 +146,7 @@ entries within our sample:
 
 ``` r
 stringr::str_detect(string = names_respond, 
-                    pattern = "Josh") %>%
+                    pattern = "Josh") |>
   sum() / length(names_respond)
 ```
 
@@ -363,7 +363,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2026-09-23 09:38:32 MDT"
+## [1] "2026-10-06 08:30:46 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -379,12 +379,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1790177913
+## [1] 1791297046
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 56.7661692 years.  
+365d/yr] => 56.8016567 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -392,7 +392,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2026-09-23 09:38:32.590581.
+format: 2026-10-06 08:30:46.341292.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -496,7 +496,7 @@ As a reminder, here are some common **object classes** in R:
 </tbody>
 </table>
 
-To discover the class of a vector (including a column in a dataframe---remember
+To discover the class of a vector (including a column in a data frame---remember
 each column can be thought of as a vector), you can use `class()`:
 
 
@@ -521,7 +521,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1790177913
+## [1] 1791297046
 ```
 
 
@@ -532,14 +532,14 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 32.6
-##  $ min   : int 38
-##  $ hour  : int 9
-##  $ mday  : int 23
-##  $ mon   : int 8
+##  $ sec   : num 46.4
+##  $ min   : int 30
+##  $ hour  : int 8
+##  $ mday  : int 6
+##  $ mon   : int 9
 ##  $ year  : int 126
-##  $ wday  : int 3
-##  $ yday  : int 265
+##  $ wday  : int 2
+##  $ yday  : int 278
 ##  $ isdst : int 1
 ##  $ zone  : chr "MDT"
 ##  $ gmtoff: int -21600
@@ -808,13 +808,13 @@ following pipe chain:
 
 ``` r
 daily_show <- readr::read_csv(file = "data/daily_show_guests.csv",
-                              skip = 4) %>%
+                              skip = 4) |>
   dplyr::rename(job = GoogleKnowlege_Occupation,
                 date = Show,
                 category = Group,
-                guest_name = Raw_Guest_List) %>%
-  dplyr::select(-YEAR) %>%
-  dplyr::mutate(date = lubridate::mdy(date)) %>%
+                guest_name = Raw_Guest_List) |>
+  dplyr::select(-YEAR) |>
+  dplyr::mutate(date = lubridate::mdy(date)) |>
   dplyr::filter(category == "Science")
 
 # show first two rows of dataframe
@@ -844,10 +844,10 @@ each show:
 
 
 ``` r
-daily_show %>% 
+daily_show |> 
   dplyr::mutate(show_day = lubridate::wday(x = date,
-                                           label = TRUE)) %>%
-  dplyr::select(date, show_day, guest_name) %>%
+                                           label = TRUE)) |>
+  dplyr::select(date, show_day, guest_name) |>
   dplyr::slice(1:5)
 ```
 
@@ -1048,7 +1048,7 @@ grades_untidy <- tibble::tibble(
 tidygrades <- tidyr::pivot_longer(data = grades_untidy,
                                   cols = Exam1_Score:Exam3_Score,
                                   names_to = "Exam",
-                                  values_to = "Scores") %>%
+                                  values_to = "Scores") |>
   dplyr::mutate(Exam = dplyr::case_when(
     Exam == "Exam1_Score" ~ 1,
     Exam == "Exam2_Score" ~ 2,
@@ -1142,13 +1142,13 @@ Create a pipeline that
 
 ``` r
 # pipeline to import, filter, manipulate datetime vars, select vars 
-tweets_co <- readr::read_csv("data/senators.csv") %>% 
-  dplyr::filter(state == "CO") %>% # filter to Colorado senators
+tweets_co <- readr::read_csv("data/senators.csv") |> 
+  dplyr::filter(state == "CO") |> # filter to Colorado senators
   dplyr::mutate(date = lubridate::mdy_hm(created_at), # convert timestamp to datetime object
          hour_co = lubridate::hour(lubridate::with_tz(date, # convert timestamp to datetime object 
                                                       tzone = "America/Denver")), # and add timezone label
          month = lubridate::month(date), # create var of month from timestamp
-         week = lubridate::week(date)) %>% # create var of week from timestamp
+         week = lubridate::week(date)) |> # create var of week from timestamp
   dplyr::select(-(c(url, created_at, bioguide_id))) # retain all vars except 3
 ```
 
@@ -1172,9 +1172,9 @@ unique(tweets_co$user)
 
 ``` r
 # compare number of tweets by senator; remember to always ungroup grouped data!
-tweets_co %>% 
-  dplyr::group_by(user) %>% 
-  dplyr::tally() %>% 
+tweets_co |> 
+  dplyr::group_by(user) |> 
+  dplyr::tally() |> 
   dplyr::ungroup()
 ```
 
@@ -1196,11 +1196,11 @@ since data collection started.
 
 ``` r
 # create new time-based variables
-tweets_co_wk <- tweets_co %>% 
+tweets_co_wk <- tweets_co |> 
   dplyr::mutate(time_since = as.duration(date - min(date)), # create duration variable, time since first datum
-         week = round(as.numeric(time_since, "weeks"), 0)) %>% # duration rounded to nearest cumulative "weeks"
-  dplyr::group_by(user, week) %>% # by week per user
-  dplyr::tally() %>% # tweet count 
+         week = round(as.numeric(time_since, "weeks"), 0)) |> # duration rounded to nearest cumulative "weeks"
+  dplyr::group_by(user, week) |> # by week per user
+  dplyr::tally() |> # tweet count 
   dplyr::ungroup() # remember to ungroup grouped data
 ```
 
@@ -1224,7 +1224,7 @@ We arbitrarily selected "weekly number of tweets" by each senator and it's possi
 
 ``` r
 # create a data frame with only Gardner's tweets
-tweets_gardner <- tweets_co_wk %>%
+tweets_gardner <- tweets_co_wk |>
   filter(user == "SenCoryGardner")
 
 # create a partial autocorrelation plot of tweets by week
@@ -1245,10 +1245,10 @@ function, and one `stringr` function within the pipeline.
 
 ``` r
 # determine number of csu-related tweets by senator per year
-tweets_co %>%
-  dplyr::group_by(user, lubridate::year(date)) %>%
-  dplyr::filter(stringr::str_detect(text, "CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu")) %>%
-  dplyr::tally() %>% 
+tweets_co |>
+  dplyr::group_by(user, lubridate::year(date)) |>
+  dplyr::filter(stringr::str_detect(text, "CSU|colostate|Colostate|Colorado State U|RAMS|Rams|csu")) |>
+  dplyr::tally() |> 
   dplyr::ungroup()
 ```
 
@@ -1310,12 +1310,12 @@ similar approach to Question 7, with strings related to CU, such as "Buffs" or
 
 ``` r
 # number of cu-related tweets by senator per year
-tweets_co %>%
-  dplyr::group_by(user, lubridate::year(date)) %>%
-  dplyr::filter(year(date) >= 2013) %>%
+tweets_co |>
+  dplyr::group_by(user, lubridate::year(date)) |>
+  dplyr::filter(year(date) >= 2013) |>
   dplyr::filter(stringr::str_detect(text, 
-                                    "CU|Buffs|buffs|University of Colorado")) %>%
-  dplyr::tally() %>% 
+                                    "CU|Buffs|buffs|University of Colorado")) |>
+  dplyr::tally() |> 
   dplyr::ungroup()
 ```
 
