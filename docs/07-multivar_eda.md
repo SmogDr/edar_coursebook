@@ -415,7 +415,7 @@ vars_needed <- c("id",
                  "highway08",
                  "city08")
 # select necessary variables
-df_mpg <- raw_data %>%
+df_mpg <- raw_data |>
   dplyr::select(tidyselect::all_of(vars_needed))  
 # remove full dataframe from environment
 rm(raw_data) 
@@ -441,15 +441,15 @@ the data to retain only vehicles made after the year 2000.
 # identify the columns that we want to convert to a factor
 vars_factr <- c("make", "drive", "trany", "VClass", "fuelType1")
 # overwrite existing df
-df_mpg <- df_mpg %>% 
+df_mpg <- df_mpg |> 
   # convert select vars to factors 
   dplyr::mutate(dplyr::across(tidyselect::all_of(vars_factr), 
-                              .fns = as.factor)) %>% 
+                              .fns = as.factor)) |> 
   # overwrite column names with simpler names
   dplyr::rename(fuel_type = fuelType1, 
                 cyl = cylinders, 
                 tran = trany, 
-                v_class = VClass) %>% # easier string to type
+                v_class = VClass) |> # easier string to type
   # keep only data collected after 2000 for the sake of simplicity
   dplyr::filter(year >= 2000) 
 # remove previous objects from global environment
@@ -549,7 +549,7 @@ sum(is.na(df_mpg))
 
 ``` r
 # note this can work as a pipe, too
-# df_mpg %>% is.na() %>% sum()
+# df_mpg |> is.na() |> sum()
 ```
 
 With a dataframe of this size, we shouldn't be surprised that there are 
@@ -559,17 +559,15 @@ here, we will use the `stats::complete.cases()` function with a
 `dplyr::filter()` search. 
 
 #### Example 1: Missing Data
-The `compelete.cases()` function returns a logical vector indicating
-which rows are *complete* (i.e., no missing values). The opposite of this
-logical function, `!complete.cases()`, should return ONLY those rows that do 
-contain `NA`s. Let's create a subset of `df_mpg` that only contains rows with
-`NA` present.
+The `is.na()` function returns a logical vector indicating
+which rows are *NA* (i.e., missing values).  Let's create a subset of `df_mpg` 
+that only contains rows with `NA` present.  We will use `<tidy-select>` helpers `if_any()` and `everything()`:
 
 
 ``` r
 # return a df of rows with missing values
-df_mpg %>%
-  filter(!complete.cases(.))
+df_mpg |> 
+  filter(if_any(everything(), is.na))
 ```
 
 ```
@@ -598,22 +596,22 @@ exclude from certain analyses later...
 
 **You might have noticed the "dot", `.`, used at the end of the `dplyr::filter` pipe above:**  
   
-`df_mpg %>% filter(!complete.cases(.))`  
+`df_mpg |> filter(!complete.cases(.))`  
   
 *Why is there a `.` as an argument to a function?*  
 
-We use `.` as a [*placeholder argument*](https://magrittr.tidyverse.org/reference/pipe.html#arguments) when more than one function is nested within a single section of pipe (`%>%`).  The `complete.cases()` function requires an argument to run, so we must tell it to operate on the same dataframe on which `filter()` operates. The `.` accomplishes this need for an argument.  In other words, these three lines of code are equivalent:  
+We use `.` as a [*placeholder argument*](https://magrittr.tidyverse.org/reference/pipe.html#arguments) when more than one function is nested within a single section of pipe (`|>`).  The `complete.cases()` function requires an argument to run, so we must tell it to operate on the same dataframe on which `filter()` operates. The `.` accomplishes this need for an argument.  In other words, these three lines of code are equivalent:  
 
 
 ``` r
-df_mpg %>% filter(!complete.cases(.))
+df_mpg |> filter(!complete.cases(.))
 
-df_mpg %>% filter(!complete.cases(df_mpg))
+df_mpg |> filter(!complete.cases(df_mpg))
 
 filter(df_mpg, !complete.cases(df_mpg))
 ```
 
-***Note:*** the `.` only works as a placeholder argument within a `%>%` call. The following code will throw an error because there is no pipe present:
+***Note:*** the `.` only works as a placeholder argument within a `|>` call. The following code will throw an error because there is no pipe present:
 
 
 ``` r
@@ -637,11 +635,11 @@ yourself to the `across()` function.  In the code below, I provide examples of t
 
 ``` r
 # (superseded) filter the df for rows where any of the observations contain NA
-# df_mpg %>% 
+# df_mpg |> 
 #  dplyr::filter_all(dplyr::any_vars(is.na(.)))
 
 # (updated) example to filter the df for rows containing NA 
-df_mpg %>%
+df_mpg |>
   filter(if_any(.cols = everything(), 
                 .fns = ~ is.na(.x)))
 ```
@@ -671,7 +669,7 @@ Note: In [Chapter 8](#rprog4), you will learn to "map" the `sum()` and `is.na()`
 
 ``` r
 # preview of code we will learn in Chapter 8
-df_mpg %>% purrr::map_dfc(~sum(is.na(.)))
+df_mpg |> purrr::map_dfc(~sum(is.na(.)))
 ```
 
 ### Visualize data
@@ -687,15 +685,15 @@ different columns. We'll fix that with `tidyr::pivot_longer()`.
 
 ``` r
 # before visualizing the data, convert to tidy format
-tidy_mpg <- df_mpg %>%
+tidy_mpg <- df_mpg |>
   # choose simple names
   dplyr::rename(city = city08,
                 hwy = highway08,
-                comb = comb08) %>%
+                comb = comb08) |>
   # change data structure from wide to long 
   tidyr::pivot_longer(cols = c("city", "hwy", "comb"),
                       names_to = "metric",
-                      values_to = "mpg") %>%
+                      values_to = "mpg") |>
   # switch var to factor
   dplyr::mutate(metric = as.factor(metric))
 ```
@@ -873,8 +871,8 @@ single year: 2023. Note, for the plot below, since *vehicle class* (`v_class`) i
 
 ``` r
 # filter to year 2023 and reorder factor levels 
-df_mpg.2023 <- df_mpg %>%
-  dplyr::filter(year == 2023) %>%
+df_mpg.2023 <- df_mpg |>
+  dplyr::filter(year == 2023) |>
   dplyr::mutate(v_class = forcats::fct_reorder(.f = v_class, 
                                                .x = highway08, 
                                                .fun = median))
@@ -908,12 +906,12 @@ Among 4-cylinder vehicles with Front-Wheel Drive, what make/model has the best h
 
 
 ``` r
-df_mpg %>%
+df_mpg |>
   dplyr::filter(cyl == 4, 
                 drive == "Front-Wheel Drive", 
-                year == 2018) %>%
+                year == 2018) |>
   dplyr::slice_max(order_by = highway08, 
-                   n = 1) %>%
+                   n = 1) |>
   dplyr::select(make, model, drive, year, highway08)
 ```
 
@@ -931,11 +929,11 @@ worst city fuel economy in 2019?
 
 
 ``` r
-df_mpg %>%
+df_mpg |>
   dplyr::filter(cyl == 8,
                 drive == "Rear-Wheel Drive",
-                year == 2019) %>%
-  dplyr::slice_min(order_by = city08) %>%
+                year == 2019) |>
+  dplyr::slice_min(order_by = city08) |>
   dplyr::select(make, model, drive, year, city08)
 ```
 
@@ -957,12 +955,12 @@ Among 2021 vehicles from the `tidy_mpg` data frame, rank the highest-performing 
 
 
 ``` r
-tidy_mpg %>%
-  filter(year == 2021) %>%
-  group_by(make) %>%
-  slice_max(mpg, n =1,  with_ties = FALSE) %>%
-  select(make, model, mpg) %>%
-  arrange(-mpg) %>%
+tidy_mpg |>
+  filter(year == 2021) |>
+  group_by(make) |>
+  slice_max(mpg, n =1,  with_ties = FALSE) |>
+  select(make, model, mpg) |>
+  arrange(-mpg) |>
   kable(format = "html")
 ```
 

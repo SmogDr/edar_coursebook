@@ -838,7 +838,11 @@ tweets_co <- readr::read_csv("data/senators.csv") |>
                                                       tzone = "America/Denver")), # and add timezone label
          month = lubridate::month(date), # create var of month from timestamp
          week = lubridate::week(date)) |> # create var of week from timestamp
-  dplyr::select(-(c(url, created_at, bioguide_id))) # retain all vars except 3
+  dplyr::select(-(c(url, created_at, bioguide_id))) |> # retain all vars except 3
+  dplyr::mutate(text = iconv(text,  # force the text column to adhere to UTF-8 encoding
+                             from = "", 
+                             to = "UTF-8", 
+                             sub = "\uFFFD")) # allow ? character substitution for problematic text
 ```
 
 ### Set 2: Counting
