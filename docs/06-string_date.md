@@ -363,7 +363,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2026-10-19 10:27:24 MDT"
+## [1] "2026-10-19 11:04:04 MDT"
 ```
 
 As you can see, we got back the date, time, and timezone used by my computer
@@ -379,12 +379,12 @@ unclass(Sys.time())
 ```
 
 ```
-## [1] 1792427245
+## [1] 1792429444
 ```
 
 That's a lot of seconds.  How many years is that?  
 Just divide that number by [60s/min $\cdot$ 60min/hr $\cdot$ 24hr/d $\cdot$
-365d/yr] => 56.8374951 years.  
+365d/yr] => 56.8375648 years.  
 
 This calculation ignores leap years, but you get the point...
 
@@ -392,7 +392,7 @@ This calculation ignores leap years, but you get the point...
 
 Note that the `Sys.time()` function provided the date in a
 ***"year-month-day"*** format and the time in an ***"hour-minute-second"***
-format: 2026-10-19 10:27:24.891164.
+format: 2026-10-19 11:04:04.361319.
 
 Not everyone uses this exact ordering when they record dates and times, which
 is one of the reasons working with dates and times can be tricky. You probably
@@ -521,7 +521,7 @@ unclass(time_now_ct)
 ```
 
 ```
-## [1] 1792427245
+## [1] 1792429444
 ```
 
 
@@ -532,9 +532,9 @@ str(unclass(time_now_lt)) # the `str()` function makes the output more compact
 
 ```
 ## List of 11
-##  $ sec   : num 24.9
-##  $ min   : int 27
-##  $ hour  : int 10
+##  $ sec   : num 4.41
+##  $ min   : int 4
+##  $ hour  : int 11
 ##  $ mday  : int 19
 ##  $ mon   : int 9
 ##  $ year  : int 126

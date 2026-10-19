@@ -48,11 +48,11 @@ The top code performs the `squared` operator across each entry in the
 vector, one after another.  The bottom set uses a for-loop to accomplish the
 same task, albeit in a longer (and harder to follow) version.
 
-The pipe operator `%>%` is an ally in this endeavor because it allows you to 
+The pipe operator (`%>%` or `|>`) is an ally in this endeavor because it allows you to 
 pass an object (like a vector or data frame) through series of functions in serial order. The pipe function is also easier to follow (with your mind) because 
 it allows you to interpret the code as if you were reading instructions in a 
 "how-to" manual: 
-*"take this object, then do this, then do this, then do that"*. **Without** the `%>%`
+*"take this object, then do this, then do this, then do that"*. **Without** the `|>`
 operator, we are forced to nest functions together or write long and verbose
 code that steps through treatments slowly (and somewhat painfully).  Looking at
 the code below should make clear which set is easier to comprehend:
@@ -68,12 +68,12 @@ daily_show_2000 <- select(filter(rename(daily_show,
                                    year == 2000), 
                             job, date, name)
 #piped code
-daily_show_2000 <- daily_show %>%
+daily_show_2000 <- daily_show |> 
   rename(year = YEAR, 
          job = GoogleKnowlege_Occupation, 
          date = Show, 
-         name = Raw_Guest_List) %>%
-  filter(year == 2000) %>%
+         name = Raw_Guest_List) |>
+  filter(year == 2000) |>
   select(job, date, name)
 ```
 
@@ -270,20 +270,20 @@ file_list <- list.files('./data/purpleair/', full.names=TRUE)
 import.w.name <- function(pathname) {
   #create a tibble by importing the 'pathname' file
   df <- read_csv(pathname, col_names = TRUE)
-  df <- df %>%
+  df <- df |>
     # use stringr::str_extract & a regex to get sensor ID from file name
     # regex translation: "look for a /, then extract all letters and numbers that follow until _"
     mutate(sensor_ID = str_extract(pathname, 
                                   "(?<=//)[:alnum:]+(?=_)"),
     # convert Date & Time variable to POSIXct with lubridate
-           datetime = lubridate::ymd_hms(UTCDateTime)) %>%
+           datetime = lubridate::ymd_hms(UTCDateTime)) |>
     # return only a few salient variables to the resultant data frame using dplyr::select
     select(datetime, 
            current_temp_f, 
            current_humidity, 
            pressure,
            pm2_5_atm,
-           sensor_ID) %>%
+           sensor_ID) |>
     na.omit() # remove NA values, which happens when sensor goes offline
   return(df)
 }
@@ -362,17 +362,17 @@ glimpse(my.list)
 ##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] "audi" "jeep" "dodge" "audi" ...
-##   ..$ model       : chr [1:7] "a6 quattro" "grand cherokee 4wd" "dakota pickup 4wd" "a4 quattro" ...
-##   ..$ displ       : num [1:7] 2.8 4.7 3.7 2 4.7 2.4 4.6
-##   ..$ year        : int [1:7] 1999 2008 2008 2008 1999 2008 1999
-##   ..$ cyl         : int [1:7] 6 8 6 4 8 4 8
-##   ..$ trans       : chr [1:7] "auto(l5)" "auto(l5)" "manual(m6)" "auto(s6)" ...
-##   ..$ drv         : chr [1:7] "4" "4" "4" "4" ...
-##   ..$ cty         : int [1:7] 15 14 15 19 14 21 13
-##   ..$ hwy         : int [1:7] 24 19 19 27 17 31 16
-##   ..$ fl          : chr [1:7] "p" "r" "r" "p" ...
-##   ..$ class       : chr [1:7] "midsize" "suv" "pickup" "compact" ...
+##   ..$ manufacturer: chr [1:7] "volkswagen" "subaru" "ford" "jeep" ...
+##   ..$ model       : chr [1:7] "jetta" "forester awd" "f150 pickup 4wd" "grand cherokee 4wd" ...
+##   ..$ displ       : num [1:7] 2 2.5 4.2 4.7 1.8 3 2.5
+##   ..$ year        : int [1:7] 1999 1999 1999 2008 1999 1999 2008
+##   ..$ cyl         : int [1:7] 4 4 6 8 4 6 5
+##   ..$ trans       : chr [1:7] "auto(l4)" "manual(m5)" "manual(m5)" "auto(l5)" ...
+##   ..$ drv         : chr [1:7] "f" "4" "4" "4" ...
+##   ..$ cty         : int [1:7] 19 18 14 14 18 18 21
+##   ..$ hwy         : int [1:7] 26 25 17 19 29 26 29
+##   ..$ fl          : chr [1:7] "r" "r" "r" "r" ...
+##   ..$ class       : chr [1:7] "compact" "suv" "pickup" "suv" ...
 ```
 
 Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 
@@ -561,21 +561,21 @@ Perform unit conversions:
 # convert the cty and hwy variables in the mpg data frame to km/l
 mutate(mpg, across(ends_with("y"), # select cty and hwy
                    .fns = ~0.425*.x, # unit conversion m/gal to km/l
-                   .names = "km_per_liter_{.col}")) %>% # how to name new columns
+                   .names = "km_per_liter_{.col}")) |> # how to name new columns
   # select first 2 cols and those containing strings indicated
-  select(1:2 | contains("year") | contains("km")) %>% 
+  select(1:2 | contains("year") | contains("km")) |>
   slice_sample(n=5)
 ```
 
 ```
 ## # A tibble: 5 × 5
-##   manufacturer model              year km_per_liter_cty km_per_liter_hwy
-##   <chr>        <chr>             <int>            <dbl>            <dbl>
-## 1 toyota       toyota tacoma 4wd  2008             6.38             7.65
-## 2 dodge        dakota pickup 4wd  2008             5.95             7.65
-## 3 toyota       4runner 4wd        1999             6.38             8.07
-## 4 nissan       altima             2008             9.78            13.2 
-## 5 audi         a4 quattro         1999             6.8             10.6
+##   manufacturer model                year km_per_liter_cty km_per_liter_hwy
+##   <chr>        <chr>               <int>            <dbl>            <dbl>
+## 1 pontiac      grand prix           1999             7.22            11.5 
+## 2 dodge        ram 1500 pickup 4wd  1999             4.68             6.8 
+## 3 hyundai      tiburon              2008             8.5             11.5 
+## 4 ford         mustang              2008             7.22            11.0 
+## 5 dodge        durango 4wd          1999             4.68             6.38
 ```
 
 Summarizing the data range for only the numeric vectors:  
@@ -598,7 +598,7 @@ mpg %>%
 ### Anonymous Functions
 Sometimes, we want to do some *pre-processing* of our data before a summary call.  In the case below, we summarize (by count) the number of `NA` values in a data frame for each column of the data frame (this is a great quality control check for new data).  To do this, we apply the `is.na()` function to each entry, then sum them up by row (because `is.na` returns logical `TRUE/FALSE` objects that equate to 1 or 0, respectively).  
 
-We can get `across()` to achieve this by creating a custom one-time function as shown in the code below.  Such custom functions are known as **anonymous functions** because they doesn't have an assigned function name. See example below, where we define a quick, one-time function as the `.fns =` argument in `across()`:
+We can get `across()` to achieve this by creating a custom one-time function as shown in the code below.  Such custom functions are known as **anonymous functions** because they don't have an assigned function name. See example below, where we define a quick, one-time function as the `.fns =` argument in `across()`:
 
 ``` r
 # sum up the number of NAs by column in a data frame
@@ -622,7 +622,7 @@ Anonymous functions are useful once you get used to the idea of *"creating a fun
 # sum up the number of NAs by column in a data frame
 # this code is equivalent to the one above
 # the ~ and .x are shorthand for an anonymous function call
-mpg %>%
+mpg |>
   summarise(across(everything(), ~ sum(is.na(.x))))
 ```
 

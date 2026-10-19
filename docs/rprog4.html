@@ -540,11 +540,11 @@ execute this code:</p>
 <p>The top code performs the <code>squared</code> operator across each entry in the
 vector, one after another. The bottom set uses a for-loop to accomplish the
 same task, albeit in a longer (and harder to follow) version.</p>
-<p>The pipe operator <code>%&gt;%</code> is an ally in this endeavor because it allows you to
+<p>The pipe operator (<code>%&gt;%</code> or <code>|&gt;</code>) is an ally in this endeavor because it allows you to
 pass an object (like a vector or data frame) through series of functions in serial order. The pipe function is also easier to follow (with your mind) because
 it allows you to interpret the code as if you were reading instructions in a
 “how-to” manual:
-<em>“take this object, then do this, then do this, then do that”</em>. <strong>Without</strong> the <code>%&gt;%</code>
+<em>“take this object, then do this, then do this, then do that”</em>. <strong>Without</strong> the <code>|&gt;</code>
 operator, we are forced to nest functions together or write long and verbose
 code that steps through treatments slowly (and somewhat painfully). Looking at
 the code below should make clear which set is easier to comprehend:</p>
@@ -557,12 +557,12 @@ the code below should make clear which set is easier to comprehend:</p>
 <span id="cb300-7"><a href="rprog4.html#cb300-7" tabindex="-1"></a>                                   year <span class="sc">==</span> <span class="dv">2000</span>), </span>
 <span id="cb300-8"><a href="rprog4.html#cb300-8" tabindex="-1"></a>                            job, date, name)</span>
 <span id="cb300-9"><a href="rprog4.html#cb300-9" tabindex="-1"></a><span class="co">#piped code</span></span>
-<span id="cb300-10"><a href="rprog4.html#cb300-10" tabindex="-1"></a>daily_show_2000 <span class="ot">&lt;-</span> daily_show <span class="sc">%&gt;%</span></span>
+<span id="cb300-10"><a href="rprog4.html#cb300-10" tabindex="-1"></a>daily_show_2000 <span class="ot">&lt;-</span> daily_show <span class="sc">|&gt;</span> </span>
 <span id="cb300-11"><a href="rprog4.html#cb300-11" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">year =</span> YEAR, </span>
 <span id="cb300-12"><a href="rprog4.html#cb300-12" tabindex="-1"></a>         <span class="at">job =</span> GoogleKnowlege_Occupation, </span>
 <span id="cb300-13"><a href="rprog4.html#cb300-13" tabindex="-1"></a>         <span class="at">date =</span> Show, </span>
-<span id="cb300-14"><a href="rprog4.html#cb300-14" tabindex="-1"></a>         <span class="at">name =</span> Raw_Guest_List) <span class="sc">%&gt;%</span></span>
-<span id="cb300-15"><a href="rprog4.html#cb300-15" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb300-14"><a href="rprog4.html#cb300-14" tabindex="-1"></a>         <span class="at">name =</span> Raw_Guest_List) <span class="sc">|&gt;</span></span>
+<span id="cb300-15"><a href="rprog4.html#cb300-15" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2000</span>) <span class="sc">|&gt;</span></span>
 <span id="cb300-16"><a href="rprog4.html#cb300-16" tabindex="-1"></a>  <span class="fu">select</span>(job, date, name)</span></code></pre></div>
 <p>In the nested example above, we “see” the <code>dplyr::select()</code> function first,
 yet the arguments to this function show up last (at the end of the nested code).
@@ -716,20 +716,20 @@ files are .csv, we can leverage <code>readr::read_csv</code></p>
 <span id="cb311-5"><a href="rprog4.html#cb311-5" tabindex="-1"></a>import.w.name <span class="ot">&lt;-</span> <span class="cf">function</span>(pathname) {</span>
 <span id="cb311-6"><a href="rprog4.html#cb311-6" tabindex="-1"></a>  <span class="co">#create a tibble by importing the &#39;pathname&#39; file</span></span>
 <span id="cb311-7"><a href="rprog4.html#cb311-7" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(pathname, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb311-8"><a href="rprog4.html#cb311-8" tabindex="-1"></a>  df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb311-8"><a href="rprog4.html#cb311-8" tabindex="-1"></a>  df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
 <span id="cb311-9"><a href="rprog4.html#cb311-9" tabindex="-1"></a>    <span class="co"># use stringr::str_extract &amp; a regex to get sensor ID from file name</span></span>
 <span id="cb311-10"><a href="rprog4.html#cb311-10" tabindex="-1"></a>    <span class="co"># regex translation: &quot;look for a /, then extract all letters and numbers that follow until _&quot;</span></span>
 <span id="cb311-11"><a href="rprog4.html#cb311-11" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">sensor_ID =</span> <span class="fu">str_extract</span>(pathname, </span>
 <span id="cb311-12"><a href="rprog4.html#cb311-12" tabindex="-1"></a>                                  <span class="st">&quot;(?&lt;=//)[:alnum:]+(?=_)&quot;</span>),</span>
 <span id="cb311-13"><a href="rprog4.html#cb311-13" tabindex="-1"></a>    <span class="co"># convert Date &amp; Time variable to POSIXct with lubridate</span></span>
-<span id="cb311-14"><a href="rprog4.html#cb311-14" tabindex="-1"></a>           <span class="at">datetime =</span> lubridate<span class="sc">::</span><span class="fu">ymd_hms</span>(UTCDateTime)) <span class="sc">%&gt;%</span></span>
+<span id="cb311-14"><a href="rprog4.html#cb311-14" tabindex="-1"></a>           <span class="at">datetime =</span> lubridate<span class="sc">::</span><span class="fu">ymd_hms</span>(UTCDateTime)) <span class="sc">|&gt;</span></span>
 <span id="cb311-15"><a href="rprog4.html#cb311-15" tabindex="-1"></a>    <span class="co"># return only a few salient variables to the resultant data frame using dplyr::select</span></span>
 <span id="cb311-16"><a href="rprog4.html#cb311-16" tabindex="-1"></a>    <span class="fu">select</span>(datetime, </span>
 <span id="cb311-17"><a href="rprog4.html#cb311-17" tabindex="-1"></a>           current_temp_f, </span>
 <span id="cb311-18"><a href="rprog4.html#cb311-18" tabindex="-1"></a>           current_humidity, </span>
 <span id="cb311-19"><a href="rprog4.html#cb311-19" tabindex="-1"></a>           pressure,</span>
 <span id="cb311-20"><a href="rprog4.html#cb311-20" tabindex="-1"></a>           pm2_5_atm,</span>
-<span id="cb311-21"><a href="rprog4.html#cb311-21" tabindex="-1"></a>           sensor_ID) <span class="sc">%&gt;%</span></span>
+<span id="cb311-21"><a href="rprog4.html#cb311-21" tabindex="-1"></a>           sensor_ID) <span class="sc">|&gt;</span></span>
 <span id="cb311-22"><a href="rprog4.html#cb311-22" tabindex="-1"></a>    <span class="fu">na.omit</span>() <span class="co"># remove NA values, which happens when sensor goes offline</span></span>
 <span id="cb311-23"><a href="rprog4.html#cb311-23" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
 <span id="cb311-24"><a href="rprog4.html#cb311-24" tabindex="-1"></a>}</span></code></pre></div>
@@ -795,17 +795,17 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 ##  $ entry_1: chr [1:4] &quot;Harry&quot; &quot;Ron&quot; &quot;Hermione&quot; &quot;Draco&quot;
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] &quot;audi&quot; &quot;jeep&quot; &quot;dodge&quot; &quot;audi&quot; ...
-##   ..$ model       : chr [1:7] &quot;a6 quattro&quot; &quot;grand cherokee 4wd&quot; &quot;dakota pickup 4wd&quot; &quot;a4 quattro&quot; ...
-##   ..$ displ       : num [1:7] 2.8 4.7 3.7 2 4.7 2.4 4.6
-##   ..$ year        : int [1:7] 1999 2008 2008 2008 1999 2008 1999
-##   ..$ cyl         : int [1:7] 6 8 6 4 8 4 8
-##   ..$ trans       : chr [1:7] &quot;auto(l5)&quot; &quot;auto(l5)&quot; &quot;manual(m6)&quot; &quot;auto(s6)&quot; ...
-##   ..$ drv         : chr [1:7] &quot;4&quot; &quot;4&quot; &quot;4&quot; &quot;4&quot; ...
-##   ..$ cty         : int [1:7] 15 14 15 19 14 21 13
-##   ..$ hwy         : int [1:7] 24 19 19 27 17 31 16
-##   ..$ fl          : chr [1:7] &quot;p&quot; &quot;r&quot; &quot;r&quot; &quot;p&quot; ...
-##   ..$ class       : chr [1:7] &quot;midsize&quot; &quot;suv&quot; &quot;pickup&quot; &quot;compact&quot; ...</code></pre>
+##   ..$ manufacturer: chr [1:7] &quot;volkswagen&quot; &quot;subaru&quot; &quot;ford&quot; &quot;jeep&quot; ...
+##   ..$ model       : chr [1:7] &quot;jetta&quot; &quot;forester awd&quot; &quot;f150 pickup 4wd&quot; &quot;grand cherokee 4wd&quot; ...
+##   ..$ displ       : num [1:7] 2 2.5 4.2 4.7 1.8 3 2.5
+##   ..$ year        : int [1:7] 1999 1999 1999 2008 1999 1999 2008
+##   ..$ cyl         : int [1:7] 4 4 6 8 4 6 5
+##   ..$ trans       : chr [1:7] &quot;auto(l4)&quot; &quot;manual(m5)&quot; &quot;manual(m5)&quot; &quot;auto(l5)&quot; ...
+##   ..$ drv         : chr [1:7] &quot;f&quot; &quot;4&quot; &quot;4&quot; &quot;4&quot; ...
+##   ..$ cty         : int [1:7] 19 18 14 14 18 18 21
+##   ..$ hwy         : int [1:7] 26 25 17 19 29 26 29
+##   ..$ fl          : chr [1:7] &quot;r&quot; &quot;r&quot; &quot;r&quot; &quot;r&quot; ...
+##   ..$ class       : chr [1:7] &quot;compact&quot; &quot;suv&quot; &quot;pickup&quot; &quot;suv&quot; ...</code></pre>
 <p>Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, <code>[ ]</code>, a list element is returned.</p>
 <div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="rprog4.html#cb316-1" tabindex="-1"></a>my.list[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## $entry_1
@@ -1043,18 +1043,18 @@ filter(if_any(everything(), is.character))
 <div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="rprog4.html#cb331-1" tabindex="-1"></a><span class="co"># convert the cty and hwy variables in the mpg data frame to km/l</span></span>
 <span id="cb331-2"><a href="rprog4.html#cb331-2" tabindex="-1"></a><span class="fu">mutate</span>(mpg, <span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">&quot;y&quot;</span>), <span class="co"># select cty and hwy</span></span>
 <span id="cb331-3"><a href="rprog4.html#cb331-3" tabindex="-1"></a>                   <span class="at">.fns =</span> <span class="sc">~</span><span class="fl">0.425</span><span class="sc">*</span>.x, <span class="co"># unit conversion m/gal to km/l</span></span>
-<span id="cb331-4"><a href="rprog4.html#cb331-4" tabindex="-1"></a>                   <span class="at">.names =</span> <span class="st">&quot;km_per_liter_{.col}&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co"># how to name new columns</span></span>
+<span id="cb331-4"><a href="rprog4.html#cb331-4" tabindex="-1"></a>                   <span class="at">.names =</span> <span class="st">&quot;km_per_liter_{.col}&quot;</span>)) <span class="sc">|&gt;</span> <span class="co"># how to name new columns</span></span>
 <span id="cb331-5"><a href="rprog4.html#cb331-5" tabindex="-1"></a>  <span class="co"># select first 2 cols and those containing strings indicated</span></span>
-<span id="cb331-6"><a href="rprog4.html#cb331-6" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> <span class="sc">|</span> <span class="fu">contains</span>(<span class="st">&quot;year&quot;</span>) <span class="sc">|</span> <span class="fu">contains</span>(<span class="st">&quot;km&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb331-6"><a href="rprog4.html#cb331-6" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> <span class="sc">|</span> <span class="fu">contains</span>(<span class="st">&quot;year&quot;</span>) <span class="sc">|</span> <span class="fu">contains</span>(<span class="st">&quot;km&quot;</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb331-7"><a href="rprog4.html#cb331-7" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 5
-##   manufacturer model              year km_per_liter_cty km_per_liter_hwy
-##   &lt;chr&gt;        &lt;chr&gt;             &lt;int&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-## 1 toyota       toyota tacoma 4wd  2008             6.38             7.65
-## 2 dodge        dakota pickup 4wd  2008             5.95             7.65
-## 3 toyota       4runner 4wd        1999             6.38             8.07
-## 4 nissan       altima             2008             9.78            13.2 
-## 5 audi         a4 quattro         1999             6.8             10.6</code></pre>
+##   manufacturer model                year km_per_liter_cty km_per_liter_hwy
+##   &lt;chr&gt;        &lt;chr&gt;               &lt;int&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 pontiac      grand prix           1999             7.22            11.5 
+## 2 dodge        ram 1500 pickup 4wd  1999             4.68             6.8 
+## 3 hyundai      tiburon              2008             8.5             11.5 
+## 4 ford         mustang              2008             7.22            11.0 
+## 5 dodge        durango 4wd          1999             4.68             6.38</code></pre>
 <p>Summarizing the data range for only the numeric vectors:</p>
 <div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="rprog4.html#cb333-1" tabindex="-1"></a><span class="co"># show the ranges of all numeric vectors in the mpg data frame</span></span>
 <span id="cb333-2"><a href="rprog4.html#cb333-2" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
@@ -1068,7 +1068,7 @@ filter(if_any(everything(), is.character))
 <div id="anonymous-functions" class="section level3 hasAnchor" number="8.5.3">
 <h3><span class="header-section-number">8.5.3</span> Anonymous Functions<a href="rprog4.html#anonymous-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Sometimes, we want to do some <em>pre-processing</em> of our data before a summary call. In the case below, we summarize (by count) the number of <code>NA</code> values in a data frame for each column of the data frame (this is a great quality control check for new data). To do this, we apply the <code>is.na()</code> function to each entry, then sum them up by row (because <code>is.na</code> returns logical <code>TRUE/FALSE</code> objects that equate to 1 or 0, respectively).</p>
-<p>We can get <code>across()</code> to achieve this by creating a custom one-time function as shown in the code below. Such custom functions are known as <strong>anonymous functions</strong> because they doesn’t have an assigned function name. See example below, where we define a quick, one-time function as the <code>.fns =</code> argument in <code>across()</code>:</p>
+<p>We can get <code>across()</code> to achieve this by creating a custom one-time function as shown in the code below. Such custom functions are known as <strong>anonymous functions</strong> because they don’t have an assigned function name. See example below, where we define a quick, one-time function as the <code>.fns =</code> argument in <code>across()</code>:</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="rprog4.html#cb335-1" tabindex="-1"></a><span class="co"># sum up the number of NAs by column in a data frame</span></span>
 <span id="cb335-2"><a href="rprog4.html#cb335-2" tabindex="-1"></a><span class="co"># create a custom function within the across() function</span></span>
 <span id="cb335-3"><a href="rprog4.html#cb335-3" tabindex="-1"></a><span class="co"># note that everything() is a tidyselect verb from above</span></span>
@@ -1083,7 +1083,7 @@ filter(if_any(everything(), is.character))
 <div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="rprog4.html#cb337-1" tabindex="-1"></a><span class="co"># sum up the number of NAs by column in a data frame</span></span>
 <span id="cb337-2"><a href="rprog4.html#cb337-2" tabindex="-1"></a><span class="co"># this code is equivalent to the one above</span></span>
 <span id="cb337-3"><a href="rprog4.html#cb337-3" tabindex="-1"></a><span class="co"># the ~ and .x are shorthand for an anonymous function call</span></span>
-<span id="cb337-4"><a href="rprog4.html#cb337-4" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
+<span id="cb337-4"><a href="rprog4.html#cb337-4" tabindex="-1"></a>mpg <span class="sc">|&gt;</span></span>
 <span id="cb337-5"><a href="rprog4.html#cb337-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.x))))</span></code></pre></div>
 </div>
 </div>

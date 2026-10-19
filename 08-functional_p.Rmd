@@ -54,11 +54,11 @@ The top code performs the `squared` operator across each entry in the
 vector, one after another.  The bottom set uses a for-loop to accomplish the
 same task, albeit in a longer (and harder to follow) version.
 
-The pipe operator `%>%` is an ally in this endeavor because it allows you to 
+The pipe operator (`%>%` or `|>`) is an ally in this endeavor because it allows you to 
 pass an object (like a vector or data frame) through series of functions in serial order. The pipe function is also easier to follow (with your mind) because 
 it allows you to interpret the code as if you were reading instructions in a 
 "how-to" manual: 
-*"take this object, then do this, then do this, then do that"*. **Without** the `%>%`
+*"take this object, then do this, then do this, then do that"*. **Without** the `|>`
 operator, we are forced to nest functions together or write long and verbose
 code that steps through treatments slowly (and somewhat painfully).  Looking at
 the code below should make clear which set is easier to comprehend:
@@ -74,12 +74,12 @@ daily_show_2000 <- select(filter(rename(daily_show,
                                    year == 2000), 
                             job, date, name)
 #piped code
-daily_show_2000 <- daily_show %>%
+daily_show_2000 <- daily_show |> 
   rename(year = YEAR, 
          job = GoogleKnowlege_Occupation, 
          date = Show, 
-         name = Raw_Guest_List) %>%
-  filter(year == 2000) %>%
+         name = Raw_Guest_List) |>
+  filter(year == 2000) |>
   select(job, date, name)
   
   
@@ -251,20 +251,20 @@ file_list <- list.files('./data/purpleair/', full.names=TRUE)
 import.w.name <- function(pathname) {
   #create a tibble by importing the 'pathname' file
   df <- read_csv(pathname, col_names = TRUE)
-  df <- df %>%
+  df <- df |>
     # use stringr::str_extract & a regex to get sensor ID from file name
     # regex translation: "look for a /, then extract all letters and numbers that follow until _"
     mutate(sensor_ID = str_extract(pathname, 
                                   "(?<=//)[:alnum:]+(?=_)"),
     # convert Date & Time variable to POSIXct with lubridate
-           datetime = lubridate::ymd_hms(UTCDateTime)) %>%
+           datetime = lubridate::ymd_hms(UTCDateTime)) |>
     # return only a few salient variables to the resultant data frame using dplyr::select
     select(datetime, 
            current_temp_f, 
            current_humidity, 
            pressure,
            pm2_5_atm,
-           sensor_ID) %>%
+           sensor_ID) |>
     na.omit() # remove NA values, which happens when sensor goes offline
   return(df)
 }
@@ -474,9 +474,9 @@ Perform unit conversions:
 # convert the cty and hwy variables in the mpg data frame to km/l
 mutate(mpg, across(ends_with("y"), # select cty and hwy
                    .fns = ~0.425*.x, # unit conversion m/gal to km/l
-                   .names = "km_per_liter_{.col}")) %>% # how to name new columns
+                   .names = "km_per_liter_{.col}")) |> # how to name new columns
   # select first 2 cols and those containing strings indicated
-  select(1:2 | contains("year") | contains("km")) %>% 
+  select(1:2 | contains("year") | contains("km")) |>
   slice_sample(n=5)
 
 ```
@@ -493,7 +493,7 @@ mpg %>%
 ### Anonymous Functions
 Sometimes, we want to do some *pre-processing* of our data before a summary call.  In the case below, we summarize (by count) the number of `NA` values in a data frame for each column of the data frame (this is a great quality control check for new data).  To do this, we apply the `is.na()` function to each entry, then sum them up by row (because `is.na` returns logical `TRUE/FALSE` objects that equate to 1 or 0, respectively).  
 
-We can get `across()` to achieve this by creating a custom one-time function as shown in the code below.  Such custom functions are known as **anonymous functions** because they doesn't have an assigned function name. See example below, where we define a quick, one-time function as the `.fns =` argument in `across()`:
+We can get `across()` to achieve this by creating a custom one-time function as shown in the code below.  Such custom functions are known as **anonymous functions** because they don't have an assigned function name. See example below, where we define a quick, one-time function as the `.fns =` argument in `across()`:
 ```{r count-NA, warning=FALSE}
 # sum up the number of NAs by column in a data frame
 # create a custom function within the across() function
@@ -508,7 +508,7 @@ Anonymous functions are useful once you get used to the idea of *"creating a fun
 # sum up the number of NAs by column in a data frame
 # this code is equivalent to the one above
 # the ~ and .x are shorthand for an anonymous function call
-mpg %>%
+mpg |>
   summarise(across(everything(), ~ sum(is.na(.x))))
 
 ```
