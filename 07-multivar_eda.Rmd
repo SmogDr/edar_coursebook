@@ -599,28 +599,6 @@ and `tran`, columns. Further, we see that **all** of these vehicles have a
 have internal combustion. This may be a variable level that we choose to
 exclude from certain analyses later... 
 
-**You might have noticed the "dot", `.`, used at the end of the `dplyr::filter` pipe above:**  
-  
-`df_mpg |> filter(!complete.cases(.))`  
-  
-*Why is there a `.` as an argument to a function?*  
-
-We use `.` as a [*placeholder argument*](https://magrittr.tidyverse.org/reference/pipe.html#arguments) when more than one function is nested within a single section of pipe (`|>`).  The `complete.cases()` function requires an argument to run, so we must tell it to operate on the same dataframe on which `filter()` operates. The `.` accomplishes this need for an argument.  In other words, these three lines of code are equivalent:  
-
-```{r magrittr-dot, eval=FALSE}
-df_mpg |> filter(!complete.cases(.))
-
-df_mpg |> filter(!complete.cases(df_mpg))
-
-filter(df_mpg, !complete.cases(df_mpg))
-```
-
-***Note:*** the `.` only works as a placeholder argument within a `|>` call. The following code will throw an error because there is no pipe present:
-
-```{r bad-code, eval=FALSE}
-#this code will throw an error
-filter(df_mpg, !complete.cases(.))  
-```
 #### Example 2: Missing Data
 
 Filter the `df_mpg` data for *any variables* (`dplyr::any_vars()`) that contain
