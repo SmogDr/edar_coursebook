@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Getting and Cleaning Data | Engineering Data Analysis in R</title>
-  <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to learn about data analysis using the R programming language." />
   <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Getting and Cleaning Data | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to learn about data analysis using the R programming language." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 3 Getting and Cleaning Data | Engineering Data Analysis in R" />
   
-  <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to learn about data analysis using the R programming language." />
   
 
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2026-10-19" />
+<meta name="date" content="2026-10-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,8 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -187,13 +189,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.4.1" data-path="rprog1.html"><a href="rprog1.html#commenting-code"><i class="fa fa-check"></i><b>2.4.1</b> Commenting code</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a>
+<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The "package" system</a>
 <ul>
 <li class="chapter" data-level="2.5.1" data-path="rprog1.html"><a href="rprog1.html#r-packages"><i class="fa fa-check"></i><b>2.5.1</b> R packages</a></li>
 <li class="chapter" data-level="2.5.2" data-path="rprog1.html"><a href="rprog1.html#installing-from-cran"><i class="fa fa-check"></i><b>2.5.2</b> Installing from CRAN</a></li>
 <li class="chapter" data-level="2.5.3" data-path="rprog1.html"><a href="rprog1.html#loading-an-installed-package"><i class="fa fa-check"></i><b>2.5.3</b> Loading an installed package</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a>
+<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R's most basic object types</a>
 <ul>
 <li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
 <li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
@@ -291,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
+<li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
 <li class="chapter" data-level="5.4.2" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.4.2</b> Cumulative Distribution Plot</a></li>
 <li class="chapter" data-level="5.4.3" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.4.3</b> Histogram</a></li>
 <li class="chapter" data-level="5.4.4" data-path="eda1.html"><a href="eda1.html#box"><i class="fa fa-check"></i><b>5.4.4</b> Boxplot</a></li>
@@ -330,7 +332,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.6.2" data-path="rprog3.html"><a href="rprog3.html#set-2-counting"><i class="fa fa-check"></i><b>6.6.2</b> Set 2: Counting</a></li>
 <li class="chapter" data-level="6.6.3" data-path="rprog3.html"><a href="rprog3.html#set-3-weekly-tweets"><i class="fa fa-check"></i><b>6.6.3</b> Set 3: Weekly tweets</a></li>
 <li class="chapter" data-level="6.6.4" data-path="rprog3.html"><a href="rprog3.html#are-tweets-correlated-in-time"><i class="fa fa-check"></i><b>6.6.4</b> Are tweets correlated in time?</a></li>
-<li class="chapter" data-level="6.6.5" data-path="rprog3.html"><a href="rprog3.html#set-4-csu-vs.-cu"><i class="fa fa-check"></i><b>6.6.5</b> Set 4: CSU vs. CU</a></li>
+<li class="chapter" data-level="6.6.5" data-path="rprog3.html"><a href="rprog3.html#set-4-csu-vs.-cu"><i class="fa fa-check"></i><b>6.6.5</b> Set 4: CSU vs. CU</a></li>
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="rprog3.html"><a href="rprog3.html#chapter-6-homework"><i class="fa fa-check"></i><b>6.7</b> Chapter 6 Homework</a></li>
 </ul></li>
@@ -370,7 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a>
 <ul>
 <li class="chapter" data-level="8.3.1" data-path="rprog4.html"><a href="rprog4.html#example-function-my_mean"><i class="fa fa-check"></i><b>8.3.1</b> Example Function: my_mean</a></li>
-<li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: “import.w.name”</a></li>
+<li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: "import.w.name"</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a>
 <ul>
@@ -420,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="measure.html"><a href="measure.html#ch.-10-objectives"><i class="fa fa-check"></i><b>10.1</b> Ch. 10 Objectives</a></li>
 <li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#sample"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
+<li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#sample"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
 <li class="chapter" data-level="10.2.2" data-path="measure.html"><a href="measure.html#sample.collect"><i class="fa fa-check"></i><b>10.2.2</b> Collecting a sample</a></li>
 <li class="chapter" data-level="10.2.3" data-path="measure.html"><a href="measure.html#simple-random-sampling"><i class="fa fa-check"></i><b>10.2.3</b> Simple Random Sampling</a></li>
 <li class="chapter" data-level="10.2.4" data-path="measure.html"><a href="measure.html#systematic-sampling"><i class="fa fa-check"></i><b>10.2.4</b> Systematic Sampling</a></li>
@@ -484,7 +486,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.6" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>12.6</b> Pearson Correlation Coefficient</a>
 <ul>
-<li class="chapter" data-level="12.6.1" data-path="dist.html"><a href="dist.html#anscombes-quartet"><i class="fa fa-check"></i><b>12.6.1</b> Anscombe’s Quartet</a></li>
+<li class="chapter" data-level="12.6.1" data-path="dist.html"><a href="dist.html#anscombes-quartet"><i class="fa fa-check"></i><b>12.6.1</b> Anscombe's Quartet</a></li>
 </ul></li>
 <li class="chapter" data-level="12.7" data-path="dist.html"><a href="dist.html#OLS"><i class="fa fa-check"></i><b>12.7</b> OLS Regression Coefficients</a></li>
 </ul></li>
@@ -523,12 +525,12 @@ file format</li>
 <li>Demonstrate how to read in different types of flat files</li>
 <li>Demonstrate how to read in a few types of binary files (e.g., Matlab, Excel)</li>
 <li>Recognize the difference between relative and absolute file pathnames</li>
-<li>Describe the basics of your computer’s directory structure</li>
+<li>Describe the basics of your computer's directory structure</li>
 <li>Reference files in your directory structure using relative and absolute pathnames</li>
 <li>Apply the basic <code>dplyr</code> functions (e.g., <code>rename()</code>, <code>select()</code>, <code>mutate()</code>,
 <code>slice()</code>, <code>filter()</code>, and <code>arrange()</code>) to work with data in a dataframe object</li>
 <li>Define a logical operator and know the R syntax for common logical operators</li>
-<li>Apply logical operators in conjunction with <code>dplyr</code>’s <code>filter()</code> function to
+<li>Apply logical operators in conjunction with <code>dplyr</code>'s <code>filter()</code> function to
 create subsets of a dataframe based on logical conditions</li>
 <li>Apply a sequence of <code>dplyr</code> functions to a dataframe using piping (<code>|&gt;</code>)</li>
 <li>Create R Markdown documents and describe their basic content and function</li>
@@ -539,15 +541,15 @@ create subsets of a dataframe based on logical conditions</li>
 <p>There are four basic steps you will often repeat as you prepare to analyze data
 in R:</p>
 <ol style="list-style-type: decimal">
-<li>Identify the location of the data. If it’s on your computer, which
-directory? If it’s online, what link?</li>
+<li>Identify the location of the data. If it's on your computer, which
+directory? If it's online, what link?</li>
 <li>Read data into R (e.g., using a function like <code>read_delim()</code> or <code>read_csv()</code>
 from the <code>readr</code> package) using the file path you figured out in step 1</li>
 <li>Check to make sure the data came in correctly using functions like <code>dim()</code>, <code>head()</code>, <code>tail()</code>, <code>str()</code>, and/or <code>glimpse()</code>.</li>
 <li>Clean the data up by removing missing (or nonsense) values, renaming or reclassifying variables, performing units conversions, or other actions that
 support a streamlined data analysis.</li>
 </ol>
-<p>In this chapter, I’ll go over the basics for each of these steps and dive a bit
+<p>In this chapter, I'll go over the basics for each of these steps and dive a bit
 deeper into some related topics you should learn now to make your life easier
 as you get started using R for data analysis.</p>
 </div>
@@ -579,9 +581,9 @@ degrees of messiness).</p>
 <div id="reading-local-flat-files" class="section level3 hasAnchor" number="3.3.1">
 <h3><span class="header-section-number">3.3.1</span> Reading local flat files<a href="rprog2.html#reading-local-flat-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Much of the data that you will want to read in will be in <strong>flat files</strong> that
-are stored locally (i.e., on your computer’s hard drive). A <em>flat file</em> is
+are stored locally (i.e., on your computer's hard drive). A <em>flat file</em> is
 basically a file that you can open using a text editor. The most
-common type you’ll work with are probably comma-separated files, often with a
+common type you'll work with are probably comma-separated files, often with a
 <code>.csv</code> or <code>.txt</code> file extension. Most flat files come in two general
 categories:</p>
 <ol style="list-style-type: decimal">
@@ -589,9 +591,9 @@ categories:</p>
 <li><p>Delimited files, which include:</p></li>
 </ol>
 <ul>
-<li>“.csv”: Comma-separated values</li>
-<li>“.tab”, “.tsv”: Tab-separated values</li>
-<li>Other possible delimiters: colon, semicolon, pipe (“|”)</li>
+<li>".csv": Comma-separated values</li>
+<li>".tab", ".tsv": Tab-separated values</li>
+<li>Other possible delimiters: colon, semicolon, pipe ("|")</li>
 </ul>
 <p><em>Fixed-width files</em> are files where a column always has the same width, for all
 the rows in the column. These tend to look very neat and easy-to-read when you
@@ -601,11 +603,11 @@ file might look like this:</p>
 Thermodynamics                    337             M/W/F        9:00-9:50
 Aerosol Physics and Technology    577             M/W/F        10:00-10:50</code></pre>
 <p>Fixed-width files used to be very popular, and they make it easier to look at
-data when you open the file in a text editor. Now, it’s rare to just use a text
+data when you open the file in a text editor. Now, it's rare to just use a text
 editor to open a file and check out the data. Also, these files can be a bit of
 a pain to read into R and other programs because you sometimes have to specify
 the length of each column. You may come across a fixed-width file every now and
-then, particularly when working with older data, so it’s useful to be able to
+then, particularly when working with older data, so it's useful to be able to
 recognize one and to know how to import it.</p>
 <p><em>Delimited files</em> use some <strong>delimiter</strong> such as a comma or tab to separate
 each column value within a row. The first few rows of a delimited file might
@@ -619,11 +621,11 @@ function call to read in the data.</p>
 <p>These flat files can have a number of different file extensions. The most
 generic is <code>.txt</code>, but they will also have ones more specific to their format,
 like <code>.csv</code> for a comma-delimited file (.csv stands for
-<strong>“comma-separated values”</strong>), or <code>.fwf</code> for a fixed-width file.</p>
+<strong>"comma-separated values"</strong>), or <code>.fwf</code> for a fixed-width file.</p>
 <p>R can read in data from both fixed-width and delimited flat files. The only
 catch is that you need to tell R a bit more about the format of the flat file,
 including whether it is fixed-width or delimited. If the file is fixed-width,
-you will usually have to provide R with information about each column (see <code>read_fwf()</code> for details). If the file is delimited, you’ll need to tell R which delimiter, such as comma or tab, is being used.</p>
+you will usually have to provide R with information about each column (see <code>read_fwf()</code> for details). If the file is delimited, you'll need to tell R which delimiter, such as comma or tab, is being used.</p>
 <p>The <code>read_delim()</code> family of functions are used to read delimited flat files into
 R - these functions come from the <code>readr</code> package, which we will use extensively
 in ths course. All members of the <code>read_delim()</code> family do the same basic thing:
@@ -661,7 +663,7 @@ delimiter; however, you will need to specify the type of delimiter using the
 <code>read_csv()</code> for a comma-delimited file), you can save yourself some typing.</p>
 <p>For example, to read in the Ebola data data file, which is comma-delimited,
 you could either use <code>read_table()</code> with a <code>delim</code> argument specified or use
-<code>read_csv()</code>, in which case you don’t have to specify <code>delim</code>:</p>
+<code>read_csv()</code>, in which case you don't have to specify <code>delim</code>:</p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="rprog2.html#cb117-1" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">&quot;readr&quot;</span>)</span>
 <span id="cb117-2"><a href="rprog2.html#cb117-2" tabindex="-1"></a><span class="co"># The following two calls do the same thing</span></span>
 <span id="cb117-3"><a href="rprog2.html#cb117-3" tabindex="-1"></a>ebola <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_delim</span>(<span class="at">file =</span> <span class="st">&quot;data/country_timeseries.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
@@ -739,7 +741,7 @@ parentheses). You can also use the help files to determine the default
 values of arguments for each function.
 </p>
 </div>
-<p>So far, we’ve only looked at functions from the <code>readr</code> package for reading in
+<p>So far, we've only looked at functions from the <code>readr</code> package for reading in
 data files. There is a similar family of functions available in base R, the
 <code>read.table()</code> family of functions. The <code>readr</code> family of functions is very
 similar to the base R <code>read.table()</code> functions, but have some more sensible
@@ -778,18 +780,18 @@ years old. In this course, I’ll focus on <code>tidyverse</code>
 functions when possible, but I do put in details about base R equivalent
 functions or processes at some points. This will help you interpret
 older code. You can download all the <code>tidyverse</code> packages at
-the same time with <code>install.packages(“tidyverse”)</code> and make
+the same time with <code>install.packages("tidyverse")</code> and make
 all the <code>tidyverse</code> functions available for use
-with<code>library(“tidyverse”)</code>.
+with<code>library("tidyverse")</code>.
 </p>
 </div>
 </div>
 <div id="reading-in-other-file-types" class="section level3 hasAnchor" number="3.3.2">
 <h3><span class="header-section-number">3.3.2</span> Reading in other file types<a href="rprog2.html#reading-in-other-file-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Later in the course, we’ll talk about how to open a variety of other file types
+<p>Later in the course, we'll talk about how to open a variety of other file types
 in R. You might find it immediately useful to be able to read in files from
 other statistical programs.</p>
-<p>There are two “tidyverse” packages, <code>readxl</code> and <code>haven</code>, that help with this.
+<p>There are two "tidyverse" packages, <code>readxl</code> and <code>haven</code>, that help with this.
 They allow you to read in files from the following formats:</p>
 <table>
 <thead>
@@ -828,10 +830,10 @@ They allow you to read in files from the following formats:</p>
 <h2><span class="header-section-number">3.4</span> Directories and pathnames<a href="rprog2.html#directories-and-pathnames" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="directory-structure" class="section level3 hasAnchor" number="3.4.1">
 <h3><span class="header-section-number">3.4.1</span> Directory structure<a href="rprog2.html#directory-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>So far, we’ve only looked at reading in files that are located in your current
-working directory. For example, if you’re working in an R Project, by default
+<p>So far, we've only looked at reading in files that are located in your current
+working directory. For example, if you're working in an R Project, by default
 the project will open with that directory as the working directory, so you can
-read files that are saved in that project’s main directory using only the file
+read files that are saved in that project's main directory using only the file
 name as a reference.</p>
 <p>You will often want to read in files that are located somewhere else on
 your computer, or even files that are saved on another computer or posted
@@ -839,16 +841,16 @@ online. Doing this is very similar to reading in a file that is in your current
 working directory; the only difference is that you need to give R some
 directions so it can find the file.</p>
 <p>The most common case will be reading in files in a subdirectory of your current
-working directory. For example, you may have created a “data” subdirectory in
-one of your R Projects directories to keep all the project’s data files in the
+working directory. For example, you may have created a "data" subdirectory in
+one of your R Projects directories to keep all the project's data files in the
 same place while keeping the structure of the main directory fairly clean. In
-this case, you’ll need to direct R into that subdirectory when you want to read
+this case, you'll need to direct R into that subdirectory when you want to read
 one of those files.</p>
 <p>To understand how to give R these directions, you need to have some
 understanding of the directory structure of your computer. It seems a bit of a
 pain and a bit complex to have to think about computer directory structure in
-the “basics” part of this class, but this structure is not terribly complex
-once you get the idea of it. There are a couple of very good reasons why it’s
+the "basics" part of this class, but this structure is not terribly complex
+once you get the idea of it. There are a couple of very good reasons why it's
 worth learning now.</p>
 <p>First, many of the most frustrating errors you get when you start using R
 trace back to understanding directories and filepaths. For example, when you try
@@ -857,10 +859,10 @@ current working directory, you will get an error like:</p>
 <pre><code>Error in file(file, &quot;rt&quot;) : cannot open the connection
 In addition: Warning message:
 In file(file, &quot;rt&quot;) : cannot open file &#39;Ex.csv&#39;: No such file or directory</code></pre>
-<p>This error is especially frustrating when you’re new to R because it happens at
-the very beginning of your analysis—you can’t even import the data. Also, if
-you don’t understand a bit about working directories and how R looks for the
-file you’re asking it to find, you’d have no idea where to start to fix this
+<p>This error is especially frustrating when you're new to R because it happens at
+the very beginning of your analysis---you can't even import the data. Also, if
+you don't understand a bit about working directories and how R looks for the
+file you're asking it to find, you'd have no idea where to start to fix this
 error. Second, once you understand how to use pathnames, especially relative
 pathnames, to tell R how to find a file that is in a directory other than your
 working directory, you will be able to organize all of your files for a project
@@ -870,7 +872,7 @@ another to store all of your data, and so on. This can help you keep very
 complex projects more structured and easier to navigate.</p>
 <p>Your computer organizes files through a collection of directories. Chances are,
 you are fairly used to working with these in your daily life already, although
-you may call them “folders” rather than “directories”. For example, you’ve
+you may call them "folders" rather than "directories". For example, you've
 probably created new directories to store data files and Word documents for a
 specific project.</p>
 <p>Figure <a href="rprog2.html#fig:filedirstructure">3.1</a> gives an example file directory structure
@@ -884,46 +886,46 @@ Figure 3.1: An example of file directory structure.
 <p>Notice a few interesting things from Figure <a href="rprog2.html#fig:filedirstructure">3.1</a>. First,
 you might notice the structure includes a few of the directories that you use a
 lot on your own computer, like <code>Desktop</code>, <code>Documents</code>, and <code>Downloads</code>. Next,
-the directory at the very top is the computer’s root directory, <code>/</code>. For a PC,
-the root directory might something like <code>C:</code>. For Unix and Macs, it’s usually
-<code>/</code>. Finally, if you look closely, you’ll notice that it’s possible to have
+the directory at the very top is the computer's root directory, <code>/</code>. For a PC,
+the root directory might something like <code>C:</code>. For Unix and Macs, it's usually
+<code>/</code>. Finally, if you look closely, you'll notice that it's possible to have
 different files in different locations of the directory structure with the same
 file name. For example, in the figure, there are files names <code>heat_mort.csv</code> in
 both the <code>CourseText</code> directory and in the <code>example_data</code> directory. These are
 two different files with different contents, but they can have the same name as
-long as they’re in different directories. This fact—that you can have files
-with the same name in different places—should help you appreciate how useful
+long as they're in different directories. This fact---that you can have files
+with the same name in different places---should help you appreciate how useful
 it is that R requires you to give very clear directions to describe exactly
-which file you want R to read in, if you aren’t importing something in your
+which file you want R to read in, if you aren't importing something in your
 current working directory.</p>
 <p>You will have a home directory somewhere near the top of your structure,
-although it’s likely not your root directory. In the hypothetical computer in
+although it's likely not your root directory. In the hypothetical computer in
 Figure <a href="rprog2.html#fig:filedirstructure">3.1</a>, the home directory is
-<code>/Users/brookeanderson</code>. I’ll describe just a bit later how you can figure out
+<code>/Users/brookeanderson</code>. I'll describe just a bit later how you can figure out
 what your own home directory is on your own computer.</p>
 </div>
 <div id="working-directory" class="section level3 hasAnchor" number="3.4.2">
 <h3><span class="header-section-number">3.4.2</span> Working directory<a href="rprog2.html#working-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>When you run R, it’s always running from within some working directory, which
-will be one of the directories somewhere in your computer’s directory
+<p>When you run R, it's always running from within some working directory, which
+will be one of the directories somewhere in your computer's directory
 structure. At any time, you can figure out which directory R is working in by
-running the command <code>getwd()</code> (short for “get working directory”). For example,
+running the command <code>getwd()</code> (short for "get working directory"). For example,
 my R session is currently running in the following directory:</p>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="rprog2.html#cb121-1" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;/Users/johnvolckens/Teaching/DataSci/edar_coursebook&quot;</code></pre>
 <p>This means that, for my current R session, R is working in the
 <code>edar_coursebook</code> subdirectory of my <code>johnvolckens</code> directory (home directory).</p>
 <p>There are a few general rules for which working directory R selects when
-you open an R session. These are not absolute rules, but they’re generally
+you open an R session. These are not absolute rules, but they're generally
 true. If you have R closed, and you open it by double-clicking on an R script,
 then R will generally open with, as its working directory, the directory in
 which that script is stored. This is often a very convenient convention,
-because often any of the data you’ll import for that script is somewhere
+because often any of the data you'll import for that script is somewhere
 near where the script file is saved in the directory structure. If you open R
-by double-clicking on the R icon in “Applications” (or the start menu on a
+by double-clicking on the R icon in "Applications" (or the start menu on a
 PC), R will start in its default working directory. You can find out what this
-is, or change it, in RStudio’s “Preferences”. Finally, if you open an R
-Project, R will start in that project’s working directory—where the <code>.Rproj</code>
+is, or change it, in RStudio's "Preferences". Finally, if you open an R
+Project, R will start in that project's working directory---where the <code>.Rproj</code>
 file for the project is stored. This is one of the reasons why we always create
 a new R Project when starting a data analysis - RStudio projects remember where
 to look!</p>
@@ -941,9 +943,9 @@ pathnames:</p>
 <li><em>Absolute pathname</em>: How to get to the file or directory from anywhere on the computer</li>
 </ul>
 <p>Absolute pathnames are a bit more straightforward conceptually because they
-don’t depend on your current working directory; however, they’re also a lot
-longer to write and very inconvenient if you’ll be sharing some of your code
-with other people who might try to run it on their own computers. I’ll explain
+don't depend on your current working directory; however, they're also a lot
+longer to write and very inconvenient if you'll be sharing some of your code
+with other people who might try to run it on their own computers. I'll explain
 this second point a bit more later in this section.</p>
 <p>I <strong>strongly advise against the use of absolute pathnames</strong> because of the
 aforementioned collaborative issue, but I will include some details here
@@ -954,22 +956,22 @@ file, starting all the way at the root directory. For example, the
 <p>You can use this absolute pathname to read this file in using any of the
 <code>readr</code> functions to read in data. This absolute pathname will <em>always</em> work,
 regardless of your current working directory, because it gives directions from
-the root. In other words, it will always be clear to R exactly what file you’re
-talking about. Here’s the code to use to read that file in using the
-<code>read.csv()</code> function with the file’s absolute pathname:</p>
+the root. In other words, it will always be clear to R exactly what file you're
+talking about. Here's the code to use to read that file in using the
+<code>read.csv()</code> function with the file's absolute pathname:</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="rprog2.html#cb124-1" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;/Users/johnvolckens/Teaching/DataSci/edar_coursebook/data/daily_show_guests.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p>The <em>relative pathname</em>, on the other hand, gives R the directions for how to
 get to a directory or file from the current working directory. If the file or
-directory you’re looking for is pretty close to your current working directory
+directory you're looking for is pretty close to your current working directory
 in your directory structure, then a relative pathname can be a much shorter way
 to tell R how to get to the file than an absolute pathname. But, the relative
-pathname depends on your current working directory—the relative pathname that
-works perfectly when you’re working in one directory will not work at all once
+pathname depends on your current working directory---the relative pathname that
+works perfectly when you're working in one directory will not work at all once
 you move into a different working directory.</p>
-<p>As an example of a relative pathname, say you’re working directory is
+<p>As an example of a relative pathname, say you're working directory is
 <code>edar_coursebook</code> and you want to read in the <code>daily_show_guests.csv</code> file
 in the <code>data</code> directory (one of the <code>edar_coursebook</code> subdirectories). To get from <code>edar_coursebook</code> to that file,
-you’d need to look in the subdirectory <code>data</code>, where you could find
+you'd need to look in the subdirectory <code>data</code>, where you could find
 <code>daily_show_guests.csv</code>. Therefore, the relative pathname from your working directory would be:</p>
 <pre><code>&quot;data/daily_show_guests.csv&quot;</code></pre>
 <p>You can use this relative pathname to tell R where to find and read in the
@@ -1003,12 +1005,12 @@ file:</p>
 </tr>
 </tbody>
 </table>
-<p>These can help you keep pathnames shorter and also help you move “up-and-over” to get to a file or directory that’s not on the direct path below your current working directory.</p>
+<p>These can help you keep pathnames shorter and also help you move "up-and-over" to get to a file or directory that's not on the direct path below your current working directory.</p>
 <p>For example, my home directory is <code>/Users/johnvolckens</code>. You can use the
 <code>list.files()</code> function to list all the files in a directory. If I wanted to list all the files in my <code>Downloads</code> directory, which is a direct sub-directory of my home directory, I could use:</p>
 <pre><code>list.files(&quot;~/Downloads&quot;)</code></pre>
 <p>As a second example, say I was working in the working directory <code>CourseText</code>,
-(see Figure <a href="rprog2.html#fig:filedirstructure">3.1</a> but I wanted to read in the <code>heat_mort.csv</code> file that’s in the <code>example_data</code>
+(see Figure <a href="rprog2.html#fig:filedirstructure">3.1</a> but I wanted to read in the <code>heat_mort.csv</code> file that's in the <code>example_data</code>
 directory, rather than the one in the <code>CourseText</code> directory. I can use the
 <code>..</code> abbreviation to tell R to look up one directory from the current working
 directory, and then down within a subdirectory of that. The relative pathname
@@ -1022,41 +1024,41 @@ to look within that directory for the file <code>heat_mort.csv</code>.</p>
 <p>The relative pathname to read this file while R is working in the <code>CourseTest</code>
 directory would be:</p>
 <pre><code>heat_mort &lt;- read_csv(&quot;../Week2_Aug31/example_data/heat_mort.csv&quot;)</code></pre>
-<p>Relative pathnames “break” as soon as you try them from a different working
-directory—this fact might make it seem like you would never want to use
+<p>Relative pathnames "break" as soon as you try them from a different working
+directory---this fact might make it seem like you would never want to use
 relative pathnames, and would always want to use absolute ones instead, even if
-they’re longer. If that were the only consideration (length of the pathname),
+they're longer. If that were the only consideration (length of the pathname),
 then perhaps that would be true. However, as you do more and more in R, there
 will likely be many occasions when you want to use relative pathnames instead.
 They are particularly useful if you ever want to share a whole directory, with
-all subdirectories, with a collaborator. In that case, if you’ve used relative
+all subdirectories, with a collaborator. In that case, if you've used relative
 pathnames, all the code should work fine for the person you share with, even
-though they’re running it on their own computer. Conversely, if you’d used
+though they're running it on their own computer. Conversely, if you'd used
 absolute pathnames, none of them would work on another computer, because the
-“top” of the directory structure (i.e., for me, <code>/Users/johnvolckens/</code>)
-will definitely be different for your collaborator’s computer than it is
+"top" of the directory structure (i.e., for me, <code>/Users/johnvolckens/</code>)
+will definitely be different for your collaborator's computer than it is
 for yours.</p>
-<p>If you’re getting errors reading in files, and you think it’s related to the
-relative pathname you’re using, it’s often helpful to use <code>list.files()</code> to
-make sure the file you’re trying to load is in the directory guided by the
+<p>If you're getting errors reading in files, and you think it's related to the
+relative pathname you're using, it's often helpful to use <code>list.files()</code> to
+make sure the file you're trying to load is in the directory guided by the
 relative pathname. The <code>list.files()</code> function is very useful because it
 returnsa character vector of filenames (and paths, if desired). Once you have a
 vector of filenames you can do things like ask logical questions (does this file
 exist?), or count the number of files, or pass a relative path to a new
-function…</p>
+function...</p>
 </div>
 <div id="tangent-paste" class="section level3 hasAnchor" number="3.4.4">
 <h3><span class="header-section-number">3.4.4</span> Tangent: <code>paste</code><a href="rprog2.html#tangent-paste" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This is a good opportunity to explain how to use some functions that can be
-very helpful when you’re using relative or absolute pathnames: <code>paste()</code> and
-<code>paste0()</code>. It’s important that you understand that you can save a pathname
+very helpful when you're using relative or absolute pathnames: <code>paste()</code> and
+<code>paste0()</code>. It's important that you understand that you can save a pathname
 (absolute or relative) as an R object and then use that R object in calls to
 later functions like <code>list.files()</code> and <code>read_csv()</code>. For example, to use the
 absolute pathname to read the <code>heat_mort.csv</code> file in the <code>CourseText</code>
 directory, you could run:</p>
 <pre><code>my_file &lt;- &quot;/Users/brookeanderson/Desktop/RCourseFall2015/CourseText/heat_mort.csv&quot;
 heat_mort &lt;- read_csv(file = my_file)</code></pre>
-<p>You’ll notice from this code that the pathname to get to a directory or file
+<p>You'll notice from this code that the pathname to get to a directory or file
 can sometimes become ungainly and long. To keep your code cleaner, you can
 address this by using the <code>paste</code> or <code>paste0</code> functions. These functions come
 in handy in a lot of other applications, too, but this is a good place to
@@ -1075,7 +1077,7 @@ function call. For example:</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="rprog2.html#cb135-1" tabindex="-1"></a><span class="fu">length</span>(<span class="at">x =</span> <span class="fu">paste</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>The <code>paste()</code> function has an option called <code>sep =</code>. This tells R what you
-want to use to separate the values you’re pasting together in the output. The
+want to use to separate the values you're pasting together in the output. The
 default is for R to use a space, as shown in the example above. To change the
 separator, you can change this option, and you can put in just about anything
 you want. For example, if you wanted to paste all the values together without
@@ -1102,10 +1104,10 @@ get a feel for them.</p>
 </div>
 <div id="reading-online-flat-files" class="section level3 hasAnchor" number="3.4.5">
 <h3><span class="header-section-number">3.4.5</span> Reading online flat files<a href="rprog2.html#reading-online-flat-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>So far, I’ve only shown you how to import data from files that are saved to
+<p>So far, I've only shown you how to import data from files that are saved to
 your computer. R can also read in data directly from the web. If a flat file is
 posted online, you can read it into R in almost exactly the same way that you
-would read in a local file. The only difference is that you will use the file’s
+would read in a local file. The only difference is that you will use the file's
 URL instead of a local file path for the <code>file</code> argument.</p>
 <p>With the <code>read_*</code> family of functions, you can do this both for flat files from
 a non-secure webpage (i.e., one that starts with <code>http</code>) and for files from a
@@ -1127,8 +1129,8 @@ Dropbox.</p>
 </div>
 <div id="data-cleaning" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Data cleaning<a href="rprog2.html#data-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Once you have loaded data into R, you’ll likely need to clean it up a little
-before you’re ready to analyze it. Here, I’ll go over the first steps of how to
+<p>Once you have loaded data into R, you'll likely need to clean it up a little
+before you're ready to analyze it. Here, I'll go over the first steps of how to
 do that with functions from <code>dplyr</code>, another package in the tidyverse. Here are
 some of the most common data-cleaning tasks, along with the corresponding
 <code>dplyr</code> function for each:</p>
@@ -1160,12 +1162,12 @@ some of the most common data-cleaning tasks, along with the corresponding
 </table>
 <p>In this section, I describe how to do each of these four tasks. For the
 examples in this section, I use example data listing guests to the Daily Show.
-To follow along with these examples, you’ll want to load that data, as well as
+To follow along with these examples, you'll want to load that data, as well as
 load the <code>dplyr</code> package. Install it using <code>install.packages()</code> if you have not
 done so already.</p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="rprog2.html#cb144-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
 <span id="cb144-2"><a href="rprog2.html#cb144-2" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;data/daily_show_guests.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">4</span>)</span></code></pre></div>
-<p>I’ve used this data in previous examples, but as a reminder, here’s what it
+<p>I've used this data in previous examples, but as a reminder, here's what it
 looks like:</p>
 <div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="rprog2.html#cb145-1" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> daily_show)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
@@ -1198,7 +1200,7 @@ names in <code>daily_show</code> have some of these issues:</p>
 <span id="cb149-2"><a href="rprog2.html#cb149-2" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">.data =</span> dataframe,</span>
 <span id="cb149-3"><a href="rprog2.html#cb149-3" tabindex="-1"></a>              <span class="at">new_column_name_1 =</span> old_column_name_1,</span>
 <span id="cb149-4"><a href="rprog2.html#cb149-4" tabindex="-1"></a>              <span class="at">new_column_name_2 =</span> old_column_name_2)</span></code></pre></div>
-<p>The first argument is the dataframe for which you’d like to rename columns.
+<p>The first argument is the dataframe for which you'd like to rename columns.
 Then you list each pair of new and old column names (in that order) for each
 of the columns you want to rename. To rename columns in the <code>daily_show</code> data
 using <code>rename()</code>, for example, you would run:</p>
@@ -1281,7 +1283,7 @@ as you’re figuring out how to write your code.
 </div>
 <p>The <code>select()</code> function also provides some time-saving tools. In the last
 example, we wanted all the columns except one. Instead of writing out all the
-columns we want, we can use <code>-</code> with only the columns we don’t want to
+columns we want, we can use <code>-</code> with only the columns we don't want to
 save time (notice the object reassignment/override):</p>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="rprog2.html#cb155-1" tabindex="-1"></a>daily_show <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">.data =</span> daily_show, <span class="sc">-</span>year)</span>
 <span id="cb155-2"><a href="rprog2.html#cb155-2" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> daily_show, <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
@@ -1355,8 +1357,8 @@ data frame that only includes guests who were scientists, you can run:</p>
 ## 4 doctor         9/6/05  Science  Dr. Marc Siegel       
 ## 5 astronaut      2/13/06 Science  Astronaut Mike Mullane
 ## 6 Astrophysicist 1/30/07 Science  Neil deGrasse Tyson</code></pre>
-<p>To build a logical expression to use in <code>filter</code>, you’ll need to know some of
-R’s logical operators. Some commonly used ones are:</p>
+<p>To build a logical expression to use in <code>filter</code>, you'll need to know some of
+R's logical operators. Some commonly used ones are:</p>
 <table>
 <colgroup>
 <col width="18%" />
@@ -1408,8 +1410,8 @@ R’s logical operators. Some commonly used ones are:</p>
 </tr>
 </tbody>
 </table>
-<p>We’ll use these logical operators and expressions a lot more as the course
-continues, so they’re worth memorizing.</p>
+<p>We'll use these logical operators and expressions a lot more as the course
+continues, so they're worth memorizing.</p>
 <div class="rmdwarning">
 <p>
 Two common mistakes with logical operators are: (1) Using
@@ -1463,11 +1465,11 @@ dataset based on user input in the required arguments, including <code>n</code> 
 </div>
 <div id="merging-data-frames" class="section level2 hasAnchor" number="3.6">
 <h2><span class="header-section-number">3.6</span> Merging Data Frames<a href="rprog2.html#merging-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Many data analysis exercises will require you to combine data from different sources into a single object. Thus, it’s worthwhile to understand how R can be used to merge together two or more data frames.</p>
+<p>Many data analysis exercises will require you to combine data from different sources into a single object. Thus, it's worthwhile to understand how R can be used to merge together two or more data frames.</p>
 <p>Merging data frames is generally done in one of two ways, depending on <em>how those data frames are similar</em>: <strong>row binding</strong> or <strong>column binding</strong>. Below, I provide reference to <code>dplyr::</code> functions, but, as usual, there are base R functions (<code>rbind()</code> and <code>cbind()</code>) that work, too!</p>
 <div id="row-binding" class="section level3 hasAnchor" number="3.6.1">
 <h3><span class="header-section-number">3.6.1</span> Row Binding<a href="rprog2.html#row-binding" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><em>Row binding</em> can be performed whenever the two (or more) data frames have column variables in common. Figure <a href="rprog2.html#fig:row-binding">3.2</a> shows this process graphically. Since the <code>x</code> and <code>y</code> data frames have identical column variables, the rows of data (i.e., what’s under the column names) can be “staked” on top of each other to create a single data frame.</p>
+<p><em>Row binding</em> can be performed whenever the two (or more) data frames have column variables in common. Figure <a href="rprog2.html#fig:row-binding">3.2</a> shows this process graphically. Since the <code>x</code> and <code>y</code> data frames have identical column variables, the rows of data (i.e., what's under the column names) can be "staked" on top of each other to create a single data frame.</p>
 <p>This is accomplished in the example using <code>dplyr::bind_rows(x, y)</code>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:row-binding"></span>
 <img src="images/bind_rows.png" alt="Row binding can occur when data frames x and y share the column variables." width="600pt" />
@@ -1479,7 +1481,7 @@ Figure 3.2: Row binding can occur when data frames x and y share the column vari
 </div>
 <div id="column-binding-_join" class="section level3 hasAnchor" number="3.6.2">
 <h3><span class="header-section-number">3.6.2</span> Column Binding (_join)<a href="rprog2.html#column-binding-_join" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Data frames can also be merged when row observations are shared, such that you end up merging column variables together from two objects. In this case, we would <strong>join</strong> the two data frames using a function like <code>dplyr::left_join()</code>. To do this, we must specify one or more variables that can uniquely identify row observations that are common between the two data frames. Once the rows are “lined up”, we can paste the new column variables into a combined data frame. This is shown schematically in Figure <a href="rprog2.html#fig:left-join">3.3</a> where the matching rows are specified using the argument <code>by = var_a</code> within the join function.</p>
+<p>Data frames can also be merged when row observations are shared, such that you end up merging column variables together from two objects. In this case, we would <strong>join</strong> the two data frames using a function like <code>dplyr::left_join()</code>. To do this, we must specify one or more variables that can uniquely identify row observations that are common between the two data frames. Once the rows are "lined up", we can paste the new column variables into a combined data frame. This is shown schematically in Figure <a href="rprog2.html#fig:left-join">3.3</a> where the matching rows are specified using the argument <code>by = var_a</code> within the join function.</p>
 <div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="rprog2.html#cb165-1" tabindex="-1"></a><span class="co"># generic code for example; will not run</span></span>
 <span id="cb165-2"><a href="rprog2.html#cb165-2" tabindex="-1"></a>new.dataframe <span class="ot">&lt;-</span> <span class="fu">left_join</span>(x, y, <span class="at">by =</span> var_a)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:left-join"></span>
@@ -1500,12 +1502,12 @@ Figure 3.3: Column binding, or joins can occur when data frames x and y share th
 </div>
 <div id="piping" class="section level2 hasAnchor" number="3.7">
 <h2><span class="header-section-number">3.7</span> Piping<a href="rprog2.html#piping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>So far, we’ve shown how to use <code>dplyr</code> functions one at a time to clean and
+<p>So far, we've shown how to use <code>dplyr</code> functions one at a time to clean and
 modify data. Often, however, we want to perform several data-wrangling steps
 in sequence.</p>
 <p>The native R pipe operator, <code>|&gt;</code>, provides a convenient way to connect those
 steps.</p>
-<p>If you look at the format of common <code>dplyr</code> functions, you’ll notice that
+<p>If you look at the format of common <code>dplyr</code> functions, you'll notice that
 they generally take a data frame as their first argument:</p>
 <div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="rprog2.html#cb166-1" tabindex="-1"></a><span class="co"># generic code; will not run</span></span>
 <span id="cb166-2"><a href="rprog2.html#cb166-2" tabindex="-1"></a></span>
@@ -1690,7 +1692,7 @@ Markdown files are versatile because:</p>
 markdown files can be turned into websites, email messages, reports, blogs, textbooks, and other forms of media without worry;</li>
 <li>Markdowns are independent of the operating system (Mac, PC, Linux, Android,
 and iOS devices can read them);</li>
-<li>Markdowns can be opened by almost any application (the file format is non-proprietary), so you don’t need to worry about having special software to
+<li>Markdowns can be opened by almost any application (the file format is non-proprietary), so you don't need to worry about having special software to
 read them.<br />
 </li>
 <li>A markdown document provides an excellent template for
@@ -1700,7 +1702,7 @@ you can draw from the work.</li>
 </ul>
 <div id="r-markdowns" class="section level3 hasAnchor" number="3.8.1">
 <h3><span class="header-section-number">3.8.1</span> R Markdowns<a href="rprog2.html#r-markdowns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The R Studio IDE can create <strong><em>“R Markdowns”</em></strong> (file extension .Rmd)
+<p>The R Studio IDE can create <strong><em>"R Markdowns"</em></strong> (file extension .Rmd)
 specifically for the R programming environment. An R markdown file allows you
 do lots of things; we will use them to create assignments and homework reports
 that display R code, the outputs of that code, and plain text. To use the R
@@ -1710,14 +1712,14 @@ markdown format, you need to install the <code>rmarkdown</code> package: <code>i
 </div>
 <div id="header" class="section level3 hasAnchor" number="3.8.2">
 <h3><span class="header-section-number">3.8.2</span> Header<a href="rprog2.html#header" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The R Markdown “header” section is where you specify details about the file being created. A markdown header contains <strong>YAML</strong> metadata, which stands for <a href="https://yaml.org/spec/1.2/spec.html#Introduction" target="_blank"><em>“YAML Ain’t Markup Language”</em></a>. The YAML (pronounced like “camel”) header is essentially a list of directives (referred to as “key:value” pairs) that help application software interpret the file. A YAML header can act simultaneously as a “configuration file”, a “log file”, and “translator file” - allowing one software program to read the output of another program. An example header with YAML metadata is shown below.</p>
+<p>The R Markdown "header" section is where you specify details about the file being created. A markdown header contains <strong>YAML</strong> metadata, which stands for <a href="https://yaml.org/spec/1.2/spec.html#Introduction" target="_blank"><em>"YAML Ain't Markup Language"</em></a>. The YAML (pronounced like “camel") header is essentially a list of directives (referred to as "key:value" pairs) that help application software interpret the file. A YAML header can act simultaneously as a "configuration file", a "log file", and "translator file" - allowing one software program to read the output of another program. An example header with YAML metadata is shown below.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:YAML-1"></span>
 <img src="images/YAML_1_anno.png" alt="Example of a YAML header to render an R Markdown into an html file." width="500" />
 <p class="caption">
 Figure 3.4: Example of a YAML header to render an R Markdown into an html file.
 </p>
 </div>
-<p>The header is delineated at the top of the file by a section that begins and ends with three dashes, “—”. Within the header are YAML metadata representing key:value pairs. <strong>What are “key:value” pairs?</strong> The <strong>“key:”</strong> is a directive that you want to give to the file and the <strong>“value”</strong> represents the level of detail or information that you want to associate with that directive. Key:value pairs provide instructions on how the file should be read, interpreted, and output. In Figure <a href="rprog2.html#fig:YAML-1">3.4</a>, the keys are <em>“title:”</em>, <em>“author:”</em>, <em>“date:”</em>, and <em>“output:”</em> and the corresponding values are <em>“Markdowns”</em>, <em>“JV”</em>, <em>“7/23/2020”</em>, and <em>“html_document”</em>. You can learn more about key:value pairs in the R Markdown Style Guide for <a href="https://bookdown.org/yihui/rmarkdown/html-document.html" target="_blank">html</a>
+<p>The header is delineated at the top of the file by a section that begins and ends with three dashes, "---". Within the header are YAML metadata representing key:value pairs. <strong>What are "key:value" pairs?</strong> The <strong>"key:"</strong> is a directive that you want to give to the file and the <strong>"value"</strong> represents the level of detail or information that you want to associate with that directive. Key:value pairs provide instructions on how the file should be read, interpreted, and output. In Figure <a href="rprog2.html#fig:YAML-1">3.4</a>, the keys are <em>"title:"</em>, <em>"author:"</em>, <em>"date:"</em>, and <em>"output:"</em> and the corresponding values are <em>"Markdowns"</em>, <em>"JV"</em>, <em>"7/23/2020"</em>, and <em>"html_document"</em>. You can learn more about key:value pairs in the R Markdown Style Guide for <a href="https://bookdown.org/yihui/rmarkdown/html-document.html" target="_blank">html</a>
 and <a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html" target="_blank">pdf</a>.</p>
 <div class="rmdnote">
 <p>
@@ -1727,7 +1729,7 @@ encourage you to specify key directives like “author:”, “date:” and
 “output:” in your YAML headers.
 </p>
 </div>
-<p>Sometimes, you will want to provide nested formatting directives in your markdown header. For example, you can specify the addition of a <strong><em>“table of contents”</em></strong> to your html output file that <strong><em>“floats”</em></strong> alongside the text. In that case, your YAML metadata would look like this:</p>
+<p>Sometimes, you will want to provide nested formatting directives in your markdown header. For example, you can specify the addition of a <strong><em>"table of contents"</em></strong> to your html output file that <strong><em>"floats"</em></strong> alongside the text. In that case, your YAML metadata would look like this:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:YAML-2"></span>
 <img src="images/YAML_2_anno.png" alt="Example R Markdown header with nested YAML directives to render an html file with a floating table of contents." width="497" />
 <p class="caption">
@@ -1788,7 +1790,7 @@ provided by RStudio.</p>
 Figure 3.6: Example R Markdown showing header, text, and code chunks.
 </p>
 </div>
-<p>Once your markdown is complete, you can <em>render</em> it into an output file (e.g., html, pdf, doc, rtf) using the <code>knitr</code> package, which interprets your YAML header and “knits” the markdown sections into the desired format. Here is the same markdown rendered into an html document using the <code>knit</code> button.</p>
+<p>Once your markdown is complete, you can <em>render</em> it into an output file (e.g., html, pdf, doc, rtf) using the <code>knitr</code> package, which interprets your YAML header and "knits" the markdown sections into the desired format. Here is the same markdown rendered into an html document using the <code>knit</code> button.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:markdown-2"></span>
 <img src="images/markdown_render.png" alt="Example R Markdown when rendered into an html document." width="700" />
 <p class="caption">
@@ -1816,7 +1818,7 @@ Figure 3.7: Example R Markdown when rendered into an html document.
 <li>combining these operations with the native R pipe <code>|&gt;</code>.</li>
 </ul>
 <p>Your work is saved automatically. Use <strong>Start Over</strong> at the bottom of the tutorial navigation panel if you want to reset the entire tutorial.</p>
-<p>If the tutorial does not appear in RStudio’s Tutorial pane, you can launch it from the Console:</p>
+<p>If the tutorial does not appear in RStudio's Tutorial pane, you can launch it from the Console:</p>
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="rprog2.html#cb177-1" tabindex="-1"></a>learnr<span class="sc">::</span><span class="fu">run_tutorial</span>(<span class="st">&quot;working-with-data&quot;</span>, <span class="at">package =</span> <span class="st">&quot;edarlearn&quot;</span>)</span></code></pre></div>
 </div>
 <div id="chapter-3-exercises" class="section level2 hasAnchor" number="3.10">
@@ -1839,14 +1841,14 @@ already open. Create an R script (e.g., <code>ch-3-exercises.R</code>) and save 
 the working directory is pointed to the location of <code>ch-3-exercises.R</code> within
 your R Project. If it is not, navigate to Session &gt; Set Working Directory &gt; To
 Source File Location. Again, check your current working directory to confirm.</p></li>
-<li><p>Write “metadata” at the top of the R script using <code>#</code>, including your name,
-today’s date, class, and chapter. Add a heading called “Pathnames and Data
-Import”.</p></li>
+<li><p>Write "metadata" at the top of the R script using <code>#</code>, including your name,
+today's date, class, and chapter. Add a heading called "Pathnames and Data
+Import".</p></li>
 <li><p>Download the Fort Collins ozone dataset locally and save the <code>.csv</code> file in
 the <code>/data</code> folder in your R Project. What would be a better, more descriptive
 name for the data file that also follows file-naming conventions (e.g., no
 spaces, human- and machine-readable)? Change the file name locally. Commit the
-additions to GitHub (e.g., “add ozone data file”, “create ch3 r script”) but
+additions to GitHub (e.g., "add ozone data file", "create ch3 r script") but
 leave a queue of commits to push at the end of the class.</p></li>
 <li><p>What is the absolute pathname of the ozone data file on your local computer?
 Using <code>paste0()</code>, save your absolute pathname as an object called
@@ -1859,7 +1861,7 @@ Commit this work. <em>What kind of problems would you encounter if you regularly
 <li><p>Rerun the line of code for data import with the relative pathname.
 <em>What kind of message did R return in the console when you imported the data file? What information can you glean from this?</em>
 In your R script, execute some of the suggested function calls (from previous
-lectures and chapters) that provide similar information to “see” and explore
+lectures and chapters) that provide similar information to "see" and explore
 the dataframe/tibble object. Examine the output. Make a commit.</p></li>
 <li><p>Push all queued commits to GitHub. PSA: Regularly follow this workflow of
 small, regular commits and intermittent pushes in everything you do in R.</p></li>
@@ -1890,18 +1892,18 @@ small, regular commits and intermittent pushes in everything you do in R.</p></l
 </div>
 <div id="set-2-data-wrangling-and-piping" class="section level3 hasAnchor" number="3.10.2">
 <h3><span class="header-section-number">3.10.2</span> Set 2: Data wrangling and piping<a href="rprog2.html#set-2-data-wrangling-and-piping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><em>Note</em>: In the real world, you would not receive such a “tidy” data file as you
+<p><em>Note</em>: In the real world, you would not receive such a "tidy" data file as you
 will use for the following exercises. You would normally need to clean up the
 file structure, variables, and column names before anything else, typically
-within a “pipe” of “verbs” from <code>dplyr</code>. Before you write any code, however,
+within a "pipe" of "verbs" from <code>dplyr</code>. Before you write any code, however,
 you need to think about what kind of wrangling needs to be done for your data.
 I recommend you <em>literally</em> sketch our your desired dataframe result. But, in
-this case, don’t worry because we did that leg work for you; the ozone
+this case, don't worry because we did that leg work for you; the ozone
 data file is clean upon import. In the future, keep the handy function
 <code>janitor::clean_names()</code> in mind to clean all variable names at once. Also,
-peruse Hadley Wickham’s
+peruse Hadley Wickham's
 <a href="https://vita.had.co.nz/papers/tidy-data.pdf" target="_blank">paper</a> on
-“tidy data” to understand what it is and how to make messy data tidy.</p>
+"tidy data" to understand what it is and how to make messy data tidy.</p>
 <ol start="0" style="list-style-type: decimal">
 <li><p>Open your class R Project locally. Restart session, if R Project is already
 open. Open R script you used for the first set of exercises. Rerun the code to
@@ -1912,7 +1914,7 @@ resulting dataframe/tibble to an object called <code>ozone_hourly</code>. Rememb
 (and install, if needed) the related R packages! <em>What are some of the R packages that contain the pipe? There are many, and you have been introduced to at least one.</em></p></li>
 <li><p>Examine the <code>ozone_hourly</code> dataframe. Do you notice anything strange about
 the <code>sample_measurement</code> values? If not, try to find the range, minimum, or
-maximum of those values. You can’t—there are <code>NA</code> values. Add a line to your
+maximum of those values. You can't---there are <code>NA</code> values. Add a line to your
 <code>ozone_hourly</code> pipe in the previous question that removes the missing
 observations, using <code>drop_na()</code> from the <code>tidyr</code> package. <em>Note</em>: There are
 base R alternatives for removing missing observations, but, for the sake of
@@ -1925,7 +1927,7 @@ How do these compare to the median and mean?</p></li>
 measurement was above 0.07. Now, re-write the code on a new line using a pipe.
 Save the output of one of these approaches to a new <code>df</code>, following naming
 conventions.</p></li>
-<li><p>Overwriting the <code>ozone_hourly</code> dataframe and using a different <code>dplyr</code> verb within a pipe, create a new column (<code>ozone_ppb</code>) by multiplying the “parts-per-million” values from <code>sample_measurement</code> by 1000.</p></li>
+<li><p>Overwriting the <code>ozone_hourly</code> dataframe and using a different <code>dplyr</code> verb within a pipe, create a new column (<code>ozone_ppb</code>) by multiplying the "parts-per-million" values from <code>sample_measurement</code> by 1000.</p></li>
 <li><p><strong>Challenge</strong>: Generate a histogram of <code>sample_measurement</code>.</p></li>
 </ol>
 <div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="rprog2.html#cb179-1" tabindex="-1"></a><span class="co"># 0. set-up</span></span>
@@ -1974,8 +1976,8 @@ conventions.</p></li>
 <li><p>Open your class R Project locally. Restart session, if R Project is already
 open.</p></li>
 <li><p>Create a new R Markdown file (<code>.Rmd</code>) in RStudio IDE (File &gt; New File &gt; R
-Markdown) and pick a title (of document, not file) such as “Chapter 3
-Exercises”. Name the file (“ch-3-exercises.Rmd”) and save it to your local R
+Markdown) and pick a title (of document, not file) such as "Chapter 3
+Exercises". Name the file ("ch-3-exercises.Rmd") and save it to your local R
 Project in <code>/code</code>.</p></li>
 <li><p>In the RStudio Console, determine your current working directory. Make sure
 the working directory is pointed to the location of <code>.Rmd</code> within your R
@@ -1983,17 +1985,17 @@ Project. If it is not, navigate to Session &gt; Set Working Directory &gt; To So
 File Location. Again, check your current working directory to confirm.</p></li>
 <li><p>Knit the sample R Markdown to HTML and/or PDF (if you installed LaTex).</p></li>
 <li><p>Commit and push the sample R Markdown and its knitted counterpart to your
-repository on GitHub with a short, informative commit message such as “test
-knit rmd template”.</p></li>
+repository on GitHub with a short, informative commit message such as "test
+knit rmd template".</p></li>
 <li><p>Delete the sample content from the R Markdown file (line 8 and beyond) and
-recommit the change (e.g., “delete rmd template contents”).</p></li>
+recommit the change (e.g., "delete rmd template contents").</p></li>
 <li><p>Below the YAML ( <em>where does the YAML end, and what tells you that?</em> ), copy
 your code from the R script you used for the prior sets of exercises into the R
 Markdown file. Organize this code into relevant headings and within
 thematically appropriate code chunks. For example, the code for data import
 would be in its own code chunk.</p></li>
-<li><p>Add first- , second-, and third-order headings (e.g., “Data Import”, “Using
-Relative Pathname”, “Using Absolute Pathname), using the appropriate Markdown
+<li><p>Add first- , second-, and third-order headings (e.g., "Data Import", "Using
+Relative Pathname", "Using Absolute Pathname), using the appropriate Markdown
 symbol. <em>What does this symbol also do (to a completely different effect) within R scripts or inside R Markdown code chunks?</em></p></li>
 <li><p>Knit this document to HTML and/or PDF and examine how R Markdown returns
 output.</p></li>

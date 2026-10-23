@@ -362,17 +362,17 @@ glimpse(my.list)
 ##  $ entry_1: chr [1:4] "Harry" "Ron" "Hermione" "Draco"
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] "volkswagen" "subaru" "ford" "jeep" ...
-##   ..$ model       : chr [1:7] "jetta" "forester awd" "f150 pickup 4wd" "grand cherokee 4wd" ...
-##   ..$ displ       : num [1:7] 2 2.5 4.2 4.7 1.8 3 2.5
-##   ..$ year        : int [1:7] 1999 1999 1999 2008 1999 1999 2008
-##   ..$ cyl         : int [1:7] 4 4 6 8 4 6 5
-##   ..$ trans       : chr [1:7] "auto(l4)" "manual(m5)" "manual(m5)" "auto(l5)" ...
-##   ..$ drv         : chr [1:7] "f" "4" "4" "4" ...
-##   ..$ cty         : int [1:7] 19 18 14 14 18 18 21
-##   ..$ hwy         : int [1:7] 26 25 17 19 29 26 29
-##   ..$ fl          : chr [1:7] "r" "r" "r" "r" ...
-##   ..$ class       : chr [1:7] "compact" "suv" "pickup" "suv" ...
+##   ..$ manufacturer: chr [1:7] "audi" "volkswagen" "jeep" "volkswagen" ...
+##   ..$ model       : chr [1:7] "a4 quattro" "new beetle" "grand cherokee 4wd" "jetta" ...
+##   ..$ displ       : num [1:7] 2 2 3.7 1.9 5.3 5.3 3
+##   ..$ year        : int [1:7] 2008 1999 2008 1999 2008 2008 1999
+##   ..$ cyl         : int [1:7] 4 4 6 4 8 8 6
+##   ..$ trans       : chr [1:7] "auto(s6)" "auto(l4)" "auto(l5)" "manual(m5)" ...
+##   ..$ drv         : chr [1:7] "4" "f" "4" "f" ...
+##   ..$ cty         : int [1:7] 19 19 15 33 16 14 18
+##   ..$ hwy         : int [1:7] 27 26 19 44 25 20 26
+##   ..$ fl          : chr [1:7] "p" "r" "r" "d" ...
+##   ..$ class       : chr [1:7] "compact" "subcompact" "suv" "compact" ...
 ```
 
 Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, `[ ]`, a list element is returned. 
@@ -509,37 +509,37 @@ Many of the `dplyr::` functions support *Tidy Selection* as a means to choose ce
   <tr>
    <td style="text-align:left;"> everything() </td>
    <td style="text-align:left;width: 6cm; "> Matches all variables </td>
-   <td style="text-align:left;"> rename_with(mpg, .cols = everything(), .fn = toupper)) </td>
+   <td style="text-align:left;"> <code>rename_with(mpg, .cols = everything(), .fn = toupper)</code> </td>
   </tr>
   <tr>
    <td style="text-align:left;"> starts_with() </td>
    <td style="text-align:left;width: 6cm; "> Starts with a prefix </td>
-   <td style="text-align:left;"> select(mpg, starts_with('c')) </td>
+   <td style="text-align:left;"> <code>select(mpg, starts_with("c"))</code> </td>
   </tr>
   <tr>
    <td style="text-align:left;"> ends_with() </td>
    <td style="text-align:left;width: 6cm; "> Ends with a suffix </td>
-   <td style="text-align:left;"> mutate(mpg, across(ends_with('y'), .fns = ~0.425*.x, .names = 'km_per_liter_{.col}')) </td>
+   <td style="text-align:left;"> <code>mutate(mpg, across(ends_with("y"), .fns = ~0.425*.x, .names = 'km_per_liter_{.col}'))</code> </td>
   </tr>
   <tr>
    <td style="text-align:left;"> contains() </td>
    <td style="text-align:left;width: 6cm; "> Contains a literal string </td>
-   <td style="text-align:left;"> summarise(mpg, across(contains('y'), .fns = mean, .names = 'mean_{.col}')) </td>
+   <td style="text-align:left;"> <code>summarise(mpg, across(contains("y"), .fns = mean, .names = 'mean_{.col}'))</code> </td>
   </tr>
   <tr>
    <td style="text-align:left;"> matches() </td>
    <td style="text-align:left;width: 6cm; "> Matches a regular expression </td>
-   <td style="text-align:left;"> rename_with(mpg, .cols = matches('y$'), .fn = toupper) </td>
+   <td style="text-align:left;"> <code>rename_with(mpg, .cols = matches("y$"), .fn = toupper)</code> </td>
   </tr>
   <tr>
    <td style="text-align:left;"> where() </td>
    <td style="text-align:left;width: 6cm; "> Selects variables if function returns TRUE </td>
-   <td style="text-align:left;"> select(mpg, where(is.numeric)) </td>
+   <td style="text-align:left;"> <code>select(mpg, where(is.numeric))</code> </td>
   </tr>
   <tr>
    <td style="text-align:left;"> if_any() </td>
    <td style="text-align:left;width: 6cm; "> Filters rows if function returns TRUE </td>
-   <td style="text-align:left;"> filter(if_any(everything(), is.character)) </td>
+   <td style="text-align:left;"> <code>filter(if_any(everything(), is.character))</code> </td>
   </tr>
 </tbody>
 </table>
@@ -569,13 +569,13 @@ mutate(mpg, across(ends_with("y"), # select cty and hwy
 
 ```
 ## # A tibble: 5 × 5
-##   manufacturer model                year km_per_liter_cty km_per_liter_hwy
-##   <chr>        <chr>               <int>            <dbl>            <dbl>
-## 1 pontiac      grand prix           1999             7.22            11.5 
-## 2 dodge        ram 1500 pickup 4wd  1999             4.68             6.8 
-## 3 hyundai      tiburon              2008             8.5             11.5 
-## 4 ford         mustang              2008             7.22            11.0 
-## 5 dodge        durango 4wd          1999             4.68             6.38
+##   manufacturer model              year km_per_liter_cty km_per_liter_hwy
+##   <chr>        <chr>             <int>            <dbl>            <dbl>
+## 1 audi         a4 quattro         2008             8.07            11.5 
+## 2 volkswagen   new beetle         1999            14.9             18.7 
+## 3 toyota       toyota tacoma 4wd  2008             7.22             9.35
+## 4 subaru       forester awd       2008             8.5             11.0 
+## 5 toyota       camry              1999             8.92            12.3
 ```
 
 Summarizing the data range for only the numeric vectors:  

@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Functional Programming | Engineering Data Analysis in R</title>
-  <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to learn about data analysis using the R programming language." />
   <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Functional Programming | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to learn about data analysis using the R programming language." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 8 Functional Programming | Engineering Data Analysis in R" />
   
-  <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to learn about data analysis using the R programming language." />
   
 
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2026-10-19" />
+<meta name="date" content="2026-10-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,8 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -187,13 +189,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.4.1" data-path="rprog1.html"><a href="rprog1.html#commenting-code"><i class="fa fa-check"></i><b>2.4.1</b> Commenting code</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a>
+<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The "package" system</a>
 <ul>
 <li class="chapter" data-level="2.5.1" data-path="rprog1.html"><a href="rprog1.html#r-packages"><i class="fa fa-check"></i><b>2.5.1</b> R packages</a></li>
 <li class="chapter" data-level="2.5.2" data-path="rprog1.html"><a href="rprog1.html#installing-from-cran"><i class="fa fa-check"></i><b>2.5.2</b> Installing from CRAN</a></li>
 <li class="chapter" data-level="2.5.3" data-path="rprog1.html"><a href="rprog1.html#loading-an-installed-package"><i class="fa fa-check"></i><b>2.5.3</b> Loading an installed package</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a>
+<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R's most basic object types</a>
 <ul>
 <li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
 <li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
@@ -291,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
+<li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
 <li class="chapter" data-level="5.4.2" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.4.2</b> Cumulative Distribution Plot</a></li>
 <li class="chapter" data-level="5.4.3" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.4.3</b> Histogram</a></li>
 <li class="chapter" data-level="5.4.4" data-path="eda1.html"><a href="eda1.html#box"><i class="fa fa-check"></i><b>5.4.4</b> Boxplot</a></li>
@@ -330,7 +332,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.6.2" data-path="rprog3.html"><a href="rprog3.html#set-2-counting"><i class="fa fa-check"></i><b>6.6.2</b> Set 2: Counting</a></li>
 <li class="chapter" data-level="6.6.3" data-path="rprog3.html"><a href="rprog3.html#set-3-weekly-tweets"><i class="fa fa-check"></i><b>6.6.3</b> Set 3: Weekly tweets</a></li>
 <li class="chapter" data-level="6.6.4" data-path="rprog3.html"><a href="rprog3.html#are-tweets-correlated-in-time"><i class="fa fa-check"></i><b>6.6.4</b> Are tweets correlated in time?</a></li>
-<li class="chapter" data-level="6.6.5" data-path="rprog3.html"><a href="rprog3.html#set-4-csu-vs.-cu"><i class="fa fa-check"></i><b>6.6.5</b> Set 4: CSU vs. CU</a></li>
+<li class="chapter" data-level="6.6.5" data-path="rprog3.html"><a href="rprog3.html#set-4-csu-vs.-cu"><i class="fa fa-check"></i><b>6.6.5</b> Set 4: CSU vs. CU</a></li>
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="rprog3.html"><a href="rprog3.html#chapter-6-homework"><i class="fa fa-check"></i><b>6.7</b> Chapter 6 Homework</a></li>
 </ul></li>
@@ -370,7 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a>
 <ul>
 <li class="chapter" data-level="8.3.1" data-path="rprog4.html"><a href="rprog4.html#example-function-my_mean"><i class="fa fa-check"></i><b>8.3.1</b> Example Function: my_mean</a></li>
-<li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: “import.w.name”</a></li>
+<li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: "import.w.name"</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a>
 <ul>
@@ -420,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="measure.html"><a href="measure.html#ch.-10-objectives"><i class="fa fa-check"></i><b>10.1</b> Ch. 10 Objectives</a></li>
 <li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#sample"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
+<li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#sample"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
 <li class="chapter" data-level="10.2.2" data-path="measure.html"><a href="measure.html#sample.collect"><i class="fa fa-check"></i><b>10.2.2</b> Collecting a sample</a></li>
 <li class="chapter" data-level="10.2.3" data-path="measure.html"><a href="measure.html#simple-random-sampling"><i class="fa fa-check"></i><b>10.2.3</b> Simple Random Sampling</a></li>
 <li class="chapter" data-level="10.2.4" data-path="measure.html"><a href="measure.html#systematic-sampling"><i class="fa fa-check"></i><b>10.2.4</b> Systematic Sampling</a></li>
@@ -484,7 +486,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.6" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>12.6</b> Pearson Correlation Coefficient</a>
 <ul>
-<li class="chapter" data-level="12.6.1" data-path="dist.html"><a href="dist.html#anscombes-quartet"><i class="fa fa-check"></i><b>12.6.1</b> Anscombe’s Quartet</a></li>
+<li class="chapter" data-level="12.6.1" data-path="dist.html"><a href="dist.html#anscombes-quartet"><i class="fa fa-check"></i><b>12.6.1</b> Anscombe's Quartet</a></li>
 </ul></li>
 <li class="chapter" data-level="12.7" data-path="dist.html"><a href="dist.html#OLS"><i class="fa fa-check"></i><b>12.7</b> OLS Regression Coefficients</a></li>
 </ul></li>
@@ -518,18 +520,18 @@ programming in R. Upon completing this chapter, you should be able to:</p>
 <li>Describe the basic tenets of functional programming</li>
 <li>Define functions and their basic attributes</li>
 <li>Create simple functions using named and optional arguments</li>
-<li>Define the meaning of <em>“vectorized operations”</em> in R</li>
+<li>Define the meaning of <em>"vectorized operations"</em> in R</li>
 <li>Interpret and apply the <code>purrr::map</code> family of functions</li>
 </ul>
 </div>
 <div id="what-is-functional-programming" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> What is <strong><em>functional programming</em></strong>?<a href="rprog4.html#what-is-functional-programming" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><em>Functional programming</em> means just that: programming with functions. A basic
-philosophy of functional programming in R is to replace “for-loops” with functions.
-While there isn’t anything inherently wrong with for-loops, they can be difficult
+philosophy of functional programming in R is to replace "for-loops" with functions.
+While there isn't anything inherently wrong with for-loops, they can be difficult
 to follow, especially when they are nested within one to another.
-R is well-poised to support the elimination of “for-loops” because R is a
-<em>vectorized language</em>. To be vectorized means that you don’t need a for-loop to
+R is well-poised to support the elimination of "for-loops" because R is a
+<em>vectorized language</em>. To be vectorized means that you don't need a for-loop to
 execute this code:</p>
 <div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="rprog4.html#cb298-1" tabindex="-1"></a>evens <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)  </span>
 <span id="cb298-2"><a href="rprog4.html#cb298-2" tabindex="-1"></a>evens_squared <span class="ot">&lt;-</span> evens<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
@@ -543,8 +545,8 @@ same task, albeit in a longer (and harder to follow) version.</p>
 <p>The pipe operator (<code>%&gt;%</code> or <code>|&gt;</code>) is an ally in this endeavor because it allows you to
 pass an object (like a vector or data frame) through series of functions in serial order. The pipe function is also easier to follow (with your mind) because
 it allows you to interpret the code as if you were reading instructions in a
-“how-to” manual:
-<em>“take this object, then do this, then do this, then do that”</em>. <strong>Without</strong> the <code>|&gt;</code>
+"how-to" manual:
+<em>"take this object, then do this, then do this, then do that"</em>. <strong>Without</strong> the <code>|&gt;</code>
 operator, we are forced to nest functions together or write long and verbose
 code that steps through treatments slowly (and somewhat painfully). Looking at
 the code below should make clear which set is easier to comprehend:</p>
@@ -564,25 +566,25 @@ the code below should make clear which set is easier to comprehend:</p>
 <span id="cb300-14"><a href="rprog4.html#cb300-14" tabindex="-1"></a>         <span class="at">name =</span> Raw_Guest_List) <span class="sc">|&gt;</span></span>
 <span id="cb300-15"><a href="rprog4.html#cb300-15" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2000</span>) <span class="sc">|&gt;</span></span>
 <span id="cb300-16"><a href="rprog4.html#cb300-16" tabindex="-1"></a>  <span class="fu">select</span>(job, date, name)</span></code></pre></div>
-<p>In the nested example above, we “see” the <code>dplyr::select()</code> function first,
+<p>In the nested example above, we "see" the <code>dplyr::select()</code> function first,
 yet the arguments to this function show up last (at the end of the nested code).
 This separation between functions and their arguments only gets worse as the
 degree of nesting increases. The piped code, however, produces the same result
-as the nested code but in a much more “readable” fashion. A similar analogy
-holds for the nesting of “for-loops” (which, when nested, are even
+as the nested code but in a much more "readable" fashion. A similar analogy
+holds for the nesting of "for-loops" (which, when nested, are even
 harder to follow!).</p>
 </div>
 <div id="writng-functions" class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">8.3</span> Writng Functions<a href="rprog4.html#writng-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
-<p><span style="color: blue;"> “If you have to do something more than twice,
-use a function to do it.” - Programming Proverb </span></p>
+<p><span style="color: blue;"> "If you have to do something more than twice,
+use a function to do it." - Programming Proverb </span></p>
 </blockquote>
 <p>Up to this point, we have relied entirely on functions sourced from base R or
 from packages like <code>Tidyverse::</code>(and for good reason - they are very useful).<br />
 Every programmer, however, at some point in their journey, discovers that the
-function they are desiring simply doesn’t exist - at least not in the way that
-suits their vision. To that end, it’s worth learning how to create your own
+function they are desiring simply doesn't exist - at least not in the way that
+suits their vision. To that end, it's worth learning how to create your own
 functions.</p>
 <p>The syntax for function generation is relatively straight forward:</p>
 <div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="rprog4.html#cb301-1" tabindex="-1"></a><span class="co">#example code; will not run</span></span>
@@ -597,7 +599,7 @@ an <strong>environment</strong> where the function resides. These components can
 accessed by passing the function name as an argument to:</p>
 <ul>
 <li><code>formals()</code>, to see arguments</li>
-<li><code>body()</code>, to see the function’s code
+<li><code>body()</code>, to see the function's code
 <ul>
 <li>or type just the function name, without <code>()</code>, into the console</li>
 <li><em>but note that many base R functions are coded in C++</em> and can be accessed
@@ -610,10 +612,10 @@ accessed by passing the function name as an argument to:</p>
 </ul>
 <div id="example-function-my_mean" class="section level3 hasAnchor" number="8.3.1">
 <h3><span class="header-section-number">8.3.1</span> Example Function: my_mean<a href="rprog4.html#example-function-my_mean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Let’s create a simple function, named <code>my_mean</code>, to calculate the arithmetic mean
+<p>Let's create a simple function, named <code>my_mean</code>, to calculate the arithmetic mean
 for a numeric vector. This function takes only one argument, a vector <code>x</code>, for
 which we calculate the mean (<code>sum(x) / length(x)</code>), assign it to a
-value <code>y</code>, and the return <code>y</code> as output. Note that all the <em>“action”</em> for <code>my_mean</code>
+value <code>y</code>, and the return <code>y</code> as output. Note that all the <em>"action"</em> for <code>my_mean</code>
 happens within the curly braces <code>{ }</code> that follow the function assignment.</p>
 <div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="rprog4.html#cb302-1" tabindex="-1"></a>my_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb302-2"><a href="rprog4.html#cb302-2" tabindex="-1"></a>     y <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x) </span>
@@ -631,7 +633,7 @@ of that function).</p>
 <p>If any <code>NA</code> values are present, however, we are less fortunate: only NA is
 returned. This many not seem like a big deal but if your analysis depends on
 calling <code>my_mean</code> in several locations (over and over), you might have a hard
-time debugging it…</p>
+time debugging it...</p>
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="rprog4.html#cb304-1" tabindex="-1"></a><span class="fu">my_mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="cn">NA</span>))</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
 <p>For this reason, functions often contain <em>optional arguments</em> that allow the user
@@ -658,11 +660,11 @@ most <em>homemade</em> functions rely on other functions called within their bod
 and so they inherit the properties of those functions.<br />
 Second, you may have noticed that while
 the <code>body()</code> code in <code>my_mean2</code> assigns the mean of <code>x</code> to a new variable, <code>y</code>,
-this function-specific variable does not show up in the <strong>“Global Environment”</strong>
+this function-specific variable does not show up in the <strong>"Global Environment"</strong>
 pane after the function is executed. This is due to how <em>environments</em> are created in R: an <em>environment</em> essentially draws walls around objects.</p>
 <p>Indeed, objects that are defined within functions are part of the <em>evaluation</em>
 <em>environment</em> within that function, even if the function returns the value of
-the object as output (<em>“what happens inside functions stays inside functions”</em>).
+the object as output (<em>"what happens inside functions stays inside functions"</em>).
 A detailed discussion on R environments is beyond the scope of this book,
 look <a href="https://www.r-bloggers.com/environments-in-r/" target="_blank">here</a>
 for an introduction to environments and
@@ -670,19 +672,19 @@ for an introduction to environments and
 for a more detailed tutorial.
 The take-home point is that a homemade function can exist within the global
 environment and return values to the global environment, even if some of the objects
-created within that function don’t show up in the global environment.</p>
+created within that function don't show up in the global environment.</p>
 </div>
 <div id="example-function-import.w.name" class="section level3 hasAnchor" number="8.3.2">
-<h3><span class="header-section-number">8.3.2</span> Example Function: “import.w.name”<a href="rprog4.html#example-function-import.w.name" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">8.3.2</span> Example Function: "import.w.name"<a href="rprog4.html#example-function-import.w.name" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Oftentimes, you will have a list of files of the same type/structure
 that you want to import and analyze in a single data frame. This exercise (and
 the section that follows) will demonstrate how you can streamline that process
-using functional programming. Let’s create a function to <em>“import a file with</em>
-<em>its name appended”.</em></p>
+using functional programming. Let's create a function to <em>"import a file with</em>
+<em>its name appended".</em></p>
 <p>For this example, assume that your files represent data from a network of sensors,
 where the name/ID assigned to each sensor is <strong>included in its file name</strong> but
 <em>not in the file itself</em>. To give you an example of what we are working with,
-let’s use <code>list.files()</code> to look at the file names and paths (<em>note: you can find this</em>
+let's use <code>list.files()</code> to look at the file names and paths (<em>note: you can find this</em>
 <em>.zip file on our Canvas site</em>). For this exercise,
 we show a short list of 8 files (4 each from two sensors) but one could imagine
 this list being hundreds of entries.<em>To Note: these are real data collected</em>
@@ -691,7 +693,7 @@ this list being hundreds of entries.<em>To Note: these are real data collected</
 <em>and published</em>
 <em>by our research group</em>
 <em><a href="https://doi.org/10.1016/j.atmosenv.2019.117067" target="_blank">here</a> in 2019.</em>
-The “PA” in each file name stands for
+The "PA" in each file name stands for
 <a href="https://www2.purpleair.com/" target="_blank">Purple Air</a>.</p>
 <div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="rprog4.html#cb309-1" tabindex="-1"></a><span class="fu">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="at">full.names=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;./data/purpleair//PA019_20181022.csv&quot;
@@ -760,11 +762,11 @@ file so that you can call upon them when needed: <code>source(import.w.name.R)</
 <h2><span class="header-section-number">8.4</span> The <code>purrr::</code> package<a href="rprog4.html#the-purrr-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <code>purrr::</code> package was designed specifically with functional programming in mind.
 Similar to the discussion of <em>vectorized operations</em> above, <code>purrr::</code> was created
-to help you apply functions to vectors (and data frames) in a way that is easy to implement and easy to “read”.</p>
+to help you apply functions to vectors (and data frames) in a way that is easy to implement and easy to "read".</p>
 <div id="function-mapping" class="section level3 hasAnchor" number="8.4.1">
 <h3><span class="header-section-number">8.4.1</span> Function Mapping<a href="rprog4.html#function-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>map_</code> family of functions are the core of the <code>purrr</code> package. These
-functions are intended to <em>map</em> functions (i.e., to apply them) to individual elements in a vector (or data frames); the <code>map_</code> functions are similar to functions like <code>lapply()</code> and <code>vapply()</code> from base R (but more versatile). <em>“Mapping”</em> a function onto a vector is a common theme of functional programming. To illustrate how the <code>map_</code> functions work, its best to visualize the process first.</p>
+functions are intended to <em>map</em> functions (i.e., to apply them) to individual elements in a vector (or data frames); the <code>map_</code> functions are similar to functions like <code>lapply()</code> and <code>vapply()</code> from base R (but more versatile). <em>"Mapping"</em> a function onto a vector is a common theme of functional programming. To illustrate how the <code>map_</code> functions work, its best to visualize the process first.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:map-anno1"></span>
 <img src="images/map_anno1.png" alt="The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input." width="632" />
 <p class="caption">
@@ -779,7 +781,7 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 <li>A <strong><em>data frame</em></strong> is a two dimensional (rectangular) object that contains columns of different vectors. The type of vector (e.g., <code>character</code>, <code>numeric</code>, <code>logical</code>, etc.) can differ from one column to the next but all entries within each vector column must be the same.</li>
 <li>A <strong><em>list</em></strong> can contain different vector objects of different types and different lengths. A list can also contain other lists. A list does not need to be rectangular.</li>
 </ul>
-<p>To illustrate the versatility of lists, let’s create one that contains a numeric vector, a matrix, and a data frame.</p>
+<p>To illustrate the versatility of lists, let's create one that contains a numeric vector, a matrix, and a data frame.</p>
 <div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="rprog4.html#cb314-1" tabindex="-1"></a>my.chr.vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Harry&quot;</span>, <span class="st">&quot;Ron&quot;</span>, <span class="st">&quot;Hermione&quot;</span>, <span class="st">&quot;Draco&quot;</span>)</span>
 <span id="cb314-2"><a href="rprog4.html#cb314-2" tabindex="-1"></a></span>
 <span id="cb314-3"><a href="rprog4.html#cb314-3" tabindex="-1"></a>my.num.matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow=</span><span class="dv">5</span>)</span>
@@ -795,25 +797,25 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 ##  $ entry_1: chr [1:4] &quot;Harry&quot; &quot;Ron&quot; &quot;Hermione&quot; &quot;Draco&quot;
 ##  $ entry_2: int [1:5, 1:4] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ entry_3: tibble [7 × 11] (S3: tbl_df/tbl/data.frame)
-##   ..$ manufacturer: chr [1:7] &quot;volkswagen&quot; &quot;subaru&quot; &quot;ford&quot; &quot;jeep&quot; ...
-##   ..$ model       : chr [1:7] &quot;jetta&quot; &quot;forester awd&quot; &quot;f150 pickup 4wd&quot; &quot;grand cherokee 4wd&quot; ...
-##   ..$ displ       : num [1:7] 2 2.5 4.2 4.7 1.8 3 2.5
-##   ..$ year        : int [1:7] 1999 1999 1999 2008 1999 1999 2008
-##   ..$ cyl         : int [1:7] 4 4 6 8 4 6 5
-##   ..$ trans       : chr [1:7] &quot;auto(l4)&quot; &quot;manual(m5)&quot; &quot;manual(m5)&quot; &quot;auto(l5)&quot; ...
-##   ..$ drv         : chr [1:7] &quot;f&quot; &quot;4&quot; &quot;4&quot; &quot;4&quot; ...
-##   ..$ cty         : int [1:7] 19 18 14 14 18 18 21
-##   ..$ hwy         : int [1:7] 26 25 17 19 29 26 29
-##   ..$ fl          : chr [1:7] &quot;r&quot; &quot;r&quot; &quot;r&quot; &quot;r&quot; ...
-##   ..$ class       : chr [1:7] &quot;compact&quot; &quot;suv&quot; &quot;pickup&quot; &quot;suv&quot; ...</code></pre>
+##   ..$ manufacturer: chr [1:7] &quot;audi&quot; &quot;volkswagen&quot; &quot;jeep&quot; &quot;volkswagen&quot; ...
+##   ..$ model       : chr [1:7] &quot;a4 quattro&quot; &quot;new beetle&quot; &quot;grand cherokee 4wd&quot; &quot;jetta&quot; ...
+##   ..$ displ       : num [1:7] 2 2 3.7 1.9 5.3 5.3 3
+##   ..$ year        : int [1:7] 2008 1999 2008 1999 2008 2008 1999
+##   ..$ cyl         : int [1:7] 4 4 6 4 8 8 6
+##   ..$ trans       : chr [1:7] &quot;auto(s6)&quot; &quot;auto(l4)&quot; &quot;auto(l5)&quot; &quot;manual(m5)&quot; ...
+##   ..$ drv         : chr [1:7] &quot;4&quot; &quot;f&quot; &quot;4&quot; &quot;f&quot; ...
+##   ..$ cty         : int [1:7] 19 19 15 33 16 14 18
+##   ..$ hwy         : int [1:7] 27 26 19 44 25 20 26
+##   ..$ fl          : chr [1:7] &quot;p&quot; &quot;r&quot; &quot;r&quot; &quot;d&quot; ...
+##   ..$ class       : chr [1:7] &quot;compact&quot; &quot;subcompact&quot; &quot;suv&quot; &quot;compact&quot; ...</code></pre>
 <p>Lists can be accessed in similar ways to vectors. For example, by using single-bracket indexing, <code>[ ]</code>, a list element is returned.</p>
 <div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="rprog4.html#cb316-1" tabindex="-1"></a>my.list[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## $entry_1
 ## [1] &quot;Harry&quot;    &quot;Ron&quot;      &quot;Hermione&quot; &quot;Draco&quot;</code></pre>
-<p>Note that <em>“single bracket”</em> indexing returns a “list element” of class: <code>list</code>.</p>
+<p>Note that <em>"single bracket"</em> indexing returns a "list element" of class: <code>list</code>.</p>
 <div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="rprog4.html#cb318-1" tabindex="-1"></a><span class="fu">class</span>(my.list[<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>## [1] &quot;list&quot;</code></pre>
-<p>If you want access to the vector contents of the list element, you can use the <code>$</code> symbol to access the contents of each list entry, or, you can use <em>“double bracket”</em> indexing, <code>[[ ]]</code>:</p>
+<p>If you want access to the vector contents of the list element, you can use the <code>$</code> symbol to access the contents of each list entry, or, you can use <em>"double bracket"</em> indexing, <code>[[ ]]</code>:</p>
 <div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="rprog4.html#cb320-1" tabindex="-1"></a>my.list<span class="sc">$</span>entry_1</span></code></pre></div>
 <pre><code>## [1] &quot;Harry&quot;    &quot;Ron&quot;      &quot;Hermione&quot; &quot;Draco&quot;</code></pre>
 <div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="rprog4.html#cb322-1" tabindex="-1"></a><span class="fu">class</span>(my.list<span class="sc">$</span>entry_1)</span></code></pre></div>
@@ -866,7 +868,7 @@ Figure 8.1: The map functions transform their input by applying a function to ea
 </tr>
 </tbody>
 </table>
-<p>Let’s use <code>map_dfr()</code> to apply our function, <code>import.w.name()</code>, onto the vector of file names and paths (<code>file_list</code>). The <em>“r”</em> in <code>map_dfr()</code> means that the resultant data frame output by <code>map_</code> will be created by binding rows together as the function moves down each index in the file list. This is shown schematically in Figure <a href="rprog4.html#fig:map-dfr-anno">8.2</a> below.</p>
+<p>Let's use <code>map_dfr()</code> to apply our function, <code>import.w.name()</code>, onto the vector of file names and paths (<code>file_list</code>). The <em>"r"</em> in <code>map_dfr()</code> means that the resultant data frame output by <code>map_</code> will be created by binding rows together as the function moves down each index in the file list. This is shown schematically in Figure <a href="rprog4.html#fig:map-dfr-anno">8.2</a> below.</p>
 <div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="rprog4.html#cb328-1" tabindex="-1"></a>file_list <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&#39;./data/purpleair/&#39;</span>, <span class="at">full.names=</span><span class="cn">TRUE</span>)</span>
 <span id="cb328-2"><a href="rprog4.html#cb328-2" tabindex="-1"></a></span>
 <span id="cb328-3"><a href="rprog4.html#cb328-3" tabindex="-1"></a><span class="co"># map the import.w.name() function to all objects within `file_list` sequentially</span></span>
@@ -896,10 +898,10 @@ Figure 8.2: Example: using <code>map_dfr()</code> to import a file list using a 
 <p>The <code>across()</code> function has two required arguments: the column variables being treated (<code>.cols =</code>) and the function(s) being applied to those columns (<code>.fns =</code>). For example, if you wanted to change the <code>cyl</code>, <code>drv</code>, and <code>class</code> variables in the <code>mpg</code> data frame to factors, you could use:</p>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="rprog4.html#cb330-1" tabindex="-1"></a>mpg_facts <span class="ot">&lt;-</span> <span class="fu">mutate</span>(mpg, <span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">c</span>(cyl, drv, class),</span>
 <span id="cb330-2"><a href="rprog4.html#cb330-2" tabindex="-1"></a>                                <span class="at">.fns =</span> factor))</span></code></pre></div>
-<p>Before providing more examples of <code>across()</code>, it’s worth taking a tangent to discuss more efficient ways to select multiple columns beyong using <code>c()</code>.</p>
+<p>Before providing more examples of <code>across()</code>, it's worth taking a tangent to discuss more efficient ways to select multiple columns beyong using <code>c()</code>.</p>
 <div id="using-tidy-select-syntax-to-select-columns" class="section level3 hasAnchor" number="8.5.1">
 <h3><span class="header-section-number">8.5.1</span> Using <code>&lt;tidy-select&gt;</code> syntax to select columns<a href="rprog4.html#using-tidy-select-syntax-to-select-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Many of the <code>dplyr::</code> functions support <em>Tidy Selection</em> as a means to choose certain column variables when operating on a data frame. For example, maybe you want to choose only columns whose names start with a common prefix (<code>starts_with()</code>) or whose names contain a common string (<code>contains()</code>). The <code>&lt;tidy-select&gt;</code> helpers provide syntax for efficiently specifying your <code>.cols =</code> argument in R. These helpers, shown below, can be used as column/variable selection arguments whenever you see the text <code>&lt;tidy-select&gt;</code> in the function’s help file.</p>
+<p>Many of the <code>dplyr::</code> functions support <em>Tidy Selection</em> as a means to choose certain column variables when operating on a data frame. For example, maybe you want to choose only columns whose names start with a common prefix (<code>starts_with()</code>) or whose names contain a common string (<code>contains()</code>). The <code>&lt;tidy-select&gt;</code> helpers provide syntax for efficiently specifying your <code>.cols =</code> argument in R. These helpers, shown below, can be used as column/variable selection arguments whenever you see the text <code>&lt;tidy-select&gt;</code> in the function's help file.</p>
 <table>
 <thead>
 <tr>
@@ -923,7 +925,7 @@ everything()
 Matches all variables
 </td>
 <td style="text-align:left;">
-rename_with(mpg, .cols = everything(), .fn = toupper))
+<code>rename_with(mpg, .cols = everything(), .fn = toupper)</code>
 </td>
 </tr>
 <tr>
@@ -934,7 +936,7 @@ starts_with()
 Starts with a prefix
 </td>
 <td style="text-align:left;">
-select(mpg, starts_with(‘c’))
+<code>select(mpg, starts_with("c"))</code>
 </td>
 </tr>
 <tr>
@@ -945,7 +947,7 @@ ends_with()
 Ends with a suffix
 </td>
 <td style="text-align:left;">
-mutate(mpg, across(ends_with(‘y’), .fns = ~0.425*.x, .names = ‘km_per_liter_{.col}’))
+<code>mutate(mpg, across(ends_with("y"), .fns = ~0.425*.x, .names = 'km_per_liter_{.col}'))</code>
 </td>
 </tr>
 <tr>
@@ -956,7 +958,7 @@ contains()
 Contains a literal string
 </td>
 <td style="text-align:left;">
-summarise(mpg, across(contains(‘y’), .fns = mean, .names = ‘mean_{.col}’))
+<code>summarise(mpg, across(contains("y"), .fns = mean, .names = 'mean_{.col}'))</code>
 </td>
 </tr>
 <tr>
@@ -967,7 +969,7 @@ matches()
 Matches a regular expression
 </td>
 <td style="text-align:left;">
-rename_with(mpg, .cols = matches(‘y$’), .fn = toupper)
+<code>rename_with(mpg, .cols = matches("y$"), .fn = toupper)</code>
 </td>
 </tr>
 <tr>
@@ -978,7 +980,7 @@ where()
 Selects variables if function returns TRUE
 </td>
 <td style="text-align:left;">
-select(mpg, where(is.numeric))
+<code>select(mpg, where(is.numeric))</code>
 </td>
 </tr>
 <tr>
@@ -989,7 +991,7 @@ if_any()
 Filters rows if function returns TRUE
 </td>
 <td style="text-align:left;">
-filter(if_any(everything(), is.character))
+<code>filter(if_any(everything(), is.character))</code>
 </td>
 </tr>
 </tbody>
@@ -1022,12 +1024,12 @@ filter(if_any(everything(), is.character))
 <tr class="odd">
 <td align="left">&amp;</td>
 <td align="left">for selecting the intersection of two sets of variables</td>
-<td align="left">where(is.numeric) &amp; contains(“y”)</td>
+<td align="left">where(is.numeric) &amp; contains("y")</td>
 </tr>
 <tr class="even">
 <td align="left">|</td>
 <td align="left">for selecting the union of two sets of variables</td>
-<td align="left">where(is.numeric) | starts_with(“m”)</td>
+<td align="left">where(is.numeric) | starts_with("m")</td>
 </tr>
 <tr class="odd">
 <td align="left">c()</td>
@@ -1048,13 +1050,13 @@ filter(if_any(everything(), is.character))
 <span id="cb331-6"><a href="rprog4.html#cb331-6" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> <span class="sc">|</span> <span class="fu">contains</span>(<span class="st">&quot;year&quot;</span>) <span class="sc">|</span> <span class="fu">contains</span>(<span class="st">&quot;km&quot;</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb331-7"><a href="rprog4.html#cb331-7" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 5
-##   manufacturer model                year km_per_liter_cty km_per_liter_hwy
-##   &lt;chr&gt;        &lt;chr&gt;               &lt;int&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-## 1 pontiac      grand prix           1999             7.22            11.5 
-## 2 dodge        ram 1500 pickup 4wd  1999             4.68             6.8 
-## 3 hyundai      tiburon              2008             8.5             11.5 
-## 4 ford         mustang              2008             7.22            11.0 
-## 5 dodge        durango 4wd          1999             4.68             6.38</code></pre>
+##   manufacturer model              year km_per_liter_cty km_per_liter_hwy
+##   &lt;chr&gt;        &lt;chr&gt;             &lt;int&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 audi         a4 quattro         2008             8.07            11.5 
+## 2 volkswagen   new beetle         1999            14.9             18.7 
+## 3 toyota       toyota tacoma 4wd  2008             7.22             9.35
+## 4 subaru       forester awd       2008             8.5             11.0 
+## 5 toyota       camry              1999             8.92            12.3</code></pre>
 <p>Summarizing the data range for only the numeric vectors:</p>
 <div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="rprog4.html#cb333-1" tabindex="-1"></a><span class="co"># show the ranges of all numeric vectors in the mpg data frame</span></span>
 <span id="cb333-2"><a href="rprog4.html#cb333-2" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
@@ -1068,7 +1070,7 @@ filter(if_any(everything(), is.character))
 <div id="anonymous-functions" class="section level3 hasAnchor" number="8.5.3">
 <h3><span class="header-section-number">8.5.3</span> Anonymous Functions<a href="rprog4.html#anonymous-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Sometimes, we want to do some <em>pre-processing</em> of our data before a summary call. In the case below, we summarize (by count) the number of <code>NA</code> values in a data frame for each column of the data frame (this is a great quality control check for new data). To do this, we apply the <code>is.na()</code> function to each entry, then sum them up by row (because <code>is.na</code> returns logical <code>TRUE/FALSE</code> objects that equate to 1 or 0, respectively).</p>
-<p>We can get <code>across()</code> to achieve this by creating a custom one-time function as shown in the code below. Such custom functions are known as <strong>anonymous functions</strong> because they don’t have an assigned function name. See example below, where we define a quick, one-time function as the <code>.fns =</code> argument in <code>across()</code>:</p>
+<p>We can get <code>across()</code> to achieve this by creating a custom one-time function as shown in the code below. Such custom functions are known as <strong>anonymous functions</strong> because they don't have an assigned function name. See example below, where we define a quick, one-time function as the <code>.fns =</code> argument in <code>across()</code>:</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="rprog4.html#cb335-1" tabindex="-1"></a><span class="co"># sum up the number of NAs by column in a data frame</span></span>
 <span id="cb335-2"><a href="rprog4.html#cb335-2" tabindex="-1"></a><span class="co"># create a custom function within the across() function</span></span>
 <span id="cb335-3"><a href="rprog4.html#cb335-3" tabindex="-1"></a><span class="co"># note that everything() is a tidyselect verb from above</span></span>
@@ -1079,7 +1081,7 @@ filter(if_any(everything(), is.character))
 ##   manufacturer model displ  year   cyl trans   drv   cty   hwy    fl class
 ##          &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
 ## 1            0     0     0     0     0     0     0     0     0     0     0</code></pre>
-<p>Anonymous functions are useful once you get used to the idea of <em>“creating a function within a function”</em>. They are common when you only need to use a function once. You will often see them written in their shorthand form (using the <code>~</code> symbol and <code>.x</code>) as shown below. Essentially, the <code>~</code> symbol tells R to expect either a function with multiple arguments or a chain of functions (i.e., some pre-processing of the data). The <code>.x</code> is a placeholder for the argument of your function.</p>
+<p>Anonymous functions are useful once you get used to the idea of <em>"creating a function within a function"</em>. They are common when you only need to use a function once. You will often see them written in their shorthand form (using the <code>~</code> symbol and <code>.x</code>) as shown below. Essentially, the <code>~</code> symbol tells R to expect either a function with multiple arguments or a chain of functions (i.e., some pre-processing of the data). The <code>.x</code> is a placeholder for the argument of your function.</p>
 <div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="rprog4.html#cb337-1" tabindex="-1"></a><span class="co"># sum up the number of NAs by column in a data frame</span></span>
 <span id="cb337-2"><a href="rprog4.html#cb337-2" tabindex="-1"></a><span class="co"># this code is equivalent to the one above</span></span>
 <span id="cb337-3"><a href="rprog4.html#cb337-3" tabindex="-1"></a><span class="co"># the ~ and .x are shorthand for an anonymous function call</span></span>

@@ -1,14 +1,17 @@
---- 
+---
 title: "Engineering Data Analysis in R"
 author: "John Volckens"
-date: "2026-10-19"
+date: "2026-10-23"
 site: bookdown::bookdown_site
 knit: "bookdown::render_book"
+output:
+  bookdown::gitbook:
+    md_extensions: "-smart"
 documentclass: book
 bibliography: packages.bib
 biblio-style: apalike
 link-citations: yes
-description: "This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language."
+description: "This is an undergraduate technical elective course for mechanical engineers who wish to learn about data analysis using the R programming language."
 ---
 
 

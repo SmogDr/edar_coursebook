@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Transformations and Other Tricks | Engineering Data Analysis in R</title>
-  <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to learn about data analysis using the R programming language." />
   <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Transformations and Other Tricks | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to learn about data analysis using the R programming language." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 9 Transformations and Other Tricks | Engineering Data Analysis in R" />
   
-  <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to learn about data analysis using the R programming language." />
   
 
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2026-10-19" />
+<meta name="date" content="2026-10-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,8 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -187,13 +189,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.4.1" data-path="rprog1.html"><a href="rprog1.html#commenting-code"><i class="fa fa-check"></i><b>2.4.1</b> Commenting code</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a>
+<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The "package" system</a>
 <ul>
 <li class="chapter" data-level="2.5.1" data-path="rprog1.html"><a href="rprog1.html#r-packages"><i class="fa fa-check"></i><b>2.5.1</b> R packages</a></li>
 <li class="chapter" data-level="2.5.2" data-path="rprog1.html"><a href="rprog1.html#installing-from-cran"><i class="fa fa-check"></i><b>2.5.2</b> Installing from CRAN</a></li>
 <li class="chapter" data-level="2.5.3" data-path="rprog1.html"><a href="rprog1.html#loading-an-installed-package"><i class="fa fa-check"></i><b>2.5.3</b> Loading an installed package</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a>
+<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R's most basic object types</a>
 <ul>
 <li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
 <li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
@@ -291,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
+<li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
 <li class="chapter" data-level="5.4.2" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.4.2</b> Cumulative Distribution Plot</a></li>
 <li class="chapter" data-level="5.4.3" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.4.3</b> Histogram</a></li>
 <li class="chapter" data-level="5.4.4" data-path="eda1.html"><a href="eda1.html#box"><i class="fa fa-check"></i><b>5.4.4</b> Boxplot</a></li>
@@ -330,7 +332,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.6.2" data-path="rprog3.html"><a href="rprog3.html#set-2-counting"><i class="fa fa-check"></i><b>6.6.2</b> Set 2: Counting</a></li>
 <li class="chapter" data-level="6.6.3" data-path="rprog3.html"><a href="rprog3.html#set-3-weekly-tweets"><i class="fa fa-check"></i><b>6.6.3</b> Set 3: Weekly tweets</a></li>
 <li class="chapter" data-level="6.6.4" data-path="rprog3.html"><a href="rprog3.html#are-tweets-correlated-in-time"><i class="fa fa-check"></i><b>6.6.4</b> Are tweets correlated in time?</a></li>
-<li class="chapter" data-level="6.6.5" data-path="rprog3.html"><a href="rprog3.html#set-4-csu-vs.-cu"><i class="fa fa-check"></i><b>6.6.5</b> Set 4: CSU vs. CU</a></li>
+<li class="chapter" data-level="6.6.5" data-path="rprog3.html"><a href="rprog3.html#set-4-csu-vs.-cu"><i class="fa fa-check"></i><b>6.6.5</b> Set 4: CSU vs. CU</a></li>
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="rprog3.html"><a href="rprog3.html#chapter-6-homework"><i class="fa fa-check"></i><b>6.7</b> Chapter 6 Homework</a></li>
 </ul></li>
@@ -370,7 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a>
 <ul>
 <li class="chapter" data-level="8.3.1" data-path="rprog4.html"><a href="rprog4.html#example-function-my_mean"><i class="fa fa-check"></i><b>8.3.1</b> Example Function: my_mean</a></li>
-<li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: “import.w.name”</a></li>
+<li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: "import.w.name"</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a>
 <ul>
@@ -420,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="measure.html"><a href="measure.html#ch.-10-objectives"><i class="fa fa-check"></i><b>10.1</b> Ch. 10 Objectives</a></li>
 <li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#sample"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
+<li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#sample"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
 <li class="chapter" data-level="10.2.2" data-path="measure.html"><a href="measure.html#sample.collect"><i class="fa fa-check"></i><b>10.2.2</b> Collecting a sample</a></li>
 <li class="chapter" data-level="10.2.3" data-path="measure.html"><a href="measure.html#simple-random-sampling"><i class="fa fa-check"></i><b>10.2.3</b> Simple Random Sampling</a></li>
 <li class="chapter" data-level="10.2.4" data-path="measure.html"><a href="measure.html#systematic-sampling"><i class="fa fa-check"></i><b>10.2.4</b> Systematic Sampling</a></li>
@@ -484,7 +486,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.6" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>12.6</b> Pearson Correlation Coefficient</a>
 <ul>
-<li class="chapter" data-level="12.6.1" data-path="dist.html"><a href="dist.html#anscombes-quartet"><i class="fa fa-check"></i><b>12.6.1</b> Anscombe’s Quartet</a></li>
+<li class="chapter" data-level="12.6.1" data-path="dist.html"><a href="dist.html#anscombes-quartet"><i class="fa fa-check"></i><b>12.6.1</b> Anscombe's Quartet</a></li>
 </ul></li>
 <li class="chapter" data-level="12.7" data-path="dist.html"><a href="dist.html#OLS"><i class="fa fa-check"></i><b>12.7</b> OLS Regression Coefficients</a></li>
 </ul></li>
@@ -510,7 +512,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="transform" class="section level1 hasAnchor" number="9">
 <h1><span class="header-section-number">Chapter 9</span> Transformations and Other Tricks<a href="transform.html#transform" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This chapter provides an introduction to several common techniques to organize, transform, and/or manipulate univariate data. I use the word <em>manipulate</em> here with good reason; many of these techniques can be used inappropriately or lead to inadvertent consequences, so tread carefully! That warning aside, these techniques are useful and often allow you to gain insight into <em>“what the data are trying to tell you”</em>.</p>
+<p>This chapter provides an introduction to several common techniques to organize, transform, and/or manipulate univariate data. I use the word <em>manipulate</em> here with good reason; many of these techniques can be used inappropriately or lead to inadvertent consequences, so tread carefully! That warning aside, these techniques are useful and often allow you to gain insight into <em>"what the data are trying to tell you"</em>.</p>
 <div id="ch.-9-objectives" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> Ch. 9 Objectives<a href="transform.html#ch.-9-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This Chapter is designed around the following learning objectives. Upon completing this Chapter, you should be able to:</p>
@@ -524,13 +526,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="transformation" class="section level2 hasAnchor" number="9.2">
 <h2><span class="header-section-number">9.2</span> Transformation<a href="transform.html#transformation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The phrase <em>“Data Transformation”</em> means different things in different fields. We will define it here, in the statistical sense, as: <strong><em>applying one or more mathematical operations to a variable</em></strong> (or in our case, all elements of a numeric vector). You are undoubtedly familiar with data transformation, even if you haven’t previously recognized it. Some examples include:</p>
+<p>The phrase <em>"Data Transformation"</em> means different things in different fields. We will define it here, in the statistical sense, as: <strong><em>applying one or more mathematical operations to a variable</em></strong> (or in our case, all elements of a numeric vector). You are undoubtedly familiar with data transformation, even if you haven't previously recognized it. Some examples include:</p>
 <ul>
 <li>adding, subtracting, or multiplying a constant to all elements in a vector;</li>
 <li>taking the log, square root, or reciprocal of a variable;</li>
 <li>some combination of these approaches.</li>
 </ul>
-<p>For example, your data are transformed whenever you convert temperature units from °F to °C, length units from inches to millimeters, or render a variable dimensionless (e.g., converting to units of percent, parts per million, or some other unitless value). In addition to these “units transformations”, we also transfrom data to make their <strong><em>location</em></strong> and/or <strong><em>dispersion</em></strong> more consistent, or to change the <strong><em>shape</em></strong> of a distribution (e.g., to reduce skewness or to normalize residual values from a model). These latter approaches are often employed during multivariate analyses to help your variables “play nicely together” within the analytic framework you set forth. More on this to come in <a href="model.html#model">Modeling</a>.</p>
+<p>For example, your data are transformed whenever you convert temperature units from °F to °C, length units from inches to millimeters, or render a variable dimensionless (e.g., converting to units of percent, parts per million, or some other unitless value). In addition to these "units transformations", we also transfrom data to make their <strong><em>location</em></strong> and/or <strong><em>dispersion</em></strong> more consistent, or to change the <strong><em>shape</em></strong> of a distribution (e.g., to reduce skewness or to normalize residual values from a model). These latter approaches are often employed during multivariate analyses to help your variables "play nicely together" within the analytic framework you set forth. More on this to come in <a href="model.html#model">Modeling</a>.</p>
 <div class="rmdnote">
 <p>
 There are two key facets to data transformation:
@@ -544,8 +546,8 @@ and reproduce your results, when needed.
 </div>
 <div id="centering" class="section level3 hasAnchor" number="9.2.1">
 <h3><span class="header-section-number">9.2.1</span> Centering<a href="transform.html#centering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Centering means <strong><em>to subtract (or sometimes add) a constant from all values</em></strong> in a vector. The <strong>constant</strong> to be subtracted could be an estimate of the data’s central tendency, like the mean or median (hence the term <em>center</em>-ing), or it could be some residual value that you want to remove from all observations. If you subtract the mean from every value of a vector, then the new vector will have a mean of zero; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location. Centering <strong><em>changes the location</em></strong> of a variable but <strong><em>dispersion (spread) stays the same</em></strong>.</p>
-<p>In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to <em>“background subtract”</em> (aka, <em>“zeroing”</em>) a set of univariate observations. If you have ever used a digital scale to measure the weight of an object, you’ve probably noticed that when you turn it on, the scale does not always read zero. Most of the time the instrument has a way to “re-zero” itself prior to use, but this is not always the case. If your scale shows a mass of 198 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 198 from all subsequent weights that you perform with this scale. That subtraction is an example of a “centering” transformation.</p>
+<p>Centering means <strong><em>to subtract (or sometimes add) a constant from all values</em></strong> in a vector. The <strong>constant</strong> to be subtracted could be an estimate of the data's central tendency, like the mean or median (hence the term <em>center</em>-ing), or it could be some residual value that you want to remove from all observations. If you subtract the mean from every value of a vector, then the new vector will have a mean of zero; this can be useful when analyzing multiple variables (for example in a multivariate regression model), each of which has a different location. Centering <strong><em>changes the location</em></strong> of a variable but <strong><em>dispersion (spread) stays the same</em></strong>.</p>
+<p>In engineering, the most common reason for centering data is not to subtract the mean or median value, but instead to <em>"background subtract"</em> (aka, <em>"zeroing"</em>) a set of univariate observations. If you have ever used a digital scale to measure the weight of an object, you've probably noticed that when you turn it on, the scale does not always read zero. Most of the time the instrument has a way to "re-zero" itself prior to use, but this is not always the case. If your scale shows a mass of 198 g when nothing is placed on it, then you probably want to (1) document that value before taking measurements and (2) subtract a value of 198 from all subsequent weights that you perform with this scale. That subtraction is an example of a "centering" transformation.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:centering-anno"></span>
 <img src="images/centering_anno.png" alt="Data are sometimes centered to correct spurious values" width="640" />
 <p class="caption">
@@ -567,7 +569,7 @@ Figure 9.1: Data are sometimes centered to correct spurious values
 </div>
 <div id="normalization-and-standardization" class="section level2 hasAnchor" number="9.3">
 <h2><span class="header-section-number">9.3</span> Normalization and Standardization<a href="transform.html#normalization-and-standardization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In a generic sense, to <strong><em>“normalize”</em></strong> a variable means: <strong>to transform that variable so that it can be compared, evaluated, or comprehended more easily.</strong> Normalization often involves a combination of centering and rescaling operations that not only change the location and spread of the data, but also the <em>meaning</em> of data. Normalization is just as common in engineering as it is in statistics, or any other scientific field.</p>
+<p>In a generic sense, to <strong><em>"normalize"</em></strong> a variable means: <strong>to transform that variable so that it can be compared, evaluated, or comprehended more easily.</strong> Normalization often involves a combination of centering and rescaling operations that not only change the location and spread of the data, but also the <em>meaning</em> of data. Normalization is just as common in engineering as it is in statistics, or any other scientific field.</p>
 <div class="rmdwarning">
 <p>
 Like <em>“transformation”</em>, the word “<em>normalization</em>” is
@@ -586,16 +588,16 @@ just mean, to divide one variable into another to achieve some sort of
 <ul>
 <li>Two vehicles may have the same range (how many miles they can travel on one tank of gas) but different rates of fuel efficiency (miles traveled per gallon);<br />
 </li>
-<li>Two countries can have the same GDI (<em>gross domestic income</em>; the sum of all wages earned) but widely different rates of “per capita” income (GDI/total population).<br />
+<li>Two countries can have the same GDI (<em>gross domestic income</em>; the sum of all wages earned) but widely different rates of "per capita" income (GDI/total population).<br />
 </li>
-<li>A person’s <strong>Body Mass Index</strong> (BMI, kg/m<sup>2</sup>) is their mass (in kg) normalized by the square of their height (m<sup>2</sup>).</li>
+<li>A person's <strong>Body Mass Index</strong> (BMI, kg/m<sup>2</sup>) is their mass (in kg) normalized by the square of their height (m<sup>2</sup>).</li>
 </ul>
 </div>
 <div id="standardizing" class="section level3 hasAnchor" number="9.3.2">
 <h3><span class="header-section-number">9.3.2</span> Standardizing<a href="transform.html#standardizing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Standardization is a special case of transformation/normalization where each value in a set of observations (or vector) is subtracted by some constant (often the data’s central tendency) and divided by the dispersion (often the standard deviation, IQR, or some other spread metric). When working with normally distributed data, the standardization of variable <span class="math inline">\(x_i\)</span> into <span class="math inline">\(z_i\)</span> is:</p>
+<p>Standardization is a special case of transformation/normalization where each value in a set of observations (or vector) is subtracted by some constant (often the data's central tendency) and divided by the dispersion (often the standard deviation, IQR, or some other spread metric). When working with normally distributed data, the standardization of variable <span class="math inline">\(x_i\)</span> into <span class="math inline">\(z_i\)</span> is:</p>
 <p><span class="math display">\[z_{i} = \frac{x_{i}-\overline{x}}{\sigma_{x}}\]</span></p>
-<p>where the mean of <span class="math inline">\(x\)</span> is denoted <span class="math inline">\(\overline{x}\)</span> and standard deviation of <span class="math inline">\(x\)</span> is <span class="math inline">\(\sigma_{x}\)</span>. The <em>standardization</em> of a variable renders the mean to 0 and the standard deviation to 1. This type of normalization is useful when you wish to study relationships between multiple variables, each with different scale. Note that standardization doesn’t have to use the mean and standard deviation as the centering and normalizing variables, but those two are common.</p>
+<p>where the mean of <span class="math inline">\(x\)</span> is denoted <span class="math inline">\(\overline{x}\)</span> and standard deviation of <span class="math inline">\(x\)</span> is <span class="math inline">\(\sigma_{x}\)</span>. The <em>standardization</em> of a variable renders the mean to 0 and the standard deviation to 1. This type of normalization is useful when you wish to study relationships between multiple variables, each with different scale. Note that standardization doesn't have to use the mean and standard deviation as the centering and normalizing variables, but those two are common.</p>
 </div>
 <div id="reducing-skewness" class="section level3 hasAnchor" number="9.3.3">
 <h3><span class="header-section-number">9.3.3</span> Reducing Skewness<a href="transform.html#reducing-skewness" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -617,12 +619,12 @@ To stratify a sample means: to divide the sample into subsets (aka
 groups based on strata).
 </p>
 </div>
-<p>Stratified analyses can be performed many ways; one particularly useful way is graphically, by creating a stratification plot. A stratification plot is like any other visualization that you have created, except that the strata are identified (i.e., called out) through the use of color, lines, symbols, facets, etc. Let’s use the following example to demonstrate:</p>
+<p>Stratified analyses can be performed many ways; one particularly useful way is graphically, by creating a stratification plot. A stratification plot is like any other visualization that you have created, except that the strata are identified (i.e., called out) through the use of color, lines, symbols, facets, etc. Let's use the following example to demonstrate:</p>
 <p>A manufacturing operation is investigating the production of an expensive titanium alloy, where a 25% increase in the production yield of the alloy means the difference between profit and loss. The materials engineers believe that feedstock purity should have an effect on the yield. For the past month, three different reactors at the plant have been producing alloys from Ti feedstock of varying purity. After one month, you decide to visualize the relationship between <em>process yield</em> and <em>sample purity</em> with a scatterplot, <code>geom_point()</code>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:stratify2"></span>
 <img src="images/unstratified.png" alt="Yield vs. Purity from the plant's three reactors over one month" width="500" />
 <p class="caption">
-Figure 9.3: Yield vs. Purity from the plant’s three reactors over one month
+Figure 9.3: Yield vs. Purity from the plant's three reactors over one month
 </p>
 </div>
 <p>Examination of Figure <a href="transform.html#fig:stratify2">9.3</a> reveals that, while there is considerable variation in the data, a clear relationship is not apparent between sample purity and process yield. Correlation analyses reveal a Pearson correlation coefficient of <span class="math inline">\(r=\)</span> -0.23, indicating a low level of correlation between the two variables. However, it occurs to you that perhaps there is variation in results between the three different reactors in the plant. Therefore, you decide to repeat this analysis <strong><em>stratifying the data by reactor type</em></strong>. In this case, you repeat the <code>ggplot()</code> call with an extra aesthetic of <code>color = reactor</code> in the scatterplot.</p>
@@ -644,7 +646,7 @@ Figure 9.3: Yield vs. Purity from the plant’s three reactors over one month
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:stratify-png"></span>
 <img src="images/stratified.png" alt="Yield vs. Purity over one month, stratified by reactor type" width="500" />
 <p class="caption">
-Figure 9.4: Yield vs. Purity over one month, stratified by reactor type
+Figure 9.4: Yield vs. Purity over one month, stratified by reactor type
 </p>
 </div>
 <div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="transform.html#cb339-1" tabindex="-1"></a>strat.data <span class="sc">%&gt;%</span></span>
@@ -665,7 +667,7 @@ Figure 9.4: Yield vs. Purity over one month, stratified by reactor type
 reactor
 </th>
 <th style="text-align:center;">
-Pearson’s r
+Pearson's r
 </th>
 </tr>
 </thead>
@@ -700,7 +702,7 @@ c
 <ol style="list-style-type: decimal">
 <li>There is a clear inverse relationship between <em>sample purity</em> and the <em>process yield</em> (Pearson correlation coefficients are now ~ 0.9 for each) and<br />
 </li>
-<li>For a given purity level, each reactor has a different output. Clearly, there is something different about each of these reactors that merits further study…</li>
+<li>For a given purity level, each reactor has a different output. Clearly, there is something different about each of these reactors that merits further study...</li>
 </ol>
 <p>Figure <a href="transform.html#fig:stratify-png">9.4</a> raises a subtle, but very important, point: <strong>data often have hierarchy</strong> and that hierarchy may be influential. In this case, only when we account for the hierarchy (the reactor that produced each sample), do we see an important relationship arise.</p>
 <div class="rmdnote">
@@ -717,8 +719,8 @@ define strata according to quantiles of GPA among the study body.
 </div>
 <div id="outliers-and-censoring" class="section level2 hasAnchor" number="9.5">
 <h2><span class="header-section-number">9.5</span> Outliers and Censoring<a href="transform.html#outliers-and-censoring" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Have you ever heard the phrase <strong><em>“don’t let the exception become the rule”</em></strong>?</p>
-<p>I think this phrase means, <em>don’t let your judgment be governed solely by outliers.</em> Whether or not this is good advice probably depends on the situation, but I do think one should have the ability to detect <strong><em>when an outlier has leverage over a situation</em></strong>.</p>
+<p>Have you ever heard the phrase <strong><em>"don't let the exception become the rule"</em></strong>?</p>
+<p>I think this phrase means, <em>don't let your judgment be governed solely by outliers.</em> Whether or not this is good advice probably depends on the situation, but I do think one should have the ability to detect <strong><em>when an outlier has leverage over a situation</em></strong>.</p>
 <div class="rmdnote">
 <p>
 An <strong>outlier</strong> is an observation that lies an abnormal
@@ -727,7 +729,7 @@ distance from other values in a random sample.
 </div>
 <div id="outliers" class="section level3 hasAnchor" number="9.5.1">
 <h3><span class="header-section-number">9.5.1</span> Detecting Outliers<a href="transform.html#outliers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Data visualization (like histograms, density plots, time-series, and boxplots) can be useful for detecting outliers, because such graphs make it clear that one or more observations <em>“don’t seem to belong with the rest”</em>. For example, let’s create an artificial data frame called <code>asthma.data</code>. Within this data frame are two variables:</p>
+<p>Data visualization (like histograms, density plots, time-series, and boxplots) can be useful for detecting outliers, because such graphs make it clear that one or more observations <em>"don't seem to belong with the rest"</em>. For example, let's create an artificial data frame called <code>asthma.data</code>. Within this data frame are two variables:</p>
 <ul>
 <li><code>asthma.prevalence</code>: the percentage of kids with asthma in a given school district</li>
 <li><code>black.carbon</code>: the concentration of airborne black carbon (a type of air pollutant generated by incomplete combustion, similar to what you see exhausted from a diesel truck) measured outside of a school at the center of each district.</li>
@@ -740,7 +742,7 @@ distance from other values in a random sample.
 <span id="cb340-6"><a href="transform.html#cb340-6" tabindex="-1"></a>                   <span class="fl">3.1</span>, <span class="fl">6.1</span>, <span class="fl">5.3</span>, <span class="fl">4.5</span>, <span class="fl">3.3</span>, </span>
 <span id="cb340-7"><a href="transform.html#cb340-7" tabindex="-1"></a>                   <span class="fl">6.4</span>, <span class="fl">3.7</span>, <span class="fl">5.1</span>, <span class="fl">6.8</span>, <span class="dv">12</span>)</span>
 <span id="cb340-8"><a href="transform.html#cb340-8" tabindex="-1"></a>)</span></code></pre></div>
-<p>Figure <a href="transform.html#fig:outlier-1">9.5</a> below contains two boxplots: one depicts <code>asthma.prevalence</code> for the 15 school districts, and the other depicts <code>black.carbon</code>. I’ve circled the apparent outlier. <strong>Outliers are easy to see in boxplots because they fall outside the whiskers.</strong></p>
+<p>Figure <a href="transform.html#fig:outlier-1">9.5</a> below contains two boxplots: one depicts <code>asthma.prevalence</code> for the 15 school districts, and the other depicts <code>black.carbon</code>. I've circled the apparent outlier. <strong>Outliers are easy to see in boxplots because they fall outside the whiskers.</strong></p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:outlier-1"></span>
 <img src="09-transf_files/figure-html/outlier-1-1.png" alt="Boxplots for two sets of data; the one on the right has an outlier." width="500" />
 <p class="caption">
@@ -748,7 +750,7 @@ Figure 9.5: Boxplots for two sets of data; the one on the right has an outlier.
 </p>
 </div>
 <p>Data visualization is <em>useful</em> for detecting outliers, but not definitive. Indeed, there are no definitive methods for detecting outliers in data (mostly because that process is too contextual). That said, there are some guidelines.</p>
-<p><strong>The “1.5 x IQR” rule</strong> is what was used in the boxplot of Figure <a href="transform.html#fig:outlier-1">9.5</a>.</p>
+<p><strong>The "1.5 x IQR" rule</strong> is what was used in the boxplot of Figure <a href="transform.html#fig:outlier-1">9.5</a>.</p>
 <p>This rule states that outliers are <strong>any data points more than 1.5 times the inter-quartile range away from the upper and lower quartiles</strong>. This means data that are:</p>
 <ul>
 <li><em>high outliers are greater than</em>: [0.75 quantile value] + 1.5*IQR</li>
@@ -779,7 +781,7 @@ Figure 9.5: Boxplots for two sets of data; the one on the right has an outlier.
 </div>
 <div id="censoring-outliers" class="section level3 hasAnchor" number="9.5.2">
 <h3><span class="header-section-number">9.5.2</span> Censoring outliers<a href="transform.html#censoring-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>What should we do with outliers in our data? The answer depends on context (<em>are these life and death data we’re dealing with or just the size of tomatoes from your garden?</em>) and on the questions you are asking. Here’s an example:</p>
+<p>What should we do with outliers in our data? The answer depends on context (<em>are these life and death data we're dealing with or just the size of tomatoes from your garden?</em>) and on the questions you are asking. Here's an example:</p>
 <p>The black carbon boxplot (right side of <a href="transform.html#fig:outlier-1">9.5</a>) has a clear outlier that falls far outside of the rest of the data. This might not seem like a big deal but take a look at what happens when we (A) examine the correlation between these two variables and (B) fit a regression line through the data <span style="color: orange;">with the outlier included</span> or <span style="color: blue;">with the outlier excluded </span>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:outlier-2"></span>
 <img src="09-transf_files/figure-html/outlier-2-1.png" alt="Effect of an outlier on a linear model with n=15 data points." width="672" />
@@ -788,7 +790,7 @@ Figure 9.6: Effect of an outlier on a linear model with n=15 data points.
 </p>
 </div>
 <p>Examination of Figure <a href="transform.html#fig:outlier-2">9.6</a> suggests that the outlier is having a strong effect on the relationship between air pollution and childhood asthma. If the censored data are correct, we have just detected a strong correlation between asthma rates and air pollution. If the uncensored data are correct then the association is positive but very weak. So how do we handle this apparent outlier?</p>
-<p>Unfortunately, this sort of conundrum happens more often than we might like in the real world. <em>My advice would be to collect more data to support/discount the outlier. If that isn’t possible (and no other explanation was forthcoming), I would probably show the analysis</em> <strong><em>both ways</em></strong>.</p>
+<p>Unfortunately, this sort of conundrum happens more often than we might like in the real world. <em>My advice would be to collect more data to support/discount the outlier. If that isn't possible (and no other explanation was forthcoming), I would probably show the analysis</em> <strong><em>both ways</em></strong>.</p>
 <div class="rmdwarning">
 <p>
 <strong>Censoring data is dangerous business.</strong> If you are
@@ -805,10 +807,10 @@ setting yourself up for disaster.
 </div>
 <div id="ch-9-exercises" class="section level2 hasAnchor" number="9.6">
 <h2><span class="header-section-number">9.6</span> Ch-9 Exercises<a href="transform.html#ch-9-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s return to the topic of salaries by college major, as collected by the <a href="https://www.nsf.gov/statistics/srvygrads/">NSF Survey of College Graduates</a>. I’ve extracted survey results for graduates of political science programs into a file called <code>salary_ch9.csv</code>. You can find this .csv file on Canvas or our GitHub repository.</p>
+<p>Let's return to the topic of salaries by college major, as collected by the <a href="https://www.nsf.gov/statistics/srvygrads/">NSF Survey of College Graduates</a>. I've extracted survey results for graduates of political science programs into a file called <code>salary_ch9.csv</code>. You can find this .csv file on Canvas or our GitHub repository.</p>
 <div id="salary-data-for-poly-sci-majors" class="section level3 hasAnchor" number="9.6.1">
 <h3><span class="header-section-number">9.6.1</span> Salary Data for Poly Sci Majors<a href="transform.html#salary-data-for-poly-sci-majors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Let’s read in the file and peek at the contents:</p>
+<p>Let's read in the file and peek at the contents:</p>
 <div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="transform.html#cb345-1" tabindex="-1"></a>salary_ps <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;./data/salary_ch9.csv&quot;</span>)</span>
 <span id="cb345-2"><a href="transform.html#cb345-2" tabindex="-1"></a></span>
 <span id="cb345-3"><a href="transform.html#cb345-3" tabindex="-1"></a><span class="fu">head</span>(salary_ps)</span></code></pre></div>
@@ -821,7 +823,7 @@ setting yourself up for disaster.
 ## 4  83000 F     Poly Sci
 ## 5  60000 M     Poly Sci
 ## 6 200000 M     Poly Sci</code></pre>
-<p>We can see that we have <code>salary</code> information, <code>sex</code> (<em>Male</em> or <em>Female</em> respondent), and <code>major</code> (all of which are Poly Sci). Let’s calculate some basic descriptive statistics grouped by respondent sex.</p>
+<p>We can see that we have <code>salary</code> information, <code>sex</code> (<em>Male</em> or <em>Female</em> respondent), and <code>major</code> (all of which are Poly Sci). Let's calculate some basic descriptive statistics grouped by respondent sex.</p>
 <div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="transform.html#cb347-1" tabindex="-1"></a>salary_ps <span class="sc">%&gt;%</span></span>
 <span id="cb347-2"><a href="transform.html#cb347-2" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
 <span id="cb347-3"><a href="transform.html#cb347-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">median =</span> <span class="fu">median</span>(salary),</span>
@@ -846,7 +848,7 @@ setting yourself up for disaster.
 </div>
 <div id="univariate-data-visualization-1" class="section level3 hasAnchor" number="9.6.2">
 <h3><span class="header-section-number">9.6.2</span> Univariate Data Visualization<a href="transform.html#univariate-data-visualization-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Let’s visualize these data with some basic EDA plots:</p>
+<p>Let's visualize these data with some basic EDA plots:</p>
 <div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="transform.html#cb349-1" tabindex="-1"></a><span class="co">#create EDA plots</span></span>
 <span id="cb349-2"><a href="transform.html#cb349-2" tabindex="-1"></a>box1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps,</span>
 <span id="cb349-3"><a href="transform.html#cb349-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> sex,</span>
@@ -882,12 +884,12 @@ setting yourself up for disaster.
 Figure 9.7: Annual Salaries ($1000s) Reported by Poly Sci Majors
 </p>
 </div>
-<p>The EDA plots confirm the salary discrepancy between male and female survey respondents and also suggest the <strong>presence of some outliers</strong>! Note how both the boxplot and histogram show a small amount of data way, way off to the right of each plot, where salary is about $1,000,000/yr. Strangely, there are no respondent data between about $500,000/yr and $1,000,000/yr. This seems very odd…</p>
-<p>Upon further digging into these data, the <a href="https://www.nsf.gov/statistics/2020/nsf20300/pdf/nsf20300.pdf">authors of the survey state</a> that “imputation methods” are employed for missing data. <strong><em>Imputation</em></strong> is a process where values are <em>guessed</em> based on a statistical inference of the data at hand. My suspicion is that a number of respondents chose not to report their annual salary (answers are optional) and that these extreme outliers were imputed based on other data/factors.</p>
+<p>The EDA plots confirm the salary discrepancy between male and female survey respondents and also suggest the <strong>presence of some outliers</strong>! Note how both the boxplot and histogram show a small amount of data way, way off to the right of each plot, where salary is about $1,000,000/yr. Strangely, there are no respondent data between about $500,000/yr and $1,000,000/yr. This seems very odd...</p>
+<p>Upon further digging into these data, the <a href="https://www.nsf.gov/statistics/2020/nsf20300/pdf/nsf20300.pdf">authors of the survey state</a> that "imputation methods" are employed for missing data. <strong><em>Imputation</em></strong> is a process where values are <em>guessed</em> based on a statistical inference of the data at hand. My suspicion is that a number of respondents chose not to report their annual salary (answers are optional) and that these extreme outliers were imputed based on other data/factors.</p>
 </div>
 <div id="rescale-and-censor-data" class="section level3 hasAnchor" number="9.6.3">
 <h3><span class="header-section-number">9.6.3</span> Rescale and Censor Data<a href="transform.html#rescale-and-censor-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Let’s make the following transformations to the data:</p>
+<p>Let's make the following transformations to the data:</p>
 <ul>
 <li>We will <em>rescale</em> the salary data to units of thousands of dollars to remove some of the zeros from the plot labels;</li>
 <li>We will <em>censor</em> salaries above $500k/yr, since the validity of these numbers is dubious (<em>and because this is an exercise on data censoring</em>);</li>
@@ -907,7 +909,7 @@ actions have a strong effect on the outcome.
 <span id="cb350-3"><a href="transform.html#cb350-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">salary =</span> salary<span class="sc">/</span><span class="dv">1000</span>) <span class="sc">%&gt;%</span> <span class="co">#convert to thousands of $</span></span>
 <span id="cb350-4"><a href="transform.html#cb350-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(salary <span class="sc">&lt;</span> <span class="dv">500</span>, <span class="co">#censor high outliers</span></span>
 <span id="cb350-5"><a href="transform.html#cb350-5" tabindex="-1"></a>                salary <span class="sc">&gt;</span> <span class="dv">10</span>)  <span class="co">#censor low outliers</span></span></code></pre></div>
-<p>Let’s recreate the EDA plots from Figure <a href="transform.html#fig:salary-ps-plots">9.7</a> using the transformed and censored data.</p>
+<p>Let's recreate the EDA plots from Figure <a href="transform.html#fig:salary-ps-plots">9.7</a> using the transformed and censored data.</p>
 <div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="transform.html#cb351-1" tabindex="-1"></a><span class="co">#recreate EDA plots</span></span>
 <span id="cb351-2"><a href="transform.html#cb351-2" tabindex="-1"></a>box2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> salary_ps2,</span>
 <span id="cb351-3"><a href="transform.html#cb351-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> sex,</span>
@@ -947,7 +949,7 @@ Figure 9.8: 2017 Annual Salaries ($1000s) Reported by Poly Sci Majors
 </div>
 <div id="logfit" class="section level3 hasAnchor" number="9.6.4">
 <h3><span class="header-section-number">9.6.4</span> Fit a Log-normal Distribution<a href="transform.html#logfit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Next, let’s examine whether our salary data can be approximated with a log-normal distribution. There is a function in the <code>MASS::</code> package called <code>fitdistr()</code> that uses <a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation"><em>Maximum Likelihood Estimation</em></a> theory (MLE), to estimate density function parameters for various reference distributions. The <code>fitdistr()</code> function requires a numeric vector of observed values, <code>x =</code> the data to be fit, and a “named” reference distribution to be modeled, <code>densfun = "log-normal"</code>.</p>
+<p>Next, let's examine whether our salary data can be approximated with a log-normal distribution. There is a function in the <code>MASS::</code> package called <code>fitdistr()</code> that uses <a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation"><em>Maximum Likelihood Estimation</em></a> theory (MLE), to estimate density function parameters for various reference distributions. The <code>fitdistr()</code> function requires a numeric vector of observed values, <code>x =</code> the data to be fit, and a "named" reference distribution to be modeled, <code>densfun = "log-normal"</code>.</p>
 <div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="transform.html#cb352-1" tabindex="-1"></a>fit.lnorm <span class="ot">&lt;-</span> <span class="fu">fitdistr</span>(salary_ps2<span class="sc">$</span>salary, <span class="at">densfun =</span> <span class="st">&quot;log-normal&quot;</span>)</span></code></pre></div>
 <p>The output of <code>MASS::fitdistr()</code> is a <code>list</code>, with the first entry containing the fit parameters for the log-normal distribution (<code>meanlog</code> and <code>sdlog</code>).</p>
 <div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="transform.html#cb353-1" tabindex="-1"></a>fit.lnorm<span class="sc">$</span>estimate <span class="sc">%&gt;%</span></span>
@@ -986,7 +988,7 @@ quantile divided by the 0.16 quantile.
 </div>
 <div id="plot-fitted-vs-actual-data" class="section level3 hasAnchor" number="9.6.5">
 <h3><span class="header-section-number">9.6.5</span> Plot Fitted vs Actual Data<a href="transform.html#plot-fitted-vs-actual-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We will conclude this exercise by examining graphically whether our fitted distribution tends to match the observed data. Now that we have “best” fitted parameters for a lognormal distribution that approximates our data, how well does the fit perform?</p>
+<p>We will conclude this exercise by examining graphically whether our fitted distribution tends to match the observed data. Now that we have "best" fitted parameters for a lognormal distribution that approximates our data, how well does the fit perform?</p>
 <p>To answer that question, we can simulate a <em>new</em> distribution and compare it to our observed data. To simulate observations from a lognormal distribution we need to supply the function <code>stats::rlnorm()</code> with the following arguments:</p>
 <ul>
 <li><code>n =</code> the sample size of observations (we will use n = <code>length(salary_ps2$salary)</code>)</li>
@@ -1022,7 +1024,7 @@ Figure 9.9: Salary Data Fitted by a Lognormal Distribution
 </div>
 <div id="transform-the-data" class="section level3 hasAnchor" number="9.6.6">
 <h3><span class="header-section-number">9.6.6</span> Transform the Data<a href="transform.html#transform-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Now that we know that (1) these data are skewed (non-normal) and (2) likely log-normally distributed, let’s see what happens when we <em>transform</em> these data. Figure <a href="transform.html#fig:salary-transform">9.10</a> appears much more symmetric (read:normal) following the log transform.</p>
+<p>Now that we know that (1) these data are skewed (non-normal) and (2) likely log-normally distributed, let's see what happens when we <em>transform</em> these data. Figure <a href="transform.html#fig:salary-transform">9.10</a> appears much more symmetric (read:normal) following the log transform.</p>
 <div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="transform.html#cb356-1" tabindex="-1"></a>salary_ps2 <span class="ot">&lt;-</span> salary_ps2 <span class="sc">%&gt;%</span></span>
 <span id="cb356-2"><a href="transform.html#cb356-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log.salary =</span> <span class="fu">log</span>(salary))</span>
 <span id="cb356-3"><a href="transform.html#cb356-3" tabindex="-1"></a></span>
@@ -1041,7 +1043,7 @@ Figure 9.9: Salary Data Fitted by a Lognormal Distribution
 Figure 9.10: Histogram of Log-transformed Salary Data
 </p>
 </div>
-<p>When visualizing lognormal data, however, it’s ofen a better idea to transform the axis (instead of transforming the data themselves). This allows the viewer to “see” the units of measurement in their natural form, instead of forcing the viewer to exponentiate values in their head (hint: nobody likes to do this). Therefore, we can <em>transform</em> our data visualization with a call to <code>scale_x_log10()</code> in <code>ggplot::</code>. Transforming the x- or y-axis is common in data visualization, especially when your values span several orders of magnitude.</p>
+<p>When visualizing lognormal data, however, it's ofen a better idea to transform the axis (instead of transforming the data themselves). This allows the viewer to "see" the units of measurement in their natural form, instead of forcing the viewer to exponentiate values in their head (hint: nobody likes to do this). Therefore, we can <em>transform</em> our data visualization with a call to <code>scale_x_log10()</code> in <code>ggplot::</code>. Transforming the x- or y-axis is common in data visualization, especially when your values span several orders of magnitude.</p>
 <div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="transform.html#cb357-1" tabindex="-1"></a>salary_ps2 <span class="ot">&lt;-</span> salary_ps2 <span class="sc">%&gt;%</span></span>
 <span id="cb357-2"><a href="transform.html#cb357-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log.salary =</span> <span class="fu">log</span>(salary))</span>
 <span id="cb357-3"><a href="transform.html#cb357-3" tabindex="-1"></a></span>

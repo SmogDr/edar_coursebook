@@ -431,11 +431,11 @@ tidy_select_1 <- data.frame(
               "Matches a regular expression",
               "Selects variables if function returns TRUE",
               "Filters rows if function returns TRUE"),
-  example = c("rename_with(mpg, .cols = everything(), .fn = toupper))",
-              "select(mpg, starts_with(\'c\'))",
-              "mutate(mpg, across(ends_with(\'y\'), .fns = ~0.425*.x, .names = \'km_per_liter_{.col}\'))",
-              "summarise(mpg, across(contains(\'y\'), .fns = mean, .names = \'mean_{.col}\'))",
-              "rename_with(mpg, .cols = matches(\'y$\'), .fn = toupper)",
+  example = c("rename_with(mpg, .cols = everything(), .fn = toupper)",
+              "select(mpg, starts_with(\"c\"))",
+              "mutate(mpg, across(ends_with(\"y\"), .fns = ~0.425*.x, .names = \'km_per_liter_{.col}\'))",
+              "summarise(mpg, across(contains(\"y\"), .fns = mean, .names = \'mean_{.col}\'))",
+              "rename_with(mpg, .cols = matches(\"y$\"), .fn = toupper)",
               "select(mpg, where(is.numeric))",
               "filter(if_any(everything(), is.character))")
               
@@ -443,7 +443,21 @@ tidy_select_1 <- data.frame(
 
 
 
-knitr::kable(tidy_select_1, col.names = c("Helper", "Explanation", "Example")) %>%
+# Make a display copy and mark the examples as HTML code
+tidy_select_display <- tidy_select_1
+
+tidy_select_display$example <- paste0(
+  "<code>",
+  htmltools::htmlEscape(tidy_select_display$example),
+  "</code>"
+)
+
+knitr::kable(
+  tidy_select_display,
+  format = "html",
+  escape = FALSE,
+  col.names = c("Helper", "Explanation", "Example")
+) %>%
   column_spec(2, width = "6cm")
 ```
 There are also helper symbols that can be used (an in conjunction with the helper verbs above) to make selections.  For example, if you wanted to keep all columns *except* for those containing `logical` vectors, you could use `select(data = .x, !where(is.logical))`.  These symbols are outlined in the table below.  For further reference, see this [help page](https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html). 

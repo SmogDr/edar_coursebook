@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Data Visualization with ggplot2 | Engineering Data Analysis in R</title>
-  <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  <meta name="description" content="This is an undergraduate technical elective course for mechanical engineers who wish to learn about data analysis using the R programming language." />
   <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Data Visualization with ggplot2 | Engineering Data Analysis in R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  <meta property="og:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to learn about data analysis using the R programming language." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 4 Data Visualization with ggplot2 | Engineering Data Analysis in R" />
   
-  <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to lean about data analysis using the R programming language." />
+  <meta name="twitter:description" content="This is an undergraduate technical elective course for mechanical engineers who wish to learn about data analysis using the R programming language." />
   
 
 <meta name="author" content="John Volckens" />
 
 
-<meta name="date" content="2026-10-19" />
+<meta name="date" content="2026-10-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,8 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -187,13 +189,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.4.1" data-path="rprog1.html"><a href="rprog1.html#commenting-code"><i class="fa fa-check"></i><b>2.4.1</b> Commenting code</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The “package” system</a>
+<li class="chapter" data-level="2.5" data-path="rprog1.html"><a href="rprog1.html#the-package-system"><i class="fa fa-check"></i><b>2.5</b> The "package" system</a>
 <ul>
 <li class="chapter" data-level="2.5.1" data-path="rprog1.html"><a href="rprog1.html#r-packages"><i class="fa fa-check"></i><b>2.5.1</b> R packages</a></li>
 <li class="chapter" data-level="2.5.2" data-path="rprog1.html"><a href="rprog1.html#installing-from-cran"><i class="fa fa-check"></i><b>2.5.2</b> Installing from CRAN</a></li>
 <li class="chapter" data-level="2.5.3" data-path="rprog1.html"><a href="rprog1.html#loading-an-installed-package"><i class="fa fa-check"></i><b>2.5.3</b> Loading an installed package</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R’s most basic object types</a>
+<li class="chapter" data-level="2.6" data-path="rprog1.html"><a href="rprog1.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.6</b> R's most basic object types</a>
 <ul>
 <li class="chapter" data-level="2.6.1" data-path="rprog1.html"><a href="rprog1.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
 <li class="chapter" data-level="2.6.2" data-path="rprog1.html"><a href="rprog1.html#dataframes"><i class="fa fa-check"></i><b>2.6.2</b> Dataframes</a></li>
@@ -291,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="eda1.html"><a href="eda1.html#univariate-data-visualization"><i class="fa fa-check"></i><b>5.4</b> Univariate Data Visualization</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
+<li class="chapter" data-level="5.4.1" data-path="eda1.html"><a href="eda1.html#summary-vs.-enumerative-plots"><i class="fa fa-check"></i><b>5.4.1</b> Summary vs. Enumerative Plots</a></li>
 <li class="chapter" data-level="5.4.2" data-path="eda1.html"><a href="eda1.html#cumulative-distribution-plot"><i class="fa fa-check"></i><b>5.4.2</b> Cumulative Distribution Plot</a></li>
 <li class="chapter" data-level="5.4.3" data-path="eda1.html"><a href="eda1.html#hist"><i class="fa fa-check"></i><b>5.4.3</b> Histogram</a></li>
 <li class="chapter" data-level="5.4.4" data-path="eda1.html"><a href="eda1.html#box"><i class="fa fa-check"></i><b>5.4.4</b> Boxplot</a></li>
@@ -330,7 +332,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.6.2" data-path="rprog3.html"><a href="rprog3.html#set-2-counting"><i class="fa fa-check"></i><b>6.6.2</b> Set 2: Counting</a></li>
 <li class="chapter" data-level="6.6.3" data-path="rprog3.html"><a href="rprog3.html#set-3-weekly-tweets"><i class="fa fa-check"></i><b>6.6.3</b> Set 3: Weekly tweets</a></li>
 <li class="chapter" data-level="6.6.4" data-path="rprog3.html"><a href="rprog3.html#are-tweets-correlated-in-time"><i class="fa fa-check"></i><b>6.6.4</b> Are tweets correlated in time?</a></li>
-<li class="chapter" data-level="6.6.5" data-path="rprog3.html"><a href="rprog3.html#set-4-csu-vs.-cu"><i class="fa fa-check"></i><b>6.6.5</b> Set 4: CSU vs. CU</a></li>
+<li class="chapter" data-level="6.6.5" data-path="rprog3.html"><a href="rprog3.html#set-4-csu-vs.-cu"><i class="fa fa-check"></i><b>6.6.5</b> Set 4: CSU vs. CU</a></li>
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="rprog3.html"><a href="rprog3.html#chapter-6-homework"><i class="fa fa-check"></i><b>6.7</b> Chapter 6 Homework</a></li>
 </ul></li>
@@ -370,7 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="rprog4.html"><a href="rprog4.html#writng-functions"><i class="fa fa-check"></i><b>8.3</b> Writng Functions</a>
 <ul>
 <li class="chapter" data-level="8.3.1" data-path="rprog4.html"><a href="rprog4.html#example-function-my_mean"><i class="fa fa-check"></i><b>8.3.1</b> Example Function: my_mean</a></li>
-<li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: “import.w.name”</a></li>
+<li class="chapter" data-level="8.3.2" data-path="rprog4.html"><a href="rprog4.html#example-function-import.w.name"><i class="fa fa-check"></i><b>8.3.2</b> Example Function: "import.w.name"</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="rprog4.html"><a href="rprog4.html#the-purrr-package"><i class="fa fa-check"></i><b>8.4</b> The <code>purrr::</code> package</a>
 <ul>
@@ -420,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="measure.html"><a href="measure.html#ch.-10-objectives"><i class="fa fa-check"></i><b>10.1</b> Ch. 10 Objectives</a></li>
 <li class="chapter" data-level="10.2" data-path="measure.html"><a href="measure.html#sampling"><i class="fa fa-check"></i><b>10.2</b> Sampling</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#sample"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
+<li class="chapter" data-level="10.2.1" data-path="measure.html"><a href="measure.html#sample"><i class="fa fa-check"></i><b>10.2.1</b> Samples vs. Populations</a></li>
 <li class="chapter" data-level="10.2.2" data-path="measure.html"><a href="measure.html#sample.collect"><i class="fa fa-check"></i><b>10.2.2</b> Collecting a sample</a></li>
 <li class="chapter" data-level="10.2.3" data-path="measure.html"><a href="measure.html#simple-random-sampling"><i class="fa fa-check"></i><b>10.2.3</b> Simple Random Sampling</a></li>
 <li class="chapter" data-level="10.2.4" data-path="measure.html"><a href="measure.html#systematic-sampling"><i class="fa fa-check"></i><b>10.2.4</b> Systematic Sampling</a></li>
@@ -484,7 +486,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.6" data-path="dist.html"><a href="dist.html#pearson"><i class="fa fa-check"></i><b>12.6</b> Pearson Correlation Coefficient</a>
 <ul>
-<li class="chapter" data-level="12.6.1" data-path="dist.html"><a href="dist.html#anscombes-quartet"><i class="fa fa-check"></i><b>12.6.1</b> Anscombe’s Quartet</a></li>
+<li class="chapter" data-level="12.6.1" data-path="dist.html"><a href="dist.html#anscombes-quartet"><i class="fa fa-check"></i><b>12.6.1</b> Anscombe's Quartet</a></li>
 </ul></li>
 <li class="chapter" data-level="12.7" data-path="dist.html"><a href="dist.html#OLS"><i class="fa fa-check"></i><b>12.7</b> OLS Regression Coefficients</a></li>
 </ul></li>
@@ -524,7 +526,7 @@ data visualization in R. Upon completing this chapter, you should be able to:</p
 <div id="install-and-load-ggplot2" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Install and load <code>ggplot2</code><a href="dataviz.html#install-and-load-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
-<p><span style="color: blue;"> “The best design gets out of the way between the viewer’s brain and the content.” - Edward Tufte </span></p>
+<p><span style="color: blue;"> "The best design gets out of the way between the viewer’s brain and the content." - Edward Tufte </span></p>
 </blockquote>
 <p>In this chapter, you will learn how to make basic plots using the <code>ggplot2</code>
 package in R, which is another package in <code>tidyverse</code>, like <code>dplyr</code> and <code>readr</code>.
@@ -532,22 +534,22 @@ This section will focus on making <strong>useful</strong>, rather than
 <strong>attractive</strong> graphs because, at this stage, we are focusing on exploring data
 rather than presenting results to others. Later on, you will learn about
 how to customize <code>ggplot2</code> objects. Customization often helps to make plots that
-“get out of the way” between the content you wish to present and the viewer’s
+"get out of the way" between the content you wish to present and the viewer's
 brain, wherein you hope understanding takes root.</p>
-<p>If you don’t already have <code>ggplot2</code> installed, you’ll need to install it. You
+<p>If you don't already have <code>ggplot2</code> installed, you'll need to install it. You
 then need to load the package in your current session of R:</p>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="dataviz.html#cb180-1" tabindex="-1"></a><span class="co"># install ggplot2 package (done once per R/RStudio installation)</span></span>
 <span id="cb180-2"><a href="dataviz.html#cb180-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)  </span>
 <span id="cb180-3"><a href="dataviz.html#cb180-3" tabindex="-1"></a><span class="co"># load ggplot2 in current R session</span></span>
 <span id="cb180-4"><a href="dataviz.html#cb180-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 <p>Alternatively, if you are planning on using other <code>tidyverse</code> R packages in the
-same R session, you can simply install and load the <code>tidyverse</code> “R
-package suite of R packages” with <code>library(tidyverse)</code>.</p>
+same R session, you can simply install and load the <code>tidyverse</code> "R
+package suite of R packages" with <code>library(tidyverse)</code>.</p>
 </div>
 <div id="steps-to-create-a-ggplot2-object" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Steps to create a <code>ggplot2</code> object<a href="dataviz.html#steps-to-create-a-ggplot2-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The process of creating a plot using <code>ggplot2</code> follows conventions that are a
-bit different than most of the code you’ve seen so far in R, although it is
+bit different than most of the code you've seen so far in R, although it is
 somewhat similar to the idea of piping I introduced in the last chapter. The
 basic steps behind creating a plot with <code>ggplot2</code> are:</p>
 <ol style="list-style-type: decimal">
@@ -607,7 +609,7 @@ Chapters 2 and 3, one should always <em>look</em> at the data upon import and ex
 the dataframe structure and variable classes.</p>
 <p>According to <code>?mpg</code>:</p>
 <blockquote>
-<p>“This dataset contains a subset of the fuel economy data that the EPA makes available on <a href="http://fueleconomy.gov" target="_blank">http://fueleconomy.gov</a>. It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car.”</p>
+<p>"This dataset contains a subset of the fuel economy data that the EPA makes available on <a href="http://fueleconomy.gov" target="_blank">http://fueleconomy.gov</a>. It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car."</p>
 </blockquote>
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="dataviz.html#cb182-1" tabindex="-1"></a><span class="co"># use ggplot() to map the data and a single aesthetic (variable = class)</span></span>
 <span id="cb182-2"><a href="dataviz.html#cb182-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> class)) <span class="sc">+</span> </span>
@@ -618,7 +620,7 @@ the dataframe structure and variable classes.</p>
 Figure 4.1: Example of a simple call to <code>ggplot</code> showing counts of vehicle classes from the <code>mpg</code> dataframe.
 </p>
 </div>
-<p>Let’s call this plot again with a second aesthetic, the <code>fill</code> color, which
+<p>Let's call this plot again with a second aesthetic, the <code>fill</code> color, which
 will be mapped to <code>drv</code>, a variable in the <code>mpg</code> data frame that specifies
 vehicle drive type (i.e., 4-wheel, font-wheel, or rear-wheel). The x-position
 will continue to show vehicle class (<code>class</code>), but we will <code>fill</code> each bar
@@ -636,7 +638,7 @@ Figure 4.2: Example of a call to <code>ggplot</code> showing counts of vehicle c
 <p>What new information can we learn from the Figure <a href="dataviz.html#fig:mpg-fill">4.2</a>? For
 starters, we can see that compact and mid-size cars tend to be front-wheel
 drive, whereas pickups and SUVs (who tend to share the same chassis) tend to
-be 4-wheel drive. <em>This result is not surprising to anyone who studies cars and trucks, but it’s nice to confirm one’s knowledge with quantitative data!</em></p>
+be 4-wheel drive. <em>This result is not surprising to anyone who studies cars and trucks, but it's nice to confirm one's knowledge with quantitative data!</em></p>
 <div class="rmdnote">
 <p>
 <code>ggplot()</code> will choose colors and add legends to plots
@@ -645,8 +647,8 @@ ways to customize colors, legends, and other plot elements later.
 </p>
 </div>
 <p>Which aesthetics are required for a plot depend on which geoms (more on those
-in a second) you’re adding to the plot. You can find out the aesthetics you can
-use for a geom in the “Aesthetics” section of the geom’s helpfile (e.g.,
+in a second) you're adding to the plot. You can find out the aesthetics you can
+use for a geom in the "Aesthetics" section of the geom's helpfile (e.g.,
 <code>?geom_bar</code>). Required aesthetics are often shown <strong>in bold</strong> in this section of
 the helpfile. You can also view a concise summary of aesthetic specification by typing <code>vignette("ggplot2-specs")</code> into the R console. Common plot aesthetics you might want to specify include:</p>
 <table>
@@ -695,7 +697,7 @@ the helpfile. You can also view a concise summary of aesthetic specification by 
 </div>
 <div id="adding-geoms" class="section level2 hasAnchor" number="4.6">
 <h2><span class="header-section-number">4.6</span> Adding geoms<a href="dataviz.html#adding-geoms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>When creating plots, you’ll often want to add more than one <code>geom</code> to the plot.
+<p>When creating plots, you'll often want to add more than one <code>geom</code> to the plot.
 You can add these with <code>+</code> after the <code>ggplot()</code> statement to initialize the
 <code>ggplot2</code> object. Some of the most common geoms are:</p>
 <table>
@@ -746,9 +748,9 @@ done. Don’t start lines with <code>+</code>.
 <div id="aesthetic-override-a-warning" class="section level3 hasAnchor" number="4.6.1">
 <h3><span class="header-section-number">4.6.1</span> Aesthetic override: a warning<a href="dataviz.html#aesthetic-override-a-warning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>ggplot2</code> package, like many <code>tidyverse</code> packages, is both flexible and
-forgiving, designed to accommodate the user by “filling in the blanks” when no
+forgiving, designed to accommodate the user by "filling in the blanks" when no
 information is provided. For example, in the <code>ggplot()</code> call that created
-Figure <a href="dataviz.html#fig:mpg-fill">4.2</a>, we didn’t specify the colors to be used or the
+Figure <a href="dataviz.html#fig:mpg-fill">4.2</a>, we didn't specify the colors to be used or the
 contents of the legend; instead, <code>ggplot2</code> figured those out for us. The
 <code>ggplot2</code> package is also somewhat <em>flexible</em> in how calls and aesthetic
 mappings can be structured. For example, the following four calls all produce
@@ -813,7 +815,7 @@ Figure 4.4: Examples of the shapes corresponding to different numeric choices fo
 <p>If you want to set color to be a constant value, you can do that in R using
 character strings for different colors. Figure <a href="dataviz.html#fig:color-examples">4.5</a> gives
 an example of some of the different blues available in R. To find links to
-listings of different R colors, look up “R colors” and search by “Images”. Note
+listings of different R colors, look up "R colors" and search by "Images". Note
 that colors are specified as <em>character strings</em> and define using quotes <code>" "</code>.
 See the code chunk for Figure <a href="dataviz.html#fig:mpg-green">4.3</a> where color is defined by
 <code>fill = "darkgreen"</code>.</p>
@@ -830,7 +832,7 @@ Figure 4.5: Example of available shades of blue in R.
 and changes to how the plot is presented. According to the <code>ggplot2</code>
 documentation:</p>
 <blockquote>
-<p>“Scales control the details of how data values are translated to visual properties. Override the default scales to tweak details like the axis labels or legend keys, or to use a completely different translation from data to aesthetic.”</p>
+<p>"Scales control the details of how data values are translated to visual properties. Override the default scales to tweak details like the axis labels or legend keys, or to use a completely different translation from data to aesthetic."</p>
 </blockquote>
 <p>There are many scale elements that you can add onto a <code>ggplot2</code> object using
 <code>+</code>. A few that are used very frequently are:</p>
@@ -872,7 +874,7 @@ and legends. These additional functions can be called on a <code>ggplot</code> o
 need to be loaded. Fortunately, the <code>ggplot2</code> package is loaded in addition to regular <code>tidyverse</code> packages when you call <code>library(tidyverse)</code>.</p>
 <p>The first example is actually of two similar <a href="eda2.html#scatt">scatterplots</a>: one using
 <code>geom_point()</code> and one using <code>geom_jitter()</code>. These plots will examine the
-agreement (i.e., the <a href="eda2.html#corr">correlation</a>) between a vehicle’s highway (<code>hwy</code>)
+agreement (i.e., the <a href="eda2.html#corr">correlation</a>) between a vehicle's highway (<code>hwy</code>)
 and city (<code>cty</code>) fuel economies for model year 2008.</p>
 <p>Because the <code>mpg</code> dataset contains data from model year 1999 and 2008, we will
 apply a <code>dplyr::filter()</code> command within our call to <code>ggplot()</code> to limit the
@@ -913,18 +915,18 @@ you could pipe together the following:</p>
 <div class="figure"><span style="display:block;" id="fig:mpg-example1"></span>
 <img src="04-dataviz_files/figure-html/mpg-example1-1.png" alt="Scatterplot (geom_point) of highway vs. city fuel economy for model year 2008, colored by vehicle type" width="672" />
 <p class="caption">
-Figure 4.6: Scatterplot (geom_point) of highway vs. city fuel economy for model year 2008, colored by vehicle type
+Figure 4.6: Scatterplot (geom_point) of highway vs. city fuel economy for model year 2008, colored by vehicle type
 </p>
 </div>
 <p>A few things to note about this plot. First, there is a clear relationship
-between a vehicle’s highway and city fuel economy, but the correlation is not
+between a vehicle's highway and city fuel economy, but the correlation is not
 necessarily one-to-one. Second, we can see that compact and midsize cars tend
-to have better fuel efficiency that pickups and SUVs (…duh). Third, in my
+to have better fuel efficiency that pickups and SUVs (...duh). Third, in my
 opinion, this plot has a few drawbacks:</p>
 <ul>
 <li>If you were paying close attention, the sum of the <code>tally()</code> function above
 reported over 100 different entries (117 to be precise), but the plot above
-shows only about 50 data points… Why? (Hint: if you look at the <code>mpg</code>
+shows only about 50 data points... Why? (Hint: if you look at the <code>mpg</code>
 data, the fuel economies [<code>cty</code> and <code>hwy</code>] are rounded to the nearest mile per gallon because they are coded as an <code>integer</code> class.)
 <ul>
 <li>We will address this issue with <code>geom_jitter()</code> below.<br />
@@ -937,12 +939,12 @@ a bit.
 </li>
 </ul></li>
 <li>The relationship between <code>cty</code> and <code>hwy</code> might be easier to distinguish if
-we drew a “one-to-one” line on the plot (i.e., y = x).
+we drew a "one-to-one" line on the plot (i.e., y = x).
 <ul>
 <li>We will accomplish this need with <code>geom_abline</code> below.<br />
 </li>
 </ul></li>
-<li>Personally, I don’t like the grey background and I think that the x and y
+<li>Personally, I don't like the grey background and I think that the x and y
 axis labels are a little vague. I prefer my axis labels to be more
 descriptive and to communicate the units being plotted.
 <ul>
@@ -952,12 +954,12 @@ axis labels with <code>xlab()</code> and <code>ylab()</code> elements.</li>
 </ul>
 <p>Below is the same data from Figure <a href="dataviz.html#fig:mpg-example1">4.6</a> plotted using
 <code>geom_jitter()</code>. This geom is just like <code>geom_point()</code> except that it allows
-the plotted points to contain some “jitter” (a small amount of wobble as to where
+the plotted points to contain some "jitter" (a small amount of wobble as to where
 the point actually shows up in x and y space) so that overlapping data points
 can be distinguished from one another. The degree of jitter is set using
 <code>height =</code> and/or <code>width =</code> arguments. Note that adding jitter to data is the
 same as making the plotted data less precise (in a random way) so be careful not
-to add too much jitter to a plot—aim for just enough jitter so that the points
+to add too much jitter to a plot---aim for just enough jitter so that the points
 are visible without impacting the overall conclusion to be drawn from the plot.</p>
 <p>We can also add a degree of transparency to the plotted data by
 using <code>alpha = 0.6</code> within the <code>geom_jitter()</code> layer. The <code>alpha =</code> argument is
@@ -1006,7 +1008,7 @@ distance are equal to 10 units of y distance) by specifying a
 <div class="figure"><span style="display:block;" id="fig:mpg-example1a"></span>
 <img src="04-dataviz_files/figure-html/mpg-example1a-1.png" alt="Scatterplot (geom_jitter) of highway vs. city fuel economy for model year 2008, colored by vehicle type" width="672" />
 <p class="caption">
-Figure 4.7: Scatterplot (geom_jitter) of highway vs. city fuel economy for model year 2008, colored by vehicle type
+Figure 4.7: Scatterplot (geom_jitter) of highway vs. city fuel economy for model year 2008, colored by vehicle type
 </p>
 </div>
 </div>
@@ -1025,7 +1027,7 @@ call for <code>ggplot()</code>.</p></li>
 </ol>
 <ul>
 <li><p>The first layer (<code>geom_jitter()</code>) is a point plot that adds a slight amount
-of “wobble” or “jitter” to the data points so that they don’t overlap on the
+of "wobble" or "jitter" to the data points so that they don't overlap on the
 plot. Here, we have called <code>geom_jitter()</code> to display the individual values for
 2008 SUV fuel economy on the highway as a function of manufacturer.</p></li>
 <li><p>The second layer (<code>geom_errorbar()</code>) is a horizontal line plot showing the
@@ -1116,7 +1118,7 @@ specify parameters including image resolution (<code>dpi = 300</code>), image ty
 </div>
 <div id="getting-help-with-ggplot2" class="section level2 hasAnchor" number="4.12">
 <h2><span class="header-section-number">4.12</span> Getting help with <code>ggplot2</code><a href="dataviz.html#getting-help-with-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The <code>ggplot2</code> package has become so popular that most of my “how do I do this?”
+<p>The <code>ggplot2</code> package has become so popular that most of my "how do I do this?"
 questions have already been asked, answered, and archived on sites like
 <a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a>.</p>
 <p>Another great source is the
@@ -1126,13 +1128,13 @@ nice, concise summary of how to call and customize plot objects. I recommend
 starting there because (1) it is created and maintained by the <code>ggplot2</code>
 developers (and, thus, is authoritative) and (2) the reference page contains
 all the function calls in an organized list, for which you can conduct a
-‘control/command F’ search. You can also print this RStudio <code>ggplot2</code>
+'control/command F' search. You can also print this RStudio <code>ggplot2</code>
 <a href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf" target="_blank">cheat sheet</a>
 to reference while coding.</p>
 <p>If you would like some hands-on training in <code>ggplot2</code>, look for tutorials or
 webinars like
 <a href="https://www.youtube.com/watch?v=umDKP7ofHKk&amp;feature=youtu.be" target="_blank">this one</a>
-from Dr. Samantha Tyner, the creator and maintainer
+from Dr. Samantha Tyner, the creator and maintainer
 of <code>geomnet</code>, a <code>ggplot2</code> extension or this <a href="https://www.youtube.com/watch?v=IWXcw6NHM6E" target="_blank">more recent one</a>. Speaking of which, the R community has
 created a large number of <code>ggplot2</code> extensions for different data visualization
 needs. If you are thinking about a custom <code>ggplot</code> style, it probably
